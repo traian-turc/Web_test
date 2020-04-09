@@ -1,4 +1,2 @@
-# Webtech
-Webtech -  web projects testing
-## Web pages
-### Web applications
+# proiect_web
+Aplicatia web creeata pentru cursul de tehnologii WEB
