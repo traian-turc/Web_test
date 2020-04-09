@@ -1,0 +1,86 @@
+body {
+  margin: 10;
+  background-color: #364652;
+  align-content: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.page {
+  align-content: center;
+}
+
+.menubar {
+  width: 100%;
+  background-color: #D3D0CB;
+  text-align: center;
+  font-size: larger;
+}
+
+.baner  {
+  background-color: #564D4A ;
+  text-indent: 15px;
+  text-align: left;
+  padding: 14px;
+}
+
+.baner a{
+  text-decoration: none;
+  color: white;
+  font-size: 40px;
+}
+
+.main {
+  padding: 10px;
+  max-width: 1000px;
+  margin: auto;
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.card {
+  padding: 30px 60px 30px 60px;
+  text-align: justify;
+  margin-bottom: 10px;
+  background-color: #D3D0CB;
+  border-radius: 5px;
+  box-shadow: inset;
+  box-shadow: 5px 5px 20px -10px rgba(0,0,0,0.75);
+}
+
+.menu_item.active a{
+  background-color: #587B7F;
+  color: white;
+}
+
+.menu {
+  width: fit-content;
+  list-style-type: none;
+  background-color: #564D4A;
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 0;
+  overflow: auto;
+  height: unset;
+}
+
+.menu_item {
+  float: left;
+  width: fit-content;
+  height: inherit;
+} 
+
+.menu_item a {
+  color: black;
+  display: block;
+  padding: 14px 30px 14px 30px;
+  background-color: #D3D0CB;
+  text-decoration: none;
+  text-align: center;
+  align-content: center;
+  height: inherit;
+}
+
+.menu_item a:hover {
+  background-color: #587B7F;
+  color: white;
+}

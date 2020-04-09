@@ -1,0 +1,15 @@
+div.canvas {
+  /* TODO: making the canvas align to center*/
+}
+button.styled-button {
+  margin: 5px 2px 5px 2px;
+  padding: 5px 10px 5px 10px;
+  border: 0;
+  background: #564D4A;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+}
+button.styled-button:hover {
+  background: #587B7F;
+}
