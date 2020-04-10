@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <!--
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  -->
-  <title>Webtech</title>
-
-  <link rel="stylesheet" href="../style/main.css">
-  <link rel="stylesheet" href="../style/experiments.css">
-
-  <script type="text/javascript" src="../dependencies/p5.min.js"></script>
-  <script type="module" src="../script/experiments.js"></script>
-</head>
-
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <!--
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    -->
+    <title>Webtech</title>
+    <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/experiments.css">
+    <script type="text/javascript" src="../dependencies/p5.min.js"></script>
+    <script type="module" src="../script/experiments.js"></script>
+  </head>
+  <body>
       <div class="card">
           <h2>Experiment 1</h2>
           <p>
@@ -29,44 +26,35 @@
       </div>
       <div class='cavans' id='canvas_0'></div>
       <div class="card">
-        <div>
-          <h2>Experiment 2</h2>
-          <p>
-            In lucru
-          </p>
-        </div>
+        <h2>Experiment 2</h2>
         <button id="start-c1" class="styled-button">Start</button>
         <button id="stop-c1" class="styled-button">Stop</button>
         <button id="reset-c1" class="styled-button">Reset</button>
        </div>
        <div class='cavans' id='canvas_1'></div>
-      <div class="card">
-        <div>
-          <h2>Experiment 3</h2>
-          <p>
+       <div class="card">
+        <h2>Experiment 3</h2>
+        <p>
             Acesta este un experiment prin care se poate determina numarul Pi.
-          </p>
-          <p>Exista doua obiecte cu masa diferita, plasate pe o suprafata care are coeficientul
+        </p>
+        <p>Exista doua obiecte cu masa diferita, plasate pe o suprafata care are coeficientul
             de frecare egal cu zero. Practic cele doua obiecte aluneca pana la infinit daca
             aplicam o forta f la una dintre cele doua capete. La una dintre capete, exista un zid ferm 
             care nu se poate misca, indiferent de forta aplicata acestuia.
-          </p>
-          <p>
+         </p>
+         <p>
             Greutatea obiectelor depinde de cate zecimale dorim sa aflam din numarul Pi.
             Asadar ii atribuim obiectului "mic" masa 100^0 = 1 iar obiectului "mare" 100^n, n fiind numarul
             de zecimale dorite. In cazul nostru o sa aflam 5 zecimale deci n=5 deci masa obiectulu "mare" va fi 100^5.
-          </p>
-          <p>
+         </p>
+         <p>
             Daca aplicam o forta f pentru obiectul "mare" pe partea opusa cu obiectul "mic" si numaram 
             de cate ori se ciocnesc acestia, o sa observam ca daca plasam dupa primul numar o virgula, va iesi exact numarul Pi.
-          </p>
-        </div>
+         </p>
         <button id="start-c2" class="styled-button">Start</button>
         <button id="stop-c2" class="styled-button">Stop</button>
         <button id="reset-c2" class="styled-button">Reset</button>
-        <div class='canvas' id='canvas_2'></div>
       </div>
-  </div>
-</body>
-
+      <div class='canvas' id='canvas_2'></div>
+  </body>
 </html>
