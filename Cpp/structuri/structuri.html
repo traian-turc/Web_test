@@ -1,0 +1,1040 @@
+<html>
+<title> Structuri si clase </title>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Structuri si clase </Center></TD></TR>
+</table>
+<br><a name="start"></a>
+<font color= "Blue" size=5> Tipuri de date definite de utilizator: structuri  </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O structura este un tip de date definit de utilizator cuprinzand variabile multiple, de diferite tipuri. Structurile sunt 
+utile pentru descrierea obiectelor. Spre deosebire de tablouri, care stocheaza mai multe valori de acelasi tip, structurile stocheaza valori de diferite 
+tipuri.
+<br><br><a name="def"></a>
+<font color= "Black" size=4><li><b>Declararea unei structuri </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Structurile descriu obiecte prin caracteristicile acestora. Toate aceste caracteristici sunt deci corelate. Structurile 
+permit inpachetarea variabilelor corelate intr-o singura entitate numita structura. Pentru a putea fi interpretade de compilator, structurile trebuie 
+declarate. Sa presupunem ca vrem sa descriem parametri electrici ai unui aplarat electric. Vom realiza o structura care sa cuprinda parametrii electrici 
+care definesc respectivul aparat electric. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarele instructiuni declara o structura  ce reprezinta un aparat electric cu patru caracteristici: nume,  curent  , 
+tensiunea nominala si frecventa.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+struct ap_electric {
+	string nume;
+	int u_n;
+	double i;
+	int frecv;
+	};
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Structura se declara folosind cuvantul rezervat <b> struct </b>. Continutul structurii este pus intre acolade. Dupa 
+ultima acolada, este obligatoriu caracterul punct si virgula. Corpul structurii se compune din variabilele corelate numite <b> variabile membru </b>.
+<br><br><a name="decl"></a>
+<font color= "Black" size=4><li><b>Declararea unei variabile de structura </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O variabila de structura se declara ca o variabila a unui tip de date incorporat. Astfel pentru a declara o variabila 
+a de tip ap_electri, utilizam: 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+ap_electric a;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pot fi declarate de asemenea si variabile multiple:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+ap_electric a1,a2,a3,a4;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se pot declara tablouri de variabile astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+ap_electric a[25];
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="acces"></a>
+<font color= "Black" size=4><li><b>Accesarea variabilelor membru ale unei structuri </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa declarearea unei structuri si a unei variabile de structura, nu se atribuie valori pentru variabilele membru. 
+Pentru a accesa o variabila membru, se utilizeaza operatorul punct. Sa presupunem ca am declarat o variabila de structura cu urmatoarea declaratie:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+ap_electric a;
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a atribui valoarea 220 variabilei membru u_n procedam astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+a.u_n=220;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa tensiunea nominala vom utiliza
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+cout << a.u_n;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza in continuare o aplicatie care defineste o structura ap_electric, atribuie valori variabileleor membru 
+dupa care afiseaza aceste valori.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Utilizarea structurilor de date
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+struct ap_electric {
+	char nume[25];
+	int u_n;
+	double i;
+	int frecv;
+	};
+int main(void)
+{
+	system("TITLE Utilizarea structurilor de date ");
+	system("COLOR F9"); 
+	cout << "\n\t Programul defineste structura ap_electric"; 
+	cout << "\n\t - atribuie valori variabilelor membru";
+	cout << "\n\t - afiseaza valorile variabilelor membru.\n\n\n";
+	cout << "\n\t Introduceti numele aparatului electric: "; 
+	ap_electric a;
+	cin.getline(a.nume,25);
+	cout << "\n\t Introduceti tensiunea nominala de functionare (V) : "; 
+	cin >> a.u_n;
+	cout << "\n\t Introduceti frecventa tensiunii electrice (Hz) : "; 
+	cin >> a.frecv;
+	cout << "\n\t Introduceti curentul absorbit de aparatul electric (A): "; 
+	cin >> a.i;	
+	cout << "\n\n\n\t Aparatul electric  " << a.nume ;
+	cout << "\n\n\t  - functioneaza la tensiunea " << a.u_n << " V";
+	cout << "\n\t  - frecventa  " << a.frecv << " Hz "; 
+	cout << "\n\t  - consuma  " << a.i << " A ";
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia, introducem datele cerute si obtinem:
+<br><br><center><img src="im_cpp70.gif"></center>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace struct_01
+{
+    class Program
+    {
+         public struct ap_electric {
+             public String nume;
+             public int u_n;
+             public double i;
+             public int frecv;
+	        };
+        static void Main(string[] args)
+        {
+            String u_n_s, i_s, frecv_s;
+            Console.Write("\n\t Programul defineste structura ap_electric");
+            Console.Write("\n\t - atribuie valori variabilelor membru");
+            Console.Write("\n\t - afiseaza valorile variabilelor membru.\n\n\n");
+            Console.Write("\n\t Introduceti numele aparatului electric: ");
+            ap_electric a;
+            a.nume = Console.ReadLine();
+            Console.Write("\n\t Introduceti tensiunea nominala de functionare (V) : ");
+            u_n_s = Console.ReadLine();
+            a.u_n = System.Convert.ToInt16(u_n_s);
+            Console.Write("\n\t Introduceti frecventa tensiunii electrice (Hz) : ");
+            frecv_s = Console.ReadLine();
+            a.frecv = System.Convert.ToInt16(frecv_s);
+            Console.Write("\n\t Introduceti curentul absorbit de aparatul electric (A): ");
+            i_s = Console.ReadLine();
+            a.i = System.Convert.ToDouble(i_s);
+	        Console.Write("\n\n\n\t Aparatul electric  "+a.nume );
+            Console.Write("\n\n\t  - functioneaza la tensiunea " +a.u_n );
+            Console.Write("\n\t  - frecventa  " + a.frecv);
+            Console.Write("\n\t  - consuma  " + a.i);
+            Console.ReadKey();
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa utilizam acum o variabila de structura de tip tablou. Vom realua aplicatia anterioara si o vom modifica astfel 
+incat aplicatia sa preia caracteristicile mai multor aparate electrice si apoi sa le afiseze.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Utilizarea structurilor de date
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+struct ap_electric {
+	char nume[25];
+	int u_n;
+	double i;
+	int frecv;
+	};
+int main(void)
+{
+	system("TITLE Utilizarea structurilor de date ");
+	system("COLOR F9"); 
+	cout << "\n\t Programul defineste structura ap_electric"; 
+	cout << "\n\t Se declara o variabila de structura de tip tablou\n\n";
+	const int nr_ap=3;
+	ap_electric a[nr_ap];
+	for (int i=0; i < nr_ap ;i++){
+		cout << "\n\t Introduceti numele aparatului electric: "<< i+1 << " : "; 
+	cin.getline(a[i].nume,25);
+	cout << "\t Introduceti tensiunea nominala de functionare (V) : "; 
+	cin >> a[i].u_n;
+	cout << "\t Introduceti frecventa tensiunii electrice (Hz) : "; 
+	cin >> a[i].frecv;
+	cout << "\t Introduceti curentul absorbit de aparatul electric (A): "; 
+	cin >> a[i].i;	
+	cin.ignore();
+	}
+	cout << "\n\n\t Caracteristicile aparatelor electrice\n ";
+	for (int i=0; i < nr_ap ;i++){
+	cout << "\n\t " << a[i].nume <<"\t\tU=" << a[i].u_n << " V " << "\tf=";
+	cout << a[i].frecv << " Hz "<< "\tI=" << a[i].i << " A ";
+	}
+	cin.get();
+	return 0;
+} 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia, introducem datele cerute si obtinem:
+<br><br><center><img src="im_cpp71.gif"></center>
+<br><br><a name="ini"></a>
+<font color= "Black" size=4><li><b>Initializarea unei structuri </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O structura de date se initializeaza prin utilizarea listei de initializare sau prin utilizarea unui constructor.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Liste de initializare </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;O structura de date poate fi initializata asemanator unei variabile in momentul declararii variabilei de structura astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+struct ap_electric {
+	char nume[25];
+	int u_n;
+	double i;
+	int frecv;
+	};
+ap_electric a={"Calculator", 220, 2.5 ,50};
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Constructori </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prin initializarea unei structuri se initializeaza un tip de data conform cu structura declarata. Se poate spune ca s-a
+creat o instanta a structuri de date. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Constructorul este o functie care este apelata automat la crearea unei instante a unei structuri de date.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In exemplele anterioare nu am utilizat constructori. Daca in aplicatie nu se scrie un constructor, atunci se apeleaza 
+automat constructorul implicit. Constructorul implicit a fost apelat atunci cand s-a facut declaratia:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b> ap_electric a </b>
+<br><br><a name="constr_f"></a>
+<font color= "Black" size=4><li><b>Constructori fara argumente </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se poate include in cadrul structurii de date un constructor care atribuie valori prestabilite variabilelor membru.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Utilizarea structurilor de date si a constructorilor
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+struct ap_electric {
+	string nume;
+	int u_n;
+	double i;
+	int frecv;
+	ap_electric(){
+		nume="Aparat electric generic";
+		u_n=220;
+		i=0.25;
+		frecv=50;
+	}	
+};
+int main(void)
+{
+	system("TITLE Utilizarea structurilor de date si a constructorilor ");
+	system("COLOR F9");
+	cout << "\n\t In program";
+	cout << "\n\t - se defineste structura ap_electric"; 
+	cout << "\n\t - se defineste constructorul ap_electric()";
+	cout << "\n\t - se afiseaza valorile implicite.\n\n\n";
+	ap_electric a;
+	cout << "\n\n\n\t Date implicite despre aparatul electric  ";
+	cout << "\n\n\t  - Nume : " << a.nume;
+	cout << "\n\t  - functioneaza la tensiunea " << a.u_n << " V";
+	cout << "\n\t  - frecventa  " << a.frecv << " Hz "; 
+	cout << "\n\t  - consum  " << a.i << " A ";
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Constructorul fara argumente asemenea constructorului implicit se lanseaza in momentul lansarii instructiunii:<b> ap_electric a </b>
+<br><br><center><img src="im_cpp72.gif"></center>
+<br><br><a name="constr_a"></a>
+<font color= "Black" size=4><li><b>Constructori cu argumente </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Exista posibilitatea initializarii variabilelor membru cu valorile furnizate in timpul rularii programului. Acest 
+lucru se realizeaza adaugand argumente la functia constructor.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Utilizarea structurilor de date si a constructorilor cu argumente
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+struct ap_electric {
+	string nume;
+	int u_n;
+	double i_n;
+	int frecv;
+	ap_electric(){
+		nume="Neprecizat";
+		u_n=220;
+		i_n=0;
+		frecv=50;
+	}
+	ap_electric(string n, int u , double i, int f){
+		nume=n;
+		u_n=u;
+		i_n=i;
+		frecv=f;
+	}
+};
+int main(void)
+{
+	string denum;
+	int volti;
+	double amperi;
+	int herti;
+	system("TITLE Utilizarea structurilor de date si a constructorilor ");
+	system("COLOR F9"); 
+	cout << "\n\t In program";
+	cout << "\n\t - se defineste structura ap_electric"; 
+	cout << "\n\t - se defineste constructorul ap_electric()";
+	cout << "\n\n\n\t Introduceti denumirea aparatului electric : "; 
+	getline(cin,denum);
+	cout << "\n\t Introduceti tensiunea nominala de functionare (V) : "; 
+	cin >> volti;
+	cout << "\n\t Introduceti frecventa tensiunii electrice (Hz) : "; 
+	cin >> herti;
+	cout << "\n\t Introduceti curentul absorbit de aparatul electric (A): "; 
+	cin >> amperi;
+	ap_electric a(denum,volti,amperi,herti);
+	cout << "\n\n\n\t Aparatul electric  " << a.nume ;
+	cout << "\n\n\t  - functioneaza la tensiunea " << a.u_n << " V";
+	cout << "\n\t  - frecventa  " << a.frecv << " Hz "; 
+	cout << "\n\t  - consuma  " << a.i_n << " A ";
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Constructori cu argumente in C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace struct_01
+{
+    class Program
+    {
+        struct ap_electric
+        {
+            public string nume;
+            public int u_n;
+            public double i_n;
+            public int frecv;
+
+            public ap_electric(double i)
+            {
+                nume = "Bec";
+                u_n = 220;
+                i_n = i;
+                frecv = 50;
+            }
+            public ap_electric(string n)
+            {
+                nume = n;
+                u_n = 220;
+                i_n = 0;
+                frecv = 50;
+            }
+            public ap_electric(string n, int u, double i, int f)
+            {
+                nume = n;
+                u_n = u;
+                i_n = i;
+                frecv = f;
+            }
+            
+        }
+        static void Main(string[] args)
+        {
+            Console.Write("\n\t Programul defineste structura ap_electric");
+            Console.Write("\n\t - atribuie valori variabilelor membru");
+            Console.Write("\n\t - afiseaza valorile variabilelor membru.\n\n\n");
+            Console.Write("\n\t Introduceti numele aparatului electric: ");
+            //ap_electric a = new ap_electric(); 
+            ap_electric a = new ap_electric(12.25);
+            //ap_electric a = new ap_electric("Calculator");
+            //ap_electric a = new ap_electric("Calculator", 220, 1.2, 50);  
+            Console.Write("\n\n\n\t Aparatul electric  " + a.nume);
+            Console.Write("\n\n\t  - functioneaza la tensiunea " + a.u_n);
+            Console.Write("\n\t  - frecventa  " + a.frecv);
+            Console.Write("\n\t  - consuma  " + a.i_n);
+            Console.ReadKey();
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+
+
+<br><br><a name="proto"></a>
+<font color= "Black" size=4><li><b>Prototipul constructorului </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Implementarea constructorului poate fi realizata in afara structurii de date cu conditia sa se defineasca un 
+prototip al constructorului. Utilizand un prototip de constructor, aplicatia devine: 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Utilizarea structurilor de date si a constructorilor cu prototip
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+struct ap_electric {
+	string nume;
+	int u_n;
+	double i_n;
+	int frecv;
+	ap_electric();// Prototipul constructorului implicit
+	ap_electric(string n, int u , double i, int f); // Prototipul constructorului
+};
+ap_electric::ap_electric(){ //Constructorul implicit
+		nume="Neprecizat";
+		u_n=220;
+		i_n=0;
+		frecv=50;
+	}
+ap_electric::ap_electric(string n, int u , double i, int f){ //Constructorul
+		nume=n;
+		u_n=u;
+		i_n=i;
+		frecv=f;
+	}
+int main(void)
+{
+	string denum;
+	int volti;
+	double amperi;
+	int herti;
+	system("TITLE Utilizarea prototipurilor pentru constructori ");
+	system("COLOR F9"); 
+	cout << "\n\t In program";
+	cout << "\n\t - se defineste structura ap_electric"; 
+	cout << "\n\t - se defineste constructorul ap_electric()";
+	cout << "\n\n\n\t Introduceti denumirea aparatului electric : "; 
+	getline(cin,denum);
+	cout << "\n\t Introduceti tensiunea nominala de functionare (V) : "; 
+	cin >> volti;
+	cout << "\n\t Introduceti frecventa tensiunii electrice (Hz) : "; 
+	cin >> herti;
+	cout << "\n\t Introduceti curentul absorbit de aparatul electric (A): "; 
+	cin >> amperi;
+	ap_electric a(denum,volti,amperi,herti);
+	cout << "\n\n\n\t Aparatul electric  " << a.nume ;
+	cout << "\n\n\t  - functioneaza la tensiunea " << a.u_n << " V";
+	cout << "\n\t  - frecventa  " << a.frecv << " Hz "; 
+	cout << "\n\t  - consuma  " << a.i_n << " A ";
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa pentru a defini constructorul s-a folosit operatorul de rezolutie a vizibilitatii (::) pentru a 
+preciza ca faptul ca functia respectiva apartine structurii definite anterior si nu este o functie independenta.
+<br><br><a name="func_s"></a>
+<font color= "Black" size=4><li><b>Structuri ca argumente de functii </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O structura poate fi folosita ca argument de functie.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa reluam o aplicatie anterioara care atribuie valori variabilelor membru al unei structuri dupa care afiseaza aceste 
+valori, folosind de data aceasta doua functii : "ini_val" si "afis_val"
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Utilizarea structurilor de date si a functiilor 
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+struct ap_electric {
+	string nume;
+	int u_n;
+	double i_n;
+	int frecv;
+	};
+void ini_val(ap_electric&);
+void afis_val(const ap_electric&); 
+int main(void)
+{
+	system("TITLE Utilizarea functiilor cu argument structurii de date ");
+	system("COLOR F9"); 
+	cout << "\n\t Programul defineste structura ap_electric"; 
+	cout << "\n\t - atribuie valori variabilelor membru folosind functia ini_val";
+	cout << "\n\t - afiseaza valorile variabilelor membru folosind functia afis_val .\n\n\n";
+	ap_electric a;
+	ini_val(a);
+	cout << "\n\n\n\t Datele aparatului electric  " ;
+	afis_val(a);
+	cin.ignore();
+	cin.get();
+	return 0;
+} 	
+void ini_val(ap_electric& ap_e){// ap_e fiind o variabila formala
+	cout << "\n\t Introduceti numele aparatului electric: "; 
+	getline(cin,ap_e.nume);
+	cout << "\n\t Introduceti tensiunea nominala de functionare (V) : "; 
+	cin >> ap_e.u_n;
+	cout << "\n\t Introduceti frecventa tensiunii electrice (Hz) : "; 
+	cin >> ap_e.frecv;
+	cout << "\n\t Introduceti curentul absorbit de aparatul electric (A): "; 
+	cin >> ap_e.i_n;
+	
+}
+void afis_val(const ap_electric& ap_e){// ap_e fiind o variabila formala
+	cout << "\n\n\n\t Denumire aparat:  " << ap_e.nume ;
+	cout << "\n\n\t  - functioneaza la tensiunea " << ap_e.u_n << " V";
+	cout << "\n\t  - frecventa  " << ap_e.frecv << " Hz "; 
+	cout << "\n\t  - consuma  " << ap_e.i_n << " A ";
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa structura de date este transmisa functiei prin referinta. Functia "ini_val" modifica variabilele 
+membru ale structurii. Functia "afis_val" afiseaza valorile variabilelor membru fara a face modificarea lor. Pentru mai multa siguranta, in 
+cadrul functiei "afis_val" s-a declarat ca argument "const ap_electric" pentru a preveni modificarea accidentala a valorilor variabilelor membru. 
+<br><br><a name="imbr_s"></a>
+<font color= "Black" size=4><li><b>Imbricarea structurilor de date </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Structurile de date permit imbricarea unei structuri in alte structuri. Sa presupunem ca vrem sa descriem aparatul 
+electric atat din punct de vedre electric cat si mecanic. Vom defini o structura pentru caracteristicile electrice numita "c_electrice" si o 
+structura pentru caracteristicile mecanice numita c_mecanice.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Pentru a defini aparatul electric vom defini o structura care contine numele si cele doua structuri definite anterior.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Utilizarea structurilor de date imbricate
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+struct c_electrice {
+	int u_n;
+	double i_n;
+	int frecv;
+	};
+struct c_mecanice {
+	int masa;
+	double lung;
+	double lat;
+	double inalt;
+	};
+struct ap_electric { // imbricarea structurilor c_electrice si c_mecanice
+	char nume[25];
+	c_electrice electr;
+	c_mecanice mec;
+	};
+int main(void)
+{
+	system("TITLE Utilizarea structurilor de date imbricate ");
+	system("COLOR F9"); 
+	cout << "\n\t Programul defineste structura ap_electric, c_electrice, c_mecanice"; 
+	cout << "\n\t - atribuie valori variabilelor membru";
+	cout << "\n\t - afiseaza valorile variabilelor membru.\n\n";
+	cout << "\n\t Introduceti numele aparatului electric: "; 
+	ap_electric a;
+	cin.getline(a.nume,25);
+	cout << "\n\t Introduceti tensiunea nominala de functionare (V) : "; 
+	cin >> a.electr.u_n;
+	cout << "\t Introduceti frecventa tensiunii electrice (Hz) : "; 
+	cin >> a.electr.frecv;
+	cout << "\t Introduceti curentul absorbit de aparatul electric (A): "; 
+	cin >> a.electr.i_n;
+	cout << "\t Introduceti lungimea aparatului (mm): "; 
+	cin >> a.mec.lung;
+	cout << "\t Introduceti latimea aparatului (mm): "; 
+	cin >> a.mec.lat;
+	cout << "\t Introduceti inaltimea aparatului (mm): "; 
+	cin >> a.mec.inalt;
+	cout << "\n\n\tAparatul electric  " << a.nume << " are urmatoarele caracteristici :";
+	cout << "\n\n\tCaracteristici electrice ";
+	cout << "\n\t  - functioneaza la tensiunea " << a.electr.u_n << " V";
+	cout << "\n\t  - frecventa  " << a.electr.frecv << " Hz "; 
+	cout << "\n\t  - consuma  " << a.electr.i_n << " A ";
+	cout << "\n\n\tCaracteristici mecanice ";
+	cout << "\n\t  - lungimea " << a.mec.lung << " V";
+	cout << "\n\t  - latimea  " << a.mec.lat << " Hz "; 
+	cout << "\n\t  - inaltimea  " << a.mec.inalt << " A ";
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea aplicatiei si introducerea datelor cerute, obtinem:
+<br><br><center><img src="im_cpp73.gif"></center>
+<br><a name="cls"></a>
+<font color= "Blue" size=5> Tipuri de date definite de utilizator: clase  </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O structura este un tip de date definit de utilizator. Structura pentru descrierea obiectelor se numeste clasa.
+<br><br><a name="def_cls"></a>
+<font color= "Black" size=4><li><b>Declararea unei clase </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarele instructiuni declara o clasa ce reprezinta un aparat electric cu patru atribute: nume, tensiunea nominala, 
+frecventa si curentul nominal. 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+class ap_electric {
+  private:	
+	string nume;
+	int u_n;
+	int frecv;
+	double i_n;	
+ public:
+    functie membru_1;
+    ...
+    functie membru_n
+	};
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se vede o clasa se declara similar cu o structura de date, cu deosebirea ca se foloseste cuvantul rezervat 
+<b> class </b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul unei clase, variabilele membru sunt de tip "privat" spre deosebire de variabilele membru ale unei structuri
+care sunt de tip "public". O variabila membru a unei clase poate fi accesata numai de o functie membru a acelei clase.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Variabilele membru sunt deci "ascunse". Procedeul de ascundere a informatiilor referitoare la la clasa se numeste <b> 
+incapsulare </b>. Prin incapsulare, variabilele membru nu mai pot fi setate direct decat prin intermediul functiilor membru, deci exista posibilitatea
+vaidarii datelor ce se atribuie variabilelor membru, de catre functiile membru. Citirea variabilelor membru se face tot prin intermediul 
+functiilor membru, existand posibilitatea deci de a proteja citirea neautorizata a valorilor variabilelor membru de catre utilizatorii care nu au 
+dreptul de a accesa informatiile respective.    
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie care utilizeaza clasa ap_electric. Programul inscrie variabilele membru ale clasei apoi 
+afiseaza valorile inscrise si calculeaza puterea consumata utilizand functii membru ale clasei ap_electric.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Utilizarea claselor-calculul puterii unui consumator
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+class ap_electric {
+	private:
+		double u_n;
+		double i_n;
+	public:
+		void set_u(double);
+		int vezi_u() const;
+		void set_i(double);
+		double vezi_i() const;
+		double vezi_p() const;
+};
+
+void ap_electric::set_u(double tens) {
+	if (tens<0)
+		u_n=0;
+	else 
+		u_n=tens;
+}
+int ap_electric::vezi_u() const {
+	return u_n;
+}
+void ap_electric::set_i(double crnt){
+	if (crnt<0)
+		i_n=0;
+	else 
+		i_n=crnt;
+}
+double ap_electric::vezi_i() const{
+	return i_n;
+}
+double ap_electric::vezi_p() const{
+	return i_n*u_n;
+}
+
+int main(void)
+{
+	system("TITLE Utilizarea claselor ");
+	system("COLOR F9"); 
+	cout << "\n Programul defineste clasa ap_electric si utilizeaza functii membru pentru:" ; 
+	cout << "\n\n\t - atribuirea de valori variabilelor membru";
+	cout << "\n\t - afisarea valorilor variabilelor membru"; 
+	cout << "\n\t - afisarea unei valori calculate (puterea)\n\n";
+	ap_electric a;
+	double tens;
+	double crnt;
+	cout << "\n\t Introduceti tensiunea nominala de functionare (V) : "; 
+	cin >> tens;
+	a.set_u(tens);
+	cout << "\n\t Introduceti curentul absorbit de aparatul electric (A): "; 
+	cin >> crnt;
+	a.set_i(crnt);
+	cout << "\n\n\n\t Caracteristicile aparatului electric  " ;
+	cout << "\n\n\t  - functioneaza la tensiunea : " << a.vezi_u() << " V";
+	cout << "\n\t  - consuma : " << a.vezi_i() << " A ";
+	cout << "\n\t  - puterea nominala : " << a.vezi_p() << " Watti ";
+	cin.ignore();
+	cin.get();
+	return 0;
+} 	
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp74.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru scrierea functiilor membru s-a utilizat operatorul de vizibilitate(::).
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Functiile menmbru se mai numesc si metode ale calsei. Cu alte cuvinte s-au definit metodele vezi_u, vezi_i, vezi_p etc.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prin declaratia <b> ap_electric a ; </b> s-a reat o instanta a clasei "ap_electric" sau s-a creat obiectul a.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In programul principal s-a afisat de exemplu puterea prin lansarea functiei membru vezi_p(). Se spune ca s-a invocat 
+metoda vezi_p() o obiectului a care este o instanta a clasei "ap_electric
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace struct_01
+{
+    class Program
+    {
+ class ap_electric { 
+    private double u_n;
+    private double i_n;
+    public void set_u(double tens) {
+	if (tens<0)
+		u_n=0;
+	else 
+		u_n=tens;
+    }
+    public double vezi_u() {
+	    return u_n;
+    }
+    public void set_i(double crnt)
+    {
+	if (crnt<0)
+		i_n=0;
+	else 
+		i_n=crnt;
+    }
+    public double vezi_i()
+    {
+	return i_n;
+    }
+    public double vezi_p()
+    {
+	return i_n*u_n;
+    }
+    // constructor
+    public ap_electric (double te, double cr)
+    {
+        u_n = te;
+        i_n = cr;
+    }
+ }
+  static void Main(string[] args)
+        {
+            String u_n_s, i_s;
+            ap_electric a = new ap_electric();
+	    //ap_electric a = new ap_electric(100,2.5);
+            Console.Write("\n\t Programul defineste clasa ap_electric si utilizeaza functii membru pentru:");
+            Console.Write("\n\t - atribuirea de valori variabilelor membru");
+            Console.Write("\n\t - afisarea unei valori calculate (puterea).\n\n\n");
+            Console.Write("\n\t Introduceti tensiunea nominala de functionare (V) : ");
+            u_n_s = Console.ReadLine();
+            a.set_u(System.Convert.ToInt16(u_n_s));
+            Console.Write("\n\t Introduceti curentul absorbit de aparatul electric (A): ");
+            i_s = Console.ReadLine();
+            a.set_i(System.Convert.ToInt16(i_s));
+            Console.Write("\n\n\n\t Caracteristicile aparatului electric  ");
+            Console.Write("\n\n\t  - functioneaza la tensiunea : " + a.vezi_u() + " V");
+            Console.Write("\n\t  - consuma : " + a.vezi_i() + " A");
+            Console.Write("\n\t  - puterea nominala : " + a.vezi_p() + " Watti");
+            Console.ReadKey();
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br><a name="func_cls"></a>
+<font color= "Black" size=4><li><b>Clase ca argumente de functii </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La fel ca si structurile, clasele pot fi utilizate ca argumente de functii. Aplicatia anterioara poate fi rescrisa 
+utilizand functiile "set_val" si "vezi_val",functii ce au ca argument clasa "ap_electric"
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Utilizarea claselor-calculul puterii unui consumator
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+class ap_electric {
+	private:
+		double u_n;
+		double i_n;
+	public:
+		void set_u(double);
+		int vezi_u() const;
+		void set_i(double);
+		double vezi_i() const;
+		double vezi_p() const;
+
+};
+
+void ap_electric::set_u(double tens) {
+	if (tens<0)
+		u_n=0;
+	else 
+		u_n=tens;
+}
+int ap_electric::vezi_u() const {
+	return u_n;
+}
+
+
+
+void ap_electric::set_i(double crnt){
+	if (crnt<0)
+		i_n=0;
+	else 
+		i_n=crnt;
+}
+double ap_electric::vezi_i() const{
+	return i_n;
+}
+double ap_electric::vezi_p() const{
+	return i_n*u_n;
+}
+
+void set_val(ap_electric&);
+void vezi_val(const ap_electric&);
+int main(void)
+{
+	system("TITLE Utilizarea claselor ");
+	system("COLOR F9"); 
+	cout << "\n\t Programul defineste clasa ap_electric"; 
+	cout << "\n\t - atribuie valori variabilelor membru folosind functia set_val";
+	cout << "\n\t - afiseaza valorile variabilelor membru folosind functia vezi_val .\n\n\n";
+	ap_electric a;
+	set_val(a);
+	cout << "\n\n\n\t Caracteristicile aparatului electric  " ;
+	vezi_val(a);
+	cin.ignore();
+	cin.get();
+	return 0;
+} 	
+void set_val(ap_electric& el){// el fiind o variabila formala
+	string num;
+	double tens;
+	double crnt;
+	cout << "\n\t Introduceti tensiunea nominala de functionare (V) : "; 
+	cin >> tens;
+	el.set_u(tens);
+	cout << "\n\t Introduceti curentul absorbit de aparatul electric (A): "; 
+	cin >> crnt;
+	el.set_i(crnt);
+}
+void vezi_val(const ap_electric& el){// el fiind o variabila formala
+	cout << "\n\n\t  - functioneaza la tensiunea " << el.vezi_u() << " V";
+	cout << "\n\t  - consuma  " << el.vezi_i() << " A ";
+	cout << "\n\t  - puterea   " << el.vezi_p() << " Watti ";
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa reluam aplicatia anterioara si sa introducem noi atribute ale clasei "ap_electric", cum ar fi numele aparatului, 
+frecventa la care lucreaza etc.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Utilizarea claselor
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+class ap_electric {
+	private:
+		string nume;
+		int u_n;
+		double i_n;
+		int f;
+	public:
+		void set_nume(string);
+		string vezi_nume() const;
+		void set_u(int);
+		int vezi_u() const;
+		void set_f(int);
+		int vezi_f() const;
+		void set_i(double);
+		double vezi_i() const;
+		double vezi_p() const;
+};
+void ap_electric::set_nume(string s){
+	if (s.length() ==0)
+		nume="Nu are";
+	else 
+		nume=s;
+}
+string ap_electric::vezi_nume() const {
+	return nume;
+}
+void ap_electric::set_u(int tens) {
+	if (tens<0)
+		u_n=0;
+	else 
+		u_n=tens;
+}
+int ap_electric::vezi_u() const {
+	return u_n;
+}
+
+void ap_electric::set_f(int frecv) {
+	if (frecv<0)
+		f=0;
+	else 
+		f=frecv;
+}
+int ap_electric::vezi_f() const {
+	return f;
+}
+
+void ap_electric::set_i(double crnt){
+	if (crnt<0)
+		i_n=0;
+	else 
+		i_n=crnt;
+}
+double ap_electric::vezi_i() const{
+	return i_n;
+}
+double ap_electric::vezi_p() const{
+	return i_n*u_n;
+}
+void set_val(ap_electric&);
+void vezi_val(const ap_electric&);
+int main(void)
+{
+	system("TITLE Utilizarea claselor ");
+	system("COLOR F9"); 
+	cout << "\n\t Programul defineste clasa ap_electric"; 
+	cout << "\n\t - atribuie valori variabilelor membru folosind functia set_val";
+	cout << "\n\t - afiseaza valorile variabilelor membru folosind functia vezi_val .\n\n\n";
+	ap_electric a;
+	set_val(a);
+	cout << "\n\n\n\t Datele aparatului electric  " ;
+	vezi_val(a);
+	cin.ignore();
+	cin.get();
+	return 0;
+} 	
+void set_val(ap_electric& el){// el fiind o variabila formala
+	string num;
+	int tens;
+	int fr;
+	double crnt;
+	cout << "\n\t Introduceti numele aparatului electric: "; 
+	getline(cin,num);
+	el.set_nume(num);
+	cout << "\n\t Introduceti tensiunea nominala de functionare (V) : "; 
+	cin >> tens;
+	el.set_u(tens);
+	cout << "\n\t Introduceti frecventa tensiunii electrice (Hz) : "; 
+	cin >> fr;
+	el.set_f(fr);
+	cout << "\n\t Introduceti curentul absorbit de aparatul electric (A): "; 
+	cin >> crnt;
+	el.set_i(crnt);
+}
+void vezi_val(const ap_electric& el){// el fiind o variabila formala
+	cout << "\n\n\n\t Denumire aparat:  " << el.vezi_nume() ;
+	cout << "\n\n\t  - functioneaza la tensiunea " << el.vezi_u() << " V";
+	cout << "\n\t  - frecventa  " << el.vezi_f() << " Hz "; 
+	cout << "\n\t  - curentul  " << el.vezi_i() << " A ";
+	cout << "\n\t  - puterea  " << el.vezi_p() << " Watti ";
+
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+</body>
+</html>
