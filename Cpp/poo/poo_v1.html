@@ -1,0 +1,610 @@
+<html>
+<title> Elemente de programare orientata obiect </title>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Elemente de programare orientata obiect </Center></TD></TR>
+</table>
+<font color= "Blue" size=5> Concepte de baza ale programarii orientata pe obiecte </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;S-au utilizat pe parcursul capitolelor anterioare diverse de tipuri de date. Pentru a utiliza o anumita variabila, 
+in prealabil a trebuit precizat tipul variabilei, dupa care se putea trece la initializarea si utilizarea ei. Astfel pentru a utiliza o variabila 
+de tip intreg i, am declarat <b> int i; </b> In momentul precizarii tipului variabilei (int), s-a precizat un concept general in care se incadreaza 
+variabila cu alte cuvinte s-a precizat clasa de care apartine variabila. Clasele implementeaza tipuri de date. Am definit si am utilizat apoi variabile 
+mai complexe prin intermediul structurilor de date. Structurile de date ne-au permis sa definim entitati complexe numite obiecte. Obiectele sunt 
+componente software care modeleaza fenomene din lumea reala. Obiectele care reprezinta aceeasi idee sau concept sunt de acelasi tip si pot fi grupate 
+în clase. Obiectele inglobeaza datele cat si procedurile care actioneaza asupra datelor. Dupa declararea unei variabile, se poate face initializarea ei. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Astfel dupa declaratia  <b> int i; </b> se poate face initializarea variabilei i astfel: <b> i=0; </b>. Identic se 
+procedeaza si cu obiectele. Pentru a crea un obiect, se declarara clasa, apoi se face instantierea clasei. Un obiect este o instanta a unei clase.  
+<a name="def"></a>
+<br><br><font color= "Black" size=4><li><b>Definirea conceptelor</b></font>
+<ul>
+<ul>
+<font color= "Black" size=3><li>Obiect</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Obiectul reprezinta un ansamblu de date si functii. Datele se numesc "date membru" sau proprietati. Functiile se numesc 
+"functii membru" si au rolul de a actiona asupra datelor inglobate in obiecte. Functiile membru sunt compuse din metode si evenimente. 
+Proprietatile, metodele si evenimentele sunt membrii unui obiect. Interfata de acces la obiect este realizata numai prin intermediul metodelor.
+<br><br><font color= "Black" size=3><li>Proprietate </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Proprietatea reprezinta un atribut al unui obiect care defineste una dintre caracteristicile sale.
+<br><br><font color= "Black" size=3><li>Metoda  </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Metoda reprezinta actiunea pe care o poate executa un obiect. Utilizatorul unui obiect are acces la date numai prin 
+intermediul metodelor obiectului, iar metoda are acces implicit la membrii unui obiect.
+<br><br><font color= "Black" size=3><li>Eveniment  </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Evenimentul este o un membru al unei clase ce permite clasei sau obiectelor clasei sa faca notificari celorlalte obiecte 
+asupra unor schimbari petrecute la nivelul starii. Evenimentului i se asociaza o referinta catre o functie necunoscuta careia i se precizeaza doar 
+antetul, continutul functiei urmand a fi completat cu un program de raspuns la acel eveniment. Evenimentul reprezinta deci o actiune recunoscuta de 
+alte obiecte. Tratarea evenimentului se materializeaza prin scrierea un program ca raspuns la evenimentul generat. 
+Evenimentele pot fi externe (generate de actiuni ale utilizatorului)  sau interne (generate printr-un cod de program sau de sistem).
+<br><br><font color= "Black" size=3><li>Clasa </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;O clasa reprezinta definitia unui anumit tip de obiect. In cadrul unei clase sunt definite proprietatile  si 
+metodele obiectului. Folosirea claselor permite gestionarea mai multor obiecte de acelasi tip. Clasa este doar un termen abstract, care 
+defineste caracteristicile unui obiect. 
+</ul>
+</ul>
+<br><a name="poo"></a>
+<font color= "Blue" size=5> Programare orientata pe obiecte OOP</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Programarea orientata pe obiecte OOP ("Object Oriented Programming") este programararea care utilizeaza obiecte.
+OOP permite modelarea obiectelor, proprietatilor si a relatiilor dintre ele. OOP ofera posibilitatea descompunerii programului în componente 
+deschizand calea reutilizarii codului.
+<a name="c_oop"></a> 
+<br><br><font color= "Black" size=4><li><b>Principiile OOP</b></font>
+<ul>
+<ul>
+ <li>Incapsularea – contopirea datelor cu codul 
+ <li>Mostenirea - posibilitatea de a extinde o clasa prin adaugarea de noi functionalitati
+ <li>Polimorfismul – într-o ierarhie de clase obtinuta prin mostenire, o metoda poate avea implementari diferite la nivele diferite in acea ierarhie;
+</ul>
+</ul>
+<a name="oop"></a>
+<font color= "Blue" size=5> Aplicatii OOP</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatiile OOP reusesc sa atinga un nivel ridicat de complexitate prin reutilizarea codului scris anterior. Odata 
+definite clasele, acestea pot fi reutilizate in diverse aplicatii fara nici un fel de modificare sau adaptare. Problema cea mai complicata este 
+definirea claselor astfel incat ele sa fie utile in diverse aplicatii.
+<a name="a1_oop"></a>
+<br><br><font color= "Black" size=4><li><b>Definirea claselor</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In capitolul referitor la "Clase" am creat o clasa numita "ap_electric" . Vom crea o aplicatie "Windows Forms Application" 
+in care se va defini clasa "ap_electric". Aplicatia va clacula puterea consumata de un aparat electric prin instantierea clasei "ap_electric" si 
+invocarea metodei vezi_p().
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Generam un nou proiect de tipul Windows Forms Application numit <b>"oop_v0" </b>.
+<ul>
+ <li> Plasam doua obiecte  de tip NumericUpDown, numite  NumericUpDown1 respectiv NumericUpDown2, necesare pentru introducerea valorilor tensiunii si 
+ curentului aparatului electric.
+ <li> Plasam un obiect de tip button numit button1 apoi schimbam proprietatea "Text" in "Calculeaza P=U*I".
+ <li> Plasam un obiect de tip label numit label1 pentru afisarea puterii nominale a aparatului electric.
+</ul>  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum am precizat, partea cea mai dificila o reprezinta realizarea claselor. Cu cat clasa este mai generala, cu 
+atat ea va putea fi reutilizata de mai multe ori in diverse aplicatii. Vom realiza deci clasa "ap_electric" de forma:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+class ap_electric {
+	private:
+		double u_n;
+		double i_n;
+	public:
+		void set_u(double);
+		int vezi_u() const;
+		void set_i(double);
+		double vezi_i() const;
+		double vezi_p() const;
+};
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa codul ce reprezinta clasa ap_electric in sectiunea "Header Files" in fisierul "stdafx.h".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Fisierul "stdafx.h" va arata astfel :
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// stdafx.h : include file for standard system include files,
+// or project specific include files that are used frequently, but
+// are changed infrequently
+#pragma once
+
+// TODO: reference additional headers your program requires here
+class ap_electric {
+	private:
+		double u_n;
+		double i_n;
+	public:
+		void set_u(double);
+		int vezi_u() const;
+		void set_i(double);
+		double vezi_i() const;
+		double vezi_p() const;
+};
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<a name="mem"></a>
+<br><br><font color= "Black" size=4><li><b>Realizarea functiilor membru </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, in cadrul claselor s-a definit numai prototipul functiilor membru. Functiile membru 
+vor fi definite in cadrul fisierului "stdafx.cpp". Continutul acestui fisier se poate vedea mai jos:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+void ap_electric::set_u(double tens) {
+	if (tens<0)
+		u_n=0;
+	else 
+		u_n=tens;
+}
+int ap_electric::vezi_u() const {
+	return u_n;
+}
+void ap_electric::set_i(double crnt){
+	if (crnt<0)
+		i_n=0;
+	else 
+		i_n=crnt;
+}
+double ap_electric::vezi_i() const{
+	return i_n;
+}
+double ap_electric::vezi_p() const{
+	return i_n*u_n;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<a name="obi"></a>
+<br><br><font color= "Black" size=4><li><b>Crearea obiectelor </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa ce clasa ap_electric a fost definita, prin instantierea acestei clase se obtin obiecte. Pentru a crea obiectul a
+vom introduce instructiunea: <b> ap_electric a; </b> Aceasta instructiune creaza obiectul "a" din clasa "ap_electric"
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul click al butonului button1 vom plasa:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	ap_electric a;
+	a.set_u(System::Convert::ToDouble(this->numericUpDown1->Value));
+	a.set_i(System::Convert::ToDouble(this->numericUpDown2->Value));
+	this->label1->Text=System::Convert::ToString(a.vezi_p());
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia, setam valorile pentru tensiune si curent , apasam butonul "Calculeaza P=U*I" si obtinem:
+<br><br><center><img src="im_cpp75.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In procedura de sus s-a creat obiectul "a" prin instantierea clasei "ap_electric". Valoarea curentului si a tensiunii au
+fost setate prin invocarea metodei "set_u" respectiv "set_i". Valoarea puterii nominale a fost calculata prin invocarea metodei "vezi_p".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind metoda de sus obiectul "a" este creat in memoria statica. Pentru a crea un obiect in memoria dinamica va trebui 
+sa declaram "a" de tip pointer adica <b>ap_electric* a;</b> iar pentru crearea obiectului "a" sa folosim peratorul <b> new </b> operator, care face 
+alocarea memoriei in mod dinamic.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca aparatul electric a fost definit sub forma: <b> ap_electric* a; </b>, procedura plasata pe evenimentul 
+click al butonului button1 va deveni:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	ap_electric* a;
+	a=new ap_electric;
+	a->set_u(System::Convert::ToDouble(this->numericUpDown1->Value));
+	a->set_i(System::Convert::ToDouble(this->numericUpDown2->Value));
+	this->label1->Text=System::Convert::ToString(a->vezi_p());
+	delete a;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa "a" este un pointer si in acest caz nu mai folosim operatorul "." ci operatoriul "->".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa de asemenea ca "a" este un pointer negestionat( a fost definit cu ap_electri* a). Pentru declararea lui 
+"a" s-a utilizat operatorul "*". Dupa ce nu mai este necesar obiectul "a" el trebuie sters cu <b> delete a </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca dorim sa utilizam un pointer gestionat (sa folosim operatorul ^) pentru a nu mai fi nevoie sa stergem obiectul 
+creat dupa ce nu mai este util va trebui sa definim mai intai clasa "ap_electric" de tip gestionat si abia apoi sa creem un obiect "a".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Clasa "ap_electric" va putea fi definita de tip "gestionat" prin declararea ei de tip "ref" (reference) astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+ref class ap_electric {
+	private:
+		double u_n;
+		double i_n;
+	public:
+		void set_u(double);
+		int vezi_u();
+		void set_i(double);
+		double vezi_i();
+		double vezi_p();
+};
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand clasa gestionata <b> ref class ap_electric </b> , "a" va fi un pointer gestionat de tipul: 
+<b>ap_electric^ a;</b>. Crearea obiectului "a" se va face cu <b> gcnew </b> si nu va mai trebui sters dupa ce nu mai este util.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Procedura plasata pe evenimentul click al butonului button1 va deveni:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	ap_electric^ a;
+	a=gcnew ap_electric;
+	a->set_u(System::Convert::ToDouble(this->numericUpDown1->Value));
+	a->set_i(System::Convert::ToDouble(this->numericUpDown2->Value));
+	this->label1->Text=System::Convert::ToString(a->vezi_p());
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="wfa"></a>
+<font color= "Blue" size=5>Obiecte grafice realizate in Windows Forms Application </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La fel cum au fost create clase si obiecte in aplicatiile anterioare, vom realiza in continuare clase si obiecte 
+grafice folosind  Windows Forms Application. Aceste obiecte afiseaza elemente grafice pe form-ul deschis.
+<a name="dr"></a>
+<br><br><font color= "Black" size=4><li><b>Realizarea unui obiect grafic-dreptungi "dr" </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza in continuare o alicatie grafica in care este utilizat un obiect pe care il vom denumi "dr" obiect care 
+este reprezentat grafic sub forma unui dreptunghi, are numeroase metode printre care cea mai importanda este metoda "deplasez" metoda cu care
+dreptunghiul se afiseaza in alta pozitie. Folosind aceasta metoda vom putea realiza o aplicatie in care vom simula miscarea unui dreptunhi.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Generam un nou proiect de tipul Windows Forms Application numit <b>"oop_v3" </b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Metoda "deplasez" va fi invocata la intervale regulate de timp mentru a putea simula miscarea dreptunghiului.
+Vom plasa deci un obiect de tip timer numit  timer1 si setam proprietatea interval la 10 ms si Enabled la "true".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom scrie pentru inceput clasa "dr" pe care o plasam in fisierul "stdafx.h".
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+ref class dr {
+public:
+	dr(int);
+	System::Double pozX;
+	System::Double pozY;
+	System::Double vX;
+	System::Int16 w;
+	System::Drawing::Pen^ creion_a;
+	System::Random^ nr;
+	int desenez (System::Drawing::Graphics^ zona_des)
+	{
+		zona_des->DrawRectangle(creion_a,System::Math::Round(pozX),System::Math::Round(pozY),w,w);
+		return 1;
+	}
+	void deplasez ()
+	{
+		pozX += vX;
+		
+		if(pozX > 440-w){	
+		vX = -vX;
+		w = nr->Next(40)+2;
+		pozX =440-w;
+		}
+		if(pozX<0){	
+		vX = -vX;
+		w = nr->Next(40)+2;
+		pozX =0;
+		}
+	}
+
+	void init_dr (int r)
+	{
+		nr = gcnew System::Random(r);
+		pozX = nr->Next(400);
+		pozY = nr->Next(300);
+		vX = nr->Next(10)+1;
+		w = nr->Next(40);
+		creion_a =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	}
+};
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se obbserva clasa "dr" are o serie de functii membru cum ar fi:
+<ul>
+ <li> init_dr - functie care initializeaza un parametrii unui dreptungi (pozitia , dimensiunea, culoarea, viteza de deplasare)
+ <li> desenez - functie care deseneaza efectiv dreptungiul cu caracteristicile setate de functia init_dr
+ <li> deplasez - functie care deseneaza un nou dreptungi pe o noua pozitie deplasata cu valoarea vX fata de pozitia anterioara 
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru simplitate, zona de desenare a fost fixata la 400 X 300 si latimea dr maxim 40. Aplicatia poate fi 
+generalizata pentru dimensiunile curente ale form-ului curent.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Toate functiile membru au fost incluse in clasa "dr", mai putin constructorul "dr", constructor plasat in 
+fisierul stadfx.cpp al carui continut se poate vedea mai jos:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+dr::dr(int i)
+{
+	init_dr(i);
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a putea utiliza un obiect din clasa "dr" vom defini un obiect d: <b>dr^ d;</b> si un desen
+pe care sa se afiseze definit cu <b> System::Drawing::Graphics^ desen; </b> . Vom plasa aceste declaratii la sfarsitul zonei #pragma region, deci 
+dupa declaratia #pragma endregion:  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	System::Drawing::Graphics^ desen;
+	dr^ d;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa activarea form-ului curent trebuie sa creem obiectele d di desen. Vom completa procedura deschisa pe 
+eveniment "activated" al form-ului cu:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	desen = this->CreateGraphics();
+	d = gcnew dr(1);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Miscarea dreptungiului (desenarea pe o noua pozitie se va face pe fiecare eveniment tick al obiectului timer1.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom completa deci procedura deschisa pe eveniment tick al obiectului timer1 cu:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	desen->Clear(System::Drawing::Color::White);
+	d->desenez(desen);
+	d->deplasez();
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem un dreptunghi care se deplaseazaza. La atingerea pozitiei 0 sau 400 dreptungiul isi 
+schimba dimensiunile si directia de deplasare conform functiei membru deplasez.
+<br><br><center><img src="im_cpp76.gif"></center>
+<a name="drs"></a>
+<br><br><font color= "Black" size=4><li><b>Utilizarea clasei grafice "dr" pentru a afisa mai multe dreptunghiuri</b></font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom modifica aplicatia anterioara "oop_v3" realizand o noua aplicatie Windows Forms Application numit <b>"oop_v4" </b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Noua aplicatie difera de prima prin faptul ca vom genera mai multe dreptungiuri care se vor deplasa pe form-ul curent.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom utiliza aceeasi clasa "dr" deci continutul fisierelor "stdafx.h" si "stdafx.cpp"  va fi acelasi cu cel din aplicatia 
+"oop_v3". Dupa declaratia #pragma endregion: vom plasa urmatorul continut: 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	System::Drawing::Graphics^ desen;
+	array <dr^>^ drr;
+	System::Int16 nr_d;
+	System::Void sterg_desen (){
+	desen->Clear(System::Drawing::Color::White);
+	}
+	System::Void creare_drr (){
+		nr_d = 20;
+		drr = gcnew array<dr^>(nr_d);
+		System::Int16 i;
+		for(i=0; i < nr_d; i++)
+		drr[i] = gcnew dr(i);
+	}
+	System::Void trasez_drr(){
+		System::Int16 i;
+		for(i=0; i < nr_d; i++)
+		drr[i]->desenez(desen);
+	}
+	System::Void depl_drr (){
+		System::Int16 i;
+		for(i=0; i < nr_d; i++)
+		drr[i]->deplasez();
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca de data aceasta am creat un tablou de obiecte cu declaratia "array <dr^>^ drr;" si a trebuit
+sa sctiem functii noi care sa creeze, deplaseze si initializeza un tablou de obiecte de tip "dr". Sigur, functiile scrise invoca metode ale 
+ale clase "dr".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa activarea form-ului curent trebuie sa creem tabloul de obiectele "drr" si obiectul  "desen". 
+Vom completa procedura deschisa pe eveniment "activated" al form-ului cu:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+		desen = this->CreateGraphics();
+		creare_drr();
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe eveniment tick al obiectului timer1 cu:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+		Form1::sterg_desen();
+		Form1::trasez_drr();
+		Form1::depl_drr();
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem o serie de dreptungiuri care se deplaseaza cu diverse viteze, schimbandu-si directia la 
+marginile form-ului.
+<br><br><center><img src="im_cpp77.gif"></center>
+<a name="cerc"></a>
+<br><br><font color= "Black" size=4><li><b>Realizarea unui obiect grafic-"cerc" </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Asemanator cu aplicatiile anterioare, vom realiza in continuare o alicatie grafica in care este utilizat un obiect 
+pe care il vom denumi "cerc" obiect care este reprezentat grafic sub forma unui cerc. Metoda "deplasez", este mai complexa de data aceasta, fiind 
+scrisa in vederea simularii deplasarii unei mingi care cade intr-o camera si se reflecta din pardoseala sau din peretii laterali.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Generam un nou proiect de tipul Windows Forms Application numit <b>"oop_v1" </b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Metoda "deplasez" va fi invocata la intervale regulate de timp mentru a putea simula miscarea unei mingi.
+Vom plasa deci un obiect de tip timer numit  timer1 si setam proprietatea interval la 10 ms si Enabled la "true".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sariturile mingii vor fi amortizate. Pentru a "arunca" din nou mingea vom plasa un obiect de tip button numit
+button1. Actionand acest buton, mingea va porni iar din starea initiala.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom scrie pentru inceput clasa "cerc" pe care o plasam in fisierul "stdafx.h".
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+ref class cerc {
+public:
+	cerc(int);
+	System::Double pozX;
+	System::Double pozY;
+	System::Double vX;
+	System::Double vY;
+	System::Double accX;
+	System::Double accY;
+	System::Int16 raza;
+	System::Drawing::Pen^ creion_a;
+	int desenez (System::Drawing::Graphics^ zona_des)
+	{
+		zona_des->DrawEllipse(creion_a,System::Math::Round(pozX),System::Math::Round(pozY),raza,raza);
+		return 1;
+	}
+	void deplasez ()
+	{
+		pozX += vX;
+		pozY += vY;
+		vX = vX + accX;
+		vY = vY + accY;
+		vY -= vY/100;
+		if((pozX>290-raza)||(pozX<0))
+		{
+			vX = -vX;
+		}
+		if((pozY>270-raza)||(pozY<0))
+		{
+			vY = -vY;
+		}
+	}
+
+	void init_cerc (int r)
+	{
+		System::Random^ nr = gcnew System::Random(r);
+		pozX = nr->Next(400);
+		pozY = nr->Next(300);
+		vX = nr->Next(5);
+		vY = nr->Next(1);
+		accX = 0;
+		accY = 0.5;
+		raza = nr->Next(40);
+		creion_a =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	}
+};
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se obbserva clasa "cerc" are o serie de functii membru cum ar fi:
+<ul>
+ <li> init_cerc - functie care initializeaza parametrii unui cerc (pozitia , raza, culoarea, viteza de deplasare pex si pe y , acceleratia pe x si pe y)
+ <li> desenez - functie care deseneaza efectiv cercul cu caracteristicile setate de functia init_cerc
+ <li> deplasez - functie care deseneaza un nou cerc pe o noua pozitie deplasata cu valoarea vX ,vy fata de pozitia anterioara 
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru simplitate, zona de desenare a fost fixata la 400 X 300 si raza maxima 40. Aplicatia poate fi 
+generalizata pentru dimensiunile curente ale form-ului curent.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Toate functiile membru au fost incluse in clasa "cerc", mai putin constructorul "cerc", constructor plasat in 
+fisierul stdafx.cpp al carui continut se poate vedea mai jos:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+cerc::cerc(int i)
+{
+	init_cerc(i);
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a putea crea un obiect din clasa "cerc" vom defini un obiect c: <b>cerc^ d;</b> si un desen
+pe care sa se afiseze definit cu <b> System::Drawing::Graphics^ desen; </b> . Vom plasa aceste declaratii la sfarsitul zonei #pragma region, deci 
+dupa declaratia #pragma endregion:  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	System::Drawing::Graphics^ desen;
+	cerc^ c;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa activarea form-ului curent trebuie sa creem obiectele c si desen. Vom completa procedura deschisa pe 
+eveniment "activated" al form-ului cu:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+		desen = this->CreateGraphics();
+		c = gcnew cerc(1);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Miscarea mingii (desenarea cercului pe o noua pozitie se va face pe fiecare eveniment tick al obiectului timer1.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom completa deci procedura deschisa pe eveniment tick al obiectului timer1 cu:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+		desen->Clear(System::Drawing::Color::White);
+		c->desenez(desen);
+		c->deplasez();
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sariturile mingii vor fi amortizate. Pentru a "arunca" din nou mingea vom actiona butonul "Arunca", astfel 
+mingea va porni iar din starea initiala.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom completa deci procedura deschisa pe eveniment click al obiectului butto1 cu:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+		c = gcnew cerc(1);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem un cerc care se deplaseazaza imitand sariturile unei mingi intr-o camera. 
+<br><br><center><img src="im_cpp78.gif"></center>
+
+<a name="cercuri"></a>
+<br><br><font color= "Black" size=4><li><b>Utilizarea clasei grafice "cerc" pentru a afisa mai multe cercuri care se deplaseaza</b></font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom modifica aplicatia anterioara "oop_v1" realizand o noua aplicatie Windows Forms Application numit <b>"oop_v2" </b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Noua aplicatie difera de prima prin faptul ca vom genera mai multe cercuri care se vor deplasa pe form-ul curent imitand
+sariturile mai multor mingi aruncate intr-o camera.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom utiliza aceeasi clasa "cerc" deci continutul fisierelor "stdafx.h" si "stdafx.cpp"  va fi acelasi cu cel din aplicatia 
+"oop_v1". Dupa declaratia #pragma endregion: vom plasa urmatorul continut: 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	System::Drawing::Graphics^ desen;
+	array <cerc^>^ cercuri;
+	System::Int16 nr_c;
+	System::Void sterg_desen (){
+	desen->Clear(System::Drawing::Color::White);
+	}
+	System::Void creare_cercuri (){
+		nr_c = 20;
+		cercuri = gcnew array<cerc^>(nr_c);
+		System::Int16 i;
+		for(i=0;i<nr_c;i++)
+		cercuri[i] = gcnew cerc(i);
+	}
+	System::Void trasez_cercuri(){
+		System::Int16 i;
+		for(i=0;i<nr_c;i++)
+		cercuri[i]->desenez(desen);
+	}
+	System::Void depl_cercuri (){
+		System::Int16 i;
+		for(i=0;i<nr_c;i++)
+		cercuri[i]->deplasez();
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca de data aceasta am creat un tablou de obiecte cu declaratia "array <cerc^>^ cercuri;" si a trebuit
+sa sctiem functii noi care sa creeze, deplaseze si initializeze un tablou de obiecte de tip "cerc". Sigur, functiile scrise invoca metode ale 
+ale clase "cercuri".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa activarea form-ului curent trebuie sa creem tabloul de obiectele "cercuri" si obiectul  "desen". 
+Vom completa procedura deschisa pe eveniment "activated" al form-ului cu:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	desen = this->CreateGraphics();
+	creare_cercuri();
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe eveniment tick al obiectului timer1 cu:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Form1::sterg_desen();
+	Form1::trasez_cercuri();
+	Form1::depl_cercuri();
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe eveniment click al obiectului button1 cu:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	creare_cercuri();
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem o serie de cercuri care se deplaseaza si imita sariturile mai multor mingi aruncate intr-o camera.
+<br><br><center><img src="im_cpp79.gif"></center>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+</body>
+</html>
