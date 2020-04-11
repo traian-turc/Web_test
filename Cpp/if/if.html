@@ -1,0 +1,971 @@
+<html><head>
+<title>Instructiuni decizionale: if, swich, if imbricate</title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Instructiuni decizionale: if, swich, if imbricate</Center></TD></TR>
+</table>
+<br><a name="if"></a>
+<font color= "blue" size=5> Instructiunea if :</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if</b> se foloseste pentru a executa o instructiune sau o secventa de instructiuni numai cand valoare
+logica a unei expresii este adevarata
+<br><li><b>Formatul instructiunii:</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if</b> se compune din urmatoarele linii:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>if(valoare booleana)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune;</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prima linie contine intre paranteze o expresie relationala si nu se termina cu ;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea linie este o instructiune conditionata care va fi executata numai daca valoarea expresiei relationale este adevarata.
+<br><br><li><b>Exemplu de program C++ ce utilizeaza instructiunea decizionala if</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un program care asteapta doua numere de la utilizator apoi calculeaza diferenta lor si o afiseaza, insa inainte sa afiseze diferenta numerelor 
+introduse am vrea sa fim avertizati cu un mesaj ca diferenta este negativa. Instructiunea care afiseaza mesajul "Diferenta este negativa", trebuie sa 
+se execute numai daca diferenta dintre numerele introduse este negativa. Schema logica a unui astfel de program arata astfel:
+<br><br><center><img src="../s_logice/im_cpp19a.jpg"></center>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// program care asteapta doua numere de la utilizator apoi calculeaza diferenta lor si o afiseaza
+// inainte sa afiseze diferenta numerelor, avertizeaza cu un mesaj ca diferenta este negativa.
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int a,b,d;
+	cout <<" \n\tIntroduceti numarul a: ";
+	cin >> a;
+	cout <<" \n\tIntroduceti numarul b: ";
+	cin >> b;
+	d=a-b;
+	if (d<0)
+		cout <<" \n\tDiferenta este negativa!! ";
+	cout <<" \n\n\tDiferenta dintre a si b este :"<< d ;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului in "Command Prompt" se afiseaza:
+<br><br>
+<center><img src="im_cpp27.jpg"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care instructiunea conditionala e compusa din mai multe linii trebuiesc folosite acolade.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Spre exemplu daca vrem sa mai adaugam mesajul "Atentie", programul devine:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// program care asteapta doua numere de la utilizator apoi calculeaza diferenta lor si o afiseaza
+// inainte sa afiseze diferenta numerelor, avertizeaza cu un mesaj ca diferenta este negativa.
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int a,b,d;
+	cout <<" \n\tIntroduceti numarul a: ";
+	cin >> a;
+	cout <<" \n\tIntroduceti numarul b: ";
+	cin >> b;
+	d=a-b;
+	if (d<0){
+		cout <<" \n\t      Atentie!!           ";
+		cout <<" \n\tDiferenta este negativa!! ";
+		}
+	cout <<" \n\n\tDiferenta dintre a si b este :"<< d ;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><a name="ifelse"></a>
+<font color= "blue" size=5> Instructiunea if / else:</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if / else</b> se foloseste pentru a executa o instructiune sau o secventa de instructiuni  cand valoare
+logica a unei expresii este adevarata si alta instructiune sau o secventa de instructiuni pentru cazul cand valoarea logic a aceleiasi expresii nu este adevarata.
+<br><li><b>Formatul instructiunii:</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if / else</b> se compune din urmatoarele linii:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>if(valoare booleana)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune;</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>else
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune;</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Programul pentru ordonarea a doua numere (vezi schema logica de mai jos), foloseste instructiunea if / else . 
+<br><br><center><img src="../s_logice/im_cpp19.jpg"></center>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// program care asteapta doua numere de la utilizator apoi le ordoneaza in ordine crescatoare
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int a,b;
+	cout <<" \n\tIntroduceti numarul a: ";
+	cin >> a;
+	cout <<" \n\tIntroduceti numarul b: ";
+	cin >> b;
+	if (a>b)
+		cout <<"\n\n\tNumerele ordonate crescator sunt b,a adica: " << b <<", " << a;
+	else
+		cout <<"\n\n\tNumerele ordonate crescator sunt a,b adica: " << a <<", " << b;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Si in modul grafic Windows Forms Application sunt utile instructiunile decizionale if. Deschidem un nou proiect 
+Windows Forms Application numit <font color="red"> if <font color="black"> si plasam doua obiecte de tip Radio Button cu numele radioButton1 respectiv 
+radioButton2. Plasam apoi un button1 si un obiect label1, pentru a schita un formular de comanda pentru un calculator. 
+<br><br><center><img src="im_cpp28.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizatorul trebuie sa decida ce fel de calculator vrea sa comande, apoi sa apese button1:"Comanda" 
+pentru a lansa comanda. Label1:"optiune" va scrie mesajul corespunzator optiunii marcate. Completam procedura creata pe evenimentul click a obiectului button1 cu
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+				if (this->radioButton1->Checked)
+					this->label1->Text="Ati ales LapTop";
+				else
+					this->label1->Text="Ati ales DeskTop";
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+				if (this.radioButton1.Checked)
+					this.label1.Text="Ati ales LapTop";
+				else
+					this.label1.Text="Ati ales DeskTop";
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa lansarea aplicatiei si marcarea optiunii DeskTop ecranul aplicatiei arata astfel:
+<br><br><center><img src="im_cpp29.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca dorim sa plasam doua sau mai multe grupuri de butoane de tip "Radio Button" vom utiliza un obiect de tip "Panel" sau
+"GroupBox" pentru a delimita grupurilre de butoane intre ele asemanator cu aplicatia Windows Forms Application numit <font color="red"> if_radio <font color="black">.
+<br><br><center><img src="im_cpp29_1.jpg"></center>
+<br><a name="cond"></a>
+<font color= "blue" size=5> Operatorul conditional:</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatorul conditional are urmatoara sintaxa: 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>[expresie relationala] ? [instructiune pentru expresie "adevarata"]:[instructiune pentru expresie "falsa"]</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind operatorul relational programul pentru ordonarea a doua numere devine:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// program care asteapta doua numere de la utilizator apoi le ordoneaza in ordine crescatoare
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int a,b;
+	cout <<" \n\tIntroduceti numarul a: ";
+	cin >> a;
+	cout <<" \n\tIntroduceti numarul b: ";
+	cin >> b;
+	cout <<"\n\n\tNumerele ordonate crescator sunt:" << ( a>b ? " b , a " : " a , b"); 
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<br><a name="ifif"></a>
+<font color= "blue" size=5> Instructiunea if / else if /else:</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if / else if /else</b> se foloseste pentru a implementa structuri decizionale cu mai mult de doua
+alternative.
+<br><li><b>Formatul instructiunii:</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if / else if /else</b> se compune din urmatoarele linii:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>if(valoare booleana)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune;</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>else if(valoare booleana)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune;</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>else if(valoare booleana)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune;</b>
+<br>.
+<br>.
+<br>.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>else
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune;</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca la aplicatia grafica pentru comanda calculatorului vrem sa adaugam optiunea:Server station. 
+Avem de ales intre trei opriuni:LapTop DeskTop si ServerStation. Programul scris in Visual Studio 2005 Console application arata astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// program care asteapta optiunea d-voastra si o afiseaza. 
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int a;
+	cout <<" \nTastati: ";
+	cout <<" \n\t1-Pentru LapTop";
+	cout <<" \n\t2-Pentru DeskTop";
+	cout <<" \n\t3-Pentru ServerStation";
+	cout <<" \n\n\tOptiunea d-voastra: ";
+	cin >> a;
+	if (a==1)
+		cout <<"\n\n\tAti ales LapTop: " ;
+	else if (a==2)
+		cout <<"\n\n\tAti ales DeskTop: " ;
+	else
+		cout <<"\n\n\tAti ales ServerStation: " ;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><a name="sw"></a>
+<font color= "blue" size=5>Instructiunea  Switch:</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>switch</b> este asemanatoare cu instructiunea if/ else if/ else . Aceasta instructiune evalueaza valoarea
+unei expresii intregi dupa care compara aceasta valoare cu 2 sau mai multe valori pentru a decide pe care ramura de program sa continue.
+<br><li><b>Formatul instructiunii:</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>swich</b> se compune din urmatoarele linii:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>swich(expresie){</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>case V1:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>case V2:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</b>
+<br>.
+<br>.
+<br>.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>case Vn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>default:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune;</b>
+<br>}
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia de mai sus devine:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// program care asteapta optiunea d-voastra si o afiseaza. 
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int a;
+	cout <<" \nTastati: ";
+	cout <<" \n\t1-Pentru LapTop";
+	cout <<" \n\t2-Pentru DeskTop";
+	cout <<" \n\t3-Pentru ServerStation";
+	cout <<" \n\n\tOptiunea d-voastra: ";
+	cin >> a;
+	switch(a){
+	case 1:
+		cout <<"\n\n\tAti ales LapTop: " ;
+		break;
+	case 2:
+		cout <<"\n\n\tAti ales DeskTop: " ;
+		break;
+	case 3:
+		cout <<"\n\n\tAti ales ServerStation: " ;
+		break;
+	default:
+		cout <<"\n\n\t Nu ati ales nimic !" ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care expresia nu este o valoare numerica ci un caracter de exemplu, aplicatia devine:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// program care asteapta optiunea d-voastra si o afiseaza. 
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	char a;
+	cout <<" \nTastati: ";
+	cout <<" \n\tL-Pentru LapTop";
+	cout <<" \n\tD-Pentru DeskTop";
+	cout <<" \n\tS-Pentru ServerStation";
+	cout <<" \n\n\tOptiunea d-voastra: ";
+	cin >> a;
+	switch(a){
+	case 'L':
+		cout <<"\n\n\tAti ales LapTop: " ;
+		break;
+	case 'D':
+		cout <<"\n\n\tAti ales DeskTop: " ;
+		break;
+	case 'S':
+		cout <<"\n\n\tAti ales ServerStation: " ;
+		break;
+	default:
+		cout <<"\n\n\t Nu ati ales nimic!" ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea break este apsolut necesara cand nu dorim sa se mai execute urmatoarele ramuri ale instructiunii switch.
+<br><br><a name="ifim"></a>
+<font color= "blue" size=5> Instructiuni if imbricate:</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if</b> poate sa apara in interiorul altei instructiuni if. In acest caz se spune ca o instructiue if
+este imbricata in interiorul altei instructiuni if.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam programul care rezolva ecuatia de gradul 1 a carei schema logica o aveti mai jos.
+<br><br><center><img src="../s_logice/im_cpp21.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a implementa schema logica de mai sus e nevoie sa imbricam instructiuni if in alte instructiuni if
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// programul rezolva ecuatia de gradul I ax+b=0
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	double a,b,x;
+	cout <<" \nProgramul rezolva ecuatia de gradul I de forma: ax+b=0";
+	cout <<" \n\n\tIntroduceti coeficientul a: ";
+	cin >> a;
+	cout <<" \n\tIntroduceti coeficientul b: ";
+	cin >> b;
+	if (b==0){
+		if (a==0)
+			cout <<"\n\n\tSolutii infinite!! " ;
+		else
+			cout <<"\n\n\tx=0 " ;
+	}
+	else{
+		if (a==0)
+		cout <<"\n\n\t x= infinit ";
+		else{
+			x=-b/a;
+			cout <<"\n\n\t x=" << x;
+		}
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rezolvarea ecuatiei de gradul doi se gaseste in schema logica de mai jos. 
+<br><br><center><img src="../s_logice/im_cpp22.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a implementa schema logica de mai sus se folosesc instructiuni if imbricate.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// programul rezolva ecuatia de gradul II de forma ax*x+bx+c=0
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	double a,b,c,delta,x1,x2;
+	cout <<" \nProgramul rezolva ecuatia de gradul II de forma: ax*x+bx+c=0";
+	cout <<" \n\n\tIntroduceti coeficientul a: ";
+	cin >> a;
+	cout <<" \n\tIntroduceti coeficientul b: ";
+	cin >> b;
+	cout <<" \n\tIntroduceti coeficientul c: ";
+	cin >> c;
+	delta=b*b-4*a*c;
+
+	if (delta>=0){
+		if (a==0){
+			// ecuatie de gradul I
+			if (c==0){
+				if (b==0)
+					cout <<"\n\n\tSolutii infinite!! " ;
+				else
+					cout <<"\n\n\tx=0 " ;
+			}
+			else{
+			if (b==0)
+				cout <<"\n\n\t x= infinit ";
+				else{
+					x1=-c/b;
+					cout <<"\n\n\t x1=" << x1;
+				}
+			}
+		}
+		else{
+			x1=(-b+System::Math::Sqrt(delta))/(2*a);
+			x2=(-b-System::Math::Sqrt(delta))/(2*a);
+			cout <<"\n\n\tx1= " << x1;
+			cout <<"\n\n\tx2= " << x2;
+		}
+	}
+	else
+	cout << "\n\n\tSolutii imaginare!! " ;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam programul pentru ordonarea a trei numere conform schemei logice de mai jos.
+<br><br><center><img src="../s_logice/im_cpp23.jpg"></center>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// programul ordoneaza crescator trei numere citite de la tastatura
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	double a,b,c;
+	cout <<" \nProgramul ordoneaza crescator trei numere :a,b,c" ;
+	cout <<" \n\n\tIntroduceti numarul a: ";
+	cin >> a;
+	cout <<" \n\tIntroduceti numarul b: ";
+	cin >> b;
+	cout <<" \n\tIntroduceti numarul c: ";
+	cin >> c;
+	if (a>=b){
+		if (b>=c){
+			cout <<"\n\n\tOrdinea este c-b-a " << c <<" : " << b <<" : " << a  ;
+		}else{
+			if (a>=c){
+				cout <<"\n\n\tOrdinea este b-c-a " << b <<" : " << c <<" : " << a  ;
+			}else{
+				cout <<"\n\n\tOrdinea este b-a-c " << b <<" : " << a <<" : " << c  ;
+			}
+		}
+	}else{
+		if (b>=c){
+			if (a>=c){
+				cout <<"\n\n\tOrdinea este c-a-b " << c <<" : " << a <<" : " << b  ;
+			}else{
+				cout <<"\n\n\tOrdinea este a-c-b " << a <<" : " << c <<" : " << b  ;
+			}
+		}else{
+			cout <<"\n\n\tOrdinea este a-b-c " << a <<" : " << b <<" : " << c  ;
+		}		
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom utiliza in continuare instructiunea if pentru a alege forma geometrica ce urmeaza a fi desenata pe ecran.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect  Windows Forms Application intitulat <font color="red">forme_geom <font color="black"> si 
+plasam patru obiecte de tip Radio Button cu numele radioButton1...radioButton4. Plasam apoi un Buton cu numele button1 . 
+<br><br><center><img src="im_cpp35.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizatorul trebuie sa decida ce fel de forma geometrica doreste, apoi sa apese button1:"Deseneaza".  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura creata pe evenimentul click a obiectului button1 cu
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System::Drawing::Graphics^ Desen;
+		Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_albastru;
+		Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	if(this->radioButton1->Checked) 
+		Desen->DrawLine(Creion_albastru,150,50,350,200);
+	if(this->radioButton2->Checked) 
+		Desen->DrawRectangle(Creion_albastru,250,50,200,100);
+	if(this->radioButton3->Checked) 
+		Desen->DrawEllipse(Creion_albastru,250,150,105,105);
+	if(this->radioButton4->Checked)
+	Desen->DrawEllipse(Creion_albastru,150,50,95,200);
+	delete Creion_albastru;
+	delete Desen;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+            System.Drawing.Graphics Desen;
+            Desen = this.CreateGraphics();
+            System.Drawing.Pen Creion_albastru;
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            if (this.radioButton1.Checked)
+                Desen.DrawLine(Creion_albastru, 150, 50, 350, 200);
+            if (this.radioButton2.Checked)
+                Desen.DrawRectangle(Creion_albastru, 250, 50, 200, 100);
+            if (this.radioButton3.Checked)
+                Desen.DrawEllipse(Creion_albastru, 250, 150, 105, 105);
+            if (this.radioButton4.Checked)
+                Desen.DrawEllipse(Creion_albastru, 150, 50, 95, 200);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe langa folosirea instructiunii <b>if</b> mai apar niste elemente noi. Pana acum am plasat pe form-ul
+deschis o serie de obiecte ( butoane, etichete..). Aceste obiecte sunt vizibile si pe form .Vom defini un obiect nou pe care sa desenam, numit chiar "Desen".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Definirea lui se face la fel cum definim variabilele (double a=23.55 ; char a ;System:string^ nume; etc) dar de data aceasta sintaxa este mai complicata si anume:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>System::Drawing::Graphics^ Desen;</b> adica am definit obiectul Desen de tipul System::Drawing::Graphics^ 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Creem acest obiect astfel:<b>Desen = this->CreateGraphics();</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom defini un obiect nou cu care sa desenam cu culoarea albastra , numit chiar "Creion_albastru".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>System::Drawing::Pen^ Creion_albastru;</b> adica am definit obiectul Creion_albastru de tipul System::Drawing::Pen^ 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Creem acest obiect astfel:<b>Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Creerea acestor obiecte inseamna generarea codului sursa si incarcarea lui in memorie pentru a putea fi folosit atunci 
+cind este nevoie. Dupa ce nu mai este nevoie de aceste obiecte, codul din memorie trebuie sters, altfel riscam sa incarcam inutil memoria cu cod ce nu va mai fi utilizat. 
+Acest lucru se face cu instructiunile de la sfarfit :<b>delete Creion_albastru;</b>, <b>delete Desen;</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunile <b>if</b> se folosesc pentru a "gasi" RadioButtton-ul activat si pentru a lansa desenarea figurii geometrice
+dorite.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul ca s-a optat pentru desenarea unei linii, se lanseaza instructiunea :
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Desen->DrawLine(Creion_albastru,150,50,350,200);</b> adica traseaza o linie cu creionul albastru pe obiectul "Dsen". Linia incepe
+din pozitia X1,Y1 pana in pozitia X2,Y2 exprimate in pixele. In cazul de fata X1=150;Y1=50;X2=350;Y2=200). Coltul stanga sus al form-ului are coordonatele 
+0,0 iar coltul dreapta jos are coordonatele Xmax=This->form1->Width, Ymax=This->form1->Height
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul ca s-a optat pentru desenarea unui dreptunghi, se lanseaza instructiunea :
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Desen->DrawRectangle(Creion_albastru,250,50,200,100);</b> adica se deseneaza un dreptungi cu creionul albastru pe obiectul "Dsen". Linia incepe
+din pozitia X1,Y1 pana in pozitia X2,Y2 exprimate in pixele. In cazul de fata X1=250;Y1=50;X2=200;Y2=100).
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul ca s-a optat pentru desenarea unui cerc, se lanseaza instructiunea :
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Desen->DrawEllipse(Creion_albastru,250,150,105,105);</b> adica se deseneaza o elipsa cu creionul albastru pe obiectul "Dsen". Linia incepe
+din pozitia X1,Y1 de inaltime si latime egale exprimate in pixele. In cazul de fata X1=250;Y1=150;H=105;L=105). Desigur in acest car va rezulta un cerc.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul ca s-a optat pentru desenarea unei elipse, se lanseaza instructiunea :
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Desen->DrawEllipse(Creion_albastru,150,50,95,200);;</b> adica se deseneaza o elipsa cu creionul albastru pe obiectul "Dsen". Linia incepe
+din pozitia X1,Y1 de inaltime si latime egale exprimate in pixele. In cazul de fata X1=150;Y1=50;H=95;L=200). Desigur in acest car va rezulta o elipsa.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Modificam aplicatia anterioara si vom desena si forme geometrice pline iar inainte de fiecare desenare
+vom sterge ecranul. Vom utiliza in continuare instructiunea if pentru a alege forma geometrica ce urmeaza a fi desenata pe ecran.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect  Windows Forms Application intitulat <font color="red"> forme_geomm <font color="black"> si 
+plasam patru obiecte de tip Radio Button cu numele radioButton1...radioButton6. Plasam apoi un Buton cu numele button1 . 
+<br><br><center><img src="im_cpp36.jpg"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura creata pe evenimentul click a obiectului button1 cu
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System::Drawing::Graphics^ Desen;
+		Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_albastru;
+		Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	System::Drawing::Pen^ Creion_rosu;
+		Creion_rosu =gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	System::Drawing::Pen^ Creion_ciocolatiu;
+		Creion_ciocolatiu =gcnew System::Drawing::Pen(System::Drawing::Color::Chocolate);
+	System::Drawing::SolidBrush^ Pensula;
+		Pensula=gcnew System::Drawing::SolidBrush(System::Drawing::Color::Aquamarine);
+		if(this->radioButton1->Checked){
+			Desen->Clear(System::Drawing::Color(this->BackColor));
+			Desen->DrawLine(Creion_albastru,150,50,250,150);
+		}
+		if(this->radioButton2->Checked){
+			Desen->Clear(System::Drawing::Color(this->BackColor));
+			Desen->DrawRectangle(Creion_rosu,150,50,200,100);
+		}
+		if(this->radioButton3->Checked){
+			Desen->Clear(System::Drawing::Color(this->BackColor));
+			Desen->DrawEllipse(Creion_ciocolatiu,150,50,105,105);
+		}
+		if(this->radioButton4->Checked){
+			Desen->Clear(System::Drawing::Color(this->BackColor));
+			Desen->DrawEllipse(Creion_albastru,150,50,55,100);
+		}
+		if(this->radioButton5->Checked){
+			Desen->Clear(System::Drawing::Color(this->BackColor));
+			Desen->FillRectangle(Pensula, 150, 25, 75, 130);
+		}
+		if(this->radioButton6->Checked){
+			Desen->Clear(System::Drawing::Color(this->BackColor));
+			Desen->FillEllipse(Pensula, 150, 25, 75, 130);
+		}
+	delete Creion_albastru;
+	delete Creion_rosu;
+	delete Creion_ciocolatiu;
+	delete Desen;
+	delete Pensula;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System.Drawing.Graphics Desen;
+		Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_albastru;
+		Creion_albastru =new System.Drawing.Pen(System.Drawing.Color.Blue);
+	System.Drawing.Pen Creion_rosu;
+		Creion_rosu =new System.Drawing.Pen(System.Drawing.Color.Red);
+	System.Drawing.Pen Creion_ciocolatiu;
+		Creion_ciocolatiu =new System.Drawing.Pen(System.Drawing.Color.Chocolate);
+	System.Drawing.SolidBrush Pensula;
+		Pensula=new System.Drawing.SolidBrush(System.Drawing.Color.Aquamarine);
+		if(this.radioButton1.Checked){
+			Desen.Clear(this.BackColor);
+			Desen.DrawLine(Creion_albastru,150,50,250,150);
+		}
+		if(this.radioButton2.Checked){
+			Desen.Clear(this.BackColor);
+			Desen.DrawRectangle(Creion_rosu,150,50,200,100);
+		}
+		if(this.radioButton3.Checked){
+			Desen.Clear(this.BackColor);
+			Desen.DrawEllipse(Creion_ciocolatiu,150,50,105,105);
+		}
+		if(this.radioButton4->Checked){
+			Desen.Clear(this.BackColor);
+			Desen.DrawEllipse(Creion_albastru,150,50,55,100);
+		}
+		if(this.radioButton5.Checked){
+			Desen.Clear(this.BackColor);
+			Desen.FillRectangle(Pensula, 150, 25, 75, 130);
+		}
+		if(this.radioButton6.Checked){
+			Desen.Clear(this.BackColor);
+			Desen.FillEllipse(Pensula, 150, 25, 75, 130);
+		}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Inainte de fiecare desenare se sterge ecranul cu instructiunea:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Desen->Clear(System::Drawing::Color(this->BackColor));</b> Culoarea folosita la stergere este chiar fundalul form-ului curent
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru desenarea formelor pline se defineste o pensula
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>System::Drawing::SolidBrush^ Pensula;</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se activeaza apoi cu:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Pensula=gcnew System::Drawing::SolidBrush(System::Drawing::Color::Aquamarine);</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Formele geometrice pline se deseneaza apoi cu:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Desen->FillRectangle(Pensula, 150, 25, 75, 130);</b> pentru dreptunghi si:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Desen->FillEllipse(Pensula, 150, 25, 75, 130);</b> pentru elipsa.
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="log"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Operatori logici</Center></TD></TR>
+</table><font color="black">
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a combina comparatiile multiple intr-o singura instructiune if, se folosesc operatorii logici
+care leaga una sau mai multe expresii intr-o expresie finala.<br><br>
+<center><table border =1><tr>
+<td align="center">Operator</td><td align="center">Nume</td><td align="center">Efect</td>
+</tr><tr>
+<td align="center">&&</td><td> AND (si) </td>	<td>Expresia finala e adevarata daca toate expresiile sunt adevarate</td>
+</tr><tr>
+<td align="center">||</td><td> OR (sau)</td><td>Expresia finala e adevarata daca cel putin una dintre expresii este adevarata</td>
+</tr><tr>
+<td align="center">!</td><td> NOT (nu)</td><td>Inverseaza expresia adica daca expresia e adevarata , !expresia e falsa si invers</td>
+</tr></table>
+</center>
+<br><br><a name="and"></a>
+<font color= "blue" size=5> Operatorul logic && </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatorul logic SI este un operator binar combinand doua sau mai multe expresii binare. Returneaza "adevarat"
+numai daca toate expresiile combinate au valoarea "adevarat"
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca avem circuitul de mai jos. Sa realizam un program in care sa interbam care este starea comutatoarelor 
+K1 si K2 si programul sa afiseze daca ledul este aprins sau stins.
+<br><br><center><img src="circ_s.gif"></center>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// Programul analizeaza starea unui circuit cu doua comutatoare serie K1 si K2. 
+// Afiseaza daca circuitul este inchis sau deschis.
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	char  k1,k2;
+	bool  c1,c2;
+	cout <<" \nAnaliza stare circuit cu doua comutatoare serie K1 si K2." ;
+	cout <<" \n\n\tK1 este inchis sau deschis(I/D): ";
+	cin >> k1;
+	cout <<" \n\tK2 este inchis sau deschis(I/D): ";
+	cin >> k2;
+	if (k1=='I')
+		c1=true;
+	else
+		c1=false;
+	if (k2=='I')
+		c2=true;
+	else
+		c2=false;
+	if (c1 && c2)
+		cout <<" \n\n\tCircuitul este inchis si ledul e aprins: ";
+	else
+		cout <<" \n\n\tCircuitul este deschis si ledul e stins: ";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam in Windows Forms Application o aplicatie care sa simuleze functionarea portii logice SI
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application numit <font color="red"> si <font color="black"> pe care plasam un obiect PictureBox cu numele pictureBox1. 
+Setam proprietatea Image cu imaginea de mai jos:
+<br><br><center><img src="si.bmp"></center>
+ <br><br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam apoi doua obiecte de tip NumericUpDown cu numele numericUpDown1 respectiv numericUpDown2 pentru a simula 
+ intrarile portii logice. Se mai plaseaza doua obiecte Label cu numele label1 respectiv label2, pentru a afisa iesirea porii sub forma numerica si sub forma booleana. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Completam procedurile create pe evenimentele ValueChanged a obiectelor NumericUpDown cu acelasi lucru si anume:
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+ this->label1->Text=System::Convert::ToString((this->numericUpDown1->Value)*(this->numericUpDown2->Value));
+ this->label2->Text=System::Convert::ToString(System::Convert::ToBoolean(this->numericUpDown1->Value)&& 
+ 	System::Convert::ToBoolean(this->numericUpDown2->Value));
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+ this.label1.Text=System.Convert.ToString((this.numericUpDown1.Value)*(this.numericUpDown2.Value));
+ this.label2.Text=System.Convert.ToString(System.Convert.ToBoolean(this.numericUpDown1.Value)&& 
+ 	System.Convert.ToBoolean(this.numericUpDown2.Value));
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa lansarea aplicatiei si stabilirea intrarilor la "1" ecranul aplicatiei arata astfel: 
+<br><br><center><img src="im_cpp30.jpg"></center>
+
+<br><br><a name="or"></a>
+<font color= "blue" size=5> Operatorul logic || </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatorul logic SAU este un operator binar combinand doua sau mai multe expresii binare. Returneaza "adevarat"
+daca cel putin una din expresiile combinate au valoarea "adevarat"
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia care analiza un circuit cu doua comutatoare raspundea corect numai pentru raspunsul "I" nu si
+pentru raspunsul "i". Sa modificam aplicatia astfel incat sa lucreze curect si pentru raspunsul "I" nu si pentru raspunsul "i"
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// Programul analizeaza starea unui circuit cu doua comutatoare serie K1 si K2. 
+// Afiseaza daca circuitul este inchis sau deschis.
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	char  k1,k2;
+	bool  c1,c2;
+	cout <<" \nAnaliza stare circuit cu doua comutatoare serie K1 si K2." ;
+	cout <<" \n\n\tK1 este inchis sau deschis(I/D): ";
+	cin >> k1;
+	cout <<" \n\tK2 este inchis sau deschis(I/D): ";
+	cin >> k2;
+	if (k1=='I' || k1=='i')
+		c1=true;
+	else
+		c1=false;
+	if (k2=='I'|| k2=='i')
+		c2=true;
+	else
+		c2=false;
+	if (c1 && c2)
+		cout <<" \n\n\tCircuitul este inchis si ledul e aprins: ";
+	else
+		cout <<" \n\n\tCircuitul este deschis si ledul e stins: ";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca avem circuitul de mai jos. Sa realizam un program in care sa interbam care este starea comutatoarelor 
+K1 si K2 si programul sa afiseze daca ledul este aprins sau stins.
+<br><br><center><img src="circ_p.gif"></center>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// Programul analizeaza starea unui circuit cu doua comutatoare in paralel K1 si K2. 
+// Afiseaza daca circuitul este inchis sau deschis.
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	char  k1,k2;
+	bool  c1,c2;
+	cout <<" \nAnaliza stare circuit cu doua comutatoare paralel K1 si K2." ;
+	cout <<" \n\n\tK1 este inchis sau deschis(I/D): ";
+	cin >> k1;
+	cout <<" \n\tK2 este inchis sau deschis(I/D): ";
+	cin >> k2;
+	if (k1=='I' || k1=='i')
+		c1=true;
+	else
+		c1=false;
+	if (k2=='I'|| k2=='i')
+		c2=true;
+	else
+		c2=false;
+	if (c1 || c2)
+		cout <<" \n\n\tCircuitul este inchis si ledul e aprins: ";
+	else
+		cout <<" \n\n\tCircuitul este deschis si ledul e stins: ";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><a name="not"></a>
+<font color= "blue" size=5> Operatorul logic ! </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatorul logic NU este un operator binar folosit pentru inversarea valorii unei expresii booleene. Returneaza "adevarat"
+daca expresia are valoarea "fals" si invers returneaza "fals" daca expresia are valoarea "adevarat"
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Programul urmator cere trei valori si calculeaza daca ele pot reprezenta lungimile laturilor unui triunghi. In cadrul acestui
+program s-au folosit pe langa operatorii $$ || si operatorul !.
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// programul cere trei valori si calculeaza daca ele pot reprezenta lungimile laturilor unui triunghi
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+int main()
+{ float a,b,c;
+  bool t;
+  cout << "Laturile unui triunghi\n";
+  cout << "\n\tIntroduceti 3 numere reale:\n";
+  cin >> a >> b >> c;
+  cin.ignore();
+  t = !( a <= 0 || b <= 0 || c <= 0);
+  t = t && a < b + c && b < a + c && c < a + b;
+  if( !t)
+  		cout << "\n\n\tValorile introduse NU pot fi lungimile laturilor unui triunghi !";
+  else
+		cout << "\n\n\tValorile introduse pot fi lungimile laturilor unui triunghi !";
+  
+  cin.get();
+  return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="pri"></a>
+<font color= "blue" size=5> Proiritatile operatorilor logici  </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Prioritatile intre operatorii logici si operatorii relationali sunt urmatoarele:
+<ol>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;!
+<li>&nbsp;&nbsp;&nbsp;&nbsp;Operatori relationali <,<=,==,>,=>,!=
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&&
+<li>&nbsp;&nbsp;&nbsp;&nbsp;||
+</ol>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care dorim sa schimbam prioritatile se folosesc paranteze
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In exemplul de sus avem expresia<b>t = !( a <= 0 || b <= 0 || c <= 0);</b> pentru a forta executia oeratorilor || mai 
+intai si pe urma operatorul !
+<br>&nbsp;&nbsp;&nbsp;&nbsp;la fel se procedeaza si in cazul in care vrem sa schimbam prioritatea intre && si || si vrem sa fortam executia || mai repede
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Exemplu: Sa reluam aplicatia de analiza a unui circuit cu doua comutatoare K1 si K2 legate in paralel, la care adaugam si 
+conditia suplimentara ca tensiunea sa fie peste 1,5V ca sa poata aprinde ledul. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// Programul analizeaza starea unui circuit cu doua comutatoare in paralel K1 si K2. 
+// Analizeaza daca circuitul este inchis sau deschis si  afiseaza mesajul "led" aprins
+// numai daca circuitul e inchis si tensiunea aplicata este peste 1,5v
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	char  k1,k2;
+	bool  c1,c2;
+	double u;
+	cout <<" \nAnaliza stare led intr-un circuit cu doua comutatoare montate paralel K1 si K2." ;
+	cout <<" \n\n\tK1 este inchis sau deschis(I/D): ";
+	cin >> k1;
+	cout <<" \n\tK2 este inchis sau deschis(I/D): ";
+	cin >> k2;
+	cout <<" \n\tTensiunea U aplicata : ";
+	cin >> u;
+	if ((k1=='I' || k1=='i')&& (u>1.5))
+		c1=true;
+	else
+		c1=false;
+	if ((k2=='I'|| k2=='i')&& (u>1.5))
+		c2=true;
+	else
+		c2=false;
+	if (c1 || c2)
+		cout <<" \n\n\Ledul e aprins: ";
+	else
+		cout <<" \n\n\tLedul e stins: ";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a forta executia operatorului || in fata operatorului && s-a utilizat expresia:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;if ((k1=='I' || k1=='i')&& (u>1.5))
+<br><br>
+</html>
