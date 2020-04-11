@@ -1,0 +1,64 @@
+body {
+	margin:0px;
+	padding:0px;
+	font-family:verdana, arial, helvetica, sans-serif;
+	color:#333;
+	background-color:palegreen;
+	background-color:Wheat;
+	background-color:aquamarine;
+	background-color:powderblue;
+      background-color:white;
+	}
+	
+h1 {
+	margin:0px 0px 15px 0px;
+	padding:0px;
+	font-size:28px;
+	line-height:28px;
+	font-weight:900;
+	color:#ccc;
+	}
+	
+p {
+	font:11px/20px verdana, arial, helvetica, sans-serif;
+	margin:0px 0px 16px 0px;
+	padding:0px;
+	}
+	
+#Content>p {margin:0px; text-indent:30px;}
+
+a {
+	color:#09c;
+	font-size:9px;
+	text-decoration:none;
+	font-weight:400;
+	font-family:verdana, arial, helvetica, sans-serif;
+	}
+    A:link {color: #000fff; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+    A:visited {color: #0000ff; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+    A:hover{color: #ff0000; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:underline;}	
+#Content {
+	position:relative;
+	top:0px;
+	left:0px;
+	width:1000px;
+	padding:10px;
+	/*background-color:#add8e6;*/
+        /*transparent*/
+	background-color:#1ccc;
+	/*background-color:#add8e6;*/
+	/*border:1px dashed #999;8*/
+	line-height:10px;
+/* Again, the ugly brilliant hack. */
+	voice-family: "\"}\"";
+	voice-family:inherit;
+	width:1000px;
+	}
+/* Again, "be nice to Opera 5". */
+body>#Reclama {width:1000px;}
+
+#Error {
+	color:#FF0033;
+	font-size:14px;
+	}
+

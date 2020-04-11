@@ -1,0 +1,1538 @@
+<html><head>
+<title>Tipuri de date în limbajul  C++.</title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Tipuri de date, date simple, operatori, expresii </Center></TD></TR>
+</table>
+<br><br><font color= "Blue" size=4><li><b>Reprezentarea informatiilor in memoria calculatoarelor</b><br></font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Informatiile sunt reprezentate in calculator sub forma binara. Utilizatorii folosesc in general codificarea zecimala a informatiei. 
+Totusi, pe lânga baza de numeratie 10, se folosesc si bazele de numeratie 2, 8 si 16, iar sistemele de numeratie respective 
+se numesc binar, octal si hexazecimal. In sistemul hexazecimal, se folosesc 16 cifre si anume cifrele de la 0-9 iar cifrele de la 10 la 15 se noteaza 
+cu literele de la A pana la F. In memoria calculatorului informatia este pastrata numai sub forma binara. Deoarece este greu de operat cu numere mari 
+în baza 2, pentru exprimarea unor cantitati binare se foloseste baza 16. De exemplu, numarul 255 se poate exprima in binar ca fiind 11111111 iar in hexa FF, 
+numarul 147 se poate exprima in binar ca fiind 10010011 iar in hexa 93, numarul 231 se poate exprima in binar ca fiind 11100111 iar in hexa E7.
+<br>&nbsp&nbsp&nbsp;Pentru exemplificare, vom realiza in continuare o aplicatie care afiseaza numarul 231 sub forma binara. Aplicatia se bazeaza pe 
+functiile <b> afis_binar(unsigned int,int)</b> respectiv  <b> afis_bin(unsigned int,int)</b> functii care se presupune ca sunt definite in fisierul stdafx.h.
+<br>&nbsp&nbsp&nbsp;Programul principal fiind:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	cout << " \n\n\tAfisare binara: ";
+	cout<<"\n\n\t";
+	afis_bin(231,8);
+	cout<<"\n\n\t";
+	afis_binar(231,8);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp&nbsp&nbsp;Continutul fisierului stdafx.h fiind:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#pragma once
+// TODO: reference additional headers your program requires here
+#include < iostream >
+using namespace std;
+// functiile afis_bin(unsigned int,int) respectiv  afis_binar(unsigned int,int)
+// afiseaza numarul dat de parametrul 1 de tip unsigned int in format binar 
+// numarul de biti afisati este dat de parametrul 2 de tip int
+static void afis_bin(unsigned int n,int nb)
+{
+	system("COLOR 0B");
+	int i,k;
+	char val_b[32];
+	if ((n > 0)&&(n <= 255))
+		k=8;
+	if ((n > 255)&&(n <= 65535))
+		k=16;
+	if ((n > 65535)&&(n <= 2147483646))
+		k=32;
+	if (nb > 0)
+		k=nb;
+	if (n > 2147483646){
+		k=0;
+		cout << "\nNumar prea mare";
+	}
+	for (i=0; i < k; i++){
+		if (n%2==0)
+			val_b[k-1-i]='0';
+		else
+			val_b[k-1-i]='1';
+		n=n/2;
+	}
+	// afisare binara
+	for (i=0; i < k; i++){
+		if (val_b[i]=='0')
+			cout << char(176) << " ";
+		else
+			cout << char(219) <<  " ";
+	}
+	// prompter pe prima pozitie
+	for (i=0;i < (2*k+1); i++){
+			cout<<"\b";
+	}
+}
+
+static void afis_binar(unsigned int n,int nb)
+{
+	system("COLOR 0B");
+	int i,k;
+	char val_b[32];
+	if ((n > 0)&&( n <= 255))
+		k=8;
+	if ((n > 255)&&(n <= 65535))
+		k=16;
+	if ((n > 65535)&&(n <= 2147483646))
+		k=32;
+	if (nb>0)
+		k=nb;
+	if (n > 2147483646){
+		k=0;
+		cout << "\nNumar prea mare";
+	}
+	for (i=0; i < k; i++){
+		if (n%2==0)
+			val_b[k-1-i]='0';
+		else
+			val_b[k-1-i]='1';
+		n=n/2;
+	}
+	// afisare binara
+	for (i=0; i < k; i++){
+		cout << val_b[i] << " ";
+	}
+
+	// prompter pe prima pozitie
+	for (i=0;i < 2*k+1; i++){
+			cout << "\b";
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>Dupa rularea programului in "Command Prompt" se afiseaza:
+<br><br><Center><IMG SRC  = "im_cpp12_5.gif"> </Center>
+<br><br>&nbsp&nbsp&nbsp Orice fel de informatie (programe, valori numerice, texte, imagini, sunete, etc.) este codificata numeric in baza 2 
+(Codificare binara). Se grupeaza apoi cate 4 biti si se reprezinta informatia pe ecran in cod hexazecimal pentru o mai usoara citire.
+<Center><H1><IMG SRC  = "im_cpp17.jpg"> </H1></Center>
+<br>&nbsp&nbsp&nbsp;Tabelul de valori hexa afisat mai sus, reprezinta continutul memoriei de la o anumita adresa.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Informatia este grupata in memorie pe grupe de câte 8 cifre binare (biti). Un asemenea grup se mai numeste si octet(sau byte). 
+Octetul este unitatea de masura în care se exprima volumul memoriei unui calculator. Deoarece dimensiunea memoriei este totdeauna o putere a lui 2, 
+multiplii folositi pentru octeti nu sunt 100, 1000 etc., ci puteri adecvate ale lui 2. Astfel, un numar de 2 la puterea 10 = 1024 de octeti se mai 
+numeste si kilooctet sau kilobyte (pe scurt KO sau KB). Similar, un numar de 2 la puterea 20 = 10264576 octeti se numeste megaoctet sau megabyte (MO sau MB). 
+<ul>
+<li>kilo = 2<sup>10</sup> = 1024
+<li>mega = 2<sup>20</sup> = 10264576 
+<li>giga = 2<sup>30</sup> = 1073741824
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a reprezenta diverse tipuri de date, se recurge la codificare astfel:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>Numerele întregi</i> ar putea fi reprezentate pe unul sau mai multi octeti. In general, avand n biti, numarul total de 
+valori distincte este 2<sup> n</sup>
+<ul>
+<li>Valorile reprezentate pe un octet, au  2<sup>8</sup> = 256 valori
+<li>Valorile reprezentate pe un 2 octeti, au = 2<sup>16</sup> = 65536 valori
+<li>Valorile reprezentate pe un 4 octeti, au = 2<sup>32</sup> = 4294967296 valori
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Pentru numerele fara semn, valoarea interna a bitilor, reprezinta chiar valoarea numarului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru numerele cu semn, prin conventie, primul bit reprezinta semnul (1 pentru numere negative si 0 pentru numere pozitive). Daca bitul de semn este 0, 
+atunci configuratia interna reprezinta chiar valoarea numarului. Daca bitul de semn este 1, atunci valoarea absoluta a numarului se obtine prin 
+complement fata de 2, adicå prin complementarea tuturor bitilor (0 devine 1 si reciproc) si prin adunarea apoi a valorii 1. Aceasta regula se aplica 
+pentru ambele sensuri de conversie (de la reprezentari interne la numere cu semn si reciproc).
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>Numerele reale</i> ar putea fi codificate in mai multe moduri:
+<ul>
+<li>Codificarea in virgula fixa
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In reprezentarea în virgula fixa, se considera un numar finit de cifre semnificative, atat pentru partea întreaga 
+a numarului, cat si pentru cea fractionara. De exemplu un numar real in baza 16 va fi reprezentat : 1AB34.FF52 . Un alt exemplu de numar rela in baza 2 va fi reprezentat:  1000110.11011
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+<li>Codificarea in virgula mobila conform IEEE: Sm exponent mantisa, unde:
+<br> Sm - este semnul mantisei(1b)
+<br> exponent - este exponentul mantisei
+<br> mantisa este normalizata fiind cuprinsa intre 1,00...0 si 1,11...1
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;<i>Datele alfanumerice</i> ar putea fi codificate folosind codul standard ASCII (American Standard Code for Information 
+Interchange)-Codul Standard American pentru Schimb de Informatii. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Codul ASCII standard este un cod pe 7 biti, deci cuprinde 128 de caractere distincte. Un caracter ASCII se reprezinta 
+pe un octet, în care bitul cel mai semnificativ este 0. Domeniul de valori este deci de la 0 la 127 (în zecimal) sau de la 00 la 7F (în hexazecimal). 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dintre cele 128 de caractere, 32 sunt caractere de control si nu au reprezentari grafice (nu sunt afisabile). 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Restul de 96 de caractere pot fi afisate pe ecranul calculatorului, la imprimanta etc. Caracterele afisabile se noteaza 
+de obicei prin scrierea simbolului grafic respectiv între apostrofuri. De exemplu, 'A' înseamna codul ASCII corespunzator literei A mare, '!' 
+înseamna codul ASCII pentru semn de exclamare etc.  
+<br><br><Center><IMG SRC  = "ascii1.gif"> </Center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deoarece caracterele de control nu au reprezentari grafice, ele au nume speciale (exprimate de obicei prin prescurtari de 
+2 sau 3 litere). Dintre caracterele de control uzuale, pot fi amintite: CR (Carriage Return), LF (Line Feed)
+<p align=center>
+<table border =1>
+<tr><th> Nume <th align=left> Descriere <th> Definire cu esc in C
+<tr><td> nul	<td> null byte		<td align=center> \0
+<tr><td> bel	<td> bell character	<td align=center> \a
+<tr><td> bs	<td> backspace		<td align=center> \b
+<tr><td> ht	<td> horizontal tab	<td align=center> \t
+<tr><td> np	<td> formfeed		<td align=center> \f
+<tr><td> nl	<td> newline		<td align=center> \n
+<tr><td> cr	<td> carriage return	<td align=center> \r
+<tr><td> vt	<td> vertical tab	<td>
+<tr><td> esc	<td> escape		<td>
+<tr><td> sp	<td> space		<td>
+</table>
+</p>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;S-a definit si un asa-numit cod ASCII extins, în care se folosesc toti cei 8 biti ai unui octet.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Setul ASCII standard este un subset al acestui cod ASCII extins. 
+<br><br><Center><IMG SRC  = "ascii2.gif"> </Center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Observatie</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Modurile de reprezentare prezentate anterior ilustreaza faptul ca datele din memoria calculatorului se pot interpreta diferit. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aceste interpretari sunt facute de programul care foloseste datele in functie de ce reprezinta ele. De exemplu octetul 1001 0100 poate reprezenta numarul 
+zecimal pozitiv 148 daca il interpretam ca un numar in binar fara semn , poate reprezenta numarul zecimal negativ -108 daca il interpretam ca un numar 
+in binar fara cu semn, poate reprezenta caracterul ASCII ö din setul extins de caractere, daca il interpretam ca fiind un cod ASCII etc.
+
+<br><br><a name="tip"></a>
+<font color= "Blue" size=4><li>Tipuri de date în limbajul  C++</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tipul unei date determina lungimea zonei de memorie ocupata de acea data. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tipurile de baza sunt:
+<ul>
+<li> <b>bool</b>	o valoare booleana-contine cea mai mica cantitate de informatie avand valoarea adevarat sau fals;
+<li> <b>char</b>	un singur octet (1 byte=8 biti), capabil sa contina codul unui caracter din setul local de caractere;
+<li> <b>int</b>	numar întreg, reflecta în mod tipic marimea naturala din calculatorul utilizat;
+<li> <b>float</b>	numar real, în virgula mobila, simpla precizie;
+<li> <b>double</b>	numar real, în virgula mobila, dubla precizie.
+</ul>
+<a name="ddim"></a>
+<li><b>Program C++ pentru determinarea dimensiunii diferitelor tipuri de date</b><br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// Determinarea dimensiunii diferitelor tipuri de date
+#include "stdafx.h"
+#include &lt iostream &gt
+using namespace std;
+
+int main(void)
+{
+	cout <<" Dimensiunea tipului de date short este:" << sizeof(short) <<"\n";
+	cout <<" Dimensiunea tipului de date int este:" << sizeof(int) <<"\n";
+	cout <<" Dimensiunea tipului de date long este:" << sizeof(long) <<"\n";
+	cout <<" Dimensiunea tipului de date float este:" << sizeof(float) <<"\n";
+	cout <<" Dimensiunea tipului de date double este:" << sizeof(double) <<"\n";
+	cout <<" Dimensiunea tipului de date long double este:" << sizeof(long double) <<"\n";
+	cout <<" Dimensiunea tipului de date char este:" << sizeof(char) <<"\n";
+	cout <<" Dimensiunea tipului de date bool este:" << sizeof(bool) <<"\n";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>Dupa rularea programului in "Command Prompt" se afiseaza:
+<br><br>
+<center><img src="im_cpp2.gif"></center>
+<br><font color= "blue" size=4><li><b>Constante </b><br></font>
+<br><br>
+O constanta este un literal (o forma externa de reprezentare) numeric, caracter sau sir de caractere. Numele si valoarea unei constante sunt identice. 
+Valoarea unei constante nu poate fi schimbata în timpul executiei programului în care a fost utilizata. 
+Tipul si valoarea ei sunt determinate în mod automat, de catre compilator, pe baza caracterelor care compun literalul. 
+<br><a name="int"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Constante intregi</b>
+<br><br>O constanta întreaga consta dintr-o succesiune de cifre.Exemplu: 36789
+<br><a name="real"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Constante numerice reale</b>
+<br><br>Daca o constanta numerica contine punctul zecimal, ea este de tipul double. 
+<br>Exemplu: 3.141 tip double
+<br>Daca numarul este urmat de L sau l, este de tip long double. Exemplu 3.7659L--tip long double
+<br><a name="float"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Constante numerice flotante</b>
+<br><br>O constanta flotanta consta dintr-o parte întreaga, un punct zecimal, o parte fractionara, litera e sau E, si optional un exponent care este un întreg cu semn
+<br><a name="char"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Constante caracter</b>
+<br><br>O constanta caracter consta dintr-un singur caracter scris între apostrofuri, de exemplu 'x'
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Constante siruri</b>
+<br><br>Un sir este o succesiune de caractere scrise între ghilimele, de exemplu "Programare".
+<br><a name="ex_const"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Exemplu de program ce utilizeaza constante</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul unei instructiuni de scriere pe consola standard vor fi folosite de data aceasta expresii cum ar fi:
+<br><b>"\tValoare\t\t= "+cant*pret</b> in care functia de scrier nu mai are numai un singur argument ci o intreaga expresie. Sunt folosite de 
+asemenea si secvente escape cum ar fi \t\n\a etc, semnificatia lor fiind urmatoarea:<br><br>
+<table border =1><tr>
+<td>\n new-line</td><td>\r	carriage return</td><td>\\ backslash</td>
+</tr><tr>
+<td>\t	tab orizontal</td><td>\f form feed</td>	<td>\' apostrof</td>
+</tr><tr>
+<td>\b backspace</td><td>\a semnal sonor</td><td>\" ghilimele</td>
+</tr></table>
+
+<br><br><li><b>Program pentru calculul valorii unei facturi ( inclusiv  TVA)</b><br>
+<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+// utilizarea diferitelor tiputi de constante
+
+#include "stdafx.h"
+
+using namespace System;
+
+int main(void)
+{
+	Console::WriteLine(L"\n\n\t\tValoare marfa\n\n\a");
+	const double pret=123.25;
+	const int cant=23;
+	const double tva=0.19;
+	String^ linie_o = "\t-------------------------------";
+	Console::Write("\tPret\t\t= "+pret);
+	Console::WriteLine("\n\tCantitate\t= "+cant);
+	Console::WriteLine(linie_o);
+	Console::Write("\tValoare\t\t= "+cant*pret);
+	Console::WriteLine("\n\n\tTVA 19 % \t= "+pret*cant*tva);
+	Console::WriteLine("\n\n\ "+linie_o);
+	Console::WriteLine("\tTotal General\t= "+pret*cant*(1+tva));
+	Console::ReadLine();
+	return 0;
+}  
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="var"></a>
+<font color= "Blue" size=4><li><b>Variabile</b><br></font><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Spre deosebire de constante, variabilele sunt date (obiecte informationale) ale caror valori se pot modifica în timpul executiei programului. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Si variabilele sunt caracterizate de atributele nume, tip, valoare si clasa de memorare. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Variabilele sunt nume simbolice utilizate pentru memorarea valorilor introduse pentru datele de intrare sau a rezultatelor. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca la o constanta ne puteam referi folosind caracterele componente, la o variabila ne vom referi prin numele ei. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Numele unei variabile ne permite accesul la valoarea ei, sau schimbarea valorii sale, daca este necesar acest lucru. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Numele unei variabile este un identificator ales de programator.  
+<br><br><a name="decl"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Sintaxa de declarare a variabilelor</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Inainte de folosire, orice variabila trebuie declarata, pentru a i se putea aloca memorie in vederea stocarii ei. Variabila 
+este defapt adresa primei locatii in care este rezervata memorie pentru continutul ei. Sintaxa pentru declararea unei variabile este urmatoarea:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>[tip date] [nume variabila]</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Exemple:
+<br> int anul;
+<br> int cantitate
+<br> string nume
+<br> double pi
+<br><br><a name="v_char"></a>
+<font color= "Blue" size=4><li><b>Tipul de variabila caracter si string</b><br></font><br>
+<br>O variabila de tip caracter se declara prin specificatorul de tip char. Zona de memorie alocata unei variabile de tip char este de un octet.
+<br>Variabila sir de caractere sau string se declara ca fiind masive de tip char sau in unele spatii de nume se declara string
+<br><br> Exemple de utilizare a variabilelor char si string
+<br><br><li><b>Program pentru citirea si afisarea unui text  utilizand ANSI C</b>
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+// Program pentru citirea unui sir de caractere si afisarea unui text
+
+#include "stdafx.h"
+#include &lt stdio.h &gt
+
+int main() {
+char c[1];
+char nume[40];
+printf("\n\tCum va numiti:");
+gets(nume);
+printf("\n\n\tBine ati venit la cursul de : Programarea Calculatoarelor: ");
+puts(nume);
+gets(c);
+return 0;
+}
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><li><b>Program pentru citirea si afisarea unui text  utilizand spatiu de nume std::</b>
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"> <pre>
+
+// Program pentru citirea unui text (string sau sir de caractere) si afisarea unui text
+
+#include "stdafx.h"
+#include &lt iostream &gt
+#include &lt string &gt
+
+using namespace std;
+
+int main(void)
+{
+	string nume;
+	cout <<"\n\tIntroduceti numele:";
+	cin >> nume;
+	cout << "\n\n\tBine ai venit " << nume << "!\n";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Asupra sirurilor se pot face si operati. Cea mai cunoscuta este operatia de adunare a sirurilor sau concatenare.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Programul urmator face o astfel de operatie.
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"> <pre>
+
+// concatenarea a doua siruri
+
+#include "stdafx.h"
+#include "stdafx.h"
+#include &lt iostream &gt
+#include &lt string &gt
+
+using namespace std;
+
+int main(void)
+{
+	string nume;
+	string prenume;
+	string nume_pr;
+	cout <<"\n\tIntroduceti numele:";
+	cin >> nume;
+	cout <<"\n\tIntroduceti prenumele:";
+	cin >> prenume;
+	nume_pr=nume+" "+prenume;
+	cout <<"\n\n\n\tNumele tau este: " << nume_pr;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a citi numele si prenumele cu o singura instructiune trebuie sa folosim o instructiune noua care nu ignora 
+caracterele introduse dupa caracterul spatiu. Va trebui sa definim o variabila de tip caracter de dimensiune sa zicem 80.
+ <br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"> <pre>
+// Utilizarea instructiunii cin.getline pentru a citi variabile string ce contin spatii
+
+#include "stdafx.h"
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	char nume[80];
+	cout <<"\n\tIntroduceti numele si prenumele:";
+	cin.getline(nume,80);
+	cout <<"\n\n\n\tNumele tau este: " << nume;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><li><b>Program pentru citirea si afisarea unui text  utilizand spatiu de nume System::</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia ReadLine citeste un text de la dispozitivul de intrare. Pentru a pastra valoarea citita trebuie sa declaram 
+o variabila de tip sir de caractere si sa-i atribuim valoarea Console::ReadLine(). In spatiul de nume System:: o variabila sir se declara 
+astfel:<b>String^ nume_sir </b> unde nume_sir este numele variabilei sir de caractere.<br><br> 
+
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+// Program pentru citirea si afisarea unui text utilizand spatiul de nume System::
+
+#include "stdafx.h"
+
+using namespace System;
+
+int main(void)
+{
+	String^ nume ;
+	Console::WriteLine( "\n\n\tBuna ziua utilizatorule! " );
+	Console::Write( "\n\n\tCum te numesti? :" );
+	nume = Console::ReadLine();
+	Console::WriteLine("\n\n\n\tSucces la programare "+ nume+" !\n" );
+	Console::ReadLine();
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="v_num"></a>
+<font color= "Blue" size=4><li><b>Tipul de variabila numeric</b><br></font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Variabile intregi</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Variabilele întregi pozitive sau negative pot fi declarate prin specificatorul de tip int. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Zona de memorie alocata unei variabile intregi poate fi de cel mult trei dimensiuni.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Relatii despre dimensiune sunt furnizate de calificatorii short, long si unsigned, care pot fi aplicati tipului int.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Calificatorul short se refera totdeauna la numarul minim de octeti pe care se reprezinta un întreg, de obicei 2.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Calificatorul long se refera la numarul maxim de octeti pe care poate fi reprezentat un întreg, de obicei 4.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza in continuare un program pentru afisarea a trei numare aleatoare 
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// program pentru afisarea a 3 numare aleatoare
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int nr;
+	nr=rand();
+	cout <<" \n\tNumarul aleator intre 0 si :"<< RAND_MAX <<" este: " << nr ;
+	nr=rand();
+	cout <<" \n\tNumarul aleator intre 0 si :"<< RAND_MAX <<" este: " << nr ;
+	cout <<" \n\tNumarul aleator intre 0 si :"<< RAND_MAX <<" este: " << rand() ;
+	cin.get();
+	return 0;
+}
+
+</pre></font> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Numerele aleatoare afisate nu sunt absolut aleatoare. La fiecare rulare se obtine acelasi set de numere. Pentru a 
+genera alt set de numere, va trebui sa apelam functia srand(unsegned int_seed) unde argumentul functiei adica (unsegned int_seed) reprezinta 
+schema de generare a setului de numere. In urmatoarea aplicate va fi generat un nou set de numere.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// program pentru afisarea a 3 numare aleatoare din schema 1000
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int nr;
+	srand(1000);
+	nr=rand();
+	cout <<" \n\tNumarul aleator intre 0 si :"<< RAND_MAX <<" este: " << nr ;
+	nr=rand();
+	cout <<" \n\tNumarul aleator intre 0 si :"<< RAND_MAX <<" este: " << nr ;
+	cout <<" \n\tNumarul aleator intre 0 si :"<< RAND_MAX <<" este: " << rand() ;
+	cin.get();
+	return 0;
+}
+
+</pre></font> 
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a obtine numere absolut aleatoare in sensul ca la fiecare rulare se obtine o alta schema de numere, nu vom mai 
+da valoarea 1000 lui int_sed, vom pune o valoare care depinde de ceasul calculatorului si vom folosi functia time()
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// program pentru afisarea a 3 numare absolut aleatoare 
+#include "stdafx.h"
+#include < iostream >
+#include < ctime >    // pentru functia time()
+using namespace std;
+
+int main(void) 
+{
+	int nr;
+	int seed=time(0);
+	srand(seed);
+	nr=rand();
+	cout <<" \n\tValoarea parametrului lui srand este :" << seed ;
+	cout <<" \n\tNumarul aleator intre 0 si :"<< RAND_MAX <<" este: " << nr ;
+	nr=rand();
+	cout <<" \n\tNumarul aleator intre 0 si :"<< RAND_MAX <<" este: " << nr ;
+	cout <<" \n\tNumarul aleator intre 0 si :"<< RAND_MAX <<" este: " << rand() ;
+	cin.get();
+	return 0;
+}
+</pre></font> 
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia care afiseaza un numar sub forma binara poate fi rescrisa utilizand o variabila x de tip int care se citeste de 
+la utilizator.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int x;
+	cout << " \n\n\tAfisare binara ";
+	cout << " \n\n\tIntroduceti un numar in format hexa: ";
+	cin >> x;
+	cout<<"\n\n\t";
+	afis_bin(x,16);
+	cout<<"\n\n\t";
+	afis_binar(x,16);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre></font> 
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Valoarea lui x poate fi introdusa direct in hexazecimal, in aces caz, programul devine:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int x;
+	cout << " \n\n\tAfisare binara ";
+	cout << " \n\n\tIntroduceti un numar in format hexa: ";
+	cin >> hex >> x;
+	cout<<"\n\n\t";
+	afis_bin(x,16);
+	cout<<"\n\n\t";
+	afis_binar(x,16);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre></font> 
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Valoarea hexa poate fi utilizata direct in program cu conditia folosirii prefixului 0x, astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int nr=0xFE37;
+	cout << " \n\n\tAfisare binara ";
+	cout<<"\n\n\t";
+	afis_bin(nr,16);
+	cout<<"\n\n\t";
+	afis_binar(nr,16);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre></font> 
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Variabile flotante (virgula mobila)</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Variabilele flotante pot fi în simpla precizie si atunci se declara prin specificatorul de tip float sau în dubla 
+precizie si atunci se declara prin specificatorul double. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Majoritatea sistemelor de calcul admit si reprezentarea în precizie extinsa; o variabila în precizie extinsa se declara 
+prin specificatorul long double.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Exemple de programe care folosesc variabile numerice</b>
+
+<br><br><li><b>program pentru citirea unui numar si afisarea patratulu acelui numar utilizand spatiul de nume std::</b>
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+// program pentru citirea unui numar si afisarea patratulu acelui numar utilizand spatiul de nume std::
+// citesc un numar de tip double si calculez patratul lui 
+
+#include "stdafx.h"
+#include &lt iostream &gt
+using namespace std;
+
+int main(void)
+{
+	double nr;
+	float nrp;
+	cout <<" \n\tIntroduceti un numar:";
+	cin >> nr;
+	nrp=nr*nr;
+	cout <<" \n\tPatratul numarului :"<< nr << "este : " << nrp;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre></font> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><font color= "Blue" size=4><li><b>Alte tipuri de variabile</b><br></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Exista o multitudine de alte tipuri de variabile predefinite cum ar fi data si ora calendaristica.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Spatiul de nume System:: ofera spre exemplu tipul de variabila DateTime
+
+<br><br><li><b>Program  se foloseste tipul de variabila System::DateTime pentru a afisa data si ora  </b>
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+// tipul de variabila DateTime.
+
+#include "stdafx.h"
+using namespace System;
+
+int main(void)
+{
+	String^ nume;
+	String^ ani_s;
+	System::DateTime dt=System::DateTime::Now;
+	double ani;
+	Console::WriteLine("\n"+dt);
+	Console::Write("\n\n\tCum te numesti?:" );
+	nume = Console::ReadLine();
+	Console::Write( "\n\n\tCiti ani ai?:" );
+	ani_s = Console::ReadLine();
+	ani = System::Convert::ToDouble( ani_s );
+	Console::WriteLine("\n\n\t"+nume+ ", inseamna ca ai, cel putin :" +ani*360 +" zile");
+	Console::ReadLine();
+    return 0;
+}
+</pre></font> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind WFA vom realiza o aplicatie cafre afiseaza data si ora sistem. Aplicatia este asemanatoare cu cea realizata in 
+mod consola, diferind doar elementele grafice utilizate.
+<br><br>&nbsp;&nbsp;&nbsp;Deschidem un nou proiect numit <font color="red"> data <font color="black"> dupa care:
+<ul>
+ <li> Plasam un buton cu numele button1 
+ <li> Plasam un obiect label cu numele implicit label1
+ <li> Selectam button1 si pe evenimentul Click completam procedura cu:
+</ul>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+this->label1->Text=System::Convert::ToString(System::DateTime::Now);
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;Rulam aplicatia si dupa apasarea butonului obtinem:
+<br><br><center><img src="im_cpp12_1.gif"></center>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca dorim sa afisam in mod continuu ora adica sa reinprospatam valoarea afisata in label1 va trebui sa introducem un nou 
+obiect. De aceasta data obiectul nu mai este vizibil, va rula "in spatele form-ului" si va relansa instructiunea care atribuie valoarea datei curente
+textului obiectului label1. Abiectul se numeste "timer" si are posibilitatea setarii intervalului intre evenimente numite Tick
+ 
+<br><br>&nbsp;&nbsp;&nbsp;Deschidem un nou proiect numit <font color="red">ceas<font color="black"> dupa care:
+<ul>
+ <li> Plasam un obiect label cu numele implicit label1
+ <li> Plasam un obiect timer cu numele implicit timer1 caruia ii setam proprietatea "Interval" la 1000 si proprietatea "Enabled" la True
+ <li> Selectam timer1 si pe evenimentul Tick completam procedura cu:
+</ul>
+&nbsp;&nbsp;&nbsp;C++<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+this->label1->Text=System::Convert::ToString(System::DateTime::Now);
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+&nbsp;&nbsp;&nbsp;C#<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+this.label1.Text=System.Convert.ToString(System.DateTime.Now);
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;Rulam aplicatia si dupa apasarea butonului obtinem:
+<br><br><center><img src="im_cpp12_2.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;Aplicatia afiseaza in mod continuu data si ora sistem. Intervalul dupa care se face o noua afisare este setat prin intermediul 
+proprietatii "Interval" setata la 1000 milisecunde adica la 1 secunde. Daca am dori afisarea din minut in minut am seta proprietatea "Interval" la 
+60000.
+<br><br>&nbsp;&nbsp;&nbsp;Reluam aplicatia de sus pentru a afisa atat secundele cat si milisecundele
+<br>&nbsp;&nbsp;&nbsp;Deschidem un nou proiect numit <font color="red">ceas_v1<font color="black"> dupa care:
+<ul>
+ <li> Plasam sase obiecte label cu numele implicit label1 ... lanel6
+ <li> Plasam un obiect timer cu numele implicit timer1 caruia ii setam proprietatea "Interval" la 100 si proprietatea "Enabled" la True
+ <li> Selectam timer1 si pe evenimentul Tick completam procedura cu:
+</ul>
+&nbsp;&nbsp;&nbsp;C++<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+this->label1->Text=System::Convert::ToString(System::DateTime::Now);
+this->label2->Text=System::Convert::ToString(System::DateTime::Now.Hour);
+this->label3->Text=System::Convert::ToString(System::DateTime::Now.Minute);
+this->label4->Text=System::Convert::ToString(System::DateTime::Now.Second);
+int ms;
+ms=System::Convert::ToInt16(System::DateTime::Now.Millisecond );
+this->label5->Text=System::Convert::ToString(ms/100);
+this->label6->Text=System::Convert::ToString(ms);
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+&nbsp;&nbsp;&nbsp;C#<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+this.label1.Text=System.Convert.ToString(System::DateTime::Now);
+this.label2.Text=System.Convert.ToString(System::DateTime::Now.Hour);
+this.label3.Text=System.Convert.ToString(System::DateTime::Now.Minute);
+this.label4.Text=System.Convert.ToString(System::DateTime::Now.Second);
+int ms;
+ms=System.Convert::ToInt16(System.DateTime.Now.Millisecond);
+this.label5.Text=System.Convert.ToString(ms/100);
+this.label6.Text=System.Convert.ToString(ms);
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;Rulam aplicatia si dupa apasarea butonului obtinem:
+<br><br><center><img src="im_cpp12_3.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;Aplicatia afiseaza in mod continuu data si ora sistem, precum si separat ora:min:sec:zecimi:milisecunde
+
+
+<br><br>&nbsp;&nbsp;&nbsp;In multe aplicatii este nevoie sa se lucreze cu data calendaristica. In WFA avem posibilitatea sa utilizam obiecte 
+prietenoase care ne ajuta sa introducem date calendaristice prin alegerea datei dintr-un calendar. Obiectul care permite alegerea datei calendaristice 
+se numeste "dateTimerPicker". Vom realiza in continuare o aplicatie care permite alegerea datei calendaristice dupa care acceseaza componentele care 
+formeaza data calendaristica 
+<br>&nbsp;&nbsp;&nbsp;Deschidem un nou proiect numit <font color="red"> aleg_data<font color="black"> dupa care:
+<ul>
+ <li> Plasam opt obiecte label cu numele implicit label1 ... lanel8
+ <li> Plasam un obiect "dateTimerPicker" cu numele implicit dateTimerPicker1 
+ <li> Selectam dateTimerPicker"1 si pe evenimentul ValueChanged completam procedura cu:
+</ul>
+&nbsp;&nbsp;&nbsp;C++<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	this->label1->Text=System::Convert::ToString(dateTimePicker1->Value);
+	this->label2->Text=System::Convert::ToString(dateTimePicker1->Value.Year );
+	this->label3->Text=System::Convert::ToString(dateTimePicker1->Value.Month );
+	this->label4->Text=System::Convert::ToString(dateTimePicker1->Value.Day );
+	this->label5->Text=System::Convert::ToString(dateTimePicker1->Value.Hour );
+	this->label6->Text=System::Convert::ToString(dateTimePicker1->Value.Minute );
+	this->label7->Text=System::Convert::ToString(dateTimePicker1->Value.Second );
+	this->label8->Text=System::Convert::ToString(System::DateTime::Now.Date);
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+&nbsp;&nbsp;&nbsp;C#<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	this.label1.Text=System.Convert.ToString(dateTimePicker1.Value);
+	this.label2.Text=System.Convert.ToString(dateTimePicker1.Value.Year );
+	this.label3.Text=System.Convert.ToString(dateTimePicker1.Value.Month );
+	this.label4.Text=System.Convert.ToString(dateTimePicker1.Value.Day );
+	this.label5.Text=System.Convert.ToString(dateTimePicker1.Value.Hour );
+	this.label6.Text=System.Convert.ToString(dateTimePicker1.Value.Minute );
+	this.label7.Text=System.Convert.ToString(dateTimePicker1.Value.Second );
+	this.label8.Text=System.Convert.ToString(System.DateTime.Now.Date);
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;Rulam aplicatia si dupa apasarea alegerea unei date calendaristice folosind obiectul dateTimerPicker1, obtinem:
+<br><br><center><img src="im_cpp12_4.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;Aplicatia afiseaza data aleasa precum si separat componentele din care se compune data calendaristica
+
+<br><br><a name="conv"></a>
+<font color= "Blue" size=4><li><b>Conversii de tip</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De multe ori e necesar sa convertim variabilele dintr-un tip in altul. Sa scriem un program care citeste raza cercului 
+si afiseaza aria. Citirea se face cu <b>Console::ReadLine()</b> care citeste un sir de caractere in cazul de fata un sir de numere, care trebuie convertit
+intr-un numar. Conversia se face cu  <b>System::Convert::ToDouble()</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a calcula aria cercului avem nevoie de constanta pi, pe care o apelam din biblioteca System::Math astfel <b>double pi= System::Math::PI</b>
+<br><br><li><b>Program pentru calculul ariei cercului utilizand spatiul de nume System::</b>
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+// program pentru calculul ariei cercului 
+// programuul cere raza cercului si afiseaza aria acestuia
+
+#include "stdafx.h"
+
+using namespace System;
+
+int main(void)
+{
+	double raza;
+	String^ raza_s;
+	double pi= System::Math::PI;
+	Console::Write( L"\n\n\tIntroduceti raza cercului:" );
+	raza_s= Console::ReadLine();
+	raza = System::Convert::ToDouble( raza_s );
+	Console::WriteLine( "\n\n\tAria cercului de raza: "+ raza +" este: "+pi*raza*raza );
+	Console::ReadLine();
+    return 0;
+}
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;Ne propunem sa afisam sinusul unui unghi exprimat in radiani realizat in Windows Forms Application.
+<br><br>&nbsp;&nbsp;&nbsp;Va trebui sa initiem un nou proiect de tipul CLR Windows Forms Application cu numele <font color="red"> calc_sin_v0 <font color="black">.
+<ul>
+<li>Redimensionam formul si-i modificam proprietatea text in "Calculare sinus"
+<li>Plasam un label cu numele label1 si-i  modificam proprietatea text in "Sin",font bold si size 10
+<li>Plasam un obiect NumericUpDown cu numele implicit numericUpDown1 si-i  setam: proprietatea DecimalPlaces  la 4 , proprietatea Maximum  la 1000
+<li>Plasam un label cu numele label2 si-i  modificam proprietatea text in "=",font bold si size 10
+<li>Plasam un label cu numele label3 si-i  modificam proprietatea text in "Valoare sinus"
+<li>Selectam NumericUpDown si pe evenimentul ValueChanged completam procedura cu:
+</ul>
+<br><br>
+&nbsp;&nbsp;&nbsp;C++<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+		double rad2;
+		rad2=System::Convert::ToDouble(this->numericUpDown1->Value);
+		this->label3->Text =System::Convert::ToString(System::Math::Sin(rad2));
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+&nbsp;&nbsp;&nbsp;C#<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+		double rad2;
+		rad2=System.Convert.ToDouble(this.numericUpDown1.Value);
+		this->label3->Text =System.Convert.ToString(System.Math.Sin(rad2));
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;Formul trebuie sa arate astfel:
+<center><img src="im_cpp12.jpg"></center>
+<br>&nbsp;&nbsp;&nbsp;Se lanseaza in executie si formul trebuie sa arate astfel: 
+<br><br><center><img src="im_cpp13.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;In aplicatia anterioara am utilizat un obiect de tip NumericUpDown care ne permite sa introducem valori numerice.
+<br>&nbsp;&nbsp;&nbsp;In cazul in care dorim sa utilizam un simplu obiect TextBox in care se pot introduce atat texte cat si cifre si punem aceeasi 
+procedura pe evenimentul TextChanged adica:
+&nbsp;&nbsp;&nbsp;C++<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+		double rad2;
+		rad2=System::Convert::ToDouble(this->numericUpDown1->Value);
+		this->label3->Text =System::Convert::ToString(System::Math::Sin(rad2));
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+&nbsp;&nbsp;&nbsp;C#<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+		double rad2;
+		rad2=System.Convert.ToDouble(this.numericUpDown1.Value);
+		this.label3.Text =System.Convert.ToString(System.Math.Sin(rad2));
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp; In momentul cand tastam numai cifre aplicatia merge corect insa daca se tasteaza si caractere, aplicatia se blocheaza si 
+se afiseaza un mesaj de eroare.
+<br>&nbsp;&nbsp;&nbsp; Va trebui sa luam masuri suplimentare si sa ne asiguram ca nu se introduc si caractere in acest camp, in caz contrar aplicatia 
+nu ruleaza corect si la apasarea unui caracter alfanumeric (altul decat cifra) se genereaza un mesaj de eroare care anunta ca formatul nu este 
+corespunzator si aplicatia se opreste.
+<br>&nbsp;&nbsp;&nbsp;Va trebui sa tratam aceasta eroare, sa afisam un mesaj si sa pastram controlul programului.
+<br><br>&nbsp;&nbsp;&nbsp;Deschidem un nou proiect numit <font color="red"> calc_sin_v2 <font color="black"> dupa care:
+<ul>
+ <li> Plasam un obiect TextBox cu numele implicit textBox1
+ <li> Plasam un label cu numele label1 si-i  modificam proprietatea text in "Valoare sinus"
+ <li> Selectam textBox1 si pe evenimentul TextChanged completam procedura cu:
+</ul>
+<br><br>
+&nbsp;&nbsp;&nbsp;C++<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+try{
+	double rad ;
+	rad=System::Convert::ToDouble(this->textBox1->Text);
+	this->label1->Text =System::Convert::ToString(System::Math::Sin(rad));
+	}
+catch(System::FormatException^ err){
+	this->label1->Text="Format necorespunzator!\nIntroduceti o valoare numerica";
+	}
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+&nbsp;&nbsp;&nbsp;C#<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+try{
+	double rad ;
+	rad=System.Convert.ToDouble(this.textBox1.Text);
+	this.label1.Text =System.Convert.ToString(System.Math.Sin(rad));
+	}
+catch(System.FormatException err){
+	this.label1.Text="Format necorespunzator!\nIntroduceti o valoare numerica";
+	}
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;Rulam aplicatia tastam un "x" si obtinem:
+<br><br><center><img src="im_cpp13_1.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;Instructiunea  try - catch </b> ete cea care sesizeaza o exceptie de format si permite afisarea textului:
+<br><br><center> Format necorespunzator! <br> Introduceti o valoare numerica </center>
+
+<br><br><a name="oper"></a>
+<font color= "Blue" size=4><li><b>Operatori</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Un operator este un simbol care reprezinta o anumita actiune
+<br><a name="opadr"></a>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Operatorul de adresa</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Prin declararea unei variabile se aloca memorie in functie de tipul variabilei.Numele variabilei este chiar adresa de 
+inceput a zonei de memorie rezervata. Aceasta adresa se gaseste folosind operatorul:<b> &</b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sintaxa este:<b>&[nume variabila]</b><br><br>
+
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	string nume;
+	cout <<"\n\tIntroduceti numele:";
+	cin >> nume;
+	cout << "\n\n\tBine ai venit " << nume << "!\n";
+	cout << "\n\n\tAdresa variabilei nume este :" << &nume;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre></font> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea acestei aplicatii, obtinem:
+<br><br><center><img src="im_cpp16.jpg"></center>
+<br><a name="opat"></a>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Operatorul de atribuire</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se foloseste pentru a asocia o valoare unei variabile:<b> &</b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sintaxa este:<b>[nume variabila]=[valoare]</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Valoarea atribuita unei variabile trebuie sa fie compatibila cu tipul de date al variabilei. In caz de incompatibilitate se
+genereaza erori.
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi in continuare Windows Forms Application pentru realiza o aplicatie grafica  ce va inchide si va deschide circuitul de jos. 
+<center><img src="circ_di.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;Aplicatia nu face altceva decat atribuie unor proprietati ale unor obiecte niste valori: De exemplu 
+<br>&nbsp;&nbsp;&nbsp;-atribuim proprietatii text a butonului, valoarea "Start"
+<br>&nbsp;&nbsp;&nbsp;-atribuim proprietatii Image a obiectului pictureBox1 ,valoarea System::Drawing::Image::FromFile( "circ_i.gif" )
+<br><br>&nbsp;&nbsp;&nbsp;Sa initiem un nou proiect de tipul CLR Windows Forms Application cu numele <font color="red">led<font color="black">.
+<ul>
+<li>Redimensionam formul si-i modificam proprietatea text in "Alimentare led"
+<li>Plasam doua butoane cu numele button1 respectiv  button2 apoi le modificam proprietatea text atribuindu-i valorile "ON" respectiv "OFF"
+<li>Plasam un obiect PictureBox cu numele pictureBox1
+<li>Pregatim doua imagini cu numele circ_i.gif respectiv  circ_d.gif de forma celor doua imagini de jos:
+<center><img src="circ_i.gif"><img src="circ_d.gif"></center>
+<li>Copiem cele doua fisire in folder-ul Projects/led/led
+<li>Selectam fisierul "circ_d.gif" la proprietatea Image a obiectului pictureBox1 
+<li>Setam proprietatea SizeMode a obiectului pictureBox1 la "StretchImage"
+</ul>
+</ul>
+<br>&nbsp;&nbsp;&nbsp;In acest moment Formul arata astfel:
+<br><br><center><img src="im_cpp14.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;-Procedura button1_Click a evenimentul <b>click</b>a obiectului <b>button1</b> va fi completata cu:<br><br>
+&nbsp;&nbsp;&nbsp;C++<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+		this.pictureBox1.Image = System.Drawing.Image.FromFile( "circ_i.gif" );
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+&nbsp;&nbsp;&nbsp;C#<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+		this.pictureBox1.Image = System.Drawing.Image.FromFile( "circ_i.gif" );
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+</html>
+<br>&nbsp;&nbsp;&nbsp;-Procedura button2_Click a evenimentul <b>click</b>a obiectului <b>button2</b> va fi completata cu:<br><br>
+&nbsp;&nbsp;&nbsp;C++<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+		this->pictureBox1->Image = System::Drawing::Image::FromFile( "circ_d.gif" );
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+&nbsp;&nbsp;&nbsp;C#<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+		this.pictureBox1.Image = System.Drawing.Image.FromFile( "circ_d.gif" );
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;-Se lanseaza in executie aplicatia. Ecranul aplicatiei va arata astfel:
+<br><br><center><img src="im_cpp15.jpg"></center>
+
+<br><a name="opad"></a>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Operatorul de adunare</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+//Suma a doua numere intregi 
+
+#include "stdafx.h"
+#include &lt iostream &gt
+using namespace std;
+
+int main()
+{
+ int  numar1,numar2,suma;
+  cout << "Introduceti primul numar intreg: ";
+  cin >> numar1 ;
+  cin.ignore();
+  cout << "Introduceti al doi-lea numar intreg: ";
+  cin  >> numar2;
+  cin.ignore();
+  suma=numar1 + numar2;
+  cout <<"Suma: "<< numar1 << " + " << numar2 << " = ";
+  cout << suma << endl;
+  cin.get();
+  return 0;
+}
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><a name="opsc"></a>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Operatorul de scadere </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+//Diferenta a doua numere intregi 
+
+#include "stdafx.h"
+#include &lt iostream &gt
+using namespace std;
+
+int main()
+{
+ int  numar1,numar2,difer;
+  cout << "Introduceti primul numar intreg: ";
+  cin >> numar1 ;
+  cin.ignore();
+  cout << "Introduceti al doi-lea numar intreg: ";
+  cin  >> numar2;
+  cin.ignore();
+  difer= numar1 - numar2;
+  cout <<"Diferenta: "<< numar1 << " - " << numar2 << " = ";
+  cout << difer << endl;
+  cin.get();
+  return 0;
+}
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><a name="opin"></a>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Operatorul de inmultire</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+//Produsul a doua numere intregi 
+
+#include "stdafx.h"
+#include &lt iostream &gt
+using namespace std;
+
+int main()
+{
+int  numar1,numar2,produs;
+  cout << "Introduceti primul numar intreg: ";
+  cin >> numar1 ;
+  cin.ignore();
+  cout << "Introduceti al doi-lea numar intreg: ";
+  cin  >> numar2;
+  cin.ignore();
+  produs=numar1 * numar2;
+  cout <<"Produsul: "<< numar1 << " * " << numar2 << " = ";
+  cout << produs << endl;
+  cin.get();
+  return 0;
+}
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><a name="opim"></a>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Operatorul de impartire</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+//Raportul a doua numere intregi 
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main()
+{
+float  numar1,numar2,raport;
+  cout << "Introduceti primul numar : ";
+  cin >> numar1 ;
+  cin.ignore();
+  cout << "Introduceti al doi-lea numar : ";
+  cin  >> numar2;
+  cin.ignore();
+  raport=numar1/numar2;
+  cout <<"Raportul: "<< numar1 << " / " << numar2 << " = ";
+  cout << raport << endl;
+  cin.get();
+  return 0;
+}
+
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Toate aplicatiile de sus pot fi condensate intr-o singura aplicatie:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+//Operatii Cu Intregi
+
+#include "stdafx.h"
+#include &lt iostream &gt
+using namespace std;
+
+int main()
+{
+ float  numar1,numar2;
+  cout << "Introduceti doua numere separate prin spatiu : ";
+  cin >> numar1 >> numar2;
+  cin.ignore();
+  cout << numar1 << " + " << numar2 << " = "
+       << numar1 + numar2 << endl;
+  cout << numar1 << " - " << numar2 << " = "
+       << numar1 - numar2 << endl;
+  cout << numar1 << " * " << numar2 << " = "
+       << numar1 * numar2 << endl;
+  cout << numar1 << " / " << numar2 << " = "
+       << numar1 / numar2 << endl;
+  cout << numar1 << " % " << numar2 << " = "
+       << numar1 % numar2 << endl;
+
+  cin.get();
+  return 0;
+}
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><a name="comb"></a>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Operatorul combinat de atribuire si aritmetic</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a evita expresiile de genul: <b>i=i+1</b> adica sa atribuim lui i vechea valoare a lui i adunata cu 1, 
+se foloseste operatorul combinat de atribuire si aritmetic. Conform acestui operator expresia <b>i=i+1</b> se mai poate scrie: <b>i+=1</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aceasta forma de scriere nu este limitata la operatorul de adunare. Putem deci scrie in loc de <b>i=i*22</b> expresia: 
+<b>i*=22</b> sau in loc de <b> valmax=valmax/55</b> putem scrie <b>valmax/=55</b>
+<br><a name="mod"></a>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Operatorul modulo</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Efectueaza impartirea a doua numere dar returneaza numai restul
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Exemplu 7 % 5 returneaza 2
+
+<br><br><a name="bit"></a>
+<font color= "Black" size=4><li><b>Operatori pe biti</b></font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>AND logic -- operatorul & </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatia AND este deseori folosita pentru a realizeaza o masca pentru extragerea anumitor biti dintr-un operand. Operatorul folosit este <b> & </b>
+<br>&nbsp&nbsp&nbsp;Pentru exemplificare, vom realiza in continuare o aplicatie care realizeaza functia logica & intre doi operanzi si sub forma binara
+atat operanzii cat si rezultatul. Aplicatia se bazeaza pe functiile <b> afis_binar()</b> respectiv  <b> afis_bin()</b> functii care se presupune ca sunt
+definite in fisierul stadfx.h
+<br>&nbsp&nbsp&nbsp;Programul principal fiind:
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	unsigned int a,b;
+	cout << " \n\n\tOperatii pe biti: ";
+	cout <<"\n\n\t Introduceti numarul a:";
+	cin >> a;
+	cout <<"\n\t Introduceti numarul b:";
+	cin >> b;
+	cout<<"\n\n    a:\t";
+	afis_bin(a,16);
+	cout<<"\n\n    b:\t";
+	afis_bin(b,16);
+	cout<<"\n\na & b:\t";
+	afis_bin(a&b,16);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>Dupa rularea programului in "Command Prompt" se afiseaza:
+<br><br><Center><IMG SRC  = "im_cpp12_6.gif"> </Center>
+<br><br>Daca se doreste introducerea operanzilor in format hexa, programul devine:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	unsigned int a,b;
+	cout << " \n\n\tOperatii pe biti: ";
+	cout <<"\n\n\t Introduceti numarul a:";
+	cin >> hex >> a;
+	cout <<"\n\t Introduceti numarul b:";
+	cin >> hex >> b;
+	cout<<"\n\n    a:\t";
+	afis_bin(a,16);
+	cout<<"\n\n    b:\t";
+	afis_bin(b,16);
+	cout<<"\n\na & b:\t";
+	afis_bin(a&b,16);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>SAU logic -- operatorul | </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatia SAU este deseori folosita pentru a realizeaza  o setare a anumitor biti dintr-un operand. Operatorul folosit este <b> | </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>SAU exclusiv - operatorul ^ </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatia SAU exclusiv este deseori folosita pentru complementarea anumitor biti dintr-un operand. Operatorul folosit este <b> ^</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>NOT - operatorul ~ </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatia NOT  realizeaza complementarea bitilor dintr-un operand. Operatorul folosit este <b> ~ </b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Operatorul de siftare stanga </b> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b> n << p ;</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deplaseaza spre stanga cu p pozitii a bitilor ce compun in binar valoarea n. Pe pozitia cea mai nesemnificativa se pune 0. 
+O deplasare spre stanga cu 1 pozitie este echivalenta cu o inmultire cu 2. Astfel 3 << 2 =12
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Operatorul de siftare dreapta </b> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b> n >> p; </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deplaseaza spre dreapta cu p pozitii a bitilor ce compun in binar valoarea n. Pe pozitia cea mai semnificativa se pune 0. 
+O deplasare spre dreapta cu 1 pozitie este echivalenta cu o impartire cu 2 cu 2. Astfel 24 << 3 = 3
+ <br><br><a name="pow"></a>
+<font color= "Black" size=4><li><b>Exponenti</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Nu exista operator pentru functia exponent dar se pot calcula folosind functia pow. Functia pow are doua argumente:
+primul argument este numarul iar cel de-al doilea este exponentul.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Exemplu de aplicatie ce utilizeaza functia pow </b>
+<br><br>Urmatorul program calculeaza aria laterala a unei roti la care se cunoaste raza jentii si inaltimea cauciucului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<br><br>Se utilizeaza spatiul de nume System::<br><br>
+<!------------------------------------------------------------------->
+
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+// program pentru calculul ariei cercului 
+// programuul cere raza cercului si afiseaza aria acestuia
+
+#include "stdafx.h"
+
+using namespace System;
+
+int main(void)
+{
+  double raza , h_cauciuc;
+  String^ raza_s;
+  String^ h_cauciuc_s;
+  double pi= System::Math::PI;
+  Console::Write( L"\n\n\tIntroduceti raza jentii:" );
+  raza_s= Console::ReadLine();
+  Console::Write( L"\n\n\tIntroduceti inaltimea cauciucului:" );
+  h_cauciuc_s= Console::ReadLine();	
+  raza = System::Convert::ToDouble( raza_s );
+  h_cauciuc = System::Convert::ToDouble( h_cauciuc_s );
+  raza+=h_cauciuc;
+  Console::WriteLine( "\n\n\tAria laterala a rotii de raza :"+ raza +" este:"+pi*System::Math::Pow(raza,2 ));
+  Console::ReadLine();
+  return 0;
+}
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><a name="prg"></a>
+<font color= "Blue" size=4><li><b>Conceperea si realizarea unui program </b><br></font><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pana in prezent am prezentat diverse programe in scopul de a introduce diverse notiuni cum ar fi : constanta, variabila, 
+instructiune, declaratie, functie, biblioteca, spatiu de nume.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In acest moment putem sa concepem si sa realizam un program, avand suficiente notiuni.
+<br><a name="et_prg"></a><font size=4>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Etapele realizarii unui program </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizarea unui program presupune o serie de etape care trebuiesc urmate cum ar fi: 
+<ul>
+ <li> Analiza problemei de rezolvat, schitarea schemei logice.
+ <li> Stabilirea mediului de programare
+ <li> Stabilirea variabilelor principale
+ <li> Stabilirea variabilelor secundare (intermediare)
+ <li> Se ia un "schelet" de program.
+ <li> Se definesc variabilele.
+ <li> Citirea valorilor si atribuirea acestora, variabilelor
+ <li> Implementarea schemei logice
+ <li> Afisarea rezultatelor
+ <li> Testarea rularii corecte
+ <li> Reluarea pasilor anteriori daca programul nu a rulat corect sau au fost greseli
+</ul> 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa luam de exemplu o tema extrem de simpla:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Tema program </b> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa se realizeze un program care cere utilizatorului doua numere reale, dupa care afiseaza produsul acestora.
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Rezolvare </b>
+<ul>
+ <li> Analiza problemei- Trebuiesc citite doua valori si inscrise in doua variabile. Se face produsul lor si se afiseaza rezultatul
+ <li> Stabilirea mediului de programare - Aleg Visual Studio2005 - Console Applications
+ <li> Stabilirea variabilelor principale - Stabilesc variabilele <b> double op1 </b> si <b> double op2 </b> 
+ <li> Stabilirea variabilelor secundare - Stabilesc variabila  intermewdiara <b> float prd </b>
+ <li> Se ia un "schelet" de program ( partea minimala a unui program, parte care trebuie continuta de orce program).
+</ul> 
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+//Aceasta parte de program este continuta de orice program scris in spatiul std
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main()
+{
+
+  cin.ignore();
+  cin.get();
+  return 0;
+}
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<ul><li> Se definesc variabilele.</ul>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main()
+{
+<b>
+  double op1,op2;
+  float prd;
+</b>
+  cin.ignore();
+  cin.get();
+  return 0;
+}
+</pre></font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<ul><li> Citirea valorilor si atribuirea acestora, variabilelor</ul>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main()
+{
+  double op1,op2;
+  float prd;
+<b>  
+  cout << "Introduceti primul numar: ";
+  cin >> op1 ;
+  cout << "Introduceti al doilea numar: ";
+  cin  >> op2;
+</b> 
+  cout << prd ;
+  cin.ignore();
+  cin.get();
+  return 0;
+}
+</pre></font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<ul> <li> Implementarea schemei logice</ul>
+
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main()
+{
+  double op1,op2;
+  float prd;
+  cout << "Introduceti primul numar: ";
+  cin >> op1 ;
+  cout << "Introduceti al doilea numar: ";
+  cin  >> op2;
+<b>  
+  prd=op1 * op2;
+</b> 
+  cin.ignore();
+  cin.get();
+  return 0;
+}
+</pre></font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<ul> <li> Afisarea rezultatelor</ul>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Programul calculeaza produsul a doua numere
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main()
+{
+  double op1,op2;
+  float prd;
+  cout << "Introduceti primul numar: ";
+  cin >> op1 ;
+  cout << "Introduceti al doilea numar: ";
+  cin  >> op2;
+  prd=op1 * op2;
+<b>
+  cout <<"Produsul este:";
+  cout << prd ;
+</b>  
+  cin.ignore();
+  cin.get();
+  return 0;
+}
+</pre></font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+</body>
+</html>
