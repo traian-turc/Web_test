@@ -1,0 +1,188 @@
+<html><head>
+<title>Scheme logice operatori relationali, expresii relationale in C++</title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Scheme logice operatori relationali, expresii relationale in C++</Center></TD></TR>
+</table>
+<br><br><a name="rel"></a>
+<font color= "Blue" size=4><li><b>Operatori relationali </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Programele scrise si analizate pana in acest moment, au fost simple inlantuiri de instructiuni de atribuire, executia 
+programului era una liniara unde instructiunile se inlantuiau unele dupa altele de la ineputul programuli pana la sfarsitul lui.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Problemele pe care dorim sa le rezolvam cu ajutorul calculatorului sunt de cele mai multe ori, mult mai complexe. O simpla insiruire
+de instructiuni nu poate rezolva probleme complexe. De multe ori e nevoie ca programul sa ia cai diferite in functie de datele introduse de operator ,
+de anumite valori ale diferitelor variabile sau constante. Programul trebuie sa contina toate variantele posibile, si in momentul rularii , in urma
+unor operatii de comparare sa urmeze calea corespunzatoare. Comparatia se face prin intermediul operatorilor relationali.  
+<br><br><center><table border=1><tr>
+<td><b>Operator</b></td><td><b>Semnificatie</b></td></tr>
+<td>&gt</td><td>Mai mare</td></tr>
+<td>&lt</td><td>Mai mic</td></tr>
+<td>&gt=</td><td>Mai mare sau egal</td></tr>
+<td>&lt=</td><td>Mai mic sau egal</td></tr>
+<td>==</td><td>Egal</td></tr>
+<td>!=</td><td>Diferit</td></tr>
+</table></center>
+
+<br><br><a name="exp_rel"></a>
+<font color= "Blue" size=4><li><b>Expresii relationale </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O instructiune cu doi operanzi si un operator relational intre ei se numeste expresie relationala.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rezultatul unei expresii relationale este o valoare bool-eana care poate lua deci doua valori: true sau false
+
+<br><br><li><b>Program C++ pentru a exemplifica modul de scriere al expresiilor relationale  </b><br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// Expresii relationale 
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main()
+{
+  double  a,b;
+  cout << "\n\tIntroduceti o valoare pentru numarul a : ";
+  cin >> a ;
+  cin.ignore();
+  cout << "\n\tIntroduceti o valoare pentru numarul b : ";
+  cin  >> b;
+  cin.ignore();
+  cout <<"\n\n\tOperatia : a >  b are ca rzultat: " << (a>b);
+  cout <<"\n\tOperatia : a >= b are ca rezultat: " << (a>=b);
+  cout <<"\n\tOperatia : a == b are ca rezultat: " << (a==b);
+  cout <<"\n\tOperatia : a != b are ca rezultat: " << (a!=b);
+  cout <<"\n\tOperatia : a <= b are ca rezultat: " << (a<=b);
+  cout <<"\n\tOperatia : a &lt  b are ca rezultat: " << (a &lt b);
+  cin.get();
+  return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>Dupa rularea programului in "Command Prompt" se afiseaza:
+<br><br>
+<center><img src="im_cpp17.jpg"></center>
+<br><br><a name="s_log"></a>
+<font color= "Blue" size=4><li><b>Scheme logice </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Schemele logice – au rolul de a reprezenta grafic fluxul general al datelor  si a algoritmului de prelucrare. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sintetizeaza succesiunea etapelor de rezolvare a unei probleme constituind o reprezentare grafica a functiilor 
+algoritmului utlizat. In cadrul acestor scheme se folosesc simboluri standard, carora li se asociaza în principiu anumite instructiuni.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Schema logica reprezinta de fapt un graf orientat în care exista cel putin urmatoarele elemente:
+<ul>
+<li>o instructiune de pornire (START) si una de oprire (STOP);
+<li>instructiuni de atribuire;
+<li>instructiuni de citire a datelor;
+<li>instructiuni de decizie;
+<li>instructiuni de scriere/afisare a rezultatelor prelucrarii.
+<li>sageti care indica sensul fluxului de prelucrare, deci ordinea de executie a operatiilor elementare.
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Ordinea în care instructiunile programului sunt executate constituie structura de control a acestuia.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Schema logica este importanta la analiza problemei, la scrierea programuli si la intelegerea programului de alte persoane, 
+schema logica fiind reprezentarea vizuala a functionarii programului.
+<br><br>Se folosesc urmatoarele simboluri grafice in cadrul schemelor logice
+<br><br>
+<center><img src="im_cpp20.jpg"></center>
+<br><br><a name="ar"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Schema logica a programului care asteapata de la utilizator raza unui cerc si afiseaza aria acestuia , arata astfel:
+<br><br>
+<center><img src="im_cpp18.jpg"></center>
+<br><br><a name="if"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sunt cazuri in care programul trebuie sa ruleze anumite instructiuni numai in anumite cazuri. Sa presupunem ca un program asteapta doua numere
+de la utilizator si vrea sa calculeze diferenta lor si s-o afiseze insa inainte sa afiseze diferenta numerelor introduse am vrea sa fim avertizati
+cu un mesaj ca diferenta este negativa. Deci instructiunea care afiseaza mesajul "Diferenta este negativa", trebuie sa se execute numai daca diferenta
+dintre numerele introduse este negativa. Schema logica a unui astfel de program arata astfel:
+<br><br>
+<center><img src="im_cpp19a.jpg"></center>
+<br><br><a name="ord"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam acum schema logica a unui program care asteapata de la utilizator doua numere (a si b) pe care le afiseaza 
+in ordine crescatoare adica in ordinea a,b daca a &lt b sau b,a daca b &lt a
+<br><br>
+<center><img src="im_cpp19.jpg"></center>
+<br><br><a name="gr1"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Schema logica a unui program care asteapata de la utilizator coeficientii euatiei de gradul 1 (a si b) si afiseaza solutiile
+<br><br>
+<center><img src="im_cpp21.jpg"></center>
+<br><br><a name="gr2"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Schema logica a unui program care asteapata de la utilizator coeficientii euatiei de gradul 2 (a, b si c) si afiseaza solutiile
+<br><br>
+<center><img src="im_cpp22.jpg"></center>
+<br><br><a name="ord3"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam acum schema logica a unui program care asteapata de la utilizator trei numere (a,b si c) pe care le afiseaza 
+in ordine crescatoare.
+<br><br>
+<center><img src="im_cpp23.jpg"></center>
+
+<br><br><a name="fact"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De multe ori e nevoie sa calculam repetitiv ceva. Sa luam de exemplu calculul sumei primelor 100 de numere naturale sau calculul lui
+n!. Sa realizam schema logica a unui program ce calculeaza n factorial.
+<br><br>
+<center><img src="im_cpp24.jpg"></center>
+<br><br><a name="fact_a"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa vedem aceasta schema logica afisata animat pentru n=4.
+<center><img src="im_cpp24_a.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa incercam sa calculam cat mai exact valoarea lui e. Numarul e poate fi descompus in serii astfel:
+<br><br><center><img src="e.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Numarul e va putea fi aproximat prin aplicarea formulei de sus pe un numar finit de pasi astfel:
+<br><br><center><img src="e_v0.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;fact(k) fiind aplicatia anterioara pentru calculul factorialului.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca includem schema logica a aplicatiei de calcul factorial, schema logica pentru aproximarea numarului e devine:
+<br><br><center><img src="e_v2.gif"></center>
+<a name="ord10"></a>
+<br><br><li><b>Algoritmul bubble sort</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am realizat anterior schema logica a unui program care astepata de la utilizator trei numere (a,b si c) pe care le afiseaza 
+in ordine crescatoare. Pentru mai mult de 3 numere situatia se complica foarte mult asa ca trebuie sa concepem alta strategie. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi pentru inceput, algoritmul bubble sort. Algoritmul se bazeaza pe facilitatile de repetitie si este 
+schitat in urmatoarea schema logica. Algoritmul schitat grafic mai jos poate ordona n numere, insa este utilizat in cazul concret de 10 numere.  
+<br><br>
+<center><img src="im_cpp25.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<a href=sort1.txt> Vezi codul sursa </a>
+<center><img src="im_cpp20.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In principiu algoritmul bubble sort ia pe rand doua cate doua numere si le schimba locul daca primul numar este mai mare 
+decat cel de-al doilea. In primul pas se compara nr1 cu nr2, in pasul doi nr2 cu nr3. Dupa n-1 pasi se ajunge la comparatia n-1 cu n. Daca se repeta 
+operatia de cel putin n-1 ori avem certitudinea ca sirul este ordonat crescator. In cazul cel mai defavorabil in care primul numar este cel mai mare, dupa
+n-1 treceri prin sirul de numere, acesta ajunge pe ultimul loc fiind cel mai mare. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca sirul anterior este deja ordonat crescator programul totusi ruleaza 81 de pasi adica (n-1)*(n-1). Am putea realiza o optimizare
+in sensul ca daca sirul e deja ordonat sa nu mai continue algoritmul de aranjare si sa treaca direct la afisarea sirului de numere. Vom introduce o variabila
+suplimentara numita si semafor care va fi inscrisa cu o anumita valoare cand in urma trecerii prin sirul de numere nu a avut loc nici o schimbatre intre 
+pozitiile numerelor si deci sirul este deja ordonat.
+<br><br>
+<center><img src="im_cpp26.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<a href=sort2.txt> Vezi codul sursa </a>
+<center><img src="im_cpp21.gif"></center>
+
+<br><br><a name="ordss"></a>
+<br><br><li><b>Algoritmul sel sort</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O alta metoda de ordonare, este metoda selectiei (sel sort). Conform acestei metode, se urmeaza urmatorii pasi:
+<ul>
+<li> Se scaneaza sirul de nr elemente-1 ori ( Dupa fiecare scanare se incrementeaza pozitia curenta). 
+<li> Dupa fiecare scanare se gaseste minimul si se salveaza pe pozitia curenta. 
+<li> Se introduce o var numita "sel" care la prima scanare ia valoarea primului element. In timpul scanarii, cand se gaseste un element 
+mai mic decat "sel" se face schimbarea intre "sel" si elementul curent.
+<li> In variabila "sel" se gaseste  tot timpul  minimul actual . 
+<li> Se scaneaza numai restul sirului(sirul de la pozitia curenta pana la sfarsit) 
+<li> Dupa o trecere completa prin sirul ramas, in "sel"  avem minimul urmator si se poate salva in pozitia curenta  
+</ul>
+<center><img src="sel_sort.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<a href=sort3.txt> Vezi codul sursa </a>
+<center><img src="im_cpp22.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La prima vedere se pare ca algoritmul ruleaza la fel de mult ca buble sort insa daca analizam cu atentie vedem 
+ca timpul se reduce la jumatate.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<a href=sort4.txt> Vezi codul sursa </a>
+<center><img src="im_cpp23.gif"></center>
+<br><br><a name="ordis"></a>
+<br><br><li><b>Algoritmul insert sort</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O alta metoda de ordonare, este metoda insert sort. Conform acestei metode, se ia sirul neordonat si se construieste 
+un nou sir prin astfel. Se iau pe rand elementele din primul sir si se insereaza la locul potrivit in sirul 2. Metoda presupune deplasarea cu o 
+pozitie spre dreapta din locul in care trebuie inserat elementul curent. 
+<br><br><a name="ordqs"></a>
+<br><br><li><b>Algoritmul quick sort</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cea mai eficienta insa, ramane metoda quick sort. Conform acestei metode, se extrage un element la intamplare din sir, 
+se grupeaza elementele in doua grupe. Pentru o sortare crescatoare, se plaseaza toate elementele mai mici intr-un sir la stanga si toate elementele 
+mai mari intr-un sir la dreapta elementului selectat initial. Se repeta operatia pentru fiecare sir rezultat, rezultand deci dup prima iteratie 2 
+siruri, dupa doua iteratii 4 siruri si asa mai departe. Sortarea este completa cand nici unul din siruri nu are mai mult de un element. 
+
+Se repeta operatia
+</html>

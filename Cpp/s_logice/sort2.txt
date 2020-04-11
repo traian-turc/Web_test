@@ -1,0 +1,57 @@
+// Programul cere 10 numere, le ordoneaza crescator dupa metoda optima, dupa care le afiseaza
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	int i,sem;
+	double n[11],temp;
+	cout << "\n\tProgramul cere 10 numere dupa care le ordoneaza si le afiseaza \n\n";
+// introducere numere
+
+	for (i=1;i<11;i++){
+		cout <<"\tIntroduceti numarul : [" << i << "] : ";
+		cin >> n[i];
+	}
+// afisarea numerelor
+
+	cout << "\n\n\tNumerele introduse sunt: \n\n";
+	for (i=1;i<11;i++){
+		cout << " : " << n[i] ;
+	}
+	cout << "\n\n\tFazele de ordonare sunt: \n\n";
+// ordonarea crescatoare a numerelor
+	i=1;
+	sem=1;
+	while (sem !=0){
+		sem=0;
+		while (i<11){
+			if (n[i]>n[i+1]){
+				temp=n[i];
+				n[i]=n[i+1];
+				n[i+1]=temp;
+				sem=1;
+			}
+			i++;
+		}
+	i=1;
+// afisari intermediare
+	for (int k=1;k<11;k++){
+		cout << " : " << n[k] ;
+	}
+	cout << "\n" ;
+	}
+// afisarea numerelor ordonate crescator
+
+	cout << "\n\n\tNumerele ordonate sunt: \n\n";
+	for (i=1;i<11;i++){
+		cout << " : " << n[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
