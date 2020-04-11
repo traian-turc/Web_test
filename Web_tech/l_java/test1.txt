@@ -1,0 +1,1 @@
+Acesta este "Textul 1" din fisierul text1,txt

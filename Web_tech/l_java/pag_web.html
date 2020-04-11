@@ -1,0 +1,120 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Schitare pagina web utilizand elemente Java-Script</title>
+<style type="text/css"> 
+<!-- 
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 0; 
+	padding: 0;
+	text-align: center;
+	font-size: 12px; 
+	color: Red;
+	/*background-image: url(blue_bg.jpg);*/
+	background-color: WhiteSmoke;
+}
+h1 {
+	padding:0px;
+	font-size:18px;
+	line-height:2px;
+	font-weight:5;
+	color:#ccc;
+	}
+.pag_centr #continut {
+	width: 900px;
+	margin: 10 auto; 
+	border: 1px solid #000;
+	text-align: left; 
+	background-color: WhiteSmoke;
+} 
+.pag_centr #antet {
+	padding: 0 10px; 
+	background-color: MidnightBlue ;
+} 
+.pag_centr #antet h1 {
+	margin: 0;
+	padding: 15px 0; 
+}
+.pag_centr #continut_p {
+	margin: 0px 0px 0px 0px;
+	height: 450px;
+	padding-top: 0px; 
+	background-color: Lavender ; 
+} 
+.pag_centr #zona_centr {
+	margin: 20px 20px 20px 20px;
+	background-color: Lavender ; 
+} 
+.pag_centr #zona_jos {
+	padding: 0 10px;
+	background-color: Silver  ;
+} 
+.pag_centr #zona_jos p {
+	margin: 0;
+	height: 40px; 
+	padding: 10px 0;
+}
+    a:link {color: #000fff; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+    a:visited {color: #0000ff; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+    a:hover{color: #ff0000; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:underline;}
+
+
+--> 
+</style>
+</head>
+<body class="pag_centr">
+<script language="JavaScript">
+function frm1(){
+  zona_jos.innerHTML = '<p>&nbsp;&nbsp;&nbsp;<SMALL>&copy;<strong><font color="red" face="Arial"size=2>&nbsp;&nbsp;&nbsp;Autor:</strong> <A HREF=mailto:traian.turc@yahoo.com > dr.ing. Traian Turc</A> 2009</SMALL>&nbsp;&nbsp;</p>'
+}
+function frm2(){
+  zona_jos.innerHTML = '<p> O universitare pentru comunitate </p> ';
+}
+function frm3(){
+  zona_centr.innerHTML = '<iframe src ="misiune.html" width="100%" height="300"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+
+function frm4(){
+  zona_centr.innerHTML = '<iframe src ="l_java1.html" width="850" height="400"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}  
+</script>
+
+<div id="continut">
+  <div id="antet">
+    <h1><strong>Universitatea "Petru Maior"</strong></h1>
+    <h1><center> Facultatea de Inginerie </center></h1>
+  </div><!-- sfarsit # antet  -->
+
+<div id="continut_p">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tr>
+   <td Background="imm_m.bmp">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       <td class="forTexts" vliagn>&nbsp;&nbsp; 
+	    <a href="pag_web.html">&nbsp;&nbsp; Home</a>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+        <a href="#" onclick=frm1()>Autor </a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp; 	    
+        <a href="#" onclick=frm2()>Moto</a>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; 
+	    <a href="#" onclick=frm3()>Misiune</a>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+        <a href="#" onclick=frm4()>Java Script</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;
+       </td>
+      </tr>
+     </table>
+    </td>
+  </tr>
+  <tr>
+</table>
+<div id="zona_centr">
+<br><h1>O UNIVERSITATE PENTRU COMUNITATE </h1>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;De la fondarea sa in anul 1960, asigurandu-si continuitatea institutionala si permanenta culturala 
+in ciuda a numeroase constrangeri si obstacole, Universitatea "Petru Maior", la inceput de mileniu, 
+se prezinta in deplina sa maturitate si reputatie ca o autentica si generoasa "Universitate pentru comunitate".
+</div>
+  </div><!-- sfarit # continut_p -->
+   <div id="zona_jos">
+    <p> Tehnologii web </p>
+  <!-- sfarit #zona_jos --></div>
+<!-- sfarit #continut --></div>
+</body>
+</html>

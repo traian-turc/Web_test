@@ -1,0 +1,1791 @@
+<html><head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<title>Limbajul Java-Script </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Limbajul Java-Script  </Center></TD></TR>
+</table>
+<a name="frm"></a>
+<font color= "blue" size=5><li><b> Formulare interactive </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Java Script este un limbaj de scriptare server side putand sa implementeze diferite funcii direct in pagina web. Se 
+utilizeaza deseori pentru validari de date introduse in formulare active. Ne vom indrepta atentia in continuare asupra modului cum gestioneaza JS 
+elementele interactive din paginile web.
+
+<br><br><font color= "black" size=4><li><b> Elemente pentru afisare text (continut) </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie in care se introduce un element interactiv de tip "span", 
+element ce poate fi controlat de scripturi Java in vederea afisarii de continut. 
+Aplicatia afiseaza un text intr-un element de tip <span>. Lansarea afisarii se face prin introducerea unui element 
+INPUT type="button" care declanseaza procedura de afisare text.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa aplicatiei:<br><br>  
+<form name="f70_0">  
+<textarea width="100%" height="400px" style="width:100%;height:550px" name="code" wrap="logical" rows="12" cols="42">
+
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =0 width="400"><tr>
+<td colspan="3"><center> Utilizare "span" </center>
+<hr>
+</td></tr>
+<tr>
+<td colspan="3"><center> <span id="sp0"> Text initial </span></center>
+</td></tr>
+<tr>
+<td> <center><INPUT type="button" value="Text1" onClick="afis_tx00()"></center></td>
+<td> <center><INPUT type="button" value="Text2" onClick="afis_tx01()"></center></td>
+<td> <center><INPUT type="button" value="Continut" onClick="afis_tx02()"></center></td>
+
+</td></tr></table></center>
+
+<script type="text/javascript">
+function afis_tx00(){
+	document.getElementById('sp0').innerHTML="<b> Text 1 </b>";
+}
+function afis_tx01(){
+	document.getElementById('sp0').innerHTML="<i> Text 2 </i>";
+}
+function afis_tx02(){
+	document.getElementById('sp0').innerHTML = '<iframe src ="misiune.html" width="100%" height="300"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br> ';
+}
+
+</script>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f70_0.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In urmatoarea aplicatie se introduce un element interactiv de tip "div", 
+element ce poate fi controlat de scripturi Java in vederea afisarii de continut. 
+Aplicatia afiseaza un continut intr-un element de tip "div". Lansarea afisarii se face prin introducerea unui element 
+INPUT type="button" care declanseaza procedura de afisare continut.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa aplicatiei:<br><br>  
+<form name="f70_1">  
+<textarea width="100%" height="400px" style="width:100%;height:500px" name="code" wrap="logical" rows="12" cols="42">
+
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =0 width="400"><tr>
+<td colspan="3"><center> Utilizare "div" </center>
+<hr>
+</td></tr>
+<tr>
+<td colspan="3"><center> <div id="di1"> Text initial </div></center>
+</td></tr>
+<tr>
+<td> <center><INPUT type="button" value="Text1" onClick="afis_tx10()"></center></td>
+<td> <center><INPUT type="button" value="Text2" onClick="afis_tx11()"></center></td>
+<td> <center><INPUT type="button" value="Continut" onClick="afis_tx12()"></center></td>
+</td></tr></table></center>
+
+<script type="text/javascript">
+function afis_tx10(){
+	document.getElementById('di1').innerHTML="<b> Utilizare div (Text 1) </b>";
+}
+function afis_tx11(){
+	document.getElementById('di1').innerHTML="<i> Utilizare div (Text 2) </i>";
+}
+function afis_tx12(){
+		document.getElementById('di1').innerHTML = '<iframe src ="misiune.html" width="100%" height="300"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br> ';
+}
+</script>
+</html>
+
+
+</textarea>
+</form>
+<script>document.write(f70_1.code.value);</script>
+
+
+<br><br><a name="frm_txt"></a>
+<font color= "black" size=4><li><b> Elemente de tip input text </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie in care se introduce un element interactiv de tip INPUT type="text", element ce poate fi 
+controlat de scripturi Java. Aplicatia afiseaza data si ora intr-un element de tip text. Lansarea afisarii se face prin introducerea unui element 
+INPUT type="button" care declanseaza procedura de afisare a datei si orei, procedura care dupa activare se autoinitiaza la interval de 0 secunda.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa aplicatiei se poate vedea mai jos:<br><br>  
+<form name="f70">  
+<textarea width="100%" height="400px" style="width:100%;height:850px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Ceas
+<hr>
+<script type="text/javascript">
+
+function af_ora(ora) {
+	return (ora);
+} 
+
+function pune_zero(inValue) { 
+if (inValue > 9) { 
+	return "" + inValue; 
+} 
+return "0" + inValue; 
+}
+ 
+function ampm() { 
+if (now.getHours() < 12) { 
+	return (" am"); 
+} 
+return (" pm"); 
+}
+
+function afis_t() { 
+	now = new Date; 
+	document.form_ceas.afisor.value ="    "+ziua+" "+tabel_luni[luna]+" "+an+" ora:"+af_ora(now.getHours()) + ":" + 
+	pune_zero(now.getMinutes()) + ":" + pune_zero(now.getSeconds()) + 
+	ampm(); 
+	setTimeout("afis_t()",1000);
+}  
+var azi=new Date();
+var an=azi.getFullYear();
+var luna=azi.getMonth();
+var ziua=azi.getDate();
+var tabel_luni=new Array("Ian","Febr","Mar","Apr","Mai","Iun","Iul","Aug","Sept","Oct","Noi","Dec");
+</script>
+
+<FORM name="form_ceas">
+<INPUT type="button" value="Start" onClick="afis_t()">
+<INPUT type=text name="afisor" size=30>
+</FORM> 
+
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f70.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa reluam aplicatia pentru afisarea cobnsumurilor lunare. In cadrul acelei aplicatii, valorile consumurilor 
+au fost declarate implicit la inceputul programului. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom modifica aplicatia, astfel incat sa putem inroduce valorile consumurilor lunare. Se vor introduce 
+elemente de tip <b>input type="text"</b> prin intermediul carora se vor introduce valorile consumurilor. Nmarul de astfel de elemente va 
+trebui sa fie egal cu numarul de elemente ale vectorului. Acestea vor fi generate automat folosind o instructiune repetitiva.
+<form name="f70_1">
+<textarea width="100%" height="400px" style="width:100%;height:810px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="700"><tr><td colspan="2">
+<center>
+ <font size=4 color="blue"> Consumuri energetice lunare</font> (maxim 300 Kwh)
+</td></tr><tr><td>
+<script type="text/javascript">
+function afis_v(){
+af.innerHTML = "";	
+for (i=0; i < 12; i++) {
+	val_c=eval('form_cons.af_cons'+i+'.value');
+	
+	if ((val_c > 300) & (val_c>0) & (val_c!=""))
+		consum[i]=0;
+	else
+		consum[i]=val_c;
+		
+	af.innerHTML = af.innerHTML+"<table border=1><tr><td width='100'>"+luni[i]+":"+consum[i]+"</td><td width='350'><hr color ='red' size='5' align='left' width="+consum[i]+"color ='red'></td></tr></table>";
+	} 
+	setTimeout("afis_v()",200);
+}
+var i;
+luni = new Array("Ianuarie","Februarie","Martie","Aprilie","Mai","Iunie","Iulie","August","Septembrie","Octombrie","Noiembrie","Decembrie");
+consum = new Array(100,123,241,107,234,75,178,221,242,77,89,109);
+</script>
+<table border=1><tr><td>
+<FORM name="form_cons">
+<table border=1>
+<script>
+for (i=0; i < 12; i++) {
+	document.write("<tr><td> ",luni[i],"</td><td> <INPUT type=text name=\"af_cons",i,"\" size=12 value=\"",consum[i],"\"></tr></td>");
+}
+</script>
+</table>
+</td><td>
+</td></tr></table></FORM>
+</td><td>
+<div id="af">
+<script>afis_v()</script>;
+</div>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f70_1.code.value);</script>
+<!--*******************************************************************-->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru afisarea grafica vom modifica aplicatia astfel:
+<form name="f70_2">
+<textarea width="100%" height="400px" style="width:100%;height:1130px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="700"><tr><td colspan="2">
+<center><div id="desen3" style="position:relative;height:330px;width:400px;"></div>
+<br><font size=4 color="blue"> Consumuri energetice lunare</font> (maxim 300 Kwh)<br></center>
+<script type="text/javascript">
+function deseneaza3()
+{
+	desen3.innerHTML="";
+	var jg3 = new jsGraphics("desen3");
+	jg3.setColor("#ffffff"); // white
+	jg3.fillRect(0, 0, 400, 330);
+	jg3.setColor("#FF00FF"); // Magenta 
+	jg3.drawLine(0,0,0,330);
+	jg3.drawLine(0,330,400,330);
+	jg3.setStroke(3);// grosime linie 3 pixeli
+    for (i=0; i<12; i++){
+	    jg3.setColor("#0000ff"); // blue
+	    jg3.drawLine(20*(i+1),328,20*(i+1), 328-consum[i]);
+	    jg3.setColor("#ff0000"); // red
+	    jg3.drawString(i+1, 20*(i+1)-5, 330);
+	    jg3.drawString(consum[i], 20*(i+1)-10, 305-consum[i]); 
+	}
+	jg3.setColor("#ff0000"); // red
+	jg3.setStroke();
+	jg3.paint();
+}
+
+function afis_gr(){
+for (i=0; i < 12; i++) {
+	val_c=eval('cons_gr.af_cons'+i+'.value');
+	
+	if ((val_c > 300) & (val_c>0) & (val_c!=""))
+		consum[i]=0;
+	else
+		consum[i]=val_c;
+	}
+deseneaza3();
+setTimeout("afis_gr()",1000);	 
+}
+var i;
+luni = new Array("Ianuarie","Februarie","Martie","Aprilie","Mai","Iunie","Iulie","August","Septembrie","Octombrie","Noiembrie","Decembrie")
+consum = new Array(100,123,241,107,234,75,178,221,242,77,89,109);
+</script>
+</td><td><center>
+<table border=1><tr><td>
+<FORM name="cons_gr">
+<table border=1>
+<script>
+for (i=0; i < 12; i++) {
+	document.write("<tr><td> ",luni[i],"</td><td> <INPUT type=text name=\"af_cons",i,"\" size=12 value=\"",consum[i],"\"></tr></td>");
+}
+afis_gr();
+</script>
+<!--</center><INPUT onclick=afis_gr() type=button value=Actualizeaza_graficul></center>-->
+</table>
+</td></tr></table>
+</FORM>
+</td></tr></table>
+</center>  
+</body>
+</html>
+
+
+</textarea>
+</form>
+<script>document.write(f70_2.code.value);</script>
+<!--*******************************************************************-->
+
+
+<br><br><a name="frm_but"></a>
+<font color= "black" size=4><li><b> Elemente de tip input "button" </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Chiar si in aplicatia precedenta am utilizat un element de tip "button" prin intermediul caruia se declanseaza procedura de afisare.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie, genereaza si afiseaza culori aleatoare folosind elemente de tip "text" si "button"  controlate din JS <br><br>  
+<form name="f71">  
+<textarea width="100%" height="400px" style="width:100%;height:550px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Culori aleatoare
+<hr>
+<script type="text/javascript">
+var hex=new Array("0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F");
+function culoare() {
+cul="#";
+for(i=0; i<6; i++){
+	cul+=hex[Math.round(Math.random()*15)];
+}
+return cul
+}
+function afis_cul(){
+document.form_cul.afisor_cul.value ='Valoarea culorii: '+culoare();
+div_cul.innerHTML = '<h1><font color = "'+culoare()+'" </font> Culoare generata aleator </h1>';
+setTimeout("afis_cul()",1000);
+}
+</script>
+<FORM name="form_cul">
+<INPUT type="button" value="Start" onClick="afis_cul()">
+<INPUT type="text" name="afisor_cul" size=30 value=" Valoarea culorii: #AE497D">
+<div id="div_cul">
+<h1><font color="#AE497D">Culori aleatoare </font> </h1>
+</div>
+</FORM> 
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f71.code.value);</script>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, pentru a putea scrie textul:"Culoare generata aleator " s-a definit un div numit "div_cul" . Scrierea 
+in acest "div" se face invocand metoda "innerHTML"
+<br><br><a name="frm_txa"></a>
+<font color= "black" size=4><li><b> Elemente de tip textarea </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa utilizam acest element pentru a realiza un interpretor on-line pentru codul HTML
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se va  defini un div numit "div_html" . Interpretarea codului HTML se va face in acest "div" se face invocand metoda 
+"innerHTML" si se va atribui valoarea elementului textarea, astfel se va forta interpretarea codului html scris in elementul textarea <br><br>  
+
+<textarea width="100%" height="400px" style="width:100%;height:440px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="100%"><tr><td>
+<center>Interpretor HTML on line</center>
+<script type="text/javascript">
+function afis_html(){
+af_html.innerHTML = form_html.cod_html.value;
+setTimeout("afis_html()",500);
+}
+</script>
+<FORM name="form_html">
+<INPUT type="button" value="Start interpretor" onClick="afis_html()"><br><br>
+&ltTEXTAREA NAME = "cod_html" ROWS = 10 COLS = 100>
+<h3> Interpretor HTML </h3>
+Incercati si <i> d-voastra </i>
+<br> Interpretarea <b> codului </b> se face <font color="red" > instantaneu </font>
+<center> Succes !! </center> 
+&lt/TEXTAREA&gt
+<div id="af_html">
+<font color="blue">Scrieti cod HTML, apasati "Start interpretor" si obtineti un interpretor HTML on line </font>
+</div>
+</FORM>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</center> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In macheta de jos, se poate schimba codul HTML acesta fiind interpretat on line
+<br><br>
+<table bgcolor="WhiteSmoke" border =1 width="100%"><tr><td>
+<center>Interpretor HTML on line</center>
+<script type="text/javascript">
+function afis_html(){
+af_html.innerHTML = form_html.cod_html.value;
+setTimeout("afis_html()",500);
+}
+</script>
+<FORM name="form_html">
+<INPUT type="button" value="Start interpretor" onClick="afis_html()"><br><br>
+<TEXTAREA NAME = "cod_html" ROWS = 10 COLS = 100>
+<h3> Interpretor HTML </h3>
+Incercati si <i> d-voastra </i>
+<br> Interpretarea <b> codului </b> se face <font color="red" > instantaneu </font>
+<center> Succes !! </center> 
+</TEXTAREA>
+<div id="af_html">
+<font color="blue">Scrieti cod HTML, apasati "Start interpretor" si obtineti un interpretor HTML on line </font>
+</div>
+</FORM> 
+</center>
+</td></tr></table>
+<br><br><a name="frm_lst"></a>
+<font color= "black" size=4><li><b> Elemente de tip liste de selectii </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Listele de selectie sunt des folosite in paginile web. Este foarte important sa avem acces la nivel de limbaj de 
+scriptare (In cazul nostru JS) la aceste elemente in vederea validarii acestora pe partea de client side, obtinandu-se astfel aplicatii mai rapide.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie utilizeaza liste de selectii controlate din JS <br><br>  
+<form name="f72">  
+<textarea width="100%" height="400px" style="width:100%;height:510px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function nr_sel(ob_selectat) {  
+ var nr_s=0   
+ for (var i=0; i < ob_selectat.options.length; i++) { 
+     if (ob_selectat.options[i].selected==true)  nr_s++   }  
+ return nr_s
+ }
+</script>
+<Form name="Form_sel">
+ <Center>
+  <b>Selectati preferintele apoi apasati butoul Nr selectii :</b><br><br>
+  <select name="tip_muzica" size="5" multiple>
+	<option  selected > R&B     
+	<option> Jazz
+	<option> Blues
+	<option selected > New Age  
+	<option> Muzica sinfonica
+	<option> Opera
+  </select><br><br>
+ </Center>
+ &nbsp;&nbsp;&nbsp;<Input TYPE="button" VALUE="Nr selectii?"onClick="alert ('Numarul de selectari: ' + nr_sel(document.Form_sel.tip_muzica))">
+</Form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f72.code.value);</script>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se vede, pentru afisarea numarului de selectii s-a utilizat o fereastra "alert". S-ar putea atasa un element de 
+tip text in care sa se faca afisarea mesajelor. In acest caz sursa aplicatiei devine:<br><br>
+<form name="f73">  
+<textarea width="100%" height="400px" style="width:100%;height:510px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function af_nrs(ob_selectat) {  
+ var nr_s=0   
+ for (var i=0; i < ob_selectat.options.length; i++) { 
+     if (ob_selectat.options[i].selected==true)  nr_s++   
+     }  
+ 	 document.Form_sl.afis_mes.value ='Numarul de elemente selectate='+nr_s;
+ }
+</script>
+<Form name="Form_sl">
+ <Center>
+  <b>Selectati preferintele apoi apasati butoul Nr selectii :</b><br><br>
+  <select name="tip_muz" size="5" multiple>
+	<option  selected > Rock     
+	<option> Pop
+	<option> Blues
+	<option selected > Jazz  
+	<option> Muzica sinfonica
+	<option> Opera
+  </select><br><br>
+ </Center>
+ &nbsp;&nbsp;&nbsp;<Input TYPE="button" VALUE="Nr selectii?"onClick=af_nrs(document.Form_sl.tip_muz)>
+ &nbsp;&nbsp;&nbsp;<INPUT type="text" name="afis_mes" size=70 value=" ">
+</Form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f73.code.value);</script>
+
+<br><br><a name="frm_ck"></a>
+<font color= "black" size=4><li><b> Elemente de tip checkboxes </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie utilizeaza elemente de tip checkboxes controlate din JS <br><br>  
+<form name="f75">  
+<textarea width="100%" height="400px" style="width:100%;height:450px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function nr_ck() {  
+ var nr_s=0   
+     if (Form_ck.ck1.checked==true)  nr_s++ 
+     if (Form_ck.ck2.checked==true)  nr_s++  
+     if (Form_ck.ck3.checked==true)  nr_s++ 
+     if (Form_ck.ck4.checked==true)  nr_s++  
+ document.Form_ck.af_mes.value ='Numarul de selectii='+nr_s;
+ 
+ }
+</script>
+<Form name="Form_ck">
+	<I><center> Selectati disciplinele faforite </center></I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck1" VALUE = „a” CHECKED> Tehnologii web<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck2" VALUE = „b” > Programare C++ <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck3" VALUE = „c” CHECKED> Programare C# <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck4" VALUE = „d”> Programare Java <br>
+	<br><br>&nbsp;&nbsp;&nbsp;<Input TYPE="button" VALUE="Nr selectii?"onClick=nr_ck()>
+ 	<br>&nbsp;&nbsp;&nbsp;<INPUT type="text" name="af_mes" size=70 value=" ">
+ </form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f75.code.value);</script>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care avem n butoane de tip checkboxes cu numele ck1-ckn trebuie sa folosim instructiuni de buclare
+in care sa folosim metode de indirectare a variabilelor . Aplicatia anterioara devine: <br><br>  
+<form name="f76">  
+<textarea width="100%" height="400px" style="width:100%;height:450px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function nr2_ck() {  
+ var nr_s=0
+  for (var i=1; i < 5; i++) {
+	 elem=eval("Form2_ck.ck"+i)
+     if (elem.checked==true)  nr_s++   
+     }  
+document.Form2_ck.af_ms.value ='Numarul de selectii='+nr_s;
+ 
+ }
+</script>
+<Form name="Form2_ck">
+	<I><center> Selectati disciplinele faforite </center></I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck1" VALUE = „a” CHECKED> Tehnologii web<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck2" VALUE = „b” > Programare C++ <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck3" VALUE = „c” CHECKED> Programare C# <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck4" VALUE = „d”> Programare Java <br>
+	<br><br>&nbsp;&nbsp;&nbsp;<Input TYPE="button" VALUE="Nr selectii?"onClick=nr2_ck()>
+ 	<br>&nbsp;&nbsp;&nbsp;<INPUT type="text" name="af_ms" size=70 value=" ">
+ </form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f76.code.value);</script>
+
+<br><br><a name="frm_rd"></a>
+<font color= "black" size=4><li><b> Elemente de tip radio-button </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie utilizeaza elemente de tip radio-button controlate din JS 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care avem n butoane de tip radio-button toate vor purta un singur nume. Pentru a obtine butonul selectat, 
+pentru fiecare buton se lanseaza o functie care intoarce valoarea butonului astfel: <br><br>  
+<form name="f77">  
+<textarea width="100%" height="400px" style="width:100%;height:450px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function val_rd(rd1) {
+  
+document.Form_rd.af_ms.value ='Butonul selectat='+ rd1;
+}
+
+</script>
+<Form name="Form_rd">
+	<I><center> Selectati disciplina faforita </center></I><br><br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "1" checked="checked"> Tehnologii web<br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "2"> Programare C++ <br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "3"> Programare C# <br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "4"> Programare Java <br>
+ 	<br>   <INPUT type="text" name="af_ms" size=70 value=" ">
+ </form>
+</td></tr></table></center>  
+</body>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f77.code.value);</script>
+
+
+<br><a name="v_frm"></a>
+<font color= "black" size=4><li><b>Validarea formularelor utilizand  limbajul Java Script</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Java Script fiind un limbaj de scriptare de tip "client-side" este foarte potrivit pentru a face validarea formularelor 
+interactive direct la "client" fara a mai fi necesara trimiterea datelor spre server si acesta sa formuleze un raspuns care eventual trimite inapoi 
+datele ce nu au fost corect completate. Procedeul de validare pe partea clientului este mult mai rapid, filtrand datele completate de client on-line, 
+eventualele mesaje de eroare fiind afisate chiar in momentul completarii unui camp de catre client. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se verifica de obicei:
+<ul>
+ <li> completarea tuturor campurilor obligatorii
+ <li> validitatea adreselor de mail
+ <li> corectitudinea tipului de data introdus in fiecare camp
+ <li> exista cifre in campurile ce reprezinta nume, prenume etc ?
+</ul> 
+&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie verifica daca un anumite campuri a fost completate.<br><br>
+<form name="f80">  
+<textarea width="100%" height="400px" style="width:100%;height:670px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function valid_camp(camp,mesaj){
+	with (camp){
+		if (value==null||value==""){
+			alert(mesaj);
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+}
+
+function valid_form(thisform){
+	with (thisform){
+		if (valid_camp(nume,"Completati Numele!")==false){
+			nume.focus();
+  			return false;
+  		}
+		if (valid_camp(pnume,"Completati Prenumele!")==false){
+			pnume.focus();
+  			return false;
+  		}
+  	}
+}
+</script>
+</head><body>
+<form action="apl_s.html" onsubmit="return valid_form(this)" method="post">
+<br>Completati campurile de mai jos!
+<hr>
+Numele : <input type="text" name="nume" size="30"><br>
+Preumele:<input type="text" name="pnume" size="50"><br><br>
+<input type="submit" value="Trimit"> 
+</form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f80.code.value);</script>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un realizam un formular ceva mai complicat, in care se verifica daca un anumite campuri a fost completate cat si 
+daca au fost selectate checkbox-uri.<br><br>
+<form name="f81">  
+<textarea width="100%" height="400px" style="width:100%;height:1020px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function vld_camp(camp,mesaj){
+	with (camp){
+		if (value==null||value==""){
+			alert(mesaj);
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+}
+
+function vld_form(frm){
+	with (frm){
+		if (vld_camp(num,"Completati Numele!")==false){
+			num.focus();
+			
+  			return false;
+  		}
+		if (vld_camp(pnum,"Completati Prenumele!")==false){
+			pnum.focus();
+  			return false;
+  		}
+  		if(nr3_ck()==0){
+	  		alert("Selectati cel putin o optiune !");  
+	  		ck1.focus();
+	  		return false;
+  		}
+   	}
+}
+
+function nr3_ck() {  
+ var nr_s=0
+  for (var i=1; i < 5; i++) {
+	 elem=eval("Form3_ck.ck"+i)
+     if (elem.checked==true)  nr_s++;   
+     } 
+	 return nr_s;
+ }
+</script>
+
+<form action="apl_s.html" name="Form3_ck"  onsubmit="return vld_form(this)" method="post">
+<br><I>  Completati campurile de mai jos (toate sunt obligatorii)</I> <br><hr>
+	Numele : <input type="text" name="num" size="30"><br>
+	Preumele:<input type="text" name="pnum" size="50"><br><br>
+	<I> Selectati disciplinele optionale: </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck1" VALUE = „a” > Tehnologii web<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck2" VALUE = „b” > Programare C++ <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck3" VALUE = „c” > Programare C# <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck4" VALUE = „d” > Programare Java <br><hr>
+	<input type="submit" value="Trimit"> 
+ </form>
+</script>
+</head><body>
+</form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f81.code.value);</script>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Mesajele de validare pot fi afisate intr-un Input type "text" 
+daca au fost selectate checkbox-uri.<br><br>
+<form name="f82">  
+<textarea width="100%" height="400px" style="width:100%;height:900px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+
+function vl_form(frm){
+	with (frm){
+		if (num.value==null||num.value==""){
+			document.Form4_ck.af_ms.value ="Completati Numele !";
+			num.focus();		
+  			return false;
+  		}
+		if (pnum.value==null||pnum.value==""){
+			document.Form4_ck.af_ms.value ="Completati Prenumele !";
+			pnum.focus();		
+  			return false;
+  		}
+  		if(nr4_ck()==0){
+	  		document.Form4_ck.af_ms.value ="Selectati cel putin o optiune !"; 
+	  		ck1.focus();
+	  		return false;
+  		}
+   	}
+}
+
+function nr4_ck() {  
+ var nr_s=0
+  for (var i=1; i < 5; i++) {
+	 elem=eval("Form4_ck.ck"+i)
+     if (elem.checked==true)  nr_s++;   
+     } 
+	 return nr_s;
+ }
+</script>
+
+<form action="apl_s.html" name="Form4_ck"  onsubmit="return vl_form(this)" method="post">
+<br><I>  Completati campurile de mai jos (toate sunt obligatorii) !</I> <br><hr>
+	Numele : <input type="text" name="num" size="30"><br>
+	Preumele:<input type="text" name="pnum" size="50"><br><br>
+	<I><center> Selectati disciplinele optionale </center></I><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck1" VALUE = „a” > Tehnologii web<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck2" VALUE = „b” > Programare C++ <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck3" VALUE = „c” > Programare C# <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck4" VALUE = „d” > Programare Java <br><hr>
+	<input type="submit" value="Trimit"> 
+ 	&nbsp;&nbsp;&nbsp;<INPUT type="text" name="af_ms" size=45 value=" ">	
+ </form>
+</script>
+</head><body>
+</form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f82.code.value);</script>
+<br><a name="elem_poo"></a>
+<font color= "black" size=4><li> <b>Elemente de programare obiect in limbajul Java Script</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In limbajul Java Script nu exista o definitie explicita pentru clase.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;O clasa se defineste astfel: <br><br>
+<textarea width="100%" height="500px" style="width:100%;height:780px" name="code" wrap="logical" rows="12" cols="42">
+<script type="text/javascript">
+function nume_clasa (v_1,v_2,...,v_n) {
+	this.var_1 = v_1;
+	this.var_2 = v_2;
+	.
+	.
+	.
+	this.var_n = v_n;
+	this.v1=...;
+	this.v2=...;
+	.
+	.
+	.
+	this.vm=...;
+}
+
+
+nume_clasa.prototype = {
+    constructor: nume_clasa,
+    metoda1:function (variabile)  {
+        istructiuni;
+    },
+    metoda2:function (variabile)  {
+        istructiuni;
+    },
+	.
+	.
+	.
+
+    metodak:function (variabile)  {
+       istructiuni;    
+	}
+}
+</script>
+unde:
+	v_1,v_2,...,v_n -- variabile
+ 	var_1,var_2,...,var_n -- variabile membru
+	v1,v2,...,vm -- variabile locale
+	metoda1,metoda2,...,metodak -- metodele clasei
+
+// Student 1
+Realizarea unui obiect:
+
+obiect1 = new nume_clasa(valori); 
+ 
+Invocarea unei metode:
+obiect1.metoda(valori)
+
+</textarea>
+
+&nbsp;&nbsp;&nbsp;&nbsp; <br><br> Vom realiza in continuare o clasa "stud" si 3 instante "stud1","stud2","stud3"<br><br>
+<form name="f83">  
+<textarea width="100%" height="500px" style="width:100%;height:1400px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function val_rd_ob(rd1) {
+	if(rd1==1)  {
+
+		document.Form_rd_ob.af_ms.value =stud1.vezi_note();
+	}
+	if(rd1==2)  {
+		document.Form_rd_ob.af_ms.value =stud2.vezi_note();
+	}
+	if(rd1==3)  {
+		document.Form_rd_ob.af_ms.value =stud3.vezi_note();
+	}
+
+}
+
+// Definirea clasei "stud"
+
+function stud (num, em) {
+    this.name = num;
+    this.email = em;
+    this.notele = [];
+    this.currentScore = 0;
+}
+
+stud.prototype = {
+    constructor: stud,
+    salv_nota:function (nota_n)  {
+        this.notele.push(nota_n)
+    },
+    vezi_note:function ()  {
+		// Varianta I recursiva
+		//var note = this.notele.length > 0 ? this.notele.join(",") : "Nu are note";
+		//return this.name + " note: " + note;
+
+		// Varianta II -for
+		var note="";
+		if(this.notele.length == 0){
+			note=" nu are note";
+			return this.name + note;
+		}
+			
+		for (i = 0; i < this.notele.length; i++) 
+		{
+		 if(i < this.notele.length-1){
+			note=note+this.notele[i]+",";
+		 }
+		 else{
+			note=note+this.notele[i];
+		 }
+		}
+		return this.name + " note: " + note;
+    },
+    schimba_email:function (email_nou)  {
+        this.email = email_nou;
+        return "Noul email : " + this.email;
+    }
+}
+
+// Student 1
+stud1 = new stud("Ionescu", "ionescu@upm.ro"); 
+stud1.schimba_email("ionescu@umfst.ro");
+stud1.salv_nota(9);
+stud1.salv_nota(10); 
+
+// Student 2
+stud2 = new stud("Popescu", "popescu@umfst.ro");
+//stud2.salv_nota(8);
+
+// Student 3
+stud3 = new stud("Georgescu", "georgescu@umfst.ro");
+stud3.salv_nota(7);
+stud3.salv_nota(4);
+stud3.salv_nota(9);
+stud3.salv_nota(8);
+
+</script>
+<Form name="Form_rd_ob">
+	<I><center> Selectati studentul </center></I><br><br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd_ob(this.value)"  VALUE = "1"> Ionescu <br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd_ob(this.value)"  VALUE = "2"> Popescu <br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd_ob(this.value)"  VALUE = "3"> Georgescu <br>
+ 	<br>   <INPUT type="text" name="af_ms" size=70 value=" ">
+ </form>
+ <script type="text/javascript">
+
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f83.code.value);</script>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; <br><br> Vom defini in continuare clasa cerc<br><br>
+<form name="f84">  
+<textarea width="100%" height="400px" style="width:100%;height:500px" name="code" wrap="logical" rows="12" cols="42">
+<canvas id="desen01" width="300" height="250" style="border:1px solid #d3d3d3;">
+Browser-ul d-voastra nu suporta marcatorul CANVAS.</canvas>
+<script>
+var d = document.getElementById("desen01");
+var ctx = d.getContext("2d");
+
+function cerc (x,y,r,a_f,a_s,c) {
+    this.x1 = x;
+    this.y1 = y;
+	this.raza=r;
+    this.alfa_f = a_f; // unghiul final
+    this.alfa_s = a_s; // ungiul de la care se porneste
+	this.cnvs=c;
+}
+cerc.prototype = {
+    constructor: cerc,
+    desenez:function ()  {
+        this.cnvs.beginPath();
+		this.cnvs.arc(this.x1,this.y1,this.raza,this.alfa_f,this.alfa_s);
+		this.cnvs.strokeStyle = '#ff0000';
+		this.cnvs.stroke();
+    }
+}
+cerc1 = new cerc(95,50,40,3*Math.PI/4,0,ctx); 
+cerc1.desenez();
+cerc2 = new cerc(95,150,50,Math.PI,0,ctx); 
+cerc2.desenez();
+cerc3 = new cerc(230,150,50,0,2*Math.PI,ctx); 
+cerc3.desenez();
+</script>
+
+</textarea>
+</form>
+<script>document.write(f84.code.value);</script>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; <b> Clasa binar </b> - afisarea binara a numerelor intregi <br><br>
+<form name="f89">  
+<textarea width="100%" height="400px" style="width:100%;height:1500px" name="code" wrap="logical" rows="12" cols="42">
+<center><table bgcolor="WhiteSmoke" border =1 width="220"><tr><td align="center">
+<center><br>Afisare binara<br><br></center> 
+<canvas id="desen08" width="400" height="50" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<br><br>
+<input type="range" value="123" id="per3" min="0" max="65535"  onchange="set_per3()"/>   
+<input id="perr3" type="text" size="2" value="123" max="65535"  onchange="set_perr3()"/>
+<br>
+</td></tr></table></center>
+<script type="text/javascript">
+var ctx8=desen08.getContext("2d");
+ctx8.lineWidth = .5; 
+w=desen08.width ;
+h=desen08.height/2-20;
+
+function binar (x,y,w,h,c) {
+    this.x0 = x; // pozitia pe x
+    this.y0 = y; // pozitia pe y
+	this.wd = w; // latimea
+    this.ht = h; // inaltimea
+	this.cnvs=c; // canvas
+}
+binar.prototype = {
+    constructor: binar,
+    deseneaza:function ()  {
+	
+	// desenez contur
+	
+	this.cnvs.beginPath();
+	this.cnvs.moveTo(this.x0,this.y0+2); 
+	this.cnvs.strokeStyle = "rgb(0,0,255)";
+	this.cnvs.lineTo(this.x0+this.wd,this.y0+2);
+	this.cnvs.lineTo(this.x0+this.wd,this.y0+this.ht-4);
+	this.cnvs.lineTo(this.x0,this.y0+this.ht-4);
+	this.cnvs.lineTo(this.x0,this.y0+2);
+	this.cnvs.stroke();
+
+	},
+	set_val:function (val,nrb)  {
+	
+	// Stergerea interiorului 
+	
+	this.cnvs.beginPath();
+	this.cnvs.fillStyle = "#ffffff";
+	this.cnvs.fillRect(this.x0+1,this.y0+3,this.wd-2,this.ht-8);
+	this.cnvs.stroke();
+	
+	// afisare valoare binara
+	
+	wb = this.wd/ (3 * nrb);
+    hb = this.ht / 3;
+    x = this.x0 + this.wd -2* wb;
+    y = this.y0 + hb;
+    var i=0;
+	var bit=0;
+	this.cnvs.beginPath();
+
+	// desenare biti
+	
+    for (i = nrb - 1; i >= 0; i--)
+		{
+			bit=parseInt(val%2);
+			val=parseInt(val/2);
+			if(bit==1){
+				this.cnvs.fillStyle = "#ff0000";
+				this.cnvs.fillRect(x, y, wb, hb);
+				this.cnvs.stroke();
+			}
+			else
+			{
+				this.cnvs.fillStyle = "#F0F0F0";
+				this.cnvs.fillRect(x, y, wb, hb);
+				this.cnvs.stroke();
+			}
+			x -= 3 * wb;
+		}
+
+    }
+}
+binar1 = new binar(10,10,380,30,ctx8); 
+binar1.deseneaza();
+set_per3();
+
+function set_per3(){
+  var pe = document.getElementById('per3').value;
+  document.getElementById('perr3').value=parseInt(pe);
+  binar1.set_val(pe,16);
+}
+
+function set_perr3(){
+  var pe = document.getElementById('perr3').value;
+  document.getElementById('per3').value=parseInt(pe);
+  binar1.set_val(pe,16);
+}
+
+</script>
+</textarea>
+</form>
+<script>document.write(f89.code.value);</script>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; <b>Clasa termo </b> - Afisarea temperaturilor<br><br>
+<form name="f85">  
+<textarea width="100%" height="400px" style="width:100%;height:1350px" name="code" wrap="logical" rows="12" cols="42">
+<center><table bgcolor="WhiteSmoke" border =1 width="220"><tr><td align="center">
+<center><br>Termometre V01<br><br></center> 
+<canvas id="desen04" width="200" height="300" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<br><br>
+<input type="range" value="0" id="per" min="0" max="225"  onchange="set_per()"/>   
+<input id="perr" type="text" size="2" value="0" max="225"  onchange="set_perr()"/>
+<br>
+</td></tr></table></center>
+<script type="text/javascript">
+var ctx4=desen04.getContext("2d");
+ctx4.lineWidth = .5; 
+w=desen04.width ;
+h=desen04.height/2-20;
+
+function termo (x,y,w,h,c) {
+    this.x0 = x; // pozitia pe x
+    this.y0 = y; // pozitia pe y
+	this.wd = w; // latimea
+    this.ht = h; // inaltimea
+	this.cnvs=c; // canvas
+}
+termo.prototype = {
+    constructor: termo,
+    deseneaza:function (val)  {
+
+	this.cnvs.beginPath();
+	this.cnvs.fillStyle = "#FFFFFF";
+	this.cnvs.fillRect(this.x0-1,this.y0-1,this.wd+40,this.ht+2);
+	this.cnvs.stroke();	
+	// desenez contur termometru
+	this.cnvs.beginPath();
+	this.cnvs.moveTo(this.x0,this.y0); 
+	this.cnvs.strokeStyle = "rgb(255,0,0)";
+	this.cnvs.lineTo(this.x0+this.wd,this.y0);
+	this.cnvs.lineTo(this.x0+this.wd,this.y0+this.ht);
+	this.cnvs.lineTo(this.x0,this.y0+this.ht);
+	this.cnvs.lineTo(this.x0,this.y0);
+	this.cnvs.stroke();
+    //var per = document.getElementById('per').value;
+    //document.getElementById('perr').value=parseInt(per)
+	// desenez gradatii
+	this.cnvs.beginPath();
+    this.cnvs.strokeStyle = "rgb(120,120,120)";
+	this.cnvs.font = "10px Arial";
+    for (j = this.ht; j >0; j -= 5)
+    {
+		this.cnvs.moveTo(this.x0+this.wd+2,this.y0+j); 
+		if (j % 25 == 0)
+		{
+			this.cnvs.lineTo(this.x0 + this.wd + 12,this.y0 + j);
+			this.cnvs.strokeText(this.ht-j,this.x0 + this.wd + 20,this.y0 + j+3);
+       }
+        else
+        {
+			this.cnvs.lineTo(this.x0 + this.wd + 7,this.y0 + j);
+        }
+    }
+	this.cnvs.stroke();
+	// Stergerea interiorului 
+	this.cnvs.beginPath();
+	this.cnvs.fillStyle = "#0000ff";
+	// trasare valoare
+	this.cnvs.fillRect(this.x0+1,this.y0+this.ht-val,this.wd-2,val);
+	this.cnvs.stroke();
+    }
+}
+termo1 = new termo(10,10,10,275,ctx4); 
+termo1.deseneaza(0);
+termo2 = new termo(100,60,10,225,ctx4); 
+termo2.deseneaza(0);
+
+function set_per(){
+  var pe = document.getElementById('per').value;
+  document.getElementById('perr').value=parseInt(pe);
+  termo1.deseneaza(pe);
+  termo2.deseneaza(pe);
+}
+function set_perr(){
+  var pe = document.getElementById('perr').value;
+  document.getElementById('per').value=parseInt(pe);
+  termo1.deseneaza(pe);
+  termo2.deseneaza(pe);
+}
+</script>
+</textarea>
+</form>
+<script>document.write(f85.code.value);</script>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom adauga in continuare metoda set_val() care va trasa valoarea temperaturii, iar metoda 
+deseneaza va fi utilizata pentru desenarea termometrului fiind lansata o singura data la inceputul rularii script-ului 
+<br>&nbsp;&nbsp;&nbsp;Metoda set_val() va fi invocata de fiecare data cand se schimba temperatura. Aplicatia devine mai 
+rapida, nefiind nevoie sa se redeseneze tot termometrul la fiecare schimbare a temperaturii <br><br>
+<form name="f86">  
+<textarea width="100%" height="400px" style="width:100%;height:1480px" name="code" wrap="logical" rows="12" cols="42">
+<center><table bgcolor="WhiteSmoke" border =1 width="220"><tr><td align="center">
+<center><br>Termometre V02<br><br></center> 
+<canvas id="desen05" width="200" height="340" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<br><br>
+<input type="range" value="21" id="per1" min="0" max="225"  onchange="set_per1()"/>   
+<input id="perr1" type="text" size="2" value="21" max="225"  onchange="set_perr1()"/>
+<br>
+</td></tr></table></center>
+<script type="text/javascript">
+var ctx5=desen05.getContext("2d");
+ctx5.lineWidth = .5; 
+w=desen05.width ;
+h=desen05.height/2-20;
+
+function term (c,x,y,w,h,vm) {
+	this.cnvs=c; // canvas
+    this.x0 = x; // pozitia pe x
+    this.y0 = y; // pozitia pe y
+	this.wd = w; // latimea
+    this.ht = h; // inaltimea
+	this.valm=vm // valoarea maxima
+}
+term.prototype = {
+    constructor: term,
+    deseneaza:function ()  {
+	this.cnvs.beginPath();
+	this.cnvs.fillStyle = "#FFFFFF";
+	this.cnvs.fillRect(this.x0-1,this.y0-1,this.wd+40,this.ht+2);
+	this.cnvs.stroke();	
+	// desenez contur termometru
+	this.cnvs.beginPath();
+	this.cnvs.moveTo(this.x0,this.y0); 
+	this.cnvs.strokeStyle = "rgb(255,0,0)";
+	this.cnvs.lineTo(this.x0+this.wd,this.y0);
+	this.cnvs.lineTo(this.x0+this.wd,this.y0+this.ht);
+	this.cnvs.lineTo(this.x0,this.y0+this.ht);
+	this.cnvs.lineTo(this.x0,this.y0);
+	this.cnvs.stroke();
+
+	// desenez gradatii
+
+	this.cnvs.beginPath();
+    this.cnvs.strokeStyle = "rgb(120,120,120)";
+	this.cnvs.font = "10px Arial";
+	val_a=0;
+    for (j = this.ht; j >=0; j -= 5)
+    {
+		this.cnvs.moveTo(this.x0+this.wd+2,this.y0+j); 
+		if (j % 25 == 0)
+		{
+			this.cnvs.lineTo(this.x0 + this.wd + 12,this.y0 + j);
+			this.cnvs.strokeText(val_a,this.x0 + this.wd + 20,this.y0 + j+3);
+			val_a=val_a+Math.round(25*this.valm/this.ht);
+       }
+        else
+        {
+			this.cnvs.lineTo(this.x0 + this.wd + 7,this.y0 + j);
+        }
+    }
+	this.cnvs.stroke();
+	},
+	set_val:function (val)  {
+	// Stergerea interiorului 
+	this.cnvs.beginPath();
+	this.cnvs.fillStyle = "#ffffff";
+	this.cnvs.fillRect(this.x0+1,this.y0,this.wd-2,this.ht);
+	this.cnvs.stroke();
+	// trasare valoare
+	this.cnvs.beginPath();
+	this.cnvs.fillStyle = "#0000ff";
+	this.cnvs.fillRect(this.x0+1,this.y0+this.ht-this.ht*val/this.valm,this.wd-2,this.ht*val/this.valm);
+	this.cnvs.stroke();
+    }
+}
+term1 = new term(ctx5,10,10,10,300,300); 
+term1.deseneaza();
+term2 = new term(ctx5,100,10,10,300,600); 
+term2.deseneaza();
+set_per1();
+function set_per1(){
+  var pe = document.getElementById('per1').value;
+  document.getElementById('perr1').value=parseInt(pe);
+  term1.set_val(pe);
+  term2.set_val(pe);
+}
+function set_perr1(){
+  var pe = document.getElementById('perr1').value;
+  document.getElementById('per1').value=parseInt(pe);
+  term1.set_val(pe);
+  term2.set_val(pe);
+}
+
+</script>
+</textarea>
+</form>
+<script>document.write(f86.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; <b> Clasa "voltm" </b> : afisarea valoarii instantanee a semnalelor <br><br>
+
+<form name="f90">  
+<textarea width="100%" height="400px" style="width:100%;height:2100px" name="code" wrap="logical" rows="12" cols="42">
+<center><table bgcolor="WhiteSmoke" border =1 width="220"><tr><td align="center">
+<center><font color="blue" size="5"> Voltmetru <br></font> </center> 
+<canvas id="desen09" width="420" height="250" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<br><br>
+<input type="range" value="0" id="per9" min="0" max="250"  onchange="set_per9()"/>   
+<input id="perr9" type="text" size="2" value="0" max="250"  onchange="set_perr9()"/>
+<br>
+</td></tr></table></center>
+<script type="text/javascript">
+var ctx9=desen09.getContext("2d");
+ctx9.lineWidth = .5; 
+w=desen09.width ;
+h=desen09.height/2-20;
+
+function voltm (c,x,y,w,vm) {
+	this.cnvs=c; // canvas
+    this.x0 = x; // pozitia pe x
+    this.y0 = y+20; // pozitia pe y
+	this.wd = w; // latimea
+	this.ht = w/2+10; // inaltimea
+	this.vmax=vm // valoarea maxima
+	var alfa_r=0; // ungji in radiani
+	var alfa_gr=0; // ungji in grade
+}
+voltm.prototype = {
+    constructor: voltm,
+    set_val:function (val_gr)  {
+		var lt = 15;
+		var lg = 22;
+		var lv = 17;
+		var x1, x2, xt, y1, y2, yt;
+		var xc = this.x0 + this.wd / 2;
+		var yc = this.y0 + this.wd / 2;
+		raza = this.wd / 2;
+		var nrd=0;
+		var val_a=0;
+		
+		// Stergerea interiorului
+		
+		this.cnvs.beginPath();
+		this.cnvs.fillStyle = "#ffffff";
+		this.cnvs.fillRect(this.x0+1,this.y0-20,this.wd-2,this.ht+10);
+		this.cnvs.stroke();
+		
+		// desenez contur voltmetru
+		
+		this.cnvs.beginPath();
+		this.cnvs.moveTo(this.x0,this.y0-20); 
+		this.cnvs.strokeStyle = "rgb(255,0,0)";
+		this.cnvs.lineTo(this.x0+this.wd,this.y0-20);
+		this.cnvs.lineTo(this.x0+this.wd,this.y0+this.ht);
+		this.cnvs.lineTo(this.x0,this.y0+this.ht);
+		this.cnvs.lineTo(this.x0,this.y0-20);
+		this.cnvs.stroke();
+		
+		// desenez gradatii
+		this.cnvs.beginPath();
+		this.cnvs.strokeStyle = "rgb(120,120,120)";
+		this.cnvs.font = "10px Arial";
+		alfa_r=0;		
+		alfa_gr = 140;//  unghiul in grade
+		while (alfa_gr >=40)
+		{
+		alfa_r = 2 * Math.PI * (alfa_gr) / 360;// unghiul in radiani
+		if (nrd % 5 == 0)
+		{
+			x1 = xc + (raza-lt) * Math.cos(alfa_r);
+			y1 = yc - (raza-lt) * Math.sin(alfa_r);
+			xt = xc-5 + raza * Math.cos(alfa_r);
+			yt = yc - raza * Math.sin(alfa_r);
+			//zona_des.DrawString(System.Convert.ToString(val_a), font_ni, pens_blu, xt, yt);
+			this.cnvs.strokeText(val_a,xt,yt);
+			val_a = val_a + this.vmax /10;
+		}
+		else
+		{
+			x1 = xc + (raza - lg) * Math.cos(alfa_r);
+			y1 = yc - (raza - lg) * Math.sin(alfa_r);
+		}
+		x2 = xc + (raza - 2 * lt) * Math.cos(alfa_r);
+		y2 = yc - (raza - 2 * lt) * Math.sin(alfa_r);
+		//zona_des.DrawLine(creion, x1, y1, x2, y2);
+		this.cnvs.moveTo(x1,y1);
+		this.cnvs.lineTo(x2,y2)
+		alfa_gr -= 2;
+		nrd++;
+		}
+		this.cnvs.stroke();
+	
+		// alfa_gr unghiul in grade
+	
+		val_gr=140-100*val_gr/this.vmax // scalare
+		alfa_r = 2 * Math.PI * (val_gr) / 360;// unghiul in radiani
+		var x = xc + (raza - 2 * lv) * Math.cos(alfa_r);
+		var y = yc - (raza - 2 * lv) * Math.sin(alfa_r);
+		this.cnvs.beginPath();
+		this.cnvs.strokeStyle = "rgb(0,0,255)";
+		this.cnvs.moveTo(xc,yc);
+		this.cnvs.lineTo(x,y);
+		this.cnvs.stroke();
+	},
+	
+	deseneaza:function ()
+	{
+	
+		// desenez contur voltmetru
+		
+		this.cnvs.beginPath();
+		this.cnvs.moveTo(this.x0,this.y0-20); 
+		this.cnvs.strokeStyle = "rgb(255,0,0)";
+		this.cnvs.lineTo(this.x0+this.wd,this.y0-20);
+		this.cnvs.lineTo(this.x0+this.wd,this.y0+this.ht);
+		this.cnvs.lineTo(this.x0,this.y0+this.ht);
+		this.cnvs.lineTo(this.x0,this.y0-20);
+		this.cnvs.stroke();
+	}
+}
+
+voltm1 = new voltm(ctx9,10,10,400,250); 
+voltm1.deseneaza();
+set_per9();
+function set_per9(){
+  var pe = document.getElementById('per9').value;
+  document.getElementById('perr9').value=parseInt(pe);
+  voltm1.set_val(pe);
+  //voltm1.set_val();
+}
+function set_perr9(){
+  var pe = document.getElementById('perr9').value;
+  document.getElementById('per9').value=parseInt(pe);
+  voltm1.set_val(pe);
+  //voltm1.set_val();
+}
+
+</script>
+
+</textarea>
+</form>
+<script>document.write(f90.code.value);</script>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; <br><br><b>Clasa "afisor x-t"</b> - afisarea evolutiei in timp a semnalelor <br><br>
+<form name="f87">  
+<textarea width="100%" height="400px" style="width:100%;height:2400px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<center><table bgcolor="WhiteSmoke" border =1 width="220"><tr><td align="center">
+<center> Afisor x-t <br></center> 
+<canvas id="desen07" width="500" height="350" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<INPUT onclick=graf() type=button value=Start>
+
+</td></tr></table></center>
+<script type="text/javascript">
+var ctx7=desen07.getContext("2d");
+ctx7.lineWidth = .5; 
+w=desen07.width ;
+h=desen07.height/2-20;
+vals = [];
+nrv=400;
+ht=300;
+for(i=0;i<nrv;i++){
+	// total aleator
+	// vals[i]=Math.round(ht*Math.random());
+	// continuu
+
+	 vals[i]=Math.round(ht/2);
+
+}
+			
+function afi_xt(pozx, pozy, n_maxx, n_maxy,c)
+            {
+                this.x0 = pozx;// pozitia pe x
+                this.y0 = pozy;// pozitia pe y
+                this.w = n_maxx; // latimea
+                this.h = n_maxy;// inaltimea
+                this.nr_max = n_maxx; // numarul de puncte pe x
+                this.val_max = n_maxy; // valoarea maxima
+				this.cnvs=c; // canvas
+            }
+afi_xt.prototype = {
+	constructor: afi_xt,
+	deseneaza:function (vls, nv)  {
+	var val_v, val ,i ,j;
+	
+	// sterg continut
+	
+	this.cnvs.beginPath();
+	this.cnvs.fillStyle = "#FFFFFF";
+	this.cnvs.fillRect(this.x0-30,this.y0-10,this.x0+this.w,this.y0+this.h+30);
+	this.cnvs.stroke();	
+	
+	//chenar
+		
+	this.cnvs.beginPath();
+	this.cnvs.moveTo(this.x0,this.y0); 
+	this.cnvs.strokeStyle = "rgb(0,0,255)";
+	this.cnvs.lineTo(this.x0+this.w,this.y0);
+	this.cnvs.lineTo(this.x0+this.w,this.y0+this.h);
+	this.cnvs.lineTo(this.x0,this.y0+this.h);
+	this.cnvs.lineTo(this.x0,this.y0);
+	this.cnvs.stroke();
+    	val_v = vls[1] * this.h / this.val_max;
+
+	// grid orizontal minor
+			
+	this.cnvs.beginPath();
+    	this.cnvs.strokeStyle = "rgb(200,200,200)";
+	this.cnvs.font = "10px Arial";
+	for (j = this.h-10; j >=0; j -= 10)
+	{
+		this.cnvs.moveTo(this.x0,this.y0+j); 
+		this.cnvs.lineTo(this.x0 + this.w, this.y0 + j);
+    	}
+	
+	// grid vertical minor
+	
+	for (j = 10; j<=this.w-10; j += 10)
+    	{
+		this.cnvs.moveTo(this.x0+j,this.y0+1); 
+		this.cnvs.lineTo(this.x0 + j ,this.y0+ this.h+1);
+    	}
+	this.cnvs.stroke();
+	
+	// grid orizontal major
+			
+	this.cnvs.beginPath();
+   	this.cnvs.strokeStyle = "rgb(150,150,150)";
+	
+    	for (j = this.h; j >=0; j -= 50)
+    	{
+		this.cnvs.moveTo(this.x0,this.y0+j); 
+		this.cnvs.lineTo(this.x0 + this.w ,this.y0 + j);
+		this.cnvs.strokeText(this.h-j,this.x0-20,this.y0 + j);
+    	}
+
+	// grid vertical major
+	 
+    	for (j = 0; j<=this.w; j += 50)
+    	{
+		this.cnvs.moveTo(this.x0+j,this.y0); 
+		this.cnvs.lineTo(this.x0 + j ,this.y0+ this.h-1);	
+		this.cnvs.strokeText(j,this.x0 + j,this.y0 + this.h+10);
+    	}
+	this.cnvs.stroke();
+	
+	// trasez graficul
+
+	this.cnvs.beginPath();
+	this.cnvs.strokeStyle = "rgb(240,0,0)";
+	this.cnvs.moveTo(this.x0,this.y0+val_v); 
+	 for (i = 0; i<=nrv; i +=1){
+		val = vls[i] * this.h / this.val_max; //scalare
+		this.cnvs.lineTo(this.x0 + i ,this.y0+ this.h-val);
+	 }
+	this.cnvs.stroke();
+   }
+}
+
+osci = new afi_xt(50,10,nrv,ht,ctx7);
+
+function graf(){
+
+	// total aleator
+	/*
+	for(i=0;i<nrv;i++){
+		vals[i]=Math.round(ht*Math.random());
+	}
+	*/
+	// aleator continuu
+	for(i=1;i<nrv;i++){
+		vals[i-1]=vals[i];
+	}
+	k=Math.round(4*Math.random())
+	if(k==0)
+		f=1;
+	if(k==1)
+		f=-1;
+	if(k==2)
+		f=10;
+	if(k==3)
+		f=-10;
+
+	vals[nrv-1]=vals[nrv-2]+f;
+
+	if(vals[nrv-1]>ht)
+		vals[nrv-1]=ht/2;
+	if(vals[nrv-1]<=0)
+		vals[nrv-1]=ht/2;
+
+	osci.deseneaza(vals,nrv);
+	setTimeout("graf()",100);
+}
+
+</script>
+</textarea>
+</form>
+<script>document.write(f87.code.value);</script>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; <br><br> Combinand termo si afisor x-t obtinem:<br><br>
+<form name="f88">  
+<textarea width="100%" height="400px" style="width:100%;height:3180px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<center><table bgcolor="WhiteSmoke" border =1 width="220"><tr><td align="center">
+<center><br>Virtual instruments<br><br></center> 
+<canvas id="desen06" width="600" height="340" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<br><br>
+<input type="range" value="21" id="per2" min="0" max="500"  onchange="set_per2()"/>   
+<input id="perr2" type="text" size="2" value="21" max="500"  onchange="set_perr2()"/>
+<INPUT onclick=grafic() type=button value=Start>
+<br>
+</td></tr></table></center>
+<script type="text/javascript">
+var ctx6=desen06.getContext("2d");
+ctx6.lineWidth = .5; 
+w=desen06.width ;
+h=desen06.height/2-20;
+val_max=500;
+valls = [];
+nrv=400;
+ht=300;
+for(i=0;i<nrv;i++){
+	//vals[i]=Math.round(ht*Math.random());
+	valls[i]=0;
+}
+			
+function afisor_xt(c,pozx, pozy, n_maxx, n_maxy,v_max)
+	{
+		this.cnvs=c; // canvas
+		this.x0 = pozx;// pozitia pe x
+                this.y0 = pozy;// pozitia pe y
+                this.w = n_maxx; // latimea
+                this.h = n_maxy;// inaltimea
+                this.nr_max = n_maxx; // numarul de puncte pe x
+                this.val_max = v_max; // valoarea maxima
+	}
+afisor_xt.prototype = {
+	constructor: afisor_xt,
+	deseneaza:function (vls, nv)  {
+	var val_v, val ,i ,j;
+	
+	// sterg continut
+	
+	this.cnvs.beginPath();
+	this.cnvs.fillStyle = "#FFFFFF";
+	this.cnvs.fillRect(this.x0-30,this.y0-10,this.x0+this.w,this.y0+this.h+30);
+	this.cnvs.stroke();	
+	
+	//chenar
+	
+	this.cnvs.beginPath();
+	this.cnvs.moveTo(this.x0,this.y0); 
+	this.cnvs.strokeStyle = "rgb(0,0,255)";
+	this.cnvs.lineTo(this.x0+this.w,this.y0);
+	this.cnvs.lineTo(this.x0+this.w,this.y0+this.h);
+	this.cnvs.lineTo(this.x0,this.y0+this.h);
+	this.cnvs.lineTo(this.x0,this.y0);
+	this.cnvs.stroke();
+    	val_v = vls[1] * this.h / this.val_max;
+
+	// grid orizontal minor
+			
+	this.cnvs.beginPath();
+    	this.cnvs.strokeStyle = "rgb(200,200,200)";
+	this.cnvs.font = "10px Arial";
+	for (j = this.h-10; j >=0; j -= 10)
+	{
+		this.cnvs.moveTo(this.x0,this.y0+j); 
+		this.cnvs.lineTo(this.x0 + this.w, this.y0 + j);
+    	}
+	
+	// grid vertical minor
+	
+	for (j = 10; j<=this.w-10; j += 10)
+    	{
+		this.cnvs.moveTo(this.x0+j,this.y0+1); 
+		this.cnvs.lineTo(this.x0 + j ,this.y0+ this.h+1);
+    	}
+	this.cnvs.stroke();
+
+	// grid vertical major
+			
+	this.cnvs.beginPath();
+    	this.cnvs.strokeStyle = "rgb(150,150,150)";
+    	for (j = 0; j <=this.h; j += 50)
+    	{
+		this.cnvs.moveTo(this.x0,this.y0+j); 
+		this.cnvs.lineTo(this.x0 + this.w ,this.y0 + j);
+		this.cnvs.strokeText(Math.round(this.val_max*j/this.h),this.x0-20,this.y0+this.h - j);
+   	}
+
+	// grid orizontal major
+	 
+    	for (j = 0; j<=this.w; j += 50)
+    	{
+		this.cnvs.moveTo(this.x0+j,this.y0); 
+		this.cnvs.lineTo(this.x0 + j ,this.y0+ this.h-1);	
+		this.cnvs.strokeText(j,this.x0 + j,this.y0 + this.h+10);
+   	 }
+	this.cnvs.stroke();
+	
+	// trasez graficul
+
+	this.cnvs.beginPath();
+	this.cnvs.strokeStyle = "rgb(240,0,0)";
+	this.cnvs.moveTo(this.x0,this.y0+val_v); 
+	for (i = 0; i<=nrv; i +=1){
+		val = vls[i] * this.h / this.val_max; //scalare
+		this.cnvs.lineTo(this.x0 + i ,this.y0+ this.h-val);
+	}
+	this.cnvs.stroke();
+ }
+}
+function term (c,x,y,w,h,vm) {
+	this.cnvs=c; // canvas
+    	this.x0 = x; // pozitia pe x
+    	this.y0 = y; // pozitia pe y
+	this.wd = w; // latimea
+    	this.ht = h; // inaltimea
+	this.valm=vm // valoarea maxima
+}
+term.prototype = {
+  constructor: term,
+  deseneaza:function ()  {
+	this.cnvs.beginPath();
+	this.cnvs.fillStyle = "#FFFFFF";
+	this.cnvs.fillRect(this.x0-1,this.y0-1,this.wd+40,this.ht+2);
+	this.cnvs.stroke();	
+	// desenez contur termometru
+	this.cnvs.beginPath();
+	this.cnvs.moveTo(this.x0,this.y0); 
+	this.cnvs.strokeStyle = "rgb(255,0,0)";
+	this.cnvs.lineTo(this.x0+this.wd,this.y0);
+	this.cnvs.lineTo(this.x0+this.wd,this.y0+this.ht);
+	this.cnvs.lineTo(this.x0,this.y0+this.ht);
+	this.cnvs.lineTo(this.x0,this.y0);
+	this.cnvs.stroke();
+
+	// desenez gradatii
+
+	this.cnvs.beginPath();
+    	this.cnvs.strokeStyle = "rgb(120,120,120)";
+	this.cnvs.font = "10px Arial";
+	val_a=0;
+    	for (j = this.ht; j >=0; j -= 5)
+    	{
+		this.cnvs.moveTo(this.x0+this.wd+2,this.y0+j); 
+		if (j % 25 == 0)
+		{
+			this.cnvs.lineTo(this.x0 + this.wd + 12,this.y0 + j);
+			this.cnvs.strokeText(val_a,this.x0 + this.wd + 20,this.y0 + j+3);
+			val_a=val_a+Math.round(25*this.valm/this.ht);
+       		}
+        	else
+		{
+			this.cnvs.lineTo(this.x0 + this.wd + 7,this.y0 + j);
+        	}
+    	}
+	this.cnvs.stroke();
+	},
+	set_val:function (val)  {
+	// Stergerea interiorului 
+	this.cnvs.beginPath();
+	this.cnvs.fillStyle = "#ffffff";
+	this.cnvs.fillRect(this.x0+1,this.y0,this.wd-2,this.ht);
+	this.cnvs.stroke();
+	// trasare valoare
+	this.cnvs.beginPath();
+	this.cnvs.fillStyle = "#0000ff";
+	this.cnvs.fillRect(this.x0+1,this.y0+this.ht-this.ht*val/this.valm,this.wd-2,this.ht*val/this.valm);
+	this.cnvs.stroke();
+  }
+}
+
+oscil = new afisor_xt(ctx6,120,10,nrv,ht,val_max);
+function grafic(){
+
+	for(i=1;i<nrv;i++){
+		valls[i-1]=valls[i];
+	}
+
+	var pe = document.getElementById('per2').value;
+	valls[nrv-1]=pe;
+	
+	oscil.deseneaza(valls,nrv);
+ 	term3.set_val(pe);
+ 	document.getElementById('perr2').value=parseInt(pe);
+	setTimeout("grafic()",100);
+}
+
+term3 = new term(ctx6,10,60,10,250,500); 
+term3.deseneaza();
+set_per2();
+function set_per2(){
+  var pe = document.getElementById('per2').value;
+  document.getElementById('perr2').value=parseInt(pe);
+  term3.set_val(pe);
+
+}
+function set_perr2(){
+  var pe = document.getElementById('perr2').value;
+  document.getElementById('per2').value=parseInt(pe);
+  term3.set_val(pe);
+ 
+}
+</script>
+</textarea>
+</form>
+<script>document.write(f88.code.value);</script>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; <br><br>
+<form name="f91">  
+<textarea width="100%" height="400px" style="width:100%;height:20px" name="code" wrap="logical" rows="12" cols="42">
+
+</textarea>
+</form>
+<script>document.write(f91.code.value);</script>
+
+
+<br>
+<hr>
+</body>
+</html>

@@ -1,0 +1,2328 @@
+<html><head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<title>Limbajul Java-Script </title>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Limbajul Java-Script  </Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;JavaScript este unul din cele mai populare limbaje de programare "client side", pentru crearea paginilor WEB. Este
+un limbaj de tip "interpretor" fiind recunoscut de majoritarea browser-elor, cum ar fi: Internet Explorer, Firefox, Opera etc. A fost dezvoltat de 
+Sun Microsystems fiind asemanator cu C , C++
+<ul>
+ <li> JavaScript a fost proiectat sa ofere noi facilitati pentru interactiune cu paginile HTML.
+ <li> Este o unealta de programare pentru design-erii de WEB. 
+ <li> JavaScript este un limbaj de scriptare interpretat.
+ <li> Este un limbaj simplu si usor de folosit.
+ <li> Instructiunile acestui limbaj sunt direct inserate in paginile HTML. 
+ <li> JavaScript este un limbaj interpretat. (programele sunt executate fara a fi compilate) 
+</ul>
+<br><a name="elem_p"></a>
+<font color= "blue" size=5>Elemente de programare în limbajul Java Script</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Ce se poate face cu JavaScript ?
+<ul>
+ <li> Se pot insera texte dinamice in pagini WEB
+ <li> JavaScript poate reactiona la diverse evenimente
+ <li> JavaScript poate scrie si citi elemente HTML
+ <li> JavaScript se poate folosi la validari de date pe partea clientului 
+ <li> Poate detecta browser-ul clientului
+</ul>
+
+<br><br><a name="txt"></a>
+<font color= "black" size=4><li><b> Scrierea testelor si instructiunilor HTML utilizand JavaScript </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cu ajutorul limbajului JavaScript, se pot insera texte dinamice in pagini WEB. Aceste texte pot fi afisate direct
+sau se pot genera linii de instructiuni HTML care la randul lor vor fi afisate.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatorul program afiseaza "Hello World!"<br><br>  
+<form name="f0">
+<textarea width="100%" height="400px" style="width:100%;height:190px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+document.write("Hello World!");
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>
+document.write(f0.code.value);
+</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatorul program afiseaza <i>"Hello World!"</i> dar generand cod HTML care va fi afisat ca atare.
+<br><br>
+<form name="f1">  
+<textarea width="100%" height="400px" style="width:100%;height:180px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="wheat" border =1 width="400"><tr><td>
+<script type="text/javascript">
+document.write('<i>"Hello World!"</i>');
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f1.code.value);</script>
+
+<br><br><a name="var"></a>
+<font color= "black" size=4><li><b> Utilizarea variabilelor </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In JavaScript se pot defini si utiliza variabile de diverse tipuri.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatorul program defineste si utilizeaza variabile<br><br>
+<form name="f20">
+<textarea width="100%" height="400px" style="width:100%;height:330px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+var univ,fc,an;
+univ='"Petru Maior"';
+fc="Inginerie"
+document.write("Universitatea:"+univ+" <br> Facultatea:"+fc);
+document.write("<br>");
+fc="Calculatoare";
+an=4
+document.write("Sectia: "+fc+"<br>");
+document.write("Anul: ",an,"<br><br>");
+document.write("Data: ",Date(),"<br><br>");
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>
+document.write(f20.code.value);
+</script>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatorul program defineste si utilizeaza variabile pentru a afisa data, ora, etc<br><br>
+<form name="f21">
+<textarea width="100%" height="400px" style="width:100%;height:420px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+document.write("<center><br>Afisarea datei si timpului</center><br>");
+var d = new Date();
+document.write("Astazi este:",Date(),"<br>");
+var an=d.getYear();
+document.write("Anul: ",an);
+var lu=d.getMonth();
+document.write(" Luna: ",lu+1);
+var zi=d.getDate();
+document.write(" Ziua: ",zi,"<br>");
+var or=d.getHours();
+document.write("Ora: ",or);
+var mi=d.getMinutes();
+document.write(" Minutul: ",mi);
+var se=d.getSeconds();
+document.write(" Secunda: ",se,"<br><br>");
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>
+document.write(f21.code.value);
+</script>
+
+<br><br><a name="oper"></a>
+<font color= "black" size=4><li><b> Operatori utilizati in JS </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatori aritmetici
+<center><table cellspacing="0" border="1" width="500">
+<tr>
+<th width="15%" align="left">Operator</th>
+<th width="30%" align="left">Descriere</th>
+<th width="25%" align="left">Exemple</th>
+<th width="30%" align="left">Rezultat pentru y=5</th>
+</tr>
+
+<tr>
+<td valign="top">+</td>
+<td valign="top">Adunare
+</td>
+<td valign="top">x=y+2
+</td>
+<td valign="top">x=7
+</td>
+</tr>
+
+<tr>
+<td valign="top">-</td>
+<td valign="top">Scadere
+</td>
+<td valign="top">x=y-2</td>
+<td valign="top">x=3</td>
+</tr>
+
+<tr>
+<td valign="top">*</td>
+<td valign="top">Inmultire
+</td>
+<td valign="top">x=y*2</td>
+<td valign="top">x=10</td>
+</tr>
+
+<tr>
+<td valign="top">/</td>
+<td valign="top">Impartire
+</td>
+<td valign="top">x=y/2</td>
+<td valign="top">x=2.5</td>
+</tr>
+
+<tr>
+<td valign="top">%</td>
+<td valign="top">Modulo
+  </td>
+<td valign="top">x=y%2</td>
+<td valign="top">x=1</td>
+</tr>
+
+<tr>
+<td valign="top">++</td>
+<td valign="top">Incrementare</td>
+<td valign="top">x=++y</td>
+<td valign="top">x=6
+</td>
+</tr>
+
+<tr>
+<td valign="top">--</td>
+<td valign="top">Decrementare</td>
+<td valign="top">x=--y</td>
+<td valign="top">x=4
+</td>
+</tr>
+
+</table></center>
+<br />
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatori de asignare
+
+<center><table  cellspacing="0" border="1" width="500">
+
+<tr>
+<th width="15%" align="left">Operator</th>
+<th width="30%" align="left">Exemple</th>
+<th width="25%" align="left">Semnificatie</th>
+<th width="30%" align="left">Rezultat pentru y=5</th></tr>
+
+<tr>
+<td valign="top">=</td>
+<td valign="top">x=y</td>
+<td valign="top">&nbsp;</td>
+<td valign="top">x=5</td>
+</tr>
+
+<tr>
+<td valign="top">+=</td>
+<td valign="top">x+=y</td>
+<td valign="top">x=x+y</td>
+<td valign="top">x=15</td>
+</tr>
+
+<tr>
+<td valign="top">-=</td>
+<td valign="top">x-=y</td>
+<td valign="top">x=x-y</td>
+<td valign="top">x=5</td>
+</tr>
+
+<tr>
+<td valign="top">*=</td>
+<td valign="top">x*=y</td>
+<td valign="top">x=x*y</td>
+<td valign="top">x=50</td>
+</tr>
+
+<tr>
+<td valign="top">/=</td>
+<td valign="top">x/=y</td>
+<td valign="top">x=x/y</td>
+<td valign="top">x=2</td>
+</tr>
+
+<tr>
+<td valign="top">%=</td>
+<td valign="top">x%=y</td>
+<td valign="top">x=x%y</td>
+<td valign="top">x=0</td>
+</tr>
+</table></center>
+<br><br><a name="if"></a>
+<font color= "black" size=4><li><b> Instructiuni decizionale </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b> if </b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sintaxa:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="AliceBlue">
+<font size="3" color="Blue"><pre>
+if (conditie)
+{
+cod care va fi executat daca conditia e adevarata
+}
+else
+{
+cod care va fi executat daca conditia e falsa
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatorul program citeste ora sistemului pentru a afisa un salut functie de ora sistemului
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Este folosita instructiunea decizionala if  else. <br><br>
+<form name="f22">
+<textarea width="100%" height="400px" style="width:100%;height:440px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<html>
+<body>
+
+<script type="text/javascript">
+var d = new Date();
+var time = d.getHours();
+if (time<10)
+{
+document.write("<b>Buna dimineata ! </b>");
+}
+else if (time>=10 && time<16)
+{
+document.write("<b>Buna ziua ! </b>");
+}
+else
+{
+document.write("<b>Buna seara ! </b>");
+}
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>
+document.write(f22.code.value);
+</script>
+
+<!--*******************************************************************-->
+<br><br><a name="rep"></a>
+<font color= "black" size=4><li><b> Instructiuni de ciclare </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatorul program defineste si utilizeaza variabile numerice 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se vor fisa valorile de la 1 la 10 utilizand bucla do while<br><br>
+<form name="f3">
+<textarea width="100%" height="400px" style="width:100%;height:345px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+Script-ul  defineste variabila numerica i 
+<br>Foloseste variabila i intr-o bucla do while 
+<br>Se vor fisa valorile de la 1 la 10
+<hr>
+<script type="text/javascript">
+  var i=1;
+  do {  
+   i+=1; 
+   document.writeln("i=",i,"<br>");
+  } while (i<10);
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f3.code.value);</script>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom afisa in continuare cifrele de la 1 la 70 pe 7 linii si 10 coloane<br><br>
+<form name="f4">
+<textarea width="100%" height="400px" style="width:100%;height:420px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ 7 linii si 10  coloane 
+<hr>
+<script type="text/javascript">
+  var i=1,j=1,k=1;
+  do {
+	 i=1; 	
+   do {  
+    document.writeln(k," ");
+    i+=1; 
+    k+=1;
+   } while (i<=10);
+  j+=1; 
+  document.writeln("<br>");
+ }while (j<=7);
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f4.code.value);</script>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom genera in continuare un tabel in care vom afisa  cifrele de la 1 la 70 pe 7 linii si 10 coloane<br><br>
+<form name="f5">
+<textarea width="100%" height="400px" style="width:100%;height:500px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Tabel 7 linii si 10  coloane 
+<hr>
+<script type="text/javascript">
+document.writeln("<table border=1>");
+  var i=1,j=1,k=1;
+  do {
+   document.writeln("<tr>");
+   i=1; 	
+   do {
+     document.writeln("<td>");  
+     document.writeln(k);
+     document.writeln("</td>");  
+     i+=1; 
+     k+=1;
+    } while (i<=10);
+   j+=1; 
+   document.writeln("</tr>");  
+  }while (j<=7);
+document.writeln("</table>") 
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f5.code.value);</script>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa- reluam aplicatia pentru desenarea unei table de sah <br><br>
+<form name="f501">
+<textarea width="100%" height="400px" style="width:100%;height:730px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Tabla de sah
+<hr>
+<script type="text/javascript">
+document.writeln("<table border=1>");
+  var i=1,j=1,k=1;
+  do {
+   document.writeln("<tr>");
+   i=1; 	
+   do {
+   if((i+j)%2!=0)
+   {
+    	document.writeln('<td bgcolor="Black">');  
+     	document.writeln("      ");
+    	 document.writeln("</td>");
+   }
+   else
+   {
+	 document.writeln('<td bgcolor="White">');  
+     	document.writeln("      ");
+     	document.writeln("</td>"); 
+   }
+     i+=1; 
+     k+=1;
+    } while (i<=8);
+   document.writeln("<tr>");
+   i=1; 	    
+   j+=1; 
+   document.writeln("</tr>");  
+  }while (j<=8);
+document.writeln("</table>") 
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html></textarea>
+</form>
+<script>document.write(f501.code.value);</script>
+
+<!--*******************************************************************-->
+<br><br><a name="tabl"></a>
+<font color= "black" size=4><li><b> Tablouri </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Vectori </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie initializa un vector de 20 elemente cu valorile 0-19, dupa care se afiseaza elementele vectorului 
+pe ecran.
+<form name="f6_0">
+<textarea width="100%" height="400px" style="width:100%;height:500px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Utilizare vectori
+<hr>
+<script type="text/javascript">
+var i,k;
+document.write("Vectorul cu cele 20 elemente este: <br><br>")
+vect = new Array();
+k=0;
+for (i=0; i < 20; i++) { 
+	vect[i] = k;
+	k+=1;   
+}
+k=0;
+document.write("<table border=1> <tr>")
+for (i=0; i < 20; i++) {
+	document.write("<td>",vect[i],"</td>")
+	k+=1;   
+}   
+document.write("</tr>")
+document.write("</table><br>")
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f6_0.code.value);</script>
+<!--*******************************************************************-->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa reprezentam grafic acum consumurile energetice lunare, consumuri pastrate in vectorul consun()
+<form name="f6_1">
+<textarea width="100%" height="400px" style="width:100%;height:470px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="600"><tr><td>
+<center>
+ <font size=4 color="blue"> Consumuri energetice lunare </font> ( maxim 400 Kwh )</font>
+<hr>
+<script type="text/javascript">
+var i;
+luni = new Array("Ianuarie","Februarie","Martie","Aprilie","Mai","Iunie","Iulie","August","Septembrie","Octombrie","Noiembrie","Decembrie")
+consum = new Array(340,272,330,250,234,342,357,323,243,345,205,234);
+document.write("<table border=1> <tr>")
+for (i=0; i < 12; i++) {
+	document.write("<tr><td>",luni[i],"</td>");
+	document.write("<td><table valign\"midle\" cellPadding=0 cellSpacing=0> <tr><td height=\"15\" background=\"lin_400.bmp\" width=\"400\" align=\"left\" >");
+	document.write("<hr  align=\"left\" color =\"red\" size=\"5\" width=\"", consum[i],"\"</td>");
+	document.write("<td> <font size=3 color=\"red\"> ", consum[i], "<font size=3 color=\"blue\"> Kwh </font> </td></tr></table></td></tr>");
+}   
+document.write("</table><br>")
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html></textarea>
+</form>
+<script>document.write(f6_1.code.value);</script>
+<!--*******************************************************************-->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Matrici </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom utiliza in continuare matrici pentru a initializa o matrice de 4 X 10 cu valorile 0-40, dupa care sa afisam 
+valorile din matrice pe ecran.
+<form name="f6_3">
+<textarea width="100%" height="400px" style="width:100%;height:580px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Utilizare matrici
+<hr>
+<script type="text/javascript">
+var i,j,k;
+document.write("Matricea 4 x 10 este: <br><br>")
+matr = new Array();
+k=0;
+for (i=0; i < 4; i++) { 
+matr[i] = new Array();	
+     for (j=0; j < 10; j++) {
+	    matr[i][j] = k;
+	    k+=1;   
+	}
+}
+k=0;
+document.write("<table border=1> <tr>")
+for (i=0; i < 4; i++) {
+   for (j=0; j < 10; j++) {
+     document.write("<td>",matr[i][j],"</td>")
+     k+=1;   
+	}   
+   document.write("</tr>")
+}
+document.write("</table><br>")
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f6_3.code.value);</script>
+
+<!--*******************************************************************-->
+
+<br><br><a name="func"></a>
+<font color= "black" size=4><li><b> Functii </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sintaxa unei functii este urmatoarea:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="AliceBlue">
+<font size="3" color="Blue"><pre>
+function munele_functiei(var1,var2,...,varX)
+{
+corpul functiei
+return val_returnata
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie care utilizeaza o functie pentru calculul patratului unui numar
+<form name="f7">
+<textarea width="100%" height="400px" style="width:100%;height:370px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Utlizare functii
+<hr>
+<script type="text/javascript">
+function patrat(nr) {
+np=nr*nr;
+return np
+}
+raza=10;
+document.write("<table border=1>");
+document.write("<tr><td>Patratul numarului "+ raza+" este : </td><td>"+ patrat(raza)+"</td></tr>");
+document.write("</table>");
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f7.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Parametrul "raza" definit in cadrul functiei este un parametru formal deci functia patrat se poate apela avand ca
+parametru orce variabila
+<form name="f8">
+<textarea width="100%" height="400px" style="width:100%;height:390px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Utlizare functii
+<hr>
+<script type="text/javascript">
+function patrat(nr) {
+np=nr*nr;
+return np
+}
+document.write("<table border=1>");
+for(i=1; i<10 ; i++){
+	document.write("<tr><td>Patratul numarului "+ i+" este : "+ patrat(i)+"</td></tr>");
+}
+document.write("</table>");
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f8.code.value);</script>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De multe ori functiile sunt apelate cand se declanseaza anumite evenimente cum ar fi:
+<ul>
+ <li> incarcarea unui form
+ <li> incarcarea unei imagini
+ <li> apasarea unui buton
+ <li> apasarea unui marcator de legatura
+ <li> etc
+</ul> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza o aplicatie in care apasarea unui buton va lansa executia unei functii care afiseaza un text.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Textul va fi afisat intr-un element de tip INPUT TYPE="text". Tinand cont ca afisarea textului se face dupa incarcarea paginii, trebuie sa 
+avem o "metoda" cu care sa modificam un text deja afisat pe ecran. Pentru aceasta vom atribui un nume elementului INPUT TYPE="text" pentru a putea 
+invoca metoda prin care sa schimbam atributul value al elementului INPUT TYPE="text".
+<form name="f9_0">
+<textarea width="100%" height="400px" style="width:100%;height:420px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Utlizare functii pentru siruri de caractere
+<hr>
+<center>
+<script type="text/javascript">
+
+function msj_0(){
+        document.loc_msj_0.mesaj_0.value="Bine ati venit!";
+}
+</script>
+<center>
+<FORM NAME="loc_msj_0">
+<INPUT onclick=msj_0() type=button value=Salut>
+<INPUT TYPE="text" NAME="mesaj_0" SIZE=30 >
+</FORM>
+</center>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f9_0.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie foloseste aceeasi functie insa de data aceasta afiseaza mai multe mesaje.
+<form name="f9_1">
+<textarea width="100%" height="400px" style="width:100%;height:480px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Utlizare functii pentru siruri de caractere
+<hr>
+<center>
+<script type="text/javascript">
+function msj_1(tx){
+        document.loc_msj_1.mesaj_1.value=tx;
+}
+tx1="Buna dimineata!";
+tx2="Buna ziua!";
+tx3="Buna seara!";
+</script>
+<center>
+<FORM NAME="loc_msj_1">
+<INPUT onclick=msj_1(tx1) type=button value=Dimin>
+<INPUT onclick=msj_1(tx2) type=button value=Zi>
+<INPUT onclick=msj_1(tx3) type=button value=Seara>
+<INPUT TYPE="text" NAME="mesaj_1" SIZE=30 >
+</FORM>
+</center>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f9_1.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi acum metoda <b> substr </b> pentru a realiza un text dinamic.
+<form name="f9_2">
+<textarea width="100%" height="400px" style="width:100%;height:520px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Utlizare functii pentru siruri de caractere
+<hr>
+<center>
+<script type="text/javascript">
+var msg="       Functii pentru siruri de caractere   "
++"    -utilizarea functiei substring  "
+
+var Time2;
+function msj_din_2(){
+        msg=msg.substring(1,msg.length)+msg.substring(0,1);
+        document.loc_mes_2.mesaj.value=msg;
+		Time2=setTimeout("msj_din_2()",100);
+}
+</script>
+<center>
+<FORM NAME="loc_mes_2">
+<INPUT onclick=msj_din_2() type=button value=Start>
+<INPUT TYPE="text" NAME="mesaj" SIZE=30 >
+</FORM>
+</center>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f9_2.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom adauga in continuare un buton pentru stop.
+<form name="f9_3">
+<textarea width="100%" height="400px" style="width:100%;height:570px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Utlizare functii pentru siruri de caractere
+<hr>
+<center>
+<script type="text/javascript">
+var msg="       Functii pentru siruri de caractere   "
++"    -utilizarea functiei substring  "
+
+var Time3;
+function msj_din_3(){
+        msg=msg.substring(1,msg.length)+msg.substring(0,1);
+        document.loc_mes_3.mesaj.value=msg;
+		Time3=setTimeout("msj_din_3()",100);
+}
+function stop_3(){
+
+clearTimeout(Time3);
+}
+</script>
+<center>
+<FORM NAME="loc_mes_3">
+<INPUT onclick=msj_din_3() type=button value=Start>
+<INPUT onclick=stop_3() type=button value=Stop>
+<INPUT TYPE="text" NAME="mesaj" SIZE=30 >
+</FORM>
+</center>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f9_3.code.value);</script>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom utiliza acum functia descrisa mai sus pentru realizarea unui text dinamic dar declansarea functiei se 
+va face automat la incarcarea unei imagini.
+<form name="f9">
+<textarea width="100%" height="400px" style="width:100%;height:470px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Utlizare functii pentru siruri de caractere
+<hr>
+<center>
+<script type="text/javascript">
+var msg="       Afisare dinamica text     "
++"    Aplicatia e potrivita pentru Bannere   "
++"     Inserare reclame      "
+var banTime1;
+function mesaj_dinamic(){
+        msg=msg.substring(1,msg.length)+msg.substring(0,1);
+        document.loc_mesaj.mesaj.value=msg;
+		banTime1=setTimeout("mesaj_dinamic()",100);
+}
+</script>
+<img src="im5.jpg"  onLoad="mesaj_dinamic()">
+<center>
+<FORM NAME="loc_mesaj">
+<INPUT TYPE="text" NAME="mesaj" SIZE=30 ></FORM>
+</center>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f9.code.value);</script>
+<!--*******************************************************************-->
+<br><br><a name="f_mat"></a>
+<font color= "black" size=4><li><b> Functii matematice </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functiile matematice sunt inglobate in modulul "math". Apelarea functiilor matematice se face astfel:
+<form name="f10">
+<textarea width="100%" height="400px" style="width:100%;height:590px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="800"><tr><td>
+<center>
+ Functii matematice
+<hr>
+<script type="text/javascript">
+document.write("<table border=1> <tr>")
+document.write("<td> Valorile lui X </td>")
+   for (i=0; i < 10; i++) {
+     document.write("<td><center>",i,"</center></td>"); 
+	}   
+document.write("</tr>");
+document.write("<td>Patratele lui  X </td>")
+   for (i=0; i < 10; i++) {
+     document.write("<td><center>",i*i,"</center></td>"); 
+	}   
+document.write("</tr>");
+document.write("<td> Ariile cercurilor de raza X </td>")
+   for (i=0; i < 10; i++) {
+     document.write("<td><center>",Math.round(Math.PI*i*i*100)/100,"</center></td>"); 
+	}   
+document.write("</tr>");
+document.write("<td> Sinus de X radiani</td>")
+   for (i=0; i < 10; i++) {
+     document.write("<td><center>",Math.round(Math.sin(i)*100)/100,"</center></td>"); 
+	}   
+document.write("</tr>");
+document.write("</table><br>");
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f10.code.value);</script>
+<!--*******************************************************************-->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom utiliza in continuare functiile matematice round si random pentru a afisa consumurile energetice:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a genera si afisa repetitiv consumurile, vom defini un <b>div </b> si vom invoca metoda <b>.innerHTML </b>
+pentru a improspata continutul acestui div, realizand astfel o pagina dinamica.
+ 
+<form name="f10_1">
+<textarea width="100%" height="400px" style="width:100%;height:770px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<style type="text/css">
+table.t1 
+{
+border-collapse: collapse
+}
+</style>
+
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 class='t1'  width="570"><tr><td colspan="2">
+<center>
+ <font size=4 color="blue"> Consumuri energetice lunare</font> (maxim 300 Kwh)
+</td></tr><tr><td>
+<script type="text/javascript">
+function afis_or(){
+for (i=0; i < 12; i++) {
+ consum[i]=Math.round(Math.random()*300);
+}
+af_or.innerHTML = "";	
+for (i=0; i < 12; i++) {
+
+	af_or.innerHTML = af_or.innerHTML+"<table border=1 class='t1' ><tr><td width='100'>"+luni[i]+":</td><td width='30' align='right'>"+consum[i]+"</td><td width='350'><hr color ='red' size='5' align='left' width="+consum[i]+"color ='red'></td></tr></table>";
+ 
+}
+	setTimeout("afis_or()",1000);
+}
+	
+var i;
+luni = new Array("Ianuarie","Februarie","Martie","Aprilie","Mai","Iunie","Iulie","August","Septembrie","Octombrie","Noiembrie","Decembrie");
+consum = new Array(100,123,241,107,234,75,178,221,242,77,89,109);
+</script>
+<center>
+<table border=0 ><tr><td>
+<div id="af_or">
+<script>afis_or()</script>
+</div>
+</td></tr></table></center>  
+</td></tr></table>
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f10_1.code.value);</script>
+<!--*******************************************************************-->
+
+
+
+
+<br><a name="gr"></a>
+<font color= "blue" size=5>Grafica in Java Script</font>
+<br><br><font color= "black" size=4><li><b>Trasare figuri geometrice</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Trasarea liniilor, curbelor, cercuri, elipse, dreptungiuri, etc nu sunt incluse in modului standard JS
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a desena aceste elemente e nevoie de apelul unor biblioteci speciale, destinate graficii. Aceste 
+biblioteci trebuiesc incarcate inainte de rularea script-ului. Am gasit de exemplu o biblioteca nunita:"wz_jsgraphics.js" Ea trebuie 
+plasata impreuna cu fisierele surasa ale paginii pentru a putea fi incarcata.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru preluarea bibliotecii:<a href="wz_jsgraphics.js">  apasati aici ! </a>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Includerea bibliotecii in aplicatie se face cu declaratia:
+<br><b>&lt;script type="text/javascript" src="wz_jsgraphics.js"&gt;&lt;/script&gt;</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia urmatoare traseaza diferite forme geometrice<br><br>  
+<form name="f50">  
+<textarea width="100%" height="400px" style="width:100%;height:490px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<body> 
+<center><table border="0" width="400"><td><tr>
+<div id="desen" style="position:relative;height:260px;width:400px;"></div>
+<script type="text/javascript">
+function deseneaza()
+{
+  jg.setColor("#ff0000"); // red
+  jg.drawRect(0, 0, 400, 250); // coordonate relative la desen
+  jg.drawLine(10, 113, 220, 55); 
+  jg.setColor("#0000ff"); // blue
+  jg.fillRect(110, 120, 30, 60);
+  jg.drawEllipse(10, 20, 300, 180);
+  jg.setColor("#ff0000"); // red
+  jg.drawRect(200, 100, 180, 120);
+  jg.paint();
+}
+var jg = new jsGraphics("desen");
+deseneaza();
+</script>
+<div id="desen">
+<center><br>Grafica realizata in JS<br></center>
+</div>
+</td></tr></table></center>
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f50.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Reluam aplicatia precedenta si vom insera butoane pentru a desena diferite forme geometrice
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa aplicatiei<br><br>  
+<form name="f51">  
+<textarea width="100%" height="400px" style="width:100%;height:800px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<body> 
+<center><table border="0" width="400"><td><tr>
+<div id="desen1" style="position:relative;height:260px;width:400px;"></div>
+<script type="text/javascript">
+function gr0(){
+  jg1.setColor("#ff0000"); // red
+  jg1.drawRect(0, 0, 400, 250);
+  jg1.paint();
+}
+function gr1(){
+  jg1.setColor("#0000ff"); // blue
+  jg1.drawEllipse(10, 20, 300, 180);
+  jg1.paint();
+}
+function gr2(){
+  jg1.setColor("#ff0000"); // red
+  jg1.drawRect(200, 100, 180, 120);
+  jg1.paint();
+}
+function gr3(){
+  jg1.setColor("#7cfc00"); // light green
+  jg1.drawLine(10, 113, 220, 55); 
+  jg1.paint();
+}
+function sterg(){
+  jg1.setColor("#ffffff"); // white
+  jg1.fillRect(0, 0, 400, 250);
+  jg1.setColor("#ff00c7"); // violet
+  jg1.drawRect(0, 0, 400, 250);
+  jg1.paint();
+}
+var jg1 = new jsGraphics("desen1");
+gr0();
+</script>
+<div id="desen1">
+<INPUT onclick=gr1() type=button value=Elipsa:>
+<INPUT onclick=gr2() type=button value=Dreptunghi:>
+<INPUT onclick=gr3() type=button value=Linie:>
+<INPUT onclick=sterg() type=button value=Sterg:>
+<center><br>Grafica realizata in JS<br></center>
+</div>
+</td></tr></table></center>
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f51.code.value);</script>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Reluam aplicatia pentru afisarea consumurilor lunare dar de data aceasta reprezentarea consumurilor 
+va fi cu adevarat grafica.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa aplicatiei<br><br>  
+<form name="f51_1">  
+<textarea width="100%" height="400px" style="width:100%;height:650px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<body> 
+<center><table border="0" width="400"><td><tr>
+<div id="desen2" style="position:relative;height:300px;width:400px;"></div>
+<script type="text/javascript">
+function deseneaza2()
+{
+	jg2.setColor("#FF00FF"); // Magenta 
+	jg2.drawLine(0,0,0,300);
+	jg2.drawLine(0,300,400,300);
+	jg2.setStroke(3);// grosime linie 3 pixeli
+    for (i=0; i<12; i++){
+	    jg2.setColor("#0000ff"); // blue
+	    jg2.drawLine(20*(i+1),298,20*(i+1), 298-consum[i]);
+	    jg2.setColor("#ff0000"); // red
+	    jg2.drawString(i+1, 20*(i+1)-5, 300);
+	    jg2.drawString(consum[i], 20*(i+1)-10, 275-consum[i]); 
+	}
+	jg2.setColor("#ff0000"); // red
+	jg2.setStroke();
+	jg2.paint();
+}
+var jg2 = new jsGraphics("desen2");
+consum = new Array(240,272,230,250,234,142,257,223,243,145,205,234);
+deseneaza2();
+</script>
+<div id="desen2">
+<center><br>Consumuri lunare - reprezentare grafica <br></center>
+</div>
+</td></tr></table></center>
+</body>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f51_1.code.value);</script>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am putea sa simulam valorile consumurilor cu ajutorul unei functii random, caz in care aplicatia devine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa aplicatiei<br><br>  
+<form name="f51_2">  
+<textarea width="100%" height="400px" style="width:100%;height:800px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="500"><tr><td colspan="2">
+<center><br><div id="desen4" style="position:relative;height:330px;width:400px;"></div>
+<br><font size=4 color="blue"> Consumuri energetice lunare</font> (maxim 300 Kwh)<br></center>
+<script type="text/javascript">
+function deseneaza4()
+{
+for (i=0; i < 12; i++) {
+ consum[i]=Math.round(Math.random()*300);
+}
+	jg4.setColor("#ffffff"); // white
+	jg4.fillRect(0, 0, 400, 330);
+	jg4.setColor("#FF00FF"); // Magenta 
+	jg4.drawLine(0,0,0,330);
+	jg4.drawLine(0,330,400,330);
+	jg4.setStroke(3);// grosime linie 3 pixeli
+    for (i=0; i<12; i++){
+	    jg4.setColor("#0000ff"); // blue
+	    jg4.drawLine(20*(i+1),328,20*(i+1), 328-consum[i]);
+	    jg4.setColor("#ff0000"); // red
+	    jg4.drawString(i+1, 20*(i+1)-5, 330);
+	    jg4.drawString(consum[i], 20*(i+1)-10, 305-consum[i]); 
+	}
+	jg4.setColor("#ff0000"); // red
+	jg4.setStroke();
+	jg4.paint();
+setTimeout("deseneaza4()",1000);	 
+
+}
+var jg4 = new jsGraphics("desen4");
+var i;
+luni = new Array("Ianuarie","Februarie","Martie","Aprilie","Mai","Iunie","Iulie","August","Septembrie","Octombrie","Noiembrie","Decembrie");
+consum = new Array();
+deseneaza4();
+</script>
+</td></tr></table>
+</center>  
+</body>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f51_2.code.value);</script>
+
+
+<br><a name="im"></a>
+<font color= "black" size=4><li><b>Imagini in JS</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Limbajup JS este des utilizat pentru a gestiona imagini in paginile WEB. O serie de efecte cu 
+imagini, incluse in paginile WEB sun realizatre cu script-uri JS. Sa realizam pentru inceput un joc de lumini.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia foloseste functia af_b() care se lanseaza la interval de 0 secunda schimband imagiinile ce reprezinta luminile <br><br>  
+<form name="f59">  
+<textarea width="100%" height="400px" style="width:100%;height:1000px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td><center>
+<script type="text/javascript">
+<!-- 
+semafor=0; 
+function af_b(){
+if (semafor==0) {
+	document.t0.src='but_r.gif'
+	document.t1.src='but_v.gif'
+	document.t2.src='but_r.gif'
+	document.t3.src='but_v.gif'
+	document.t4.src='but_r.gif'
+	document.t5.src='but_v.gif'
+	document.t6.src='but_r.gif'
+	document.t7.src='but_v.gif'
+	semafor=1
+	}
+else
+	{	
+	document.t0.src='but_v.gif'
+	document.t1.src='but_r.gif'
+	document.t2.src='but_v.gif'
+	document.t3.src='but_r.gif'
+	document.t4.src='but_v.gif'
+	document.t5.src='but_r.gif'
+	document.t6.src='but_v.gif'
+	document.t7.src='but_r.gif'
+	semafor=0
+    }
+setTimeout("af_b()",1000)
+}
+//--> 
+</script>
+<table width="100%" border=0><tr><td width="30%">
+<input type="button" value="Start"onClick="af_b()">
+</td><td valign="middle">
+<img name="t0".src=but_r.gif">
+<img name="t1".src=but_v.gif">
+<img name="t2".src=but_r.gif">
+<img name="t3".src=but_v.gif">
+<img name="t4".src=but_r.gif">
+<img name="t5".src=but_v.gif">
+<img name="t6".src=but_r.gif">
+<img name="t7".src=but_v.gif">
+<br>
+</td></tr></table>
+<script>
+document.t0.src="but_v.gif"
+document.t1.src="but_r.gif"
+document.t2.src="but_v.gif"
+document.t3.src="but_r.gif"
+document.t4.src="but_v.gif"
+document.t5.src="but_r.gif"
+document.t6.src="but_v.gif"
+document.t7.src="but_r.gif"
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f59.code.value);</script>
+
+
+
+ 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia urmatoare foloseste functii JS pentru a afisa diverse imagini selectate din butoane<br><br>  
+<form name="f52">  
+<textarea width="100%" height="400px" style="width:100%;height:480px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="400"><tr><td align="center" valign="center">
+<script type="text/javascript">
+function afis0(){
+	document.imag.src="im0.jpg"
+	}
+function afis1(){
+	document.imag.src="im1.jpg"
+	}
+function afis2(){
+	document.imag.src="im2.jpg"
+	}
+</script>
+<input type="button" value="Imaginea 0:"onClick="afis0()"><br><br>
+<input type="button" value="Imaginea 1:"onClick="afis1()"><br><br>
+<input type="button" value="Imaginea 2:"onClick="afis2()"><br><br>
+</td>
+<td align="center" valign="center">
+<br>
+<img name="imag".src=im_i.jpg" alt="[imaginea selectata]">
+<script>document.imag.src="im_i.jpg"</script>
+<br><br>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+
+<script>document.write(f52.code.value);</script>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosindu-ne de tehnica descrisa mai sus, sa afisam o imagine care va fi schimbata cu alta imagine
+in momentul cand mouse-ul ajunge pe imagine, dupa care revine la imaginea initiala, in momentul cand mouse-ul paraseste imaginea.
+<form name="f53">  
+<textarea width="100%" height="400px" style="width:100%;height:380px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="400"><tr><td align="center" valign="center">
+<script type="text/javascript">
+
+function afis3_1(){
+	document.imag3.src="im2.jpg"
+	}
+function afis3_2(){
+	document.imag3.src="im7.jpg"
+	}
+</script>
+<br>
+<img name="imag3".src=im1.jpg" alt="[Schimbare imagine]"
+onmouseover="afis3_2()"
+onmouseout="afis3_1()" />
+<script>document.imag3.src="im2.jpg"</script>
+<br><br>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f53.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Modificand aplicatia de sus putem obtine un efect de lupa, in sensul ca pe "mouse over" obtinem o imagine marita.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Este suficient sa pregatim doua fisiere im1.jpg si im1_m.jpg care contin aceeasi imagine dar la rezolutii diferite<br><br>  
+<form name="f54">  
+<textarea width="100%" height="400px" style="width:100%;height:380px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="400"><tr><td align="center" valign="center">
+<script type="text/javascript">
+
+function afis4_1(){
+	document.imag4.src="im1.jpg"
+	}
+function afis4_2(){
+	document.imag4.src="im1_m.jpg"
+	}
+</script>
+<br>
+<img name="imag4".src=im1_m.jpg" alt="[Schimbare rezolutie]"
+onmouseover="afis4_1()"
+onmouseout="afis4_2()" />
+<script>document.imag4.src="im1_m.jpg"</script>
+<br><br>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f54.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca avem 10 imagini cu numele "im1.jpg" - "im10.jpg" si vrem sa realizam un tabel de imagini.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi instructiuni de ciclare din JS pentru a afisa cele 10 imagini.<br><br>
+<form name="f55">  
+<textarea width="100%" height="400px" style="width:100%;height:440px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="400"><tr><td>
+<center>
+<br> Tabel imagini 2 linii si 5  coloane <br><br>
+<script type="text/javascript">
+document.write("<table border=1>");
+  var i=1,j=1,k=0;
+  do {
+   i=1;
+   document.write("<tr>"); 	
+   do {   
+    document.write("<td><img src='im"+k+".jpg' width='80' height='60'></td>");
+    i+=1; 
+    k+=1;
+   } while (i<=5);
+  j+=1; 
+  document.writeln("</tr>"); 
+ }while (j<=2);
+document.writeln("</table>")  
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f55.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un slide show din imaginile de sus "im1.jpg" - "im10.jpg" .
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aceste imagini se preincarca intr-o matrice dupa care se vor afisa cu temporizare de 0.8 s  
+<form name="f56">  
+<textarea width="100%" height="400px" style="width:100%;height:460px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="400"><tr><td align="center" valign="center">
+<script type="text/javascript">
+dly = 800;
+i_nr = 1;
+// Preincarcare imagini
+imgn = new Array();
+for(i = 0; i < 11; i++) {   
+imgn[i] = new Image();  
+imgn[i].src = "im" + i + ".jpg";
+}
+function anm() {   
+  document.im_anm.src = imgn[i_nr].src 
+  i_nr++;
+  if(i_nr > 10) {
+      i_nr = 0;   
+   }
+}
+</script>
+<br>Imagini animate<br><br>
+<img name="im_anm" src="im_i.jpg" alt="[Imagini animatie]" onLoad="setTimeout('anm()', dly)">
+<br><br>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f56.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a putea controla viteza de afisare a imaginilor vom introduce doua butoane, unul pentru afisare mai 
+rapida respectiv si celalalt pentru afisare mai rara .
+<form name="f57">  
+<textarea width="100%" height="400px" style="width:100%;height:800px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="400"><tr><td align="center" valign="center">
+<script type="text/javascript">
+delay = 500;
+im_nr = 1;
+// Preincarcare imagini
+imagini = new Array();
+for(i = 0; i < 11; i++) {   
+imagini[i] = new Image();  
+imagini[i].src = "im" + i + ".jpg";
+}
+function animatie() {   
+  document.im_anim.src = imagini[im_nr].src;
+  im_nr++;
+  if(im_nr > 10) {
+      im_nr = 0 ;  
+   }
+}
+function mai_rar()   {   
+   document.f_dly.t_dly.value=delay;
+   delay+=100;
+   if(delay > 4000) 
+   delay = 4000;
+}
+function mai_repede()
+{
+   document.f_dly.t_dly.value=delay;
+   delay-=100;
+   if(delay < 0) 
+   delay = 0;
+}
+</script>
+
+<form name=f_dly> Imagini animate cu temporizarea: <input type=text name=t_dly size=3 value=500></form>
+<img name="im_anim" src="im_i.jpg" alt="[Imagini animatie]" onLoad="setTimeout('animatie()', delay)">
+<br><br>
+</td></tr>
+<td align="center" valign="center">
+<input type="button" value="Mai rar" onClick="mai_rar()">
+<input type="button" value="Mai repede" onClick="mai_repede()">
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f57.code.value);</script>
+
+<br><br><a name="menu"></a>
+<font color= "black" size=4><li><b> Meniuri in JS </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosindu-ne de functii si imagini putem crea meniuri interesante care combina grafica si marcatorii link.
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Mai jos este prezentata sursa unui meniu realizat in Java Script<br><br>  
+<form name="f58">  
+<textarea width="100%" height="400px" style="width:100%;height:1410px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- 
+men_activ=0; 
+function Activ (img){ 
+	if (men_activ) { 
+		document[img].src=eval(img+'on.src'); 
+		} 
+	} 
+function InActiv(img) { 
+	if(men_activ) { 
+		document[img].src=eval(img+'off.src');
+ 		}
+ 	} 
+
+men_activ=1;
+
+/* Preincarcare imagini */
+ 
+meniu0off=new Image(); 
+meniu0off.src="meniu0.gif"; 
+meniu0on=new Image(); 
+meniu0on.src="meniu0_hl.gif";  
+
+meniu1off=new Image(); 
+meniu1off.src="meniu1.gif"; 
+meniu1on=new Image(); 
+meniu1on.src="meniu1_hl.gif";
+
+meniu2off=new Image();
+meniu2off.src="meniu2.gif"; 
+meniu2on=new Image();
+meniu2on.src="meniu2_hl.gif"; 
+
+meniu3off=new Image(); 
+meniu3off.src="meniu3.gif"; 
+meniu3on=new Image();
+meniu3on.src="meniu3_hl.gif"; 
+
+meniu4off=new Image(); 
+meniu4off.src="meniu4.gif"; 
+meniu4on=new Image(); 
+meniu4on.src="meniu4_hl.gif";
+
+meniu5off=new Image(); 
+meniu5off.src="meniu5.gif"; 
+meniu5on=new Image(); 
+meniu5on.src="meniu5_hl.gif"; 
+
+//--> 
+</SCRIPT> 
+
+<A HREF="#"  
+onMouseOver="Activ('meniu0');window.status='Notiuni introductive despre HTML'; return true" 
+onMouseOut="InActiv('meniu0')"><IMG SRC="meniu0.gif" NAME="meniu0" ALT="Notiuni introductive despre HTML" BORDER=0></A> 
+
+<BR><A HREF="#" 
+onMouseOver="Activ('meniu1');window.status='Cascading Style Sheets - CSS '; return true" 
+onMouseOut="InActiv('meniu1')"><IMG SRC="meniu1.gif" NAME="meniu1" ALT="Cascading Style Sheets - CSS " BORDER=0></A> 
+
+<br><A HREF=".#"
+onMouseOver="Activ('meniu2');window.status='Limbajul Java Script'; return true" 
+onMouseOut="InActiv('meniu2')"><IMG SRC="meniu2.gif" NAME="meniu2" ALT="Meniul 2" BORDER=0></A> 
+
+<BR><A HREF="#"
+onMouseOver="Activ('meniu3');window.status='Programarea aplicatiilor Server-Side'; return true" 
+onMouseOut="InActiv('meniu3')"><IMG SRC="meniu3.gif" NAME="meniu3" ALT="Limbajul Java Script" BORDER=0></A> 
+
+<BR><A HREF="#" 
+onMouseOver="Activ('meniu4');window.status='Baze de date in pagini Web '; return true" 
+onMouseOut="InActiv('meniu4')"><IMG SRC="meniu4.gif" NAME="meniu4" ALT="Baze de date in pagini Web " BORDER=0></A> 
+
+<BR><A HREF="#" 
+onMouseOver="Activ('meniu5');window.status='Dezvoltarea aplicatiilor WEB '; return true" 
+onMouseOut="InActiv('meniu5')"><IMG SRC="meniu5.gif" NAME="meniu5" ALT="Dezvoltarea aplicatiilor WEB " BORDER=0></A> 
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f58.code.value);</script>
+
+
+
+<br><br><a name="frm"></a>
+<font color= "blue" size=5><li><b> Formulare interactive </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Java Script este un limbaj de scriptare server side putand sa implementeze diferite funcii direct in pagina web. Se 
+utilizeaza deseori pentru validari de date introduse in formulare active. Ne vom indrepta atentia in continuare asupra modului cum gestioneaza JS 
+elementele interactive din paginile web.
+<br><br><a name="frm_txt"></a>
+<font color= "black" size=4><li><b> Elemente de tip input text </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie in care se introduce un element interactiv de tip INPUT type="text", element ce poate fi 
+controlat de scripturi Java. Aplicatia afiseaza data si ora intr-un element de tip text. Lansarea afisarii se face prin introducerea unui element 
+INPUT type="button" care declanseaza procedura de afisare a datei si orei, procedura care dupa activare se autoinitiaza la interval de 0 secunda.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa aplicatiei se poate vedea mai jos:<br><br>  
+<form name="f70">  
+<textarea width="100%" height="400px" style="width:100%;height:850px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Ceas
+<hr>
+<script type="text/javascript">
+
+function af_ora(ora) {
+	return (ora);
+} 
+
+function pune_zero(inValue) { 
+if (inValue > 9) { 
+	return "" + inValue; 
+} 
+return "0" + inValue; 
+}
+ 
+function ampm() { 
+if (now.getHours() < 12) { 
+	return (" am"); 
+} 
+return (" pm"); 
+}
+
+function afis_t() { 
+	now = new Date; 
+	document.form_ceas.afisor.value ="    "+ziua+" "+tabel_luni[luna]+" "+an+" ora:"+af_ora(now.getHours()) + ":" + 
+	pune_zero(now.getMinutes()) + ":" + pune_zero(now.getSeconds()) + 
+	ampm(); 
+	setTimeout("afis_t()",1000);
+}  
+var azi=new Date();
+var an=azi.getFullYear();
+var luna=azi.getMonth();
+var ziua=azi.getDate();
+var tabel_luni=new Array("Ian","Febr","Mar","Apr","Mai","Iun","Iul","Aug","Sept","Oct","Noi","Dec");
+</script>
+
+<FORM name="form_ceas">
+<INPUT type="button" value="Start" onClick="afis_t()">
+<INPUT type=text name="afisor" size=30>
+</FORM> 
+
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f70.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa reluam aplicatia pentru afisarea cobnsumurilor lunare. In cadrul acelei aplicatii, valorile consumurilor 
+au fost declarate implicit la inceputul programului. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom modifica aplicatia, astfel incat sa putem inroduce valorile consumurilor lunare. Se vor introduce 
+elemente de tip <b>input type="text"</b> prin intermediul carora se vor introduce valorile consumurilor. Nmarul de astfel de elemente va 
+trebui sa fie egal cu numarul de elemente ale vectorului. Acestea vor fi generate automat folosind o instructiune repetitiva.
+<form name="f70_1">
+<textarea width="100%" height="400px" style="width:100%;height:810px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="700"><tr><td colspan="2">
+<center>
+ <font size=4 color="blue"> Consumuri energetice lunare</font> (maxim 300 Kwh)
+</td></tr><tr><td>
+<script type="text/javascript">
+function afis_v(){
+af.innerHTML = "";	
+for (i=0; i < 12; i++) {
+	val_c=eval('form_cons.af_cons'+i+'.value');
+	
+	if ((val_c > 300) & (val_c>0) & (val_c!=""))
+		consum[i]=0;
+	else
+		consum[i]=val_c;
+		
+	af.innerHTML = af.innerHTML+"<table border=1><tr><td width='100'>"+luni[i]+":"+consum[i]+"</td><td width='350'><hr color ='red' size='5' align='left' width="+consum[i]+"color ='red'></td></tr></table>";
+	} 
+	setTimeout("afis_v()",200);
+}
+var i;
+luni = new Array("Ianuarie","Februarie","Martie","Aprilie","Mai","Iunie","Iulie","August","Septembrie","Octombrie","Noiembrie","Decembrie");
+consum = new Array(100,123,241,107,234,75,178,221,242,77,89,109);
+</script>
+<table border=1><tr><td>
+<FORM name="form_cons">
+<table border=1>
+<script>
+for (i=0; i < 12; i++) {
+	document.write("<tr><td> ",luni[i],"</td><td> <INPUT type=text name=\"af_cons",i,"\" size=12 value=\"",consum[i],"\"></tr></td>");
+}
+</script>
+</table>
+</td><td>
+</td></tr></table></FORM>
+</td><td>
+<div id="af">
+<script>afis_v()</script>;
+</div>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f70_1.code.value);</script>
+<!--*******************************************************************-->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru afisarea grafica vom modifica aplicatia astfel:
+<form name="f70_2">
+<textarea width="100%" height="400px" style="width:100%;height:1130px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="700"><tr><td colspan="2">
+<center><div id="desen3" style="position:relative;height:330px;width:400px;"></div>
+<br><font size=4 color="blue"> Consumuri energetice lunare</font> (maxim 300 Kwh)<br></center>
+<script type="text/javascript">
+function deseneaza3()
+{
+	jg3.setColor("#ffffff"); // white
+	jg3.fillRect(0, 0, 400, 330);
+	jg3.setColor("#FF00FF"); // Magenta 
+	jg3.drawLine(0,0,0,330);
+	jg3.drawLine(0,330,400,330);
+	jg3.setStroke(3);// grosime linie 3 pixeli
+    for (i=0; i<12; i++){
+	    jg3.setColor("#0000ff"); // blue
+	    jg3.drawLine(20*(i+1),328,20*(i+1), 328-consum[i]);
+	    jg3.setColor("#ff0000"); // red
+	    jg3.drawString(i+1, 20*(i+1)-5, 330);
+	    jg3.drawString(consum[i], 20*(i+1)-10, 305-consum[i]); 
+	}
+	jg3.setColor("#ff0000"); // red
+	jg3.setStroke();
+	jg3.paint();
+}
+var jg3 = new jsGraphics("desen3");
+
+function afis_gr(){
+for (i=0; i < 12; i++) {
+	val_c=eval('cons_gr.af_cons'+i+'.value');
+	
+	if ((val_c > 300) & (val_c>0) & (val_c!=""))
+		consum[i]=0;
+	else
+		consum[i]=val_c;
+	}
+deseneaza3();
+//setTimeout("afis_gr()",1000);	 
+}
+var i;
+luni = new Array("Ianuarie","Februarie","Martie","Aprilie","Mai","Iunie","Iulie","August","Septembrie","Octombrie","Noiembrie","Decembrie")
+consum = new Array(100,123,241,107,234,75,178,221,242,77,89,109);
+</script>
+</td><td><center>
+<table border=1><tr><td>
+<FORM name="cons_gr">
+<table border=1>
+<script>
+for (i=0; i < 12; i++) {
+	document.write("<tr><td> ",luni[i],"</td><td> <INPUT type=text name=\"af_cons",i,"\" size=12 value=\"",consum[i],"\"></tr></td>");
+}
+afis_gr();
+</script>
+</center><INPUT onclick=afis_gr() type=button value=Actualizeaza_graficul></center>
+</table>
+</td></tr></table>
+</FORM>
+</td></tr></table>
+</center>  
+</body>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f70_2.code.value);</script>
+<!--*******************************************************************-->
+
+
+<br><br><a name="frm_but"></a>
+<font color= "black" size=4><li><b> Elemente de tip input "button" </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Chiar si in aplicatia precedenta am utilizat un element de tip "button" prin intermediul caruia se declanseaza procedura de afisare.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie, genereaza si afiseaza culori aleatoare folosind elemente de tip "text" si "button"  controlate din JS <br><br>  
+<form name="f71">  
+<textarea width="100%" height="400px" style="width:100%;height:550px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Culori aleatoare
+<hr>
+<script type="text/javascript">
+var hex=new Array("0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F");
+function culoare() {
+cul="#";
+for(i=0; i<6; i++){
+	cul+=hex[Math.round(Math.random()*15)];
+}
+return cul
+}
+function afis_cul(){
+document.form_cul.afisor_cul.value ='Valoarea culorii: '+culoare();
+div_cul.innerHTML = '<h1><font color = "'+culoare()+'" </font> Culoare generata aleator </h1>';
+setTimeout("afis_cul()",1000);
+}
+</script>
+<FORM name="form_cul">
+<INPUT type="button" value="Start" onClick="afis_cul()">
+<INPUT type="text" name="afisor_cul" size=30 value=" Valoarea culorii: #AE497D">
+<div id="div_cul">
+<h1><font color="#AE497D">Culori aleatoare </font> </h1>
+</div>
+</FORM> 
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f71.code.value);</script>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, pentru a putea scrie textul:"Culoare generata aleator " s-a definit un div numit "div_cul" . Scrierea 
+in acest "div" se face invocand metoda "innerHTML"
+<br><br><a name="frm_txa"></a>
+<font color= "black" size=4><li><b> Elemente de tip textarea </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa utilizam acest element pentru a realiza un interpretor on-line pentru codul HTML
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se va  defini un div numit "div_html" . Interpretarea codului HTML se va face in acest "div" se face invocand metoda 
+"innerHTML" si se va atribui valoarea elementului textarea, astfel se va forta interpretarea codului html scris in elementul textarea <br><br>  
+
+<textarea width="100%" height="400px" style="width:100%;height:440px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="100%"><tr><td>
+<center>Interpretor HTML on line</center>
+<script type="text/javascript">
+function afis_html(){
+af_html.innerHTML = form_html.cod_html.value;
+setTimeout("afis_html()",500);
+}
+</script>
+<FORM name="form_html">
+<INPUT type="button" value="Start interpretor" onClick="afis_html()"><br><br>
+&ltTEXTAREA NAME = "cod_html" ROWS = 10 COLS = 100>
+<h3> Interpretor HTML </h3>
+Incercati si <i> d-voastra </i>
+<br> Interpretarea <b> codului </b> se face <font color="red" > instantaneu </font>
+<center> Succes !! </center> 
+&lt/TEXTAREA&gt
+<div id="af_html">
+<font color="blue">Scrieti cod HTML, apasati "Start interpretor" si obtineti un interpretor HTML on line </font>
+</div>
+</FORM>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</center> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In macheta de jos, se poate schimba codul HTML acesta fiind interpretat on line
+<br><br>
+<table bgcolor="WhiteSmoke" border =1 width="100%"><tr><td>
+<center>Interpretor HTML on line</center>
+<script type="text/javascript">
+function afis_html(){
+af_html.innerHTML = form_html.cod_html.value;
+setTimeout("afis_html()",500);
+}
+</script>
+<FORM name="form_html">
+<INPUT type="button" value="Start interpretor" onClick="afis_html()"><br><br>
+<TEXTAREA NAME = "cod_html" ROWS = 10 COLS = 100>
+<h3> Interpretor HTML </h3>
+Incercati si <i> d-voastra </i>
+<br> Interpretarea <b> codului </b> se face <font color="red" > instantaneu </font>
+<center> Succes !! </center> 
+</TEXTAREA>
+<div id="af_html">
+<font color="blue">Scrieti cod HTML, apasati "Start interpretor" si obtineti un interpretor HTML on line </font>
+</div>
+</FORM> 
+</center>
+</td></tr></table>
+<br><br><a name="frm_lst"></a>
+<font color= "black" size=4><li><b> Elemente de tip liste de selectii </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Listele de selectie sunt des folosite in paginile web. Este foarte important sa avem acces la nivel de limbaj de 
+scriptare (In cazul nostru JS) la aceste elemente in vederea validarii acestora pe partea de client side, obtinandu-se astfel aplicatii mai rapide.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie utilizeaza liste de selectii controlate din JS <br><br>  
+<form name="f72">  
+<textarea width="100%" height="400px" style="width:100%;height:510px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function nr_sel(ob_selectat) {  
+ var nr_s=0   
+ for (var i=0; i < ob_selectat.options.length; i++) { 
+     if (ob_selectat.options[i].selected==true)  nr_s++   }  
+ return nr_s
+ }
+</script>
+<Form name="Form_sel">
+ <Center>
+  <b>Selectati preferintele apoi apasati butoul Nr selectii :</b><br><br>
+  <select name="tip_muzica" size="5" multiple>
+	<option  selected > R&B     
+	<option> Jazz
+	<option> Blues
+	<option selected > New Age  
+	<option> Muzica sinfonica
+	<option> Opera
+  </select><br><br>
+ </Center>
+ &nbsp;&nbsp;&nbsp;<Input TYPE="button" VALUE="Nr selectii?"onClick="alert ('Numarul de selectari: ' + nr_sel(document.Form_sel.tip_muzica))">
+</Form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f72.code.value);</script>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se vede, pentru afisarea numarului de selectii s-a utilizat o fereastra "alert". S-ar putea atasa un element de 
+tip text in care sa se faca afisarea mesajelor. In acest caz sursa aplicatiei devine:<br><br>
+<form name="f73">  
+<textarea width="100%" height="400px" style="width:100%;height:510px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function af_nrs(ob_selectat) {  
+ var nr_s=0   
+ for (var i=0; i < ob_selectat.options.length; i++) { 
+     if (ob_selectat.options[i].selected==true)  nr_s++   
+     }  
+ 	 document.Form_sl.afis_mes.value ='Numarul de elemente selectate='+nr_s;
+ }
+</script>
+<Form name="Form_sl">
+ <Center>
+  <b>Selectati preferintele apoi apasati butoul Nr selectii :</b><br><br>
+  <select name="tip_muz" size="5" multiple>
+	<option  selected > Rock     
+	<option> Pop
+	<option> Blues
+	<option selected > Jazz  
+	<option> Muzica sinfonica
+	<option> Opera
+  </select><br><br>
+ </Center>
+ &nbsp;&nbsp;&nbsp;<Input TYPE="button" VALUE="Nr selectii?"onClick=af_nrs(document.Form_sl.tip_muz)>
+ &nbsp;&nbsp;&nbsp;<INPUT type="text" name="afis_mes" size=70 value=" ">
+</Form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f73.code.value);</script>
+
+<br><br><a name="frm_ck"></a>
+<font color= "black" size=4><li><b> Elemente de tip checkboxes </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie utilizeaza elemente de tip checkboxes controlate din JS <br><br>  
+<form name="f75">  
+<textarea width="100%" height="400px" style="width:100%;height:450px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function nr_ck() {  
+ var nr_s=0   
+     if (Form_ck.ck1.checked==true)  nr_s++ 
+     if (Form_ck.ck2.checked==true)  nr_s++  
+     if (Form_ck.ck3.checked==true)  nr_s++ 
+     if (Form_ck.ck4.checked==true)  nr_s++  
+ document.Form_ck.af_mes.value ='Numarul de selectii='+nr_s;
+ 
+ }
+</script>
+<Form name="Form_ck">
+	<I><center> Selectati disciplinele faforite </center></I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck1" VALUE = „a” CHECKED> Tehnologii web<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck2" VALUE = „b” > Programare C++ <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck3" VALUE = „c” CHECKED> Programare C# <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck4" VALUE = „d”> Programare Java <br>
+	<br><br>&nbsp;&nbsp;&nbsp;<Input TYPE="button" VALUE="Nr selectii?"onClick=nr_ck()>
+ 	<br>&nbsp;&nbsp;&nbsp;<INPUT type="text" name="af_mes" size=70 value=" ">
+ </form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f75.code.value);</script>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care avem n butoane de tip checkboxes cu numele ck1-ckn trebuie sa folosim instructiuni de buclare
+in care sa folosim metode de indirectare a variabilelor . Aplicatia anterioara devine: <br><br>  
+<form name="f76">  
+<textarea width="100%" height="400px" style="width:100%;height:450px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function nr2_ck() {  
+ var nr_s=0
+  for (var i=1; i < 5; i++) {
+	 elem=eval("Form2_ck.ck"+i)
+     if (elem.checked==true)  nr_s++   
+     }  
+document.Form2_ck.af_ms.value ='Numarul de selectii='+nr_s;
+ 
+ }
+</script>
+<Form name="Form2_ck">
+	<I><center> Selectati disciplinele faforite </center></I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck1" VALUE = „a” CHECKED> Tehnologii web<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck2" VALUE = „b” > Programare C++ <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck3" VALUE = „c” CHECKED> Programare C# <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck4" VALUE = „d”> Programare Java <br>
+	<br><br>&nbsp;&nbsp;&nbsp;<Input TYPE="button" VALUE="Nr selectii?"onClick=nr2_ck()>
+ 	<br>&nbsp;&nbsp;&nbsp;<INPUT type="text" name="af_ms" size=70 value=" ">
+ </form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f76.code.value);</script>
+
+<br><br><a name="frm_rd"></a>
+<font color= "black" size=4><li><b> Elemente de tip radio-button </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie utilizeaza elemente de tip radio-button controlate din JS 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care avem n butoane de tip radio-button toate vor purta un singur nume. Pentru a obtine butonul selectat, 
+pentru fiecare buton se lanseaza o functie care intoarce valoarea butonului astfel: <br><br>  
+<form name="f77">  
+<textarea width="100%" height="400px" style="width:100%;height:450px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function val_rd(rd1) {
+  
+document.Form_rd.af_ms.value ='Butonul selectat='+ rd1;
+}
+
+</script>
+<Form name="Form_rd">
+	<I><center> Selectati disciplina faforita </center></I><br><br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "1" checked="checked"> Tehnologii web<br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "2"> Programare C++ <br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "3"> Programare C# <br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "4"> Programare Java <br>
+ 	<br>   <INPUT type="text" name="af_ms" size=70 value=" ">
+ </form>
+</td></tr></table></center>  
+</body>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f77.code.value);</script>
+
+
+<br><a name="v_frm"></a>
+<font color= "blue" size=5>Validarea formularelor utilizand  limbajul Java Script</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Java Script fiind un limbaj de scriptare de tip "client-side" este foarte potrivit pentru a face validarea formularelor 
+interactive direct la "client" fara a mai fi necesara trimiterea datelor spre server si acesta sa formuleze un raspuns care eventual trimite inapoi 
+datele ce nu au fost corect completate. Procedeul de validare pe partea clientului este mult mai rapid, filtrand datele completate de client on-line, 
+eventualele mesaje de eroare fiind afisate chiar in momentul completarii unui camp de catre client. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se verifica de obicei:
+<ul>
+ <li> completarea tuturor campurilor obligatorii
+ <li> validitatea adreselor de mail
+ <li> corectitudinea tipului de data introdus in fiecare camp
+ <li> exista cifre in campurile ce reprezinta nume, prenume etc ?
+</ul> 
+&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie verifica daca un anumite campuri a fost completate.<br><br>
+<form name="f80">  
+<textarea width="100%" height="400px" style="width:100%;height:670px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function valid_camp(camp,mesaj){
+	with (camp){
+		if (value==null||value==""){
+			alert(mesaj);
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+}
+
+function valid_form(thisform){
+	with (thisform){
+		if (valid_camp(nume,"Completati Numele!")==false){
+			nume.focus();
+  			return false;
+  		}
+		if (valid_camp(pnume,"Completati Prenumele!")==false){
+			pnume.focus();
+  			return false;
+  		}
+  	}
+}
+</script>
+</head><body>
+<form action="apl_s.html" onsubmit="return valid_form(this)" method="post">
+<br>Completati campurile de mai jos!
+<hr>
+Numele : <input type="text" name="nume" size="30"><br>
+Preumele:<input type="text" name="pnume" size="50"><br><br>
+<input type="submit" value="Trimit"> 
+</form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f80.code.value);</script>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un realizam un formular ceva mai complicat, in care se verifica daca un anumite campuri a fost completate cat si 
+daca au fost selectate checkbox-uri.<br><br>
+<form name="f81">  
+<textarea width="100%" height="400px" style="width:100%;height:1020px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function vld_camp(camp,mesaj){
+	with (camp){
+		if (value==null||value==""){
+			alert(mesaj);
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+}
+
+function vld_form(frm){
+	with (frm){
+		if (vld_camp(num,"Completati Numele!")==false){
+			num.focus();
+			
+  			return false;
+  		}
+		if (vld_camp(pnum,"Completati Prenumele!")==false){
+			pnum.focus();
+  			return false;
+  		}
+  		if(nr3_ck()==0){
+	  		alert("Selectati cel putin o optiune !");  
+	  		ck1.focus();
+	  		return false;
+  		}
+   	}
+}
+
+function nr3_ck() {  
+ var nr_s=0
+  for (var i=1; i < 5; i++) {
+	 elem=eval("Form3_ck.ck"+i)
+     if (elem.checked==true)  nr_s++;   
+     } 
+	 return nr_s;
+ }
+</script>
+
+<form action="apl_s.html" name="Form3_ck"  onsubmit="return vld_form(this)" method="post">
+<br><I>  Completati campurile de mai jos (toate sunt obligatorii)</I> <br><hr>
+	Numele : <input type="text" name="num" size="30"><br>
+	Preumele:<input type="text" name="pnum" size="50"><br><br>
+	<I> Selectati disciplinele optionale: </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck1" VALUE = „a” > Tehnologii web<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck2" VALUE = „b” > Programare C++ <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck3" VALUE = „c” > Programare C# <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck4" VALUE = „d” > Programare Java <br><hr>
+	<input type="submit" value="Trimit"> 
+ </form>
+</script>
+</head><body>
+</form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f81.code.value);</script>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Mesajele de validare pot fi afisate intr-un Input type "text" 
+daca au fost selectate checkbox-uri.<br><br>
+<form name="f82">  
+<textarea width="100%" height="400px" style="width:100%;height:900px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+
+function vl_form(frm){
+	with (frm){
+		if (num.value==null||num.value==""){
+			document.Form4_ck.af_ms.value ="Completati Numele !";
+			num.focus();		
+  			return false;
+  		}
+		if (pnum.value==null||pnum.value==""){
+			document.Form4_ck.af_ms.value ="Completati Prenumele !";
+			pnum.focus();		
+  			return false;
+  		}
+  		if(nr4_ck()==0){
+	  		document.Form4_ck.af_ms.value ="Selectati cel putin o optiune !"; 
+	  		ck1.focus();
+	  		return false;
+  		}
+   	}
+}
+
+function nr4_ck() {  
+ var nr_s=0
+  for (var i=1; i < 5; i++) {
+	 elem=eval("Form4_ck.ck"+i)
+     if (elem.checked==true)  nr_s++;   
+     } 
+	 return nr_s;
+ }
+</script>
+
+<form action="apl_s.html" name="Form4_ck"  onsubmit="return vl_form(this)" method="post">
+<br><I>  Completati campurile de mai jos (toate sunt obligatorii) !</I> <br><hr>
+	Numele : <input type="text" name="num" size="30"><br>
+	Preumele:<input type="text" name="pnum" size="50"><br><br>
+	<I><center> Selectati disciplinele optionale </center></I><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck1" VALUE = „a” > Tehnologii web<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck2" VALUE = „b” > Programare C++ <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck3" VALUE = „c” > Programare C# <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck4" VALUE = „d” > Programare Java <br><hr>
+	<input type="submit" value="Trimit"> 
+ 	&nbsp;&nbsp;&nbsp;<INPUT type="text" name="af_ms" size=45 value=" ">	
+ </form>
+</script>
+</head><body>
+</form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f82.code.value);</script>
+
+<br><a name="pag_web"></a>
+<font color= "blue" size=5>Schitarea unei pagini web utilizand elemente Java-Script</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand elementele studiate pana in prezent sa incercam sa schitam o noua pagina web.
+
+<textarea width="100%" height="400px" style="width:100%;height:2040px" name="code" wrap="logical" rows="12" cols="42">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Shitare pagina web utilizand elemente Java-Script</title>
+<style type="text/css"> 
+<!-- 
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 0; 
+	padding: 0;
+	text-align: center;
+	font-size: 12px; 
+	color: Red;
+	background-image: url(blue_bg.jpg);
+}
+h1 {
+	padding:0px;
+	font-size:18px;
+	line-height:2px;
+	font-weight:5;
+	color:#ccc;
+	}
+.pag_centr #continut {
+	width: 900px;
+	margin: 10 auto; 
+	border: 1px solid #000;
+	text-align: left; 
+	background-color: WhiteSmoke;
+} 
+.pag_centr #antet {
+	padding: 0 10px; 
+	background-color: MidnightBlue ;
+} 
+.pag_centr #antet h1 {
+	margin: 0;
+	padding: 15px 0; 
+}
+.pag_centr #continut_p {
+	margin: 0px 0px 0px 0px;
+	height: 450px;
+	padding-top: 0px; 
+	background-color: Lavender ; 
+} 
+.pag_centr #zona_centr {
+	margin: 20px 20px 20px 20px;
+	background-color: Lavender ; 
+} 
+.pag_centr #zona_jos {
+	padding: 0 10px;
+	background-color: Silver  ;
+} 
+.pag_centr #zona_jos p {
+	margin: 0;
+	height: 40px; 
+	padding: 10px 0;
+}
+    a:link {color: #000fff; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+    a:visited {color: #0000ff; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+    a:hover{color: #ff0000; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:underline;}
+
+
+--> 
+</style>
+</head>
+<body class="pag_centr">
+<script language="JavaScript">
+
+function frm1(){
+  zona_jos.innerHTML = '<p> O universitare pentru comunitate </p> ';
+}
+function frm2(){
+  zona_centr.innerHTML = '<iframe src ="misiune.html" width="100%" height="300"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm3(){
+  zona_jos.innerHTML = '<p>&nbsp;&nbsp;&nbsp;<SMALL>&copy;<strong><font color="red" face="Arial"size=2>&nbsp;&nbsp;&nbsp;Autor:</strong> <A HREF=mailto:traian.turc@yahoo.com > dr.ing. Traian Turc</A> 2009</SMALL>&nbsp;&nbsp;</p>'
+}
+function frm4(){
+  zona_centr.innerHTML = '<iframe src ="l_java.html" width="850" height="400"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}  
+</script>
+
+<div id="continut">
+  <div id="antet">
+    <h1><strong>Universitatea "Petru Maior"</strong></h1>
+    <h1><center> Facultatea de Inginerie </center></h1>
+  </div><!-- sfarsit # antet  -->
+
+<div id="continut_p">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tr>
+   <td Background="imm_m.bmp">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       <td class="forTexts" vliagn>&nbsp;&nbsp; 
+	    <a href="pag_web.html">Home</a>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+        <a href="#" onclick=frm3()>Autor </a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp; 	    
+        <a href="#" onclick=frm1()>Moto</a>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; 
+	    <a href="#" onclick=frm2()>Misiune</a>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+        <a href="#" onclick=frm4()>Java Script</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;
+       </td>
+      </tr>
+     </table>
+    </td>
+  </tr>
+  <tr>
+</table>
+<div id="zona_centr">
+<br><h1>O UNIVERSITATE PENTRU COMUNITATE </h1>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;De la fondarea sa in anul 1960, asigurandu-si continuitatea institutionala si permanenta culturala 
+in ciuda a numeroase constrangeri si obstacole, Universitatea "Petru Maior", la inceput de mileniu, 
+se prezinta in deplina sa maturitate si reputatie ca o autentica si generoasa "Universitate pentru comunitate".
+</div>
+  </div><!-- sfarit # continut_p -->
+   <div id="zona_jos">
+    <p> Tehnologii web </p>
+  <!-- sfarit #zona_jos --></div>
+<!-- sfarit #continut --></div>
+</body>
+</html>
+
+</textarea>
+<br>
+<INPUT onclick=window.open("pag_web.html","buton1Window",'resizable=yes,width=1000,height=600') type=button value=Vezi_pagina:> 
+<hr>
+
+
+<br>
+<br> 
+</body>
+</html>

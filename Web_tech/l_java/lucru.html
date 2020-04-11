@@ -1,0 +1,27 @@
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="400"><tr><td align="center" valign="center">
+<script type="text/javascript">
+dly = 800;
+i_nr = 1;
+// Preincarcare imagini
+imgn = new Array();
+for(i = 0; i < 11; i++) {   
+imgn[i] = new Image();  
+imgn[i].src = "im" + i + ".jpg";
+}
+function anm() {   
+  document.im_anm.src = imgn[i_nr].src 
+  i_nr++;
+  if(i_nr > 10) {
+      i_nr = 0;   
+   }
+}
+</script>
+<br>Imagini animate<br><br>
+<img name="im_anm" src="im_i.jpg" alt="[Imagini animatie]" onLoad="setTimeout('anm()', dly)">
+<br><br>
+</td></tr></table></center>  
+</body>
+</html>

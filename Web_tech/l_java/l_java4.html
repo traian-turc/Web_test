@@ -1,0 +1,391 @@
+<html><head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<title>Limbajul Java-Script </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Limbajul Java-Script  </Center></TD></TR>
+</table>
+
+<br><a name="pag_web"></a>
+<font color= "blue" size=5>Schitarea unei pagini web utilizand elemente Java-Script</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand elementele studiate pana in prezent sa incercam sa schitam o noua pagina web.Vom utiliza meniuri, 
+functii in JavaScript, div-uri pentru a pozitiona diverse elemente precum si <b> iframe </b> pentru a realiza continut dinamic.
+<br><br><a name="pag_ifrm"></a>
+<font color= "black" size=4><b>Utilizare iframe pentru realizarea paginilor dinamice </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; In aplicatia de jos vom schita o pagina web dinamica, pagina care contine zonele importante cum ar fi: 
+<ul>
+ <li> antet 
+ <li> meniu
+ <li> zona de continut dinamic
+ <li> baza paginii
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Zonele antet, meniu, baza paginii au continut relativ constant. Zona de continut dinamic este zona dinamica 
+in care se schimba continutul in functie de meniul selectat. Unele optiuni de meniu schinmba si continutul din baza paginii. Zona dinamica a 
+fost realizata prin definirea unui <b> div </b> si invocarea metodei <b>.innerHTML</b>. Prin aceasta metoda se poate defini un nou continut 
+al <b> div</b>-ului. Prin folosirea   <b> iframe </b> se poate incarca un fisier html in cadrul <b> div</b>-ului. Din meniul principal 
+sunt lansate diverse functii care invoca metoda <b>.innerHTML</b> pentru a schimba continutul diverselor <b> div</b>-uri.<br><br>
+<textarea width="100%" height="400px" style="width:100%;height:2040px" name="code" wrap="logical" rows="12" cols="42">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Shitare pagina web utilizand elemente Java-Script</title>
+<style type="text/css"> 
+<!-- 
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 0; 
+	padding: 0;
+	text-align: center;
+	font-size: 12px; 
+	color: Red;
+	background-image: url(blue_bg.jpg);
+}
+h1 {
+	padding:0px;
+	font-size:18px;
+	line-height:2px;
+	font-weight:5;
+	color:#ccc;
+	}
+.pag_centr #continut {
+	width: 900px;
+	margin: 10 auto; 
+	border: 1px solid #000;
+	text-align: left; 
+	background-color: WhiteSmoke;
+} 
+.pag_centr #antet {
+	padding: 0 10px; 
+	background-color: MidnightBlue ;
+} 
+.pag_centr #antet h1 {
+	margin: 0;
+	padding: 15px 0; 
+}
+.pag_centr #continut_p {
+	margin: 0px 0px 0px 0px;
+	height: 450px;
+	padding-top: 0px; 
+	background-color: Lavender ; 
+} 
+.pag_centr #zona_centr {
+	margin: 20px 20px 20px 20px;
+	background-color: Lavender ; 
+} 
+.pag_centr #zona_jos {
+	padding: 0 10px;
+	background-color: Silver  ;
+} 
+.pag_centr #zona_jos p {
+	margin: 0;
+	height: 40px; 
+	padding: 10px 0;
+}
+    a:link {color: #000fff; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+    a:visited {color: #0000ff; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+    a:hover{color: #ff0000; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:underline;}
+
+
+--> 
+</style>
+</head>
+<body class="pag_centr">
+<script language="JavaScript">
+function frm1(){
+  zona_jos.innerHTML = '<p>&nbsp;&nbsp;&nbsp;<SMALL>&copy;<strong><font color="red" face="Arial"size=2>&nbsp;&nbsp;&nbsp;Autor:</strong> <A HREF=mailto:traian.turc@yahoo.com > dr.ing. Traian Turc</A> 2009</SMALL>&nbsp;&nbsp;</p>'
+}
+function frm2(){
+  zona_jos.innerHTML = '<p> O universitare pentru comunitate </p> ';
+}
+function frm3(){
+  zona_centr.innerHTML = '<iframe src ="misiune.html" width="100%" height="300"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+
+function frm4(){
+  zona_centr.innerHTML = '<iframe src ="l_java1.html" width="850" height="400"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}  
+</script>
+
+<div id="continut">
+  <div id="antet">
+    <h1><strong>Universitatea "Petru Maior"</strong></h1>
+    <h1><center> Facultatea de Inginerie </center></h1>
+  </div><!-- sfarsit # antet  -->
+
+<div id="continut_p">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tr>
+   <td Background="imm_m.bmp">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       <td class="forTexts" vliagn>&nbsp;&nbsp; 
+	    <a href="pag_web.html">Home</a>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+        <a href="#" onclick=frm1()>Autor </a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp; 	    
+        <a href="#" onclick=frm2()>Moto</a>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; 
+	    <a href="#" onclick=frm3()>Misiune</a>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+        <a href="#" onclick=frm4()>Java Script</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;
+       </td>
+      </tr>
+     </table>
+    </td>
+  </tr>
+  <tr>
+</table>
+<div id="zona_centr">
+<br><h1>O UNIVERSITATE PENTRU COMUNITATE </h1>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;De la fondarea sa in anul 1960, asigurandu-si continuitatea institutionala si permanenta culturala 
+in ciuda a numeroase constrangeri si obstacole, Universitatea "Petru Maior", la inceput de mileniu, 
+se prezinta in deplina sa maturitate si reputatie ca o autentica si generoasa "Universitate pentru comunitate".
+</div>
+  </div><!-- sfarit # continut_p -->
+   <div id="zona_jos">
+    <p> Tehnologii web </p>
+  <!-- sfarit #zona_jos --></div>
+<!-- sfarit #continut --></div>
+</body>
+</html>
+</textarea>
+<br>
+<INPUT onclick=window.open("pag_web.html","buton1Window",'resizable=yes,width=1000,height=600') type=button value=Vezi_pagina:> 
+<br><br><a name="pag_ajax"></a>
+<font color= "black" size=4><b> Schitarea unei pagini web utilizand tehnologia AJAX </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;AJAX este un acronim care provine din JavaScript si XML. Nu este un nou limbaj sau o noua tehnologie, este doar 
+un nou mod de a utiliza standardele existente. Tehnologia AJAAX ofera posibilitatea de a transfera spre pagina clientului numai o parte din pagina 
+fara a fi nevoie sa transfere intreg continutul paginii.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca dorim sa actualizam numai o parte din pagina cu diferite texte aflate in fisiere text diferite.
+<form name="f1_1">
+<textarea width="100%" height="400px" style="width:100%;height:570px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<script type="text/javascript">
+function cer_fis(url)
+{
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.open("GET",url,false);
+xmlhttp.send(null);
+document.getElementById('loc_text').innerHTML=xmlhttp.responseText;
+}
+</script>
+<center>
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td colspan="2">
+<div id="loc_text">
+<center>Apasati cele doua butoane pentru a schimba textul afisat </center>
+</div>
+</td></tr><tr><td>
+<center><button type="button" onclick="cer_fis('test1.txt')">Textul1</button></center>
+</td><td> 
+<center><button type="button" onclick="cer_fis('test2.txt')">Textul2</button></center>
+</td></tr></table></center>
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f1_1.code.value);</script>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Continutul fisierului test1.txt fiind:<br><br> 
+<textarea width="100%" height="400px" style="width:100%;height:50px" name="code" wrap="logical" rows="12" cols="42">
+Acesta este "Textul 1" din fisierul text1,txt
+</textarea>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Continutul fisierului test2.txt fiind:<br><br> 
+<textarea width="100%" height="400px" style="width:100%;height:50px" name="code" wrap="logical" rows="12" cols="42">
+<center>Textul 2 contine inclusiv marcatorul pentru centrare</center>
+</textarea>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, s-au invocat metodele <b> open</b> si <b>send</b> ale obiectului <b>xmlhttp</b> pentru a 
+transfera fisierele test1.txt, respectiv test2.txt
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom putea folosi tehnologia AJAX pentru a incarca selectiv diferite fisiere de tip html.
+<form name="f1_2">
+<textarea width="100%" height="400px" style="width:100%;height:600px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript">
+function loadXMLDoc(url,div)
+{
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.open("GET",url,false);
+xmlhttp.send(null);
+document.getElementById(div).innerHTML=xmlhttp.responseText;
+}
+</script>
+</head>
+<body><center>
+<table bgcolor="WhiteSmoke" border =1 width="600"><tr>
+<td><center><button type="button" onclick="loadXMLDoc('misiune.html','loc_text1')">Misiune</button></center></td>
+<td><center><button type="button" onclick="loadXMLDoc('cuvant_i.html','loc_text1')">Cuvant_i</button></center></td>
+<td><center><button type="button" onclick="loadXMLDoc('slogan.html','loc_text1')">Slogan</button></td></center></tr>
+<tr><td colspan="3"><center>Se vor incarca numai zonele ce contin textele</center></td></tr>
+<tr><td colspan="3">
+<div id="loc_text1">
+<center>Selectati paginile dorite din butoane<center>
+</div>
+</td></tr></table></center>
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f1_2.code.value);</script>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom putea deci utiliza tehnologia AJAX pentru a crea pagini dinamice. Vom relua pagina web schitata anterior dar de 
+data aceasta vom folosi tehnologia ajax<br><br>
+<textarea width="100%" height="400px" style="width:100%;height:2370px" name="code" wrap="logical" rows="12" cols="42">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Shitare pagina web utilizand elemente AJAX</title>
+<style type="text/css"> 
+<!-- 
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 0; 
+	padding: 0;
+	text-align: center;
+	font-size: 12px; 
+	color: Blue;
+	background-image: url(blue_bg.jpg);
+}
+h1 {
+	padding:0px;
+	font-size:18px;
+	line-height:2px;
+	font-weight:5;
+	color:#ccc;
+	}
+.pag_centr #continut {
+	width: 900px;
+	margin: 10 auto; 
+	border: 1px solid #000;
+	text-align: left; 
+	background-color: Lavender;
+} 
+.pag_centr #antet {
+	padding: 0 10px; 
+	background-color: MidnightBlue ;
+} 
+.pag_centr #antet h1 {
+	margin: 0;
+	padding: 15px 0; 
+}
+.pag_centr #continut_p {
+	margin: 10px 10px 10px 10px;
+	height: 450px;
+	padding-top: 0px; 
+	background-color: Lavender ; 
+} 
+.pag_centr #zona_centr {
+
+	margin: 0px 0px 0px 0px;
+	font-size: 12px; 
+	color: Red;
+	background-color: Lavender ; 
+} 
+.pag_centr #zona_jos {
+	font-size: 12px; 
+	color: Blue;
+	padding: 10px 10px 10px 10px;
+	background-color: Silver  ;
+} 
+.pag_centr #zona_jos p {
+	margin: 0;
+	height: 40px; 
+	padding: 10px 0;
+}
+    a:link {color: #000fff; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+    a:visited {color: #0000ff; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+    a:hover{color: #ff0000; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:underline;}
+
+
+--> 
+</style>
+</head>
+<body class="pag_centr">
+
+<script language="JavaScript">
+function loadXMLDoc(url,div)
+{
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.open("GET",url,false);
+xmlhttp.send(null);
+document.getElementById(div).innerHTML=xmlhttp.responseText;
+}
+function frm1(){
+	loadXMLDoc('cuvant_i.html','zona_centr')
+}  
+
+function frm2(){
+  zona_jos.innerHTML = '<SMALL>&copy<strong><font color="red" face="Arial"size=2>   Autor:</strong> <A HREF=mailto:traian.turc@yahoo.com > dr.ing. Traian Turc</A> 2009</SMALL> '
+}
+function frm3(){
+	loadXMLDoc('misiune.html','zona_centr')
+}
+function frm4(){
+  loadXMLDoc('l_java1.html','zona_centr')
+}
+
+</script>
+
+<div id="continut">
+  <div id="antet">
+    <h1><strong>Universitatea "Petru Maior"</strong></h1>
+    <h1><center> Facultatea de Inginerie </center></h1>
+  </div><!-- sfarsit # antet  -->
+
+<div id="continut_p">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tr>
+   <td Background="imm_m.bmp">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+       <td class="forTexts" vliagn>   
+	    <a href="pag_ajax.html"> &nbsp;&nbsp;Home</a> &nbsp;&nbsp;| &nbsp;&nbsp;
+	    <a href="#" onclick=frm1()>Cuvant inainte</a> &nbsp;&nbsp;| &nbsp;&nbsp;  
+        <a href="#" onclick=frm2()>Autor </a> &nbsp;&nbsp;| &nbsp;&nbsp;
+        <a href="#" onclick=frm3()>Misiune</a> &nbsp;&nbsp;| &nbsp;&nbsp; 
+        <a href="#" onclick=frm4()>JavaScript</a> &nbsp;&nbsp;| &nbsp;&nbsp;    
+	            
+       </td>
+      </tr>
+     </table>
+    </td>
+  </tr>
+  <tr>
+</table>
+<div id="zona_centr">
+<br><h1>O UNIVERSITATE PENTRU COMUNITATE </h1>
+<br>    De la fondarea sa in anul 1960, asigurandu-si continuitatea institutionala si permanenta culturala 
+in ciuda a numeroase constrangeri si obstacole, Universitatea "Petru Maior", la inceput de mileniu, 
+se prezinta in deplina sa maturitate si reputatie ca o autentica si generoasa "Universitate pentru comunitate".
+</div>
+  </div><!-- sfarit # continut_p -->
+   <div id="zona_jos">
+    Tehnologii web 
+  <!-- sfarit #zona_jos --></div>
+<!-- sfarit #continut --></div>
+</body>
+</html>
+</textarea>
+<br>
+<INPUT onclick=window.open("pag_ajax.html","buton1Window",'resizable=yes,width=1000,height=600') type=button value=Vezi_pagina:> 
+<br>
+<hr>
+</body>
+</html>

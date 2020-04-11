@@ -1,0 +1,1021 @@
+<html><head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<title>Limbajul Java-Script </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Limbajul Java-Script  </Center></TD></TR>
+</table>
+<br><a name="gr"></a>
+<font color= "blue" size=5>Grafica in Java Script</font>
+<br><br><font color= "black" size=4><li><b>Trasare figuri geometrice folosind marcatorul CANVAS</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Trasarea unui linii:<br><br>
+
+<textarea width="100%" height="400px" style="width:100%;height:180px" name="code" wrap="logical" rows="12" cols="42">
+<canvas id="desen00" width="200" height="100" style="border:1px solid #d3d3d3;">
+Browser-ul d-voastra nu suporta marcatorul CANVAS.</canvas>
+<script>
+var d = document.getElementById("desen00");
+var ctx = d.getContext("2d");
+ctx.moveTo(10,10);
+ctx.lineTo(170,90);
+ctx.strokeStyle = '#00ff00';
+ctx.stroke();
+</script>
+</textarea>
+<br><br><center><table bgcolor="Azure" border=0>
+<tr><td>
+<Center>
+<canvas id="desen00" width="200" height="100" style="border:1px solid #d3d3d3;">
+Browser-ul d-voastra nu suporta marcatorul CANVAS.</canvas>
+<script>
+var d = document.getElementById("desen00");
+var ctx = d.getContext("2d");
+ctx.moveTo(10,10);
+ctx.lineTo(170,90);
+ctx.strokeStyle = '#00ff00';
+ctx.stroke();
+</script>
+</Center>
+</td></tr></table></center></b></b>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Trasarea unui cerc:<br><br>
+
+<textarea width="100%" height="400px" style="width:100%;height:190px" name="code" wrap="logical" rows="12" cols="42">
+<canvas id="desen01" width="200" height="100" style="border:1px solid #d3d3d3;">
+Browser-ul d-voastra nu suporta marcatorul CANVAS.</canvas>
+<script>
+var d = document.getElementById("desen01");
+var ctx = d.getContext("2d");
+ctx.beginPath();
+ctx.arc(95,50,40,0,2*Math.PI);
+ctx.strokeStyle = '#ff0000';
+ctx.stroke();
+</script>
+</textarea>
+<br><br><center><table bgcolor="Azure" border=0>
+<tr><td>
+<Center>
+<canvas id="desen01" width="200" height="100" style="border:1px solid #d3d3d3;">
+Browser-ul d-voastra nu suporta marcatorul CANVAS.</canvas>
+
+<script>
+var d = document.getElementById("desen01");
+var ctx = d.getContext("2d");
+ctx.beginPath();
+ctx.arc(95,50,40,0,2*Math.PI);
+ctx.strokeStyle = '#ff0000';
+ctx.stroke();
+</script> </Center>
+</td></tr></table></center></b></b>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Trasarea unui dreptunghi:<br><br>
+
+<textarea width="100%" height="400px" style="width:100%;height:150px" name="code" wrap="logical" rows="12" cols="42">
+<canvas id="desen02" width="200" height="100" style="border:1px solid #c3c3c3;">
+Browser-ul d-voastra nu suporta marcatorul CANVAS.
+</canvas>
+<script>
+var d = document.getElementById("desen02");
+var ctx = d.getContext("2d");
+ctx.fillStyle = "#00AA00";
+ctx.fillRect(0,0,180,85);
+</script></textarea>
+<br><br><center><table bgcolor="Azure" border=0>
+<tr><td>
+<Center>
+<canvas id="desen02" width="200" height="100" style="border:1px solid #c3c3c3;">
+Browser-ul d-voastra nu suporta marcatorul CANVAS.
+</canvas>
+<script>
+var d = document.getElementById("desen02");
+var ctx = d.getContext("2d");
+ctx.fillStyle = "#00AA00";
+ctx.fillRect(0,0,180,85);
+</script></Center>
+</td></tr></table></center></b></b>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Trasarea unui text:<br><br>
+
+<textarea width="100%" height="400px" style="width:100%;height:180px" name="code" wrap="logical" rows="12" cols="42">
+<canvas id="desen03" width="200" height="100" style="border:1px solid #d3d3d3;">
+Browser-ul d-voastra nu suporta marcatorul CANVAS.</canvas>
+
+<script>
+var d = document.getElementById("desen03");
+var ctx = d.getContext("2d");
+ctx.font = "20px Arial";
+ctx.strokeText("Text afisat cu canvas",5,40);
+</script>
+</textarea>
+<br><br><center><table bgcolor="Azure" border=0>
+<tr><td>
+<Center>
+<canvas id="desen03" width="200" height="100" style="border:1px solid #d3d3d3;">
+Browser-ul d-voastra nu suporta marcatorul CANVAS.</canvas>
+
+<script>
+var d = document.getElementById("desen03");
+var ctx = d.getContext("2d");
+ctx.font = "20px Arial";
+ctx.strokeText("Text afisat cu canvas",5,40);
+</script>
+
+</Center>
+</td></tr></table></center></b></b>
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand aceste elemente grafice vom realiza o aplicatie - termometru:<br><br>
+
+<ul>
+ <li> <font color= "Black" size=4> Instrument virtual </font>
+</ul>
+<form name="f24_0">  
+<textarea width="100%" height="400px" style="width:100%;height:1220px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body onLoad="set_ter()";>
+<center><table bgcolor="WhiteSmoke" border =1 width="220"><tr><td align="center">
+<center><br>
+metru<br><br></center> 
+<canvas id="desen04" width="100" height="260" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<br><br>
+<input type="range" value="0" id="ra" min="0" max="255"  onchange="set_ter()"/>
+<input id="val_ter" type="text" size="2" value="0" max="200">
+<br>
+</td></tr></table></center>
+<script type="text/javascript">
+
+var ctx4=desen04.getContext("2d");
+ctx4.lineWidth = .5;
+val_max=700; 
+w=desen04.width ;
+h=desen04.height/2-20;
+var i=0;
+function termo(x0,y0,wd,ht,val,vm){
+// sterg tot continutul
+	ctx4.beginPath();
+	ctx4.fillStyle = "#FFFFFF";
+	ctx4.fillRect(x0-1,y0-5,wd+40,ht+7);
+	ctx4.stroke();	
+// desenez contur termometru
+	ctx4.beginPath();
+	ctx4.moveTo(x0,y0); 
+	ctx4.strokeStyle = "rgb(255,0,0)";
+	ctx4.lineTo(x0+wd,y0);
+	ctx4.lineTo(x0+wd,y0+ht);
+	ctx4.lineTo(x0,y0+ht);
+	ctx4.lineTo(x0,y0);
+	ctx4.stroke();
+// desenez gradatii	
+
+	ctx4.stroke();
+	ctx4.beginPath();
+	ctx4.strokeStyle = "rgb(120,120,120)";
+	ctx4.font = "10px Arial";
+	val_a=0;
+	for (j = ht; j >=0; j -= 5)
+	{
+		ctx4.moveTo(x0+wd+2,y0+j); 
+		if (j % 25 == 0)
+		{
+			ctx4.lineTo(x0 + wd + 12,y0 + j);
+			ctx4.strokeText(val_a,x0 + wd + 20,y0 + j+3);
+			val_a=val_a+Math.round(25*vm/ht);
+		}
+		else
+		{
+			ctx4.lineTo(x0 + wd + 7,y0 + j);
+		}
+	}
+	ctx4.stroke();
+	ctx4.beginPath();
+	ctx4.fillStyle = "#0000ff";
+	ctx4.fillRect(x0+1,y0+ht-(val*ht/vm),wd-2,val*ht/vm);
+	ctx4.stroke();
+}
+
+function set_ter(){
+  //val = Math.round(Math.random()*200);
+  val= parseInt(document.getElementById('ra').value);
+  document.getElementById('val_ter').value=val;
+  i++;
+  termo(10,10,15,225,val,val_max);
+  setTimeout("set_ter()",500);
+}
+</script>
+</body>
+</html>
+
+
+</textarea>
+</form>
+<script>document.write(f24_0.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Trasare si sinus si cosinus:<br><br>
+
+<textarea width="100%" height="400px" style="width:100%;height:1000px" name="code" wrap="logical" rows="12" cols="42">
+<center><table bgcolor="WhiteSmoke" border =1 width="600"><tr><td>
+<center><br>Reprezentari grafice<br><br></center> 
+<center><table border="0" width="400"><td><tr>
+<canvas id="desen05" width="500" height="260" style="border:1px solid #c3c3c3;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<br><br>
+<INPUT onclick=sinus() type=button value=Sinus>
+<INPUT onclick=cosinus() type=button value=Cosinus>
+<INPUT onclick=axe() type=button value=Axa_x>
+<INPUT onclick=sterg05() type=button value=Sterg:>
+</td></tr></table></center>
+</td></tr></table></center>  
+<script type="text/javascript">
+var ctx5=desen05.getContext("2d");
+ctx5.lineWidth = .5; 
+w=desen05.width ;
+h=desen05.height/2-20;
+
+ function axe() {
+	var x0=0;
+	var y0=h+20;
+	ctx5.beginPath();
+	ctx5.moveTo(0,y0); 
+	ctx5.strokeStyle = "rgb(128,128,128)"; 
+	ctx5.lineTo(w,y0);
+	ctx5.stroke();
+}
+function sinus(){
+  x=0;
+  yv=20+100*(1-Math.sin(x));
+    for (i=1; i <= w ; i+=1, x+=0.0314){
+	    y=20+h*(1-Math.sin(x));
+	    ctx5.beginPath();
+		ctx5.strokeStyle = "rgb(0,0,255)"; 
+		ctx5.moveTo(i-1,yv);
+		ctx5.lineTo(i,y);
+		ctx5.stroke();
+		yv=y;
+	}
+}
+function cosinus(){
+  x=0;
+  yv=20+100*(1-Math.sin(x));
+    for (i=1; i <= w ; i+=1, x+=0.0314){
+	    y=20+h*(1-Math.cos(x));
+	    ctx5.beginPath();
+		ctx5.strokeStyle = "rgb(0,255,0)"; 
+		ctx5.moveTo(i-1,yv); 
+		ctx5.lineTo(i,y);
+		ctx5.stroke();
+		yv=y;
+	}
+}
+function sterg05() {	
+	ctx5.clearRect(0, 0, desen05.width, desen05.height);
+	axe();
+}
+axe();
+</script>
+</textarea>
+
+<br><br>
+<center><table bgcolor="WhiteSmoke" border =1 width="600"><tr><td>
+<center><br>Reprezentari grafice<br><br></center> 
+<center><table border="0" width="400"><td><tr>
+<canvas id="desen05" width="500" height="260" style="border:1px solid #c3c3c3;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<br><br>
+<INPUT onclick=sinus() type=button value=Sinus>
+<INPUT onclick=cosinus() type=button value=Cosinus>
+<INPUT onclick=axe() type=button value=Axa_x>
+<INPUT onclick=sterg05() type=button value=Sterg:>
+</td></tr></table></center>
+</td></tr></table></center>  
+<script type="text/javascript">
+var ctx5=desen05.getContext("2d");
+//ctx5.lineWidth = 1; 
+ctx5.lineWidth = 0.5; 
+w=desen05.width ;
+h=desen05.height/2-20;
+
+ function axe() {
+	var x0=0;
+	var y0=h+20;
+	ctx5.beginPath();
+	ctx5.moveTo(0,y0); 
+	ctx5.strokeStyle = "rgb(128,128,128)"; 
+	ctx5.lineTo(w,y0);
+	ctx5.stroke();
+}
+function sinus(){
+  x=0;
+  yv=20+100*(1-Math.sin(x));
+    for (i=1; i <= w ; i+=1, x+=0.0314){
+	    	y=20+h*(1-Math.sin(x));
+	    	ctx5.beginPath();
+		ctx5.strokeStyle = "rgb(0,0,255)"; 
+		ctx5.moveTo(i-1,yv);
+		ctx5.lineTo(i,y);
+		ctx5.stroke();
+		yv=y;
+	}
+}
+function cosinus(){
+  x=0;
+  yv=20+100*(1-Math.sin(x));
+    for (i=1; i <= w ; i+=1, x+=0.0314){
+	    	y=20+h*(1-Math.cos(x));
+	    	ctx5.beginPath();
+		ctx5.strokeStyle = "rgb(0,255,0)"; 
+		ctx5.moveTo(i-1,yv); 
+		ctx5.lineTo(i,y);
+		ctx5.stroke();
+		yv=y;
+	}
+}
+function sterg05() {	
+	ctx5.clearRect(0, 0, desen05.width, desen05.height);
+	axe();
+}
+axe();
+</script>
+
+<br><br><font color= "black" size=4><li><b>Trasare figuri geometrice folosind biblioteca wz_jsgraphics.js </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Trasarea liniilor, curbelor, cercuri, elipse, dreptungiuri, etc nu sunt incluse in modului standard JS
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a desena aceste elemente e nevoie de apelul unor biblioteci speciale, destinate graficii. Aceste 
+biblioteci trebuiesc incarcate inainte de rularea script-ului. Am gasit de exemplu o biblioteca nunita:"wz_jsgraphics.js" Ea trebuie 
+plasata impreuna cu fisierele surasa ale paginii pentru a putea fi incarcata.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru preluarea bibliotecii:<a href="wz_jsgraphics.js">  apasati aici ! </a>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Includerea bibliotecii in aplicatie se face cu declaratia:
+<br><b>&lt;script type="text/javascript" src="wz_jsgraphics.js"&gt;&lt;/script&gt;</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia urmatoare traseaza diferite forme geometrice<br><br>  
+<form name="f50">  
+<textarea width="100%" height="400px" style="width:100%;height:490px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<body> 
+<center><table border="0" width="400"><td><tr>
+<div id="desen" style="position:relative;height:260px;width:400px;"></div>
+<script type="text/javascript">
+function deseneaza()
+{
+  jg.setColor("#ff0000"); // red
+  jg.drawRect(0, 0, 400, 250); // coordonate relative la desen
+  jg.drawLine(10, 113, 220, 55); 
+  jg.setColor("#0000ff"); // blue
+  jg.fillRect(110, 120, 30, 60);
+  jg.drawEllipse(10, 20, 300, 180);
+  jg.setColor("#ff0000"); // red
+  jg.drawRect(200, 100, 180, 120);
+  jg.paint();
+}
+var jg = new jsGraphics("desen");
+deseneaza();
+</script>
+<div id="desen">
+<center><br>Grafica realizata in JS<br></center>
+</div>
+</td></tr></table></center>
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f50.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Reluam aplicatia precedenta si vom insera butoane pentru a desena diferite forme geometrice
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa aplicatiei<br><br>  
+<form name="f51">  
+<textarea width="100%" height="400px" style="width:100%;height:800px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<body> 
+<center><table border="0" width="400"><td><tr>
+<div id="desen1" style="position:relative;height:260px;width:400px;"></div>
+<script type="text/javascript">
+function gr0(){
+  jg1.setColor("#ff0000"); // red
+  jg1.drawRect(0, 0, 400, 250);
+  jg1.paint();
+}
+function gr1(){
+  jg1.setColor("#0000ff"); // blue
+  jg1.drawEllipse(10, 20, 300, 180);
+  jg1.paint();
+}
+function gr2(){
+  jg1.setColor("#ff0000"); // red
+  jg1.drawRect(200, 100, 180, 120);
+  jg1.paint();
+}
+function gr3(){
+  jg1.setColor("#7cfc00"); // light green
+  jg1.drawLine(10, 113, 220, 55); 
+  jg1.paint();
+}
+function sterg(){
+  jg1.setColor("#ffffff"); // white
+  jg1.fillRect(0, 0, 400, 250);
+  jg1.setColor("#ff00c7"); // violet
+  jg1.drawRect(0, 0, 400, 250);
+  jg1.paint();
+}
+var jg1 = new jsGraphics("desen1");
+gr0();
+</script>
+<div id="desen1">
+<INPUT onclick=gr1() type=button value=Elipsa:>
+<INPUT onclick=gr2() type=button value=Dreptunghi:>
+<INPUT onclick=gr3() type=button value=Linie:>
+<INPUT onclick=sterg() type=button value=Sterg:>
+<center><br>Grafica realizata in JS<br></center>
+</div>
+</td></tr></table></center>
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f51.code.value);</script>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Reluam aplicatia pentru afisarea consumurilor lunare dar de data aceasta reprezentarea consumurilor 
+va fi cu adevarat grafica.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa aplicatiei<br><br>  
+<form name="f51_1">  
+<textarea width="100%" height="400px" style="width:100%;height:650px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<body> 
+<center><table border="0" width="400"><td><tr>
+<div id="desen2" style="position:relative;height:300px;width:400px;"></div>
+<script type="text/javascript">
+function deseneaza2()
+{
+	jg2.setColor("#FF00FF"); // Magenta 
+	jg2.drawLine(0,0,0,300);
+	jg2.drawLine(0,300,400,300);
+	jg2.setStroke(3);// grosime linie 3 pixeli
+    for (i=0; i<12; i++){
+	    jg2.setColor("#0000ff"); // blue
+	    jg2.drawLine(20*(i+1),298,20*(i+1), 298-consum[i]);
+	    jg2.setColor("#ff0000"); // red
+	    jg2.drawString(i+1, 20*(i+1)-5, 300);
+	    jg2.drawString(consum[i], 20*(i+1)-10, 275-consum[i]); 
+	}
+	jg2.setColor("#ff0000"); // red
+	jg2.setStroke();
+	jg2.paint();
+}
+var jg2 = new jsGraphics("desen2");
+consum = new Array(240,272,230,250,234,142,257,223,243,145,205,234);
+deseneaza2();
+</script>
+<div id="desen2">
+<center><br>Consumuri lunare - reprezentare grafica <br></center>
+</div>
+</td></tr></table></center>
+</body>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f51_1.code.value);</script>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am putea sa simulam valorile consumurilor cu ajutorul unei functii random, caz in care aplicatia devine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa aplicatiei<br><br>  
+<form name="f51_2">  
+<textarea width="100%" height="400px" style="width:100%;height:800px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="500"><tr><td colspan="2">
+<center><br><div id="desen4" style="position:relative;height:330px;width:400px;"></div>
+<br><font size=4 color="blue"> Consumuri energetice lunare</font> (maxim 300 Kwh)<br></center>
+<script type="text/javascript">
+function deseneaza4(){
+desen4.innerHTML="";
+var i;
+var jg4 = new jsGraphics("desen4");
+
+for (i=0; i < 12; i++) {
+ consum[i]=Math.round(Math.random()*300);
+}
+	jg4.setColor("#ffffff"); // white
+	jg4.fillRect(0, 0, 400, 330);
+	jg4.setColor("#FF00FF"); // Magenta 
+	jg4.drawLine(0,0,0,330);
+	jg4.drawLine(0,330,400,330);
+	jg4.setStroke(3);// grosime linie 3 pixeli
+    for (i=0; i<12; i++){
+	    jg4.setColor("#0000ff"); // blue
+	    jg4.drawLine(20*(i+1),328,20*(i+1), 328-consum[i]);
+	    jg4.setColor("#ff0000"); // red
+	    jg4.drawString(i+1, 20*(i+1)-5, 330);
+	    jg4.drawString(consum[i], 20*(i+1)-10, 305-consum[i]); 
+	}
+	jg4.setColor("#ff0000"); // red
+	jg4.setStroke();
+	jg4.paint();
+setTimeout("deseneaza4()",1000);	 
+
+}
+luni = new Array("Ianuarie","Februarie","Martie","Aprilie","Mai","Iunie","Iulie","August","Septembrie","Octombrie","Noiembrie","Decembrie");
+consum = new Array();
+deseneaza4();
+</script>
+</td></tr></table>
+</center>  
+</body>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f51_2.code.value);</script>
+
+<br><a name="im"></a>
+<font color= "black" size=4><li><b>Imagini in JS</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Limbajup JS este des utilizat pentru a gestiona imagini in paginile WEB. O serie de efecte cu 
+imagini, incluse in paginile WEB sun realizatre cu script-uri JS. Sa realizam pentru inceput un joc de lumini.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia foloseste functia af_b() care se lanseaza la interval de 0 secunda schimband imagiinile ce reprezinta luminile <br><br>  
+<form name="f59">  
+<textarea width="100%" height="400px" style="width:100%;height:1000px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td><center>
+<script type="text/javascript">
+<!-- 
+semafor=0; 
+function af_b(){
+if (semafor==0) {
+	document.t0.src='but_r.gif'
+	document.t1.src='but_v.gif'
+	document.t2.src='but_r.gif'
+	document.t3.src='but_v.gif'
+	document.t4.src='but_r.gif'
+	document.t5.src='but_v.gif'
+	document.t6.src='but_r.gif'
+	document.t7.src='but_v.gif'
+	semafor=1
+	}
+else
+	{	
+	document.t0.src='but_v.gif'
+	document.t1.src='but_r.gif'
+	document.t2.src='but_v.gif'
+	document.t3.src='but_r.gif'
+	document.t4.src='but_v.gif'
+	document.t5.src='but_r.gif'
+	document.t6.src='but_v.gif'
+	document.t7.src='but_r.gif'
+	semafor=0
+    }
+setTimeout("af_b()",1000)
+}
+//--> 
+</script>
+<table width="100%" border=0><tr><td width="30%">
+<input type="button" value="Start"onClick="af_b()">
+</td><td valign="middle">
+<img name="t0".src=but_r.gif">
+<img name="t1".src=but_v.gif">
+<img name="t2".src=but_r.gif">
+<img name="t3".src=but_v.gif">
+<img name="t4".src=but_r.gif">
+<img name="t5".src=but_v.gif">
+<img name="t6".src=but_r.gif">
+<img name="t7".src=but_v.gif">
+<br>
+</td></tr></table>
+<script>
+document.t0.src="but_v.gif"
+document.t1.src="but_r.gif"
+document.t2.src="but_v.gif"
+document.t3.src="but_r.gif"
+document.t4.src="but_v.gif"
+document.t5.src="but_r.gif"
+document.t6.src="but_v.gif"
+document.t7.src="but_r.gif"
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f59.code.value);</script>
+
+
+
+ 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia urmatoare foloseste functii JS pentru a afisa diverse imagini selectate din butoane<br><br>  
+<form name="f52">  
+<textarea width="100%" height="400px" style="width:100%;height:480px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="400"><tr><td align="center" valign="center">
+<script type="text/javascript">
+function afis0(){
+	document.imag.src="im0.jpg"
+	}
+function afis1(){
+	document.imag.src="im1.jpg"
+	}
+function afis2(){
+	document.imag.src="im2.jpg"
+	}
+</script>
+<input type="button" value="Imaginea 0:"onClick="afis0()"><br><br>
+<input type="button" value="Imaginea 1:"onClick="afis1()"><br><br>
+<input type="button" value="Imaginea 2:"onClick="afis2()"><br><br>
+</td>
+<td align="center" valign="center">
+<br>
+<img name="imag".src=im_i.jpg" alt="[imaginea selectata]">
+<script>document.imag.src="im_i.jpg"</script>
+<br><br>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+
+<script>document.write(f52.code.value);</script>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosindu-ne de tehnica descrisa mai sus, sa afisam o imagine care va fi schimbata cu alta imagine
+in momentul cand mouse-ul ajunge pe imagine, dupa care revine la imaginea initiala, in momentul cand mouse-ul paraseste imaginea.
+<form name="f53">  
+<textarea width="100%" height="400px" style="width:100%;height:380px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="400"><tr><td align="center" valign="center">
+<script type="text/javascript">
+
+function afis3_1(){
+	document.imag3.src="im2.jpg"
+	}
+function afis3_2(){
+	document.imag3.src="im7.jpg"
+	}
+</script>
+<br>
+<img name="imag3".src=im1.jpg" alt="[Schimbare imagine]"
+onmouseover="afis3_2()"
+onmouseout="afis3_1()" />
+<script>document.imag3.src="im2.jpg"</script>
+<br><br>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f53.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Modificand aplicatia de sus putem obtine un efect de lupa, in sensul ca pe "mouse over" obtinem o imagine marita.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Este suficient sa pregatim doua fisiere im1.jpg si im1_m.jpg care contin aceeasi imagine dar la rezolutii diferite<br><br>  
+<form name="f54">  
+<textarea width="100%" height="400px" style="width:100%;height:380px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="400"><tr><td align="center" valign="center">
+<script type="text/javascript">
+
+function afis4_1(){
+	document.imag4.src="im1.jpg"
+	}
+function afis4_2(){
+	document.imag4.src="im1_m.jpg"
+	}
+</script>
+<br>
+<img name="imag4".src=im1_m.jpg" alt="[Schimbare rezolutie]"
+onmouseover="afis4_1()"
+onmouseout="afis4_2()" />
+<script>document.imag4.src="im1_m.jpg"</script>
+<br><br>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f54.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Folosind evenimentele: onmouseover, onmouseout, onclick, vom realiza n comutatoare: <br><br> 
+<form name="f61">  
+<textarea width="100%" height="400px" style="width:100%;height:1200px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="810"><tr><td align="center" valign="center">
+
+<script type="text/javascript">
+
+function aff_1(ni,n){
+	x = document.getElementById(ni);
+	if(b[n]==0){
+		x.src="but_ov.gif";
+		}
+	else{
+		x.src="but_or.gif";
+		}
+}
+function aff_2(ni,n){
+	
+	x = document.getElementById(ni);
+	if(b[n]==0){
+		x.src="but_r.gif";
+		b[n]=1;
+	}	
+	else{
+		x.src="but_v.gif";
+		b[n]=0;
+	}
+	bin_zec(b);
+}
+function aff_3(ni,n){
+	x = document.getElementById(ni);
+	if(b[n]==0){
+		x.src="but_v.gif";
+		}
+	else{
+		x.src="but_r.gif";
+	}
+}
+
+function gen_comut(k){
+	
+	for(i=k-1;i>=0;i--){
+		if(b[i]==0){
+			document.write('<img id=\"imag'+i+'\" src=\"but_v.gif\" onmouseover=\"aff_1(\'imag'+i+'\','+i+')\" onclick="aff_2(\'imag'+i+'\','+i+')\" onmouseout="aff_3(\'imag'+i+'\','+i+')\" >');
+		}
+		else{
+			document.write('<img id=\"imag'+i+'\" src=\"but_r.gif\" onmouseover=\"aff_1(\'imag'+i+'\','+i+')\" onclick="aff_2(\'imag'+i+'\','+i+')\" onmouseout="aff_3(\'imag'+i+'\','+i+')\" >');
+
+		}
+	}
+	document.write('</td><td width="120"><div id="aff">Val=</div></td>');
+	bin_zec(b);
+}
+function bin_zec(b){
+	val_z=0;
+	for(i=0;i<nrb;i++){
+		val_z=val_z+b[i]*Math.pow(2,i)	
+	}
+	
+	aff.innerHTML = 'Val='+val_z;
+}
+var b = new Array();
+nrb=32;
+var val_z;
+for(i=0;i<nrb;i++){
+	b[i]=0;	
+}
+b[0]=1;
+b[2]=1;
+gen_comut(nrb);
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f61.code.value);</script>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca avem 10 imagini cu numele "im1.jpg" - "im10.jpg" si vrem sa realizam un tabel de imagini.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi instructiuni de ciclare din JS pentru a afisa cele 10 imagini.<br><br>
+<form name="f55">  
+<textarea width="100%" height="400px" style="width:100%;height:440px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="400"><tr><td>
+<center>
+<br> Tabel imagini 2 linii si 5  coloane <br><br>
+<script type="text/javascript">
+document.write("<table border=1>");
+  var i=1,j=1,k=0;
+  do {
+   i=1;
+   document.write("<tr>"); 	
+   do {   
+    document.write("<td><img src='im"+k+".jpg' width='80' height='60'></td>");
+    i+=1; 
+    k+=1;
+   } while (i<=5);
+  j+=1; 
+  document.writeln("</tr>"); 
+ }while (j<=2);
+document.writeln("</table>")  
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f55.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un slide show din imaginile de sus "im1.jpg" - "im10.jpg" .
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aceste imagini se preincarca intr-o matrice dupa care se vor afisa cu temporizare de 0.8 s  
+<form name="f56">  
+<textarea width="100%" height="400px" style="width:100%;height:460px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="400"><tr><td align="center" valign="center">
+<script type="text/javascript">
+dly = 800;
+i_nr = 1;
+// Preincarcare imagini
+imgn = new Array();
+for(i = 0; i < 11; i++) {   
+imgn[i] = new Image();  
+imgn[i].src = "im" + i + ".jpg";
+}
+function anm() {   
+  document.im_anm.src = imgn[i_nr].src 
+  i_nr++;
+  if(i_nr > 10) {
+      i_nr = 0;   
+   }
+}
+</script>
+<br>Imagini animate<br><br>
+<img name="im_anm" src="im_i.jpg" alt="[Imagini animatie]" onLoad="setTimeout('anm()', dly)">
+<br><br>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f56.code.value);</script>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a putea controla viteza de afisare a imaginilor vom introduce doua butoane, unul pentru afisare mai 
+rapida respectiv si celalalt pentru afisare mai rara .
+<form name="f57">  
+<textarea width="100%" height="400px" style="width:100%;height:800px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="400"><tr><td align="center" valign="center">
+<script type="text/javascript">
+delay = 500;
+im_nr = 1;
+// Preincarcare imagini
+imagini = new Array();
+for(i = 0; i < 11; i++) {   
+imagini[i] = new Image();  
+imagini[i].src = "im" + i + ".jpg";
+}
+function animatie() {   
+  document.im_anim.src = imagini[im_nr].src;
+  im_nr++;
+  if(im_nr > 10) {
+      im_nr = 0 ;  
+   }
+}
+function mai_rar()   {   
+   document.f_dly.t_dly.value=delay;
+   delay+=100;
+   if(delay > 4000) 
+   delay = 4000;
+}
+function mai_repede()
+{
+   document.f_dly.t_dly.value=delay;
+   delay-=100;
+   if(delay < 0) 
+   delay = 0;
+}
+</script>
+
+<form name=f_dly> Imagini animate cu temporizarea: <input type=text name=t_dly size=3 value=500></form>
+<img name="im_anim" src="im_i.jpg" alt="[Imagini animatie]" onLoad="setTimeout('animatie()', delay)">
+<br><br>
+</td></tr>
+<td align="center" valign="center">
+<input type="button" value="Mai rar" onClick="mai_rar()">
+<input type="button" value="Mai repede" onClick="mai_repede()">
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f57.code.value);</script>
+
+<br><br><a name="menu"></a>
+<font color= "black" size=4><li><b> Meniuri in JS </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosindu-ne de functii si imagini putem crea meniuri interesante care combina grafica si marcatorii link.
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Mai jos este prezentata sursa unui meniu realizat in Java Script<br><br>  
+<form name="f58">  
+<textarea width="100%" height="400px" style="width:100%;height:1410px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- 
+men_activ=0; 
+function Activ (img){ 
+	if (men_activ) { 
+		document[img].src=eval(img+'on.src'); 
+		} 
+	} 
+function InActiv(img) { 
+	if(men_activ) { 
+		document[img].src=eval(img+'off.src');
+ 		}
+ 	} 
+
+men_activ=1;
+
+/* Preincarcare imagini */
+ 
+meniu0off=new Image(); 
+meniu0off.src="meniu0.gif"; 
+meniu0on=new Image(); 
+meniu0on.src="meniu0_hl.gif";  
+
+meniu1off=new Image(); 
+meniu1off.src="meniu1.gif"; 
+meniu1on=new Image(); 
+meniu1on.src="meniu1_hl.gif";
+
+meniu2off=new Image();
+meniu2off.src="meniu2.gif"; 
+meniu2on=new Image();
+meniu2on.src="meniu2_hl.gif"; 
+
+meniu3off=new Image(); 
+meniu3off.src="meniu3.gif"; 
+meniu3on=new Image();
+meniu3on.src="meniu3_hl.gif"; 
+
+meniu4off=new Image(); 
+meniu4off.src="meniu4.gif"; 
+meniu4on=new Image(); 
+meniu4on.src="meniu4_hl.gif";
+
+meniu5off=new Image(); 
+meniu5off.src="meniu5.gif"; 
+meniu5on=new Image(); 
+meniu5on.src="meniu5_hl.gif"; 
+
+//--> 
+</SCRIPT> 
+
+<A HREF="#"  
+onMouseOver="Activ('meniu0');window.status='Notiuni introductive despre HTML'; return true" 
+onMouseOut="InActiv('meniu0')"><IMG SRC="meniu0.gif" NAME="meniu0" ALT="Notiuni introductive despre HTML" BORDER=0></A> 
+
+<BR><A HREF="#" 
+onMouseOver="Activ('meniu1');window.status='Cascading Style Sheets - CSS '; return true" 
+onMouseOut="InActiv('meniu1')"><IMG SRC="meniu1.gif" NAME="meniu1" ALT="Cascading Style Sheets - CSS " BORDER=0></A> 
+
+<br><A HREF=".#"
+onMouseOver="Activ('meniu2');window.status='Limbajul Java Script'; return true" 
+onMouseOut="InActiv('meniu2')"><IMG SRC="meniu2.gif" NAME="meniu2" ALT="Meniul 2" BORDER=0></A> 
+
+<BR><A HREF="#"
+onMouseOver="Activ('meniu3');window.status='Programarea aplicatiilor Server-Side'; return true" 
+onMouseOut="InActiv('meniu3')"><IMG SRC="meniu3.gif" NAME="meniu3" ALT="Limbajul Java Script" BORDER=0></A> 
+
+<BR><A HREF="#" 
+onMouseOver="Activ('meniu4');window.status='Baze de date in pagini Web '; return true" 
+onMouseOut="InActiv('meniu4')"><IMG SRC="meniu4.gif" NAME="meniu4" ALT="Baze de date in pagini Web " BORDER=0></A> 
+
+<BR><A HREF="#" 
+onMouseOver="Activ('meniu5');window.status='Dezvoltarea aplicatiilor WEB '; return true" 
+onMouseOut="InActiv('meniu5')"><IMG SRC="meniu5.gif" NAME="meniu5" ALT="Dezvoltarea aplicatiilor WEB " BORDER=0></A> 
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f58.code.value);</script>
+<br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; <br><br>
+<form name="f60">  
+<textarea width="100%" height="400px" style="width:100%;height:20px" name="code" wrap="logical" rows="12" cols="42">
+
+</textarea>
+</form>
+<script>document.write(f60.code.value);</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+
+<TITLE> test </tITLE>
+
+<SCRIPT LANGUAGE="JavaScript">
+  var i=1;
+  do {  
+   i+=1; 
+   document.writeln("i=",i);
+  } while (i<10);
+
+
+var a, x, y
+var r=10
+with (Math) {  
+ a = PI * r * r   
+ x = r * cos(PI) 
+ y = r * sin(PI/2)}
+
+  document.writeln("<br>"+"a=",a)
+  document.writeln("<br>"+"x=",x)
+  document.writeln("<br>"+"y=",y)
+  document.writeln("<br>")
+
+
+a = new Array(4)
+
+for (i=0; i < 4; i++) {
+   a[i] = new Array(4)  
+     for (j=0; j < 4; j++) {    
+       a[i][j] = "["+i+","+j+"]"   }}
+
+for (i=0; i < 4; i++) {
+   str = "Randul "+i+":"   
+   for (j=0; j < 4; j++) {
+      str += a[i][j]   }   
+
+document.write(str,"<p>")}
+</SCRIPT>
+<INPUT TYPE="button" VALUE="Imagine0:"onClick="afis0()">
+<INPUT TYPE="button" VALUE="Imagine1:"onClick="afis1()">
+<INPUT TYPE="button" VALUE="Imagine2:"onClick="afis2()">
+<img name="tt".src=0.jpg">
+
+<SCRIPT>
+function afis0(){
+	document.tt.src="image0.jpg"
+	}
+function afis1(){
+	document.tt.src="image1.jpg"
+	}
+function afis2(){
+	document.tt.src="image2.jpg"
+	}
+
+function howMany(selectObject) {  
+ var numberSelected=0   
+ for (var i=0; i < selectObject.options.length; i++) { 
+     if (selectObject.options[i].selected==true)         numberSelected++   }  
+ return numberSelected}
+</SCRIPT>
+
+<FORM NAME="selectForm">
+<P><B>Selectati preferintele apoi apasati butoul Nr selectii :</B><BR>
+
+<SELECT NAME="musicTypes" MULTIPLE>
+
+<OPTION SELECTED> R&B     
+<OPTION> Jazz
+<OPTION> Blues
+<OPTION> New Age  
+<OPTION> Classical
+<OPTION> Opera
+
+</SELECT><P>
+
+<INPUT TYPE="button" VALUE="Nr selectii?"onClick="alert ('Numarul de selectari: ' + howMany(document.selectForm.musicTypes))">
+
+</FORM>
+
+<FORM NAME="statform">
+
+<INPUT TYPE = "text" name = "Nume" size = 20>
+<br>
+<INPUT TYPE = "text" name = "Ani" size = 3>
+
+<textarea name="tex" cols="40" rows="5" > text start
+<b>eferwdfer</b><br>
+ewewd
+  ewdedf
+</textarea></p><br />
+<br>
+</FORM>
+
+<INPUT TYPE="button" VALUE="Numele :"onClick="alert ('Numele: '  + document.statform.Nume.value)">
+ 
+<INPUT TYPE="button" VALUE=" Ani:"onClick="alert ('Varsta '+ document.statform.Ani.value)">
+
+<INPUT TYPE="button" VALUE=" tex:"onClick="alert ('Textul'+ document.statform.tex.value)">
+
+
+
+<SCRIPT>
+document.write(statform.tex.value);
+document.tt.src="image0.jpg";
+</SCRIPT>

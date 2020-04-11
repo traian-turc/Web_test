@@ -1,0 +1,1 @@
+<center>Textul 2 contine inclusiv marcatorul pentru centrare</center>
