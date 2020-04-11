@@ -1,0 +1,283 @@
+<HTML>
+<TITLE>
+Casting
+</TITLE>
+<BODY bgcolor=white>
+<CENTER>
+<H1>
+Casting
+</H1>
+</CENTER>
+<BODY bgcolor=white>
+
+In C/C++, casting serves several different purposes.  The designers
+of C++  realized that and decided that there should be four kinds
+of cast operators.
+<P>
+ <UL>
+   <LI> <B>static cast</B>
+<P>
+   Conventional casting of one type to another, where there is some
+meaning to what the cast will do.  (Thus, normally you can't cast
+from a <B>Foo</B> to a <B>Bar</B>, unless there's a definition for
+how to do this).
+<P>
+   <LI> <B>dynamic cast</B>
+<P>
+   Meant for downcasting from a base class to a derived class.  This
+check is done at runtime (as opposed to static casting which can
+generate the necessary code to do the casting at compile time).
+<P>
+   <LI> <B>const cast</B>
+<P>
+   To temporarily remove constness from a const variable.  Mostly used
+to get rid of warnings about violating constness.
+<P>
+   <LI> <B>reinterpret cast</B>
+<P>
+   To allow you to cast one pointer type to another pointer type
+to another.
+</UL>
+<P>   
+   We're only interested in <B>static_cast</B> and <B>reinterpret_cast</B>.
+<H3>
+More about <tt>static_cast</tt>
+</H3>
+   The main kind of static casting we're interested in falls into
+two categories:
+<P>
+<UL type=disc>
+  <LI> Casting from one primitive type to another (e.g., <B>char</B>
+to <B>int</B>, <B>float</B> to <B>int</B>).
+
+   <LI> Casting from a shorter type to a longer type or vice versa
+ (e.g., <B>short</B> to <B>int</B>, <B>long</B> to <B>int</B>).
+</UL>
+<P>
+   Casting from one type to another is interesting, particularly,
+casting <B>float</B> to <B>int</B>.  Like the unary minus, the
+casting operation does NOT change the value of the variable it is
+casting.  Instead, like unary minus, it creates a temporary value
+which is the casted result.
+<P>
+   For example, consider
+<FONT size=+2>
+<PRE>
+  float f = 3.0 ;
+  int val = static_cast&lt;int&gt;( f ) ;
+</PRE>
+</FONT>
+   The static cast of <B>f</B> to an int does not change the value
+of <B>f</B>.  Instead, it creates a temporary <B>int</B>.
+<P>
+   Casting <B>float</B> to <B>int</B> causes bits to change (from the
+original value to the temporary casted value). Recall that <B>float</B>
+are represented in IEEE 754 single precision while <B>int</B> is
+2C.  Those are different representations.
+<P>
+   The semantics of casting <B>float</B> to <B>int</B> causes the
+value to get truncated (thus, 3.9 is truncated to 3.0), but it also
+changes representation.   
+<P>
+   The semantics of casting <B>int</B> to <B>value</B> causes the
+value to convert to float (thus, 3 is converted to 3.0), which also
+changes representation.
+<P>
+   We look at this kind of casting, precisely because it makes
+you think about the internal data representation.  3 and 3.0 look
+very close when you write it in a program.  However, internally,
+(once stored in a running program) they're represented quite
+differently.
+<H4>
+Casting different sizes
+</H4>
+   Sometimes you need to cast from a shorter type to a longer type
+or vice versa.  For example, you may need to cast from <B>short int</B>
+to an <B>int</B>.  These <I>may</I> be the same sizes, depending on the
+compiler, but for now, let's assume they are different sizes.
+<P>
+   If you go from a smaller size to a larger size, at least for an
+<B>int</B>, it sign extends.  It zero-extends if it's an <B>unsigned
+int</B>.  This preserves the value as you increase the number of
+bytes.
+<P>
+   If you go from a larger size to a smaller size (in both <B>int</B>
+and <B>unsigned int</B>) it chops off the uppermost bytes.  This can
+cause the number to change values (since those uppermost bytes might
+be useful for the value).
+<P>
+   Even though the representation isn't as dramatic as <B>float</B>
+to <B>int</B>, it still occurs.
+<H3>
+More about <tt>reinterpret_cast</tt>
+</H3>
+   In C, it turns out to be useful to convert from one pointer
+type to another, especially if you're working on systems programming
+(operating systems, for example).
+<P>
+   Since all pointers are addresses, and all addresses have the same
+number of bytes (at least, on a given ISA), the casting does not
+convert any bits.
+<P>
+   C++ decided to call this pointer-to-pointer casting,
+<B>reinterpret_cast</B>.  What's being reinterpreted is
+the meaning of the bytes.
+<P>
+   Let's look at an example:
+<FONT size=+2>
+<PRE>
+   Foo * fooPtr = new Foo( 2, 3 ) ;  // create a Foo pointer
+   Bar * barPtr = reinterpret_cast&lt;Bar *&gt;( fooPtr ) ;
+</PRE>
+</FONT>
+   We had a <B>Foo *</B> pointer, which is some address in memory,
+that stores some number of bytes of a <B>Foo</B> object.
+<P>
+   When reinterpeting that pointer to a <B>Bar *</B> pointer, those
+bytes of the <B>Foo</B> object are <I>unchanged</I>.
+<P>
+   If you dereference <B>barPtr</B>, the runtime system will consider
+the bytes stored at the addreess of <B>barPtr</B> (which is the same
+as the address of <B>fooPtr</B>) to be a <B>Bar</B> object.
+<P>
+   If you're thinking "there's no way that those bytes, which are
+currently meaningful for a <B>Foo</B> object, could also be meaningful
+for a <B>Bar</B> object", then you're right.   More likely than not,
+<B>barPtr</B> points to a <B>Bar</B> object with garbage bytes.
+<P>
+   Worse, if <B>Bar</B> is sufficiently larger than <B>Foo</B>, then
+you might cause a core dump when accessing data members of <B>Bar</B>
+(because they may fall outside the valid rance of memory used for
+the <B>Foo</B> object).
+<P>
+   You may think that it's completely useless to reinterpret cast.
+For the most part, it is useless.   However, the most common use
+of reinterpret cast is to look at the individual bytes of some
+structure.
+<P>
+   For example, suppose you're interested in finding out what
+the individual bytes of a <B>long int</B> look like (you can
+pick any type instead of <B>long int</B>).
+<P>
+<FONT size=+1>
+<PRE>
+   long val = 0x01234567cafebabe ;
+   char * charPtr = reinterpret_cast&lt;char *&gt;( &amp; val ) ;
+   for ( int i = 0 ; i < sizeof( long ) ; i++ )
+     {
+       cout &lt;&lt; byteToHex( *charPtr ) &lt;&lt; endl ;
+       charPtr ++ ;
+     }
+</PRE>
+</FONT>
+   This puts a pointer at the beginning of <B>val</B> and prints out
+the bytes of <B>val</B> in hex format (assume <B>byteToHex()</B>
+returns a string that represents the hex value of the <B>char</B>
+passed as argument).
+<P>
+   Why would you do this?  Functions like <B>read()</B> and
+<B>write()</B> (which are part of the <B>istream</B> and
+<B>ostream</B> methods), often take a <B>char *</B> pointer, which is
+used as an address of any object/data type, and the prints out or
+reads in the contents of some object byte by byte.  Again, it's useful
+to think of <B>char</B> as a byte type, in this case, instead of
+thinking of it as a character, just like it's useful to think
+of <B>char *</B> as an address in memory of some object, rather
+than an address of a character.
+<P>
+   Accessing the individual bytes can be useful when sending
+structures across a network, or when saving a structure to a file.
+<P>
+   The only problem with this sending objects or structures in this is
+potential incompatibility with the host machine (which sends the data)
+and the remote machine (which receives the data).  If you send out an
+arbitrary object byte-by-byte over the network, the remote machine
+that receives this data must represent the object in exactly the same
+way that the host machine represents it (the same endianness, same
+order of data members, etc).
+<P>
+   If the remote machine has a different representation, it may be
+worth encoding the structure of the object using some convention both
+sides agree on (say, XML).  This will, more than likely, take more
+space and more processing, but should be more compatible for a wider
+variety of machines.  In any case, coming up with a representation
+makes you think of a representation rather than assuming any object
+sent over the network will automatically be put together properly on
+the other end.
+<P>
+   Another reason for using reinterpret cast is to allow you to edit
+individual bytes in memory by using bitwise/bitshift operators.  This
+may seem like a very odd reason, but if you're writing linkers or
+loaders, it may be necessary to edit the instructions (this is called
+<B>binary rewriting</B>) as you link or load.
+
+<H4>
+Converting float to int while preserving bits
+</H4>
+   Casting from <B>float</B> to <B>int</B> or vice-versa causes
+the representation of the casted result to change from the original
+representation.
+<P>
+    Suppose a <B>float</B> and <B>int</B> both have 4 bytes.
+You've written a number in <B>float</B> but want to know its
+corresponding <B>int</B> value.   That is, in both cases, the bits
+are exactly the same, but it has one meaning, if you think of those
+bits as a <B>float</B> and another meaning if you think of those
+bits as an <B>int</B>.
+<P>
+     How do you convert between the two types without changing the
+bits (which occurs when you static cast)?   The answer?  Reinterpret
+cast.  Of course, reinterpret cast works with pointers, so we'll
+need pointers.
+<P>
+   The code is amazingly short:
+<FONT size=+1>
+<PRE>
+   float val = 3.0 ;
+   int num = * reinterpret_cast&lt;int *&gt;( &amp; val ) ;
+</PRE>
+</FONT>
+   In this code, we create a pointer to <B>val</B> using the 
+&amp; operator.   This is reinterpreted as a <B>int *</B> pointer.
+Recall that reinterpreting pointers does not change the bytes in
+memory.
+<P>
+   Then, you dereference it to get the <B>int</B>.
+<P>
+  Of course, this code assumes that <B>float</B> and <B>int</B> have
+the same number of bytes.  On most machines/compilers, this is true,
+but it's possible that the sizes may be different.  Languages like
+Java avoid this problem by mandating the sizes of various types.
+Languages like C/C++ leave the number of bytes of each type up to the
+compiler writer.   The assumption is, for C/C++, that the compiler
+writer will pick the size that's the most "natural" for the CPU
+it runs on (thus, on old PCs, <B>int</B> was 2 bytes, and on recent
+PCs, they are 4 bytes).
+<H3>
+Summary
+</H3>
+   The reason we look at static casting is to note that casting often
+causes a change of representation.  Either the representation can
+completely change (say, from 2C to IEEE 754), or it changes in the
+number of bytes (say, from int to long).   The bits change when
+casting is performed.
+<P>
+   On the other hand, when you reinterpret cast (which is casting from
+one pointer type to another) the bits do not change.  That's because
+all pointers on a given machine have the same number of bytes (usually
+4 or 8 bytes for a 32 bit and 64 bit machine, respectively).  Reinterpret
+casting preserves the address.
+<P>
+   The difference is when you dereference the pointer.   Suppose the
+new pointer type requires N bytes of memory.   The runtime system
+will use the N bytes at the address, and consider those bytes as the
+object.  Usually, this will cause you to have a nonsense object.
+<P>
+   Thus, the most common use of reinterpret casting is to cast
+to a <B>char *</B> where you can then look at the individual bytes
+of an object (since <B>char</B> holds one byte), possibly so you
+can save it to a file or send the bytes over a network.  Occasionally,
+you can edit bytes by casting to a <B>char *</B> (and dereferencing).
+
+</BODY>
+</HTML>

@@ -1,0 +1,88 @@
+<html>
+<title> Laborator diverse </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator diverse </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font>
+<li>Diverse
+<ol>
+<li> utilizare printf si scanf
+<li> 
+<li> 
+
+</ol>
+<li>Meniu :
+<ol>
+<li> 
+<li> 
+<li> 
+<li> 
+<li> 
+</ol> 
+&nbsp;&nbsp;&nbsp;&nbsp;Utilizare printf si scanf.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < stdio.h >
+
+void main(){ 
+int a[100][100];
+int n,m,i,j,suma=0,produs=1;
+  printf("Introduceti nr de linii: ");
+  scanf("%d",&n);
+  printf("Introduceti nr de coloane: ");
+  scanf("%d",&m);
+  if(n > 100){
+   printf("Numarul introdus este prea mare\n"); 
+   return;}
+  else if(m > 100){
+   printf("Numarul introdus este prea mare\n");
+   return;}
+for(i=0;i < n;i++){
+	for(j=0;j < m;j++){
+		printf("a[%d][%d]= ",i,j);
+		scanf("%d",& a[i][j]);
+		suma+=a[i][j];
+		}
+	printf("Suma elementelor de pe aceasta linie este %d\n",suma);
+	suma=0;
+	}
+for(i=0;i < n;i++){
+	for(j=0;j < m;j++)
+		printf("%3d",a[i][j]);
+	    printf("\n");
+		}
+for (i=0;i < n;i++)
+	for (j=0;j < m;j++)
+		produs*=a[i][j];
+printf("Produsul coloanelor este %d\n", produs);
+ }
+
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>
+<li>Alte teme
+<ol>
+<li>
+<li>
+<li>
+<li>
+<li>
+<li>
+</ol>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+</body>
+</html>

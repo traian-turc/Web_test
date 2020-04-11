@@ -1,0 +1,264 @@
+<html>
+<title>Greseli subtile </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Laborator: greseli subtile </Center></TD></TR>
+</table>
+<br> - Folosirea gresita a operatorului de flux ex: cin<<
+
+<br> - La aplicatia de jos la instructiunea  <b> cout <<"\b\b"   << nr%2; </b> s-a mai adaugat un spatiu <b> cout <<"\b\b "   << nr%2; </b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisare binara
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//Se afiseaza un nr intr 0 si 255 in binar
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main()
+{
+    int nr;
+    cout <<"Introduceti un numar intre 0 si 255 :";
+    cin >>nr;
+    cout <<"\n\nNumarul in binar este:\t\t";
+    cout <<"\b\b"   << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr;
+
+
+  cin.ignore();
+  cin.get();
+  return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizare instructiunea schwich - s-au utilizat ghilimele duble in loc de simple
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// program care asteapta optiunea d-voastra si o afiseaza. 
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	char x;
+	cout <<" \nTastati: ";
+	cout <<" \n\t1-Facultatea de Inginerie";
+	cout <<" \n\t2-Facultatea de Stiinte si litere";
+	cout <<" \n\t3-Facultatrea se Stiinte Economice";
+	cout <<" \n\n\tOptiunea d-voastra: ";
+	cin >> x;
+	switch(x){
+	case "a":
+		cout <<"\n\n\tFacultatea de Inginerie " ;
+		break;
+	case "b":
+		cout <<"\n\n\tFacultatea de Stiinte si litere " ;
+		break;
+	case "c":
+		cout <<"\n\n\tFacultatrea se Stiinte Economice " ;
+		break;
+	default:
+		cout <<"\n\n\t Nu ati ales nimic !" ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;S-a folosit pentru impartire \ nu /
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// program care asteapta doua numere de la utilizator apoi le ordoneaza in ordine crescatoare
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int a,b,c;
+	cout <<" \n\tIntroduceti numarul a: ";
+	cin >> a;
+	cout <<" \n\tIntroduceti numarul b: ";
+	cin >> b;
+
+	cin >> c;
+
+switch(c){
+	case 1:
+		cout <<"\n\n\tSuma numerelor este=" << a+b ;
+		break;
+	case 2:
+		cout <<"\n\n\tDiferenta numerelor =" << a-b;
+		break;
+	case 3:
+		cout <<"\n\n\tRaportul a\b=" << a\b;     !!! greseala
+		break;
+
+default:
+	cout <<"\n\n\t Nu ati ales nimic !" ;
+}
+
+	
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Testul numarului par
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream > 
+using namespace std;
+
+int main(void)
+{
+	int a;
+	cout <<" \n\tIntroduceti numarul a: ";
+	cin >> a;
+
+	if (a%2==1){ // gresit pentru ca de ex -7%2=-1 deci va da raspus par negativ
+		if (a>0)
+			cout <<" \n\tNr impar >0!! ";
+		else
+			cout <<" \n\tNr impar <0!! ";
+	}
+	else{
+		if (a>0)
+			cout <<" \n\tNr par >0!! ";
+		else
+			cout <<" \n\tNr par <0!! ";
+
+	}
+
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cout << "\n" trebuie pus inaintea celor 3 if-uri
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main()
+{
+int i=0;
+int cr=1;// contor nr car/linie
+
+
+	while(i < 200){
+
+		if(i < 10)
+			cout << "   ";
+		if((i >= 10)&&(i < 100))
+			cout << "  ";
+
+		if(i >= 100)
+			cout << " ";
+		if (cr > 10){
+			cout << "\n";
+			cr=1;
+		}
+
+		cout << i;
+		i++;
+		cr++;
+
+	}
+  	cin.ignore();
+  	cin.get();
+  	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; c+=1 nu c=+1
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	int r=1;
+	int c=1;
+	cout <<" \n\tNumerele sunt:\n";
+	while (i <= 90)
+	{
+		cout << i << " ";
+		if(i<10)
+			cout <<" ";
+		
+		if(c==r){
+			cout <<"\n";
+			r+=1;
+			c=1;
+		}
+		else{
+			
+			c=+1;
+		}
+		i+=1;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+</body>
+</html>

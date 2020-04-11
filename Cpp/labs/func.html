@@ -1,0 +1,120 @@
+<html>
+<title> Laborator functii </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator functii </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font>
+<li>Functii
+<ol>
+<li> afisare numere pare
+<li> afisare minim
+<li> afisare numere divizibile cu doua numere date
+
+</ol>
+<li>Meniu :
+<ol>
+<li> 
+<li> 
+<li> 
+<li> 
+<li> 
+</ol> 
+&nbsp;&nbsp;&nbsp;&nbsp;Rezolvare.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// nr_pare.cpp : main project file.
+
+#include "stdafx.h"
+
+#include<stdio.h>
+#include<iostream>
+using namespace std;
+void nr_pare();
+void min();
+void divcumsin();
+
+void nr_pare()
+{
+	int n;
+	cout << "Dati n:";
+	cin >> n;
+	for(int i=1;i <=n;++i)
+		if(i%2==0) cout << i <<" ";
+}
+
+void min()
+{
+	int n,x,min=10000;
+	cout << "Cate nr cititi de la tastatura?:";
+	cin >> n;
+	for(int i=1;i <=n ;++i)
+	{
+		cout << "Dati nr:";
+		cin >> x;
+		if(x < min) min=x;
+	}
+	cout << "Minimul este:" << min;
+
+}
+
+void divcumsin()
+{
+	int m,n;
+	cout << "Dati m:";
+	cin >> m;
+	cout << "Dati n:";
+	cin >> n;
+	for(int i=10000; i <=99999; ++i)
+		if(i%m==0&&i%n==0)
+			cout << i << " ";
+}
+
+int main()
+{
+	int opt;
+	cout <<"1. Afisarea numerelor pare pana la n(n citit de la tastatura)\n";
+	cout <<"2. Calculeaza minimul din n nr intregi citite de la tastatura\n";
+	cout <<"3. Afiseaza toate nr de 5 cifre divizibile cu m si n citite de la tastatura\n";
+	cout <<"4. IESIRE\n";
+	
+	do
+	{
+		cout << "\n\nAlegeti optiunea:"; cin >> opt;
+		switch(opt)
+		{
+		case 1:nr_pare(); break;
+		case 2:min(); break;
+		case 3:divcumsin(); break;
+		case 4: break;
+		default:cout << "Optiunea aleasa nu exista in meniu!!!\nVa rugam alegeti alta optiune\n";
+		}
+	}while(opt!=4);
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>
+<li>Alte teme
+<ol>
+<li>
+<li>
+<li>
+<li>
+<li>
+<li>
+</ol>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+</body>
+</html>

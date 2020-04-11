@@ -1,0 +1,143 @@
+<html>
+<title> Operatii binare </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Operatii binare </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font><br><br>
+<li><b>Binar</b>
+<ol>
+<li> Deplasare dreapta repetata.
+<li> Joc de lumini 
+<li> Joc aleator de lumini
+</ol>
+
+&nbsp;&nbsp;&nbsp;&nbsp;Deplasare dreapta repetata.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Deplasare dreapta repetata
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+void af_binar(unsigned int );
+
+int main(void)
+{
+	system("TITLE Deplasare dreapta repetata");
+	system("COLOR F9");
+	cout << "\n\n\tDeplasare stanga 7 pozitii \n\n\n\t\t\t";
+	unsigned short int n=0x80;
+	int i;
+	for(i=0; i < 8; i++) {
+		af_binar(n);
+		n = n >> 1 ;
+	}
+	cin.ignore();
+	cin.get();
+
+  return 0;
+}
+// Afisarea bitilor ce corespund valorii parametrului u
+void af_binar(unsigned int u)
+{
+  int j;
+      for (int j=7; j>=0; j--) {
+         int bit = ((u >> j) & 1);
+         cout << bit<<" ";
+      }
+  cout << "\n\t\t\t";
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Joc de lumini realizat binar.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se plaseaza 5 butoane radiobutton si un timer.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In zona pragma region se pune:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+static unsigned short int n=0x5555; // numarul ce va fi deplasat stanga dreapta si afisat
+static unsigned short int o=0x8000;
+static unsigned short int p=0x0001;
+static int i, j, x, w, h; // h, v dimensiunile unui dreptunghi
+static int sem=0;
+static System::Drawing::Graphics^ Desen;
+static System::Drawing::SolidBrush^ Pensula;
+static System::Drawing::Pen^ Creion_blu ;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul paint pun:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Desen = this->CreateGraphics();				 	
+Pensula=gcnew System::Drawing::SolidBrush(System::Drawing::Color::Blue);
+Creion_blu=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+Desen->Clear(System::Drawing::Color(this->BackColor));
+r= gcnew System::Random();
+w=this->Size.Width/50;
+h=this->Size.Height/20;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul tick pun:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Desen->Clear(System::Drawing::Color(this->BackColor));
+x=this->Size.Width-6*w;
+if(this->radioButton1->Checked){
+	if (sem==0){
+		n=n << 1;
+		sem=1;
+	}else{
+		n=n >> 1;
+		sem=0;
+	}
+}
+if(this->radioButton2->Checked){
+	o=o >> 1;
+	p=p << 1;
+	
+	j++;
+	if (j>7){
+		j=0;
+		o=0x8000;
+		p=0x0001;
+	}
+	n=o|p;
+}
+if(this->radioButton3->Checked){
+		n=r->Next(65535);
+}
+if(this->radioButton4->Checked){
+	unsigned short int led[7]={1234,0xffff,0101,0x7777,0xaaaa,0x55555,7654};
+	j++;
+	if (j>7){
+		j=-1;
+			
+	}
+	n=led[j];
+}
+if(this->radioButton5->Checked){
+	n=0xaaaa;
+}
+for (i=15; i >= 0; i--){
+	int bit=((n >> (15-i)) & 1);
+	if (bit==1)
+		Desen->FillRectangle(Pensula, x, this->Size.Height/3, w,h);
+	else
+		Desen->DrawRectangle(Creion_blu, x, this->Size.Height/3, w,h);
+	x-=3*w;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+</body>
+</html>
