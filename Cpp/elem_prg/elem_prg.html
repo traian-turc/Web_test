@@ -1,0 +1,663 @@
+<html><head>
+<title>Elemente de programare în limbajul  C++.</title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Elemente de programare în limbajul  C++.</Center></TD></TR>
+</table>
+<a name="elem_b"></a>
+<br>
+<font color= "blue" size=4><li><b>Elemente de baza </b><br></font>
+<br><br>
+<b>Program de calculator</b>
+<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Set de instructiuni scris de programatori in vederera rularii pe un calculator.
+<br><br>
+<b>Limbaj de programare</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Este un set bine definit de expresii si reguli (sau tehnici) valide de formulare a instructiunilor pentru un computer. 
+Un limbaj de programare are definite un set de reguli sintactice si semantice.
+<br>
+<br>
+<b>Limbajul de programare C</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Limbajul C a fost creat la începutul anilor '70 de catre Brian W Kernigham si Dennis M Ritchie de la Bell Laboratories New Jersey
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Caracteristicile distinctive ale limbajului au fost clar definite de la început, ele pastrîndu-se în toate dezvoltarile ulterioare:
+<ul>
+	<li> portabilitate maxima;
+	<li> structurare;
+	<li> posibilitatea efectuarii operatiilor la nivelul masinii cu pastrarea caracteristicilor unui limbaj evoluat.
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Este un limbaj de o importanta cruciala in lumea programarii, drept pentru care exista o serie de  variante standardizate. Cel mai important standard ce ofera
+o variana standardizata a limbajului C este standardul ANSI
+<br><br>
+<font color= "Blue" size=4><li><b>Primul program ANSI C</b><br></font>
+<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+ <pre>
+   <font size="2" color="darkblue">
+// Primul program scris in Visual C++ de tipul:ANSI C
+
+#include "stdafx.h"
+#include &lt stdio.h &gt
+int main() {
+char c[1];
+printf("Bine ati venit la cursul de : Programarea calculatoarelor!");
+gets(c);
+return 0;
+}
+   </font>
+</pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Acest program afiseaza mesajul: "Bine ati venit la cursul de : Programarea calculatoarelor!". 
+<br><br>
+<center><img src="im_cpp0.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;De obicei un program nu "incepe de la 0", 
+in sensul ca un programator trebuie sa se concentreze asupra problemei de rezolvat si nu asupra lucrurilor de rutina de genul cum sa afisez ceva pe ecran. 
+Exista o serie de "programe" numite functii grupate in biblioteci si care rezolva problemele des intalnite. Astfel prima linie indica faptul ca se folosesc 
+functii de intrare / iesire, iar descrierea modului de utilizare (numele, tipul argumentelor, tipul valorii returnate etc) a acestora se afla în fisierul 
+cu numele stdio.h . Programul scris de programator va fi gazduit tot intr-o functie. Fiind cea mai importanta functie, ea se numeste functia main si va contine 
+instructiunile programului. In cazul programului de sus, cea mai importanta instructiune este un apel al functiei printf care afiseaza un mesaj la terminal. 
+Mesajul este dat între ghilimele si se termina cu un caracter special new-line (\n). Daca programul ar contine numai aceasta linie, s-ar afisa mesajul pe consola 
+standard (ecranul) dupa care fereastra in care se afiseaza acest mesaj dispare si practic nu vedem nimic. Se mai introduce si apelul functiei <b> gets()</b> care 
+asteapta introducerea unui text de la dispozitivul satandard de intrare adica tastatura. Textul introdus va fi pastrat in variabila c pe care am definit-o in prima
+instructiune ca fiind de tip char (un sir de caractere de lungime 1). Functia <b>gets()</b> asteapta un text care sa se termine cu <b>Enter</b>. 
+Cum in cazul de fata nu astept decat apasarea unei taste, este suficient sa apas tasta <b>Enter</b>. 
+Din acest motiv am definit constanta c, de tip caracter de lungime 1.
+Instructiunea return preda controlul sistemului de operare la terminarea programului si comunica acestuia codul 0 pentru terminare. Prin conventie, 
+aceasta valoare semnifica terminarea normala a programului – adica nu au aparut erori în prelucrarea datelor.
+Corpul functiei main apare între acolade. Orice program C trebuie sa aiba o functie main.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Functia gets() asteapta introducerea unui text, care in prealabil trebuie definit. Avand in vedere ca in programul de sus 
+nu ne intereseaza textul introdus, am putea folosi o functie care asteapta introducerea unui caracter indiferent care. Functia se numeste getch() si se gaseste
+in biblioteca "conio.h"  
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+ <pre>
+   <font size="2" color="darkblue">
+#include "stdafx.h"
+#include < stdio.h >
+#include < conio.h >
+int main() {
+printf("\n\tS-a utilizat functia getch() pentru a astepta apasarea unui caracter");
+printf("\n\n\n\t\tApasati orce tasta pentru iesire!\a");
+getch();
+return 0;
+}
+   </font>
+</pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se vede, s-au folosit caracterele speciale : \n;\t;\a; Caracterul special \n determina cursorul sa avanseze pe 
+un rand nou, \t determina cursorul sa avanseze un tab iar \a emite un sunet scurt. 
+<br><br>
+<font color= "Blue" size=4><li><b>Programare in C++ </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Programele C care respecta standardul ANSI C pot fi rulate pe orice mediu de programare C si sub orice sistem de operare.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Din pacate nucleul C standard ANSI C nu este acoperitor pentru diferite implementari mai noi de tip Object-Oriented Programming (OOP) si "Visual".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;C++ include noi tehnici procedurale de programare. Daca programarea clasica in C este o programare structurata modulara ,  
+programarea C++ include si programarea orientata obiect OOP . Obiectele sunt noi tipuri ce integreaza atat datele cat si metodele asociate crearii, prelucrarii 
+si distrugerii acestor date. Un obiect este definit de o clasa. Clasa reprezinta structura care defineste caracteristicile abstracte ale unui obiect. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;O clasa contine functii si date numite functii membru respectiv date membru. Functiile membru se mai numesc si metode. Lansarea 
+unei functii membru se mai numeste si invocarea unei functii membru. Un obiect se obtine prin instantierea unei clase. Prin instantierea unei clase, se 
+obtine deci un obiect sau o instanta.
+Clasa este un concept de baza al programarii orientate obiect. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi in continuare mediului de programare: Visual Studio , fiind un mediu OOP Visual. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Va trebui deci sa analizam si extensiile limbajului C implementate in Visual C++ , mediu ce ne va permite sa utilizam facilitatile OOP si Visual.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa luam de exemplu aplicatia de mai jos:
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+ <pre>
+   <font size="2" color="darkblue">
+// Primul program scris in Visual C++  
+
+#include "stdafx.h"
+#include &lt iostream &gt
+using namespace std;
+
+int main(void)
+{
+	cout <<" Primul program scris in Visual  C++  \n\n Felicitari!!";
+	cin.get();
+	return 0;
+}
+   </font>
+</pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Programul ruleaza in fereastra "Command" pe un fundal negru cu caractere albe. Exista posibilitatea schimbarii atributelor 
+ferestrei "Command"  din program. Putem schimba de exemplu culorile, titlul ferestrei, etc. Urmatoarea aplicatie reia aplicatia de sus dar cu cateva 
+modificari de atribute ale ferestrei "Command" .<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+ <pre>
+   <font size="2" color="darkblue">
+// Program scris in C++ Visual Studio  
+// Se afiseaza un text si se modifica diverse atribute ale ferestrei "Command" .
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Afisare text culoare albastra pe fundal alb ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	cout <<" \n\n\tAti tiparit un text albastru pe un fundal alb. \n\n\t Succes in continuare !!";
+	cin.get();
+	return 0;
+}
+   </font>
+</pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In instructiunea: <b> system("color F9"); </b>, prima cifra reprezinta culoarea fundalului iar cifra a doua reprezinta culoarea 
+textului dupa cum urmeaza:<br><br>
+<center> <table border =1 ><tr><td width="200">
+<ul>
+<li> 0 = Black
+<li> 1 = Blue
+<li> 2 = Green
+<li> 3 = Aqua
+<li> 4 = Red
+<li> 5 = Purple
+<li> 6 = Yellow
+<li> 7 = White
+</ul>
+</td><td width="200">
+<ul>
+<li> 8 = Gray
+<li> 9 = Light Blue
+<li> A = Light Green
+<li> B = Light Aqua
+<li> C = Light Red
+<li> D = Light Purple
+<li> E = Light Yellow
+<li> F = Bright White
+</ul>
+</td></tr> </table></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea aplicatiei obtinem:
+<br><br><center><img src="im_cpp01.gif"></center>
+<br><br>
+<a name="stru_c"></a>
+<br>
+<font color= "blue" size=4><li><b>Structura unui program in C++ </b><br></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa analizam structura programului afisat mai jos:
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+ <pre>
+   <font size="2" color="darkblue">
+// Primul program scris in Visual C++ l:CLR (Common Language Runtime) console application
+
+#include "stdafx.h"
+#include &lt iostream &gt
+using namespace std;
+
+int main(void)
+{
+	cout <<" Primul program CLR console application\n\n Felicitari!!";
+	cin.get();
+	return 0;
+}
+   </font>
+</pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>
+<b>Comentarii</b>
+<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Sunt precedate de // si pot aparea oriunde in program. Nu sunt executate de calculator, ele fiind destinate celor care scriu sau
+citesc programele. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Comentariile sunt plasate in vederea explicitarii programelor si pentru intelegerea mai usoara a programelor de catre alti 
+programatori sau chiar de autorul programului. In cazul de fata linia de comentariu :<br><br>&nbsp;&nbsp;&nbsp;&nbsp; //  Primul program scris in Visual C++ 
+de tipul:CLR (Common Language Runtime) console application <br><br> da informatii despre mediul de programare  in care a fost scris programul.
+<br><br>
+<b>Directiva #include</b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;C++ contine un numar de fisiere de biblioteca standard unde sunt incluse functii si obiecte utilizate frecvent. Aceste fisiere 
+sunt sunt grupate in biblioteci <br>
+#include &lt iostream &gt  include biblioteca <b>iostream</b> ce contine functii si obiecte pe care le vom folosi in functia <b> main</b> , de exemplu <b>cout >></b> 
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care avem mai multe biblioteci de inclus sau daca pentru orce program trebuie neaparat sa includem niste biblioteci, 
+in loc de numele biblotecii se poate indica un fisier ce contine toate numele biblotecilor. Fisierul are de obicei extensia .h .In cazul primului program scris anterior,  
+#include "stdafx.h" include bibliotecile si directivele de compilare scrise in fisierul stdafx.h 
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+ <pre>
+   <font size="2" color="darkblue">
+// stdafx.h : include file for standard system include files,
+// or project specific include files that are used frequently, but
+// are changed infrequently
+//
+
+#pragma once
+
+
+#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
+#include &lt stdio.h&gt 
+#include &lt tchar.h&gt 
+
+
+// TODO: reference additional headers your program requires here
+   </font>
+</pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>
+#include &lt iostream &gt ar putea fi inclusa in fisierul stdafx.h, in acest caz ne mai fiind nevoie s-o includem in programul principal.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Tot aici ar putea fi incluse functiile definite de utilizator. Sa presupunem ca dispunem de functia <b>afis_binar_8 </b> 
+pentru afisarea in format binar pe 8 biti. Ea poate fi inclusa in fisierul stdafx.h, in acest caz continutul acesteia devenind:
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+ <pre>
+   <font size="2" color="darkblue">
+// stdafx.h : include file for standard system include files,
+// or project specific include files that are used frequently, but
+// are changed infrequently
+//
+#pragma once
+// TODO: reference additional headers your program requires here
+#include &lt iostream &gt
+using namespace std;
+static void afis_binar_8(int n)
+{
+	int i;
+	char val_b[8];
+	for (i=0; i < 8; i++){
+		if (n%2==0)
+			val_b[7-i]='0';
+		else
+			val_b[7-i]='1';
+		n=n/2;
+	}
+	// afisare binara
+	
+	for (i=0; i < 8; i++){
+		cout << val_b[i] << " ";
+	}
+	// prompter pe prima pozitie
+	
+	for (i=0;i < 17; i++){
+		cout << "\b";
+	}
+}
+   </font>
+</pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Programul principal fiind in acest caz extrem de simplu si uor de inteles, acesta continand in general numai apeluri 
+de functii. Continutul acestuia fiind urmatorul:
+
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+ <pre>
+   <font size="2" color="darkblue">
+// Afisare binara utilizand functia afis_binar_8
+#include "stdafx.h"
+
+int main(void)
+{
+	system("TITLE Afisare sub forma binara ");// Titlul ferestrei consola
+	system("COLOR F9");// Albastru pe fond alb
+	cout<<"\n\n\tAfisarea valorii 147 sub forma binara: \n\n\t  ";
+	afis_binar_8(147);
+	cout<<"\n\n\tApasati Enter pentru iesire! ";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+   </font>
+</pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului obtinem:
+<br><br><center><img src="im_cpp02.gif"></center>
+<br><br>
+<b>Functia main</b>
+<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Functia este un grup de instructiuni scrise in vederea realizarii unei sarcini. Functia este referita prin nume. 
+In  cazul primului program scris mai sus, <b>main</b> este numele functiei principale. Un program poate avea mai multe functii si de aceeea functia 
+care se lanseaza prima in cadrul executiei programului trebuie sa poarte denumirea <b>main</b>
+
+<br><br>
+<b>Spatiul de nume</b>
+<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b> using namespace std;</b> este un spatiu de nume. C++ foloseste spatii de nume (namespaces) pentru a organiza 
+clase cu functionalitati inrudite, folosite in cadrul programelor.
+Si bibliotecile folosesc spatii de nume , astfel clasele din biblioteca sunt referite prin intermediul spatiului de nume.
+
+
+<br><br>
+<b>Corpul functiei</b>
+<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Toate instructiunile functiei sunti incluse in corpul functiei. Un corp de functie incepe cu { si se termina cu }
+De obicei fiecare instructiune se termina cu ; In cazul primului program scris anterior functia <b>main</b> contine cele trei instructiuni afisate mai jos.
+Instructiunile se executa secventiial de sus in jos.
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+ <pre>
+   <font size="2" color="darkblue">
+
+	cout <<" Primul program CLR console application\n\n Felicitari!!";
+	cin.get();
+	return 0;
+   </font>
+</pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea<b> cout << </b> afiseaza pe consola standard ,Textul : "Primul program" pe randul 1 iar pe randul 3 textul: 
+Felicitari.
+\n comanda trecerea pe randul urmator. La inceput cursorul se afla pe randul 1 unde va scrie textul : "Primul program" . Dupa secventa \n\n cursorul 
+se muta pe randul 3 unde va scrie textul : "Felicitari !!"
+<center><img src="im_cpp1.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Declaratia <b> cin.get();</b> reprezinta invocarea metodei get a obiectului cin. Pentru precizarea metodei get au fost 
+deci necesare precizarea tuturor componentelor adica:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; <i>obiect . metoda </i><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul ca spatiul de nume nu este prezentat in antet,atunci forma generala este:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; <i>spatiu de nume :: obiect . metoda </i><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Metoda <b> get();</b> asteapta apasarea tastei Enter. Invocarea acestei metode este necesara deoarece dupa 
+scrierea textului pe consola, aceasta ar disparea foarte repede fara sa ajungem sa citim textul afisat. Textul afisat ar trebui completat cu mesajul: "Tastati Enter"
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca nu am fi folosit spatiul de nume <b> using namespace std;</b>, instructiunile din corpul functiei <b>main</b> ar fi 
+trebuit scrise: 
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+ <pre>
+   <font size="2" color="darkblue">
+
+	std::cout <<" Primul program CLR console application \n\n Felicitari!!";
+	std::cin.get();
+	return 0;
+   </font>
+</pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>
+Practic primul programul, dupa modificarea stadfix.h , poate sa arate astfel:
+<br>
+<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+ <pre>
+   <font size="2" color="darkblue">
+// Primul program scris in Visual C++ de tipul:CLR console application
+
+#include "stdafx.h"
+#include < iostream >
+
+int main(void)
+{
+	std::cout <<" Primul program  CLR console application\n\n Felicitari!!\n\n Tastati Enter";
+	std::cin.get();
+	return 0;
+}
+   </font>
+</pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Invocarea metodei <b>get(); </b> are rolul de a astepta apasarea unei taste altfel fereastra consola in care se 
+afiseaza textul dispare fara a avea timp sa citim textul afisat.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;O alta metoda care ne permite sa citim textul afisat, este reprezentata de folosirea functiei <b> Sleep() </b> care 
+determina "inghetarea" programului pentru un timp determinat, astfel avem timp sa citim cosola. Functia are nevoie de un parametru exprimat in 
+milisecunde reprezentand timpul de asteptare.
+<br> Functia Sleep se gaseste in biblioteca "windows.h" si trebuie inclusa cu directiva include astfel:
+<br> #include < windows.h >
+<br> Pentru a nu mai incarca biblioteca "windows.h" se poate folosi functia <b>_sleep() </b>inclusa in < iostream >
+ 
+
+<br>
+<br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+ <pre>
+   <font size="2" color="darkblue">
+// Programul  utilizeaza functia sleep din biblioteca <windows.h>
+
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	cout << " Va urez o zi buna!!";
+	Sleep(1000);
+	cout << " \n\n\t Salut!!";
+	Sleep(500);
+	return 0;
+}
+   </font>
+</pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Un alt avantaj il constituie asiatarea permanenta in momentul scrierii liniilor de program care contin denumirea metodelor si claselor din acest spatiu de nume.
+<br><br><a name="consola"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=4>Utilizare Visual Studio  </Center></TD></TR>
+</table>
+<br><br>
+<b>IDE</b>( Integrated Developement Environment) utilizat :Visual studio 
+<br><br><center><img src="im_cpp1.jpg"></center>
+<br>Are o interfata grafica GUI (Graphics User Interface)  si contine:
+<li>editor de texte
+<li>preprocesor
+<li>compilator
+<li>link-editor
+<br>IDE-uri similare:Borland C++ Builder, IBM VisualAge, etc.
+
+<br><br><a name="prj"></a>
+<br>
+<font color= "blue" size=4><li><b>Realizarea proiectelor C++ de tipul CLR Console Application</b><br></font>
+<br><br>
+<li>Lansare Visual Studio 
+<li>File-New Project
+<br><br><center><img src="im_cpp2.jpg"></center>
+<li>Se alege - Visual C++ CLR (Common Language Runtime)-CLR Console Application si se completeaza numele proiectului, in cazul de fata Primul_pr
+<br><br><a name="cod"></a>
+<br>
+<font color= "blue" size=4><li><b>Scrierea codului sursa</b><br></font>
+<br><br>
+<li>se alege fisierul Primul_pr.cpp 
+<li>Se scrie codul sursa al programului primul_pr
+<br><br><center><img src="im_cpp3.jpg"></center>
+
+<br><br><a name="cprj"></a>
+<br>
+<font color= "blue" size=4><li><b>Constructia proiectului </b><br></font>
+<br><br>
+<li>Build- Build solution
+
+<br><br><a name="run"></a>
+<br>
+<font color= "blue" size=4><li><b>Rularea codului</b><br></font>
+<br><br>
+<li>Debug-Start Debugging
+<br><br><center><img src="im_cpp4.jpg"></center>
+<br><br><a name="system"></a>
+<br><font color= "blue" size=4><li><b>Spatiul de nume System:: </b><br></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Spatiul de nume <b> System:: </b>contine clase fundamentale, de baza si clasele frecvent folosite, interfete, metode de 
+manipulare a evenimentelor. Folosind acest spatiu, avem posibilitatea de a utiliza diverse metode pentru a defini si converti diferite tipuri de date 
+necesare in programarea de tip "Visual" pe care o vom utiliza in cadrul modululu Windows Forms Application.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Spatiul de nume  <b>System:: </b> contine si functii pentru consola, putand astfel sa dezvoltam atat aplicatii de tipul CLR Console Application cat si aplicatii
+de tipul Windows Forms Application. Functiile pentru consola se gasesc in clasa <b> Console:: </b> Functiile definite in interiorul unei clase poarta numele 
+de metode ale clasei. Apelarea unei metode (functi) definite in cadrul unei clase se face prin precizarea tuturor componentelor si anume: 
+<center><br><i> spatiul de nume:: clasa:: metoda ( )</i></center> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentu a apela functia <b> ReadLine </b> de exemplu vom utiliza: <b> System::Console::ReadLine()</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Declaratia de mai sus poate fi citita si astfel: "Se invoca metoda <i> ReadLine </i> a clasei  <i> Console </i>  aflata in 
+spatiul de nume  <i> System </i>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa de exemplu textul :" Succes la examene !! " , vom invoca metoda <i> WriteLine </i> a clasei  <i> Console </i>  aflata in 
+spatiul de nume  <i> System </i>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Mai jos se prezinta un program de tipul CLR Console Application, program ce invoca metode din clasa <i> Console </i> din spatiul de nume<i> System </i>.
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+ <pre>
+   <font size="2" color="darkblue">
+// sp_system.cpp : main project file.
+// Primul program ce utilizeaza functii consola din spatiul de nume System::
+
+#include "stdafx.h"
+
+using namespace System;
+
+int main(void)
+{
+	Console::WriteLine("Program ce utilizeaza spatiul de nume System::");
+	Console::ReadLine();
+    return 0;
+}
+   </font>
+</pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><a name="start_f"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=4>Windows Forms Application -WFA </Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum am amintit, mediul de programare "Visual Studio " este un mediu visual de programare orientata obiect(OOP), 
+permitand realizarea de aplicatii OOP folosind modul "Visual". Obiectele dorite sunt plasate pe o planseta de design (form) dupa care sunt completate si adaugate 
+diverse secvente de cod pentru a stabili comportarea dorita pentru obiectul plasat.
+<br><br><a name="n_oop"></a>
+<br>
+<font color= "blue" size=4><li><b>Notiuni utilizate in OOP </b><br></font>
+<ul>
+ <li> <b> Obiecte </b> - sunt noi tipuri ce integreaza atat datele cat si metodele (functiile) asociate crearii, prelucrarii si distrugerii acestor date.
+ <li> <b> Clasa </b> -  reprezinta structura care defineste caracteristicile abstracte ale unui obiect. 
+ <li> <b> Metode </b> - functiile membru definite in cadrul unei clase   
+ <li> <b> Prporietati </b> - membrii unei clase care permit accesul controlat la datele membru ale unei clase
+ <li> <b> Evenimente </b> -  membrii unei clase care permit clasei sau obiectelor clasei sa faca notificari, adica sa anunte celelalte obiecte asupra unor
+ schimbari petrecute la nivelul starii lor.
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Apelarea unei metode (functi) sau setarea unei proprietati, ale unui obiect se face prin precizarea tuturor componentelor si anume:
+<center><br><i> nume_aplicatie::nume_form::nume_obiect-> metoda sau proprietate</i></center> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Componentele <b> nume_aplicatie::nume_form:: </b> pot fi inlocuite cu <b> this </b> deci precizarea unei metode sau a unei proprietati, devine:
+<center><br><i> this->nume_obiect-> metoda sau proprietate</i></center> 
+<br><br><a name="form"></a>
+<br>
+<font color= "blue" size=4><li><b>Realizarea proiectelor Visual C++ de tipul CLR-Windows Form Application </b><br></font>
+<ul>
+<li>Lansare Visual Studio
+<li>File-New Project
+<li>Se alege - Visual C++ CLR (Common Language Runtime)-Windows Form Application si se completeaza numele proiectului, in cazul de fata:  
+<font color= "red"> Primul_form </font>
+</ul>
+<center><img src="im_cpp5.jpg"></center>
+<br><br><a name="b_start"></a>
+<br>
+<font color= "black" size=4><li><b>Plasare buton Start</b><br></font>
+<br> Din ToolBox se alege All windows Forms--Button si se plaseaza pe Form-ul deschis.
+<br> Se selecteaza butonul plasat pe Form cu click dreapta si se alege din meniul deschis optiunea "Properties"
+<br> Se selecteaza propietatea "Text" si i se va atribui valoarea  "Start". In acest moment pe buton va scrie "Start"
+<br> Se selecteaza de aceasta data Formul cu click dreapta, se alege din meniul deschis optiunea "Properties"
+<br> Se selecteaza propietatea "Text" si i se va atribui valoarea  "Primul program Win Form App". In acest moment titlul ferestrei principale 
+va fi:"Primul program Win Form App"
+<br><br><a name="label"></a>
+<br>
+<font color= "black" size=4><li><b>Plasare label</b><br></font>
+<br> Din ToolBox se alege All windows Forms--Label si se plaseaza pe Form-ul deschis.
+<br> Se selecteaza label-ul plasat pe Form cu click dreapta si se alege din meniul deschis optiunea "Properties"
+<br> Se selecteaza propietatea "Text" si i se va atribui valoarea  "Mesaj". In acest moment pe buton va scrie "Mesaj"
+<br><br><center><img src="im_cpp6.jpg"></center>
+<br><br><a name="cod_f"></a>
+<br>
+<font color= "black" size=4><li><b>Scrierea codului</b><br></font>
+<br> Daca selectam butonl <b>start</b> cu click dreapta si se alegem din meniul deschis optiunea "Properties" gasim la proprietatea Name setat numele
+<b>button1</b>, atribuit automat la plasarea butonului. La fel pentru labelul pe care am setat textul mesaj, vom gasi numele <b>label1</b>
+<br> Ne propunem sa scriem un program care sa afiseze textul:"Primul program Windows Forms Application" la apasarea butonului "Start".
+<br> Se selecteaza butonul "Start" cu click dreapta si se alege din meniul deschis optiunea "Properties". Se apasa butonul "Events".
+<br> Se alege Action--Dublu click pe optiunea Click.In acest moment evenimentului "click" al butonului "Start" i se genereaza un schelet de procedura care 
+va trata evenimentul click al butonului button1 numita:
+<b> button1_click</b> pe care trebuie sa-l completam cu liniile de instructiune necesare pentru a trata evenimentul click.In cazull de fata: cu instructiunea:
+<br><b>this->label1->Text="Primul program Windows Forms Application";</b>
+<br> adica pe formul curent (this) obiectului label1 sa atribuim proprietatii Text valoarea : "Primul program Windows Forms Application"
+<br>Procedura care trateaza evenimentul click va fi deci:
+<br><br><center><img src="im_cpp8.jpg"></center>
+<br><br><a name="run_f"></a>
+<br>
+<font color= "black" size=4><li><b>Rulare aplicatie</b><br></font>
+<br> In acest moment prin apasarea butonului "Start debug" se lanseaza aplicatia si putem apasa butonul "Start" din aplicatie. Dupa aceste operatii,
+ecranul aplicatiei arata astfel:
+<br><br><center><img src="im_cpp9.jpg"></center>
+<br><br><a name="atrib"></a>
+<br>
+<font color= "black" size=4><li><b>Modificare atribute</b><br></font>
+<br> Revenim la Form Design si modificam diferite proprietati (atribute) ale obiectelor amplasate pe form .
+<br> Sa modificam de exemplu BackColor pentru fereastra principala:
+<br><br><center><img src="im_cpp10.jpg"></center>
+<br><br>Putem modifica dupa preferinta proprietatile tuturor obiectelor amplasate pe form. Putem modifica de exemplu Fonturile si culoarea mesajului.
+<br><br><a name="v_final"></a>
+<br>
+<font color= "black" size=4><li><b>Varianta finala</b><br></font>
+<br> 
+<br> Dupa ce am efectuat toate modificarile si am testat aplicatia, in Folder-ul project gasim Folderul:primul_form apoi in  Folderul debug: gasim 
+executabilul "primul_form.exe" pe care il putem lansa in executie.
+<br><br><center><img src="im_cpp11.jpg"></center>
+
+<br><br><a name="cs_wfa"></a>
+<font color= "blue" size=4><li><b>Realizarea proiectelor Visual C# - Windows Forms Application(WFA) </b><br></font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza in continuare o aplicatie Visual C# - de tipul WFA
+<li>Se alege - Visual C# -Windows Form Application si se completeaza numele proiectului, in cazul de fata: <font color= "red">CS_primul_form</font>
+</ul>
+<br><br><font color= "black" size=4><li><b>Plasare buton Start</b><br></font>
+<br> Din ToolBox se alege All windows Forms--Button si se plaseaza pe Form-ul deschis.
+<br> Se selecteaza butonul plasat pe Form cu click dreapta si se alege din meniul deschis optiunea "Properties"
+<br> Se selecteaza propietatea "Text" si i se va atribui valoarea  "Start". In acest moment pe buton va scrie "Start"
+<br> Se selecteaza de aceasta data Formul cu click dreapta, se alege din meniul deschis optiunea "Properties"
+<br> Se selecteaza propietatea "Text" si i se va atribui valoarea  "Primul program C# WFA". In acest moment titlul ferestrei principale 
+va fi:"Primul program C# WFA"
+<br><br><a name="label"></a>
+<br>
+<font color= "black" size=4><li><b>Plasare label</b><br></font>
+<br> Din ToolBox se alege All windows Forms--Label si se plaseaza pe Form-ul deschis.
+<br> Se selecteaza label-ul plasat pe Form cu click dreapta si se alege din meniul deschis optiunea "Properties"
+<br> Se selecteaza propietatea "Text" si i se va atribui valoarea  "Mesaj". In acest moment pe buton va scrie "Mesaj"
+
+<br><br><font color= "black" size=4><li><b>Scrierea codului</b><br></font>
+<br> Daca selectam butonl <b>start</b> cu click dreapta si se alegem din meniul deschis optiunea "Properties" gasim la proprietatea Name setat numele
+<b>button1</b>, atribuit automat la plasarea butonului. La fel pentru labelul pe care am setat textul mesaj, vom gasi numele <b>label1</b>
+<br> Ne propunem sa scriem un program care sa afiseze textul:"Primul program C# Windows Forms Application" la apasarea butonului "Start".
+<br> Se selecteaza butonul "Start" cu click dreapta si se alege din meniul deschis optiunea "Properties". Se apasa butonul "Events".
+<br> Se alege Action--Dublu click pe optiunea Click.In acest moment evenimentului "click" al butonului "Start" i se genereaza un schelet de procedura care 
+va trata evenimentul click al butonului button1 numita:
+<b> button1_click</b> pe care trebuie sa-l completam cu liniile de instructiune necesare pentru a trata evenimentul click.In cazul de fata: cu instructiunea:
+<br><b>this.label1.Text="Primul program C# Windows Forms Application";</b>
+<br> adica pe formul curent (this) obiectului label1 sa atribuim proprietatii Text valoarea : "Primul program C# Windows Forms Application"
+<br>Procedura care trateaza evenimentul click va fi deci:
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+ <pre>
+   <font size="2" color="darkblue">
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.label1.Text = "Primul program C# Windows Forms Application";
+        }
+   </font>
+</pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+ <pre>
+   <font size="2" color="darkblue">
+   </font>
+</pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+</body>
+</html>
+
+
+
