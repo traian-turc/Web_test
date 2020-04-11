@@ -1,0 +1,417 @@
+<html>
+<title> Laborator java-Script </title>
+<head>
+<script type="text/javascript" src="../l_java/wz_jsgraphics.js"></script>
+</head>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator java - Script </Center></TD></TR>
+</table>
+<br><br><a name="start"></a>
+<center><font color= "Blue" size=5> Teme program  </font></center>
+
+<li>Grafica js 
+<ol>
+<li> Utilizare SVG
+<li> Reprezentare grafica sinus si cosinus
+<li> Reprezentare grafica sinus si cosinus de frecventa variabila
+<li> Utilizare wz_jsgraphics.js
+</ol>
+
+<center><font color= "Blue" size=5> Rezolvari  </font></center>
+
+<font color= "Red" size=4> Utilizare SVG -numai cu Chrome si Mozila </font>
+
+<ul>
+ <li> <font color= "Black" size=4>  Reprezentare grafica sinus si cosinus </font>
+</ul>
+
+<form name="f22_0">  
+<textarea width="100%" height="400px" style="width:100%;height:220px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<script>
+document.write('<svg width="800" height="100">');
+for(i=10;i<800;i+=50){
+	document.write('<polygon points="'+i+',10, 340,75" style="stroke:purple;"/>');
+}
+document.write('</svg>');
+</script>
+</html>  
+</textarea>
+</form>
+<script>document.write(f22_0.code.value);</script>
+
+<br><br>
+<form name="f23_2">  
+<textarea width="100%" height="400px" style="width:100%;height:1600px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="600"><tr><td>
+<center><br>Reprezentare grafica sinus si cosinus <br><br></center> 
+<center>
+<INPUT onclick=drawSin() type=button value=Sin>
+<INPUT onclick=drawCos() type=button value=Cos>
+<INPUT onclick=Del() type=button value=Del>
+<canvas id="canvas" width="502" height="108"></canvas>
+</center></td></tr></table>
+</center>
+<script type="text/javascript">
+function fun1(x) {return Math.sin(x);  }
+function fun2(x) {return Math.cos(3*x);}
+
+function drawSin() {
+ var canvas = document.getElementById("canvas");
+ if (null==canvas || !canvas.getContext) return;
+
+ var axes={}, ctx=canvas.getContext("2d");
+ axes.x0 = .5 + .5*canvas.width; 
+ axes.y0 = .5 + .5*canvas.height; 
+ axes.scale = 40;               
+ axes.doNegativeX = true;
+
+ showAxes(ctx,axes);
+ funGraph(ctx,axes,fun1,"rgb(11,153,11)",1); 
+ 
+}
+
+function drawaxis() {
+ var canvas = document.getElementById("canvas");
+ if (null==canvas || !canvas.getContext) return;
+
+ var axes={}, ctx=canvas.getContext("2d");
+ axes.x0 = .5 + .5*canvas.width; 
+ axes.y0 = .5 + .5*canvas.height; 
+ axes.scale = 40;               
+ axes.doNegativeX = true;
+
+ showAxes(ctx,axes);
+ //funGraph(ctx,axes,fun2,"rgb(66,44,255)",2);
+}
+
+
+function drawCos() {
+ var canvas = document.getElementById("canvas");
+ if (null==canvas || !canvas.getContext) return;
+
+ var axes={}, ctx=canvas.getContext("2d");
+ axes.x0 = .5 + .5*canvas.width; 
+ axes.y0 = .5 + .5*canvas.height; 
+ axes.scale = 40;               
+ axes.doNegativeX = true;
+
+ showAxes(ctx,axes);
+ funGraph(ctx,axes,fun2,"rgb(66,44,255)",2);
+}
+
+function funGraph (ctx,axes,func,color,thick) {
+ var xx, yy, dx=4, x0=axes.x0, y0=axes.y0, scale=axes.scale;
+ var iMax = Math.round((ctx.canvas.width-x0)/dx);
+ var iMin = axes.doNegativeX ? Math.round(-x0/dx) : 0;
+ ctx.beginPath();
+ ctx.lineWidth = thick;
+ ctx.strokeStyle = color;
+
+ for (var i=iMin;i<=iMax;i++) {
+  xx = dx*i; yy = scale*func(xx/scale);
+  if (i==iMin) ctx.moveTo(x0+xx,y0-yy);
+  else         ctx.lineTo(x0+xx,y0-yy);
+ }
+ ctx.stroke();
+}
+
+function showAxes(ctx,axes) {
+ var x0=axes.x0, w=ctx.canvas.width;
+ var y0=axes.y0, h=ctx.canvas.height;
+ var xmin = axes.doNegativeX ? 0 : x0;
+ ctx.beginPath();
+ ctx.strokeStyle = "rgb(128,128,128)"; 
+ ctx.moveTo(xmin,y0); ctx.lineTo(w,y0);  // X axis
+ ctx.moveTo(x0,0);    ctx.lineTo(x0,h);  // Y axis
+ ctx.stroke();
+}
+function Del() {
+ var canvas = document.getElementById("canvas");
+ if (null==canvas || !canvas.getContext) return;
+ var axes={}, ctx=canvas.getContext("2d");
+	ctx.beginPath();
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.stroke();
+
+}
+
+</script>
+<script>
+	drawaxis();
+	drawSin()
+</script> 
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f23_2.code.value);</script>
+<br>
+<br>
+<ul>
+ <li> <font color= "Black" size=4>  Reprezentare grafica sinus si cosinus de frecventa variabila  </font>
+</ul>
+<form name="f23_1">  
+<br>
+<textarea width="100%" height="400px" style="width:100%;height:1650px" name="code" wrap="logical" rows="12" cols="42">
+
+<center><table bgcolor="WhiteSmoke" border =1 width="600"><tr><td>
+<center><br>Reprezentare grafica sinus si cosinus de frecventa variabila  <br></center> 
+<center><table border="0" width="500"><td><tr>
+<canvas id="desen_1" width="500" height="260" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<br>
+<center><table><tr>
+	<td><input type="range" value="2" id="ra1" min="0" max="20" onchange="set_val1()"/></td>
+	<td>&nbsp;&nbsp;<span id="aff">2</span>&nbsp;&nbsp;</td>
+	<td><INPUT TYPE = "radio" NAME="rd1" onclick="val_rd1(this.value)"  VALUE = "1" checked="checked"> Sinus &nbsp;</td>
+	<td><INPUT TYPE = "radio" NAME="rd1" onclick="val_rd1(this.value)"  VALUE = "2"> Cosinus &nbsp; &nbsp;</td>
+	<td><INPUT onclick=sterg1() type=button value=Sterg:></td>
+</tr></table></center>
+</td></tr></table></center>  
+<script type="text/javascript">
+var val;
+var fel=1;
+var ctx=desen_1.getContext("2d");
+ctx.lineWidth = .5; 
+var w=desen_1.width;
+var h=desen_1.height/2-20;
+function axe1() {
+	var x0=0;
+	var y0=h+20;
+	ctx.beginPath();
+	ctx.moveTo(0,y0); 
+	ctx.strokeStyle = "rgb(128,128,128)"; 
+	ctx.lineTo(w,y0);
+	ctx.stroke();
+}
+function sinus1(){
+  ctx.clearRect(0, 0, desen_1.width, desen_1.height);
+  axe1();
+  x=0;
+  y0=h+20;
+  yv=20+100*(1-Math.sin(x));
+  ctx.beginPath();
+  ctx.moveTo(0,y0); 
+  ctx.strokeStyle = "rgb(128,128,128)"; 
+  ctx.lineTo(w,y0);
+  ctx.stroke();
+    for (i=1; i <= w ; i+=1, x+=6.3*val/w){
+	    y=20+h*(1-Math.sin(x));
+		ctx.beginPath();
+		ctx.strokeStyle = "rgb(0,255,0)"; 
+		ctx.moveTo(i-1,yv);
+		ctx.lineTo(i,y);
+		ctx.stroke();
+		yv=y;
+	}
+}
+function cosinus1(){
+  ctx.clearRect(0, 0, desen_1.width, desen_1.height);
+  axe1();
+   x=0;
+  y0=h+20;
+  yv=20+100*(1-Math.cos(x));
+  ctx.beginPath();
+  ctx.moveTo(0,y0); 
+  ctx.strokeStyle = "rgb(128,128,128)"; 
+  ctx.lineTo(w,y0);
+  ctx.stroke();
+    for (i=1; i <= w ; i+=1, x+=6.3*val/w){
+	    y=20+h*(1-Math.cos(x));
+	    ctx.beginPath();
+		ctx.strokeStyle = "rgb(0,0,255)"; 
+		ctx.moveTo(i-1,yv); 
+		ctx.lineTo(i,y);
+		ctx.stroke();
+		yv=y;
+	}
+}
+function sterg1() {	
+	ctx.clearRect(0, 0, desen_1.width, desen_1.height);
+	ctx.stroke();
+
+}
+function set_val1(){
+  val = parseInt(document.getElementById('ra1').value);
+  document.getElementById('aff').innerHTML=val;
+  if(fel==1){
+	sinus1();
+  }
+  if(fel==2){
+	cosinus1();	
+  }
+}
+function val_rd1(rd1) {
+	if(rd1==1){
+		fel=1;
+		sinus1();
+	}
+	if(rd1==2){
+		fel=2;
+		cosinus1();
+	}	
+}
+
+val = parseInt(document.getElementById('ra1').value);
+document.getElementById('aff').innerHTML=val;
+axe1();
+sinus1();
+</script>
+</textarea>
+</form>
+
+<script>document.write(f23_1.code.value);</script>
+
+<font color= "Red" size=4> Utilizare wz_jsgraphics.js </font>
+
+<ul>
+ <li> <font color= "Black" size=4>Trasare Sin_cos </font>
+</ul>
+
+<form name="f22_1">  
+<textarea width="100%" height="400px" style="width:100%;height:990px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="600"><tr><td>
+<center><br>Reprezentari grafice<br><br></center> 
+<center><table border="0" width="400"><td><tr>
+<div id="desen1" style="position:relative;height:260px;width:400px;"></div>
+<script type="text/javascript">
+function gr0(){
+  jg.setColor("#ff00c7"); // violet
+  jg.drawRect(0, 0, 400, 250);
+  jg.paint();
+}
+function gr1(){
+  jg.setColor("#0000ff"); // blue
+  x=0;
+    for (i=0; i <= 400 ; i+=1, x+=0.0314){
+	    y=20+100*(1-Math.sin(x));
+  		jg.drawLine(i, y, i ,y);
+	}
+	jg.paint();
+}
+function gr2(){
+  jg.setColor("#ff0000"); // red
+    x=0;
+    for (i=0; i <= 400 ; i+=1, x+=0.0314){
+	    y=20+100*(1-Math.cos(x));
+  		jg.drawLine(i, y, i ,y);
+	}
+  jg.paint();
+}
+function gr3(){
+  jg.setColor("#ff00c7"); // violet
+  jg.drawLine(0, 120, 400, 120); 
+  jg.paint();
+}
+function sterg(){
+  jg.setColor("#ffffff"); // white
+  jg.fillRect(0, 0, 400, 250);
+  jg.setColor("#ff00c7"); // violet
+  jg.drawRect(0, 0, 400, 250);
+  jg.paint();
+}
+var jg = new jsGraphics("desen1");
+gr0();
+</script>
+<div id="desen1">
+<INPUT onclick=gr1() type=button value=Sinus>
+<INPUT onclick=gr2() type=button value=Cosinus>
+<INPUT onclick=gr3() type=button value=Axa_x>
+<INPUT onclick=sterg() type=button value=Sterg:>
+</div>
+</td></tr></table></center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f22_1.code.value);</script>
+<ul>
+ <li> <font color= "Black" size=4> Figuri aleatoare </font>
+</ul>
+<form name="f23">  
+<textarea width="100%" height="400px" style="width:100%;height:1140px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="600"><tr><td>
+<center><br>Figuri aleatoare<br><br></center> 
+<body> 
+<center><table border="0" width="400"><td><tr>
+<div id="desen2" style="position:relative;height:260px;width:400px;"></div>
+<script type="text/javascript">
+function gr_0(){
+  jg_2.setColor("#ff00c7"); // violet
+  jg_2.drawRect(0, 0, 400, 250);
+  jg_2.paint();
+}
+function gr_1(){
+  jg_2.setColor("#0000ff"); // blue
+    for (i=0; i <= 33 ; i++){
+		x=Math.round(Math.random()*300);
+		y=Math.round(Math.random()*200);
+		w=Math.round(Math.random()*100);
+		h=Math.round(Math.random()*50);	    
+  		jg_2.drawRect(x, y, w ,h);
+	}
+	jg_2.paint();
+}
+function gr_2(){
+  jg_2.setColor("#ff0000"); // red
+    for (i=0; i <= 33 ; i++){
+		x=Math.round(Math.random()*300);
+		y=Math.round(Math.random()*200);
+		w=Math.round(Math.random()*100);
+		h=Math.round(Math.random()*50);	    
+  		jg_2.drawEllipse(x, y, w ,h);
+	}
+  jg_2.paint();
+}
+function gr_3(){
+  jg_2.setColor("#ff00c7"); // violet
+      for (i=0; i <= 33 ; i++){
+		x=Math.round(Math.random()*400);
+		y=Math.round(Math.random()*250);
+		w=Math.round(Math.random()*300);
+		h=Math.round(Math.random()*250);	    
+  		jg_2.drawLine(x, y, w ,h);
+	}
+  jg_2.paint();
+}
+function sterg_(){
+  jg_2.setColor("#ffffff"); // white
+  jg_2.fillRect(0, 0, 400, 250);
+  jg_2.setColor("#ff00c7"); // violet
+  jg_2.drawRect(0, 0, 400, 250);
+  jg_2.paint();
+}
+var jg_2 = new jsGraphics("desen2");
+gr_0();
+</script>
+<INPUT onclick=gr_1() type=button value=Drept>
+<INPUT onclick=gr_2() type=button value=Elipse>
+<INPUT onclick=gr_3() type=button value=Linii>
+<INPUT onclick=sterg_() type=button value=Sterg:>
+</td></tr></table></center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f23.code.value);</script>
+
+</body>
+</html>

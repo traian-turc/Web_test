@@ -1,0 +1,44 @@
+<html>
+<head>
+<script type="text/javascript">
+function cer_fis(url)
+{
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.open("GET",url,false);
+xmlhttp.send(null);
+document.getElementById('loc_text').innerHTML=xmlhttp.responseText;
+}
+</script>
+</head>
+
+<body>
+<center>
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td colspan="2">
+<div id="loc_text">
+<center>Apasati cele doua butoane pentru a schimba textul afisat </center>
+</div>
+</td></tr><tr><td>
+<script>
+function date1(){
+	var url1="date_01.php";
+	url1=url1+"?sid="+Math.random();
+cer_fis(url1);
+setTimeout("date1()",1000)
+}
+</script>
+
+<!--<center><button type="button" onclick="date1()">Date</button></center>-->
+<center><button type="button" onclick="cer_fis('date_01.php')">Date_m</button></center> 
+</td><td>
+
+<center><button type="button" onclick="cer_fis('date_02.php')">Date_m</button></center>
+</td></tr></table></center>
+</body>
+</html>

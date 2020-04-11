@@ -1,0 +1,112 @@
+<html>
+<title> Rezolvari </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Tehnologii WEB </Center></TD></TR>
+</table>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue">
+
+<textarea width="100%" height="400px" style="width:100%;height:520px" name="code" wrap="logical" rows="12" cols="42">
+
+
+<html>
+<head>
+<script type="text/javascript">
+function cer_fis(url)
+{
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.open("GET",url,false);
+xmlhttp.send(null);
+document.getElementById('loc_text').innerHTML="<center> Val="+xmlhttp.responseText+"</center>";
+}
+</script>
+</head>
+
+<body>
+<center>
+<table bgcolor="WhiteSmoke" border =1 width="100"><tr><td colspan="2">
+<div id="loc_text">
+</div>
+<script>
+function date1(){
+	var url1="date_01.php";
+	url1=url1+"?sid="+Math.random();
+cer_fis(url1);
+setTimeout("date1()",1000)
+}
+date1();
+</script>
+ </td></tr></table></center>
+</body>
+</html>
+
+
+
+
+
+<html>
+<head>
+<script type="text/javascript" src="voltm.js"></script>
+</head>
+<body>
+<center>
+<br><table border=1><tr><td valign="top" width="310">
+<center>
+	<canvas id="desen01" width="420" height="270" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+		Your browser does not support the HTML5 canvas tag.
+	</canvas>
+</center>
+<span id="af_v"></span>
+</td></tr></table>
+</center>
+<script language="JavaScript">
+var val_max=250;
+var xmlhttp;
+var ctx1=desen01.getContext("2d");
+voltm1 = new voltm(ctx1,10,10,400,250); 
+function cere_date(){
+	xmlhttp=new XMLHttpRequest();
+	if (xmlhttp==null)
+	{
+		alert ("Browser-ul nu suporta XMLHTTP!");
+		return;
+	}
+	var url="date_01.php";
+	url=url+"?sid="+Math.random();
+	xmlhttp.onreadystatechange=stateChanged;
+	xmlhttp.open("GET",url,true);
+	xmlhttp.send("");
+	setTimeout("cere_date()",1000);
+}
+
+function stateChanged()
+{
+	if (xmlhttp.readyState==4)
+	{
+		rasp=xmlhttp.responseText;
+		document.getElementById("af_v").innerHTML='<font color="blue">Date citite: <font color="red">'+rasp+'<br>';
+		voltm1.set_val(Math.round(val_max*rasp/1023));
+	}
+}
+cere_date();
+</script>
+</body>
+</html>
+
+
+
+
+
+</textarea>
+</font>
+</td></tr></table>

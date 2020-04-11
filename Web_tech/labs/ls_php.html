@@ -1,0 +1,84 @@
+<html>
+<title> Laborator php </title>
+<head>
+<script type="text/javascript" src="../l_java/wz_jsgraphics.js"></script>
+</head>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator php </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Tematica lucrari </font><br><br>
+
+<li><font color="blue" size="3"> Instalare XAMPP </font>
+<ol>
+<li> Se descarca de pe net http://www.science.upm.ro/~traian/web_curs/Web_tech/start.html -Download utilitare - arhiva xampp.7z 
+<li> Sau se descarca de pe http://cs.engineering.upm.ro/Aquila/stud/Calc3/bd/ cu parola: student psw: studentupm2008
+<li> Sau se copiaza din reatea \\Aquila\stud\Calc3\bd
+<li> Se dezarhiveaza
+<li> Se lanseaza xampp-setup
+<li> Se lanseaza xampp-start
+<li> Se verifica existenta folder-ului htdocs in care se gaseste index.html si index.php
+<li> Se lanseaza  http://localhost sau http://127.0.0.1
+</ol> 
+
+<li><font color="blue" size="3">Instructiuni if, instructiuni repetitive</font> 
+<ol>
+<li> afisarea unui tabel 10 X 10 cu numere , cu patratele numerelor, cu valori aleatoare
+<li> colorarea celulelor cu numere pare
+<li> colorarea diagonalei principale, secundare, dreptunghiuri concentrice
+<li> generarea unei liste pe doua nivele
+<li> 
+</ol> 
+<li><font color="blue" size="3"> Afisari grafice in PHP </font>
+<ul>
+<b>Afisare consum</b><br><br>
+<li> Avand variabilele :
+<ol>
+<li> $val=270;
+<li> $min=20;
+<li> $max=500;
+</ol>
+<br> Realizati o aplicatie pe partea server-ului care sa afiseze grafic valoarea $val
+<br><br><center><img src="l_web_001.gif"></center><br><br>
+<br><br><b> Aplicatie pentru afisare sondaj procentual sub forma grafica.</b><br><br>
+<li> Sa presupunem ca avem urmatoarele variabile:
+<br>$intreb=array("Proiectare pagini WEB ", "Aplicatii WEB ", "Tehnologii avansate WEB ", "Servicii WEB ","Aplicatii industriale si monitorizari web ");
+<br>$rasp=array(61.54,7.69,23.08,0,7.69);
+<br><br>Unde $intreb-intrebarile la chestionar si $rasp procentul reprezentand raspunsurile la fiecare varianta.
+<li> Realizati o aplicatie pentru afisare sondaj procentual sub forma grafica.
+<br><br><center><img src="l_web_002.gif"></center><br><br>
+<li>Realizati o imagini dinamica de genul:
+<br><br><center>
+<script>
+function afis_im(){
+	im.src="sinus_v2.php"+"?sid="+Math.random();
+	setTimeout("afis_im()",300);
+}
+
+</script>
+<div>
+	<center><img src="sinus_v2.php"  name="im">
+		<INPUT onclick=afis_im() type=button value=Start>
+	</center>
+</div>
+</center><br><br>
+</ol>
+
+<li><font color="blue" size="3"> Form-uri php <br> </font>
+<ol>
+<li> Se va realiza o aplicatie client cu un form in care se introduc diverse date si aplicatia pe partea de server care prelucreaza datele din form
+exemple: 
+<ul>
+   <li> se introduce in form lungimea si latimea unui dreptunghi dupa care aplicatia pe partea de server calculeaza aria si o afiseaza 
+   <li> se introduce in form temperatura in gr C dupa care aplicatia pe partea de server afiseaza temperatura in in gr K si gr F
+   <li> ...
+ </ul>
+<li> se introduce in form val_min, val_max si val dupa care aplicatia pe partea de server afiseaza grafic valoarea scalat tinand cont de val_min si val_max
+<br><br><center><img src="im0_php.jpg"></center><br><br>
+<li> reluati aplicatia anterioara si afisati sub forma:
+<br><br><center><img src="im1_php.jpg"></center><br><br>
+</ol>
+
+</html>

@@ -1,0 +1,933 @@
+<html>
+<title> Laborator java-Script </title>
+<head>
+<script type="text/javascript" src="../l_java/wz_jsgraphics.js"></script>
+</head>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator java - Script </Center></TD></TR>
+</table>
+<br><br><a name="start"></a>
+<center><font color= "Blue" size=5> Teme program  </font></center>
+<li>Instructiuni if, instructiuni repetitive 
+<ol>
+<li> afisarea unui tabel 10 X 10 cu numere , cu patratele numerelor, cu valori aleatoare
+<li> colorarea celulelor cu numere pare
+<li> colorarea diagonalei principale, secundare, dreptunghiuri concentrice, spirala
+<li> afisarea unui tabel cu numere aleatoare
+<li> afisarea unui tabel cu celule colorate aleator
+<li> afisarea unui tabel dinamic cu numere aleatoare
+<li> afisarea unui tabel dinamic cu celule colorate aleator
+
+<li> 
+</ol>
+
+<li>Instructiuni pe siruri de caractere 
+<ol>
+<li> afisarea calendarului pe luna in curs
+<li> afisarea calendarului pe luna ceruta
+<li> realizarea unui calculator de buzunar
+<li> codul culorilor la rezistente
+<li> convertor zecimal binar, hexa
+<li> convertor temperatura C,K,F
+<li> calcul crc
+</ol>
+
+<li>Matrici, functii 
+<ol>
+<li> generarea unui tabel n x m
+<li> generarea unei liste pe trei nivele (continutul listei fiind preluat dintr-un Array)
+<li> 
+</ol>
+
+<center><font color= "Blue" size=5>Rezolvari</center></font>
+<font color= "Blue" size=5><li> Instructiuni</font>
+
+<ul>
+ <font color= "Black" size=4><li> Tabel numere  </font>
+</ul>
+<form name="f001">  
+<textarea width="100%" height="400px" style="width:100%;height:540px" name="code" wrap="logical" rows="12" cols="42">
+
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Tabel 7 linii si 10  coloane 
+<hr>
+<script type="text/javascript">
+document.writeln("<table border=1>");
+  var i=1,j=1,k=1;
+  do {
+   document.writeln("<tr>");
+   i=1; 	
+   do {
+     document.writeln("<td>");  
+     document.writeln(k);
+     document.writeln("</td>");  
+     i+=1; 
+     k+=1;
+    } while (i<=10);
+   j+=1; 
+   document.writeln("</tr>");  
+  }while (j<=10);
+document.writeln("</table>") 
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+ </textarea>
+</form>
+<script>document.write(f001.code.value);</script>
+
+
+<ul>
+ <font color= "Black" size=4><li> Tabel numere aleatoare </font>
+</ul>
+<form name="f002">  
+<textarea width="100%" height="400px" style="width:100%;height:520px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Tabel 7 linii si 10  coloane 
+<hr>
+<script type="text/javascript">
+document.writeln("<table border=1>");
+  var i=1,j=1,k=1;
+  do {
+   document.writeln("<tr>");
+   i=1; 	
+   do {
+     document.writeln("<td>");  
+     document.writeln(Math.round(Math.random()*50));
+     document.writeln("</td>");  
+     i+=1; 
+     k+=1;
+    } while (i<=10);
+   j+=1; 
+   document.writeln("</tr>");  
+  }while (j<=10);
+document.writeln("</table>") 
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+
+ </textarea>
+</form>
+<script>document.write(f002.code.value);</script>
+
+
+<ul>
+ <font color= "Black" size=4><li> Tabel celule colorate </font>
+</ul>
+<form name="f003">  
+<textarea width="100%" height="400px" style="width:100%;height:650px" name="code" wrap="logical" rows="12" cols="42">
+
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Tabel 10 linii si 10  coloane 
+<hr>
+<script type="text/javascript">
+document.writeln("<table border=1>");
+  var i=1,j=1,k=1;
+  do {
+   document.writeln("<tr>");
+   i=1; 	
+   do {
+	nr=Math.round(Math.random()*50)
+	if (nr%2==0){
+	 document.writeln("<td bgcolor=\"yellow\">");  
+	}
+	else{
+	 document.writeln("<td>");  
+	}
+    
+     document.writeln(nr);
+     document.writeln("</td>");  
+     i+=1; 
+     k+=1;
+    } while (i<=10);
+   j+=1; 
+   document.writeln("</tr>");  
+  }while (j<=10);
+document.writeln("</table>") 
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f003.code.value);</script>
+
+<ul> 
+<font color= "Black" size=4><li>Colorarea sub forma de spirala
+</ul>
+
+<form name="f007">  
+<textarea width="100%" height="400px" style="width:100%;height:730px" name="code" wrap="logical" rows="12" cols="42">
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td></center>
+<center>
+ Spirala
+<hr>
+<script language="JavaScript" type="text/javascript">
+document.write("<table border=1>");
+i=0;
+j=0;
+k=Math.round(Math.random()*99);
+imax=10; //Nr. max de linii
+jmax=10; //Nr. max de coloane
+n=0;
+m=jmax;
+for(i=0;i<=imax-1;i++)
+{       
+   document.write("<tr>");
+	for(j=0;j<=jmax-1;j++)
+	{
+	    if ((i%2==0)&&(j>=n-1)&&(j<=m-1))
+			document.write("<td bgcolor=\"yellow\">");
+	    else {
+		if ((i%2==1)&&(j>=m-1)&&(j<=n))
+			document.write("<td bgcolor=\"yellow\">");
+		else{
+			if ((j%2==0)&&(i>=j+2)&&(i<=jmax-j-1))
+				document.write("<td bgcolor=\"yellow\">");
+			else{
+				if ((j%2==1)&&(i>=jmax-j)&&(i<=j))
+					document.write("<td bgcolor=\"yellow\">");
+				else
+					document.write("<td>");
+			} 
+	    	}
+	   }
+     	   document.write( k,"</td>"); 
+     	   k=Math.round(Math.random()*99);
+	} 
+	document.write("</tr>"); 	
+	n+=1;
+	m-=1;
+}
+document.write("</table></table>");
+</script>
+</center>  
+
+</textarea>
+</form>
+<script>document.write(f007.code.value);</script>
+<ul> 
+<font color= "Black" size=4><li>Colorarea sub forma de dreptunghiuri concentrice
+</ul>
+
+
+<form name="f008">  
+<textarea width="100%" height="400px" style="width:100%;height:730px" name="code" wrap="logical" rows="12" cols="42">
+
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td></center>
+<center>
+ Dreptunghiuri concentrice
+<hr>
+<script language="JavaScript" type="text/javascript">
+document.write("<table border=1>");
+i=0;
+j=0;
+k=Math.round(Math.random()*99);
+imax=10; //Nr. max de linii
+jmax=10; //Nr. max de coloane
+n=0;
+m=jmax;
+for(i=0;i<=imax-1;i++)
+{       
+   document.write("<tr>");
+	for(j=0;j<=jmax-1;j++)
+	{
+	    if ((i%2==0)&&(j>=n)&&(j<=m-1))
+		document.write("<td bgcolor=\"yellow\">");
+	    else {
+		if ((i%2==1)&&(j>=m-1)&&(j<=n))
+			document.write("<td bgcolor=\"yellow\">");
+		else{
+			if ((j%2==0)&&(i>=j+1)&&(i<=jmax-j-1))
+				document.write("<td bgcolor=\"yellow\">");
+			else{
+				if ((j%2==1)&&(i>=jmax-j)&&(i<=j))
+					document.write("<td bgcolor=\"yellow\">");
+				else
+					document.write("<td>");
+			}
+		}
+	  } 
+     	  document.write( k,"</td>"); 
+     	  k=Math.round(Math.random()*99);
+	} 
+	document.write("</tr>"); 	
+	n+=1;
+	m-=1;
+}
+document.write("</table></table>");
+</script>
+</center>  
+
+</textarea>
+</form>
+<script>document.write(f008.code.value);</script>
+
+
+
+<ul>
+ <font color= "Black" size=4><li> Tabel culori aleatoare </font>
+</ul>
+
+<form name="f004">  
+<textarea width="100%" height="400px" style="width:100%;height:380px" name="code" wrap="logical" rows="12" cols="42">
+<script language="JavaScript" type="text/javascript">
+var i=1;
+var j=1;
+var m=10;
+var n=10;
+document.write("<center><table border='1'>");
+for(i=1;i<=n;i++){
+	document.write("<tr>");
+	for(j=1;j<=m;j++){
+		document.write("<td style=\"background-color:rgb("+(Math.round(Math.random()*255))+","+(Math.round(Math.random()*255))+","+(Math.round(Math.random()*255))+");\">");
+		document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+		document.write("</td>");
+	}
+	document.write("</tr>");
+}
+document.write("</table></center>");
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f004.code.value);</script>
+
+
+<ul>
+ <font color= "Black" size=4><li> Tabel dinamic numere aleatoare </font>
+</ul>
+
+<form name="f005">  
+<textarea width="100%" height="400px" style="width:100%;height:560px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<center><table bgcolor="WhiteSmoke" border =1 class='t1'  width="440"><tr><td colspan="2">
+<center>
+ <font  color="blue"> Numere  aleatoare in tabel</font> 
+</td></tr><tr><td>
+<script type="text/javascript">
+nr = new Array();
+function af_matr_01(){
+
+tx = "";
+tx = tx+"<table border=1 align='center' ><tr>";
+for (i=0; i < 10; i++) {
+tx = tx+"<tr>";
+	for (j=0;j<10;j++){
+	tx = tx+"<td>"+Math.round(Math.random()*255)+"</td>";
+	}	
+		tx = tx+"</tr>"
+}
+afis_matr_01.innerHTML = tx;
+setTimeout("af_matr_01()",1000);
+}
+</script>
+<center>
+<table border=0 ><tr><td>
+<div id="afis_matr_01">
+<script>af_matr_01()</script>
+</div>
+</td></tr></table></center>  
+</td></tr></table>
+</center>
+</body>
+</html> 
+</textarea>
+</form>
+<script>document.write(f005.code.value);</script>
+
+
+
+
+
+<ul>
+ <font color= "Black" size=4><li> Tabel dinamic culori aleatoare </font>
+</ul>
+
+<form name="f006">  
+<textarea width="100%" height="400px" style="width:100%;height:600px" name="code" wrap="logical" rows="12" cols="42">
+
+<html>
+<center><table bgcolor="WhiteSmoke" border =1 class='t1'  width="440"><tr><td colspan="2">
+<center>
+ <font  color="blue"> Culori aleatoare in tabel </font> 
+</td></tr><tr><td>
+<script type="text/javascript">
+nr = new Array();
+function af_cul_06(){
+
+tx = "";
+tx = tx+"<table border=1 align='center' ><tr>";
+for (i=0; i < 10; i++) {
+tx = tx+"<tr>";
+	for (j=0;j<10;j++){
+	tx = tx+"<td style=\"background-color:rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
+	}	
+		tx = tx+"</tr>"
+}
+afis_cul_06.innerHTML = tx;
+setTimeout("af_cul_06()",1000);
+
+}
+</script>
+<center>
+<table border=0 ><tr><td>
+<div id="afis_cul_06">
+<script>af_cul_06()</script>
+</div>
+</td></tr></table></center>  
+</td></tr></table>
+</center>
+</body>
+</html> 
+
+</textarea>
+</form>
+<script>document.write(f006.code.value);</script>
+<ul>
+ <font color= "Black" size=4><li> Afisarea datea si ora </font>
+</ul>
+<form name="f20">  
+<textarea width="100%" height="400px" style="width:100%;height:980px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+document.write("<center><br>Afisarea datei si orei</center><br>");
+var d = new Date();
+document.write("Astazi este:",Date(),"<br>");
+var an=d.getYear();
+document.write("Anul: ",an);
+var lu=d.getMonth();
+document.write(" Luna: ",lu+1);
+var zi=d.getDate();
+var z_s=d.getDay();
+document.write(" Ziua: ",zi," Ziua din saptamana: ", z_s,"<br>");
+var or=d.getHours();
+document.write("Ora: ",or);
+var mi=d.getMinutes();
+document.write(" Minutul: ",mi);
+var se=d.getSeconds();
+document.write(" Secunda: ",se,"<br>");
+j=zi;
+do {
+	j--;
+	z_s--;
+	if (z_s==0)
+ 		z_s=7;		
+}while (j>=2);
+document.write(" Data de 1 a fost in ziua: ",z_s,"<br><br>");
+var l_luni=new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+nrz=l_luni[lu];
+document.writeln("<center><table border=1>");
+document.writeln("<tr bgcolor='yellow' align='center'><td> L </td><td> M </td><td> M </td><td> J </td><td> V </td><td> S </td><td> D </td></tr>");
+  var i=1,j=1,k=0;
+  z_s=z_s-1;
+  while (k<=nrz){
+   document.writeln("<tr align='center'>");
+   i=1; 	
+   do {
+     if (z_s==0) 
+      k+=1;
+     if (z_s>0)
+      z_s-=1;
+     if ((k>0)&(k<=nrz)){
+     	if (k==zi)
+     		document.writeln("<td bgcolor='yellow'><font color='Red'>",k,"</font>");
+     	else	   
+     		document.writeln("<td>",k);
+ 	 }else
+ 	    //if (k<=nrz)
+     		document.writeln("<td>&nbsp;&nbsp;&nbsp");
+     document.writeln("</td>");  
+     i+=1;
+    } while (i<=7);
+   j+=1; 
+   document.writeln("</tr>");  
+  }
+document.writeln("</table></center>") 
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f20.code.value);</script>
+<li><font color= "Blue" size=5>Functii</font>
+<ul>
+ <font color= "Black" size=4> <li> Afisare text dinamic  start stop fara metoda clearTimeout(Time1)</font>
+</ul>
+<form name="f21">  
+<textarea width="100%" height="400px" style="width:100%;height:680px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Utlizare functii pentru siruri de caractere
+<hr>
+<center>
+<script type="text/javascript">
+var msg="       Functii pentru siruri de caractere   "
++"    -utilizarea functiei substring  "
+
+var banTime1;
+function mesaj_dinamic(){
+        msg=msg.substring(1,msg.length)+msg.substring(0,1);
+        document.loc_mesaj.mesaj.value=msg;
+	banTime1=setTimeout("mesaj_dinamic()",100);
+}
+function stop(){
+	clearTimeout(banTime1);
+}
+function go() {
+	mesaj_dinamic();
+}
+</script>
+<center>
+<FORM NAME="loc_mesaj">
+<INPUT onclick=go() type=button value=Start>
+<INPUT onclick=stop() type=button value=Stop>
+<INPUT TYPE="text" NAME="mesaj" SIZE=30 >
+</FORM>
+</center>
+</center>
+</td></tr></table></center>   
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f21.code.value);</script>
+
+<form name="f10">  
+<textarea width="100%" height="400px" style="width:100%;height:1850px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Utlizare functii pentru siruri de caractere
+<hr>
+<center>
+<script type="text/javascript">
+var msj=""
+
+var Time3;
+function b0(){
+        msj=msj+"0";
+        document.loc_mes_3.mesaj.value=msj;
+}
+function b1(){
+        msj=msj+"1";
+        document.loc_mes_3.mesaj.value=msj;
+}
+function b2(){
+        msj=msj+"2";
+        document.loc_mes_3.mesaj.value=msj;
+}
+function b3(){
+        msj=msj+"3";
+        document.loc_mes_3.mesaj.value=msj;
+}
+function b4(){
+        msj=msj+"4";
+        document.loc_mes_3.mesaj.value=msj;
+}
+function b5(){
+        msj=msj+"5";
+        document.loc_mes_3.mesaj.value=msj;
+}
+function b6(){
+        msj=msj+"6";
+        document.loc_mes_3.mesaj.value=msj;
+}
+function b7(){
+        msj=msj+"7";
+        document.loc_mes_3.mesaj.value=msj;
+}
+function b8(){
+        msj=msj+"8";
+        document.loc_mes_3.mesaj.value=msj;
+}
+function b9(){
+        msj=msj+"9";
+        document.loc_mes_3.mesaj.value=msj;
+}
+function bp(){
+        msj=msj+".";
+        document.loc_mes_3.mesaj.value=msj;
+}
+function pl(){
+        msj=msj+"+";
+        document.loc_mes_3.mesaj.value=msj;
+}
+function mn(){
+        msj=msj+"-";
+        document.loc_mes_3.mesaj.value=msj;
+}
+function imp(){
+        msj=msj+"/";
+        document.loc_mes_3.mesaj.value=msj;
+}
+function mu(){
+        msj=msj+"*";
+        document.loc_mes_3.mesaj.value=msj;
+}
+function bc(){
+        msj="";
+        document.loc_mes_3.mesaj.value=msj;
+}
+
+
+function eg(){
+        document.loc_mes_3.rez.value=eval(msj);
+}
+</script>
+<center>
+<FORM NAME="loc_mes_3">
+<INPUT TYPE="text" NAME="rez" SIZE=30 ><br>
+<INPUT TYPE="text" NAME="mesaj" SIZE=30 ><br>
+<table border =1><tr><td>
+<INPUT onclick=b7() type=button value=" 7 " >
+<INPUT onclick=b8() type=button value=" 8 " >
+<INPUT onclick=b9() type=button value=" 9 "><br>
+
+<INPUT onclick=b4() type=button value=" 4 " >
+<INPUT onclick=b5() type=button value=" 5 ">
+<INPUT onclick=b6() type=button value=" 6 " ><br>
+
+<INPUT onclick=b1() type=button value=" 1 " >
+<INPUT onclick=b2() type=button value=" 2 " >
+<INPUT onclick=b3() type=button value=" 3 " ><br>
+
+<INPUT onclick=b0() type=button value=" 0 " >
+<INPUT onclick=bp() type=button value=" .  " >
+
+</td><td>
+<INPUT onclick=pl() type=button value=" + " >
+<INPUT onclick=mn() type=button value=" - " ><br>
+<INPUT onclick=imp() type=button value=" / " >
+<INPUT onclick=mu() type=button value=" * " ><br>
+<INPUT onclick=eg() type=button value=" = " >
+<INPUT onclick=bc() type=button value=" C " >
+<br>
+</center></td></tr></table>
+</FORM>
+</center>
+</center>
+</td></tr></table></center>  
+</body>
+</html></textarea>
+</form>
+<script>document.write(f10.code.value);</script>
+
+<li><font color= "Blue" size=5>Tablouri</font>
+
+<ul>
+ <font color= "Black" size=4><li> Lista pe doua nivele </font>
+</ul>
+<form name="f20_0">  
+<textarea width="100%" height="400px" style="width:100%;height:980px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+  Lista pe doua nivele 
+<hr>
+<script type="text/javascript">
+var i,j,k;
+document.write("Matricea 4 x 5 este: <br><br>")
+matr = new Array();
+for (i=0; i < 4; i++) { 
+matr[i] = new Array();	
+     for (j=0; j < 5; j++) {
+	    matr[i][j] = "";
+		
+	       
+	}
+}
+matr[0][0]="Romania"; matr[0][1]="Bucuresti"; matr[0][2]="Craiova"; matr[0][3]="Brasov";; matr[0][4]="Iasi";
+matr[1][0]="Franta"; matr[1][1]="Paris"; matr[1][2]="Lion"; matr[1][3]="Bordo";; matr[1][4]="Nantes";
+matr[2][0]="Anglia"; matr[2][1]="Londra"; matr[2][2]="Mancester"; matr[2][3]="Luton";matr[2][4]="York";
+matr[3][0]="Ungaria"; matr[3][1]="Budapest"; matr[3][2]="Debrecen"; matr[3][3]="Hajduszoboszlo";; matr[3][4]="Gyula";
+
+
+document.write("<table border=1> <tr>")
+for (i=0; i < 4; i++) {
+ 
+   for (j=0; j < 5; j++) {
+     document.write("<td>",matr[i][j],"</td>")   
+	}   
+   document.write("</tr>")
+}
+document.write("</table>")
+document.write("</center>")
+document.write('<ul>');
+for (i=0; i < 4; i++) {
+  document.write("<li>");
+   for (j=0; j < 5; j++) {
+    if (j==0) { 
+       document.write(matr[i][0]+"</li>"+"<ul>")
+         }
+		 else{
+		 document.write("<li>"+matr[i][j]+"</li>")
+		 }
+	document.write("</li>");
+}
+	document.write("</ul>");
+}
+ document.write('</li></ul>')
+
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+ </textarea>
+</form>
+<script>document.write(f20_0.code.value);</script>
+
+<ul>
+<li> generarea unei liste pe trei nivele (continutul listei fiind preluat dintr-un Array)
+</ul>
+<form name="f20_1">  
+<textarea width="100%" height="400px" style="width:100%;height:800px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="600"><tr><td>
+<center>
+ <font size=4 color="blue"> Generare lista pe trei nivele </font>
+</center>
+ <hr>
+<script type="text/javascript">
+var array1 = 
+{
+ 	"Romania" : 
+ 			{	
+ 				"Bucuresti" : { 0 : "B-dul Victoriei", 1 : "Calea Floreasca"},
+				"Targu-Mures" : { 0: "Piata Trandafirilor", 1:"Gheorghe Doja"}	
+			},
+	"Germania" : 
+			{
+				"Berlin" : { 0 : "Strada1", 1 : "Strada2" }
+			},
+	"Franta" :
+			{
+				"Paris": { 0 : "Strada1", 1 : "Strada2" }
+			}						
+}
+
+document.writeln("<ul>");
+for(tari in array1)
+{
+	document.writeln("<li>"+tari+"</li>");
+	document.writeln("<ul>");
+	for(orase in array1[tari])
+		{
+			document.writeln("<li>"+orase+"</li>");
+			document.writeln("<ul>");
+			for(idstrazi in array1[tari][orase])
+				{	
+					strada = array1[tari][orase][idstrazi];
+					document.writeln("<li>"+strada+"</li>");
+				}
+				document.writeln("</ul>");
+		}
+		document.writeln("</ul>");
+}
+document.writeln("</ul>");
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f20_1.code.value);</script>
+
+<ul>
+ <li> <font color= "Black" size=4>Histograma verticala </font>
+</ul>
+
+<form name="f22">  
+<textarea width="100%" height="400px" style="width:100%;height:420px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="600"><tr><td>
+<center>
+ <font size=4 color="blue"> Consumuri energetice lunare </font> ( maxim 400 Kwh )</font>
+<hr>
+<script type="text/javascript">
+var i;
+luni = new Array("Ianuarie","Februarie","Martie","Aprilie","Mai","Iunie","Iulie","August","Septembrie","Octombrie","Noiembrie","Decembrie")
+consum = new Array(340,272,330,250,234,342,357,323,243,345,205,234);
+document.write("<table border=1> <tr><td> &nbsp;&nbsp;")
+for (i=0; i < 12; i++) {
+
+	document.write("<img src='bar.bmp' height='", consum[i],"'width='4'> &nbsp;&nbsp;");
+}   
+document.write("</table><br>")
+</script>
+</center>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f22.code.value);</script>
+
+<br><br><li>Numere aleatoare - folosind matrici<br><br>
+
+
+<form name="f27">  
+<textarea width="100%" height="400px" style="width:100%;height:580px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<center><table bgcolor="WhiteSmoke" border =1 width="440"><tr><td colspan="2">
+<center>
+ <font  color="blue"> Numere aleatoare - folosind matrici</font> 
+</td></tr><tr><td>
+<script type="text/javascript">
+nr = new Array();
+function af_nr(){
+for (i=0; i < 100; i++) {
+ nr[i]=Math.round(Math.random()*50);
+}
+afis_nr.innerHTML = "";	
+for (i=0; i < 100; i=i+10) {
+	afis_nr.innerHTML = afis_nr.innerHTML+"<table border=1 align='center' ><td width='30' align='right'>"+nr[i]+"</td><td width='30' align='right'>"+
+    nr[i+1]+"</td><td width='30' align='right'>"+nr[i+2]+"</td><td width='30' align='right'>"+
+    nr[i+3]+"</td><td width='30' align='right'>"+nr[i+4]+"</td><td width='30' align='right'>"+
+    nr[i+5]+"</td><td width='30' align='right'>"+nr[i+6]+"</td><td width='30' align='right'>"+
+    nr[i+7]+"</td><td width='30' align='right'>"+nr[i+8]+"</td><td width='30' align='right'>"+
+    nr[i+9]+"</td></table>";
+}
+setTimeout("af_nr()",1000);
+}
+</script>
+<center>
+<table border=0 ><tr><td>
+<div id="afis_nr">
+<script>af_nr()</script>
+</div>
+</td></tr></table></center>  
+</td></tr></table>
+</center>
+</body>
+</html> 
+</textarea>
+</form>
+<script>document.write(f27.code.value);</script>
+
+
+<br><br><Li>Culori aleatoare - folosind matrici<br><br>
+
+<form name="f28">  
+<textarea width="100%" height="400px" style="width:100%;height:700px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<center><table bgcolor="WhiteSmoke" border =1 class='t1'  width="440"><tr><td colspan="2">
+<center>
+ <font  color="blue"> Culori aleatoare - folosind matrici </font> 
+</td></tr><tr><td>
+<script type="text/javascript">
+nr = new Array();
+function af_cul(){
+for (i=0; i < 300; i++) {
+ nr[i]=Math.round(Math.random()*255);
+}
+afis_cul.innerHTML = "";	
+for (i=0; i < 300; i=i+30) {
+		afis_cul.innerHTML = afis_cul.innerHTML+"<table border=1 align='center' >"+
+		"<td style=\"background-color:rgb("+nr[i]+","+nr[i+1]+","+nr[i+2]+");\")>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>"+
+		"<td style=\"background-color:rgb("+nr[i+3]+","+nr[i+4]+","+nr[i+5]+");\")>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>"+
+		"<td style=\"background-color:rgb("+nr[i+6]+","+nr[i+7]+","+nr[i+8]+");\")>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>"+
+		"<td style=\"background-color:rgb("+nr[i+9]+","+nr[i+10]+","+nr[i+11]+");\")>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>"+
+		"<td style=\"background-color:rgb("+nr[i+12]+","+nr[i+13]+","+nr[i+14]+");\")>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>"+
+		"<td style=\"background-color:rgb("+nr[i+15]+","+nr[i+16]+","+nr[i+17]+");\")>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>"+
+		"<td style=\"background-color:rgb("+nr[i+18]+","+nr[i+19]+","+nr[i+20]+");\")>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>"+
+		"<td style=\"background-color:rgb("+nr[i+21]+","+nr[i+22]+","+nr[i+23]+");\")>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>"+
+		"<td style=\"background-color:rgb("+nr[i+24]+","+nr[i+25]+","+nr[i+26]+");\")>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>"+
+		"<td style=\"background-color:rgb("+nr[i+27]+","+nr[i+28]+","+nr[i+29]+");\")>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>"+
+		"</td></table>";
+}
+setTimeout("af_cul()",1000);
+}
+</script>
+<center>
+<table border=0 ><tr><td>
+<div id="afis_cul">
+<script>af_cul()</script>
+</div>
+</td></tr></table></center>  
+</td></tr></table>
+</center>
+</body>
+</html> 
+</textarea>
+</form>
+<script>document.write(f28.code.value);</script>
+
+<br><br><li>Culori aleatoare rezolvare mai simpla<br><br>
+
+<textarea width="100%" height="400px" style="width:100%;height:600px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<center><table bgcolor="WhiteSmoke" border =1 class='t1'  width="440"><tr><td colspan="2">
+<center>
+ <font  color="blue"> Culori aleatoare </font> 
+</td></tr><tr><td>
+<script type="text/javascript">
+nr = new Array();
+function af_cul(){
+for (i=0; i < 300; i++) {
+ nr[i]=Math.round(Math.random()*255);
+}
+tx = "";
+tx = tx+"<table border=1 align='center' ><tr>";
+for (i=0; i < 10; i++) {
+tx = tx+"<tr>";
+	for (j=0;j<10;j++){
+	tx = tx+"<td style=\"background-color:rgb("+nr[i+(i+1)*j]+","+nr[i+(i+1)*j+1]+","+nr[i+(i+1)*j+2]+")\">&nbsp;&nbsp;&nbsp;</td>";
+	}	
+		tx = tx+"</tr>"
+}
+afis_cul.innerHTML = tx;
+setTimeout("af_cul()",1000);
+
+}
+</script>
+<center>
+<table border=0 ><tr><td>
+<div id="afis_cul">
+<script>af_cul()</script>
+</div>
+</td></tr></table></center>  
+</td></tr></table>
+</center>
+</body>
+</html> 
+</textarea>
+<body>
+</html>

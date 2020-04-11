@@ -1,0 +1,400 @@
+<html>
+<title> Laborator java-Script </title>
+<head>
+<script type="text/javascript" src="../l_java/wz_jsgraphics.js"></script>
+</head>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator java - Script </Center></TD></TR>
+</table>
+<br><br><a name="start"></a>
+<center><font color= "Blue" size=5> Teme program  </font></center>
+<ol>
+<li> Termometru
+<li> Instrument virtual analogic
+<li> Instrument virtual realizat cu wz_jsgraphics
+
+<li> 
+</ol>
+<ul>
+ <li> <font color= "Black" size=4> Instrument virtual </font>
+</ul>
+<form name="f24_0">  
+<textarea width="100%" height="400px" style="width:100%;height:1220px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body onLoad="set_ter()";>
+<center><table bgcolor="WhiteSmoke" border =1 width="220"><tr><td align="center">
+<center><br>Termometru<br><br></center> 
+<canvas id="desen04" width="100" height="260" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<br>
+<!--<input id="val_ter" type="text" size="2" value="0" max="200"  onchange="set_ter()"/>-->
+<span id="af_valt"> 0 <span>
+</td></tr></table></center>
+<script type="text/javascript">
+var ctx4=desen04.getContext("2d");
+ctx4.lineWidth = .5;
+val_max=700; 
+w=desen04.width ;
+h=desen04.height/2-20;
+var i=0;
+function termo(x0,y0,wd,ht,val,vm){
+// sterg tot continutul
+	ctx4.beginPath();
+	ctx4.fillStyle = "#FFFFFF";
+	ctx4.fillRect(x0-10,y0-1,wd+60,ht+10);
+	ctx4.stroke();	
+// desenez contur termometru
+	ctx4.beginPath();
+	ctx4.moveTo(x0,y0); 
+	ctx4.strokeStyle = "rgb(255,0,0)";
+	ctx4.lineTo(x0+wd,y0);
+	ctx4.lineTo(x0+wd,y0+ht);
+	ctx4.lineTo(x0,y0+ht);
+	ctx4.lineTo(x0,y0);
+	ctx4.stroke();
+// desenez gradatii	
+
+	ctx4.stroke();
+	ctx4.beginPath();
+	ctx4.strokeStyle = "rgb(120,120,120)";
+	ctx4.font = "10px Arial";
+	val_a=0;
+	for (j = ht; j >=0; j -= 5)
+	{
+		ctx4.moveTo(x0+wd+2,y0+j); 
+		if (j % 25 == 0)
+		{
+			ctx4.lineTo(x0 + wd + 12,y0 + j);
+			ctx4.strokeText(val_a,x0 + wd + 20,y0 + j+3);
+			val_a=val_a+Math.round(25*vm/ht);
+		}
+		else
+		{
+			ctx4.lineTo(x0 + wd + 7,y0 + j);
+		}
+	}
+	ctx4.stroke();
+	ctx4.beginPath();
+	ctx4.fillStyle = "#0000ff";
+	ctx4.fillRect(x0+1,y0+ht-(val*ht/vm),wd-2,val*ht/vm);
+	ctx4.stroke();
+
+}
+
+function set_ter(){
+  val = Math.round(Math.random()*200);
+  document.getElementById('af_valt').innerHTML=val;
+  //document.getElementById('val_ter').value=parseInt(val);
+  i++;
+  termo(10,10,15,225,val,val_max);
+  setTimeout("set_ter()",500);
+}
+</script>
+</body>
+</html>
+
+
+</textarea>
+</form>
+<script>document.write(f24_0.code.value);</script>
+<br>
+<br>
+
+<form name="f24_1">  
+<textarea width="100%" height="400px" style="width:100%;height:950px" name="code" wrap="logical" rows="12" cols="42">
+<center><table bgcolor="WhiteSmoke" border =1 width="220">
+	<tr><td colspan="2" align="center">
+		Instrument virtual
+	</td></tr>
+	
+	<tr><td  colspan="2" align="center">
+		<span id="af_p"> <font size="3"> 0 % </font></span>
+		<canvas id="desen05" width="320" height="320" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+			Your browser does not support the HTML5 canvas tag.	
+		</canvas>
+		
+	</td></tr>
+	<tr><td align="center">
+		<input type="range" value="45" id="ra" min="0" max="255"  onchange="set_af()"/>
+	</td>
+	<td width="70" align="center">   
+		<span id="af_v"> 0 </span>
+	</td></tr>
+</table></center>
+<script type="text/javascript">
+vmax=100;
+v_max=255;
+var ctx5=desen05.getContext("2d"); 
+w=desen05.width ;
+h=desen05.height;
+x0=0;
+y0=0;
+xc=x0+w/2;
+yc=y0+w/2;
+raza=w/4;
+wi=w/2;
+function instr(x0,y0,wd,val_p){
+// sterg tot continutul
+	ctx5.beginPath();
+	ctx5.lineWidth = .5;
+	ctx5.fillStyle = "#FFFFFF";
+	ctx5.fillRect(1,1,w,2*wd);
+
+// desenez sectoare de cerc
+	ctx5.beginPath();
+	ctx5.strokeStyle = "rgb(230,230,230)";
+	ctx5.lineWidth = 25;
+	ctx5.arc(xc,yc,raza,2*Math.PI,0);
+	ctx5.stroke();
+	ctx5.beginPath();
+	ctx5.strokeStyle = "rgb(0,0,255)";
+	ctx5.lineWidth = 25;
+	ctx5.arc(xc,yc,raza,Math.PI/2,Math.PI/2+(2*Math.PI)*val_p/v_max);
+	ctx5.stroke();
+}
+function set_af(){
+  var v = parseInt(document.getElementById('ra').value);
+  document.getElementById('af_v').innerHTML=v;
+  document.getElementById('af_p').innerHTML=Math.floor(100*v/v_max)+" %";
+  instr(x0,y0,wi,v);
+}
+instr(x0,y0,wi,0);
+set_af();
+</script>
+</textarea>
+</form>
+<script>document.write(f24_1.code.value);</script>
+<br>
+<br>
+
+<form name="f24_2">  
+<textarea width="100%" height="400px" style="width:100%;height:1960px" name="code" wrap="logical" rows="12" cols="42">
+<body>
+<center><table bgcolor="WhiteSmoke" border =0 width="220">
+	<tr><td colspan="2" align="center">
+		Instrument virtual
+	</td></tr>
+	
+	<tr><td  colspan="2" align="center">
+		<span id="af6"> <font size="3"> 0 % </font></span>
+		<canvas id="desen06" width="320" height="320" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+			Your browser does not support the HTML5 canvas tag.	
+		</canvas>
+		
+	</td></tr>
+	<tr><td align="center">
+		<input type="range" value="77" id="ra6" min="0" max="255"  onchange="set_af6()"/>
+	</td>
+	<td>   
+		<span id="af_v6"> 0 </span>
+	</td></tr>
+</table></center>
+<script type="text/javascript">
+vmax=100;
+v_max=255;
+var ctx6=desen06.getContext("2d"); 
+w=desen06.width ;
+h=desen06.height;
+x0=0;
+y0=0;
+xc=x0+w/2;
+yc=y0+w/2;
+r_text=w/2.5;
+raza=w/4;
+wi=w/2;
+function instr6(x0,y0,wd,val_p){
+// sterg tot continutul
+	ctx6.beginPath();
+	ctx6.lineWidth = .5;
+	ctx6.fillStyle = "#FFFFFF";
+	ctx6.fillRect(1,1,w,2*wd);
+/*
+	
+// desenez contur 
+
+	ctx6.beginPath();
+	ctx6.moveTo(x0,y0); 
+	ctx6.strokeStyle = "rgb(255,0,0)";
+	ctx6.lineTo(x0+wd,y0);
+	ctx6.lineTo(x0+wd,y0+wd);
+	ctx6.lineTo(x0,y0+wd);
+	ctx6.lineTo(x0,y0);
+	ctx6.stroke();
+*/
+// desenez gradatii
+		var lt = 15;
+		var lg = 22;
+		vmax=100;
+		ctx6.beginPath();
+		ctx6.strokeStyle = "rgb(120,120,120)";
+		ctx6.font = "10px Arial";
+		var nrd=0;
+		var val_a=0;
+		alfa_r=90;		
+		alfa_gr = 270;//  unghiul in grade
+		while (alfa_gr >-90)
+		{
+		alfa_r = 2 * Math.PI * (alfa_gr) / 360;// unghiul in radiani
+		if (nrd % 6 == 0)
+		{
+			x1 = xc + (r_text-lt) * Math.cos(alfa_r);
+			y1 = yc - (r_text-lt) * Math.sin(alfa_r);
+			xt = xc-5 + r_text * Math.cos(alfa_r);
+			yt = yc - r_text * Math.sin(alfa_r);
+			ctx6.strokeText(Math.floor(val_a),xt,yt);
+			val_a =val_a + 18*(vmax/360)
+		}
+		else
+		{
+			x1 = xc + (r_text - lg) * Math.cos(alfa_r);
+			y1 = yc - (r_text - lg) * Math.sin(alfa_r);
+		}
+		x2 = xc + (r_text - 2 * lt) * Math.cos(alfa_r);
+		y2 = yc - (r_text - 2 * lt) * Math.sin(alfa_r);
+		ctx6.moveTo(x1,y1);
+		ctx6.lineTo(x2,y2)
+		alfa_gr -= 3;
+		nrd++;
+		}
+
+		ctx6.stroke();
+
+	
+// afisez valoarea
+
+ctx6.beginPath();
+ctx6.fillStyle = "#FFFFFF";
+ctx6.fillRect(xc-20,yc-20,80,40);
+ctx6.stroke();
+ctx6.beginPath();
+ctx6.lineWidth = 1;
+ctx6.font = "16px Arial";
+ctx6.strokeStyle = "rgb(220,0,0)";
+ctx6.strokeText(Math.floor(100*val_p/v_max)+" % ",xc-10,yc);
+	
+// desenez sectoare de cerc
+	ctx6.strokeStyle = "rgb(230,230,230)";
+	ctx6.lineWidth = 25;
+	ctx6.arc(xc,yc,raza,2*Math.PI,0);
+	ctx6.stroke();
+	ctx6.beginPath();
+	ctx6.strokeStyle = "rgb(0,0,255)";
+	ctx6.lineWidth = 25;
+	ctx6.arc(xc,yc,raza,Math.PI/2,Math.PI/2+(2*Math.PI)*val_p/v_max);
+	ctx6.stroke();
+}
+function set_af6(){
+  var v = parseInt(document.getElementById('ra6').value);
+  document.getElementById('af6').innerHTML=Math.floor(100*v/v_max)+" %";
+  document.getElementById('af_v6').innerHTML=v;
+  instr6(x0,y0,wi,v);
+}
+instr6(x0,y0,wi,0);
+set_af6();
+</script>
+</body>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f24_2.code.value);</script>
+<!--<INPUT onclick=window.open("instr2.html","buton1Window",'resizable=yes,width=450,height=450') type=button value=Vezi_pagina:> 
+<hr>-->
+
+<form name="f24">  
+<textarea width="100%" height="400px" style="width:100%;height:1300px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<body onLoad="strt();">
+	<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+	<div id="Instrument" style="position:relative; left:100; top:50; height:250px;width:250px"></div>
+	<script type="text/javascript">
+		var my_timer;
+		var cnv=document.getElementById("Instrument");
+		function DesenInstrument(maxim,gradatii, valoare){
+		   	Instrument.innerHTML=""; 
+		   	//pentru a nu creste memoria utilizata, se sterge div-ul si se creaza o noua instanta jg
+		   	var jg=new jsGraphics(cnv);
+		   	var x1,y1,x2,y2,i;
+		   	jg.setColor ("#444444");
+			jg.fillRect (0,0,160,160);
+		   	jg.setStroke (8);
+		   	jg.setColor ("#0000bb");
+		   	jg.drawRect (0,0,160,160);
+		   	jg.setColor ("#0000dd");
+		   	jg.setStroke (4);
+		   	jg.drawRect (2,2,158,158);
+		   	jg.setColor ("#0000ee");
+		   	jg.setStroke (2);
+		   	jg.drawRect (4,4,156,156);
+		   	jg.setStroke (2);
+		   	jg.setColor ("#00AAFF");
+		   	// desen cadran
+		   	for (i=180; i<270; i+=3){
+				x1=150+140*Math.sin(i*3.1415/180);
+				y1=150+140*Math.cos(i*3.1415/180);
+				x2=150+140*Math.sin((i+3)*3.1415/180);
+				y2=150+140*Math.cos((i+3)*3.1415/180);
+				jg.drawLine (x1,y1,x2,y2);
+			}
+		   // desen gradatii
+		   	jg.setColor ("#00AAFF");
+		   	g=90/gradatii;
+		   	for (i=180; i<=270; i+=g){
+				x1=150+140*Math.sin(i*3.1415/180);
+				y1=150+140*Math.cos(i*3.1415/180);
+				x2=150+130*Math.sin(i*3.1415/180);
+				y2=150+130*Math.cos(i*3.1415/180);
+				jg.drawLine (x1,y1,x2,y2);
+		   	}
+		   	// desen ac indicator
+		   	poz=valoare*90/maxim;
+		   	jg.setColor ("#FFFFFF");
+		   	jg.setStroke(1);
+		   	x1=150+130*Math.sin((270-poz)*3.1415/180);
+		   	y1=150+130*Math.cos((270-poz)*3.1415/180);
+		   	jg.drawLine (150,150,x1,y1);
+		   	jg.setStroke(2);
+		   	x2=150+100*Math.sin((270-poz)*3.1415/180);
+		   	y2=150+100*Math.cos((270-poz)*3.1415/180);
+		   	jg.drawLine (150,150,x2,y2);
+		   	jg.fillEllipse (145,145,10,10);
+			m=maxim.toString();
+		   	jg.drawString ("max="+m,10,10);
+		   	jg.paint();
+		}
+		function strt(){
+			my_timer=setInterval("DesenInstrument(100,20,Math.ceil(100*Math.random()))",500);
+		}	
+		function control (command){
+			if (command=="start"){
+				my_timer=setInterval("DesenInstrument(100,20,Math.ceil(100*Math.random()))",500);
+			}
+			if (command=="stop"){
+				clearInterval(my_timer);
+			}
+		}
+		DesenInstrument(100,20,Math.ceil(100*Math.random()))
+	</script>
+   <form>
+       <p> Instrument avand valoarea maxima 100, 20 de gradatii </p>
+	<p> Valoarea indicata este luata aleator la un interval de 0.5 secunde </p> 
+       <input type="button" value="start" onclick="control(this.value)"></input>
+       <input type="button" value="stop" onclick="control(this.value)"></input>
+   </form>
+</td></tr></table></center>  
+</body>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f24.code.value);</script>
+
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>Vi</title>
+<style type="text/css">
+<!--
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 0; 
+	padding: 0;
+	text-align: center;
+	font-size: 12px;
+	color: Red;
+}
+.pag_centr #af{
+	position:relative;
+	left:10px;
+	top:170px;
+	width:80px;
+	padding:0px;
+	border:0px solid #999;
+}
+-->	
+</style>
+</head>
+<body class="pag_centr">
+<center><table bgcolor="WhiteSmoke" border =0 width="220">
+	<tr><td colspan="2" align="center">
+		Instrument virtual
+	</td></tr>
+	
+	<tr><td  colspan="2" align="center">
+		<span id="af"> <font size="3"> 0 % </font></span>
+		<canvas id="desen04" width="320" height="320" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+			Your browser does not support the HTML5 canvas tag.	
+		</canvas>
+		
+	</td></tr>
+	<tr><td align="center">
+		<input type="range" value="0" id="ra" min="0" max="255"  onchange="set_af()"/>
+	</td>
+	<td>   
+		<span id="af_v"> 0 </span>
+	</td></tr>
+</table></center>
+<script type="text/javascript">
+vmax=100;
+v_max=255;
+var ctx4=desen04.getContext("2d"); 
+w=desen04.width ;
+h=desen04.height;
+x0=0;
+y0=0;
+xc=x0+w/2;
+yc=y0+w/2;
+r_text=w/2.5;
+raza=w/4;
+wi=w/2;
+function termo(x0,y0,wd,val_p){
+// sterg tot continutul
+	ctx4.beginPath();
+	ctx4.lineWidth = .5;
+	ctx4.fillStyle = "#FFFFFF";
+	ctx4.fillRect(1,1,w,2*wd);
+/*
+	
+// desenez contur 
+
+	ctx4.beginPath();
+	ctx4.moveTo(x0,y0); 
+	ctx4.strokeStyle = "rgb(255,0,0)";
+	ctx4.lineTo(x0+wd,y0);
+	ctx4.lineTo(x0+wd,y0+wd);
+	ctx4.lineTo(x0,y0+wd);
+	ctx4.lineTo(x0,y0);
+	ctx4.stroke();
+*/
+// desenez gradatii
+		var lt = 15;
+		var lg = 22;
+		ctx4.beginPath();
+		ctx4.strokeStyle = "rgb(120,120,120)";
+		ctx4.font = "10px Arial";
+		var nrd=0;
+		var val_a=0;
+		alfa_r=90;		
+		alfa_gr = 270;//  unghiul in grade
+		while (alfa_gr >-90)
+		{
+		alfa_r = 2 * Math.PI * (alfa_gr) / 360;// unghiul in radiani
+		if (nrd % 6 == 0)
+		{
+			x1 = xc + (r_text-lt) * Math.cos(alfa_r);
+			y1 = yc - (r_text-lt) * Math.sin(alfa_r);
+			xt = xc-5 + r_text * Math.cos(alfa_r);
+			yt = yc - r_text * Math.sin(alfa_r);
+			ctx4.strokeText(Math.floor(val_a),xt,yt);
+			val_a =val_a + 18*(100/360);
+		}
+		else
+		{
+			x1 = xc + (r_text - lg) * Math.cos(alfa_r);
+			y1 = yc - (r_text - lg) * Math.sin(alfa_r);
+		}
+		x2 = xc + (r_text - 2 * lt) * Math.cos(alfa_r);
+		y2 = yc - (r_text - 2 * lt) * Math.sin(alfa_r);
+		ctx4.moveTo(x1,y1);
+		ctx4.lineTo(x2,y2)
+		alfa_gr -= 3;
+		nrd++;
+		}
+		ctx4.stroke();
+	
+// desenez sectoare de cerc
+	ctx4.beginPath();
+	ctx4.strokeStyle = "rgb(230,230,230)";
+	ctx4.lineWidth = 25;
+	ctx4.arc(xc,yc,raza,2*Math.PI,0);
+	ctx4.stroke();
+	ctx4.beginPath();
+	ctx4.strokeStyle = "rgb(0,0,255)";
+	ctx4.lineWidth = 25;
+	ctx4.arc(xc,yc,raza,Math.PI/2,Math.PI/2+(2*Math.PI)*val_p/v_max);
+	ctx4.stroke();
+}
+function set_af(){
+  var v = parseInt(document.getElementById('ra').value);
+  document.getElementById('af').innerHTML=Math.floor(100*v/v_max)+" %";
+  document.getElementById('af_v').innerHTML=v;
+  termo(x0,y0,wi,v);
+}
+
+termo(x0,y0,wi,0);
+</script>
+</body>
+</html>

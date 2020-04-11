@@ -1,0 +1,95 @@
+<html>
+<title> Laborator ajax </title>
+<head>
+</head>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator ajax </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Utilizare AJAX </font><br><br>
+
+<ol>
+	<li> Utilizarea tehnologiei Ajax pentru afisare continut.
+	<li> Afisare dinamica instrument virtual. Valoarea afisata se preia prin tehnologie Ajax. Aplicatia <a href="date_01.txt">date_01.php</a> furnizeaza date aleatoare in format text.
+	<li> Utilizati clasa "binar" aflata in biblioteca <a href="binar.js">binar.js</a> pentru afisarea sub forma binara a unei valori preluate prin tehnologie Ajax.
+	<li> Utilizati clasa "voltm" aflata in biblioteca <a href="voltm.js">voltm.js</a> pentru afisarea evolutiei in timp a unei valori preluate prin tehnologie Ajax.
+	<li> Utilizati clasa "afisor_xt" aflata in biblioteca <a href="afisor_xt.js">afisor_xt.js</a> pentru afisarea evolutiei in timp a unei valori preluate prin tehnologie Ajax.
+	<li> Realizarea unei aplicatii web pentru monitorizare proces tehnologic pornind de la datele trimise de aplicatia <a href="date_02.txt">date_02.php</a>.
+
+</ol>
+<font color= "Blue" size=5> Rezolvari </font><br><br>
+
+<li><INPUT onclick=window.open("ajax.html","buton1Window",'resizable=yes,width=1000,height=600') type=button value="Continut:"> utilizarea tehnologiei Ajax pentru afisare continut.
+
+<li><INPUT onclick=window.open("ajax0.html","buton1Window",'resizable=yes,width=1000,height=600') type=button value="Continut dinamic:"> utilizarea tehnologiei Ajax pentru afisare continut.
+
+<li><INPUT onclick=window.open("ajax1.html","buton1Window",'resizable=yes,width=1000,height=600') type=button value="Binar:"> utilizarea clasei "binar"  pentru afisarea in format binar a unei valori zecimale preluate prin tehnologie Ajax.
+
+<li><INPUT onclick=window.open("ajax2.html","buton1Window",'resizable=yes,width=1000,height=600') type=button value="Afisor_xt:"> utilizare clasa "afisor_xt"  pentru afisarea evolutiei in timp a unei valori preluate prin tehnologie Ajax.
+
+<li> Utilizarea clasei "voltm.js" pentru afisarea unei valori care se preia prin tehnologie Ajax.
+<!------------------------------------------------------------------->
+<br><br><textarea width="100%" height="400px" style="width:100%;height:10px"  >
+
+</textarea>
+<!------------------------------------------------------------------->
+
+<li> Utilizare clasa "voltm"  pentru afisarea unei valori preluate prin tehnologie Ajax 
+<form name="f33_1">  
+<textarea width="100%" height="400px" style="width:100%;height:800px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="voltm.js"></script>
+</head>
+<body>
+<center>
+<br><table border=1><tr><td valign="top" width="310">
+<center>
+	<canvas id="desen01" width="420" height="270" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+		Your browser does not support the HTML5 canvas tag.
+	</canvas>
+</center>
+<span id="af_v"></span>
+</td></tr></table>
+</center>
+<script language="JavaScript">
+var val_max=250;
+var xmlhttp;
+var ctx1=desen01.getContext("2d");
+voltm1 = new voltm(ctx1,10,10,400,250); 
+function cere_date(){
+	xmlhttp=new XMLHttpRequest();
+	if (xmlhttp==null)
+	{
+		alert ("Browser-ul nu suporta XMLHTTP!");
+		return;
+	}
+	var url="date_01.php";
+	url=url+"?sid="+Math.random();
+	xmlhttp.onreadystatechange=stateChanged;
+	xmlhttp.open("GET",url,true);
+	xmlhttp.send("");
+	setTimeout("cere_date()",1000);
+}
+
+function stateChanged()
+{
+	if (xmlhttp.readyState==4)
+	{
+		rasp=xmlhttp.responseText;
+		document.getElementById("af_v").innerHTML='<font color="blue">Date citite: <font color="red">'+rasp+'<br>';
+		voltm1.set_val(Math.round(val_max*rasp/1023));
+	}
+}
+cere_date();
+</script>
+</body>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f33_1.code.value);</script>
+</body>
+</html>

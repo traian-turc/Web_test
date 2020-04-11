@@ -1,0 +1,71 @@
+<html>
+<body>
+<form name="f33_2">  
+<textarea width="100%" height="400px" style="width:100%;height:1000px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="afisor_xt.js"></script>
+</head>
+<body>
+<center>
+<br><table border=1><tr><td valign="top" width="420">
+<center>
+	<canvas id="desen" width="400" height="350" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+		Your browser does not support the HTML5 canvas tag.
+	</canvas>
+</center>
+<span id="af_v"></span>
+</td></tr></table>
+</center>
+<script language="JavaScript">
+var val_max=250;
+vals = [];
+nrv=300;
+ht=300;
+for(i=0;i<nrv;i++){
+	vals[i]=Math.round(ht/2);
+}
+var xmlhttp;
+var ctx=desen.getContext("2d");
+osci = new afisor_xt(50,10,nrv,ht,ctx); 
+function cere_date(){
+	xmlhttp=new XMLHttpRequest();
+	if (xmlhttp==null)
+	{
+		alert ("Browser-ul nu suporta XMLHTTP!");
+		return;
+	}
+	var url="date_01.php";
+	url=url+"?sid="+Math.random();
+	xmlhttp.onreadystatechange=stateChanged;
+	xmlhttp.open("GET",url,true);
+	xmlhttp.send("");
+	setTimeout("cere_date()",200);
+}
+
+function stateChanged()
+{
+	if (xmlhttp.readyState==4)
+	{
+		rasp=xmlhttp.responseText;
+		v=Math.round(Math.round(ht*rasp/1023));
+		document.getElementById("af_v").innerHTML='<font color="blue">Date citite: <font color="red">'+v+'<br>';
+		for(i=1;i<nrv;i++){
+			vals[i-1]=vals[i];
+		}
+		vals[i-2]=v;
+		osci.deseneaza(vals,nrv);
+	}
+}
+osci.deseneaza(vals,nrv);
+cere_date();
+</script>
+</body>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f33_2.code.value);</script>
+
+</body>
+</html>

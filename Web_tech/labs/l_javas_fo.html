@@ -1,0 +1,531 @@
+<html>
+<title> Laborator java-Script </title>
+<head>
+<script type="text/javascript" src="../l_java/wz_jsgraphics.js"></script>
+</head>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator java - Script </Center></TD></TR>
+</table>
+<br><br><a name="start"></a>
+<center><font color= "Blue" size=5> Teme program  </font></center>
+<li>Formulare in JS 
+<ol>
+<li> Tabela de scor la tenis de camp
+<li> Calculator de buzunar
+<li> Introduceti trei obiecte de tip "INPUT type=text" doua pentru operanzi si unul pentru rezultat. Afisati dinamic suma celor doi operanzi
+<li> Introduceti un obiect de tip "INPUT type=text". Afisati grafic dinamic cu "hr"  valoarea introdusa
+<li> Introduceti trei obiecte de tip "INPUT type=text" pentru val, min, max. Afisati grafic dinamic cu "hr"  valoarea introdusa corelata cu min si max
+<li> Rescalare grafic de sus in functie de max astfel incat afisarea sa se faca tot timpul pe 0-400 pixeli
+</ol>
+<center><font color= "Blue" size=5>Rezolvari</center></font>
+<ul>
+ <li> <font color= "Red" size=5> Formulare in JS </font>
+</ul>
+
+<form name="f10_0">  
+<textarea width="100%" height="400px" style="width:100%;height:1320px" name="code" wrap="logical" rows="12" cols="42">
+
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center>
+ Tennis score counter
+<hr>
+<center>
+<script type="text/javascript">
+function player1() {
+	var point = 0;
+	var set = document.tb.s1.value;
+	var now = parseInt(document.tb.p1.value);
+	if (now == 0) {point +=15; }
+	if (now == 15) {point +=15; }
+	if (now == 30) {point +=10; }
+	if (now == 40) {
+		if (document.tb.p2.value.value == 40)
+		{
+			document.tb.p1.value = "A";
+			return;
+		}
+		else point +=0; 
+	}
+	now += point;
+	if (point == 0)
+	{
+		document.tb.log.value = "Set for Player 1";
+		var set = document.tb.s1.value;
+		set ++;
+		document.tb.s1.value = set;
+		document.tb.p1.value = 0;
+		document.tb.p2.value = 0;
+	}
+	else 
+		
+		document.tb.p1.value=now;
+}
+
+function player2() {
+	var point = 0;
+	var now = parseInt(document.tb.p2.value);
+	if (now == 0) {point +=15; }
+	if (now == 15) {point +=15; }
+	if (now == 30) {point +=10; }
+	if (now == 40) {point +=0; }
+	now += point;
+	if (point == 0)
+	{
+		document.tb.log.value = "Set for Player 2";
+		var set = document.tb.s2.value;
+		set ++;
+		document.tb.s2.value = set;
+		document.tb.p1.value = 0;
+		document.tb.p2.value= 0;
+	}
+	else document.tb.p2.value = now;
+}
+</script>
+<form name="tb">
+<center>
+<table>
+  <tr>
+    <th colspan="2"> </th>
+	<td> Set 1 </td>
+  </tr>
+  <tr>
+  	<td><INPUT onclick=player1() type=button value="Player 1"></td>
+	<td><INPUT TYPE="text" NAME="p1" SIZE=10 ></td>
+	<td><INPUT TYPE="text" NAME="s1" SIZE=10 ></td>
+  </tr>
+  <tr>
+    <td><INPUT onclick=player2() type=button value="Player 2"></td>
+	<td><INPUT TYPE="text" NAME="p2" SIZE=10 ></td>
+	<td><INPUT TYPE="text" NAME="s2" SIZE=10 ></td>
+  </tr>
+</table>
+<INPUT TYPE="text" NAME="log" SIZE=30 >
+<INPUT TYPE="text" NAME="game" SIZE=30 >
+</center>
+</center>
+</td></tr></table></center> 
+</form> 
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f10_0.code.value);</script>
+
+
+
+<form name="f10_1">  
+<textarea width="100%" height="400px" style="width:100%;height:2540px" name="code" wrap="logical" rows="12" cols="42">
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <title>Calculator</title>
+ </head>
+ <body>
+<script>
+Memory  = "0";     
+Current = "0";     
+Operation = 0;      
+MAXLENGTH = 30;
+
+function AddDigit(dig)         
+{
+	if (Current.length > MAXLENGTH)
+	{ 	
+		Current = "Too long"; 
+	} 
+	else
+	{ 
+		if ((eval(Current) == 0) && (Current.indexOf(".") == -1))
+		   { 
+				Current = dig;
+		   } 
+		   else
+		   { 
+				Current = Current + dig;
+		   };
+	}; 
+	document.Calculator.Display.value = Current;
+};
+ 
+ function Clear()                
+ { 
+	Current = "0";
+	document.Calculator.Display.value = Current;
+ }
+
+function AllClear()             
+{ 
+	Current = "0";
+	Operation = 0;                
+	Memory = "0";                  
+	document.Calculator.Display.value = Current;
+}
+ 
+ //FUNCTIONS
+ 
+function Plus()
+{
+	if ( Current.indexOf("-") == 0 )
+	{ 
+		Current = Current.substring(1);
+	} 
+	else
+	{ 
+		Current = "-" + Current;
+	};
+}
+
+function Operate(op)            
+{
+	if (op.indexOf("+") > -1) { Operation = 1; };       
+	if (op.indexOf("-") > -1) { Operation = 2; };       
+	if (op.indexOf("*") > -1) { Operation = 3; };      
+	if (op.indexOf("/") > -1) { Operation = 4; };       
+
+	Memory = Current;                 
+	Current = "";        
+	document.Calculator.Display.value = Current;
+}
+
+function Calculate()            
+{ 
+	if (Operation == 1) { Current = eval(Memory) + eval(Current); };
+	if (Operation == 2) { Current = eval(Memory) - eval(Current); };
+	if (Operation == 3) { Current = eval(Memory) * eval(Current); };
+	if (Operation == 4) { Current = eval(Memory) / eval(Current); };
+	if (Operation == 5) { Current = eval(Memory) ^ eval(Current); };
+	Operation = 0;               
+	Memory    = "0";              
+	document.Calculator.Display.value = Current;
+}
+ 
+ function Dot()
+ {
+	if ( Current.length == 0)
+    { 
+		Current = "0.";
+    } 
+	else
+    {  
+		if ( Current.indexOf(".") == -1)
+		{ 
+			Current = Current + ".";
+		};  
+	};
+	document.Calculator.Display.value = Current;
+ }
+ 
+</script>
+<div class="Calculator">
+<center><b><i>Calculator Simplu</i></b></center>
+<center>
+<form name="Calculator">		
+<table border="4"> 
+ <tr>  
+  <td colspan="2"><br>
+   <input type="text" maxlength="40" size="30" name="Display">
+  </td>
+ </tr>  
+ <tr>
+ <td>
+  <table>						   
+   <tr>
+    <td><input type="button" value="7" onclick="AddDigit('7')"></td>
+    <td><input type="button" value="8" onclick="AddDigit('8')"></td>
+    <td><input type="button" value="9" onclick="AddDigit('9')"></td>
+   </tr>
+   <tr>
+	<td><input type="button" value="6" onclick="AddDigit('6')"></td>
+	<td><input type="button" value="5" onclick="AddDigit('5')"></td>
+	<td><input type="button" value="4" onclick="AddDigit('4')"></td>
+   </tr>
+   <tr>
+	<td><input type="button" value="3" onclick="AddDigit('3')"></td>
+	<td><input type="button" value="2" onclick="AddDigit('2')"></td>
+    <td><input type="button" value="1" onclick="AddDigit('1')"></td>
+   </tr>
+   <tr>
+    <td><input type="button" value="C" onclick="Clear()"></td>
+	<td><input type="button" value="0" onclick="AddDigit('0')"></td>
+	<td><input type="button" value="." onclick="Dot()"></td>
+   </tr>
+  </table>
+  </td>
+  <td>
+  <table>						   
+   <tr>
+	<td><input type="button" value="+" onclick="Operate('+')"></td>
+	<td><input type="button" value="-" onclick="Operate('-')"></td>
+   </tr>
+	<tr>
+	 <td><input type="button" value="*" onclick="Operate('*')"></td>
+	 <td><input type="button" value="/" onclick="Operate('/')"></td>
+    </tr>	
+	<tr>
+	 <td><input type="button" value="^" onclick="Operate('^')"></td>
+	 <td><input type="button" value="%" onclick=""></td>
+	 </tr>	
+	 <tr>
+	   <td><input type="button" value="=" onclick="Calculate()" ></td>
+	 </tr>								
+	</table>
+   </td>					
+  </tr>
+ </table>
+</form>
+</center>	
+</div>
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f10_1.code.value);</script>
+
+
+ <li> <font color= "Black" size=4>Alegerea tipului de calculator </font>
+
+
+<form name="f10_2">  
+<textarea width="100%" height="400px" style="width:100%;height:550px" name="code" wrap="logical" rows="12" cols="42">
+
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<script type="text/javascript">
+function val_rd(rd1) {
+	if (rd1==1) 
+		afis_c.innerHTML='<img src="calc_std.jpg">';
+	if (rd1==2) 
+		afis_c.innerHTML='<img src="calc_st.jpg">';	
+	if (rd1==3) 
+		afis_c.innerHTML='<img src="calc_pr.jpg">';
+}
+</script>
+<Form name="Form_rd">
+	<I><center> Selectati tipul de calculator </center></I><br><br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "1" checked="checked"> Calculator standard<br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "2"> Calculator stiintific <br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "3"> Calculator pentru programatori<br>
+ </form>
+</td></tr>
+<tr><td>
+<center><div id="afis_c"></center>
+<script>afis_c.innerHTML='<img src="calc_std.jpg">';</script>
+</div>
+
+</td></tr>
+</table></center>  
+</body>
+</html>
+
+
+</textarea>
+</form>
+<script>document.write(f10_2.code.value);</script>
+
+<br><br><li>Afisare dinamica val ,min, max<br><br>
+
+<form name="f25">  
+<textarea width="100%" height="400px" style="width:100%;height:900px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+
+<html>
+<body>
+<center> 
+<table bgcolor="WhiteSmoke" border =1 width="700"><tr><td colspan="2">
+<center>
+ <font size=4 color="blue"> Grafic</font>
+</td></tr><tr><td>
+<script type="text/javascript">
+function afis_v(){
+	af.innerHTML = "";
+	val_c=1*(form_cons.cas1.value);	// se inmulteste cu 1 pentru a forta val_c sa fie numeric
+	max=1*(form_cons.cas_max.value);	
+	min=1*(form_cons.cas_min.value);
+
+/*document.write(min);*/
+	
+	if ((val_c >max ) || (val_c<0)|| (val_c<min)){
+		consum=0;
+		val_af=0;
+	}else{
+		val_af=val_c;
+		consum=val_c*410/max;
+	}	
+	af.innerHTML = af.innerHTML+"<table border=1><tr><td width='100'>Valoare:"+val_af+"</td><td width=500><hr color ='red' size='5' align='left' width="+consum+"color ='red'></td></tr></table>";
+
+	setTimeout("afis_v()",200);
+}
+
+</script>
+<table border=1><tr><td>
+<FORM name="form_cons">
+<table border=1>
+<script type="text/javascript">
+var consum=0;
+
+	document.write("<tr><td> valoare</td><td> <INPUT type=text name=cas1 size=12 value='77'></tr></td>");
+	document.write("<tr><td> Maxim</td><td> <INPUT type=text name=cas_max size=12 value='250'></tr></td>");
+	document.write("<tr><td> Minim</td><td> <INPUT type=text name=cas_min size=12 value='25'></tr></td>");
+
+</script>
+</table>
+</td><td>
+</td></tr></table></FORM>
+</td><td>
+<div id="af">
+<script>afis_v()</script>;
+</div>
+</center>
+</td></tr></table></center> 
+</table> 
+</body>
+</center>
+</html>
+</textarea>
+</form>
+<script>document.write(f25.code.value);</script>
+
+
+<br><br><li>Codul culorilor la rezistente<br><br>
+
+
+<form name="f34">  
+<textarea width="100%" height="400px" style="width:100%;height:1900px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<style type="text/css">
+table.t1 
+{
+border-collapse: collapse
+}
+</style>
+
+<script type="text/javascript">
+ var nr_s   
+ var c1Select
+ var c2Select
+ var c3Select
+var sir
+var numar
+
+function nr_sel() {  
+nr_s = 0;
+
+ ob_selectat = document.Form_sel.c1;
+ for (var i=0; i < ob_selectat.options.length; i++) 
+	{ 
+     	if (ob_selectat.options[i].selected==true)  
+		{
+		c1Select = i;
+		nr_s++   
+		}
+	}  
+ ob_selectat = document.Form_sel.c2;
+ for (var i=0; i < ob_selectat.options.length; i++) 
+	{ 
+     	if (ob_selectat.options[i].selected==true)  
+		{
+		c2Select = i;
+		nr_s++   
+		}
+	}  
+ ob_selectat = document.Form_sel.c3;
+ for (var i=0; i < ob_selectat.options.length; i++) 
+	{ 
+     	if (ob_selectat.options[i].selected==true)  
+		{
+		c3Select = i;
+		nr_s++   
+		}
+	}  
+ if ( nr_s == 3 )
+	{
+	numar = c1Select *10 + c2Select;
+	sir = numar + " * 10^" + c3Select;
+
+	document.Form_sel.rezultat.value = sir + " = " + numar*Math.pow(10,c3Select);
+	}
+
+	setTimeout('nr_sel()',100);
+ }
+</script>
+
+<center> 
+<table bgcolor="WhiteSmoke" border =1 class='t1'  width="400"><tr><td colspan="2">
+<center>
+ <font size=4 color="blue"> Codul culorilor la rezistente </font> </td></tr><tr><td>
+
+<form name="Form_sel"><br>
+	<hr><center>
+	<table border=1><tr><td>
+	<center><font size=4 color="blue">Prima cifra</font></center>
+	<select name="c1" size="10" >
+	<option style="background-color:black" style="color:white"value="9"> Negru       </option>
+	<option style="background-color:red" value="9"> Rosu       </option>
+	<option style="background-color:orange" value="2"> Portocaliu       </option>
+	<option style="background-color:yellow" value="3"> Galben       </option>
+	<option style="background-color:green" value="4"> Verde       </option>
+	<option style="background-color:blue" value="5"> Albastru       </option>
+	<option style="background-color:indigo" style="color:white" value="6"> Indigo       </option>
+	<option style="background-color:purple" style="color:white" value="7"> Violet       </option>
+	<option style="background-color:silver" value="8"> Argintiu       </option>
+	<option style="background-color:gold" value="9"> Auriu       </option>
+	
+	</select>
+	</td><td>
+	<center><font size=4 color="blue">A doua cifra</font></center>
+	<select name="c2" size="10" >
+	<option style="background-color:black" style="color:white"value="9"> Negru       </option>
+	<option style="background-color:red" value="9"> Rosu       </option>
+	<option style="background-color:orange" value="2"> Portocaliu       </option>
+	<option style="background-color:yellow" value="3"> Galben       </option>
+	<option style="background-color:green" value="4"> Verde       </option>
+	<option style="background-color:blue" value="5"> Albastru       </option>
+	<option style="background-color:indigo" style="color:white" value="6"> Indigo       </option>
+	<option style="background-color:purple" style="color:white" value="7"> Violet       </option>
+	<option style="background-color:silver" value="8"> Argintiu       </option>
+	<option style="background-color:gold" value="9"> Auriu       </option>
+
+	</select>
+	</td><td>
+	<center><font size=4 color="blue">A treia cifra</font></center>
+	<select name="c3" size="10" >
+	<option style="background-color:black" style="color:white"value="9"> Negru       </option>
+	<option style="background-color:red" value="9"> Rosu       </option>
+	<option style="background-color:orange" value="2">Portocaliu       </option>
+	<option style="background-color:yellow" value="3">Galben       </option>
+	<option style="background-color:green" value="4">Verde       </option>
+	<option style="background-color:blue" value="5">Albastru       </option>
+	<option style="background-color:indigo" style="color:white" value="6">Indigo       </option>
+	<option style="background-color:purple" style="color:white" value="7">Violet       </option>
+	<option style="background-color:silver" value="8">Argintiu       </option>
+	<option style="background-color:gold" value="9"> Auriu       </option>
+
+	</select>
+	</td></tr></table>
+
+<script>nr_sel()</script>
+<br><br>
+<Input TYPE="text" NAME="rezultat" VALUE="" size = "50">
+</form>
+</center>
+
+<center>
+<table border=0 ><tr><td>
+</td></tr></table></center>  
+</td></tr></table>
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f34.code.value);</script>
+</body>
+</html>

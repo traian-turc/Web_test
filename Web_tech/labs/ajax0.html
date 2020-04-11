@@ -1,0 +1,37 @@
+<html>
+<head>
+<script type="text/javascript">
+function cer_fis(url)
+{
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.open("GET",url,false);
+xmlhttp.send(null);
+document.getElementById('loc_text').innerHTML="<center> Val="+xmlhttp.responseText+"</center>";
+}
+</script>
+</head>
+
+<body>
+<center>
+<table bgcolor="WhiteSmoke" border =1 width="100"><tr><td colspan="2">
+<div id="loc_text">
+</div>
+<script>
+function date1(){
+	var url1="date_01.php";
+	url1=url1+"?sid="+Math.random();
+cer_fis(url1);
+setTimeout("date1()",1000)
+}
+date1();
+</script>
+ </td></tr></table></center>
+</body>
+</html>

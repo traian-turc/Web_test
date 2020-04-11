@@ -1,0 +1,261 @@
+<html>
+<title> Laborator java-Script </title>
+<head>
+<script type="text/javascript" src="../l_java/wz_jsgraphics.js"></script>
+</head>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator java - Script </Center></TD></TR>
+</table>
+<br><br><a name="start"></a>
+<center><font color= "Blue" size=5> Teme program  </font></center>
+<ol>
+<li> joc alba neagra
+<li> joc - descopera celulele cu bonusuri intr-o matrice -prin click pe celule
+<li> help toolbox cu imagini senzitive
+<li> matrice de imagini senzitive
+<li> 
+</ol>
+<center><font color= "Blue" size=5>Rezolvari</center></font>
+<br><br><li> <font color= "Black" size=4>Diverse aplicatii cu imagini</font><br><br>
+<form name="f29">  
+<textarea width="100%" height="400px" style="width:100%;height:750px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<script type="text/javascript">
+function afis3_11(){
+	document.imag1.src="white.jpg"
+	document.imag2.src="white.jpg"
+	document.imag3.src="white.jpg"
+	document.imag4.src="white.jpg"
+}
+function afis3_12(){
+	document.imag1.src="move1.jpg"
+}
+function afis3_22(){
+	document.imag2.src="move1.jpg"
+}
+function afis3_32(){
+	document.imag3.src="move1.jpg"
+}
+function afis3_42(){
+	document.imag4.src="move1.jpg"
+}			
+</script>
+<center>
+<table border=1>
+<tr><td colspan=2>Puneti mouse-ul pe imagine!</td></tr>
+<tr>
+	<td> <img name="imag1".src="white.jpg" alt="[Schimbare imagine] " onmouseover="afis3_32()" onmouseout="afis3_11()"  width=80 height=60/></td>
+	<td> <img name="imag2".src="white.jpg" alt="[Schimbare imagine] " onmouseover="afis3_12()" onmouseout="afis3_11()"  width=80 height=60/></td>
+</tr><tr>
+<td> <img name="imag3".src="white.jpg" alt="[Schimbare imagine] " onmouseover="afis3_42()" onmouseout="afis3_11()"  width=80 height=60/></td>
+<td> <img name="imag4".src="white.jpg" alt="[Schimbare imagine] " onmouseover="afis3_22()" onmouseout="afis3_11()"  width=80 height=60/></td>			
+</tr>
+</table>
+</center>
+<script>document.imag1.src="move1.jpg"</script>
+<script>document.imag2.src="white.jpg"</script>
+<script>document.imag3.src="white.jpg"</script>
+<script>document.imag4.src="white.jpg"</script>
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f29.code.value);</script>
+
+
+<form name="f30">  
+<textarea width="100%" height="400px" style="width:100%;height:1030px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="476" height="226"><tr><td align="center" valign="center">
+<script type="text/javascript">
+function afis4_1(){
+	document.immg4.src="patrat2.jpg"
+	document.immg5.src="patrat2.jpg"
+	document.immg6.src="patrat2.jpg"
+	var k=0;
+	k=Math.round(Math.random()*4);
+	document.immg4.src="p"+k+".jpg"
+}
+function afis4_2(){
+	document.immg4.src="patrat1.jpg"
+	document.immg5.src="patrat1.jpg"
+	document.immg6.src="patrat1.jpg"
+}
+function afis4_3(){
+	document.immg4.src="patrat2.jpg"
+	document.immg5.src="patrat2.jpg"
+	document.immg6.src="patrat2.jpg"
+	var k=0;
+	k=Math.round(Math.random()*4);
+	document.immg5.src="p"+k+".jpg"
+}
+function afis4_4(){
+	document.immg4.src="patrat1.jpg"
+	document.immg5.src="patrat1.jpg"
+	document.immg6.src="patrat1.jpg"
+}
+function afis4_5(){
+	document.immg4.src="patrat2.jpg"
+	document.immg5.src="patrat2.jpg"
+	document.immg6.src="patrat2.jpg"
+	var k=0;
+	k=Math.round(Math.random()*4);
+	document.immg6.src="p"+k+".jpg"
+}
+function afis4_6(){
+	document.immg4.src="patrat1.jpg"
+	document.immg5.src="patrat1.jpg"
+	document.immg6.src="patrat1.jpg"
+}
+</script>
+<img name="immg4".src=patrat1.jpg" alt="[Nu este poza !!!]"
+onmouseover="afis4_1()"
+onmouseout="afis4_2()"  align="left"/>
+<img name="immg5".src=patrat1.jpg" alt="[Nu este poza !!!]"
+onmouseover="afis4_3()"
+onmouseout="afis4_4()" align="left"/>
+<img name="immg6".src=patrat1.jpg" alt="[Nu este poza !!!]"
+onmouseover="afis4_5()"
+onmouseout="afis4_6()"  align="left"/>
+<script>document.immg4.src="patrat1.jpg"</script>
+<script>document.immg5.src="patrat1.jpg"</script>
+<script>document.immg6.src="patrat1.jpg"</script>
+<br><br>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f30.code.value);</script>
+
+<form name="f31">  
+<textarea width="100%" height="400px" style="width:100%;height:600px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+	<body>
+	<center>
+		<script type="text/javascript">
+			delay = 1;
+			im_nr = 1;
+			// Preincarcare imagini
+			imagini = new Array();
+			for(i = 0; i < 3; i++) {   
+			imagini[i] = new Image();  
+			imagini[i].src = "im" + i + ".jpg";
+			}
+			function animatie() {   
+			  document.im_anim.src = imagini[im_nr].src;
+			  im_nr++;
+			  if(im_nr > 2) {
+				  im_nr = 0 ;  
+			   }
+			}
+			function stop() {
+				delay = 1000000;
+				setTimeout('animatie()', delay)
+			}
+			function reload1() {
+				delay = 50;
+				setTimeout('animatie()', delay)
+			}
+		</script>
+	<img name="im_anim" src="im0.jpg" alt="[Imagini animatie]" onLoad="setTimeout('animatie()', delay)" onclick="stop()"><br><br>
+	<input type="button" value="restart" onclick="reload1()">
+	</form>	
+	</center>	
+	</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f31.code.value);</script>
+
+<form name="f32">  
+<textarea width="100%" height="400px" style="width:100%;height:650px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+	<head>
+		<title>Alba_Neagra </title>
+		<script language="JavaScript">
+				roller= new Array();
+				roller[1]= new Image(479,219);
+				roller[1].src ='var1.jpg';
+				roller[2]= new Image(479,219);
+				roller[2].src ='var2.jpg';
+				roller[3]= new Image(479,219);
+				roller[3].src ='var3.jpg'			
+				showthis=0 								
+				function RandomSwapOut() {												
+						oldroller = new Array()
+						oldroller[2] = oldroller[1]
+						oldroller[1] = showthis										
+						showthis = parseInt((Math.random()*(roller.length-1))+1);		
+  						if (showthis == oldroller[1]) {RandomSwapOut();}
+						if (showthis == oldroller[2]) {RandomSwapOut();}
+						document.Ritalin.src = roller[showthis].src; return true;	
+				}
+				function SwapBack() {		
+					document.Ritalin.src = "kartya2.jpg"; return true;	
+				}
+		</script>
+	</head>
+	<body bgcolor="white">
+		<font size="5">Alba-Neagra</font>
+		<center>
+			<p><a onmouseover="RandomSwapOut()" onmouseout="SwapBack()"><img name="Ritalin" src="kartya2.jpg" width="479" height="219" border="0"></a> </p>
+			<p>&nbsp;</p>
+		</center>				
+	</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f32.code.value);</script>
+
+<form name="f33">  
+<textarea width="100%" height="400px" style="width:100%;height:620px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="CoffeeCup HTML Editor (www.coffeecup.com)">
+    <meta name="created" content="Wed, 25 Apr 2012 07:30:44 GMT">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>Jump the image</title>
+    <script type="text/javascript">
+		function jumpIt() {
+			var pp = document.getElementById("im");
+			var left = parseInt(pp.style.left);
+			var top = parseInt(pp.style.top);
+			left = Math.floor(Math.random()*700);
+			top = Math.floor(Math.random()*200);
+			pp.style.left = left+"px";
+			pp.style.top = top+"px";
+		}
+	</script>    
+  </head>
+  <body>
+  <table width="100%" border=0><tr><td>
+  <center> Pozitionati mouse-ul pe centrul imaginii!</tr></td><tr><td>
+  <img src="leaf.jpg" id="im" style="position:relative;top:0px;left:0px;" onMouseOver="jumpIt()"/>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  </tr></td></table>
+  </body>
+</html>
+</textarea>
+</form>
+<script>document.write(f33.code.value);</script>
+</body>
+</html>

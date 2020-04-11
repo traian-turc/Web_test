@@ -1,0 +1,60 @@
+<html>
+<body>
+<form name="f33_2">  
+<textarea width="100%" height="400px" style="width:100%;height:800px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<script type="text/javascript" src="binar.js"></script>
+</head>
+<body>
+<center>
+<br><table border=1><tr><td valign="top" width="420">
+<center>
+	<canvas id="desen" width="400" height="70" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+		Your browser does not support the HTML5 canvas tag.
+	</canvas>
+</center>
+<span id="af_v"></span>
+</td></tr></table></center>
+<script language="JavaScript">
+w=desen.width-30 ;
+h=desen.height-20;
+var xmlhttp;
+var ctx=desen.getContext("2d");
+binar1 = new binar(10,10,w,h,ctx); 
+function cere_date(){
+	xmlhttp=new XMLHttpRequest();
+	if (xmlhttp==null)
+	{
+		alert ("Browser-ul nu suporta XMLHTTP!");
+		return;
+	}
+	var url="date_01.php";
+	url=url+"?sid="+Math.random();
+	xmlhttp.onreadystatechange=stateChanged;
+	xmlhttp.open("GET",url,true);
+	xmlhttp.send("");
+	setTimeout("cere_date()",200);
+}
+
+function stateChanged()
+{
+	if (xmlhttp.readyState==4)
+	{
+		rasp=xmlhttp.responseText;
+		binar1.set_val(rasp,16);
+		
+	}
+}
+
+binar1.deseneaza();
+cere_date();
+</script>
+</body>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f33_2.code.value);</script>
+</body>
+</html>
