@@ -1,0 +1,218 @@
+<HTML><HEAD>
+<title>Arhitectura calculatoarelor - notiuni introductive</title>
+</HEAD>
+<a name="start"></a>
+<TABLE  WIDTH="100%">
+<TR><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "white" size=5>Arhitectura calculatoarelor - notiuni introductive</Center></TD></TR>
+</TABLE>
+<br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Calculatoarele  sunt echipamente complexe pentru prelucrarea datelor si gestionarea informatiei
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a introduce notiunea de informatie ,se presupune ca intr-o situatie oarecare pot avea loc N evenimente egal probabile ,
+probabilitatea unui eveniment fiind p=1/N.Prin realizarea unui eveniment din cele N posibile se obtine informatie.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prin definitie informatia este i=log1/p=logN
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Informatia  se transmite prin  semnal. Semnalul este o manifestare fizica (unda electromagnetica ,unda sonora etc ) capabila de a se propaga printr-un mediu dat.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Semnalele sunt supuse perturbatiilor. Se numeste perturbatie un semnal care modifica semnalul aleator util care transmite informatie,
+micsorind cantitatea de informatie transmisa.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Mesajul este un semnal ce corespunde unei realizari particulare din ansamblul de idei,imagini,date care trebuie transmise unui 
+corespondent.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa de informatie este mecanismul prin care ,din multimea mesajelor posibile se alege intr-un mod imprevizibil (pentru corespondent)
+un mesaj particular destinat  a fi transmis unui corespondent.
+<br>
+<font color= "blue" size=4><li><b>Termeni de baza</b><br></font>
+<ul> 
+<li><b>Hardware</b> - echipamentele fizice care compun un sistem de calcul</li> 
+<li><b>Software</b> - programele pe care le executa calculatorul in general</li> 
+<li><b>Aplicatii Software </b>- programele destinate sa rezolve o anumita problema</li>
+<li><b>Program</b> - un set de instructiuni care instruiesc calculatorul pas cu pas ce are de facut</li>
+<li><b>Programator </b>- persoana care scrie programe pentru calculator</li>
+<li><b>Utilizatori</b> - persoanele care cumpara si utilizeaza softul pentru calculator</li></ul>
+<br>
+<a name="info"></a>
+<br>
+<font color= "blue" size=4><li><b>Notiunea de data si informatie</b></font><br>
+
+<UL>
+<li>Calculatoarele sunt echipamente complexe pentru prelucrarea si gestionarea informatiei.
+<li>Prin definitie informatia se defineste ca fiind i=ln(1/p), unde p este probabilitatea de a avea loc 
+un eveniment din N cazuri posibile. Informatia devine deci i=ln(N). Informatia despre un eveniment este cu 
+atat mai valoroasa deci cu cat probabilitatea unui eveniment de a avea loc este mai mica.
+
+<LI>Un calculator este un sistem care accepta date la intrare si le prelucreaza dupa un 
+program (algoritm), rezultind informatii utile pe care  apoi le furnizeaza la iesire</UL>
+<Center><H1><IMG SRC  = "intro2.gif"> </H1></Center>
+<HR><b>Componentele de baza ale unui calculator </A></b>
+<UL><LI>
+<B>Dispozitivele de intrare </B> primesc datele si le trimit calculatoruluiintr-o forma 
+in care calculatorul le poate intelege si utiliza.
+<LI><B>Unitatea centrala de prelucrare CPU (Central Processing Unit) </B>
+contine circuite electronicepentru prelucrarea datelor de intrare si transformarea lor in 
+ informatii care sunt ulterior oferite la iesire
+<LI><B>Memoria</B> Tine temporar date si instructiuni necesare CPU
+<LI><B>Dispozitive de iesire </B> fac posibila utilizarea datelor prelucrate.
+<LI><B>Dispozitive de memore externa (secundara) </B> 
+Stocheaza datele si programele.
+<li><b>Magistrala sistem</b>-reprezinta calea fizica prin care se interconecteaza componentele 
+calculatorului.
+<br>Latimea magistralei sistem depinde de marimea cuvintelor de date
+</UL>
+<CENTER><H2><IMG SRC  = "intro3.gif"> </H2></CENTER>
+
+<a name="von"></a>
+<br>
+<font color= "blue" size=4><li><b>Structura von Neumann </b></font><br>
+<br>
+Structura unui calculator se bazeaza schema bloc din figura de jos numita si structura  von Neumann 
+<CENTER><H2><IMG SRC  = "im3.jpg"> </H2></CENTER>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Un calculator este un sistem capabil sa prelucreze, dupa un anumit 
+algoritm(program) datele primite la intrare, si sa furnizeze informatii la iesire.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Datele primite la intrare prin intermediul sistemului de I/O sunt 
+pastrate in memorie de unde sunt transferate in unitatea centrala UC si prelucrate conform unui 
+algoritm (program) aflat tot in memorie, introdus in prealabil. In urma prelucrarii datelor 
+rezulta informatii care se stocheaza in memorie si sunt transmise pentru afisare prin 
+intermediul sistemului I/O. 
+<br>
+<a name="repr_i"></a>
+<br>
+    <font color= "blue" size=4><li><b>Reprezentarea informatiilor in calculator </b></font><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Datele si informatile sunt vehiculate intre partile componente 
+ale calculatorului prin intermadiul unor cai de legatura numite magistrale.
+
+<CENTER><H2><IMG SRC  = "im4.jpg"> </H2></CENTER>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a putea fi transmisa, informatia are nevoie de un suport 
+fizic numit semnal.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>Semnalul</i> este o manifestare fizica (unda electromagnetica, 
+unda sonora, interactiune mecanica ect.) capabila de a se propaga printr-un mediu dat.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>Mesajul </i> este un semnal ce corespunde
+ unei realizari particulare din ansamblul de date care trebuie transmis unui corespondent.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In calculatoarele actuale semnalul folosit este semnalul electric.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Magistrala este realizata deci din conductoare electrice prin care 
+se poate propaga semnal electric.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Semnalul electric este supus perturbatiilor. Se numeste perturbatie, un
+semnal care modifica semnalul aleator util care transporta informatie, micsorand cantitatea de informatie 
+transmisa.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a reduce la minim posibil influenta zgomotelor asupra semnalului util
+s-a ales utilizarea semnaluli electric digital. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Semnalul digital are doua stari 1 si 0 adica prezenta semnal
+si lipsa semnal adica semnal electric cu tensiunea 5v si semnal electric cu tensiunea 0v. Acest tip
+de semnal poate transporta numai informatie elementara de tipul Fals si Adevarat. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a utiliza semnalul digital, informatia trebuie deci codificata 
+digital sau binar.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Orce tip de informatie poate fi codificata numeric, dupa care poate fi
+transformata in numere binare. Este deci posibila realizarea de calculatoare care sa utilizeze semnalul
+electric digital pentru a vehicula orce tip de informatie sub forma binara. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In functie de numarul de linii electrice se pot transmite simultan mai 
+multe semnale electrice.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom numi bit de informatie informatia elementara (cea mai mica cantitate 
+de informatie,informatia 1-adevarat sau informatia 0-fals.)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pe o magistrala cu n linii electrice se pot deci transmite n biti. 
+Numarul de linii este impus de nivelul tehnologic.
+Dupa aparitia unitatilor centrale integrate numite microprocesoare, au fost realizate primele
+calculatoare personale.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Primele calculatoare personale realizate cu microprocesoare foloseau 
+magistrale de 8 linii, deci pe magistrala se puteau vehicula informatii de maxim 8 biti.Cei opt biti de
+informatie luati impreuna formeaza un octet sau un byte.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Primele calculatoare PC-IBM compatible au fost realizate cu microprocesoare de 
+16 biti. Cantitatea de informatie vehiculata era deci compusa din 16 biti(cuvant sau word)
+Calculatoarele actuale folosesc procesoare de 32 biti (dword-double word) si 64 de biti(qword-quad word)
+
+
+<a name="mem"></a>
+<br>
+<br>&nbsp&nbsp&nbsp* Informatia din memoria calculatorului este codificata binar si afisata in 
+cod hexazecimal 
+<br>&nbsp&nbsp&nbsp* Orice fel de informatie (programe, valori numerice, texte, imagini, sunete, etc.)
+ este codificata numeric in baza 2 (Codificare binara). Se grupeaza apoi cate 4 biti si se 
+reprezinta informatia pe ecran in cod hexazecimal pentru o mai usoara citire.
+
+
+
+<Center><H1><IMG SRC  = "im1.jpg"> </H1></Center>
+<br>&nbsp&nbsp&nbsp* Tabelul de valori hexa afisat mai sus, reprezinta continutul memoriei 
+de la o anumita adresa.
+<br>&nbsp&nbsp&nbsp* Datele exprimate in hexazecimal de la aceasta adresa pot codifica orce
+ fel de informatie. Ele pot reprezenta de exemplu o portiune de imagine, un text etc. 
+Nu putem descifra ce reprezinta aceste valori decat daca incepem decodificarea de la adresa 
+0000:0000 si decodificam pas cu pas continutul meemoriei functie de pasii facuti de calculator de 
+la pornire pana in momentul afisarii, lucru aproape inposibil.
+
+<UL>
+<LI>Memoria este realizata dintr-o sucsesiune de locatii de memorie. 
+<li>Locatia de memorie este structura fizica ce poate memora 16 biti de informatie(word).
+<li>Memoria este astfel realizata incat sa poata prelua de pe magistrala un cuvant pe care sa-l
+memoreze(scrie) in orce locatie si totodata sa se poata aduce pe magistrala (citi) orce cuvant 
+din orce locatie. Pentru a realiza aceste cerinte, fiecare locatie trebuie sa aiba o "adresa"
+precisa. Adresele sunt atribuite in ordine fiecarei locatii. Pentru orce operatie (de citire sau 
+scriere in sau din memorie) este deci necesar sa precizam continutul cuvantului, felul operatiei
+si adresa locatiei la care se refera operatia. Structuara unui calculator se poate deci detalia astfel:
+</UL>
+
+<Center><H1><IMG SRC  = "im5.jpg"> </H1></Center>
+
+<UL>
+<LI> La un moment dat pe magistrala se face o singura operatei (de citire sau scriere)
+<li> Coordonarea operatiilor pe magistrala se face de UC prin magistrala de comenzi prin care se traansmit 
+comenzile necesare pentru fiecare operatiune.
+<li> Unitatea centrala UC (realizata pe baza MICROPROCESOR-ului) este cea care coordoneaza
+toate operatiile intr-un calculator.
+<li>Programul si datele sunt incarcate in memorie sub controlul UC. Dupa aceasta operatie UC formeaza 
+pe magistrala de adrese adresa primei locatii de unde incepe programul. UC pune si comenzile 
+corespunzatoare pentru operatiile dorite (scriere sau citire) pe magistrala de comenzi.  
+<Center><H1><IMG SRC  = "im2.jpg"> </H1></Center>
+<li>Prima instructiune de la adresa specificata de UC este pusa de memorie  pe magistrala de date si
+ UC-u o poate citi si pe urma executa. Ciclul se repeta pentru urmatoarele instructiuni din program pana
+la terminarea programului. Rezultatele prelucrarii sunt puse de UC in memorie prin operatii de 
+scriere pe parcursul rularii programului. Din memorie rezultatele sunt trimise la dispozitivele
+de iesire pentru afisare.
+<li> Viteza cu care sunt executate operatiile de UC este data de frecventa de lucru a Microprocesorului.
+<LI> Frecventa de lucru actuala atinge ordinul Mhz.
+</UL>
+
+<a name="sch"></a>
+<br>
+<font color= "blue" size=4><li><b>Schema bloc functionala a unui calculator </b></font><br><br>
+<Center><IMG SRC  = "im7.jpg"></Center>
+<UL>
+<LI>Unitatea centrala 
+<LI>Periferice (Tastatura, Mouse, Monitor video, ..)
+</UL>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;Unitatea centrala contine:
+<UL>
+<LI> PLACA DE BAZA
+ <UL>
+  <LI> UCP
+  <LI> Memoria
+  <LI> Diferite interfete
+ </UL>
+<LI> MEMORIA EXTERNA (FDD, HDD, CD) 
+</UL>
+
+<a name="impl"></a>
+<br>
+<font color= "blue" size=4><li><b>Exemplu de implementare  </b></font><br><br>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; Schema bloc a unei variante constructive a placii de baza este prezentata in figura de sus.
+<br>
+<Center><IMG SRC  = "im6.jpg"></Center>
+<BR>
+
+<a name="im_sch"></a>
+<br>
+<font color= "blue" size=4><li><b>Imagini placi de baza </b></font><br><br>
+
+<br>
+<table border=1 width=100%>
+<tr><td>
+<IMG SRC  = "im10.jpg">
+<IMG SRC  = "im11.jpg">
+<IMG SRC  = "im12.jpg">
+<IMG SRC  = "im13.jpg">
+</td></tr>
+</table>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; In imaginile de mai jos sunt prezentate doua placi de baza .
+<BR>
+
+</BODY>
+</HTML>
+
+
+
