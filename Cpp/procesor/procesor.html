@@ -1,0 +1,191 @@
+<HTML><HEAD>
+<title>Structura procesoarelor</title>
+</HEAD>
+<a name="start"></a>
+<TABLE  WIDTH="100%">
+<TR><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Structura microprocesoarelor</Center></TD></TR>
+</TABLE>
+<br>
+<font color= "blue" size=4><li><b>Microprocesorul</b><br></font>
+<br>
+<p>Unitatea centrala a unui microcalculator este realizata fizic in jurul unui microprocesor.  Microprocesor nu reprezinta un calculator ci numai 
+o parte a sa , înglobînd în general  dispozitivul aritmetic si dispozitivul de comanda . 
+Pentru a realiza un calculator cu ajutorul unui microprocesor , denumit în mod obisnuit microcalculator sau microsistem de calcul este necesar 
+a se reuni microprocesorul cu elemente de memorie si circuite de interfata . 
+Sistemele pe baza de microprocesor necesita existenta unei memorii iar procesarea informatiei se face la nivel de cuvînt . 
+Cuvintele adresate pot exprima o instructiune pentru procesor sau o data pentru procesare . 
+In fiecare locatie a memoriei este stocat un cuvînt cu o lungime de n biti .
+Pentru un microprocesor , lungimea n a cuvîntului , este o caracteristica principala acesta exprimînd capacitatea uzuala de procesare . 
+Exista microprocesoare care lucreaza cu lungimi de 8, 16 32 sau 64 de biti . 
+Fiecare locatie a memoriei este adresata cu un cuvînt de adresare de m biti , deci pot fi selectate în total 2m  locatii ale memoriei.
+Microprocesoarele sunt realizate pe un chip de siliciu de cativa milimetri patrati.
+</p>
+<Center> <IMG SRC=alu2.gif><BR> </Center>
+Fotografia la microscop a procesorului Motorola  PowerPC604e<BR>
+<a name="alu"></a>
+<br>
+<font color= "blue" size=4><li><b>Unitatea Arithmetico-logica </b><br></font>
+<br>
+ALU efectueaza operatiile aritmetice si logice           
+Operatiile tipice executate de ALU sunt:
+<UL>   
+            <li>adunare </li>
+            <li>scadere </li>
+            <li>complementare </li>
+            <li>impartire </li>
+            <li>deplasare/rotire </li>
+            <li>inmultire </li>
+</ul>
+<p><br>ALU lucreaza de obicei cu doi operanzi.Adesdeori unul dintre operanzi se gaseste in locatiile 
+interne in timp ce celalalt operand este adus din memoria sistem.In cazul cind ambii operanzi se afla
+inauntrul procesorului instructiunea aritmetica sau logica se executa mult mai <b>repede</b>. 
+In cazul in care ciclul de fetch nu este prea performant este mai potrivita incarcarea in prealabil a 
+operanzilor in niste locatii de memorare numite  <i>latch-uri</i> dupa care lansata instructiunea aritmetica sau logica. </p>
+<p><i>Destinatia  ALU este efectuarea de operatii aritmetice sau logice</i>. </p>
+<Center><IMG SRC=alu1.gif></Center><BR><BR>
+Unitatea ALU este "inima" oricarui procesor este unitatea care efectueaza calculele.
+ O unitate ALU are doua intrari (A si B) , un port rezultat (Y) , o unitate de control care selecteaza
+ operatia pe care trebuie s-o execute (add, subtract, and, or, <I>etc</I>) si iesiri aditionale pentru
+semnalizarea codurilor de conditie (carry, overflow, negative, zero ).
+ ALU trebuie sa execute cel putin urmatoarele operatii  :aritmetice pe intregi (adunare, scadere), 
+logice (and, or, complement) si deplasari (stinga, dreapta, rotire).
+Astfel de unitati ALU simple pot fi gasite in microprocesoare de 4 sau 8 biti utilizate de obicei
+in sisteme specializate (embedded systems).
+<TD BGCOLOR=yellow><I>Multe</I><BR>procesoare foarte cunoscute nu se gasesc in PC-uri dar se folosesc
+         la controlul diferitor sisteme incepind cu masinile de spalat,telefoane ,diferite aparate casnice si 
+         terminind cu controlul functionarii autovehiculelor.
+</TD>
+         Unitatile ALU mai complexe suporta o gama mai larga de operatii cu intregi(inmultire impartire),operatii 
+         cu numere in virgula flotanta ,chiar si functii matematice cum ar fi (radical,sin,cos,log, <I>etc</I>.
+         Pina acum citva ani o mare parte din procesoare nu aveau suport pentru inmultire impartire sau operatii
+         cu numere in virgula flotanta.Piata importanta a programelor este detinuta de programele comerciale unde 
+         adunarea si scaderea sunt operatiile aritmetice mai importante.Operatiile aritmetice de inmultire si
+         impartire (care iau mult timp de executie necesitind pentru o inmultire de numere pe 32 biti 32 de adunari
+         si siftari) fiind rar folosite duc la cresterea nesemnificativa a performantelor generale.Din aceasta cauza 
+         designerii de procesoare aloca altor resurse care au un impact mai mare asupra performantelor generale
+         ale procesoarelor si dupa cum se poate vedea si in figura o mare parte din suprafata cipului este alocata
+         cache-ului  si unitatii aritmetice in virgula flotanta.Recent,folosindu-se tehnologii moderne s-a reusit 
+         integrarea unui numar de tranzistoare in jur de10<SUP>7</SUP> intr-un singur chip. A fost posibila astfel 
+         includerea ALU in virgula flotanta
+         <BR>
+          La procesoarele simple ,ALU este realizata din arii de circuite combinationale care implementeaza registrii
+         pentru aoperanzii A si B si au ca intrare codurile operatiilor ,iesirea circuitelor operationale este 
+         iesirea Y si iesirile de conditii.Operanzii si codul de operatie se aplica la intrare pe primul front al 
+         clock-ului iar uc produce rezultatul pina la urmatorul front al clock-ului deci clock-ul nu poate depasi 
+         o anumita frecventa. 
+         <BR>
+          La procesoarele avansate ALU este ajutat de <A HREF=pipel.html>pipeline</A> instructiunile trecind prin
+         pipeline astfel se pot utiliza clock-uri mai rapide intrucit operatiile mai complexe (<I>ex</I> operatii
+         in virgula flotanta cu stagii multiple se pot realiza in mai multe stagii fiecare stagiu fiind mai mic
+         si mai rapid).</li><BR><br>
+
+<a name="ippc"></a>
+<br>
+<font color= "blue" size=4><li><b>Pointerul de instructiuni /Numaratorul  program</b></font><br>
+<br>
+         Procesorul utilizeaza un numarator intern pentru a pastra adresa  instructiuni ce
+       a fost adusa din memorie si urmeaza a fi executata.  
+       <p><b>In timpul ciclului de fetch </b>, procesorul plaseaza continutul pointerului de instructiuni 
+       pe magistrala de adrese.Semnalul de Read este lansat pe magistrala de comenzi pentru citirea din memorie 
+       intr-un registru intern din procesor numit registrul de instructiuni . </p>
+       <p><b>In timpul ciclului de decodificare</b>, pointerul de instructiuni este ajustat pentru a marca urmatoarea
+       instructiune ce urmeaza a fi executata(ea este calculata din actuala adresa la care se adauga 1 sau
+       valoarea saltului in cazul instructiunilor se salt). </p>
+        <p><i>Scopul pointerului de instructiuni este de a tine adresa din memorie a instructiunii pe care procesorul
+       este in curs s-o execute.</i></p>
+    </li>
+<a name="ir"></a>
+
+<br>
+<font color= "blue" size=4><li><b>Registrul de instructiuni /Decodificatorul </b></font><br>
+<br>
+    Odata ce instructiunea a fost copyata din memoria sistem in registrul de instructiuni din interiorul
+    procesorului,este startat ciclul de decodificare.Instructiunea este decodificata deci procesorul
+    stie exact tote secventele de operatii care trebuie executate atit inauntrul procesorului cit si 
+    in exterior. 
+    <p>Instructiunea decodificata trebuie sa fie in genul:</p>
+        <ul>
+            <li>Pune continutul lui a in ALU </li>
+            <li>Deplaseaza stinga continutul ALU </li>
+            <li>Pune continutul ALU in registrul A </li>
+            <li>Aduna 1 la  numaratorul  de de instructiuni </li>
+        </ul>
+        <p><i>Scopul registruli de instructiuni este de a tine o copie a instructiunii pe care procesorul este 
+   in curs sa o execute .</i></p>
+</li>
+<a name="reg"></a>
+<br>
+    <font color= "blue" size=4><li><b>Registrii generali </b></font><br>
+<br>
+        Pentru a memora temporar variabile,operanzi,rezultate,toate procesoarele au inglobate un anumit numar
+    de locatii de memorie interne numite <i>registre</i>.Numarul registrelor generale poate fi de la unu la
+    citeva sute.
+    <p>Motivul pentru care se utilizeaza registrele interne este <b>viteza</b>.Datele dinauntrul procesorului
+    sunt prelucrate mult mai rapid decit cele din memoria sistem din cauza ca nu mai este nevoie de ciclii de fetch
+    pentru extragerea datelor in vederea  prelucrarii </p>
+    <p>De exemplu pentru a inmulti valorile a doua locatii de memorie este nevoie de trei ciclii de fetch . </p>
+    <p><i>Scopul registrelor interne de destinatie generala este de a furniza temporar locatii de memorie pentru
+    variabile si operanzi.</i> </p>
+    </li>
+    Procesoarele din familia Intel pe 32 biti au urmatoarea structura de registrii generali:
+<br><br>
+<img src="im_m1.gif">
+<br><br>    
+<a name="eu"></a>
+<br>
+<font color= "blue" size=4><LI><b>Unitatea de executie</b></font>
+<br>
+<P>Unitatea de executie contine registrii de date si ALU.Ea selecteaza registrii pentru a lucra cu ei
+,alimenteaza ALU ,selecteaza rezultatul si il trimite inapoi in registrii.In incarcare sau memorare
+datele pot ocoli ALU si datele pot trece din memorie in registrii sau din registrii in registrii
+nemodificate.Alu poate servi si la calcularea adreselor de salt.<BR>
+<BR>
+<IMG SRC="fetch3.gif" WIDTH="538" HEIGHT="240" ALIGN="BOTTOM"
+NATURALSIZEFLAG="3"><BR>
+<BR>
+In cazul setului de instructiuni RISC ,selectia registrelor sursa si destinatie este un pic mai ciudata
+din cauza ca operanzii sura sau destinatie au pozitii fixe in cadrul registrului de instructiuni IR
+si este o simpla treaba de conectare a registrului IR cu registrii gemnerali. 
+In cadrul setului de instructiuni CISC,sursa si destinatia pot fi precizate in diferite parti ale 
+instructiunii deci ale IR ului sau chiar in diferite cuvinte.Deaceea cimpurile registrului IR trbuie
+trecute printr-un selector care este controlat de UC -unitatea de control.<br>
+<BR>
+In cadrul setului RISC exista doar citeva tipuri de instructiuni de tipul regisru registru,sau incarcare 
+memorare.In cadrul arhitecturii CISC sursa ALU poate veni din memorie sau din registrii gemnerali la fel
+si rezultatul poate fi pus in registrii sau in memorie deci e nevoie de multiplexoare suplimentare pentru
+a putea realiza astfel de instructiuni. Arhitecturile CISC au un numar mare de moduri de adresare si deci
+rezulta un circuit complex pentru calcularea adreselor.Procesoarele RISC pot specifica registrul impreuna cu
+cu adresa intr-o singura instructiune.</P>
+</LI>
+<a name="uc"></a>
+<br>
+<font color= "blue" size=4><LI><b>Unitatea de control UC </b></font>
+<br>
+<P>Unitatea de control este un automat cu numar finit de stari care are ca intrare IR ul ,
+registrul de stari care este de fapt iesirea de stari ale ALU si starea ciclului in curs.
+Programul pe care il ruleaza UC este fie cablat utilizind porti logice fie inscris intr-un PLA.
+Iesirile UC-ului sunt trimise prin procesor fiecarui punct care necesita coordonare sau directionare
+din partea UC -ului. <BR>
+<BR>
+<IMG SRC="fetch4.gif" WIDTH="344" HEIGHT="126" ALIGN="BOTTOM"
+NATURALSIZEFLAG="3"><BR>
+<BR>Astfel:
+ <ul>
+  <li> Selectarea functiei ALU trimite codul operatiei pe care trebuie s-o efectueze ALU.</li>
+  <li> Jump/Branch/NextPC depinde de tipul instructiunii si anume daca este o instructiune de
+       salt relativ,salt absolut sau una liniara.</li>
+  <li> IR latch se activeaza la sfirsitul ciclului de fetch a instructiunii cind instructiunea a 
+       fost complet extrasa.</li>
+  <li> Load Reg/Reg se activeaza cind se face transfer intre doi registrii.</li>
+  <li> Register R/W este inceputul ciclului de fetch date si sfirsitul ciclului cind se scriu 
+       rezultatele operatiei.</li>
+  <li> Read Control si Load control sunt activate cind este accesata memoria sistem. 
+  </ul>
+   
+<BR>
+Architecturile CISC utilizeaza UC complexe din cauxa setului complicat de instructiuni.
+<BR>
+In architecturile RISC , registrii sunt uniform accesati deci un simplu decodor poate accesa
+registrul dorit.</P>
+</li>
+</UL>

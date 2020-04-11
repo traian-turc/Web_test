@@ -1,0 +1,93 @@
+<title>Structura procesoarelor</title>
+<META name="description" content="Programarea calculatoarelor">
+<BODY>
+<TABLE  WIDTH="100%">
+<TR><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Faza de extragere, decodare, executie</Center></TD></TR>
+</TABLE>
+<br>
+Cele mai multe procesoare din noua generatie functioneaza bazindu-se pe principiul extragere(fetch)
+decodare,executie.Acesta arhitectura de functionare este numita dealtfel <i>Arhitectura Von Nuemen </i>.
+Executia unei instructiuni de catre procesor este impartita in trei faze distincte, <i>Extragere (fetch), Decodificare</i>, 
+si <i>Executie</i>. </p>
+<a name="fe"></a>
+<ul><li><h2>Faza de extragere (Ciclul de fetch)</h2> <br></ul>
+</b>In prima faza procesorul genereaza semnalele necesare extragerii urmatoarei instructiuni 
+din memoria sistem . Instructiunile sunt transferate din memorie intr-o locatie interna 
+din procesor (registrul de instructiuni) . 
+<p align="center"><img src="struc5.gif" alt="Cyclul de Fetch: Citirea unei instructiuni" width="417" height="273"><br>
+Fig 4_5: Ciclul de Fetch , citirea unei  instructiuni </p>
+<p>In imaginea de sus, procesorul este pregatit sa inceapa ciclul de fetch. Continutul curent al <font color="#0000A0"><strong>numaratorului de instruction </strong></font>
+este adresa  0100. Aceasta valoare este plasata pe magistrala de adrese,si la semnalul  READ este activata pe magistrala de adrese. Memoria receptioneaza aceasta adresa si cauta continutul locatiei 
+cu adresa 0100,in memorie care in acest caz este instructiunea  MOV AX, 0. </p>
+<p>Memoria plaseaza instructiunea pe magistrala de date iar procesorul ransfera instructiunea in <font color="#B00000"><strong>Registrul de instructiuni</strong></font>.</p>
+    
+<P>Figura de jos prezinta ciclul de fetch ceva mai detliat ,respectiv se prezinta modul de formare a adresei.Adresa se inscrie in Program Counter prin intermediul Selectorului care selecteaza una din cele trei intrari:
+<OL>
+   <LI> Adresa urmatoarei instructiuni  care este vechea adresa incrementata( Next Instruction ) </LI>
+   <li> Adresa urmatoarei instructiuni la care se adauga un salt relativ</LI>
+   <Li> O noua adresa de salt </LI>
+</OL></p>
+<BR>
+<BR><CENTER>
+<A HREF="fetch1.gif"><IMG SRC="fetch1.gif"
+WIDTH="531" HEIGHT="245" NATURALSIZEFLAG="3" ALIGN="center"></A><BR></CENTER>
+<BR>In procesoarele MIPS sau RISC ,sumatorul pentru incrementare are o intrare fixa
+(4 daca adresarea se face pe byte , 1 daca adresarea se face pe  word ). Avantajul
+este folosirea unui sumator specializat mai rapid .<BR>
+<BR>La procesoarele CISC , lungimea  instructiunii nu este fixa astfel la un PC 
+trebuie incrementata adresa cu valori diferite .Aceasta inseamna ca instructiunea din
+registrul de instructiuni trebuie intii decodificata si numai dupa aceea se poate sti 
+adresa urmatoarei instructiuni.Daca instructiunea este mai lunga trebuie repetat ciclul
+de fetch pentru fiecare parte a instructiunii.<BR>
+<BR>In procesoarele cum ar fi  80486, instructiunile pot sa depaseasca lungimee unui cuvint. 
+Se poate intilni si cazul cand un cuvint contine doua instructiuni si in acest caz unitatea
+de fetch trebuie sa realinieze cuvintul citit separindu-l in doi octeti fiecare reprezentind
+cite o instructiune .<BR>
+<BR>In actualele implementari ale arhitecturilor Intel unitatea de fetch aduce mai multe instructiuni
+consecutive intr-un buffer dupa care urmareste unitatea de control daca foloseste instructiunile
+aduse daca nu reumple bufferul cu un nou set de instructiuni de la alta adresa (neconcordanta intre continutul 
+bufferului si nevoile UC se petrece la aparitia instructiunilor de salt).Acest procedeu sporeste viteza 
+procesorului dar necesita hard suplimentar pentru golirea bufferului in caz de instructiuni de salt.</P>
+
+<H2>Incarcare si memorare</H2>
+
+<P>Unitatea pentru incarcare/memorare este similara cu unitatea de extragere a instructiunilor
+(fetch), fiind  o interfata intre memorie si registrul pentru instructiuni. Aceasta unitate,trebuie sa 
+gestioneze scrierea si citirea datelor. <BR>
+<BR><CENTER>
+<IMG SRC="fetch2.gif" WIDTH="358" HEIGHT="177" ALIGN="BOTTOM"
+NATURALSIZEFLAG="3"></CENTER><BR>
+<BR>Adresa de date poate veni dintr-o instructiune sau poate fi rezultatul
+unor operatii intre operanzi din instructiune si valori aflate in registrii
+Cind adresa trebuie calculata aceasta se face cu o unitate specializata
+numita ALU pentru adrese sau poate fi folosi ALU clasic folosit pentru
+operatii aritmetice obisnuite.<BR>
+<BR>In arhitectura procesoarelor MIPS sunt prevazute doua memorii diferite 
+penru date si pentru instructiuni din cauza utilizarii unui cache impartit
+in acelasi mod.Aceasta arhitectura este folosita si de procesoarele RISC.</P>
+<a name="de"></a>
+
+<ul><li><h2>Faza de decodificare <br></h2></ul></li>
+Instructiunile sunt decodificate de catre procesor.In timpul acestui ciclu procesorul,daca instructiunea o cere,va aduce operanzi ceruti de instructiune.
+De exemplu instructiunea MOV AX, 0 inscrie valoarea 0 in registrul AX. Procesorul are deja instructiunea MOV AX dar mai are nevoie de inca un cuvint care
+reprezinta un operand respectiv valoarea 0 pentru a executa instructiunea.                      
+In aceasta situatie procesorul va mai executa un ciclu de fetch  pentru a aduce valoarea operandului din urmatoarea locatie de memorie(in cazul din figura de mai jos la adresa 0101).
+<br><br>
+        <center>
+        <img src="struc6.gif" alt="Ciclul de decodificare : Decodificarea instructiunilor
+        "width="417" height="273"></center>
+<br>
+Fig 4_6: Ciclul de decodificare, decodificarea instructiunilor </p>
+<p>In imaginea de sus procesorul transfera instructiunea din <font color="#00000B">
+registrul de instructiuni </font> in <font color="#008000">Unitatea de decodificare </font>
+Aceasta compara instructiunea cu instructiunile dintr-un tabel intern si cind gaseste o potrivire citeste din tabel numarul de pasi care sunt necesari pentru a executa complet instructiunea. </p>
+
+<a name="ex"></a>
+<ul><li><h2>Faza de executie</h2><br></ul></li>
+In ultima faza , procesorul executa instructiunea.In exemplul de mai sus trebuia inscris registrul AX cu valoarea 0
+<CENTER><p align="center"><img src="struc7.gif" alt="Execute cycle: Executing the instruction" width="417" height="273"><br>
+Fig 4_7: Ciclul executie , executarea instructiunii </p></CENTER>
+<p> In imaginea de sus, procesorul  executa seria de microinstructiuni pe care le implica instructiunea MOVAX,0. In ultima parte se seteaza valoarea 
+<font color="#0000FF"><strong>Numaratorului de instructiuni </strong></font>
+pentru a adresa urmatoarea instructiune pentru a fi executata si anume se inscrie valoarea 0102. </p>
+<html>

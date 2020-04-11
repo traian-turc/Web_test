@@ -1,0 +1,137 @@
+<META name="description" content="Programarea calculatoarelor">
+<title>Structura procesoarelor</title>
+<BODY>
+
+<TABLE  WIDTH="100%">
+<TR><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Exemple de executare a unor instructiuni</Center></TD></TR>
+</TABLE>
+
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Executia unei instructiuni
+trece prin mai multe etape, in functie de tipul instructiunii. Fiecareia
+din aceste etape ii corespunde un microprogram distinct in memoria de control
+a secventiatorului. In general executia unei instructiuni trece printr-o
+faza de extragere sau fetch , o faza de decodificare si o faza de executie
+.
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <U>Faza de extragere:</U>
+Este comuna tuturor instructiunilor. In cadrul acestei faze adresa din
+numaratorul de adrese al programului este pusa pe magistrala de date .
+Dupa semnalul de READ dat de secventiator , continutul locatiei de memorie
+de la adresa respectiva (instructiunea) este pusa pe magistrala de date
+. Urmeaza un semnal de LOAD dat de secventiator&nbsp; care determina inscrierea
+datelor de pe magistrala in registrul de instructiuni&nbsp; unde va fi
+memorata .
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <U>Faza de decodificare:</U>
+Dupa ce instructiunea a fost memorata in registrul de instructiuni , ea
+va trece in decodificatorul de de instructiuni. Prin decodificarea instructiunii
+se genereaza un cuvint adresa pentru memoria de control. Cuvintul adresa
+generat de decodificator este incarcat intr-un numarator de adrese de microinstructiuni
+. Dupa ce instructiunea a fost decodificata , numaratorul de adrese al
+programului va fi incrementat .
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <U>Faza de executie:</U>
+Difera in functie de tipul instructiunii. In faza de executie se extrag
+adresele operanzilor din instructiune si se depun in registrele temporare
+( latch) ale unitatii aritmetico-logice ALU.
+<BR>In continuare atit datele din latch-uri cit si codul operatiei se incarca
+in ALU&nbsp; unde se va realiza operatia specificata. In urma operatiei
+se vor seta flagurile corespunzatoare iar rezultatul va fi inscris in registrul
+acumulator.
+
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pentru o mai buna intelegere
+a rolului secventiatorului sa urmarim in continuare o simulare grafica
+a executiei unei instructiuni . Presupunem ca numaratorul de adrese a fost
+incarcat cu adresa 100 .
+<BR>&nbsp;
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Executia instructiunii incepe
+cu
+<a name="extr"></a>
+<ul><li><h2>Faza de extragere</h2><br></ul></li>
+
+<CENTER><TABLE BORDER=0 COLS=1 WIDTH="100%" >
+<TR>
+<TD ALIGN=CENTER><IMG SRC="fetch.gif" HEIGHT=425 WIDTH=567></TD>
+</TR>
+
+<TR>
+<TD ALIGN=CENTER>Fig.4: Faza de extragere</TD>
+</TR>
+</TABLE></CENTER>
+&nbsp;
+
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dupa cum se poate observa
+din imaginea de mai sus , numaratorul de adrese al programului pune continutul
+sau pe magistrala de date . La semnalul de READ dat de secventiator, magistrala
+trimite adresa 100 la memoria sistem. In memorie, la adresa 100, se afla
+stocata instructiunea ADD AX,BX. Memoria raspunde prin punerea pe magistrala
+de date a continutului locatiei de la adresa 100 . Urmatorul pas al secventiatorului
+este aplicarea semnalului de LOAD magistralei de adrese . Ca urmare a acestui
+semnal , magistrala de date transfera instructiunea in registrul de instructiuni
+.O copie a acestei instructiuni va fi pastrata aici pe toata durata executiei
+acestei instructiuni .
+
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Urmeaza <U>faza de decodificare:</U>
+<BR><U></U>&nbsp;
+<BR><U></U>&nbsp;
+<TABLE BORDER=0 COLS=1 WIDTH="100%" >
+<TR>
+<TD ALIGN=CENTER><IMG SRC="decodif.gif" HEIGHT=425 WIDTH=567></TD>
+</TR>
+
+<a name="decod"></a>
+<ul><li><h2>Faza de decodificare</h2><br></ul></li>
+
+</TABLE>
+<U></U>&nbsp;<U></U>
+
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In faza de decodificare instructiunea
+trece din registrul de instructiuni in decodificator unde va fi descompusa
+in codul operatiei (CODOP) si adresa operanzi (ADR) . Tot in aceasta faza,
+numaratorul de adrese al programului va fi incrementat, el indicind adresa
+urmatoarei instructiuni .
+<BR>&nbsp;
+
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ultima faza este 
+<a name="exec"></a>
+<ul><li><h2>Faza de executie</h2><br></ul></li>
+
+<CENTER><TABLE BORDER=0 COLS=1 WIDTH="100%" >
+<TR>
+<TD ALIGN=CENTER BGCOLOR="#FFFFFF"><IMG SRC="exec.gif" HEIGHT=425 WIDTH=567></TD>
+</TR>
+
+<TD ALIGN=CENTER>Fig.6: Faza de executie</TD>
+
+</TABLE></CENTER>
+<U></U>&nbsp;
+
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In aceasta faza secventiatorul,
+pe baza datelor primite de la decodificator, va genera toate semnalele
+necesare executarii instructiunii . Astfel&nbsp; se comanda deschiderea
+si inchiderea portilor astfel incit sa poata fi incarcat in registrii temporari
+continutul acumulatorului (reg. AX) si al registruluiBX . In continuare,
+continutul registrilor temporari precum si codul operatiei (ADD) vor fi
+incarcate in unitatea aritmetico-logica unde are loc executia operatiei
+. In urma executarii operatiei se vor seta corespunzator indicatorii de
+stare (s) iar rezultatul va fi depus in registrul acumulator (AX) .
+
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Acum ca am studiat fiecare
+faza in parte putem trece la inlantuirea lor obtinind astfel imaginea generala
+a executiei unei instructiuni :
+
+<a name="instr"></a>
+<ul><li><h2>Executia in ansamblu a unei instructiuni</h2><br></ul></li>
+
+<BR>&nbsp;
+<BR>&nbsp;
+<CENTER><TABLE BORDER=0 COLS=1 WIDTH="100%" >
+<TR>
+<TD ALIGN=CENTER><IMG SRC="secv.gif" HEIGHT=425 WIDTH=567></TD>
+</TR>
+
+<TR>
+<TD ALIGN=CENTER>Fig.7: Executia in ansamblu a unei instructiuni</TD>
+</TR>
+</TABLE></CENTER>
+&nbsp;
+
+</BODY>
+</HTML>

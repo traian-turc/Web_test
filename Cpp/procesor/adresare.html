@@ -1,0 +1,98 @@
+<HTML><HEAD>
+<title>Moduri de adresare</title>
+</HEAD>
+<a name="start"></a>
+<TABLE  WIDTH="100%">
+<TR><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Moduri de adresare ale procesoarelor din familia X86</Center></TD></TR>
+</TABLE>
+
+<a name="adr"></a>
+<br>
+<font color= "blue" size=4><li><b>Formarea adresei fizice</b><br></font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br>
+<center><img src="im_m5.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<a name="dir"></a>
+<br>
+<font color= "blue" size=4><li><b>Adresare directa</b><br></font>
+<br>
+<br><br>
+<center><img src="im_m6.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a name="reg"></a>
+<br>
+<font color= "blue" size=4><li><b>Adresare indirecta prin registre</b><br></font>
+<br>
+<br><br>
+<center><img src="im_m7.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a name="baz"></a>
+<br>
+<font color= "blue" size=4><li><b>Adresare bazata sau indexata</b><br></font>
+<br>
+<br><br>
+<center><img src="im_m8.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a name="baz"></a>
+<br>
+<font color= "blue" size=4><li><b>Adresare bazata sau indexata</b><br></font>
+<br>
+<br><br>
+<center><img src="im_m8.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a name="bi"></a>
+<br>
+<font color= "blue" size=4><li><b>Adresare bazata si indexata</b><br></font>
+<br>
+<br><br>
+<center><img src="im_m9.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a name="a32"></a>
+<br>
+<font color= "blue" size=4><li><b>Moduri de adresare pe 32 biti</b><br></font>
+<br>
+<br><br>
+
+    Procesoarele din familia Intel pe 32 biti au urmatorul mod de adresare:
+<br><br>
+<center><img src="im_m2.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Modurile de adresare reprezinta defapt modul de formarea a adresei fizice. 
+<br>Se introduc urmatoarele notiuni:
+<br> - deplasament - o valoare imediata pe 8 sau 32 de biti, continuta în instructiune;
+<br> - registru de baza - orice registru general de 32 de biti ;
+<br> - registru index - orice registru general de 32 de biti, cu exceptia lui ESP ;
+<br> - factor de scala - indexul poate fi înmultit cu un factor de scala de valoare 1, 2, 4 sau 8 (inexistent în adresarea pe 16 biti).
+<br><br>Se obtin astfel 9 moduri posibile de adresare:
+<br><br>
+<li>adresare directa - adresa efectiva a operandului face parte din instructiune, putand fi pe 8, 16 sau 32 de biti; exemplu: INC dword ptr [1000H]
+<li>adresare indirecta prin registre - adresa efectiva a operandului este continutå într-unul din registrele de baza;exemplu:MOV [EBX], EAX
+<li>adresare bazata - adresa efectiva a operandului este formata din continutul unui registru de baza la care se poate adauga un deplasament; exemplu: ADD ECX, [EAX+32]
+<li>adresare indexata - adresa efectiva a operandului este formata din continutul unui registru index la care se poate adåuga un deplasament; exemplu: MUL  byte ptr TABLOU [ESI]
+<li>adresare indexata cu factor de scala - adresa efectiva a operandului este formata din continutul unui registru index, înmultit cu un factor de scala, la care se poate adauga un deplasament; exemplu:MOV EAX, dword ptr TABLOU [EDI*4][100H]
+<li>adresare bazata si indexata - adresa efectiva a operandului este formata din continutul unui registru de baza la care se aduna continutul unui registru index; exemplu:MOV EAX, [ESI][EBX]
+<li>adresare bazata si indexata cu factor de scala - adresa efectiva a operandului este formata din continutul unui registru de baza la care se adauga continutul unui registru index, înmultit cu un factor de scala; exemplu: MOV ECX, [EDX*8][EAX]
+<li>adresare bazata si indexata cu deplasament - adresa efectiva a operandului este formata din continutul unui registru de baza la care se adauga continutul unui registru index, la care se poate adauga un deplasament; exemplu: ADD EDX, [ESI] [EBP + 10000H]
+<li>adresare bazata si indexata, cu factor de scala si deplasament - adresa efectiva a operandului este formata din continutul unui registru de baza la care se adauga continutul unui registru index, înmultit cu un factor de scala, la care se poate adauga un deplasament; exemplu:MOV EAX, TABLOU [EDI*4] [EBP+800H]
+<br><br><a name="re"></a>
+<br>
+<font color= "blue" size=4><li><b>Adresarea in mod real:</b><br></font>
+<br><br>
+<center><img src="im_m3.gif"></center>
+<br><br><a name="pr"></a>
+<br>
+<font color= "blue" size=4><li><b>Adresarea in mod protejat</b><br></font>
+<br><br>
+<center><img src="im_m4.gif"></center>
+<br><br>
+</BODY>
+</HTML>
+
+
+
