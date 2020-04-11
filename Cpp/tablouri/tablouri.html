@@ -1,0 +1,2925 @@
+<html>
+<title>Tablouri</title>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Tablouri  </Center></TD></TR>
+</table>
+<font color= "Blue" size=5>Tablouri</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Variabilele utilizate pana acum puteau contine o singura valoare. De multe ori e nevoie sa folosim variabile care pot 
+stoca mai multe valori. Cu alte cuvinte se simte nevoia utilizarii tablourilor. Un tablou permite folosirea unei singure variabile pentru a stoca 
+mai multe valori. Valorile sunt stocate la adrese consecutive cu alte cuvinte, la indecsi consecutivi incepand cu 0 . Utilizarea tablourilor ar un mare 
+avantaj, care consta in posibilitatea utilizarii instructiunilor repetitive pentru a relucra toate valorile stocate in tablouri. Din acest motiv, 
+tablourile mai sunt numite si "masive de date"
+<br><br><a name="def"></a>
+<font color= "Black" size=4><li><b>Declararea unui tablou</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Un tablou este similar cu o variabila, deci el trebuie declarat inainte de a putea fi folosit.
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+tip nume_tablou[nr_elemente]
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Toate valorile dintr-un tablou trebuie sa fie de acelasi tip.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie care cere 5 numere de la tastatura dupa care le afiseaza. Numerele vor fi memorate intr-un tablou
+dupa care vor fi afisate.
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "numere"
+// Programul cere 5 numere dupa care le afiseaza
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	double numere[5];
+	cout << "\n\tProgramul cere 5 numere dupa care le afiseaza \n\n";
+	for (i=0;i<5;i++){
+		cout <<"\n\tIntroduceti numarul : [" << i << "] : ";
+	cin >> numere[i];
+	}
+	cout << "\n\n\tNumerele introduse sunt:  \n";
+	for (i=0;i<5;i++){
+		cout << "\n\tNumarul [ " << i << "] =" << numere[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca rulam acest program, acesta ne cere cinci numere dupa care le afiseaza similar cu imaginea de jos:
+<br><br><center><img src="im_cpp32.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am definit deci o singura variabila numita "numere" insa am precizat numarul de elemente respectiv "[5]". Am creat 
+astfel un tablou pe care putem usor sa-l manevram din instructiuni repetitive.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Putem sa cerem numarul de elemente ce vor fi introduse de la tastatura. In acest caz programul devine:
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "numere"
+// Programul cere n numere dupa care le afiseaza
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	int i,n;
+	const int nmax=10;
+	cout << "\n\tProgramul cere n numere dupa care le afiseaza \n\n";
+	cout <<" \n\tIntroduceti valoarea lui n (maxim 10):";
+	cin >> n;
+	double numere[nmax];
+	for (i=0;i < n;i++){
+		cout <<"\tIntroduceti numarul : [" << i << "] : ";
+	cin >> numere[i];
+	}
+	cout << "\n\n\tNumerele introduse sunt:  \n";
+	for (i=0;i < n;i++){
+	cout << "\n\tNumarul [ " << i << "] ="<< numere[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><a name="t_ini"></a>
+<font color= "Black" size=4><li><b>Initializarea unui tablou</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca pentru o variabila initializarea inseamna atribuirea unei valor, pentru un tablou initializarea inseamna 
+stabilirea dimensiunii si precizarea numarului de elemente ale tabloului. Exista doua metode de initializare a unui tablou: prin dimensionare explicita su prin dimensionare implicia.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp<b> Dimensionarea explicita a unui tablou.</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom initializa prin dimensionare explicita, un tablou numit "luni" si vom atribui 12 valori pentru lunile din an.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Declaram tabloul de tip string, deci elementele vor fi chiar numele lunilor. Utilizand tabloul "luni", vom realiza
+o aplicatie in care se cere numarul lunii dupa care programul, afiseaza numele lunii.
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "numere"
+// Programul cere numarul lunii dupa care le afiseaza numele lunii
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	int n=1;
+	string luni[12]={"ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", 
+	"iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"};
+	cout << "\n\tProgramul cere luna sub forma numerica si returneaza numele lunii \n\n";
+	while (n > 0 && n <13){
+		cout <<" \n\n\tIntroduceti luna (1-12) 0= iesire:";
+		cin >> n;
+		if(n > 0 && n <13)
+		cout <<"\n\tLuna introdusa este : "  << luni[n-1];
+	}
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp<b> Dimensionarea implicita a unui tablou.</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom initializa prin dimensionare implicita, un tablou numit "zile_s" si vom atribui 7 valori pentru zilele din saptamana. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Declaram tabloul de tip string, deci elementele vor fi chiar numele zilelor. Utilizand tabloul "zile_s", vom realiza
+o aplicatie in care se cere numarul zilei din saptamana dupa care programul, afiseaza numele zilei.
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "zile_s"
+// Programul cere numarul zilei din saptamana dupa care le afiseaza numele zilei
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	int n=1;
+	string zile_s[]={"luni", "marti", "miercuri", "joi", "vineri", "sambata", "duminica"};
+	cout << "\n\tProgramul cere ziua din saptamana si returneaza numele zilei \n\n";
+	while (n > 0 && n <8){
+		cout <<" \n\n\tIntroduceti numarul zilei din saptamana (1-7) 0= iesire:";
+		cin >> n;
+		if(n > 0 && n <8)
+		cout <<"\n\tZiua introdusa este : "  << zile_s[n-1];
+	}
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="t_val"></a>
+<font color= "Black" size=4><li><b>Atribuirea de valori elementelor tabloului</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa initializarea unui tablou, se pot atribui valori fiecarui element din tablou. Citirea elementelor tabloului 
+se poate face numai dupa ce acestora le-au fost atribuite valori.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie care initializeaza un tablou de tip double cu maxim 10 elemente, dupa care acestora li se atribuie 
+valori aleatoare intre 0 si 100. Vom folosi pentru aceasta instructiunea <b> rand() </b> care genereaza numere intregi intre 0 si <b> RAND_MAX </b>. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a genera umere aleatoare de tip double, definim o variabila de tip  <b> double nr </b> careia ii atribuim valoarea <b> rand() </b> .
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In urma operatiei: <b> 100*nr/RAND_MAX </b> obtinem un numar float intre 0 si 100
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "numere"
+// Programul genereaza  n numere intre 0-100 dupa care le afiseaza
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Atribuire de valori ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,n;
+	
+	cout << "\n\tProgramul atribuie n valori aleatoare dupa care le afiseaza \n\n";
+	cout <<" \n\tIntroduceti valoarea lui n (maxim 10):";
+	cin >> n;
+	const int nmax=10;
+	double numere[nmax],nr;
+	for (i=0;i < n;i++){
+	nr=rand();
+	numere[i]= 100*nr/RAND_MAX ; // pentru a genera numere intre 0-100
+	}
+	cout << "\n\n\tNumerele generate in tabloul numere[] sunt:  \n";
+	for (i=0;i < n;i++){
+	cout << "\n\tNumere [ " << i << "] ="<< numere[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea aplicatiei si introducerea valorii 9 pentru n, obtinem:
+<br><br><center><img src="im_cpp34.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Programul genereaza de fiecare data aceleasi numere. Pentru a genera numere diferite la fiecare rulare putem modifica programul astfel:
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < time.h >
+using namespace std;
+
+int main()
+{
+	system("TITLE Atribuire de valori aleatoare ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	cout << "\n\tProgramul atribuie n valori aleatoare dupa care le afiseaza \n\n";
+	cout <<" \n\tIntroduceti valoarea lui n (maxim 10):";
+	int i,n;
+	const int nmax=10;
+	double numere[nmax],nr;
+	srand(time(NULL));
+	cin >> n;
+	for (i=0;i < n;i++){
+		nr=rand()%100;// pentru a genera numere intre 0-100
+		numere[i]= nr ; 
+	}
+	cout << "\n\n\tNumerele generate in tabloul numere[] sunt:  \n";
+	for (i=0;i < n;i++){
+		cout << "\n\tNumere [ " << i << "] ="<< numere[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tablourile sunt des utilizate in programare. Exista o gama larga de cazuri in care sunt necesare tablourile. Sa luam 
+de exemplu aplicatiile de ordonare siruri analizate in cadrul schemelor logice. Pentru a implementa aceste scheme avem nevoie de tablouri in care sa
+pastram fiecare element. Tabloul contine deci toate numerele din sir. Acest tablou este de ordinul 1 si il vom numi vector.
+
+<br><br><a name="vect"></a>
+<font color= "Black" size=4><li><b>Tablouri unidimensionale (vectori)</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom implementa schemele logige pentru ordonarea sirurilor de numere analizate in cadrul schemelor logice.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp<b> Ordonarea sirurilor.</b> 
+<br><br><center><img src="../s_logice/im_cpp25.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp:&nbsp;Codificam schema logica de sus intr-un program C++ si obtinem:
+
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou de numere double numit "n"
+// Programul cere 10 numere, le ordoneaza crescator, dupa care le afiseaza
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	int i,j;
+	double n[11],temp;
+	cout << "\n\tProgramul cere 10 numere dupa care le ordoneaza si le afiseaza \n\n";
+// introducere numere
+
+	for (i=1;i<11;i++){
+		cout <<"\tIntroduceti numarul : [" << i << "] : ";
+		cin >> n[i];
+	}
+// afisarea numerelor
+
+	cout << "\n\n\tNumerele introduse sunt: \n\n";
+	for (i=1;i<11;i++){
+		cout << " : " << n[i] ;
+	}
+// ordonarea crescatoare a numerelor
+	j=1;
+	while (j<11){
+		i=1;
+		while (i<11){
+			if (n[i]>n[i+1]){
+				temp=n[i];
+				n[i]=n[i+1];
+				n[i+1]=temp;
+			}
+			i++;
+	}
+	j++;
+
+	}
+// afisarea numerelor ordonate crescator
+
+	cout << "\n\n\tNumerele ordonate sunt: \n\n";
+	for (i=1;i<11;i++){
+		cout << " : " << n[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a respecta intru totul schema logica, nu s-a folosit elementul n[0] drept pentru care numarul de lememente al
+tabloului devine 11 nu 10. Aceasta metoda de ordonare se numeste metoda "bulelor"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului, obtinem:
+<br><br><center><img src="im_cpp33.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia <b> sort_w </b>exemplifica grafic acest algoritm
+
+<br><br><center><img src="im_cpp57.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea aplicatiei se poate observa ca algoritmul poate fi imbunatatit astfel parcurgerea unei linii nu trebuie 
+facuta pana la capat adica pana la 11, fiind suficienta parcurgerea pana la 11-j-1 , algoritmul devenind:
+
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// ordonarea crescatoare a numerelor
+	j=1;
+	while (j<11){
+		i=1;
+		while (i<11-j-1){
+			if (n[i]>n[i+1]){
+				temp=n[i];
+				n[i]=n[i+1];
+				n[i+1]=temp;
+			}
+			i++;
+	}
+	j++;
+
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Metoda poate fi perfectionata in sensul ca se introduce un semafor care va fi setat in momentul cand s-a trecut
+prin tot sirul si nu s-a facut nici o schimbare, deci sirul e ordonat si se poate afisa. Schema logica in acest caz devine:
+<br><br><center><img src="../s_logice/im_cpp26.jpg"></center>
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul cere 10 numere, le ordoneaza crescator dupa metoda optima, dupa care le afiseaza
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	int i,sem;
+	double n[11],temp;
+	cout << "\n\tProgramul cere 10 numere dupa care le ordoneaza si le afiseaza \n\n";
+// introducere numere
+
+	for (i=1;i<11;i++){
+		cout <<"\tIntroduceti numarul : [" << i << "] : ";
+		cin >> n[i];
+	}
+// afisarea numerelor
+
+	cout << "\n\n\tNumerele introduse sunt: \n\n";
+	for (i=1;i<11;i++){
+		cout << " : " << n[i] ;
+	}
+// ordonarea crescatoare a numerelor
+	i=1;
+	sem=1;
+	while (sem !=0){
+		sem=0;
+		while (i<11){
+			if (n[i]>n[i+1]){
+				temp=n[i];
+				n[i]=n[i+1];
+				n[i+1]=temp;
+				sem=1;
+			}
+			i++;
+		}
+	i=1;
+	}
+// afisarea numerelor ordonate crescator
+
+	cout << "\n\n\tNumerele ordonate sunt: \n\n";
+	for (i=1;i<11;i++){
+		cout << " : " << n[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O alta metoda de ordonare, este metoda selectiei. Conform acestei metode, se urmeaza urmatorii pasi:
+<ul>
+<li> Se scaneaza sirul de nr elemente-1 ori ( Dupa fiecare scanare se incrementeaza pozitia curenta). 
+<li> Dupa fiecare scanare se gaseste minimul si se salveaza pe pozitia curenta. 
+<li> Se introduce o var numita "sel" care la prima scanare ia valoarea primului element. In timpul scanarii, cand se gaseste un element 
+mai mic decat "sel" se face schimbarea intre "sel" si elementul curent.
+<li> In variabila "sel" se gaseste  tot timpul  minimul actual . 
+<li> Se scaneaza numai restul sirului(sirul de la pozitia curenta pana la sfarsit) 
+<li> Dupa o trecere completa prin sirul ramas, in "sel"  avem minimul urmator si se poate salva in pozitia curenta  
+</ul>
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// ordonarea crescatoare prin metoda selectiei
+// Programul cere nr_max numere, le ordoneaza crescator dupa metoda selectiei, dupa care le afiseaza
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	const int nr_max=5;
+	int i,j;
+	double n[nr_max+1],temp, sel;
+	cout << "\n\tProgramul cere " << nr_max << " numere dupa care le ordoneaza si le afiseaza \n\n";
+// introducere numere
+
+	for (i=1;i < nr_max+1;i++){
+		cout <<"\tIntroduceti numarul : [" << i << "] : ";
+		cin >> n[i];
+	}
+// afisarea numerelor
+
+	cout << "\n\n\tNumerele introduse sunt: \n\n";
+	for (i=1;i < nr_max+1;i++){
+		cout << " : " << n[i] ;
+	}
+// ordonarea crescatoare a numerelor
+	i=1;
+	j=1;
+	sel=n[1];
+	while (j < nr_max){
+	 for (i=j; i < nr_max; i++) {
+		 	if (sel>n[i+1]){
+				temp=sel;
+				sel=n[i+1];
+				n[i+1]=temp;
+ 			}
+ 	 }
+ 	n[j]=sel; 	
+	j++	;
+	sel=n[j];
+	}
+// afisarea numerelor ordonate crescator
+
+	cout << "\n\n\tNumerele ordonate sunt: \n\n";
+	for (i=1;i < nr_max+1;i++){
+		cout << " : " << n[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Utilizarea tablourilor pentru siruri de caractere vectori de caractere</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sirurile de caractere pot fi tratate ca si vectori ale carui elemente sunt caractere. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a citi de exemplu numele si prenumele cu o singura instructiune va trebui sa definim o variabila de tablou de tip  
+caracter.
+ <br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="Blue"> <pre>
+// Utilizarea tablourilor de caractere
+
+#include "stdafx.h"
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	char nume[80]; // se initializeaza un tablou unidimensional de tip char cu numarul de elemente 80
+	cout <<"\n\tIntroduceti numele si prenumele:";
+	cin.getline(nume,80);
+	cout <<"\n\n\n\tNumele tau este: " << nume;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre></font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca nu am fi definit variabila nume de tip tablou, nu am fi putut citi numele si prenumele intr-o singura
+instructiune. Utilizand instructiuni de genul:<br> <b>  cin >> nume ;</b> , variabila nume ar fi retinut numai caracterele introduse pana la primul 
+caracter spatiu.
+<br><br><a name="matr"></a>
+<font color= "Black" size=4><li><b>Tablouri bidimensionale (matrici) </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa initializam o matrice de tip int cu n x m elemente si sa-i atribuim valori aleatoare in domeniul 
+0-100;
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza o matrice cu n x m elemente
+// Elementelor matricii li se atribuite valori intregi aleatoare intre 0 si 100
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Matrice cu n x m  elemente");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n,m;
+	cout <<" \n\  Introduceti valoarea lui n (maxim 10):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 10):";
+	cin >> m;
+	const int nmax=10;
+	const int mmax=10;
+	int matr[nmax][mmax],nr;
+	for (j=0; j < m; j++) {
+		for (i=0;i < n;i++){
+		matr[i][j]= 100*rand()/RAND_MAX ; // pentru a genera numere intre 0-100
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j=0; j < m; j++) {
+		cout << "\n" ;
+		for (i=0;i < n;i++){
+			cout << "  matr[" << i << "][" << j << "]=" << matr[i][j] << "\t";
+		}
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia de sus si obtinem:
+<br><br><center><img src="im_cpp35.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa initializam doua matrici patratice de tip int cu nXn elemente , sa atribuim apoi valori aleatoare elementelor celor 
+doua matrici in domeniul 0-1000  dupa care sa afisam matricile si suma celor doua matrici;
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul genereaza si aduna doua matrici patratice cu nXn elemente
+// Elementelor matricilor li se atribuite valori intregi aleatoare intre 0 si 1000
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Adunarea a doua matrici patratice cu nxn elemente");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n;
+	cout <<" \n\n  * Introduceti valoarea lui n (maxim 10):";
+	cin >> n;
+
+	const int nmax=10;
+	int m1[nmax][nmax],m2[nmax][nmax];
+	// generare matrice m1
+	for (j=0; j < n; j++) {
+		for (i=0;i < n;i++){
+		m1[i][j]= 1000*rand()/RAND_MAX ; // pentru a genera numere intre 0-1000
+		}
+	}
+	// generare matrice m2
+	cout << "\n\  * Cele doua matrici sunt: \n\n";
+	for (j=0; j < n; j++) {
+		for (i=0;i < n;i++){
+		m2[i][j]= 1000*rand()/RAND_MAX ; // pentru a genera numere intre 0-1000
+		}
+	}
+	// afisare matricea m1 si m2
+	for (j=0; j < n; j++) {
+		cout << "\n  " ;
+		for (i=0;i < n;i++){
+			cout << m1[i][j] << "\t" ;
+		}
+		cout << "\t\t" ;
+		for (i=0;i < n;i++){
+			cout << m2[i][j] << "\t" ;
+		}
+	}
+	// afisare  m1 + m2
+	cout << "\n\n\  * Suma celor doua matrici este:\n\n";
+	for (j=0; j < n; j++) {
+		cout << "\n\n\t\t\t" ;
+		for (i=0;i < n;i++){
+			cout << m1[i][j]+m2[i][j] << "\t" ;
+		}
+	}
+
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia de sus si obtinem:
+<br><br><center><img src="im_cpp36.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa initializam doua matrici de tip int cu n x m respectiv m x p elemente. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cerem valori si le atribuim apoi  elementelor celor doua matrici si le afisam.  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Afisam produsul celor doua matrici.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se cunoaste din algebra elementara operatia de inmultire a doua matrici se realizeaza prin procedeul " linii prin 
+coloane". 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Adica elementul c[i][j]= Suma de la k=1 la n din  a[i][k]*b[k][j] 
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul inmulteste doua matrici a,b cu n x m respectiv m x p elemente
+// Elementelor matricilor li se atribuite valori citite de la utilizator
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void){
+system("TITLE Inmultirea a doua matrici a,b cu n x m respectiv m x p elemente");// Titlul ferestrei consola
+system("COLOR F9"); // Fundal alb caractere albastre
+int n,m,p,i,j,k,a[10][10],b[10][10],c[10][10];
+cout << "\n\tIntroduceti numarul de linii n = ";
+cin >> n;
+cout << "\tIntroduceti numarul de coloane m = ";
+cin >> m;
+cout << "\n";
+for(i=1;i <= n;i++)
+for(j=1;j <= m;j++)
+{
+cout << "\ta[" << i << "," << j <<"]= ";
+cin >> a[i][j];
+}
+cout<<"\n\tElementele matricei A sunt: "<<"\n\n";
+for(i=1;i <= n;i++)
+{
+for(j=1;j <= m;j++)
+cout << "\t" << a[i][j];
+cout << "\n";
+}
+cout << "\n\tIntroduceti numarul de coloane p = ";
+cin >> p;
+cout << "\n";
+for(i=1;i <= m; i++)
+for(j=1;j <= p; j++)
+{
+cout << "\tb[" << i << "," << j <<"]= ";
+cin >> b[i][j];
+}
+cout<<"\n\n\tElementele matricei B sunt: " << "\n\n";
+for(i=1;i <= m;i++)
+{
+for(j=1;j <= p;j++)
+cout << "\t" << b[i][j];
+cout << "\n";
+}
+for(i=1;i <= n;i++)
+	for(j=1;j <= p;j++){
+		c[i][j]=0;
+		for(k=1;k <= m;k++)
+			c[i][j]+=a[i][k]*b[k][j];
+}
+cout << "\n\tElementele matricei produs " << "\n\n";
+for(i=1;i <= n;i++)
+{
+for(j=1;j <= p;j++)
+cout << "\t" << c[i][j];
+cout << "\n";
+}
+cin.ignore();
+cin.get();
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia de sus si obtinem:
+<br><br><center><img src="im_cpp37.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Sa incercam acelasi lucru dar de data aceasta sa generam aleator elementele matricilor
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul inmulteste doua matrici a,b cu n x m respectiv m x p elemente
+// Elementelor matricilor li se atribuite aleator valori pana la 10
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void){
+system("TITLE Inmultirea a doua matrici a,b cu n x m respectiv m x p elemente");// Titlul ferestrei consola
+system("COLOR F9"); // Fundal alb caractere albastre
+int n,m,p,i,j,k,a[10][10],b[10][10],c[10][10];
+cout << "\n\tIntroduceti numarul de linii n (maxim 10)= ";
+cin >> n;
+cout << "\tIntroduceti numarul de coloane m (maxim 10)= ";
+cin >> m;
+for(i=1;i <= n;i++)
+for(j=1;j <= m;j++)
+{
+ a[i][j]=10*rand()/RAND_MAX ;
+}
+cout<<"\n\tElementele matricei A sunt: "<<"\n\n";
+for(i=1;i <= n;i++)
+{
+for(j=1;j <= m;j++)
+cout << "\t" << a[i][j];
+cout << "\n";
+}
+cout << "\n\tIntroduceti numarul de coloane p(maxim 10) = ";
+cin >> p;
+for(i=1;i <= m; i++)
+for(j=1;j <= p; j++)
+{
+b[i][j]=10*rand()/RAND_MAX;
+}
+cout<<"\n\tElementele matricei B sunt: " << "\n\n";
+for(i=1;i <= m;i++)
+{
+for(j=1;j <= p;j++)
+cout << "\t" << b[i][j];
+cout << "\n";
+}
+for(i=1;i <= n;i++)
+	for(j=1;j <= p;j++){
+		c[i][j]=0;
+		for(k=1;k <= m;k++)
+			c[i][j]+=a[i][k]*b[k][j];
+}
+cout << "\n\tElementele matricei produs " << "\n\n";
+for(i=1;i <= n;i++)
+{
+for(j=1;j <= p;j++)
+cout << "\t" << c[i][j];
+cout << "\n";
+}
+cin.ignore();
+cin.get();
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia de sus si obtinem:
+<br><br><center><img src="im_cpp38.gif"></center>
+
+<br><br><a name="t_arg"></a>
+<font color= "Black" size=4><li><b>Tablouri ca argumente de functii</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pana acum am utilizat functii spre care se puteau transmite valori prin intermediul argumentelor. Se puteau deci 
+trimite cate o singura valoare pentru fiecare argument. Exista posibilitatea ca tablourile sa poata fi transmise ca argumente pentru functii, deci
+spre functii sa se trimita o multitudine de valori.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie care cere introducerea a n valori, le pastreaza intr-un tablou dupa care apeleaza o functie care 
+inlocuieste valorile din tablou cu patratele acestora.
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// se defineste si se apeleaza o functie care inlocuieste valorile din tablou cu patratele acestora
+// la sfarsit se afiseaza elementele sirului rezultat
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+void patrat(double v[],int imdex_max);
+int main(void)
+{
+	const int nr_max=5;
+	int i;
+	double nr[nr_max];
+	cout << "\n\tProgramul cere " << nr_max << " numere dupa care le ridica la patrat si le afiseaza \n\n";
+// introducere numere
+
+	for (i=0;i < nr_max;i++){
+		cout <<"\tIntroduceti numarul : [" << i << "] : ";
+		cin >> nr[i];
+	}
+// afisarea numerelor
+
+	cout << "\n\n\tNumerele introduse sunt: \n\n";
+	for (i=0;i < nr_max;i++){
+		cout << " : " << nr[i] ;
+	}
+// calcularea patratelor numerelor
+	patrat(nr,nr_max);
+
+// afisarea patratelor numerelor 
+
+	cout << "\n\n\tPatratele numerelor sunt: \n\n";
+	for (i=0;i < nr_max;i++){
+		cout << " : " << nr[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+void patrat(double v[], int index_max)
+{ 
+
+	for (int i=0; i < index_max; i++){
+			v[i]=v[i]*v[i]; 
+		}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa reluam aplicatiile pentru ordonarea sirurilor dar de data aceasta sa folosim o functie care cauta pozitia minimulului intr-un sir. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom cauta minimul in sirul initial si il plasam pe prima pozitie, iar valoarea de pe prima pozitie o salvam in pozitia minimului gasit
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Ne pozitionam pe urmatoarea pozitie in sir si repetam operatia de cautare a minimului. Cautarea o facem din pozitia curenta nu pe tot sirul.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Continuam operatiile de sus pana pozitia curenta este la capatul sirului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Metoda se numeste InsertSort si programul de jos o foloseste pentru ordonarea crescatoare a unui sir.
+ <br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// ordonarea crescatoare prin metoda InsertSort
+// se defineste si se apeleaza o functie cu argument tablou
+// programul cere nr_max numere, le ordoneaza crescator dupa metoda InsertSort
+// la sfarsit se afiseaza sirul ordonat crescator
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+int caut_min(double v[], int index_i, int imdex_max);
+int main(void)
+{
+	const int nr_max=5;
+	int i,j;
+	double nr[nr_max+1],temp, sel;
+	cout << "\n\tProgramul cere " << nr_max << " numere dupa care le ordoneaza si le afiseaza \n\n";
+// introducere numere
+
+	for (i=1;i < nr_max+1;i++){
+		cout <<"\tIntroduceti numarul : [" << i << "] : ";
+		cin >> nr[i];
+	}
+// afisarea numerelor
+
+	cout << "\n\n\tNumerele introduse sunt: \n\n";
+	for (i=1;i < nr_max+1;i++){
+		cout << " : " << nr[i] ;
+	}
+
+// ordonarea crescatoare a numerelor metoda InsertSort
+
+for (i=1; i < nr_max+1; i++){
+	int poz=caut_min(nr, i, nr_max+1);
+	double aux=nr[i];
+	nr[i]=nr[poz];
+	nr[poz]=aux;
+}
+// afisarea numerelor ordonate crescator
+
+	cout << "\n\n\tNumerele ordonate sunt: \n\n";
+	for (i=1;i < nr_max+1;i++){
+		cout << " : " << nr[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+int caut_min(double v[], int index_i, int index_max)
+// cauta elementul minim, incepând de la pozitia indexIni, inclusiv
+// functia intoarce pozitia minimului gasit
+{ 
+	double min=v[index_i];
+	int poz_m=index_i;
+	for (int i=index_i; i < index_max; i++){
+		if (v[i] <= min){
+			min=v[i]; 
+			poz_m=i;
+			}
+		}
+return poz_m;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><a name="t_sys"></a>
+<font color= "Black" size=4><li><b>Tablouri in spatiul de nume System</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In spatiul de nume System utilizarea tablourilor este ceva mai complicata, un tablou se declarandu-se  astfel:
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+array < tipul > nume_tablou; 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se creaza apoi o instanta a obiectului tablou definit sus, instanta de tipul gcnew.
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+nume_tablou = gcnew array < tipul > (nr_elemente);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cele doua declaratii pot fi unite intr-o singura instructiune
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+array < tipul > nume_tablou = gcnew array < tipul >(nr_elemente);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi acum tablouri in spatiul System. Urmatoarea aplicatie initializeaza un tablou cu 4 numere intregi 
+dupa care le afiseaza
+
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul initializeaza o matrice si atribuie patru valori pentru primele 4 elemente
+// La sfarsit se afiseaza cele patru valori 
+#include "stdafx.h"
+
+using namespace System;
+
+int main(void)
+{
+	int i;
+	array < int >^ nr = gcnew array < int > (4) {9,10,11,12};
+	Console::WriteLine("Numerele sunt: ");
+	for (i=0;i<4; i++)
+	Console::WriteLine("Nr: "+nr[i]);
+	Console::ReadLine();
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tot in spatiul System scriem o noua aplicatie care cere data si ora dupa care o afiseaza, folosind numele lunii 
+nu numarul acesteia.
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "luni"
+// Programul cere data sistemului, apoi afiseaza data incluzand numele lunii
+#include "stdafx.h"
+
+using namespace System;
+
+int main(void)
+{
+	array < String^ >^ luni = gcnew array < String^ > (12) {"ianuarie", "februarie", "martie", 
+	"aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", 
+	"noiembrie", "decembrie"};
+	System::DateTime data=System::DateTime::Now;
+	int zi=System::DateTime::Now.Day;
+	int luna=System::DateTime::Now.Month;
+	int an=System::DateTime::Now.Year;
+	Console::WriteLine("Astazi e: "+data);
+	Console::WriteLine("Ziua: "+zi);
+	Console::WriteLine("Luna: "+luni[luna-1]);
+	Console::WriteLine("Anul: "+an);
+	Console::ReadLine();
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Totusi pentru tablouri de tip standard adica tipuri care nu sunt gestionate special de spatiul de nume System 
+se pot folosi in continuare tablouri definite pentru spatiul std. Pentru exemplificare vom scrie o aplicatie in spatiul de nume System care
+utilizeaza tablouri de tip double de exemplu.
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "nr" cu 10 elemente
+// Se atribuie elementelor acestui tablou diferite valori 
+// Se afiseaza elementele tabloului
+#include "stdafx.h"
+
+using namespace System;
+
+int main(void)
+{
+	int i;
+	double nr[10];
+	for (i=0;i<10;i++)
+	nr[i]=i*0.12345;
+	Console::WriteLine("Numerele sunt: ");
+	for (i=0;i<10; i++)
+	Console::WriteLine("Nr: "+nr[i]);
+	Console::ReadLine();
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa simulam acum consurile zilnice de energie in cadrul unei institutii. Consumurile pe cele 31 de zile vor fi generate 
+aleator Valorile generate vor fi pastrate intr-un vector "consum" cu 31 elemente. Vom reprezenta grafic aceste consumuri, dupa care vom calcula valoarea medie 
+a consumului utilizand valorile pastrate in vectorul "consum"  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat "consum_en" pe care plasam un obiect de tip button numit button1. 
+Completam procedura deschisa pe evenimentul Clik al obiectului button1 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	int i=0;
+	const int nr_z=31;
+	int poz_x=14; // pozitia curenta pe axa x
+	float w_r=1,w_a=3; // grosimea(in pixeli) a liniei rosii respectiv albastre
+	double consum[nr_z]; // vector ce pastreaza consumurile pe nr_z zile
+	double v_rand; // valoare aleatoare
+	double c_lun; // consum lunar
+	double c_med; // consum lunar mediu
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_rosu;
+	Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red,w_r);
+	System::Drawing::Pen^ Creion_albastru;
+	Creion_albastru=gcnew System::Drawing::Pen(System::Drawing::Color::Blue,w_a);
+	System::Random^ n = gcnew System::Random();
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	Desen->DrawLine( Creion_rosu,6,0,6,this->Height-40);
+	Desen->DrawLine( Creion_rosu,6,this->Height-40,this->Width-20,this->Height-40);
+	for ( int i=0; i < nr_z; i++){
+		v_rand=n->Next(this->Height-40);// se genereaza o valoare aleatoare
+		Desen->DrawLine( Creion_albastru,poz_x,this->Height-40,poz_x,Height-40-v_rand);
+		poz_x+=14;
+		consum[i]=v_rand;
+	}
+	c_lun=0;
+	for ( int i=0; i < nr_z; i++){
+	c_lun=c_lun+consum[i];
+	}
+	//calculez si afisez consumul mediu
+	c_med=c_lun/nr_z;
+	Desen->DrawLine( Creion_rosu,6,this->Height-40-c_med,this->Width-20,this->Height-40-c_med);
+	delete Creion_rosu;
+	delete Creion_albastru;
+	delete Desen;
+	delete n;
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+            	int i=0;
+            	const int nr_z=31;
+	     	int poz_x=14; // pozitia curenta pe axa x
+	     	float w_r=1,w_a=3; // grosimea(in pixeli) a liniei rosii respectiv albastre
+            	float[]consum= new float[nr_z];// // vector ce pastreaza consumurile pe nr_z zile
+ 	     	float v_rand; // valoare aleatoare
+	     	float c_lun; // consum lunar
+	   	float c_med; // consum lunar mediu
+	      	System.Drawing.Graphics Desen;
+	      	Desen = this.CreateGraphics();
+	      	System.Drawing.Pen Creion_rosu;
+	      	Creion_rosu=new System.Drawing.Pen(System.Drawing.Color.Red,w_r);
+	      	System.Drawing.Pen Creion_albastru;
+	      	Creion_albastru=new System.Drawing.Pen(System.Drawing.Color.Blue,w_a);
+	      	System.Random n = new System.Random();
+	      	Desen.Clear(this.BackColor);
+	      	Desen.DrawLine( Creion_rosu,6,0,6,this.Height-40);
+	      	Desen.DrawLine( Creion_rosu,6,this.Height-40,this.Width-20,this.Height-40);
+            	for ( i=0; i < nr_z; i++){
+		        v_rand=n.Next(this.Height-40);// se genereaza o valoare aleatoare
+		        Desen.DrawLine( Creion_albastru,poz_x,this.Height-40,poz_x,Height-40-v_rand);
+		        poz_x+=14;
+		        consum[i]=v_rand;
+	           }
+	        c_lun=0;
+	        for ( i=0; i < nr_z; i++){
+	        c_lun=c_lun+consum[i];
+	        }
+	        //calculez si afisez consumul mediu
+	        c_med=c_lun/nr_z;
+	        Desen.DrawLine( Creion_rosu,6,this.Height-40-c_med,this.Width-20,this.Height-40-c_med);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In imaginea de jos, consumul mediu a fost trasat cu linie rosie.
+<br><br><center><img src="im_cpp41.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In alicatia de sus s-a utilizat un tablou definit in mod clasic. Din acest motiv, nu se pot apela metodele sau 
+proprietatile instantelor Array.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand tablouri definite in spatiul System putem beneficia de metodele si proprietatile instantelor Array. 
+Putem de exemplu sa redimensionam un tablou dupa ce el a fost initializat. Astfel pentru cazul de probleme in care se cere dimensiunea tabloului, 
+acesta poate fi redimensionat la valoarea ceruta si evitam situatiile din exemplele anterioare cand se initializa un tablou si se dadea dimensiunea 
+maxima.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o simpla aplicatie care cere numarul de elemente al tabloului dupa care atribuie valori elementelor tabloului.
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul initializeaza un vector  cu 0 elemente
+// Cere numarul de elemente
+// Redimensioneaza vectorul
+// Atribuire valori aleatoare intre 0-100 elementelor vecorului
+// La sfarsit se afiseaza elementele vectorului
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+using namespace System;
+
+int main(void)
+{
+	system("TITLE Vector cu nrmax  elemente");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i, nrmax ;
+	array < int >^ numere = gcnew array < int > (0);
+	Console::Write("\n\t numarul maxim de elemente: ");
+	nrmax=System::Convert::ToInt16(Console::ReadLine());	// Citirea noii dimensiuni
+	Array::Resize(numere,nrmax);				// Redimensionare tablou
+	for (i=0;i < nrmax; i++)				// Atribuire valori aleatoare intre 0-100
+		numere[i]=100*rand()/RAND_MAX;
+	Console::WriteLine("\n\tNumerele sunt: \n\n");		// Afisare numere
+	for (i=0;i < nrmax; i++)
+		Console::WriteLine("\t\t\tNr["+i+"]="+numere[i]);
+	Console::ReadLine();
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp39.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru atribuirea de valori elementelor vectorului s-a utilizat rand() din spatiul de nume std. Se poate utiliza 
+generatorul de numere aleatoare din spatiul System, caz in care aplicatia devine:
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul initializeaza un vector cu 0 elemente
+// Cere numarul de elemente
+// Redimensioneaza vectorul
+// Atribuire valori aleatoare intre 0-100 elementelor vecorului
+// La sfarsit se afiseaza elementele vectorului
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+using namespace System;
+
+int main(void)
+{
+	system("TITLE Vector cu nrmax de elemente ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i, nrmax ;
+	array < int >^ numere = gcnew array < int > (0);
+	System::Random^ n = gcnew System::Random();
+	Console::Write("\n\tNumarul maxim de elemente: ");
+	nrmax=System::Convert::ToInt16(Console::ReadLine());	// Citirea noii dimensiuni
+	Array::Resize(numere,nrmax);				// Redimensionare tablou
+	for (i=0;i < nrmax; i++)				// Atribuire valori aleatoare intre 0-100
+		numere[i]=n->Next(100);
+	Console::WriteLine("\n\tNumerele sunt: \n\n");		// Afisare numere
+	for (i=0;i < nrmax; i++)
+		Console::WriteLine("\t\t\tNr["+i+"]="+numere[i]);
+	Console::ReadLine();
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa reluam aplicatia pentru trasarea consumului mediu dar sa afisam consumurile zilnice pe evenimentul Clik al unui buton, 
+iar afisarea consumului mediu sa se faca pe evenimentul Click al altui buton. Va trebui sa definim vectorul consum[nr_z], inaintea procedurilor lansate pe 
+diverse evenimente, deoarece vectorul consum[nr_z] trebuie sa fie vizibil in toate procedurile deschise pe evenimente. 
+La fel se intampla cu instantele desen, creion_albastru, creion_rosu, etc. Pentru a declara vectorul consum trebuie sa-l declaram de tip System in caz 
+contrar nu putem sa-l declaram si sa fie vizibil pentru evenimentele scrise pe proceduri.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat "consum_med" si plasam doua obiecte de tip button numite 
+button1 respectiv button2. Schimbam atributul text al obiectului button1 cu "Consumuri" iar  atributul text al obiectului button2 cu "Consum mediu"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Consumul mediu nu se poate calcula pana nu se lanseaza "Consumuri", din aceasta cauza butonul "Consum mediu" va fi setat 
+cu atributul "Enabled"=false. El va fi activat numai dupa lansarea procedurii de pe evenimentul Clik al butonului "Consumuri". 
+Completam #pragma region cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+static int i=0;
+static const int nr_z=31;
+static float w_r=1,w_a=3; // grosimea(in pixeli) a liniei rosii respectiv albastre
+static array < double >^ consum = gcnew array < double > (0);
+static System::Drawing::Graphics^ Desen;
+static System::Drawing::Pen^ Creion_albastru ;
+static System::Drawing::Pen^ Creion_rosu ;
+
+double med(array < double >^ cons,int nrm){
+	double sum=cons[0];
+	for (int i=0;i < nrm; i++){
+			sum=sum+cons[i];
+	}
+
+	return sum;
+}
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+static int i=0;
+static const int nr_z=31;
+static float w_r=1,w_a=3; // grosimea(in pixeli) a liniei rosii respectiv albastre
+static array < double > consum = new array < double > (0);
+static System.Drawing.Graphics Desen;
+static System.Drawing.Pen Creion_albastru ;
+static System.Drawing.Pen Creion_rosu ;
+
+double med(array < double > cons,int nrm){
+	double sum=cons[0];
+	for (int i=0;i < nrm; i++){
+			sum=sum+cons[i];
+	}
+	return sum;
+}
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Clik al obiectului button1 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	double v_rand; // valoare aleatoare
+	int poz_x=10;
+	Array::Resize(consum,nr_z);// redimensionare la nr_z elemente
+	Desen = this->CreateGraphics();
+	Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red,w_r);
+	Creion_albastru=gcnew System::Drawing::Pen(System::Drawing::Color::Blue,w_a);
+	System::Random^ n = gcnew System::Random();
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	Desen->DrawLine( Creion_rosu,6,0,6,this->Height-40);
+	Desen->DrawLine( Creion_rosu,6,this->Height-40,this->Width-20,this->Height-40);
+	for ( int i=0; i < nr_z; i++){
+		v_rand=n->Next(this->Height-40);// se genereaza o valoare aleatoare
+		Desen->DrawLine( Creion_albastru,poz_x,this->Height-40,poz_x,Height-40-v_rand);
+		poz_x+=14;
+		consum[i]=v_rand;
+	}
+	this->button2->Enabled=true;
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	double v_rand; // valoare aleatoare
+	int poz_x=10;
+	Array.Resize(consum,nr_z);// redimensionare la nr_z elemente
+	Desen = this.CreateGraphics();
+	Creion_rosu=new System.Drawing.Pen(System.Drawing.Color.Red,w_r);
+	Creion_albastru=new System.Drawing.Pen(System.Drawing.Color.Blue,w_a);
+	System.Random n = new System.Random();
+	Desen.Clear(this.BackColor);
+	Desen.DrawLine( Creion_rosu,6,0,6,this.Height-40);
+	Desen.DrawLine( Creion_rosu,6,this.Height-40,this.Width-20,this.Height-40);
+	for ( int i=0; i < nr_z; i++){
+		v_rand=n.Next(this.Height-40);// se genereaza o valoare aleatoare
+		Desen.DrawLine( Creion_albastru,poz_x,this.Height-40,poz_x,Height-40-v_rand);
+		poz_x+=14;
+		consum[i]=v_rand;
+	}
+	this.button2.Enabled=true;
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Clik al obiectului button2 cu : 
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	double c_med; // consum lunar mediu
+	c_med=med(consum,nr_z)/nr_z;
+	Desen->DrawLine( Creion_rosu,6,this->Height-40-c_med,this->Width-20,this->Height-40-c_med);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	double c_med; // consum lunar mediu
+	c_med=med(consum,nr_z)/nr_z;
+	Desen.DrawLine( Creion_rosu,6,this.Height-40-c_med,this.Width-20,this.Height-40-c_med);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In imaginea de jos, consumul mediu va fi trasat cu linie rosie numai pe apasarea butonului "Consum mediu".
+<br><br><center><img src="im_cpp42.gif"></center>
+
+<br><br><a name="tb_sys"></a>
+<font color= "Black" size=4><li><b>Tablouri bidimensionale in spatiul de nume System - Matrici </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam aplicatie in spatiul System care initializeaza si afiseaza un tablou bidimensional.
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul initializeaza o matrice cu  n x m elemente
+// Cere numarul de linii si coloane
+// Atribuire valori aleatoare intre 0-100 elementelor matricii
+// La sfarsit se afiseaza elementele matricii
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+using namespace System;
+
+int main(void)
+{
+	system("TITLE Matrice cu n x m  elemente");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j, n, m ;
+	array < int,2 >^ numere = gcnew array < int,2 > (10,10);
+	System::Random^ nr = gcnew System::Random();
+	Console::Write("\n\tNumarul de coloane n: ");
+	n=System::Convert::ToInt16(Console::ReadLine());	// Citirea noii dimensiuni n
+	Console::Write("\n\tNumarul de linii m: ");
+	m=System::Convert::ToInt16(Console::ReadLine());	// Citirea noii dimensiuni m
+	for (j=0;j < m; j++){				// Atribuire valori aleatoare intre 0-100
+		for (i=0;i < n; i++)
+		 numere[i,j]=nr->Next(100);
+	}
+	Console::WriteLine("\n\tNumerele sunt: \n\n");		// Afisare numere
+	for (j=0;j < m; j++){
+		for (i=0;i < n; i++)
+		Console::Write("  Nr["+i+","+j+"]="+numere[i,j]+"\t");
+	Console::WriteLine(" ");
+	}
+	Console::ReadLine();
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp40.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam acum o aplicatie CLR Windows Forms Application care foloseste tablouri bidimensionale. Sa incercam sa desenam in 
+mod continuu cercuri la diferite pozitii, de dimensiuni aleatoare si totodata sa stergem cercurile mai vechi in asa fel incat pe ecran sa avem un numar 
+stabil de cercuri.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat<b><font color="red"> matr_sys </font></b>pe care plasam un obiect timer caruia ii setam
+intervalul la 10. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom utiliza o matrice care sa tina pozitiile x si y ale cercurilor precum si razele acestora. Pe fiecare eveniment Tick 
+se va desena un cerc si se va sterge altul. Avand sa zicem 100 de cercuri incepem sa stergem cele mai vechi de 50 si vom avea in permanenta 50 de cercuri.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pozitiile cercurilor si razele acestora se vor genera aleator in asa fel incat sa poata fi desenate pe form-ul curent. 
+Sunt o serie de variabile si obiecte care trebuie sa aiba deci domeniul de vizibilitate in diverse proceduri deci trebuie puse in zona #pragma region . 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Completam deci #pragma region cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++ 
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	static int nr_c=100;
+	static int i=0;
+	static int j=0;
+	static int k=nr_c/2;
+	static System::Drawing::Graphics^ Desen;
+	static System::Drawing::Pen^ Creion_rosu ;
+	static System::Drawing::Pen^ Creion_pic ;
+	static System::Random^ n;
+	static array < int,2 >^ cercuri = gcnew array < int,2 > (nr_c,3);
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br><br>&nbsp;&nbsp;&nbsp;C##
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+        static int nr_c=100;
+	    static int i=0;
+	    static int j=0;
+	    static int k=nr_c/2;
+	    static System.Drawing.Graphics Desen;
+	    static System.Drawing.Pen Creion_rosu ;
+	    static System.Drawing.Pen Creion_pic ;
+	    static System.Random n;
+	    static int[,] cercuri = new int[nr_c, 3];
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Paint al obiectului form-ului cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen = this->CreateGraphics();
+	Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	Creion_pic=gcnew System::Drawing::Pen(Color(this->BackColor));
+	n = gcnew System::Random();
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	for(i=0 ; i < nr_c ; i++){
+		cercuri[i,0]=n->Next(this->Width);
+		cercuri[i,1]=n->Next(this->Width);
+		cercuri[i,2]=n->Next(75);
+	}
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen = this.CreateGraphics();
+	Creion_rosu=new System.Drawing.Pen(System.Drawing.Color.Red);
+	Creion_pic=new System.Drawing.Pen(this.BackColor);
+	n = new System.Random();
+	Desen.Clear(this.BackColor);
+	for(i=0 ; i < nr_c ; i++){
+		cercuri[i,0]=n.Next(this.Width);
+		cercuri[i,1]=n.Next(this.Width);
+		cercuri[i,2]=n.Next(75);
+	}
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Tick al obiectului timer1 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen->DrawEllipse( Creion_rosu, cercuri[j,0], cercuri[j,1], cercuri[j,2], cercuri[j,2]);
+	Desen->DrawEllipse( Creion_pic, cercuri[k,0], cercuri[k,1], cercuri[k,2], cercuri[k,2]);	
+	j++;
+	if (j > nr_c-1)
+		j=0;
+	k++;
+	if (k > nr_c-1)
+		k=0;
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen.DrawEllipse( Creion_rosu, cercuri[j,0], cercuri[j,1], cercuri[j,2], cercuri[j,2]);
+	Desen.DrawEllipse( Creion_pic, cercuri[k,0], cercuri[k,1], cercuri[k,2], cercuri[k,2]);	
+	j++;
+	if (j > nr_c-1)
+		j=0;
+	k++;
+	if (k > nr_c-1)
+		k=0;
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru C++ ompletam procedura deschisa pe evenimentul Deactivate al obiectului form-ului cu : 
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	delete Desen;
+	delete Creion_rosu;
+	delete n;
+	delete cercuri;
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa lansarea aplicatiei vom avea tot timpul 50 de cercuri pe ecran  dar in diverse pozitii si de diverse marimi.
+<br><br><center><img src="im_cpp55.gif"></center>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca aparitia cercurilor nu este total aleatoare. Dupa o desenare a tuturor cercurilor se reia desenarea acelorasi 
+cercuri. Pentru a evita repetarea schemei de cercuri, matricea cu coordonatele cercurilor trebuie regenerata. Nu le putem regenera pe toate pentru ca 
+inca nu au fost sterse toate. Stergerea acestora este in urma cu nr_c/2, deci vom regenera numai prima jumatate de cercuri dupa ce s-a terminat de 
+desenat cercurile si urmatoarea jumatate va fi generata numai dupa stergerea completa a primului set. Cu alte cuvinte problema este rezolvata prin 
+rescrierea  procedurii corespunzatoare evenimentului Tick al obiectului timer1 astfel: 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen->DrawEllipse( Creion_rosu, cercuri[j,0], cercuri[j,1], cercuri[j,2], cercuri[j,2]);
+	Desen->DrawEllipse( Creion_pic, cercuri[k,0], cercuri[k,1], cercuri[k,2], cercuri[k,2]);	
+	j++;
+	if (j > nr_c-1){
+		j=0;
+		for(i=0 ; i < nr_c/2 ; i++){
+			cercuri[i,0]=n->Next(this->Width);
+			cercuri[i,1]=n->Next(this->Width);
+			cercuri[i,2]=n->Next(75);
+		}
+	}
+	k++;
+	if (k > nr_c-1)
+		k=0;
+		for(i=nr_c/2 ; i < nr_c ; i++){
+			cercuri[i,0]=n->Next(this->Width);
+			cercuri[i,1]=n->Next(this->Width);
+			cercuri[i,2]=n->Next(75);
+		}
+	}		
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen.DrawEllipse( Creion_rosu, cercuri[j,0], cercuri[j,1], cercuri[j,2], cercuri[j,2]);
+	Desen.DrawEllipse( Creion_pic, cercuri[k,0], cercuri[k,1], cercuri[k,2], cercuri[k,2]);	
+	j++;
+	if (j > nr_c-1){
+		j=0;
+		for(i=0 ; i < nr_c/2 ; i++){
+			cercuri[i,0]=n.Next(this.Width);
+			cercuri[i,1]=n.Next(this.Width);
+			cercuri[i,2]=n.Next(75);
+		}
+	}
+	k++;
+	if (k > nr_c-1)
+		k=0;
+		for(i=nr_c/2 ; i < nr_c ; i++){
+			cercuri[i,0]=n.Next(this.Width);
+			cercuri[i,1]=n.Next(this.Width);
+			cercuri[i,2]=n.Next(75);
+		}
+	}		
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="apl_t"></a>
+<font color= "Blue" size=5>Utilizarea tablourilor</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tablourile sunt des utilizate in achizitia si prelucrarea datelor provenite din monitorizarea diverselor procese. Vom 
+incerca in continuare sa simulam date furnizate de sistemele de achizitie in vederea afisarii si prelucrarii acestora. Simularea datelor are avantajul 
+ca nu necesita efectiv sisteme complexe de achizitie, totodata permitand punerea la punct a aplicatiilor care prelucreaza si afiseaza in forme diverse 
+aceste date. Am realizat anterior cateva aplicatii care simulau date prin generarea aleatoare a acestora prin mecanisme random(). Aceste date astfel 
+simulate nu se aseamana prea mult cu datele provenite din sistemele de achizitie. Vom folosi mouse-ul pentru a simula achizitia de date.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pornim de la aplicatia "graph_00".
+<br><br><center><img src="im_cpp58.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Vom crea aplicatia  "achiz_v0"  care foloseste un obiect trackBar pentru a genera date in vederea stocarii acestora in 
+tablouri pentru a permite  prelucrari complexe si afisari ale acestora.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat "achiz_v0" pe care plasam urmatoarele obiecte :
+<ul>
+ <li> un obiect de tip trackBar numit trackBar1 
+ <li> un obiect de tip timer numit timer1 pe a carui eveniment tick se va face preluarea unei valori
+</ul>
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace achiz_v0
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        static int nr = 1;
+        static int stare = 0;
+        static int i = 0;
+        static int scr_h ;
+        static int val;
+        static double scala;
+        static int y, y_v;
+        static int[] date_ac;
+        static System.Drawing.Graphics Desen;
+        static System.Drawing.Pen Creion_blu;
+        static System.Drawing.Pen Creion_red;
+        static System.Drawing.Pen Creion_pic;
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            nr = this.Size.Width-110;
+            scr_h = Screen.PrimaryScreen.Bounds.Height;
+            stare = 1;
+            i = 0;
+            date_ac = new int[nr];
+            Desen = this.CreateGraphics();
+            Creion_blu = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Creion_red = new System.Drawing.Pen(System.Drawing.Color.Red);
+            Creion_pic = new System.Drawing.Pen(this.BackColor);
+            
+            scala = System.Convert.ToDouble(this.Size.Height - 80) / this.trackBar1.Maximum;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Desen.DrawRectangle(Creion_red, 10, 0, nr+1, this.Height-60);
+            val = this.trackBar1.Value;
+            for (i = 10; i < nr - 1; i++)
+            {
+                date_ac[i] = date_ac[i + 1];
+            }
+            date_ac[nr - 1] = val;
+
+            y_v = System.Convert.ToInt16(this.Size.Height - 80 - scala * date_ac[0]);
+            for (i = 20; i < nr; i++)
+            {
+                y = System.Convert.ToInt16(this.Size.Height - 80 - scala * date_ac[i]);
+                Desen.DrawLine(Creion_pic, i+1,1, i + 1, this.Height-80);
+                Desen.DrawLine(Creion_blu, i, y_v, i+1, y);
+                y_v = y;
+            }
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br><center><img src="im_cpp59.gif"></center>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie foloseste mouse-ul pentru a genera date in vederea stocarii acestora in tabele pentru a permite 
+prelucrari complexe si afisari ale acestora.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat "achiz_v1" pe care plasam urmatoarele obiecte :
+<ul>
+ <li> un obiect de tip button numit button1 caruia ii schimbam atributul text in "Start" 
+ <li> un obiect de tip label numit label1 utilizat pentru diverse mesaje
+ <li> un obiect de tip label numit label2 utilizat pentru afisarea valorii curente preluata
+ <li> un obiect de tip label numit label3 utilizat pentru afisarea indexului valorii preluate
+ <li> un obiect de tip timer numit timer1 pe a carui eveniment tick se va face preluarea unei valori
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Dupa apasarea butonului "Start" se incepe achizitia de valori, numarul acestora depinzand de latimea ferestrei principale.
+<br>&nbsp;&nbsp;&nbsp;&nbsp Achizitionarea si afisarea valorilor se face pe parcursul achizitionarii acestora. Dupa atingerea numarului maxim, achizitia 
+este oprita. Fiecare valoare este obtinuta pe un eveniment tick al timer-ului. Procedura scrisa pe evenimentul clik trebuie sa comunice procedurii 
+scrisa pe evenimentul tick cand sa inceapa achizitia prin setarea variabilei stare. Sunt o serie de variabile care trebuie sa aiba deci domeniul de 
+vizibilitate in ambele proceduri deci trebuie puse in zona #pragma region . 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Completam deci #pragma region cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++ 
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+static int nr=1;
+static int stare=0;
+static int i=0;
+static int scr_h=1;
+static int val;
+static double scala;
+static int y,y_v;
+static System::Drawing::Graphics^ Desen;
+static System::Drawing::Pen^ Creion_blu ;
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+static int nr=1;
+static int stare=0;
+static int i=0;
+static int scr_h=1;
+static int val;
+static double scala;
+static int y,y_v;
+static System.Drawing.Graphics Desen;
+static System.Drawing.Pen Creion_blu ;
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Click al obiectului button1 cu :
+
+<br><br>&nbsp;&nbsp;&nbsp;C++ 
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	nr=this->Size.Width;
+	stare=1;
+	i=0;
+	Desen= this->CreateGraphics();
+	Creion_blu=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	scala=System::Convert::ToDouble(this->Size.Height-120)/Screen::PrimaryScreen->Bounds.Height;
+	scr_h=Screen::PrimaryScreen->Bounds.Height;
+	this->label1->Text ="Se achizitioneaza "+System::Convert::ToString(nr)+" valori";
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br><br>&nbsp;&nbsp;&nbsp;C# 
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	nr=this.Size.Width;
+	stare=1;
+	i=0;
+	Desen= this.CreateGraphics();
+	Creion_blu=new System.Drawing.Pen(System.Drawing.Color.Blue);
+	Desen.Clear(this.BackColor);
+	scala=System.Convert.ToDouble(this.Size.Height-120)/Screen.PrimaryScreen.Bounds.Height;
+	scr_h=Screen.PrimaryScreen.Bounds.Height;
+	this.label1.Text ="Se achizitioneaza "+System.Convert.ToString(nr)+" valori";
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Tick al obiectului timer1 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	if ((stare==1) && (i < nr)){
+		this->label3->Text ="["+System::Convert::ToString(i)+"]=";
+		val=scr_h-Control::MousePosition.Y;
+		this->label2->Text = String::Concat(val);
+		y=this->Size.Height-70-scala*val;
+		Desen->DrawLine(Creion_blu,i-1,y_v, i, y);
+		y_v=y;
+		i++;
+	}
+	if (i >= nr){
+		this->label1->Text ="Achizitie date terminata"; 
+		stare=0;
+		delete Desen;
+		delete Creion_blu;
+	}
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	if ((stare==1) && (i < nr)){
+		this.label3.Text ="["+System.Convert.ToString(i)+"]=";
+		val=scr_h-Control.MousePosition.Y;
+		this.label2.Text = String.Concat(val);
+  		y = this.Size.Height - 70 - Convert.ToInt16(scala * val);
+		Desen.DrawLine(Creion_blu,i-1,y_v, i, y);
+		y_v=y;
+		i++;
+	}
+	if (i >= nr){
+		this.label1.Text ="Achizitie date terminata"; 
+		stare=0;
+	}
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa apasarea butonului Start si miscarea mouse-ului pana se achizitioneaza toate valorile, se obtine:
+<br><br><center><img src="im_cpp43.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Valorile astfel obtinute vor fi pastrate temporar in tabele in vederea prelucrarii acestora.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pe baza aplicatiei anterioare vom adauga o serie de butoane cu care vom declansa diferite prelucrari ale datelor stocate 
+in tabele.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat "achiz_v2" pe care plasam urmatoarele obiecte :
+<ul>
+ <li> un obiect de tip button numit button1 caruia ii schimbam atributul text in "Start" 
+ <li> un obiect de tip button numit button2 caruia ii schimbam atributul text in "Afisare date" si atributul Enabled in false 
+ <li> un obiect de tip button numit button3 caruia ii schimbam atributul text in "Maxim"  si atributul Enabled in false
+ <li> un obiect de tip button numit button4 caruia ii schimbam atributul text in "Minim"  si atributul Enabled in false
+ <li> un obiect de tip button numit button5 caruia ii schimbam atributul text in "Med"  si atributul Enabled in false
+ <li> un obiect de tip label numit label1 utilizat pentru diverse mesaje
+ <li> un obiect de tip label numit label2 utilizat pentru afisarea valorii curente preluata
+ <li> un obiect de tip label numit label3 utilizat pentru afisarea indexului valorii preluate
+ <li> un obiect de tip timer numit timer1 pe a carui eveniment tick se va face preluarea unei valori
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp; Completam deci #pragma region cu :  
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+static int nr=1;
+static int stare=0;
+static int i=0;
+static int scr_h=Screen::PrimaryScreen->Bounds.Height;
+static int val;
+static double scala;
+static int y,y_v;
+static array < int >^ date_ac = gcnew array < int > (0);
+static System::Drawing::Graphics^ Desen;
+static System::Drawing::Pen^ Creion_blu ;
+static System::Drawing::Pen^ Creion_red ;
+static System::Drawing::SolidBrush^ Pensula;
+static System::Drawing::Font^ font_nina;
+
+int maxim(array < int >^ date, int nrm){
+	int max=date[0];
+	for (int i=0;i < nrm;i++){
+		if (max < date[i])
+			max=date[i];
+	}
+	return max;
+}
+int minim(array < int >^ date, int nrm){
+	int min=date[0];
+	for (int i=0;i < nrm;i++){
+		if (min > date[i])
+			min=date[i];
+	}
+	return min;
+}
+double med(array < int >^ date, int nrm){
+	double med=0;
+	for (int i=0;i < nrm;i++){
+		med=med+System::Convert::ToDouble(date[i])/nrm;
+	}
+	return med;
+}
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+        static int nr = 1;
+        static int stare = 0;
+        static int i = 0;
+        static int scr_h = Screen.PrimaryScreen.Bounds.Height;
+        static int val;
+        static double scala;
+        static int factor = 0;
+        static int y, y_v;
+        static int[] date_ac = new int[0];
+        static System.Drawing.Graphics Desen;
+        static System.Drawing.Pen Creion_blu;
+        static System.Drawing.Pen Creion_red;
+        static System.Drawing.SolidBrush Pensula;
+        static System.Drawing.Font font_nina;
+        int maxim(int[] date, int nrm)
+        {
+            int max = date[0];
+            for (int i = 0; i < nrm; i++)
+            {
+                if (max < date[i])
+                    max = date[i];
+            }
+            return max;
+        }
+        int minim(int[] date, int nrm)
+        {
+            int min = date[0];
+            for (int i = 0; i < nrm; i++)
+            {
+                if (min > date[i])
+                    min = date[i];
+            }
+            return min;
+        }
+        double med(int[] date, int nrm)
+        {
+            double med = 0;
+            for (int i = 0; i < nrm; i++)
+            {
+                med = med + System.Convert.ToDouble(date[i]) / nrm;
+            }
+            return med;
+        }
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Tick al obiectului timer1 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	if ((stare==1) && (i < nr)){
+		this->button2->Enabled=false;
+		this->button3->Enabled=false;
+		this->button4->Enabled=false;
+		this->button5->Enabled=false;
+		this->label3->Text ="["+System::Convert::ToString(i)+"]=";
+		val=scr_h-Control::MousePosition.Y;
+		this->label2->Text = String::Concat(val);
+		date_ac[i]=val;
+		y=this->Size.Height-70-scala*val;
+		Desen->DrawLine(Creion_blu,i-1,y_v, i, y);
+		y_v=y;
+		i++;
+	}
+	if (i >= nr){
+		this->label1->Text ="Achizitie date terminata"; 
+		stare=0;
+		this->button2->Enabled=true;
+		this->button3->Enabled=true;
+		this->button4->Enabled=true;
+		this->button5->Enabled=true;
+	}
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+            if ((stare == 1) && (i < nr))
+            {
+                this.button2.Enabled = false;
+                this.button3.Enabled = false;
+                this.button4.Enabled = false;
+                this.button5.Enabled = false;
+                this.label3.Text = "[" + System.Convert.ToString(i) + "]=";
+                val = scr_h - Control.MousePosition.Y;
+                this.label2.Text = String.Concat(val);
+                date_ac[i] = val;
+                y = System.Convert.ToInt16(this.Size.Height - 70 - scala * val);
+                Desen.DrawLine(Creion_blu, i - 1, y_v, i, y);
+                y_v = y;
+                i++;
+            }
+            if (i >= nr)
+            {
+                this.label1.Text = "Achizitie date terminata";
+                stare = 0;
+                this.button2.Enabled = true;
+                this.button3.Enabled = true;
+                this.button4.Enabled = true;
+                this.button5.Enabled = true;
+            }
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Click al obiectului button1 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	nr=this->Size.Width;
+	Array::Resize(date_ac,nr);
+	stare=1;
+	i=0;
+	Desen= this->CreateGraphics();
+	Creion_blu=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Creion_red=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	scala=System::Convert::ToDouble(this->Size.Height-120)/Screen::PrimaryScreen->Bounds.Height;
+	Pensula=gcnew System::Drawing::SolidBrush(System::Drawing::Color::DarkOrchid );
+	font_nina=gcnew System::Drawing::Font("Nina",8);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	this->label1->Text ="Se achizitioneaza "+System::Convert::ToString(nr)+" valori";
+	y=this->Size.Height-70-scala*(scr_h-Control::MousePosition.Y);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+            nr = this.Size.Width;
+            factor = date_ac.Length;
+            Array.Resize(ref date_ac, nr);
+            stare = 1;
+            i = 0;
+            Desen = this.CreateGraphics();
+            Creion_blu = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Creion_red = new System.Drawing.Pen(System.Drawing.Color.Red);
+            scala = System.Convert.ToDouble(this.Size.Height - 120) / Screen.PrimaryScreen.Bounds.Height;
+            Pensula = new System.Drawing.SolidBrush(System.Drawing.Color.DarkOrchid);
+            font_nina = new System.Drawing.Font("Nina", 8);
+            Desen.Clear(this.BackColor);
+            this.label1.Text = "Se achizitioneaza " + System.Convert.ToString(nr) + " valori";
+            y = System.Convert.ToInt16(this.Size.Height - 70 - scala * (scr_h - Control.MousePosition.Y));
+
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+ 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Click al obiectului button2 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	int r=1,j=1;
+	i=0;
+	for ( int i=0; i < nr; i++){
+		Desen->DrawString(System::Convert::ToString(date_ac[i]),font_nina,Pensula,10+j*35,30+11*r);	
+		j++;
+		if (j==11){
+			r++;
+			j=1;
+		}
+		if (i > 198) i=nr;// limitez la 198 de valori
+	}
+	this->label1->Text ="Primele 200 de valori";
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+            Desen.Clear(this.BackColor);
+            int r = 1, j = 1, i = 0;
+            for (i = 0; i < nr; i++)
+            {
+                Desen.DrawString(System.Convert.ToString(date_ac[i]), font_nina, Pensula, 10 + j * 35, 30 + 11 * r);
+                j++;
+                if (j == 11)
+                {
+                    r++;
+                    j = 1;
+                }
+                if (i > 198) i = nr;// limitez la 198 de valori
+            }
+            this.label1.Text = "Primele 200 de valori";
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Click al obiectului button3 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	this->label3->Text = "V_max=";
+	this->label2->Text = System::Convert::ToString(maxim(date_ac,nr));
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	i=0;
+	do {
+		y=this->Size.Height-70-scala*date_ac[i];
+		Desen->DrawLine(Creion_blu,i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+	while (i < nr);
+		y=this->Size.Height-70-scala*(maxim(date_ac,nr));
+		Desen->DrawLine(Creion_red,0,y, nr, y);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+            this.label3.Text = "V_max=";
+            this.label2.Text = System.Convert.ToString(maxim(date_ac, nr));
+            Desen.Clear(this.BackColor);
+            i = 0;
+            do
+            {
+                y = System.Convert.ToInt16(this.Size.Height - 70 - scala * date_ac[i]);
+                Desen.DrawLine(Creion_blu, i - 1, y_v, i, y);
+                y_v = y;
+                i += 1;
+            }
+            while (i < nr);
+            y = System.Convert.ToInt16(this.Size.Height - 70 - scala * (maxim(date_ac, nr)));
+            Desen.DrawLine(Creion_red, 0, y, nr, y);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Click al obiectului button4 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	this->label3->Text = "V_min=";
+	this->label2->Text = System::Convert::ToString(minim(date_ac,nr));
+
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	i=0;
+	do {
+		y=this->Size.Height-70-scala*date_ac[i];
+		Desen->DrawLine(Creion_blu,i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+	while (i < nr);
+		y=this->Size.Height-70-scala*(minim(date_ac,nr));
+		Desen->DrawLine(Creion_red,0,y, nr, y);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+            this.label3.Text = "V_min=";
+            this.label2.Text = System.Convert.ToString(minim(date_ac, nr));
+
+            Desen.Clear(this.BackColor);
+            i = 0;
+            do
+            {
+                y = System.Convert.ToInt16(this.Size.Height - 70 - scala * date_ac[i]);
+                Desen.DrawLine(Creion_blu, i - 1, y_v, i, y);
+                y_v = y;
+                i += 1;
+            }
+            while (i < nr);
+            y = System.Convert.ToInt16(this.Size.Height - 70 - scala * (minim(date_ac, nr)));
+            Desen.DrawLine(Creion_red, 0, y, nr, y);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Click al obiectului button5 cu :
+
+<br><br>&nbsp;&nbsp;&nbsp;C++ 
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	this->label3->Text = "V_med=";
+	this->label2->Text = System::Convert::ToString(med(date_ac,nr));
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	i=0;
+	do {
+		y=this->Size.Height-70-scala*date_ac[i];
+		Desen->DrawLine(Creion_blu,i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+	while (i < nr);
+		y=this->Size.Height-70-scala*(med(date_ac,nr));
+		Desen->DrawLine(Creion_red,0,y, nr, y);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+            this.label3.Text = "V_med=";
+            this.label2.Text = System.Convert.ToString(med(date_ac, nr));
+            Desen.Clear(this.BackColor);
+            i = 0;
+            do
+            {
+                y = System.Convert.ToInt16(this.Size.Height - 70 - scala * date_ac[i]);
+                Desen.DrawLine(Creion_blu, i - 1, y_v, i, y);
+                y_v = y;
+                i += 1;
+            }
+            while (i < nr);
+            y = System.Convert.ToInt16(this.Size.Height - 70 - scala * (med(date_ac, nr)));
+            Desen.DrawLine(Creion_red, 0, y, nr, y);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa apasarea butonului Start, miscarea mouse-ului pana se achizitioneaza toate valorile si apasarea butonului "Med", 
+se obtine:
+<br><br><center><img src="im_cpp44.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca dupa apasarea butonului Start, miscarea mouse-ului pana se achizitioneaza toate valorile si apasarea butonului "Afisare 
+date", se obtine:
+<br><br><center><img src="im_cpp45.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Pe parcursul achizitiei de date valoarea maxima nu se cunoaste, aceasta putandu-se determina numai dupa ce toate 
+datele au fost achizitionate. Este de preferat sa rescalam graficul functie de valoarea maxima atinsa astfel incat graficul sa cuprinda intreaga suprafata 
+destinata afisarii grafice a datelor. Urmatoarea aplicatie permite rescalarea datelor si introducerea efectului de lupa in vederea analizarii formei 
+de unda a semnalului achizitionat. Se vor inroduce deci butoane pentru afisarea scalata si butoane pentru "amplificarea" semnalului. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat "achiz_v3" pe care plasam urmatoarele obiecte :
+<ul>
+ <li> un obiect de tip button numit button1 caruia ii schimbam atributul text in "Start" 
+ <li> un obiect de tip button numit button2 caruia ii schimbam atributul text in "Afisare scalata"  si atributul Enabled in false
+ <li> un obiect de tip button numit button3 caruia ii schimbam atributul text in "+"  si atributul Enabled in false
+ <li> un obiect de tip button numit button4 caruia ii schimbam atributul text in "++"  si atributul Enabled in false
+ <li> un obiect de tip label numit label1 utilizat pentru diverse mesaje
+ <li> un obiect de tip label numit label2 utilizat pentru afisarea valorii curente preluata
+ <li> un obiect de tip label numit label3 utilizat pentru afisarea indexului valorii preluate
+ <li> un obiect de tip timer numit timer1 pe a carui eveniment tick se va face preluarea unei valori
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp; Completam deci #pragma region cu :  
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+static int nr=1;
+static int stare=0;
+static int i=0;
+static int scr_h=Screen::PrimaryScreen->Bounds.Height;
+static int val;
+static double scala;
+static int factor=0;
+static int y,y_v;
+static array < int >^ date_ac = gcnew array < int > (0);
+static System::Drawing::Graphics^ Desen;
+static System::Drawing::Pen^ Creion_blu ;
+
+
+int maxim(array < int >^ date, int nrm){
+	int max=date[0];
+	for (int i=0;i < nrm;i++){
+		if (max < date[i])
+			max=date[i];
+	}
+	return max;
+}
+int minim(array < int >^ date, int nrm){
+	int min=date[0];
+	for (int i=0;i < nrm;i++){
+		if (min > date[i])
+			min=date[i];
+	}
+	return min;
+}
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+        static int nr = 1;
+        static int stare = 0;
+        static int i = 0;
+        static int scr_h = Screen.PrimaryScreen.Bounds.Height;
+        static int val;
+        static double scala;
+        static int factor = 0;
+        static int y, y_v;
+        static int[] date_ac = new int[0];
+        static System.Drawing.Graphics Desen;
+        static System.Drawing.Pen Creion_blu;
+
+
+        int maxim(int[] date, int nrm)
+        {
+            int max = date[0];
+            for (int i = 0; i < nrm; i++)
+            {
+                if (max < date[i])
+                    max = date[i];
+            }
+            return max;
+        }
+        int minim(int[] date, int nrm)
+        {
+            int min = date[0];
+            for (int i = 0; i < nrm; i++)
+            {
+                if (min > date[i])
+                    min = date[i];
+            }
+            return min;
+        }
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Tick al obiectului timer1 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	if ((stare==1) && (i < nr)){
+		this->button2->Enabled=false;
+		this->button3->Enabled=false;
+		this->button4->Enabled=false;
+		this->label3->Text ="["+System::Convert::ToString(i)+"]=";
+		val=scr_h-Control::MousePosition.Y;
+		this->label2->Text = String::Concat(val);
+		date_ac[i]=val;
+		y=this->Size.Height-70-scala*val;
+		Desen->DrawLine(Creion_blu,i-1,y_v, i, y);
+		y_v=y;
+		i++;
+	}
+	if (i >= nr){
+		this->label1->Text ="Achizitie date terminata"; 
+		stare=0;
+		this->button2->Enabled=true;
+		this->button3->Enabled=true;
+		this->button4->Enabled=true;
+	}
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+            if ((stare == 1) && (i < nr))
+            {
+                this.button2.Enabled = false;
+                this.button3.Enabled = false;
+                this.button4.Enabled = false;
+                this.label3.Text = "[" + System.Convert.ToString(i) + "]=";
+                val = scr_h - Control.MousePosition.Y;
+                this.label2.Text = String.Concat(val);
+                date_ac[i] = val;
+                y = System.Convert.ToInt16(this.Size.Height - 70 - scala * val);
+                Desen.DrawLine(Creion_blu, i - 1, y_v, i, y);
+                y_v = y;
+                i++;
+            }
+            if (i >= nr)
+            {
+                this.label1.Text = "Achizitie date terminata";
+                stare = 0;
+                this.button2.Enabled = true;
+                this.button3.Enabled = true;
+                this.button4.Enabled = true;
+            }
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Click al obiectului button1 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen= this->CreateGraphics();
+	Creion_blu=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	scala=System::Convert::ToDouble(this->Size.Height-120)/Screen::PrimaryScreen->Bounds.Height;
+	nr=this->Size.Width;
+	Array::Resize(date_ac,nr);
+	stare=1;
+	factor=0;
+	i=0;
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	this->label1->Text ="Se achizitioneaza "+System::Convert::ToString(nr)+" valori";
+	y=this->Size.Height-70-scala*(scr_h-Control::MousePosition.Y);
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+            Desen = this.CreateGraphics();
+            Creion_blu = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            scala = System.Convert.ToDouble(this.Size.Height - 120) / Screen.PrimaryScreen.Bounds.Height;
+            nr = this.Size.Width;
+            Array.Resize(ref date_ac, nr);
+           
+            factor = 0;
+            i = 0;
+            Desen.Clear(this.BackColor);
+            this.label1.Text = "Se achizitioneaza " + System.Convert.ToString(nr) + " valori";
+            y = 50+System.Convert.ToInt16(this.Size.Height - 70 - scala * (scr_h - Control.MousePosition.Y));
+            y_v = y;
+            stare = 1;
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Click al obiectului button2 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	double scala_m=System::Convert::ToDouble(this->Size.Height-120)/(maxim(date_ac,nr));
+	i=0;
+	do {
+		y=this->Size.Height-70-scala_m*(date_ac[i]);
+		Desen->DrawLine(Creion_blu,i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+	while (i < nr);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+            Desen.Clear(this.BackColor);
+            double scala_m = System.Convert.ToDouble(this.Size.Height - 120) / (maxim(date_ac, nr));
+            i = 0;
+            do
+            {
+                y = System.Convert.ToInt16(this.Size.Height - 70 - scala_m * (date_ac[i]));
+                Desen.DrawLine(Creion_blu, i - 1, y_v, i, y);
+                y_v = y;
+                i += 1;
+            }
+            while (i < nr);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Click al obiectului button3 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	if (factor < minim(date_ac,nr)-40)
+	factor+=40;
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	double scala_m=System::Convert::ToDouble(this->Size.Height-120)/(maxim(date_ac,nr)-factor);
+	i=0;
+	do {
+		y=this->Size.Height-70-scala_m*(date_ac[i]-factor);
+		Desen->DrawLine(Creion_blu,i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+	while (i < nr);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+            if (factor < minim(date_ac, nr) - 40)
+                factor += 40;
+            Desen.Clear(this.BackColor);
+            double scala_m = System.Convert.ToDouble(this.Size.Height - 120) / (maxim(date_ac, nr) - factor);
+            i = 0;
+            do
+            {
+                y = System.Convert.ToInt16(this.Size.Height - 70 - scala_m * (date_ac[i] - factor));
+                Desen.DrawLine(Creion_blu, i - 1, y_v, i, y);
+                y_v = y;
+                i += 1;
+            }
+            while (i < nr);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Click al obiectului button4 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	double scala_m=System::Convert::ToDouble(this->Size.Height-120)/(maxim(date_ac,nr)-
+	minim(date_ac,nr));
+	factor=0;
+	i=0;
+	do {
+		y=this->Size.Height-70-scala_m*(date_ac[i]-minim(date_ac,nr));
+		Desen->DrawLine(Creion_blu,i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+	while (i < nr);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+            Desen.Clear(this.BackColor);
+            double scala_m = System.Convert.ToDouble(this.Size.Height - 120) / (maxim(date_ac, nr) -
+            minim(date_ac, nr));
+            factor = 0;
+            i = 0;
+            do
+            {
+                y = System.Convert.ToInt16(this.Size.Height - 70 - scala_m * (date_ac[i] - minim(date_ac, nr)));
+                Desen.DrawLine(Creion_blu, i - 1, y_v, i, y);
+                y_v = y;
+                i += 1;
+            }
+            while (i < nr);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa apasarea butonului Start, miscarea mouse-ului pana se achizitioneaza toate valorile si apasarea butonului "++", 
+se obtine:
+<br><br><center><img src="im_cpp46.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa incercam acum simularea a doua semnale folosind miscarea mouse-ului pe x respectiv pe y . Cele doua semnale ar putea 
+reprezenta de exemplu tensiunea si curentul achizitionate dintr-un sistem electric. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat "achiz_v4" pe care plasam urmatoarele obiecte :
+<ul>
+ <li> un obiect de tip button numit button1 caruia ii schimbam atributul text in "Start" 
+ <li> un obiect de tip button numit button2 caruia ii schimbam atributul text in "Tensiune" si atributul Enabled in false
+ <li> un obiect de tip button numit button3 caruia ii schimbam atributul text in "Curent" si atributul Enabled in false 
+ <li> un obiect de tip button numit button4 caruia ii schimbam atributul text in "P=U*I" si atributul Enabled in false 
+ <li> un obiect de tip button numit button5 caruia ii schimbam atributul text in "Sterg" si atributul Enabled in false 
+ <li> un obiect de tip label numit label1 utilizat pentru diverse mesaje
+ <li> un obiect de tip label numit label2 utilizat pentru afisarea valorii tensiunii
+ <li> un obiect de tip label numit label3 utilizat pentru afisarea indexului valorilor preluate
+ <li> un obiect de tip label numit label4 utilizat pentru afisarea valorii curentului
+ <li> un obiect de tip timer numit timer1 pe a carui eveniment tick se va face preluarea a doua valori (u,I)
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp; Completam deci #pragma region cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++ 
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+static int nr=1;
+static int stare=0;
+static int i=0;
+static int scr_h=Screen::PrimaryScreen->Bounds.Height;
+static int scr_w=Screen::PrimaryScreen->Bounds.Width;
+static double scala_h;
+static double scala_w;
+static int val_u;	// tensiune
+static int val_c;	// curent
+static int val_p;	// putere
+static int u,u_v,c,c_v,p,p_v;
+static array < int >^ tens = gcnew array < int > (0);
+static array < int >^ crnt = gcnew array < int > (0);
+static int factor;
+static System::Drawing::Graphics^ Desen ;
+static System::Drawing::Pen^ Creion_blu ;
+static System::Drawing::Pen^ Creion_red ; 
+static System::Drawing::Pen^ Creion_green ; 
+
+int max_p(array < int >^ date1,array < int >^ date2, int nrm){
+	int max=date1[0]*date2[0];
+	for (int i=0;i < nrm;i++){
+		if (max < date1[i]*date2[i])
+			max=date1[i]*date2[i];
+	}
+	return max;
+}
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;C# 
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+static int nr=1;
+static int stare=0;
+static int i=0;
+static int scr_h=Screen.PrimaryScreen.Bounds.Height;
+static int scr_w=Screen.PrimaryScreen.Bounds.Width;
+static double scala_h;
+static double scala_w;
+static int val_u;	// tensiune
+static int val_c;	// curent
+static int val_p;	// putere
+static int u,u_v,c,c_v,p,p_v;
+static int [] tens = new int[0];
+static int [] crnt = new int[0];
+static int factor;
+static System.Drawing.Graphics Desen ;
+static System.Drawing.Pen Creion_blu ;
+static System.Drawing.Pen Creion_red ; 
+static System.Drawing.Pen Creion_green ; 
+
+int max_p(int[]date1, int[] date2, int nrm){
+	int max=date1[0]*date2[0];
+	for (int i=0;i < nrm;i++){
+		if (max < date1[i]*date2[i])
+			max=date1[i]*date2[i];
+	}
+	return max;
+}
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Tick al obiectului timer1 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	if ((stare==1) && (i < nr)){
+		this->button2->Enabled=false;
+		this->button3->Enabled=false;
+		this->button3->Enabled=false;
+		this->button4->Enabled=false;
+		this->button5->Enabled=false;
+		this->label3->Text ="["+System::Convert::ToString(i)+"]=";
+		val_u=scr_h-Control::MousePosition.Y;
+		this->label2->Text = String::Concat(val_u);
+		tens[i]=val_u;
+		u=this->Size.Height-70-scala_h*val_u;
+		Desen->DrawLine(Creion_blu,i-1,u_v, i, u);
+		u_v=u;
+
+		val_c=Control::MousePosition.X;
+		this->label4->Text = String::Concat(val_c);
+		crnt[i]=val_c;
+		c=this->Size.Height-70-scala_w*val_c;
+		Desen->DrawLine(Creion_red,i-1,c_v, i, c);
+		c_v=c;
+		i++;
+	}
+	if (i >= nr){
+		this->label1->Text ="Achizitie date terminata"; 
+		stare=0;
+		this->button2->Enabled=true;
+		this->button3->Enabled=true;
+		this->button3->Enabled=true;
+		this->button4->Enabled=true;
+		this->button5->Enabled=true;
+	}
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	if ((stare==1) && (i < nr)){
+		this.button2.Enabled=false;
+		this.button3.Enabled=false;
+		this.button3.Enabled=false;
+		this.button4.Enabled=false;
+		this.button5.Enabled=false;
+		this.label3.Text ="["+System.Convert.ToString(i)+"]=";
+		val_u=scr_h-Control.MousePosition.Y;
+		this.label2.Text = String.Concat(val_u);
+		tens[i]=val_u;
+		u=System.Convert.ToInt16(this.Size.Height-70-scala_h*val_u);
+		Desen.DrawLine(Creion_blu,i-1,u_v, i, u);
+		u_v=u;
+		val_c=Control.MousePosition.X;
+		this.label4.Text = String.Concat(val_c);
+		crnt[i]=val_c;
+		c=System.Convert.ToInt16(this.Size.Height-70-scala_w*val_c);
+		Desen.DrawLine(Creion_red,i-1,c_v, i, c);
+		c_v=c;
+		i++;
+	}
+	if (i >= nr){
+		this.label1.Text ="Achizitie date terminata"; 
+		stare=0;
+		this.button2.Enabled=true;
+		this.button3.Enabled=true;
+		this.button3.Enabled=true;
+		this.button4.Enabled=true;
+		this.button5.Enabled=true;
+	}
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Click al obiectului button1 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen= this->CreateGraphics();
+	Creion_blu=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Creion_red=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	Creion_green=gcnew System::Drawing::Pen(System::Drawing::Color::Green);
+	scala_h=System::Convert::ToDouble(this->Size.Height-120)/Screen::PrimaryScreen->Bounds.Height/2;
+	scala_w=System::Convert::ToDouble(this->Size.Height-120)/Screen::PrimaryScreen->Bounds.Width/2;
+	nr=this->Size.Width;
+	Array::Resize(tens,nr);
+	Array::Resize(crnt,nr);
+	stare=1;
+	factor=0;
+	i=0;
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	this->label1->Text ="Se achizitioneaza "+System::Convert::ToString(nr)+" valori";
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen= this.CreateGraphics();
+	Creion_blu=new System.Drawing.Pen(System.Drawing.Color.Blue);
+	Creion_red=new System.Drawing.Pen(System.Drawing.Color.Red);
+	Creion_green=new System.Drawing.Pen(System.Drawing.Color.Green);
+	scala_h=System.Convert.ToDouble(this.Size.Height-120)/Screen.PrimaryScreen.Bounds.Height/2;
+	scala_w=System.Convert.ToDouble(this.Size.Height-120)/Screen.PrimaryScreen.Bounds.Width/2;
+	nr=this.Size.Width;
+	Array.Resize(ref tens,nr);
+	Array.Resize(ref crnt,nr);
+	stare=1;
+	factor=0;
+	i=0;
+	Desen.Clear(this.BackColor);
+	this.label1.Text ="Se achizitioneaza "+System.Convert.ToString(nr)+" valori";
+ </pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Click al obiectului button2 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	i=0;
+	do {
+		u=this->Size.Height-70-scala_h*(tens[i]-factor);
+		Desen->DrawLine(Creion_blu,i-1,u_v, i, u);
+		u_v=u;
+		i+=1;
+	}
+	while (i < nr);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	i=0;
+	do {
+		u=System.Convert.ToInt16(this.Size.Height-70-scala_h*(tens[i]-factor));
+		Desen.DrawLine(Creion_blu,i-1,u_v, i, u);
+		u_v=u;
+		i+=1;
+	}
+	while (i < nr);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Click al obiectului button3 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	i=0;
+	do {
+		c=this->Size.Height-70-scala_w*(crnt[i]-factor);
+		Desen->DrawLine(Creion_red,i-1,c_v, i, c);
+		c_v=c;
+		i+=1;
+	}
+	while (i < nr);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	i=0;
+	do {
+		c=System.Convert.ToInt16(this.Size.Height-70-scala_w*(crnt[i]-factor));
+		Desen.DrawLine(Creion_red,i-1,c_v, i, c);
+		c_v=c;
+		i+=1;
+	}
+	while (i < nr);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Click al obiectului button4 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	double scala_m=System::Convert::ToDouble(this->Size.Height-120)/(max_p(tens,crnt,nr)-factor);
+	i=0;
+	do {
+		p=this->Size.Height-70-scala_m*(tens[i]*crnt[i]-factor);
+		Desen->DrawLine(Creion_green,i-1,p_v, i, p);
+		p_v=p;
+		i+=1;
+	}
+	while (i < nr);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	double scala_m=System.Convert.ToDouble(this.Size.Height-120)/(max_p(tens,crnt,nr)-factor);
+	i=0;
+	do {
+		p=System.Convert.ToInt16(this.Size.Height-70-scala_m*(tens[i]*crnt[i]-factor));
+		Desen.DrawLine(Creion_green,i-1,p_v, i, p);
+		p_v=p;
+		i+=1;
+	}
+	while (i < nr);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Click al obiectului button5 cu : 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen.Clear(this.BackColor);
+ </pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa apasarea butonului Start, miscarea mouse-ului pe x si y pana se achizitioneaza toate valorile si apasarea 
+butonului "P=U*I", se obtine:
+<br><br><center><img src="im_cpp47.gif"></center>
+
+<br><br><b> Prelucrarea imaginilor</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In urmatoarea aplicatie vom incerca sa incarcam o imagine, sa o afisam dupa care sa rotim stanga imaginea  
+si sa o o afisam din nou.
+<br><br><center><img src="im_cpp56.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Codul sursa in C# fiind:
+
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace imag_02
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Bitmap img;
+        System.Drawing.Bitmap img1;
+        System.Drawing.Graphics Desen;
+        System.Drawing.Color cul;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            img=new Bitmap("termo.jpg");
+            img1 = new Bitmap(309,295);
+            Desen = this.CreateGraphics();
+            cul = new System.Drawing.Color();
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Desen.DrawImage(img,0,0);
+            for (int j = 0; j < 309; j++)
+            {
+                for (int i = 0; i < 295; i++)
+                {
+                    //img1.SetPixel(j, i, img.GetPixel(i, j));
+                    cul = img.GetPixel(i, j);
+                    img1.SetPixel(j, i, cul);
+                }
+            }
+            Desen.DrawImage(img1, 300, 0);
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br><a name="lab"></a>
+<font color= "Blue" size=5>Lucrari de laborator</font>
+<ul>
+ <li>Sa se calculeze media aritmetica a elementelor unui  tablou unidimensional.
+ <li>Sa presupunem ca avem un tablou cu 31 elemente, reprezentand consumurile zilnice de energie. Calculati consumul lunar de energie.
+ <li>Avand un tablou unidimensional cu n elemente, sa se construiasca un nou tablou din elementele primului, elemente care sunt mai mari decat un nr a
+ <li>Afisati maximul si minimul unui tablou unidimensional 
+ <li>Se citesc doua tablouri unidimensionale cu componente numere naturale. Fiecare tablou are elementele sortate crescator. Se cere sa se construiasca 
+ un al treilea tablou care contine elementele celor doua in ordine crescatoare.
+ <li> Aranjati un  tablou unidimensional astfel incat numerele pare sa ocupe primele locuri
+ <li> Avand doua tablouri unidimensionale a, b , afisati elementele comune, elementele ce apar numai in tabloul a, elementele ce apar numai in tabloul b
+ <li> Realizati un tablou bidimensional de dimensiune nxn realizat din numere pozitive
+ <li> Afisati minimul si maximul unui tablou bidimensional de dimensiune nxn
+ <li> Afisati elementele de pe diagonala principala unui tablou bidimensional de dimensiune nxn
+ <li> Afisati elementele de pe diagonala secundara unui tablou bidimensional de dimensiune nxn
+</ul>
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+</body>
+</html>
