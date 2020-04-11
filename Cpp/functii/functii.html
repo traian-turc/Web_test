@@ -1,0 +1,2501 @@
+<html><head>
+<title>Functii si proceduri</title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Functii si proceduri</Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functiile si procedurile sunt elementele de baza ale unui program scris în C++. Orice program, de orice dimensiune, 
+contine una sau mai multe functii sau proceduri. Functiile si procedurile sunt de fapt un grup de instructiuni care impreuna executa o anumita operatie.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Exista cazuri cand trebuie sa executam de mai multe ori o anumita operatie,  operatia fiind compusa dintr-un grup de 
+instructiuni. O solutie ar fi inserarea grupului de instructiuni in program ori de cate ori e nevoie. In acest caz programele devin lungi si 
+greoaie. Solutia eleganta e reprezentata de utilizarea functiilor si procedurilor. In majoritatea cazurilor spre grupul de instructiuni se transmit 
+anumiti parametri, parametri necesari in executarea operatiei definita de grupul de instructiuni. In urma rularii grupului de instructiuni, de cele 
+mai multe ori rezulta valori reprezentand rezultatul rularii instructiunilor din grupul de instructiuni. In cazul cand in urma rularii grupul de 
+instructiuni returneaza valori, numim acest grup de instructiuni, <b> functie </b>.  In cazul cand in urma rularii grupul de instructiuni nu se returneaza 
+valori, numim acest grup de instructiuni, <b> procedura </b>. Procedurile se intalnesc de obicei in cazurile cand avem operatii de afisare. Grupul de instructiuni
+folosit in general pentru diverse afisari de date primeste date de intrare insa in urma prelucrarii lor se executa afisarea datelor prelucrate fara ca acestea
+sa intoarca nici un fel de valori. Majoritatea aplicatiilor scrise in "Windows Forms Aplication" au necesitat completarea unor proceduri atasate unui 
+eveniment. Prcatic o procedura este o functie care nu intoarce valori. Vom numi atunci generic toate grupurile de instructiuni
+care impreuna executa anumite operatii, <b> functii </b>. Pana acum am scris programe cu o singura functie si anume functia  <b>main</b>. In continuare vom
+utiliza functii pentru a realiza programe mai compacte si mai usor de controlat. Functiile ofera un mod convenabil de încapsulare a anumitor calcule 
+într-o cutie neagra care poate fi utilizata apoi fara a avea grija continutului ei. Functiile sunt într-adevar singurul mod de a face fata complexitatii 
+programelor mari, permitand desfacerea programelor mari în module mai mici, dand utilizatorului posibilitatea de a dezvolta programe, reutilizand 
+codul scris de alte persoane.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Limbajul C a fost conceput sa permita definirea de functii eficiente si usor de manuit. În general e bine sa concepem 
+programe constituite din mai multe functii mici decat din putine functii de dimensiuni mari.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cand utilizam functii tinem cont ca: 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; - Un program poate fi împartit în mai multe fisiere sursa în mod convenabil, iar fisierele sursa pot fi compilate separat.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; - Un program C consta dintr-o secventa de definitii externe de functii si de date. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; - În fiecare program trebuie sa existe o functie cu numele impus <b>main</b>. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; - Orice program îsi începe executia cu functia main. Celelalte functii sunt apelate din interiorul functiei main. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; - Unele dintre functiile apelate sunt definite în acelasi program, altele sunt continute într-o biblioteca de functii.
+<br><br><a name="def"></a>
+<font color= "blue" size=5> Definirea unei functii</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O functie este formata din antet si corp astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+antet_functie
+{
+corpul_functiei
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca revenim la prima aplicatie scrisa observam ca de fapt avem o singura functie si anume funcia <b> main </b>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue">
+ <pre>
+ 
+// Primul program scris in C++ Visual Studio 2005 de tipul:CLR (Common Language Runtime) console application
+
+#include "stdafx.h"
+#include &lt iostream &gt
+using namespace std;
+
+int main(void)
+{
+	cout <<" Primul program CLR console application\n\n Felicitari!!";
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Prima linie <b> int main(void)</b> este antetul functiei (nu este urmat de ;) constand dintr-un tip de date returnat, un   
+nume al functiei si o lista cu argumente.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Corpul functiei se pune intre acolade si consta din declaratii de variabile locale, una sau mai multe instructiuni printre care si 
+instructiuni de revenire . In cazul de sus instructiunea de revenire fiind return 0.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;O functie poate fi deci descrisa mai general astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+tip_val_return nume_func (lista_declaratiilor_param_ formali)
+{
+	declaratii_variabile_locale
+	instructiuni
+	return valoare
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prima linie reprezinta antetul functiei, în care se indica: tipul functiei, numele acesteia si lista declaratiilor 
+parametrilor formali. La fel ca un operand sau o expresie, o functie are un tip, care este dat de tipul valorii returnate de functie în functia apelanta. 
+Daca functia nu întoarce nici o valoare, în locul tip_vali_return se specifica void. In acest caz avem de-a face cu o procedura
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca tip_val_return lipseste, se considera, implicit, ca acesta este int. Nume_functie este un identificator. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Lista_declaratiilor_param_formali (încadrata între paranteze rotunde) consta într-o lista (enumerare) care contine 
+tipul si identificatorul fiecarui parametru de intrare, despartite prin virgula. Daca lista parametrilor formali este vida, în antet, dupa numele 
+functiei, apar doar parantezele ( ), sau (void).
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Corpul functiei este un bloc, care implementeaza algoritmul de calcul folosit de catre functie. 
+În corpul functiei apar (în orice ordine) declaratii pentru variabilele locale si instructiuni. 
+Daca functia întoarce o valoare, se foloseste instructiunea return valoare. La executie, la întâlnirea acestei instructiuni, se revine în functia 
+apelanta.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;În limbajul C/C++ se utilizeaza declaratii si definitii de functii.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Declaratia contine antetul functiei si informeaza compilatorul asupra tipului, numelui functiei si a listei parametrilor 
+formali (în care se poate indica doar tipul parametrilor formali, nu si numele acestora). 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Declaratiile de functii se numesc prototipuri, si sunt constituite din antetul functiei, din care pot lipsi numele parametrilor formali.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Definitia contine antetul functiei si corpul acesteia. Nu este admisa definirea unei functii în corpul altei functii.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Prima aplicatie scrisa ar putea fi despartita in doua functii astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Primul program care foloseste functii
+// Programul este scris in C++ Visual Studio 2005 de tipul:CLR 
+// (Common Language Runtime) console application
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+// Incepe definirea functiei afiseaza
+
+void afis(void)
+{
+	cout <<" \n\n\tPrimul program ce utilizeaza functii.\n\n";
+}
+int main(void)
+{
+	afis(); // se apeleaza functia afis
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia <b> afis </b> este definita prima astfel : void afis(void) . Primul void inseamna ca nu returneaza o valoare, iar
+afis(void) inseamna ca functia afis nu are nevoie de parametri cand se apeleaza. Corpul functiei afis are o singura instructiune si anume cout. Nu are
+instructiune de revenire return deoarece nu intoarce nici o valoare.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Tinand cont ca functia afis() nu returneaza nici un parametru o putem numi procedura.
+<br><br><a name="proto"></a>
+<font color= "blue" size=5> Prototipuri de functii</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De obicei un program incepe cu functia main(). In aplicatia de sus este definita prima data procedura afis(), 
+dupa care apare functia main(). Daca schimbam locul lor programul devine:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Primul program care foloseste functii
+// Programul este scris in C++ Visual Studio 2005 de tipul:CLR 
+// (Common Language Runtime) console application
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	afis(); // se apeleaza functia afis
+	cin.get();
+	return 0;
+}
+// Incepe definirea functiei afiseaza
+
+void afis(void)
+{
+	cout <<" \n\n\tPrimul program ce utilizeaza functii.\n\n";
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Incercand sa compilam aplicatia de sus vom obtine o eroare deoarece in functia main() se apeleaza
+functia afis(), functie care inca nu a fost definita. Solutia este sa declaram functia inaintea functiei main(), dupa care putem pune 
+functia main() urmata de procedura afis(). Declararea functiilor si procedurilor se realizeaza prin utilizarea prototipurilor de functii. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia anterioara va rula cu conditia sa scriem inaintea functiei main() prototipul.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Programul foloseste functii si prototipuri functii
+// Programul este scris in C++ Visual Studio 2005 de tipul:CLR 
+// (Common Language Runtime) console application
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+void afis(void);// prototipul functiei
+int main(void)
+{
+	afis(); // se apeleaza functia afis
+	cin.get();
+	return 0;
+}
+// Incepe definirea functiei afiseaza
+void afis(void)
+{
+	cout <<" \n\n\tProgramul utilizeaza functii si prototipuri.\n\n";
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Prin aceasta metoda reusim sa scriem programe mai "clare" in sensul ca la inceput se trec in 
+revista toate functiile prin declararea prototipurilor, urmeaza functia main(), dupa care urmeaza definitiile functiilor declarate 
+prin prototip
+
+<br><br><a name="fara_arg"></a>
+<font color= "blue" size=5> Proceduri fara parametri</font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In Windows Forms Application functiile se definesc la fel. Vom incerca sa desenam mai multe cercuri concentrice distantate
+la 10 pixeli. Numarul cercurilor depinde de latimea form-ului curent, astfel la fiecare redimensionare a ferestrei sa se traseze in alt numar de
+cercuri concentrice. Daca punem o singra procedura de desanare pe evenimentu "resize" desenarea se va face numai daca redimensionam fereastra curenta, 
+astfel la pornirea programului nu se afiseaza nimic. Procedura trebuie lansata si pe evenimentul paint. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom scrie o procedura numita desenare pe care o vom lansa din procedurile create pe cele doua evenimente.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Procedura deseneaza arata astfel:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+void deseneaza(void){
+	int i=0;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_rosu;
+	Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	i=0;
+	for ( int i=1; i<=this->Width/4; i+=10){
+		Desen->DrawEllipse( Creion_rosu, this->Width/2-i, this->Height/2-30-i,2*i,2*i);
+	}
+	delete Creion_rosu;
+	delete Desen;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+void deseneaza(void){
+	int i=0;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_rosu;
+	Creion_rosu=new System.Drawing.Pen(System.Drawing.Color.Red);
+	Desen.Clear(this.BackColor);
+	i=0;
+	for ( int i=1; i<=this.Width/4; i+=10){
+		Desen.DrawEllipse( Creion_rosu, this.Width/2-i, this.Height/2-30-i,2*i,2*i);
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect numit "f_cercuri". Procedura de sus va fi adaugata procedurilor generate la deschiderea 
+proiectului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Procedura va fi amplasata in zona #pragma region unde sunt amplasate si procedurile de initializare ale componentelor
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Creem proceduri pe evenimentele paint si resize.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Procedurile create pe evenimentele paint si resize vor contine apelul procedurii de desenare adica deseneaza(); 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Ultima parte a codului afisat cu "view code" va arata astfel:
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+void deseneaza(void){
+	int i=0;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_rosu;
+	Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	i=0;
+	for ( int i=1; i<=this->Width/4; i+=10){
+		Desen->DrawEllipse( Creion_rosu, this->Width/2-i, this->Height/2-30-i,2*i,2*i);
+	}
+	delete Creion_rosu;
+	delete Desen;
+}
+
+private: System::Void Form1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+	deseneaza();
+}
+private: System::Void Form1_Resize(System::Object^  sender, System::EventArgs^  e) {
+	deseneaza();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+void deseneaza(void){
+	int i=0;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_rosu;
+	Creion_rosu=new System.Drawing.Pen(System.Drawing.Color.Red);
+	Desen.Clear(this.BackColor);
+	i=0;
+	for ( int i=1; i<=this.Width/4; i+=10){
+		Desen.DrawEllipse( Creion_rosu, this.Width/2-i, this.Height/2-30-i,2*i,2*i);
+	}
+}
+
+private void Form1_Paint(object sender, PaintEventArgs e)
+{
+	deseneaza();
+}
+private void Form1_Resize(object sender, EventArgs e)
+{
+	deseneaza();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea aplicatiei se afiseaza imediat imaginea de jos iar la redimensionarea ferestrei se redeseneasza cercurile.
+<br><br><center><img src="im_cpp18.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In multe cazuri e necesar sa efectuam aceleasi operatii pe mai multe evenimente. Spre exemplu in cazul in care afisam
+ceva intr-o fereastra dupa apasarea unui buton, am dori sa reafisam continutul ferestrei si dupa operatia de redimensionare a ferestrei. Vom defini deci
+o procedura numita de exemplu deseneaza() pe care o apelam din porocedurile lansate pe evenimentele dorite. Sa realizam o aplicatie in care "Form-ul"
+principal contine doua butoane: "Deseneaza" si "Sterge". Procedura deseneaza() trebuie sa se declanseze atat pe evenimentul Click al butonului "Deseneaza" cat
+si pe evenimentul resize al form-ului. Procedura "Sterge" trebuiesa se declanseze atat pe evenimentul Click al butonului "Sterge" cat
+si pe evenimentul resize al form-ului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea un nou proiect numit:<b> functii_vo </b> in Windows Forms Application . Plasam doua butoane si anume button1 pentru "Deseneaza" 
+si button2 pentru "Sterge". Definim procedurile deseneaza() si sterge() si le apelam pe evenimentele mai sus amintite.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Ultima parte a codului afisat cu "view code" va arata astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+void deseneaza(void){
+ int i=0;
+ System::Drawing::Graphics^ Desen;
+ Desen = this->CreateGraphics();
+ System::Drawing::Pen^ Creion_rosu;
+ Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+ System::Drawing::Pen^ Creion_albastru;
+ Creion_albastru=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+ System::Random^ n = gcnew System::Random();
+ for ( int i=1; i<=100; i++){
+  Desen->DrawRectangle( Creion_albastru,n->Next(this->Width),n->Next(this->Height),n->Next(75),n->Next(50));
+  Desen->DrawEllipse( Creion_rosu, n->Next(this->Width), n->Next(this->Height), n->Next(50),n->Next(75));
+ }
+ delete Creion_rosu;
+ delete Creion_albastru;
+ delete Desen;
+}
+void sterge(void){
+ System::Drawing::Graphics^ Desen;
+ Desen = this->CreateGraphics();
+ Desen->Clear(System::Drawing::Color(this->BackColor));
+}
+#pragma endregion
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		sterge();				
+		deseneaza();
+	}
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+		sterge();
+	}
+	private: System::Void Form1_ResizeEnd(System::Object^  sender, System::EventArgs^  e) {
+		sterge();
+		deseneaza();
+	}
+};
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa lansarea aplicatiei si apasarea butonului "Deseneaza" se afiseaza imaginea:
+<br><br><center><img src="im_cpp25.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa incercam sa afisam forma de unda a semnalelor modulate in amplitudine. La transmiterea undelor radio se foloseste
+modulatia in amplitudine, in frecventa sau in faza pentru transmiterea la mare distanta a undelor radio. In principiu daca vrem sa transmitem la 
+distanta un semnal electric de joasa frecventa trebuie sa ne folosim de un semnal de inalta frecventa (numit purtatoare) peste care sa suprapunem semnalul de joasa
+frecventa numit (modulatoare) . In cazul cand vrem sa transmitem un semnal sinusoidal, acesta va modula un semnal purtator tot de forma sinusoidala 
+dar de frecventa mult mai mare. Sa afisam atunci un semnal sinusoidal modulat tot cu o sinusoida. Trebuie sa afisam deci functia sin(mx)*sin(sp) unde
+xm este frecventa undei modulatoare iar xp este frecventa undei purtatoare. De obicei xp>>xm. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Generam un nou proiect in Windows Forms Application numit <b> modulatie </b>. Plasam doua obiecte de tip NumericUpDown care
+vor permite introducerea numarului de radiani pentru modulatoare respectiv factor de multiplicare pentru purtatoare in raport cu frecventa modulatoarei, 
+cu numele numericUpDown1 respectiv numericUpDown2. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cu click dreapta pe form -- aleg optiiunea View Code -- inserez urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+		void sin_mod(void){
+			int i=0,y=0,y_v=0,lat,factor_s;
+			double x,rad,xm,f;
+			System::Drawing::Graphics^ Desen;
+			Desen = this->CreateGraphics();
+			System::Drawing::Pen^ Creion_blu;
+			Creion_blu=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+			Desen->Clear(System::Drawing::Color(this->BackColor));
+			factor_s=this->Height/2-37;
+			rad=System::Convert::ToDouble(this->numericUpDown1->Value);
+			f=System::Convert::ToDouble(this->numericUpDown2->Value);
+			lat=this->Width;
+			do {
+				x=i*rad*System::Math::PI/(lat-10);
+				xm=f*x;
+				y=35+factor_s*(1-System::Math::Sin(xm)*System::Math::Sin(x));
+				Desen->DrawLine(Creion_blu,i-1,y_v, i, y);
+				y_v=y;
+				i+=1;
+				}
+				while (i<=lat);
+			delete Creion_blu;
+			delete Desen;
+		}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace modulatie
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion;
+        void sin_mod()
+        {
+			int i=0,y=0,y_v=0,lat,factor_s;
+			double x,rad,xm,f;
+			Desen.Clear(this.BackColor);
+			factor_s=this.Height/2-37;
+			rad=System.Convert.ToDouble(this.numericUpDown1.Value);
+			f=System.Convert.ToDouble(this.numericUpDown2.Value);
+			lat=this.Width;
+			do {
+				x=i*rad*System.Math.PI/(lat-10);
+				xm=f*x;
+				y=System.Convert.ToInt16(35+factor_s*(1-Math.Sin(xm)*Math.Sin(x)));
+				Desen.DrawLine(Creion,i-1,y_v, i, y);
+				y_v=y;
+				i+=1;
+			}
+			while (i<=lat);
+		}
+        private void Form1_Load(object sender, EventArgs e)
+        {
+		Desen = this.CreateGraphics();
+		Creion=new System.Drawing.Pen(System.Drawing.Color.Red);
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            sin_mod();
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            sin_mod();
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            sin_mod();
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Procedura <b> sin_mod </b> trebuie sa se apeleze atat la evenimentul paiant cat si pe evenimentele ValueChanged ale 
+celor doua butoane. Vom pune deci pe aceste evenimente apelul procedurii  sin_mod();
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea aplicatiei obtinem:
+<br><br><center><img src="im_cpp19.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din cele doua butoane putem schimba frecventele celor doua unde si acestea se redeseneaza automat.
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Modulatia in frecventa:
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace modulatie_f
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion;
+        void sin_mod()
+        {
+            int i = 0, y = 0, y_v = 0, lat, factor_s;
+            double xm,xp, f_m,f_p;
+            // f_m - frecventa modulatoare
+            // f_p - frecventa purtatoare
+
+            Desen.Clear(this.BackColor);
+            factor_s = (this.Height / 2 - 50)/4;
+            f_m = System.Convert.ToDouble(this.numericUpDown1.Value);
+            f_p = System.Convert.ToDouble(this.numericUpDown2.Value);
+            lat = this.Width;
+            do
+            {
+                xp = i * f_p * Math.PI / (lat - 10);
+                y = System.Convert.ToInt16(50 + factor_s * (1 - Math.Sin(xp) ));
+                Desen.DrawLine(Creion, i - 1, y_v, i, y);
+                y_v = y;
+                i += 1;
+            }
+            while (i <= lat);
+            i = 0;
+            do
+            {
+                xm = i * f_m * Math.PI / (lat - 10);
+                y = System.Convert.ToInt16(50 + this.Height / 4 + factor_s * (1 - Math.Sin(xm)));
+                Desen.DrawLine(Creion, i - 1, y_v, i, y);
+                y_v = y;
+                i += 1;
+            }
+            while (i <= lat);
+            i = 0;
+            do
+            {
+                xm = i * f_m * Math.PI / (lat - 10);
+                xp = i * f_p * Math.PI / (lat - 10);
+                y = System.Convert.ToInt16(50 + this.Height / 2 + factor_s * (1 - Math.Sin(xp + 2 * Math.PI * (f_p / f_m) * (Math.Sin(xm)))));
+                Desen.DrawLine(Creion, i - 1, y_v, i, y);
+                y_v = y;
+                i += 1;
+            }
+            while (i <= lat);
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Desen = this.CreateGraphics();
+            Creion = new System.Drawing.Pen(System.Drawing.Color.Red);
+        }
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            sin_mod();
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            sin_mod();
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            sin_mod();
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><center><img src="im_cpp88.gif"></center>
+
+
+
+<br><br><a name="cu_arg"></a>
+<font color= "blue" size=5> Proceduri cu argument (parametri)</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Desi s-ar parea ca aplicatia anterioara primeste parametri in sensul ca apeleaza aceeasi procedura sin_mod() dar 
+afiseaza imagini diferite in functie de valorile butoanelor NumericUpDown nu avem de-a face cu o procedura cu argument (parametri). Argumentele 
+(parametrii) pot fi transmisi spre proceduri in diverse moduri. Cel mai simplu mod de transmitere a parametrilor spre proceduri este transmiterea
+argumentelor (parametrilor) prin valoare.
+<br><br><a name="arg_v"></a>
+<li> <b> Transmiterea argumentelor (parametrilor) spre proceduri, prin valoare.</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi o functie numita <b> afis_mes </b> pentru a afisa un mesaj. Textul pentru afisat este transmis ca argument
+procedurii.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Programul foloseste procedura afis_mes careia i se transmit parametrii prin valoare
+// Programul este scris in C++ Visual Studio 2005 de tipul:CLR 
+// (Common Language Runtime) console application
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+void afis_mes(string);// prototipul 
+int main(void)
+{
+	string str;
+	cout << " \n\n\tIntroduceti materia preferata: ";
+	cin >> str;
+	afis_mes(str); // se apeleaza procedura afis
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+// Incepe definirea procedurii afis_mes
+void afis_mes(string s)
+{
+	cout <<" \n\n\tMateria d-voastra preferata este: " << s;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Atat antetul cat si prototipul functiei au un singur argument. Argumentul prototipului contine numai tipul argumentului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cand am definit procedura   <b> afis_mes </b> am utilizat  atat tipul argumentului ( string ) cat si parametrul s . 
+Aceast parametru se numeste parametru formal sau simulat si este utilizat pentru definirea interna procedurii. 
+Acesta nu are semnificatie pentru programul principal. Acest parametru formal va fi inlocuit de argumentul transmis la apelarea procedurii. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului si introducerea textulii "Informatica" Fereastra "Command" arata astfel:
+<br><br><center><img src="im_cpp27.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am putea modifica functia  <b> afis_mes </b> astfel incat sa o putem folosi pentru a afisa orce text care a 
+fost definit in prealabil.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Programul foloseste procedura afis_mes careia i se transmit parametrii prin valoare
+// Programul este scris in C++ Visual Studio 2005 de tipul:CLR 
+// (Common Language Runtime) console application
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+void afis_mes(string);// prototipul 
+int main(void)
+{
+	string str;
+	string mesaj=" \n\n\tMateria d-voastra preferata este: ";
+	cout << " \n\n\tIntroduceti materia preferata: ";
+	cin >> str;
+	afis_mes(mesaj);// se apeleaza procedura afis_mes
+	afis_mes(str); // se apeleaza procedura afis_mes
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+// Incepe definirea procedurii afis_mes
+void afis_mes(string s)
+{
+	cout << s;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza in continuare o aplicatie in care se apeleaza proceduri carora li se transmit parametri prin valoare. 
+Reluam aplicatia cu desenarea figurilor aleatoare dar plasam niste butoane cu care alegem numarul de figuri desenate pe ecran.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea un nou proiect numit:<b> functii_v1 </b> in Windows Forms Application . Plasam patru butoane si anume: 
+button1 pentru "Deseneaza 100", button2 pentru "Deseneaza 200", button3 pentru "Deseneaza 500" si button4 pentru "Sterge". 
+Definim procedurile deseneaza() si sterge() si le apelam pe evenimentele butoanelor definite.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Ultima parte a codului afisat cu "view code" va arata astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+void deseneaza(int nr){
+ int i=0;
+ System::Drawing::Graphics^ Desen;
+ Desen = this->CreateGraphics();
+ System::Drawing::Pen^ Creion_rosu;
+ Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+ System::Drawing::Pen^ Creion_albastru;
+ Creion_albastru=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+ System::Random^ n = gcnew System::Random();
+ for ( int i=1; i<=nr; i++){
+  Desen->DrawRectangle( Creion_albastru,n->Next(this->Width),n->Next(this->Height),n->Next(75),n->Next(50));
+  Desen->DrawEllipse( Creion_rosu,n->Next(this->Width),n->Next(this->Height),n->Next(50),n->Next(75));
+ }
+ delete Creion_rosu;
+ delete Creion_albastru;
+ delete Desen;
+}
+void sterge(void){
+ System::Drawing::Graphics^ Desen;
+ Desen = this->CreateGraphics();
+ Desen->Clear(System::Drawing::Color(this->BackColor));
+}
+#pragma endregion
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+				sterge();
+				deseneaza(100);
+			 }
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+				sterge();
+				deseneaza(200);
+			 }
+	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+				sterge();
+				deseneaza(500);
+		 }
+	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
+				sterge();
+		 }
+	private: System::Void Form1_ResizeEnd(System::Object^  sender, System::EventArgs^  e) {
+				sterge();
+				deseneaza(10);
+		 }
+};
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa lansarea aplicatiei si apasarea butonului "Deseneaza 100 " se afiseaza imaginea:
+<br><br><center><img src="im_cpp26.gif"></center>
+<br><br><a name="arg_m"></a>
+<li> <b>Utilizarea argumentelor multiple.</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Programul foloseste procedura afis_mes careia i se transmit parametrii multiplii prin valoare
+// Programul este scris in C++ Visual Studio 2005 de tipul:CLR 
+// (Common Language Runtime) console application
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+void afis_mes(string,string,string);// prototipul 
+int main(void)
+{
+	string univ,facult,sec;
+	string mesaj=" \n\n\tUnde sunteti student ? ";
+	string raspuns=" \n\n\tSunteti student la : ";
+	afis_mes(mesaj,"","");// se apeleaza procedura afis_mes pentru afisare mesaj
+	cout << " \n\n\tUniversitatea: ";
+	cin >> univ;
+	cin.ignore();
+	cout << " \n\tFacultatea: ";
+	cin >> facult;
+	cin.ignore();
+	cout << " \n\tSectia: ";
+	cin >> sec;
+	cin.ignore();
+	afis_mes(raspuns,"","");// se apeleaza procedura afis_mes pentru afisare raspuns
+	afis_mes(univ,facult,sec); // se apeleaza procedura afis_mes  pentru afisare univ,facult,sec
+	cin.get();
+	return 0;
+}
+// Incepe definirea procedurii afis_mes
+void afis_mes(string u, string f, string s)
+{
+	cout << u ; cout << "  "; cout << f; cout << "  "; cout << s;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="arg_ref"></a>
+<li> <b>Transmiterea argumentelor prin referinta.</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul cand se doreste modificarea argumentelor in procedura apelanta transmiterea 
+argumentelor (parametrilor) se face prin referinta. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca realizam o aplicatie care cere un numar de la tastatura si apeleaza o functie care inlocuieste
+numarul introdus cu cubul acestuia, dupa care afiseaza rezultatul. La revenirea din procedura valoarea numarului introdus ramane neschimbata. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Programul foloseste procedura cub careia i se transmite un parametru.
+// Dupa apelul procedurii se testeaza valoarea parametrului transmis
+// Programul este scris in C++ Visual Studio 2005 de tipul:CLR 
+// (Common Language Runtime) console application
+
+#include "stdafx.h"
+#include < iostream >
+
+using namespace std;
+void cub(int);// prototipul 
+int main(void)
+{
+	int x;
+	cout << " \n\n\tIntroduceti un numar: ";
+	cin >> x;
+	cub(x);
+	cout << "\n\n\tValoarea numarului introdus dupa apelul functiei cub este : ";
+	cout << x;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+// Incepe definirea procedurii cub
+void cub(int nr)
+{
+	cout << "\n\n\tCubul numarului : ";
+	cout << nr;
+	cout << " este : ";
+	nr=nr*nr*nr;
+	cout << nr;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp28.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Chiar daca schimbam numele parametrului formal din procedura  <b> cub </b> din nr in x , rezultatul este acelasi.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Programul foloseste procedura cub careia i se transmite un parametru.
+// Dupa apelul procedurii se testeaza valoarea parametrului transmis.
+// Programul este scris in C++ Visual Studio 2005 de tipul:CLR 
+// (Common Language Runtime) console application
+
+#include "stdafx.h"
+#include < iostream >
+
+using namespace std;
+void cub(int);// prototipul 
+int main(void)
+{
+	int x;
+	cout << " \n\n\tIntroduceti un numar: ";
+	cin >> x;
+	cub(x);
+	cout << "\n\n\tValoarea numarului introdus dupa apelul procedurii cub este : ";
+	cout << x;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+// Incepe definirea procedurii cub
+void cub(int x)
+{
+	cout << "\n\n\tCubul numarului : ";
+	cout << x;
+	cout << " este : ";
+	x=x*x*x;
+	cout << x;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a beneficia de o variabila definita in programul principal dar modificata de o procedura apelata se 
+foloseste metoda transmiterii parametrilor prin referinta.  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Programul foloseste procedura cub careia i se transmite un parametriu prin referinta
+// Programul este scris in C++ Visual Studio 2005 de tipul:CLR 
+// (Common Language Runtime) console application
+
+#include "stdafx.h"
+#include < iostream >
+
+using namespace std;
+void cub(int&);// prototipul 
+int main(void)
+{
+	int x;
+	cout << " \n\n\tIntroduceti un numar: ";
+	cin >> x;
+	cub(x);
+	cout << "\n\n\tValoarea numarului introdus dupa apelul procedurii cub este : ";
+	cout << x;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+// Incepe definirea procedurii cub
+void cub(int& nr)
+{
+	cout << "\n\n\tCubul numarului : ";
+	cout << nr;
+	cout << " este : ";
+	nr=nr*nr*nr;
+	cout << nr;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;De data aceasta dupa apelul procedurii valoare numarului introdus este modificata de catre procedura.
+<br><br><center><img src="im_cpp29.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Singura diferenta este in modul de declarare al prototipului si antetului.
+<ul>
+ <li> void cub(int&);// prototipul 
+ <li> void cub(int& nr) // definirea procedurii
+</ul>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;defeinirea procedurii se poae faci si sub forma
+ 
+<ul> 
+ <li> void cub(int &nr) // definirea procedurii
+</ul>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia de sus mai poate fi scrisa si:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Programul foloseste procedura cub careia i se transmite un parametriu prin referinta
+// Programul este scris in C++ Visual Studio 2005 de tipul:CLR 
+// (Common Language Runtime) console application
+
+#include "stdafx.h"
+#include < iostream >
+
+using namespace std;
+
+void cub(int &nr);// prototipul 
+int main(void)
+{
+	int nr;
+	cout << " \n\n\tIntroduceti un numar: ";
+	cin >> nr;
+	cout << "\n\n\tCubul numarului "<< nr << " este: " ;
+	cub(nr);
+	cout << nr;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+// Incepe definirea procedurii cub
+void cub(int &nr)
+{
+	nr=nr*nr*nr;
+
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Functia <b> scanf </b> similara cu instructiunea<b>  cin <<  </b> foloseste transmiterea parametrilor prin referinta astfel:
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Programul foloseste procedura scanf careia i se transmite un parametriu prin referinta
+
+#include "stdafx.h"
+#include < iostream >
+
+using namespace std;
+
+void cub(int &nr);// prototipul 
+int main(void)
+{
+	int nr;
+	printf(" \n\n\tIntroduceti un numar: ");
+    	scanf("%d",&nr);
+	printf ("\n\n\t Cubul numarului %d este:%d", nr, nr*nr*nr) ;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prin referinta se transmit numai acele valori care trebuiec modificate de catre procdura. Constantele nu se trimit
+prin referinta. Spre o procedura se pot trimite atat valori prin referinta cat si prin valoare. Sa realizam acum o aplicatie care cere raza unui cerc
+si afiseaza aria lui. Se va sctie o procedura numita: aria_c spre care se vor trimite constanta pi,raza si aria. Aria se initializeaza cu 0 si va 
+fi trimisa prin referinta pentru a putea fi afisata la intoarcerea din procedura.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// program pentru calculul ariei cercului 
+// se cere raza cercului si se afiseaza aria acestuia
+// se foloseste procedura aria_c pentru a calcula aria cercului
+// Programul este scris in C++ Visual Studio 2005 de tipul:CLR 
+// (Common Language Runtime) console application
+
+#include "stdafx.h"
+#include < iostream >
+
+using namespace std;
+void aria_c(float,float,float&);// prototipul 
+int main(void)
+{
+	float pi=3.1415,r,a=0;
+	cout << " \n\n\tIntroduceti raza cercului: ";
+	cin >> r;
+	aria_c(pi,r,a);
+	cout << "\n\n\tAria cercului de raza : ";
+	cout << r;
+	cout << " este : ";
+	cout << a;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+// Incepe definirea procedurii aria_c
+void aria_c(float p,float raza, float& aria)
+{
+	aria=p*raza*raza;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Constanta pi poate fi trimisa si direct ca argument:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// program pentru calculul ariei cercului 
+// se cere raza cercului si se afiseaza aria acestuia
+// se foloseste procedura aria_c pentru a calcula aria cercului
+// Programul este scris in C++ Visual Studio 2005 de tipul:CLR 
+// (Common Language Runtime) console application
+
+#include "stdafx.h"
+#include < iostream >
+
+using namespace std;
+void aria_c(float,float,float&);// prototipul 
+int main(void)
+{
+	float r,a=0;
+	cout << " \n\n\tIntroduceti raza cercului: ";
+	cin >> r;
+	aria_c(3.1415,r,a);
+	cout << "\n\n\tAria cercului de raza : ";
+	cout << r;
+	cout << " este : ";
+	cout << a;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+// Incepe definirea procedurii aria_c
+void aria_c(float p,float raza, float& aria)
+{
+	aria=p*raza*raza;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><a name="func"></a>
+<font color= "blue" size=5> Functii </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O procedura care returneaza valori, se numeste functie. Argumentele functiei transmit valori unei functii apelate.
+Valoarile returnate se poat folosi pentru a transmite valori functiei apelante.
+<br><br><a name="func_r"></a>
+<li> <b>Returnarea valorilor dintr-o functie.</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In programul precedent in care am folosit o procedura pentru a calcula aria unui cerc am folosit variabila a (aria 
+cercului, pe care am initializat-o cu zero) transmisa prin referinta pentru a putea fi afisata la intoarcerea din procedura. Aplicatie este oarecum
+fortata pentru ca ar trebui folosita o functie spre care sa se transmita argumentele pi si raza si ea sa returneze o valoare adica aria cercului. 
+Vom rescrie aplicatia, folosin de data aceasta o functie.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// program pentru calculul ariei cercului 
+// se cere raza cercului si se afiseaza aria acestuia
+// se foloseste functia aria_c pentru a returna aria cercului
+// Programul este scris in C++ Visual Studio 2005 de tipul:CLR 
+// (Common Language Runtime) console application
+
+#include "stdafx.h"
+#include < iostream >
+
+using namespace std;
+double aria_c(double,double);// prototipul functiei
+int main(void)
+{
+	double r,a=0;
+	cout << " \n\n\tIntroduceti raza cercului: ";
+	cin >> r;
+	a=aria_c(3.1415,r);
+	cout << "\n\n\tAria cercului de raza : ";
+	cout << r;
+	cout << " este : ";
+	cout << a;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+// Incepe definirea functiei aria_c
+double aria_c(double p,double raza)
+{
+	return p*raza*raza;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa calculam acum, sirul lui Fibonacci. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sirul are urmatoarea structura: f(0)=0, f(1)=1, f(n)=f(n-1)+f(n-2), daca n>1
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Se defineste si se utilizeaza functia fib
+// Programul calculeaza elenentul n din sirul lui Fibonacci
+// adica:  f(0)=0, f(1)=1, f(n)=f(n-1)+f(n-2), daca n>1
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+double fib(double n); // prototipul
+int main(void)
+{
+	int nr;
+	double f;
+	cout << "\n\n\tProgramul calculeaza elementul n din sirul lui Fibonacci";
+	cout << "\n\n\tIntroduceri n: ";
+	cin >> nr;
+	f=fib(nr);
+	cout << "\n\n\tValoarea sirului pentru n=" << nr << " este:" << f << "\n";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+double fib(double n)	
+{
+	if (n==0) return 0;
+	if (n==1) return 1;
+	int i; double a, b, c; a=0; b=1;
+	for (i=2; i <= n; i++){
+		c=a+b;
+		a=b; 
+		b=c; 
+		
+	}
+	return c;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa afisam acum n elemente din  sirul lui Fibonacci. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sirul are urmatoarea structura: f(0)=0, f(1)=1, f(n)=f(n-1)+f(n-2), daca n>1
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Se defineste si se utilizeaza functia fib
+// Programul afiseaza n elemente din sirul lui Fibonacci 
+// adica:  f(0)=0, f(1)=1, f(n)=f(n-1)+f(n-2), daca n>1
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+double fib(double n); // prototipul
+int main(void)
+{
+	int i,nr;
+	double f;
+	cout << "\n\n\tProgramul afiseaza n elemente din sirul lui Fibonacci";
+	cout << "\n\n\tIntroduceri n: ";
+	cin >> nr;
+	cout << "\n\n";
+	for (i=0; i<=nr-1 ;i++){
+	f=fib(i);
+	cout << "\tf(" << i << ")= " << f << "\n";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+double fib(double n)	
+{
+	if (n==0) return 0;
+	if (n==1) return 1;
+	int i; double a, b, c; a=0; b=1;
+	for (i=2; i<=n; i++){
+		c=a+b;
+		a=b; 
+		b=c; 
+		
+	}
+	return c;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In aplicatiile realizate pana acum de tipul tipul:CLR console application unde am utilizat spatiul de nume
+System sau in aplicatii de tipul Windows Forms Application am utilizat de multe ori functii. Am calculat de exemplu lungimea unui cerc
+si am convertit raza in double cu functia  <b> raza = System::Convert::ToDouble( raza_s );</b> . In acest caz am apelat defapt
+o functia <b>Convert::ToDouble( raza_s );</b> definita in spatiul de nume System, careia i-am transmis raza_s sub forma de string, iar
+functia intoarce raza sub forma double. Sa reluam aplicatia de sus si sa utilizam spatiul de nume System.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// program pentru calculul ariei cercului 
+// se cere raza cercului si se afiseaza aria acestuia
+// se foloseste functia aria_c pentru a returna aria cercului
+// Programul este scris in C++ Visual Studio 2005 de tipul:CLR 
+// (Common Language Runtime) console application
+// Se utilizeaza spatiul de nume System
+
+#include "stdafx.h"
+using namespace System;
+double aria_c(double,double);// prototipul functiei
+
+int main(void)
+{
+	double raza ,a;
+	String^ raza_s;
+	double pi= System::Math::PI;
+	Console::Write( L"\n\n\tIntroduceti raza cercului:" );
+	raza_s= Console::ReadLine();
+	raza = System::Convert::ToDouble( raza_s );
+	a=aria_c(pi,raza);
+	Console::WriteLine( "\n\n\tAria cercului de raza : "+ raza +" este: "+a);
+	Console::ReadLine();
+    return 0;
+}
+// Incepe definirea functiei aria_c
+double aria_c(double p,double r)
+{
+	return p*r*r;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Am putea chiar sa definim constanta pi in interiorul functiei aria_c
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// program pentru calculul ariei cercului 
+// se cere raza cercului si se afiseaza aria acestuia
+// se foloseste functia aria_c pentru a returna aria cercului
+// Programul este scris in C++ Visual Studio 2005 de tipul:CLR 
+// (Common Language Runtime) console application
+// Se utilizeaza spatiul de nume System
+
+#include "stdafx.h"
+using namespace System;
+double aria_c(double);// prototipul functiei
+
+int main(void)
+{
+	double raza ,a;
+	String^ raza_s;
+	Console::Write( L"\n\n\tIntroduceti raza cercului:" );
+	raza_s= Console::ReadLine();
+	raza = System::Convert::ToDouble( raza_s );
+	a=aria_c(raza);
+	Console::WriteLine( "\n\n\tAria cercului de raza : "+ raza +" este: "+a);
+	Console::ReadLine();
+    return 0;
+}
+// Incepe definirea functiei aria_c
+double aria_c(double r)
+{
+	double pi= System::Math::PI;
+	return pi*r*r;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="func_u"></a>
+<li> <b>Utilizarea functiilor in  Windows Forms Application .</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In aplicatiile de tipul Windows Forms Application am utilizat de multe ori functii. La calculul valorii sin(), de 
+exemplu am introdus linii de program de genul:
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+			double rad2;
+			rad2=System::Convert::ToDouble(this->numericUpDown1->Value);
+			this->label3->Text =System::Convert::ToString(System::Math::Sin(rad2));
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+			double rad2;
+			rad2=System.Convert.ToDouble(this.numericUpDown1.Value);
+			this.label3.Text =System.Convert.ToString(System.Math.Sin(rad2));
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul de sus am apelat functia Sin(), functie existenta in cadrul clasei Math::.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Functia Sin() este o functie menbru a clasei Math:: din spatiul de nume System::
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Putem spune ca s-a invocat metoda Sin() a clasei Math:: din spatiul de nume System::
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pe langa invocarea metodelor din clasele existente, putem crea propriile functii pe care sa le apelam in cadrul 
+aplicatiilor proprii.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa incercam sa realizam un nou proiect de tipul WFA care sa afiseze patratul numerelor introduse de utilizator.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect numit<b> "functii_v2"</b>. Plasam un obiect NumericUpDown numit NumericUpDown1 si un Label 
+cu numele Label1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul Value_Changed al obiectului NumericUpDown1 plasam urmatoarele linii de program:
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System::Decimal n,p;
+	n=this->numericUpDown1->Value;
+	p=patrat(n);
+	this->label1->Text=System::Convert::ToString(p);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System.Decimal n, p;
+	n=this.numericUpDown1.Value;
+	p=patrat(n);
+	this.label1.Text=System.Convert.ToString(p);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa lui n i se atribuie valoarea citita de la obiectul NumericUpDown1, dupa care lui p, 
+i se atribuie valoarea intoarsa de functia patrat(n). Valoarea obtinuta este convertita intr-un text care este atribuit etichetei Label1 
+pentru a fi afisata. Pentru ca aplicatia sa ruleze, trebuie sa mai introducem functia <i> patrat </i>
+ 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom scrie o functie numita <i> patrat </i> care primeste ca argument un numar zecimal si intoarce patratul acestuia 
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	 private:System::Decimal patrat(System::Decimal x){
+				 return x*x;
+			 }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+        private System.Decimal patrat(System.Decimal x){
+				 return x*x;
+			 }
+</pre> </font>
+</td></tr></table>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam functia de sus, dupa procedura care trateaza evenimentul Value_Changed al obiectului NumericUpDown1 si in final 
+obtinem:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	private: System::Void numericUpDown1_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+				 System::Decimal n,p;
+				 n=this->numericUpDown1->Value;
+				 p=patrat(n);
+				 this->label1->Text=System::Convert::ToString(p);
+
+			 }
+	 private:System::Decimal patrat(System::Decimal x){
+				 return x*x;
+			 }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+       private System.Decimal patrat(System.Decimal x){
+				 return x*x;
+			 }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            System.Decimal n, p;
+		    n=this.numericUpDown1.Value;
+			p=patrat(n);
+			this.label1.Text=System.Convert.ToString(p);
+        }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia, introducem valoarea 12 si obtinem:
+
+<br><br><center> <img src="im_cpp80.gif"></center> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie in  Windows Forms Application care afiseaza valoarea coordonatelor stanga sus ale ferestrei 
+principale a aplicatiei.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <b> poz_wind </b> si plasam 4 obiecte de tip label numite label1..label4. 
+ Completam procedura deschisa pe evenimentul mov al Form1 cu : 
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+		this->label3->Text= System::Convert::ToString(this->Location.X);
+		this->label4->Text= System::Convert::ToString(this->Location.Y);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+		this.label3.Text= System.Convert.ToString(this.Location.X);
+		this.label4.Text= System.Convert.ToString(this.Location.Y);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se apeleaza deci functia <b> System::Convert::ToString </b> cu argumentul(this->Location.X) respectiv (this->Location.Y)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Functia returneaza un sir de caractere ce reprezinta pozitia x respectiv y a coltului stanga sus a ferestei curente.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Valoare returnata de functie este atribuita atributului text al etichetelor label3 respectiv label4 pentru a fi afisate
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In urma rularii aplicatiei, obtinem:
+<br><br><center> <img src="im_cpp30.gif"></center> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Schimband pozitia ferestrei curente se afiseaza in mod corespunzator pozitia ferestrei.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam acum o aplicatie in  Windows Forms Application care afiseaza pozitia curenta a mouse-ului pe desk-top.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <b> mouse </b> si plasam 2 obiecte de tip label numite pozx si pozy. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa pozitia x si y a mouse-ului vom face afisarea la intervale de 0.1 secunde va trebui sa plasam si un timer.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Tick al timerului cu: 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	this->pozx->Text = String::Concat(Control::MousePosition.X);
+	this->pozy->Text = String::Concat(Control::MousePosition.Y);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	this.pozx.Text = String.Concat(Control.MousePosition.X);
+	this.pozy.Text = String.Concat(Control.MousePosition.Y);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se apeleaza deci functia <b> System::Convert::ToString </b> dar cu argumentul(Control::MousePosition.X) respectiv 
+(Control::MousePosition.Y)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In urma rularii aplicatiei, obtinem:
+<br><br><center> <img src="im_cpp31.gif"></center> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa pozitia mouse-ului in cadrul ferestrei curente, deschidem un nou proiect Windows Forms Application 
+intitulat <b> poz_mouse </b> asemanator cu aplicatia anterioara dar procedura deschisa pe evenimentul Tick al timer-uli devine:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	if((Control::MousePosition.X>=this->Location.X)
+		&&(Control::MousePosition.X-this->Location.X<=this->Size.Width )
+		&&(Control::MousePosition.Y>=this->Location.Y)
+		&&(Control::MousePosition.Y-this->Location.Y<=this->Size.Height ))
+	{
+		this->pozx->Text= System::Convert::ToString(Control::MousePosition.X-this->Location.X-8);
+		this->pozy->Text= System::Convert::ToString(Control::MousePosition.Y-this->Location.Y-30);
+	}
+	else{
+		this->pozx->Text="Mouse-ul nu este in fereastra";
+		this->pozy->Text="";
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+    if ((Control.MousePosition.X >= this.Location.X)
+       && (Control.MousePosition.X - this.Location.X <= this.Size.Width)
+       && (Control.MousePosition.Y >= this.Location.Y)
+       && (Control.MousePosition.Y - this.Location.Y <= this.Size.Height))
+    {
+        this.pozx.Text = System.Convert.ToString(Control.MousePosition.X - this.Location.X - 8);
+        this.pozy.Text = System.Convert.ToString(Control.MousePosition.Y - this.Location.Y - 30);
+    }
+    else
+    {
+        this.pozx.Text = "Mouse-ul nu este in fereastra";
+        this.pozy.Text = "";
+    }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem:
+<br><br><center> <img src="im_cpp82.gif"></center> 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Avand in vedere aplicatiile de sus, ne propunem sa realizam o functie care sa ne returneze direct coordonatele 
+relative ale mouse-ului in cadrul ferestrei curente. Intrucat o functie poate returna o singura valoare, vom scrie doua functii mouse_rel_x() si 
+mouse_rel_y() care sa ne intoarca  cele doua coordonate relative ale mouse-ului in cadrul ferestrei curente.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <b> functii_v3 </b> si plasam 2 obiecte de tip label numite 
+label1,label2 si un timer. 
+ Completam procedura deschisa pe evenimentul Tick al timer-uli cu : 
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System::Int16 poz_x,poz_y;
+	poz_x=mouse_rel_x();
+	poz_y=mouse_rel_y();
+	if ((poz_x>=0) & (poz_y>=0)){
+		this->label1->Text=System::Convert::ToString(poz_x);
+		this->label2->Text=System::Convert::ToString(poz_y);
+	}
+	else
+	{
+		this->label1->Text="Mouse-ul nu este in fereastra ! ";
+		this->label2->Text="";
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+    System.Int16 poz_x,poz_y;
+	poz_x=mouse_rel_x();
+	poz_y=mouse_rel_y();
+	if ((poz_x>=0) & (poz_y>=0)){
+		this.label1.Text=System.Convert.ToString(poz_x);
+		this.label2.Text=System.Convert.ToString(poz_y);
+	}
+	else
+	{
+		this.label1.Text="Mouse-ul nu este in fereastra ! ";
+		this.label2.Text="";
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, se atribuie valoarea valorilor poz_x si poz_y valorile intoarse de functiile mouse_rel_x() 
+respectiv mouse_rel_y()
+
+ 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa functiile  <i> mouse_rel_x() </i>   <i> mouse_rel_y() </i> dupa procedura care trateaza evenumentul tick astfel:
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	private: System::Int16  mouse_rel_x(){
+		if((Control::MousePosition.X>=this->Location.X)
+		&&(Control::MousePosition.X-this->Location.X<=this->Size.Width ))
+			return System::Convert::ToInt16(Control::MousePosition.X-this->Location.X-8);
+		else
+			return -1;
+
+	}
+	private: System::Int16  mouse_rel_y(){
+		if((Control::MousePosition.Y>=this->Location.Y)
+		&&(Control::MousePosition.Y-this->Location.Y<=this->Size.Height ))
+			return System::Convert::ToInt16(Control::MousePosition.Y-this->Location.Y-30);
+		else
+			return -1;
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+     private System.Int16  mouse_rel_x(){
+		if((Control.MousePosition.X>=this.Location.X)
+		&&(Control.MousePosition.X-this.Location.X<=this.Size.Width ))
+			return System.Convert.ToInt16(Control.MousePosition.X-this.Location.X-8);
+		else
+			return -1;
+
+	}
+	private System.Int16  mouse_rel_y(){
+		if((Control.MousePosition.Y>=this.Location.Y)
+		&&(Control.MousePosition.Y-this.Location.Y<=this.Size.Height ))
+			return System.Convert.ToInt16(Control.MousePosition.Y-this.Location.Y-30);
+		else
+			return -1;
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem:
+<br><br><center> <img src="im_cpp81.gif"></center> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand functiile mouse_rel_x() si mouse_rel_y() vom realiza o noua aplicatie Windows Forms Application care afiseaza 
+valoarea coordonatelor pozitiei mous-ului si totodata cu click stanga se marcheaza pe ecran la pozitia mouse-ului un semn pentru a marca pozitia 
+mouse-ului in acel moment.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <b> functii_v4 </b> si plasam 2 obiecte de tip label numite 
+label1 si label2 si un obiect Timer. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa functiile mouse_rel_x() si mouse_rel_y() la fel ca in aplicatia anterioara adica:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	private: System::Int16  mouse_rel_x(){
+		if((Control::MousePosition.X>=this->Location.X)
+		&&(Control::MousePosition.X-this->Location.X<=this->Size.Width ))
+			return System::Convert::ToInt16(Control::MousePosition.X-this->Location.X-8);
+		else
+			return -1;
+
+	}
+	private: System::Int16  mouse_rel_y(){
+		if((Control::MousePosition.Y>=this->Location.Y)
+		&&(Control::MousePosition.Y-this->Location.Y<=this->Size.Height ))
+			return System::Convert::ToInt16(Control::MousePosition.Y-this->Location.Y-30);
+		else
+			return -1;
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Tick al timer-uli cu aceeasi procedura ca in aplicatia anterioara adica: 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System::Int16 poz_x,poz_y;
+	poz_x=mouse_rel_x();
+	poz_y=mouse_rel_y();
+	if ((poz_x>=0) & (poz_y>=0)){
+		this->label1->Text=System::Convert::ToString(poz_x);
+		this->label2->Text=System::Convert::ToString(poz_y);
+	}
+	else
+	{
+		this->label1->Text="Mouse-ul nu este in fereastra ! ";
+		this->label2->Text="";
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Spre deosebire de aplicatia anterioara, pe evenimentul click al form-ului, punem:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+    System::Drawing::Pen^ Creion_albastru;
+	Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Desen->DrawLine(Creion_albastru, mouse_rel_x()-4, mouse_rel_y(),mouse_rel_x()+4, mouse_rel_y());
+	Desen->DrawLine(Creion_albastru, mouse_rel_x(), mouse_rel_y()-4,mouse_rel_x(), mouse_rel_y()+4);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+     private System.Int16  mouse_rel_x(){
+		if((Control.MousePosition.X>=this.Location.X)
+		&&(Control.MousePosition.X-this.Location.X<=this.Size.Width ))
+			return System.Convert.ToInt16(Control.MousePosition.X-this.Location.X-8);
+		else
+			return -1;
+
+	}
+	private System.Int16  mouse_rel_y(){
+		if((Control.MousePosition.Y>=this.Location.Y)
+		&&(Control.MousePosition.Y-this.Location.Y<=this.Size.Height ))
+			return System.Convert.ToInt16(Control.MousePosition.Y-this.Location.Y-30);
+		else
+			return -1;
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Tick al timer-uli cu aceeasi procedura ca in aplicatia anterioara adica: 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+    System.Int16 poz_x,poz_y;
+	poz_x=mouse_rel_x();
+	poz_y=mouse_rel_y();
+	if ((poz_x>=0) & (poz_y>=0)){
+		this.label1.Text=System.Convert.ToString(poz_x);
+		this.label2.Text=System.Convert.ToString(poz_y);
+	}
+	else
+	{
+		this.label1.Text="Mouse-ul nu este in fereastra ! ";
+		this.label2.Text="";
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Pe evenimentul click al form-ului, punem:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_albastru;
+	Creion_albastru =new System.Drawing.Pen(System.Drawing.Color.Blue);
+	Desen.DrawLine(Creion_albastru, mouse_rel_x()-4, mouse_rel_y(),mouse_rel_x()+4, mouse_rel_y());
+	Desen.DrawLine(Creion_albastru, mouse_rel_x(), mouse_rel_y()-4,mouse_rel_x(), mouse_rel_y()+4);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem:
+<br><br><center> <img src="im_cpp83.gif"></center> 
+
+<br><br><a name="rec"></a>
+<font color= "blue" size=5>Functii recursive</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O functie este numita functie recursiva daca ea se autoapeleaza, fie direct (în definitia ei se face apel la ea însasi), 
+fie indirect (prin apelul altor functii). Limbajele C/C++ dispun de mecanisme speciale care permit suspendarea executiei unei functii, salvarea datelor 
+si reactivarea executiei la momentul potrivit. Pentru fiecare apel al functiei, parametrii si variabilele automatice se memoreaza pe stiva, având valori 
+distincte. Orice apel al unei functii conduce la o revenire în functia respectiva, în punctul urmator instructiunii de apel. 
+La revenirea dintr-o functie, stiva este curatata (stiva revine la starea dinaintea apelului). 
+<br><br><a name="rec_e"></a>
+<li> <b>Exemple de functii recursive</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Unul dintre cele mai simple exemple de utilizare ale functiilor recursive este functia de calcul factorial. Programul
+urmator defineste si utilizeaza functia recursiva factorial. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Se utilizeaza functii recursive
+// Programul calculeaza factorialul unui numar
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+int fact(int n); // prototipul
+int main(void)
+{
+	int nr, f;
+	cout << "\n\n\tProgramul calculeaza factorialul unui numar";
+	cout << "\n\n\tIntroduceri nr: ";
+	cin >> nr;
+	f=fact(nr);
+	if (f!=0){
+		cout << "\n\n\t" << nr << "!=" << f << "\n";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+int fact(int n)
+{
+	if (n<0){
+		cout<<"\n\n\tArgument negativ!\n";
+		return 0;
+	}
+	else if (n==0)	
+		return 1;
+	else
+		return n*fact(n-1);
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa calculam acum, utilizand functii recursive, elementul n din sirul lui Fibonacci. Dupa cum se stie, sirul are urmatoarea structura:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;f(0)=0, f(1)=1, f(n)=f(n-1)+f(n-2), daca n>1
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Se utilizeaza functii recursive
+// Programul calculeaza elementul n din sirul lui Fibonacci
+// f(0)=0, f(1)=1, f(n)=f(n-1)+f(n-2), daca n>1
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+double r_fib(double n); // prototipul
+int main(void)
+{
+	int nr;
+	double f;
+	cout << "\n\n\tProgramul calculeaza elementul n din sirul lui Fibonacci";
+	cout << "\n\n\tIntroduceti n: ";
+	cin >> nr;
+	f=r_fib(nr);
+	cout << "\n\n\tValoarea sirului pentru n=" << nr << " este:" << f << "\n";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+double r_fib(double n)	
+{
+	if (n<0) return 0;
+	if (n==0) return 0;
+	if (n==1) return 1;
+	double i1=r_fib(n-1);
+	double i2=r_fib(n-2);
+	return i1+i2;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa afisam acum, utilizand functii recursive, n elemente din sirul lui Fibonacci. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Se defineste si se utilizeaza functia recursiva r_fib
+// Programul afiseaza n elemente din sirul lui Fibonacci 
+// adica:  f(0)=0, f(1)=1, f(n)=f(n-1)+f(n-2), daca n>1
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+double r_fib(double n); // prototipul
+int main(void)
+{
+	int i,nr;
+	double f;
+	cout << "\n\n\tProgramul afiseaza n elemente din sirul lui Fibonacci";
+	cout << "\n\n\tIntroduceri n: ";
+	cin >> nr;
+	cout << "\n\n";
+	for (i=0; i<=nr ;i++){
+	f=r_fib(i);
+	cout << "\tf(" << i << ")= " << f << "\n";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+double r_fib(double n)	
+{
+	if (n<0) return 0;
+	if (n==0) return 0;
+	if (n==1) return 1;
+	double i1=r_fib(n-1);
+	double i2=r_fib(n-2);
+	return i1+i2;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><a name="var_v"></a>
+<font color= "blue" size=5> Vizibilitatea si durata de viata a unei variabile </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Odata cu aparitia mai multor functii intr-un program se pune problema vizibilitatii si duratei de viata a variabulelor
+definite in diferite functii inclusiv in cadrul functiei <b> main </b>.
+<br><br><a name="var_l"></a>
+<li> <b>Variabile locale</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Sa reluam aplicatia pentru calcularea ariei cercului dar sa o modificam astfel incat programul sa se reia 
+atata timp cat se introduce o valoare diferita de 0 pentru raza cercului. Vom introducem o variabila nr_rel care contorizeaza numarul de reluari
+pentru a putea afisa pentru a cate-a ora se reia aplicatia:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// program pentru calculul ariei cercului 
+// se cere raza cercului si se afiseaza aria acestuia
+// programul se reia pana se introduce valoarea 0 pentru raza
+// se folseste variabila locala nr_rel pentru a afisa numarul de reuari ale aplicaiei
+
+#include "stdafx.h"
+using namespace System;
+double aria_c(double);// prototipul functiei
+
+int main(void)
+{
+	int nr_rel=1;
+	double raza ,a;
+	String^ raza_s;
+	do {
+	Console::WriteLine( "\n\n\tApelarea nr : "+ nr_rel);
+	Console::Write( L"\n\tIntroduceti raza cercului ( 0 pentru iesire):" );
+	raza_s= Console::ReadLine();
+	raza = System::Convert::ToDouble( raza_s );
+	a=aria_c(raza);
+	Console::WriteLine( "\n\n\tAria cercului de raza : "+ raza +" este: "+a);
+	//Console::ReadLine();
+	nr_rel++;
+	} while (raza !=0); 
+    return 0;
+}
+// Incepe definirea functiei aria_c
+double aria_c(double r)
+{
+	double pi= System::Math::PI;
+	return pi*r*r;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp; In cazul in care am incrementa valoarea variabilei locale nr_rel, adica functia aria_c devine:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Incepe definirea functiei aria_c
+double aria_c(double r)
+{
+	double pi= System::Math::PI;
+	nr_rel++;
+	return pi*r*r;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;La compilare ar aparea o eroare pentru ca variabila nr_rel nu este definita in cadrul functiei aria_c ci este 
+definita in functia main. Cu alte cuvinte variabila nr_rel este o variabila locala iar domeniul sau de vizibilitate se rezuma la functia main.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru ca variabila nr_rel sa fie vazuta atat in functia main cat si in functia calc_c, ea va trebui sa fie definita
+inaintea functiei main deci ea sa fie o variabila de tip global.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Inainte insa de a vorbi de variabile globale, sa vedem cum se folosesc variabilele locale in WFA. Filozofia de utilizare 
+a variailelor locale este aceiasi ca si in aplicatii de tip consola. Diferenta consta in utilizarea declaratiei <b> privat </b> inaintea definirii 
+variabilei. Pentru exemplificare, vom relua aplicatia care marcheaza pe ecran pozitia mouse-ului cu un semn si vom realiza o noua aplicatie care 
+va trasa un cerc in jurul semnului daca se execut un dublu click pe mouse.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <b> functii_v6 </b> si plasam 2 obiecte de tip label numite 
+label1 si label2 si un obiect Timer. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Avand in vedere ca vom desena atat pe evenimentul click cat si pe evenimentul double click, avem nevoie de obiectele 
+desen, creion etc. Aceste obiecte vor trebui definite atat in interiorul procedurii ce trateaza evenimentul click cat si 
+in interiorul procedurii ce trateaza evenimentul double click. Alta metoda ar fi sa declaram aceste obiecte de tip privat si sa le plasam 
+inafara celor doua proceduri. astfel: 
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+private:System::Drawing::Graphics^ Desen;
+private:System::Drawing::Pen^ Creion_albastru;
+
+private: System::Int16  mouse_rel_x(){
+	if((Control::MousePosition.X>=this->Location.X)
+		&&(Control::MousePosition.X-this->Location.X<=this->Size.Width ))
+		return System::Convert::ToInt16(Control::MousePosition.X-this->Location.X-8);
+	else
+		return -1;
+
+}
+private: System::Int16  mouse_rel_y(){
+	if((Control::MousePosition.Y>=this->Location.Y)
+		&&(Control::MousePosition.Y-this->Location.Y<=this->Size.Height ))
+		return System::Convert::ToInt16(Control::MousePosition.Y-this->Location.Y-30);
+	else
+		return -1;
+}
+
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se opserva, chiar si  functiile mouse_rel_x() si mouse_rel_y() sunt declarate tot de tip "privat"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa ce am definit obiectele, ele trebuie create. Creerea lor se va face o singura data la incarcarea form-ului. 
+Vom completa deci procedura deschisa pe evenimentul Load al form-ului cu : 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	Desen = this->CreateGraphics();
+	Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Desi obiectele desen si creon_albastru, au fost create in procedura de sus, ele au vizibilitate in celelalte proceduri 
+deoarece ele au fost declarate inafara acestei proceduri. Aceste obiecte vor fi vizibile deci si in procedurile ce se lanseaza pe evenimentele clic si 
+doubleclick ale form-ului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Tick al timer-uli cu : 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System::Int16 poz_x,poz_y;
+	poz_x=mouse_rel_x();
+	poz_y=mouse_rel_y();
+	if ((poz_x>=0) & (poz_y>=0)){
+		this->label1->Text=System::Convert::ToString(poz_x);
+		this->label2->Text=System::Convert::ToString(poz_y);
+	}
+	else
+	{
+		this->label1->Text="Mouse-ul nu este in fereastra ! ";
+		this->label2->Text="";
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Pe evenimentul click al form-ului, punem: 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	Desen->DrawLine(Creion_albastru, mouse_rel_x()-4, mouse_rel_y(),mouse_rel_x()+4, mouse_rel_y());
+	Desen->DrawLine(Creion_albastru, mouse_rel_x(), mouse_rel_y()-4,mouse_rel_x(), mouse_rel_y()+4);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Pe evenimentul doubleclick al form-ului, punem: 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	Desen->DrawEllipse(Creion_albastru, mouse_rel_x()-20, mouse_rel_y()-20,40,40);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace functii_v6
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        private System.Drawing.Graphics Desen;
+        private System.Drawing.Pen Creion_albastru;
+        private System.Int16  mouse_rel_x(){
+	    if((Control.MousePosition.X>=this.Location.X)
+		&&(Control.MousePosition.X-this.Location.X<=this.Size.Width ))
+		    return System.Convert.ToInt16(Control.MousePosition.X-this.Location.X-8);
+	    else
+		    return -1;
+
+}
+        private System.Int16  mouse_rel_y(){
+	    if((Control.MousePosition.Y>=this.Location.Y)
+		&&(Control.MousePosition.Y-this.Location.Y<=this.Size.Height ))
+		    return System.Convert.ToInt16(Control.MousePosition.Y-this.Location.Y-30);
+	    else
+		    return -1;
+}
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Desen = this.CreateGraphics();
+	        Creion_albastru =new System.Drawing.Pen(System.Drawing.Color.Blue);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            System.Int16 poz_x,poz_y;
+	        poz_x=mouse_rel_x();
+	        poz_y=mouse_rel_y();
+	        if ((poz_x>=0) & (poz_y>=0)){
+		        this.label1.Text=System.Convert.ToString(poz_x);
+		        this.label2.Text=System.Convert.ToString(poz_y);
+	        }
+	        else
+	        {
+		        this.label1.Text="Mouse-ul nu este in fereastra ! ";
+		        this.label2.Text="";
+	        }
+        }
+
+        private void Form1_Click(object sender, EventArgs e)
+        {
+            Desen.DrawLine(Creion_albastru, mouse_rel_x() - 4, mouse_rel_y(), mouse_rel_x() + 4, mouse_rel_y());
+            Desen.DrawLine(Creion_albastru, mouse_rel_x(), mouse_rel_y() - 4, mouse_rel_x(), mouse_rel_y() + 4);
+        }
+
+        private void Form1_DoubleClick(object sender, EventArgs e)
+        {
+            Desen.DrawEllipse(Creion_albastru, mouse_rel_x() - 20, mouse_rel_y() - 20, 40, 40);
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem:
+<br><br><center> <img src="im_cpp85.gif"></center> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Pentru a obtine sa zicem 5 cercuri in loc de unul este necesara o simpla iteratie de genul: 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	for (int i=1; i<=5; i++)
+		Desen->DrawEllipse(Creion_albastru, mouse_rel_x()-i*10, mouse_rel_y()-i*10,2*i*10,2*i*10);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	for (int i=1; i<=5; i++)
+		Desen.DrawEllipse(Creion_albastru, mouse_rel_x()-i*10, mouse_rel_y()-i*10,2*i*10,2*i*10);
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem:
+<br><br><center> <img src="im_cpp87.gif"></center> 
+  
+
+<br><br><a name="var_g"></a>
+<li> <b>Variabile globale</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O variabila de tip global are vizibilitate pe tot intreg parcursul programului. Sa reluam aplicatia de tip consola 
+pentru calculul ariei cercului, in care va fi folosita variabila globala nr_rel pentru a fi accesata atat din functia main cat si din functia aria_c. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// program pentru calculul ariei cercului 
+// se cere raza cercului si se afiseaza aria acestuia
+// programul se reia pana se introduce valoarea 0 pentru raza
+// se folseste variabila globala nr_rel pentru a afisa numarul de reuari ale aplicaiei
+
+#include "stdafx.h"
+using namespace System;
+double aria_c(double);// prototipul functiei
+int nr_rel=1;
+
+int main(void)
+{	
+	double raza ,a;
+	String^ raza_s;
+	do {
+	Console::WriteLine( "\n\n\tApelarea nr : "+ nr_rel);
+	Console::Write( L"\n\tIntroduceti raza cercului ( 0 pentru iesire):" );
+	raza_s= Console::ReadLine();
+	raza = System::Convert::ToDouble( raza_s );
+	a=aria_c(raza);
+	Console::WriteLine( "\n\n\tAria cercului de raza : "+ raza +" este: "+a);
+	//Console::ReadLine();
+	
+	} while (raza !=0); 
+    return 0;
+}
+// Incepe definirea functiei aria_c
+double aria_c(double r)
+{
+	double pi= System::Math::PI;
+	nr_rel++;
+	return pi*r*r;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Variabilele globale au avantajul ca sunt vizibile in tot programul dar au dezavantajul ca trebuie tinuta evidenta 
+stricta a lor pentru a se evita modificarea lor in diverse functii. Pentru programele mari, operatia devine destul de dificila.
+<br><br><a name="var_ls"></a>
+<li> <b>Variabile locale statice</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Durata de viata a unei variabile, este data de domeniul sau de vizibilitate, durata de viata a unei variabile locale se 
+inchei odata cu functia. O variabila glogala are vizibilitate in tot programul deci se pastreaza pe toata durata programului. Variablele locale
+statice au vizibilitatea variabilelor locale dar durata de viata ete durata de viata a variabilelor globale. Variablele locale
+statice se declara in interiorul unei functii dar sub forma <b> static </b> nume_variabila. Aplicatia anterioara se rescrie astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// program pentru calculul ariei cercului 
+// se cere raza cercului si se afiseaza aria acestuia
+// programul se reia pana se introduce valoarea 0 pentru raza
+// se folseste variabila locala statica nr_rel pentru a afisa numarul de reuari ale aplicaiei
+
+#include "stdafx.h"
+using namespace System;
+double aria_c(double);// prototipul functiei
+
+
+int main(void)
+{	
+	
+	double raza ,a;
+	String^ raza_s;
+	do {
+	Console::Write( L"\n\tIntroduceti raza cercului ( 0 pentru iesire):" );
+	raza_s= Console::ReadLine();
+	raza = System::Convert::ToDouble( raza_s );
+	a=aria_c(raza);
+	Console::WriteLine( "\tAria cercului de raza : "+ raza +" este: "+a);
+	//Console::ReadLine();
+	
+	} while (raza !=0); 
+    return 0;
+}
+// Incepe definirea functiei aria_c
+double aria_c(double r)
+{
+	double pi= System::Math::PI;
+	static int nr_rel=1;
+	Console::WriteLine( "\n\n\tLa apelarea nr : "+ nr_rel);
+	nr_rel++;
+	return pi*r*r;
+}
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa reluam aplicatia care marcheaza pe ecran pozitia mouse-ului cu un semn si vom realiza o noua aplicatie care 
+traseaza cate o linie intre doua puncte consecutive marcate pe form printr-un click stanga cu mouse-ul. 
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <b> functii_v5 </b> si plasam 2 obiecte de tip label numite 
+label1 si label2 si un obiect Timer. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa functiile mouse_rel_x() si mouse_rel_y() adica:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	private: System::Int16  mouse_rel_x(){
+		if((Control::MousePosition.X>=this->Location.X)
+		&&(Control::MousePosition.X-this->Location.X<=this->Size.Width ))
+			return System::Convert::ToInt16(Control::MousePosition.X-this->Location.X-8);
+		else
+			return -1;
+
+	}
+	private: System::Int16  mouse_rel_y(){
+		if((Control::MousePosition.Y>=this->Location.Y)
+		&&(Control::MousePosition.Y-this->Location.Y<=this->Size.Height ))
+			return System::Convert::ToInt16(Control::MousePosition.Y-this->Location.Y-30);
+		else
+			return -1;
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Tick al timer-uli cu aceeasi procedura ca in aplicatia anterioara adica: 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System::Int16 poz_x,poz_y;
+	poz_x=mouse_rel_x();
+	poz_y=mouse_rel_y();
+	if ((poz_x>=0) & (poz_y>=0)){
+		this->label1->Text=System::Convert::ToString(poz_x);
+		this->label2->Text=System::Convert::ToString(poz_y);
+	}
+	else
+	{
+		this->label1->Text="Mouse-ul nu este in fereastra ! ";
+		this->label2->Text="";
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Pentru a putea trasa aceste linii, avem nevoie tot timpul de pozitia anterioara a mouse-ului. Vom introduce doua variabile: 	
+<br>&nbsp;&nbsp;&nbsp;&nbsp; System::Int16 poz_v_x=mouse_rel_x();
+<br>&nbsp;&nbsp;&nbsp;&nbsp; System::Int16 poz_v_y=mouse_rel_y();
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Cele doua variabile trebuie sa-i pastreze valoarea intre doua evenimente click ale form-ului, deci vor trebui declarate 
+de tip static astfel:
+<br>&nbsp;&nbsp;&nbsp;&nbsp; static System::Int16 poz_v_x=mouse_rel_x();
+<br>&nbsp;&nbsp;&nbsp;&nbsp; static System::Int16 poz_v_y=mouse_rel_y();
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Pe evenimentul click al form-ului, punem deci: 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	static System::Int16 poz_v_x=mouse_rel_x();
+	static System::Int16 poz_v_y=mouse_rel_y();
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+    	System::Drawing::Pen^ Creion_albastru;
+	Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Desen->DrawLine(Creion_albastru, poz_v_x, poz_v_y,mouse_rel_x(), mouse_rel_y());
+	poz_v_x=mouse_rel_x();
+	poz_v_y=mouse_rel_y();
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace functii_v5
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Int16 poz_x, poz_y, poz_v_x, poz_v_y;
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_albastru;
+
+        private System.Int16 mouse_rel_x()
+        {
+            if ((Control.MousePosition.X >= this.Location.X)
+            && (Control.MousePosition.X - this.Location.X <= this.Size.Width))
+                return System.Convert.ToInt16(Control.MousePosition.X - this.Location.X - 8);
+            else
+                return -1;
+
+        }
+        private System.Int16 mouse_rel_y()
+        {
+            if ((Control.MousePosition.Y >= this.Location.Y)
+            && (Control.MousePosition.Y - this.Location.Y <= this.Size.Height))
+                return System.Convert.ToInt16(Control.MousePosition.Y - this.Location.Y - 30);
+            else
+                return -1;
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Desen = this.CreateGraphics();
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Desen = this.CreateGraphics();
+            poz_v_x = mouse_rel_x();
+            poz_v_y = mouse_rel_y();
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {	
+	        poz_x=mouse_rel_x();
+	        poz_y=mouse_rel_y();
+	        if ((poz_x>=0) & (poz_y>=0)){
+		        this.label1.Text=System.Convert.ToString(poz_x);
+		        this.label2.Text=System.Convert.ToString(poz_y);
+	        }
+	        else
+	        {
+		        this.label1.Text="Mouse-ul nu este in fereastra ! ";
+		        this.label2.Text="";
+	        }
+
+        }
+        private void Form1_Click(object sender, EventArgs e)
+        {
+	        Desen.DrawLine(Creion_albastru, poz_v_x, poz_v_y,mouse_rel_x(), mouse_rel_y());
+	        poz_v_x=mouse_rel_x();
+	        poz_v_y=mouse_rel_y();
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem:
+<br><br><center> <img src="im_cpp84.gif"></center> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Am putea imbunatatii aplicatia si sa trasam o linie de la ultimul punct pana la pozitia curenta a mouse-ului 
+inainte de a executa click-stanga, linie care va fi stearsa daca nu s-a executat click-stanga si mouse-ul a fost deplasat pe alta pozitia. 
+Linia va fi definitiva numai daca se executa click-stanga. dupa care procesul se reia. Stergerea liniei anterioare se va face pe evenimentul 
+tick. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <b> functii_v7 </b> si plasam 2 obiecte de tip label numite 
+label1 si label2 si un obiect Timer.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Se vor plasa functiile si variabilele de care avem nevoie:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+private:System::Drawing::Graphics^ Desen;
+private:System::Drawing::Pen^ Creion_albastru;
+private:System::Drawing::Pen^ Creion_pic;
+
+static System::Int16 poz_v_x; // vechea pozitie a lui x
+static System::Int16 poz_v_y; // vechea pozitie a lui y
+static System::Int16 s_x; // pozitia lui x cu un tick in urma
+static System::Int16 s_y; // pozitia lui y cu un tick in urma
+
+private: System::Int16  mouse_rel_x(){
+	if((Control::MousePosition.X>=this->Location.X)
+		&&(Control::MousePosition.X-this->Location.X<=this->Size.Width ))
+		return System::Convert::ToInt16(Control::MousePosition.X-this->Location.X-8);
+	else
+		return -1;
+}
+private: System::Int16  mouse_rel_y(){
+	if((Control::MousePosition.Y>=this->Location.Y)
+		&&(Control::MousePosition.Y-this->Location.Y<=this->Size.Height ))
+		return System::Convert::ToInt16(Control::MousePosition.Y-this->Location.Y-30);
+	else
+		return -1;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, a fost nevoie de variabilele: <b> s_x </b> pentru a pastra pozitia lui x cu un tick in urma
+si variabila <b> s_y </b> pentru a pastra pozitia lui y cu un tick in urma. Ambele variabile sunt statice.
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul Form1_Load, punem:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	Desen = this->CreateGraphics();
+	Creion_pic =gcnew System::Drawing::Pen(System::Drawing::Color(this->BackColor));
+	Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	poz_v_x=mouse_rel_x();
+	poz_v_y=mouse_rel_y();
+	s_x=poz_v_x;
+	s_y=poz_v_y;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul timer1_Tick, punem:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System::Int16 poz_x,poz_y;
+	poz_x=mouse_rel_x();
+	poz_y=mouse_rel_y();
+	if ((poz_x>=0) & (poz_y>=0)){
+		this->label1->Text=System::Convert::ToString(poz_x);
+		this->label2->Text=System::Convert::ToString(poz_y);
+	    	if (((mouse_rel_x()!=s_x)||(mouse_rel_y()!=s_y)));
+			Desen->DrawLine(Creion_pic, poz_v_x, poz_v_y, s_x, s_y);
+		s_x=mouse_rel_x();
+		s_y=mouse_rel_y();
+		Desen->DrawLine(Creion_albastru, poz_v_x, poz_v_y, s_x, s_y);
+	}
+	else
+	{
+		this->label1->Text="Mouse-ul nu este in fereastra ! ";
+		this->label2->Text="";
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul Form1_click, punem:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	Desen->DrawLine(Creion_albastru, poz_v_x, poz_v_y,mouse_rel_x(), mouse_rel_y());
+	poz_v_x=mouse_rel_x();
+	poz_v_y=mouse_rel_y();
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace functii_v7
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        static System.Int16 poz_v_x; // vechea pozitie a lui x
+        static System.Int16 poz_v_y; // vechea pozitie a lui y
+        static System.Int16 s_x; // pozitia lui x cu un tick in urma
+        static System.Int16 s_y; // pozitia lui y cu un tick in urma
+        static System.Int16 poz_x, poz_y;
+        private System.Drawing.Graphics Desen;
+        private System.Drawing.Pen Creion_albastru,Creion_pic;
+
+        private System.Int16 mouse_rel_x()
+        {
+            if ((Control.MousePosition.X >= this.Location.X)
+            && (Control.MousePosition.X - this.Location.X <= this.Size.Width))
+                return System.Convert.ToInt16(Control.MousePosition.X - this.Location.X - 8);
+            else
+                return -1;
+
+        }
+        private System.Int16 mouse_rel_y()
+        {
+            if ((Control.MousePosition.Y >= this.Location.Y)
+            && (Control.MousePosition.Y - this.Location.Y <= this.Size.Height))
+                return System.Convert.ToInt16(Control.MousePosition.Y - this.Location.Y - 30);
+            else
+                return -1;
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Desen = this.CreateGraphics();
+	        Creion_pic =new System.Drawing.Pen(this.BackColor);
+	        Creion_albastru =new System.Drawing.Pen(System.Drawing.Color.Blue);
+	        poz_v_x=mouse_rel_x();
+	        poz_v_y=mouse_rel_y();
+	        s_x=poz_v_x;
+	        s_y=poz_v_y;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+	        poz_x=mouse_rel_x();
+	        poz_y=mouse_rel_y();
+	        if ((poz_x>=0) & (poz_y>=0)){
+		        this.label1.Text=System.Convert.ToString(poz_x);
+		        this.label2.Text=System.Convert.ToString(poz_y);
+	    	    if (((mouse_rel_x()!=s_x)||(mouse_rel_y()!=s_y)))
+			        Desen.DrawLine(Creion_pic, poz_v_x, poz_v_y, s_x, s_y);
+		         s_x=mouse_rel_x();
+		         s_y=mouse_rel_y();
+		         Desen.DrawLine(Creion_albastru, poz_v_x, poz_v_y, s_x, s_y);
+	        }
+	        else
+	        {
+		         this.label1.Text="Mouse-ul nu este in fereastra ! ";
+		         this.label2.Text="";
+	        }
+        }
+
+        private void Form1_Click(object sender, EventArgs e)
+        {
+            Desen.DrawLine(Creion_albastru, poz_v_x, poz_v_y, mouse_rel_x(), mouse_rel_y());
+            poz_v_x = mouse_rel_x();
+            poz_v_y = mouse_rel_y();
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem aceeasi imagine ca in aplicatia precedenta cu deosebirea ca exista tot timpul o linie de la 
+vechiul punct la pozitia curenta a mouse-ului. La iesirea din aplicatie, se observa o linie trasa spre butonul de inchidere a ferestrei:
+<br><br><center> <img src="im_cpp86.gif"></center> 
+
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+</html>
