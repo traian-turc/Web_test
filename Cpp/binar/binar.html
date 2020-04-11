@@ -1,0 +1,989 @@
+<html>
+<title> Pointeri </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Operatii binare in C++ </Center></TD></TR>
+</table>
+<br><br><a name="start"></a>
+<font color= "Blue" size=5> Reprezentare  binara, hexazecimala  </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In sistemele de calcul informatiile sunt codificate binar. Aceste informatii pot fi reprezentate binar, zecimal, 
+hexazecimal sau sub diferite alte formate. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom analiza in continuare diferite aplicatii pentru conversia datelor si afisarea lor sub diferite formate.
+<br><br><a name="af_b"></a>
+<font color= "Black" size=4><li><b>Afisarea unui int sub forma binara </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Prin impartiri repetate cu 2 obtinem digitii ce reprezinta valoarea in binar.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//  Programul afiseaza valoarea binara a unui intereg
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Afisare int sub forma binar");
+	system("COLOR F9");
+	int n,i;  // n:numarul de convertit
+    cout << "\n\tProgramul afiseaza valoarea binara a unui intereg " ;
+    cout << "\n\n\tIntroduceti un numar intreg: " ;
+	cin >> n;
+	cout << " \n\tValoarea binara afisata in ordine inversa este:\n\n\t";
+    if (n > 0) {
+      for(i=0; i < 32 ; i++) {
+        cout << n%2;
+        n = n/2;
+      }	 
+    }
+    else {
+      cout << "\n\n\tIntroduceti un numar pozitiv\n" << endl;
+    }
+	cin.ignore();
+	cin.get();
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa bitii in ordine directa, va trebui sa memoram acesti biti pentru a fi afisati la sfarsit.
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//  Programul afiseaza valoarea binara a unui intereg
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Afisare int sub forma binar");
+	system("COLOR F9");
+	int n,i;  // number to convert to binary
+	char val_b[32];
+	
+    cout << "\n\tProgramul afiseaza valoarea binara a unui intereg " ;
+    cout << "\n\n\tIntroduceti un numar intreg: " ;
+	cin >> n ;
+    cin.ignore();
+	
+	for (i=0; i < 31; i++){
+		if (n%2==0)
+			val_b[30-i]='0';
+		else
+			val_b[30-i]='1';
+		n=n/2;
+	}
+
+	cout << "\n\t Valoarea binara este:"; 
+	for (i=0; i < 31; i++)
+	cout << val_b[i] ;
+	cin.get();
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="af_h"></a>
+<font color= "Black" size=4><li><b>Afisarea unui int sub forma hexa </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa sub forma hexa zecimala, vom utiliza operatorul <b> << hex </b> care inclus in cadrul instructiunii 
+<b> cout << </b> va forta afisarea valorilor in format hexa.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//  Programul afiseaza valoarea hexa a unui intereg
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Afisare int sub forma hexa");
+	system("COLOR F9");
+    int n;
+    cout << "\n\tProgramul afiseaza valoarea hexa a unui intereg " ;
+    cout << "\n\n\tIntroduceti un numar intreg: " ;
+	cin >> n;
+	cout << " \n\tValoarea hexa este:"<< hex << n; 
+	cin.ignore();
+	cin.get();
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Dupa utilizarea operatorului <b> << hex </b> trebuie utilizat operatorul   <b> << dec </b> pentru a reveni la 
+afisarea sub forma zecimala.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//  Programul afiseaza valoarea hexa a unui intereg
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Afisare int sub forma hexa");
+	system("COLOR F9");
+    int n;
+    cout << "\n\tProgramul afiseaza valoarea hexa a unui intereg " ;
+    cout << "\n\n\tIntroduceti un numar intreg: " ;
+	cin >> n;
+	cout << " \n\tValoarea hexa este: "<< hex << n;
+	cout << " \n\tValoarea lui n este: "<< n;
+	cout << " \n\tValoarea zecimala este:"<< dec << n;	
+	cin.ignore();
+	cin.get();
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea in format zecimal, binar, hexa sau in orice alta baza se poate face si prin utilizarea functiei <b>itoa</b>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//  Conversia unui intreg intr-un sir reprezentand valoarea in diferite baze de numeratie
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Afisarea in diferite baze de numeratie");
+	system("COLOR F9");
+	int n;
+	char buffer [33];
+	cout << "\n\n\tIntroduceti un numar intreg: " ;
+	cin >> n;
+	itoa(n,buffer,10);//functia pentru conversia unui intreg intr-un sir
+	cout << "\n\n\tValoarea zecimala a numarului este: " << buffer;
+	itoa(n,buffer,2);
+	cout << "\n\n\tValoarea binara a numarului este: " << buffer;
+	itoa(n,buffer,16);
+	cout << "\n\n\tValoarea hexa a numarului este: " << buffer;
+	cin.ignore();
+	cin.get();
+  return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="oper_b"></a>
+<font color= "Blue" size=5> Operatori binari  </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deseori este nevoie sa folosim valori binare sau e nevoie sa convertim in format binar diferite date de
+diverse tipuri. C++ permite diverse operatii binare, operatii ce le vom folosi in continuare.
+<br><br><a name="and"></a>
+<font color= "Black" size=4><li><b>AND logic -- operatorul & </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatia AND este deseori folosita pentru a realizeaza o masca pentru extragerea anumitor biti dintr-un operand. Operatorul folosit este <b> & </b>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul realizeaza operatia AND
+// Se calculeaza 0xffff AND 0x5555  adica  1111111111111111 & 0101010101010101 
+// Rezultatul este 0x5555 adica 0101010101010101
+// Operatia realizeaza o masca pentru extragerea anumitor biti dintr-un operand
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE AND logic ");
+	system("COLOR F9");		
+	unsigned short a = 0xFFFF;      // = 1111111111111111 
+	unsigned short b = 0x5555;      // = 0101010101010101
+	cout <<"\n\n\tProgramul calculeaza 0xffff AND 0x5555";
+	cout <<"\n\n\t0xffff & 0x5555=" << hex << ( a & b );	// rezultat "5555" adica 0101010101010101
+	cin.ignore();
+	cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatia AND este deseori folosita pentru a realizeaza o masca pentru extragerea anumitor biti dintr-un operand. Operatorul folosit este <b> & </b>
+<br>&nbsp&nbsp&nbsp;Pentru exemplificare, vom realiza in continuare o aplicatie care realizeaza functia logica & intre doi operanzi si sub forma binara
+atat operanzii cat si rezultatul. Aplicatia se bazeaza pe functiile <b> afis_binar()</b> respectiv  <b> afis_bin()</b> functii care se presupune ca sunt
+definite in fisierul stadfx.h
+<br>&nbsp&nbsp&nbsp;Programul principal fiind:
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	unsigned int a,b;
+	cout << " \n\n\tOperatii pe biti: ";
+	cout <<"\n\n\t Introduceti numarul a:";
+	cin >> a;
+	cout <<"\n\t Introduceti numarul b:";
+	cin >> b;
+	cout<<"\n\n    a:\t";
+	afis_bin(a,16);
+	cout<<"\n\n    b:\t";
+	afis_bin(b,16);
+	cout<<"\n\na & b:\t";
+	afis_bin(a&b,16);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>Dupa rularea programului in "Command Prompt" se afiseaza:
+<br><br><Center><IMG SRC  = "im_cpp12_6.gif"> </Center>
+<br><br>Daca se doreste introducerea operanzilor in format hexa, programul devine:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	unsigned int a,b;
+	cout << " \n\n\tOperatii pe biti: ";
+	cout <<"\n\n\t Introduceti numarul a:";
+	cin >> hex >> a;
+	cout <<"\n\t Introduceti numarul b:";
+	cin >> hex >> b;
+	cout<<"\n\n    a:\t";
+	afis_bin(a,16);
+	cout<<"\n\n    b:\t";
+	afis_bin(b,16);
+	cout<<"\n\na & b:\t";
+	afis_bin(a&b,16);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><a name="or"></a>
+<font color= "Black" size=4><li><b>SAU logic -- operatorul | </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatia SAU este deseori folosita pentru a realizeaza  o setare a anumitor biti dintr-un operand. Operatorul folosit este <b> | </b>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul realizeaza operatia OR
+// Se calculeaza 0xaaaa OR 0x5555  adica  1010101010101010 & 0101010101010101 
+// Rezultatul este 0xffff adica 1111111111111111
+// Operatia realizeaza o setare anumitor biti dintr-un operand
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE SAU logic ");
+	system("COLOR F9");		
+	unsigned short a = 0xaaaa;      // = 1010101010101010 
+	unsigned short b = 0x5555;      // = 0101010101010101
+	cout <<"\n\n\tProgramul calculeaza 0xaaaa AND 0x5555";
+	cout <<"\n\n\t0xaaaa & 0x5555=" << hex << ( a | b );	// rezultat "ffff" adica 1111111111111111
+	cin.ignore();
+	cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="excl"></a>
+<font color= "Black" size=4><li><b>SAU exclusiv - operatorul ^ </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatia SAU exclusiv este deseori folosita pentru complementarea anumitor biti dintr-un operand. Operatorul folosit este <b> ^</b>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul realizeaza operatia SAU EXCLUSIV
+// Se calculeaza 0x5555 SAU EXLLUSIV 0xffff adica 0101010101010101 ^ 1111111111111111 
+// Rezultatul este 0xaaaa adica 1010101010101010
+// Operatia complementeaza bitii primului operand
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE SAU EXCLUSIV ");// Titlul ferestrei consola
+	system("COLOR F9");		// Fundal alb caractere albastre
+	unsigned short a = 0x5555;      // = 0101010101010101
+	unsigned short b = 0xFFFF;      // = 1111111111111111 
+	cout <<"\n\n\tProgramul calculeaza 0x5555 SAU EXLLUSIV 0xffff";
+	cout <<"\n\n\t0x5555 ^ 0xffff=" << hex << ( a ^ b );	// rezultat "aaaa" adica 1010101010101010
+	cin.ignore();
+	cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="not"></a>
+<font color= "Black" size=4><li><b>NOT - operatorul ~ </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatia NOT realizeaza complementarea bitilor dintr-un operand. Operatorul folosit este <b> ~ </b>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul realizeaza operatia NOT
+// Se calculeaza NOT 0xaaaa  adica  NOT 1010101010101010 
+// Rezultatul este 0x5555 adica 0101010101010101
+// Operatia realizeaza complementarea bitilor dintr-un operand
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE NOT logic ");
+	system("COLOR F9");		
+	unsigned short a = 0xaaaa;      // = 1010101010101010 
+	cout <<"\n\n\tProgramul calculeaza NOT 0xaaaa ";
+	cout <<"\n\n\t NOT 0xaaaa= " << hex << ~a ;	// rezultat "5555" adica 0101010101010101
+	cin.ignore();
+	cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="shift_d"></a>
+<font color= "Black" size=4><li><b> Delasare dreapta - operatorul >> </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b> n >> p; </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deplaseaza spre dreapta cu p pozitii a bitilor ce compun in binar valoarea n. Pe pozitia cea mai semnificativa se pune 0. 
+O deplasare spre dreapta cu 1 pozitie este echivalenta cu o impartire cu 2 cu 2. Astfel 24 << 3 = 3
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie care deplaseaza dreapta cu doua pozitii valoarea 64. Dupa rularea programului ar trebui sa obtinem 
+valoarea 16.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Deplasare dreapta
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Deplasare dreapta");
+	system("COLOR F9");
+	cout << "\n\n\tDeplasare dreapta";
+	unsigned short int n=64;
+	int i;
+	cout << "\n\n\tValoarea initiala a lui n: "<< n;
+		n = n >> 2 ;
+	cout << "\n\n\tValoarea lui n dupa deplasarea cu doua pozitii dreapta: "<< n;
+	cin.ignore();
+	cin.get();
+
+  return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea sub forma binara este mult mai simpla daca se utilizeaza operatorul de siftare dreapta
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//  Programul afiseaza valoarea binara a unui intereg
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Afisare int sub forma binar");
+	system("COLOR F9");
+   int n;
+      cout << "\n\tProgramul afiseaza valoarea binara a unui intereg " ;
+  
+      cout << "\n\n\tIntroduceti un numar intreg: " ;
+	  cin >> n ;
+      cin.ignore();
+      // print binary with leading zeros
+	  cout << "\n\tValoarea binara este: : ";
+      for (int i=31; i>=0; i--) {
+         int bit = ((n>>i) & 1);
+         cout << bit;
+      }
+      cin.get();
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="shift_s"></a>
+<font color= "Black" size=4><li><b> Delasare stanga - operatorul << </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b> n << p ;</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deplaseaza spre stanga cu p pozitii a bitilor ce compun in binar valoarea n. Pe pozitia cea mai nesemnificativa se pune 0. 
+O deplasare spre stanga cu 1 pozitie este echivalenta cu o inmultire cu 2. Astfel 3 << 2 =12
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie care deplaseaza stanga cu doua pozitii valoarea 7. Dupa rularea programului ar trebui sa obtinem 
+valoarea 28.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Deplasare stanga
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Deplasare stanga");
+	system("COLOR F9");
+	cout << "\n\n\tDeplasare stanga";
+	unsigned short int n=7;
+	int i;
+	cout << "\n\n\tValoarea initiala a lui n: "<< n;
+		n = n << 2 ;
+	cout << "\n\n\tValoarea lui n dupa deplasarea cu doua pozitii stanga: "<< n;
+	cin.ignore();
+	cin.get();
+
+  return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa utilizam operatorul de siftare stanga pentru a deplasa stanga valoarea 1 de 7 ori si sa afisam in binar valoarea 
+obtinuta dupa fiecare deplasare.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Deplasare stanga repetata
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+void af_binar(unsigned int );
+
+int main(void)
+{
+	system("TITLE Deplasare stanga repetata");
+	system("COLOR F9");
+	cout << "\n\n\tDeplasare stanga 7 pozitii \n\n\n\t\t\t";
+	unsigned short int n=1;
+	int i;
+	for(i=0; i < 8; i++) {
+		af_binar(n);
+		n = n << 1 ;
+	}
+	cin.ignore();
+	cin.get();
+
+  return 0;
+}
+// Afisarea bitilor ce corespund valorii parametrului u
+void af_binar(unsigned int u)
+{
+  int j;
+      for (int j=7; j>=0; j--) {
+         int bit = ((u >> j) & 1);
+         cout << bit<<" ";
+      }
+  cout << "\n\t\t\t";
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam programul si obtinem:
+<br><br><center><img src="im_cpp60.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand operatiile de siftare precum si operatiile logice, vom realiza in continuare afisarea unui int sub forma hexa 
+fara a folosi operatorul <b> << hex </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa sub forma hexa zecimala, vom face siftari dreapta cu cate 4 biti si vom interpreta ultimii
+patru biti utilizand masca 0xF adica 00001111. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//  Programul afiseaza valoarea hexa a unui intereg
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Afisare int sub forma hexa");
+	system("COLOR F9");
+    int n;
+	char* c_hex="0123456789ABCDEF";
+    cout << "\n\tProgramul afiseaza valoarea hexa a unui intereg " ;
+    cout << "\n\n\tIntroduceti un numar intreg: " ;
+	cin >> n;
+	cout << " \n\tValoarea hexa este:\n\n\t";
+      for (int i=2*sizeof(int) - 1; i>=0; i--) {
+         cout << c_hex[((n >> i*4) & 0xF)];
+      }
+	  cin.ignore();
+	  cin.get();
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+
+<br><br><a name="ascii"></a>
+<font color= "Black" size=4><li><b>Coduri ASCII </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia <b> char(i) </b> converteste o valoare intreaga intre 0 si 255 intr-un caracter ASCII.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie foloseste functia <b> char(i) </b>  si afiseaza setul extins de caractere ASCII
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//  Afisarea setului de caractere ASCII
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Afisarea setului de caractere ASCII");
+	system("COLOR F9");
+	int i ;
+	cout << "\n\n\tSetul de caractere ASCII extins\n";
+	for(i= 0;i < 256; i++){
+		if ((i >0) && (i % 10 == 0)){ 
+			cout << "\n\n\tApasati tasta Enter pentru continuare ";
+			cin.get();
+        }
+		cout <<"\n\tCod ASCII zecimal " << dec << i <<" Hexa "<< hex << i << " Caracter " << char(i); 
+   }
+	cout << "\n\n\tPentru a termina apasati tasta Enter";
+	cin.get();
+  return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea aplicatiei, obtinem :
+<br><br><center><img src="im_cpp61.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Apasand tasta Enter in continuare obtinem intreg setul extins de caractere ASCII
+<br><br><center><img src="im_cpp62.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a face conversia inversa din caracter ASCII-int se procedeaza astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//  Conversia  unui caracter ASCII intr-o valoare de tip int
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Conversia  ASCII int ");
+	system("COLOR F9");
+	char car;
+	int val_ascii;
+	cout << "\n\n\tIntroduceti un caracter :";
+	cin.get(car);
+	val_ascii = static_cast< int >(car);
+	// Se poate atribui lui val_ascii  direct car 
+	// fara a fi nevoie de conversiastatic_cast <int>(car) astfel: 
+	// val_ascii = car;
+	cout << "\n\n\tValoarea ascii in zecimal a caracterului este: "<< val_ascii;
+	cout << "\n\n\tValoarea ascii in hexa a caracterului este: "<< hex << val_ascii;
+	cin.ignore();
+	cin.get();
+  return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cunoscand modul de codificare al caracterelor (codul ASCII) sa realizam un program cere un sir de caractere ce contine 
+litere mari si mici, dupa care converteste literele mari in litere mici si afiseaza sirul rezultat.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul cere un sir de caractere care contine litere mari si mici.
+// Converteste literele mari in litere mici si afiseaza sirul.
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+void conv_lit(char s[]);
+
+int main(void)
+{
+system("TITLE Conversie litere mari in litere mici");
+system("COLOR F9");	
+char s[25];
+int l;
+cout<<"\n\tProgramul cere un sir de caractere cu litere mari si mici";
+cout<<"\n\tSe va afisa sirul convertit in litere mici";
+cout<<"\n\n\tIntroduceti un sir de caractere cu \n\tformat din litere mari si mici : ";cin >> s;
+conv_lit(s);
+cout << "\n\n\tSirul transformat in litere mici este : " << s;
+cin.ignore();
+cin.get();
+return 0;
+}
+void conv_lit(char s[25])
+{
+int i;
+i=0;
+while(s[i]!=0)
+{
+if( (s[i] >= 65) && (s[i] <= 90) ) s[i]=s[i]+32;
+i++;
+}
+return;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br><br><a name="binar_sys"></a>
+<font color= "Blue" size=5> Operatii binare in spatiul system  </font>
+
+<br><br><a name="af_biti"></a>
+<font color= "Black" size=4><li><b>Afisare grafica valori binare </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Bazandu-ne pe operatorii binari studiati si aplicatiile realizate vom realiza simularea grafica a operatiilor 
+binare. Vom afisa bitii ce reprezinta valoarea unei variabile prin mici dreptunghiuri. Pentru inceput vom realiza o aplicatie de tipul 
+CLR Windows Forms Application are afiseaza secvente de dreptunghiuri pe ecran.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Deschidem un nou proiect Windows Forms Application intitulat <b>"secv_dr" </b>pe care plasam un obiect de tip button numit 
+button1 caruia ii schimbam atributul text in "Start" si un obiect timer pe caruia ii setam intervalul la 50. De data aceasta nu setam proprietatea 
+"Enabled" la "true", o lasam "false".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Initializam variabilele i,h,w, obiectele "Desen" si "Pensula" in zona  "#pragma region" pentru a asigura domeniul de 
+vizibilitate in proceduri le stasate diferitelor evenimente. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam deci #pragma region cu : 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	static int i, w, h; // h, v dimensiunile unui dreptunghi
+	static System::Drawing::Graphics^ Desen;
+	static System::Drawing::SolidBrush^ Pensula;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul click al obiectului button1 punem procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen = this->CreateGraphics();				 	
+	Pensula=gcnew System::Drawing::SolidBrush(System::Drawing::Color::Blue);
+	Desen->Clear(System::Drawing::Color(this->BackColor));	
+	w=this->Size.Width/60;
+	h=this->Size.Height/20;
+	i=2*w;
+	this->timer1->Enabled=true;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca validarea "timer-ului" se face pe evenimentul click al obiectului button1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul Tick al obiectului timer1 cu : 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen->FillRectangle(Pensula, i, this->Size.Height/3, w,h);
+	if (i <= this->Size.Width-3*w)
+		i+=3*w;
+	else {
+		i=2*w;
+		Desen->Clear(System::Drawing::Color(this->BackColor));
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea aplicatiei, obtinem secvente dinamice de dreptunghiuri:
+<br><br><center><img src="im_cpp57.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie isi propune sa converteasca o valoare numerica in binar dupa care sa afiseze aceasta valoare 
+sub forma de dreptunghiuri pline pentru "1" si dreptunghiuri goale pentru "0"
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Deschidem un nou proiect Windows Forms Application intitulat <b> "binar" </b> pe care plasam un obiect de tip button numit 
+button1 caruia ii schimbam atributul text in "Start".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam deci #pragma region cu : 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	static unsigned int n; // numarul ce va fi convertit in binar si afisat grafic
+	static int i, w, h; // h, v dimensiunile unui dreptunghi
+	static System::Drawing::Graphics^ Desen;
+	static System::Drawing::SolidBrush^ Pensula;
+	static System::Drawing::Pen^ Creion_blu ;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul click al obiectului button1 punem procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen = this->CreateGraphics();				 	
+	Pensula=gcnew System::Drawing::SolidBrush(System::Drawing::Color::Blue);
+	Creion_blu=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Desen->Clear(System::Drawing::Color(this->BackColor));	
+	w=this->Size.Width/96;
+	h=this->Size.Height/20;
+	i=2*w;
+	n=0xaaaaaaaa;
+	int val_b[32];
+	for (i=0; i < 32; i++){
+		if (n%2==0)
+			val_b[31-i]=0;
+		else
+			val_b[31-i]=1;
+		n=n/2;
+	}
+	int x=2*w;
+	for (i=0;i < 32;i++){
+	if (val_b[i]==1)
+		Desen->FillRectangle(Pensula, x, this->Size.Height/3, w,h);
+	else
+		Desen->DrawRectangle(Creion_blu, x, this->Size.Height/3, w,h);
+	x+=3*w;
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia poate fi simplificata, folosind operatorul de siftare. Pe evenimentul click al obiectului button1 vom plasa  
+noua procedura :
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen = this->CreateGraphics();				 	
+	Pensula=gcnew System::Drawing::SolidBrush(System::Drawing::Color::Blue);
+	Creion_blu=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Desen->Clear(System::Drawing::Color(this->BackColor));	
+	w=this->Size.Width/96;
+	h=this->Size.Height/20;
+	int x=this->Size.Width-10*w;
+	n=0x00aa;
+	for (i=31; i >= 0; i--){
+	int bit=((n >>(31-i)) & 1);
+	if (bit==1)
+		Desen->FillRectangle(Pensula, x, this->Size.Height/3, w,h);
+	else
+		Desen->DrawRectangle(Creion_blu, x, this->Size.Height/3, w,h);
+	x-=3*w;
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea aplicatiei, obtinem valoarea in binar afisata grafica a numarului 0xaaaaaaaa:
+<br><br><center><img src="im_cpp58.gif"></center>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca realizam un nou proiect <b> "binar_v1" </b> si inlocuim numai procedura de pe evenimentul click al obiectului button1 aplicatia
+are acelasi rezultat. Observam ca nu a mai fost necesar sa introducem un vector care sa pastreze bitii ce compun numarul afisat.
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In C# aplicatia devine::
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace binar
+{
+    public partial class Form1 : Form
+    {
+        static System.UInt32 n; // numarul ce va fi convertit in binar si afisat grafic
+        static int i, w, h; // h, v dimensiunile unui dreptunghi
+        static System.Drawing.Graphics Desen;
+        static System.Drawing.SolidBrush Pensula;
+        static System.Drawing.Pen Creion_blu;
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Desen = this.CreateGraphics();				 	
+	        Pensula=new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
+	        Creion_blu=new System.Drawing.Pen(System.Drawing.Color.Blue);
+	        Desen.Clear(this.BackColor);	
+	        w=this.Size.Width/96;
+	        h=this.Size.Height/20;
+	        int x=this.Size.Width-10*w;
+	        n=0xaaaaaaaa;
+	        for (i=31; i >= 0; i--){
+                System.UInt32 bit = ((n >> (31 - i)) & 1);
+	            if (bit==1)
+		            Desen.FillRectangle(Pensula, x, this.Size.Height/3, w,h);
+	            else
+		            Desen.DrawRectangle(Creion_blu, x, this.Size.Height/3, w,h);
+	            x-=3*w;
+	        }
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="af_ascii"></a>
+<font color= "Black" size=4><li><b>Afisare grafica valori ASCII </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Ne propunem sa realizam o aplicatie care asteapta tiparirea unui caracter, il converteste in cod ASCII si il afiseaza
+sub forma grafica.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Deschidem un nou proiect Windows Forms Application intitulat <b> "binar_v2"</b> pe care plasam un obiect de tip textBox numit 
+textBox1 si doua obiecte de tip label : label1 si label2 .
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam #pragma region cu : 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	static unsigned short int n; // numarul ce va fi convertit in binar si afisat grafic
+	static int i, w, h; // h, v dimensiunile unui dreptunghi
+	static System::Drawing::Graphics^ Desen;
+	static System::Drawing::SolidBrush^ Pensula;
+	static System::Drawing::Pen^ Creion_blu ;
+	static System::String^ txt;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul "TextChanged" al butonului textBox1 cu : 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen = this->CreateGraphics();				 	
+	Pensula=gcnew System::Drawing::SolidBrush(System::Drawing::Color::Blue);
+	Creion_blu=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Desen->Clear(System::Drawing::Color(this->BackColor));	
+	w=this->Size.Width/30;
+	h=this->Size.Height/20;
+	if (System::String::Compare(this->textBox1->Text ,System::String::Empty)){
+		txt=this->textBox1->Text;
+		char c=txt[0];
+		c=System::Convert::ToChar(c);
+		n=System::Convert::ToByte(c);
+		this->label2->Text=System::Convert::ToString(n);
+		int x=this->Size.Width-6*w;
+		for (i=7; i >= 0; i--){
+			int bit=((n >> (7-i)) & 1);
+			if (bit==1)
+				Desen->FillRectangle(Pensula, x, this->Size.Height/3, w,h);
+			else
+				Desen->DrawRectangle(Creion_blu, x, this->Size.Height/3, w,h);
+			x-=3*w;
+		}
+     }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;C# 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace ascii
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        static int n; // numarul ce va fi convertit in binar si afisat grafic
+	    static int i, w, h; // h, v dimensiunile unui dreptunghi
+	    static System.Drawing.Graphics Desen;
+	    static System.Drawing.SolidBrush Pensula;
+	    static System.Drawing.Pen Creion_blu ;
+	    static System.String txt;
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            Desen = this.CreateGraphics();				 	
+	        Pensula=new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
+	        Creion_blu=new System.Drawing.Pen(System.Drawing.Color.Blue);
+	        Desen.Clear(this.BackColor);	
+	        w=this.Size.Width/30;
+	        h=this.Size.Height/20;
+	    if (this.textBox1.Text.Length>0){
+		    txt=this.textBox1.Text;
+		    char c=txt[0];
+		    c=System.Convert.ToChar(c);
+		    n=System.Convert.ToByte(c);
+		    this.label2.Text=System.Convert.ToString(n);
+		    int x=this.Size.Width-6*w;
+		    for (i=7; i >= 0; i--){
+			    int bit=((n >> (7-i)) & 1);
+			    if (bit==1)
+				    Desen.FillRectangle(Pensula, x, this.Size.Height/3, w,h);
+			    else
+				    Desen.DrawRectangle(Creion_blu, x, this.Size.Height/3, w,h);
+			x-=3*w;
+            	   }
+           }
+       }
+   }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia , tastam cifra 5 si obtinem:
+<br><br><center><img src="im_cpp59.gif"></center>
+
+<br><br><a name="af_shift"></a>
+<font color= "Black" size=4><li><b>Afisare grafica shift </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind  operatiile de deplasare stanga respectiv dreapta ,ne propunem sa realizam o aplicatie care simuleaza un 
+joc de lumini.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Deschidem un nou proiect Windows Forms Application intitulat <b> "binar_v3" </b>. Plasam numai un singur obiect de tip timer 
+numit timer1.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam #pragma region cu : 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	static unsigned short int n=0x5555; // numarul ce va fi deplasat stanga dreapta si afisat
+	static int i, x, w, h; // h, v dimensiunile unui dreptunghi
+	static int sem=0;
+	static System::Drawing::Graphics^ Desen;
+	static System::Drawing::SolidBrush^ Pensula;
+	static System::Drawing::Pen^ Creion_blu ;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul "Paint" al form-ului cu : 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen = this->CreateGraphics();				 	
+	Pensula=gcnew System::Drawing::SolidBrush(System::Drawing::Color::Blue);
+	Creion_blu=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Desen->Clear(System::Drawing::Color(this->BackColor));	
+	w=this->Size.Width/50;
+	h=this->Size.Height/20;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul "Tick" al timer-ului cu : 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	x=this->Size.Width-6*w;
+	if (sem==0){
+		n=n << 1;
+		sem=1;
+	}else{
+		n=n >> 1;
+		sem=0;
+	}
+	for (i=15; i >= 0; i--){
+	int bit=((n >> (15-i)) & 1);
+	if (bit==1)
+		Desen->FillRectangle(Pensula, x, this->Size.Height/3, w,h);
+	else
+		Desen->DrawRectangle(Creion_blu, x, this->Size.Height/3, w,h);
+	x-=3*w;
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia, obtinem:
+<br><br><center><img src="shift.gif"></center>
+
+
+
+</body>
+</html>
