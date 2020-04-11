@@ -7,7 +7,7 @@ export default class pi_simulation {
   }
 
   scetch = p => {
-    var width = 500;
+    var width = 450;
     var height = 400;
     var box1;
     var box2;
