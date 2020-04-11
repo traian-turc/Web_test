@@ -1,0 +1,254 @@
+<html><head>
+<title> Elemente de programare în limbajul Java: Japplet-uri  </title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Elemente de programare în limbajul Java: Japplet-uri  </Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Limbajul JAVA permite realizarea de aplicatii atat "stand alone" cat si care pot rula in cadrul paginilor WEB. 
+Aplicatiile Java destinate a fi rulate in cadrul paginilor WEB se numesc Applet-uri.
+<br><br>
+<a name="aplet"></a>
+<li><font color= "blue" size=4><b>Realizarea unui applet</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cum arata un applet?
+<br>
+<center><table><tr><td>
+<applet code=demo.demo_v1.class width="300" height="200" ></applet>
+</td></tr></table></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul ca nu se lanseaza aplicatia de sus, pe calculatorul d-voastra trebuie instalat pachetul JDC versiunea JDK6 sau mai recenta.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cum se realizeaza un applet?
+<br>
+<ul>
+ <li> - Se scrie aplicatia JAVA de tipul Japplet obtiniadu-e fisierele sursa de tip *.java
+ <li> - Se compileaza si se realizeaza fisierele de tipul *.class
+ <li> - Se apeleaza fisierele de tip *.class intr-o pagina WEB
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Pentru aplicatia de sus se realizeaza urmatorii pasi:
+<ul>
+ <li> Se utilizeaza mediul de dezvoltare "Eclipse" si se scrie aplicatia "demo_v1" aplicatie Java de tipul Japplet al carei continut este prezentat 
+ mai jos:
+ <li> Se creaza proiectul "Apl_web" in cadrul caruia se adauga pachetul "demo" apoi se creaza clasa demo_v1 cu urmatorul continut: 
+</ul>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="AliceBlue">
+<font size="3" color="Blue"><pre>
+package demo;
+
+import java.awt.BorderLayout;
+import java.awt.Rectangle;
+import java.awt.GridBagLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JApplet;
+import javax.swing.JLabel;
+import javax.swing.JSlider;
+import javax.swing.Timer;
+
+public class demo_v1 extends JApplet {
+
+	private static final long serialVersionUID = 1L;
+	private JLabel etich_1 = null; 		// eticheta 1 
+	private JSlider slider_1 = null; 	// slider-ul 1
+	private JPanel panel_1 = null; 		// panoul 1
+	private JPanel c_panel_1 = null; 	// panoul 1 cu controale plasate
+	private int delay=50;			// temporizare
+	private Timer timer_1=null;		// timer 1
+	private JButton but_1 = null; 		// butonul 1
+	private JButton but_2 = null; 		// butonul 2
+
+	/**
+	 * Constructorul implicit pentru "utiliz_slider_v4"
+	 */
+	public demo_v1() {
+		super();
+	}
+	
+	/**
+	 * Aceasta metoda initializeaza: this
+	 * 
+	 * @returneaza  void
+	 */
+	
+	public void init() {
+		this.setSize(300,200);
+		this.setContentPane(init_panel_1());
+	}
+	/**
+	 * 	
+	 * Aceasta metoda creaza panelul: "but_1"	
+	 * Returneaza but_1 de tipul:	javax.swing.JButton
+	 */
+	private JButton creaza_but_1() {
+		if (but_1 == null) {
+			but_1 = new JButton();
+			but_1.setBounds(new Rectangle(110, 135, 70, 30));
+			but_1.setText("Start");
+			but_1.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					timer_1.start();				
+				}
+			});
+		}
+		return but_1;
+	}
+	/**
+	 * 	
+	 * Aceasta metoda creaza panelul: "but_1"	
+	 * Returneaza but_1 de tipul:	javax.swing.JButton
+	 */	
+	private JButton creaza_but_2() {
+		if (but_2 == null) {
+			but_2 = new JButton();
+			but_2.setBounds(new Rectangle(200, 135, 70, 30));
+			but_2.setText("Stop");
+			but_2.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					timer_1.stop();				
+				}
+			});
+		}
+		return but_2;
+	}
+
+	/**
+	 * Aceasta metoda initializeaza controlul de tip slider: slider_1
+	 * @returneaza slider_1 de tipul: javax.swing.JSlider	
+	 */
+	private JSlider creaza_slider_1() {
+		if (slider_1 == null) {
+			slider_1 = new JSlider(JSlider.HORIZONTAL,0,50,25); 
+			slider_1.setMajorTickSpacing(10);
+			slider_1.setMinorTickSpacing(1);
+			slider_1.setPaintTicks(true);
+			slider_1.setPaintLabels(true); 
+			slider_1.setBounds(new Rectangle(10, 20, 270, 60));
+			//slider_1.setBounds(new Rectangle(10, 10, 80, 270));
+			slider_1.addChangeListener(new javax.swing.event.ChangeListener() {
+				public void stateChanged(javax.swing.event.ChangeEvent e) {
+					etich_1.setText(Integer.toString(slider_1.getValue()));
+				}
+			});
+		}
+		return slider_1;
+	}
+	
+	/**
+	* Aceasta metoda creaza "timer_1"	
+	* nu returneaza nimic
+	*/
+		
+	private void creaza_timer_1() {
+
+		if (timer_1 == null) {
+			timer_1 = new Timer(delay, null);
+			//timer_1.setInitialDelay(delay *1); // Temporizare initiala
+			timer_1.setCoalesce(true);
+			timer_1.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					etich_1.setText(Integer.toString(slider_1.getValue()));
+					if(slider_1.getValue()==slider_1.getMaximum()){
+						slider_1.setValue(0);
+						}
+					else{
+						slider_1.setValue(slider_1.getValue()+1);
+					}
+				}
+			});					
+    }
+}		
+	/**
+	 * Aceasta metoda creaza panelul: "panel_1"	
+	 * Returneaza panel_1 de tipul:	javax.swing.JPanel
+	 */
+	private JPanel creaza_panel_1() {
+		if (panel_1 == null) {
+			panel_1 = new JPanel();
+			panel_1.setLayout(new GridBagLayout());
+			panel_1.setBounds(new Rectangle(0, 20, 450, 200));
+		}
+		return panel_1;
+	}
+
+	/**
+	 * Aceasta metoda initializeaza panel_1 plasand controalele dorite 
+	 * Returneaza c_panel_1 de tipul: javax.swing.JPanel 
+	 */
+	private JPanel init_panel_1() {
+		if (c_panel_1 == null) {		
+			etich_1 = new JLabel();
+			etich_1.setBounds(new Rectangle(40, 144, 150, 10));
+			etich_1.setText("Utilizare slider");
+			c_panel_1 = new JPanel();
+			c_panel_1.setLayout(null);
+			c_panel_1.add(etich_1, null);
+			c_panel_1.add(creaza_but_1(), null);
+			c_panel_1.add(creaza_but_2(), null);
+			c_panel_1.add(creaza_slider_1(), null);
+			c_panel_1.add(creaza_panel_1(), null);
+			c_panel_1.setLayout(new BorderLayout());
+			creaza_timer_1();
+			timer_1.start();
+		}
+		return c_panel_1;
+	}	
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<ul>
+ <li> Se compileaza aplicatia obtinandu-se urmatoarele fisierele de tip "class":
+ <li> Obs:Fisierele de tip class se obtin automat in urma rularii programului im mediul de dezvoltare "Eclipse". Aceste fisiere 
+se creaza in folder-ul ../Apl_web/demo/bin. In cazul de fata, s-au creat fisierele:
+ <ul>
+ <li>demo_v1.class
+ <li>demo_v1$1.class
+ <li>demo_v1$2.class
+ <li>demo_v1$3.class
+ <li>demo_v1$4.class
+ </ul> 
+ <li> Se realizeaza fisierul de tip demo.html cu urmatorul continut:
+</ul>
+<!------------------------------------------------------------------->
+<textarea width="100%" height="400px" style="width:100%;height:210px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center>
+	<table>
+		<tr><td>
+			&lt;applet code=demo.demo_v1.class width="300" height="200" &gt;&lt;/applet&gt;
+		</td></tr>
+	</table>
+</center>
+</body>
+</html>
+</textarea>
+<!------------------------------------------------------------------->
+<ul>
+ <li>Se copiaza fisierul demo.html in folder-ul din care va fi lansata pagina demo.html
+ <li>In acelasi folder de creaza folder-ul demo in care se vor copia fisierele *.class create anterior
+ <li>se lanseaza fisierul demo.html
+</ul>
+
+
+
+
+
+
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="AliceBlue">
+<font size="3" color="Blue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<!------------------------------------------------------------------->
+<br><br><textarea width="100%" height="400px" style="width:100%;height:50px" name="code" wrap="logical" rows="12" cols="42">
+</textarea>
+<!------------------------------------------------------------------->
+
+</body>
+</html>
