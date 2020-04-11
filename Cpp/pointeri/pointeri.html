@@ -1,0 +1,1144 @@
+<html>
+<title> Pointeri </title>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Pointeri </Center></TD></TR>
+</table>
+<br><a name="start"></a>
+&nbsp;&nbsp;&nbsp;&nbsp; Am utilizat in aplicatiile anterioare declaratii de genul:
+<Center><b> char* sectia ="Inginerie Electrica";<br>
+String^ nume ="Ionescu"<br>
+System::Drawing::Graphics^ Desen;<br>
+System::Random^ n;<br></b></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; In cazurile enumerate mai sus am definit diverse tipuri de variabile. Am definit astfel variabila 
+<b> sectia </b> ce reprezinta un sir de caractere, pe care l-am initializat cu valoarea "Inginerie Electrica". 
+In spatiul de nume System:: am definit variabile de tip sir de caractere folosind de exemplu :  <b> String^ nume ="Ionescu" </b> 
+pentru a defini variabila <b> nume </b> de tip "String", pe care am initializat-o cu valoarea "Ionescu". 
+In WFA, am declarat deseori variabile mai complexe de tipul: Graphics, Random etc. In toate aceste cazuri am folosit defapt <b> pointeri </b>
+<br><br><font color= "Blue" size=5> Pointeri </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pointerii sunt variabile ale caror valori sunt adresele altor variabile (obiecte).Valoarea memorata deci 
+într-o variabila pointer este o adresa.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pointerii sunt utili pentru a usura unele operatii in C++ dar mai ales pentru aperatii de alocare dinamica a memoriei, 
+operatie imposibil de realizat fara ajutorul pointerilor.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In functie de continutul zonei de memorie adresate, pointerii pot fi:
+<ul>
+ <li> pointeri de date (obiecte) - contin adresa unei variabile din memorie;
+ <li> pointeri generici (numiti si pointeri void) - contin adresa unui obiect oarecare, de tip generic de pointer;
+ <li> pointeri de functii - contin adresa codului executabil al unei functii.
+</ul>
+<a name="def"></a>
+<font color= "Black" size=4><li><b>Declararea unui  pointer </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sintaxa pentru declararea unui pointer:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>tip* identificator_pointer;</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tinand cont ca un pointer reprezinta o adresa, deci ele ar trebui sa fie de tip intreg, totusi tipul unui pointer este 
+de tipul variabilei a carei adresa o reprezinta.
+<br><br><a name="init_p"></a>
+<font color= "Black" size=4><li><b>Initializarea unui  pointer </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizarea variabilelor pointer se face folosind urmatorii operatori unari:
+<ul>
+ <li>& - operatorul adresa (de referentiere) - pentru aflarea adresei din memorie a unei variabile;
+ <li>* - operatorul de indirectare (de deferentiere) - care furnizeaza valoarea din zona de memorie spre care pointeaza pointerul operand.
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie simpla in care sa evidentiem faptul ca un pointer este adresa unei variabile.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un pointer Ptr
+// Se initializeaza o variabila pointer Ptr catre un intreg
+// Se defineste o variabila de tip int si se afiseaza adresa acesteia
+// Se atribuie o valoare pointer-ului si se afiseaza
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Initializarea unui pointer ");// Titlul ferestrei consola
+system("COLOR F9"); // Fundal alb caractere albastre
+int* Ptr ;  // Ptr- variabila pointer catre un int 
+int x;
+cout << "\n\n\tAdresa variabilei x folosind &x este:" << &x;
+Ptr=&x;		// Variabila Ptr contine adresa variabilei x
+cout << "\n\n\tVariabila pointer Ptr are valoarea:" << Ptr;
+cin.ignore();
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp48.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa in imaginea de sus, adresa si valoarea pointer-ului este aceeasi.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie evidentiaza faptul la o variabila se poate ajunge prin intermediul pointerului ce indica spre aceasta variabila. 
+Se foloseste pentru aceasta operatorul de indirectare care furnizeaza valoarea variabilei indicate de pointer. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un pointer Ptr
+// Se initializeaza o variabila pointer Ptr catre un intreg
+// Se defineste o variabila x de tip int si se initializeaza cu 7 si se afiseaza
+// Se atribuie  pointer-ului adresa variabilei x
+// Folosind operatorul de indirectare, se afiseaza valoarea variabilei x
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Operatorul de indirectare ");// Titlul ferestrei consola
+system("COLOR F9"); // Fundal alb caractere albastre
+int* Ptr ;  // Ptr- variabila pointer catre un int 
+int x=7;
+cout << "\n\n\tValoarea variabilei x este:" << x;
+Ptr=&x;		// Variabila Ptr contine adresa variabilei x
+cout << "\n\n\tValoarea variabilei x utilizand *Ptr este:" << *Ptr;
+cin.ignore();
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp49.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum era de asteptat, se afiseaza aceeasi valoare utilizand cele doua metode.
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Valoarea unei variabile poate fi modificata direct sau prin intermediul pointerului care indica spre ea. Urmatoarea 
+aplicatie scoate in evidenta acest lucru.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un pointer Ptr
+// Se initializeaza o variabila pointer Ptr catre un intreg
+// Se defineste o variabila x de tip int si se initializeaza cu 7 si se afiseaza
+// Se atribuie  pointer-ului adresa variabilei x
+// Folosind operatorul de indirectare, se modifica valoarea variabilei x
+// Se afiseaza valoarea variabilei x
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Operatorul de indirectare ");// Titlul ferestrei consola
+system("COLOR F9"); // Fundal alb caractere albastre
+int* Ptr ;  // Ptr- variabila pointer catre un int 
+int x=7;
+cout << "\n\n\tValoarea variabilei x este:" << x;
+Ptr=&x;		// Variabila Ptr contine adresa variabilei x
+*Ptr=27;		// Se atribuie valoarea 27 continutului adresei Ptr
+cout << "\n\n\tValoarea variabilei x dupa utilizarea pointerului, este:" << x;
+cin.ignore();
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp50.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Valoarea variabilei x a fost modificata prin doua cai.
+<br><br><a name="p_null"></a>
+<font color= "Black" size=4><li><b>Pointeri nuli </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Un pointer nu poate fi folosit daca nu i se atribuie o valoare. In cazul in care inca nu se cunoaste inca  valoarea ce 
+trebuie sa-i fie atribuita, aceastuia i se atribuie valoarea NULL. Nu putem sa atribuim valoarea 0 deoarece acest pointer ar indica spre locatia de la 
+adresa 0, adresa care contine cu siguranta o valoare nenula.   
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In urmatorul exemplu se utilizeaza un pointer Ptr NULL.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un pointer Ptr NULL
+// Se initializeaza o variabila pointer Ptr
+// Se atribuie pointer-ului valoarea NULL si se afiseaza
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Pointerul NULL ");// Titlul ferestrei consola
+system("COLOR F9");	// Fundal alb caractere albastre
+int*  Ptr ;			// Ptr- variabila pointer catre un int 
+Ptr = NULL;			// Se atribuie pointer-ului valoarea NULL
+cout << "\n\n\tValoarea pointerului, este:" << Ptr;
+cin.ignore();
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="p_void"></a>
+<font color= "Black" size=4><li><b>Pointeri de tip void (tip generic de pointer) </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Un pointer poate fi declarat de tip void. În aceasta situatie pointerul nu poate fi folosit pentru indirectare 
+(dereferentiere) deoarece compilatorul nu poate cunoaste tipul obiectului pe care pointerul îl indica.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pointerii generici sînt foarte utilizati de unele functii de biblioteca,  atunci cînd este nevoie sa se opereze cu 
+zone de memorie care pot contine informatii de orice natura: operatii de intrare, alocari de memorie, sortare si cautare. Aceste functii nu cunosc 
+tipul datelor cu care opereaza, pentru aceste functii zonele de memorie nu au un tip precizat. Acest fapt este evidentiat prin pointeri de tip void.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un pointer de tip void
+// Pointerul Ptr va fi utilizat pentru a indica spre diverse variabile de divesre tipuri
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Pointeri de tip void ");// Titlul ferestrei consola
+system("COLOR F9");	// Fundal alb caractere albastre
+int i;
+float f;
+void* Ptr;
+Ptr = &i;				/* p indica spre i */
+*(int *)Ptr = 77;
+cout << "\n\n\tValoarea variabilei i este:" << i;
+Ptr = &f;				/* p indica spre f */
+*(float *)Ptr = 4.7;
+cout << "\n\n\tValoarea variabilei f este" << f;
+cin.ignore();
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp51.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care am vrea sa afisam variabila i cu instructiunea :
+<br><br><center><b> cout << "\n\n\tValoarea variabilei f este" << *Ptr;</b></center> 
+<br> compilatorul ar genera o eroare "illegal indirection", deoarece compilatorul nu poate cunoaste tipul lui Ptr.
+<br><br><a name="p_var"></a>
+<font color= "Black" size=4><li><b>Pointeri ca variabila sau constanta </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Un Pointer poate fi folosit ca variabila sau constanta. Urmatorul exemplu ilustreaza acest lucru.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un pointer Ptr
+// Se initializeaza o variabila pointer Ptr catre un intreg
+// Se defineste o variabila x de tip int 
+// Se atribuie  pointer-ului adresa variabilei x
+// Se fac operatii utilizand variabila ptr
+// Se afiseaza valoarea variabilei x
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Pointeri ca variabila ");// Titlul ferestrei consola
+system("COLOR F9");		// Fundal alb caractere albastre
+int  x;
+int*  Ptr ;				// Ptr- variabila pointer catre un int 
+Ptr=&x;					// Variabila Ptr contine adresa variabilei x
+*Ptr=10;				// Se atribuie valoarea 10 lui x
+cout << "\n\n\tValoarea variabilei x  este:" << x;
+*Ptr+=2;
+cout << "\n\n\tValoarea variabilei x  dupa *Ptr+=2 este:" << x;
+*Ptr*=2;
+cout << "\n\n\tValoarea variabilei x  dupa *Ptr*=2 este:" << x;
+cin.ignore();
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp52.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatorul exemplu utilizeaza un pointeri pe post de constanta.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza numele unui tablou pe post de pointer
+// Afiseaza adresa tabloului ca fiind numele tabloului sau adresa primului element
+// Afiseaza prima valoare a tabloului ca fiind numele tablou[0] sau referentierea pointerului
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Pointeri pe post de constante ");// Titlul ferestrei consola
+system("COLOR F9");		// Fundal alb caractere albastre
+const int Dmax=4;
+int note[Dmax]={10,9,7,10};
+cout << "\n\n\tAdresa tabloului este:" << note;
+cout << "\n\n\tAdresa tabloului este:" << & note[0];
+cout << "\n\n\tValoarea primului element este:" << note[0];
+cout << "\n\n\tValoarea primului element este:" << *note;
+cin.ignore();
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp53.gif"></center>
+<br><br><a name="p_aritm"></a>
+<font color= "Black" size=4><li><b>Aritmetica pointerilor </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Un pointer fiind o adresa, cu el se pot face operatii exact ca si cu o valoare numerica. Aritmetica pointerilor 
+se foloseste in special pentu lucrul cu tablouri.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa reluam aplicatia care defineste note intr-un tablou si sa afisam notele prima data fara a folosi pointeri.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul afiseaza addresele elementelor si elementele unui tablou
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Adresele elementelor unui tablou ");// Titlul ferestrei consola
+system("COLOR F9");		// Fundal alb caractere albastre
+const int Dmax=4;
+int i, note[Dmax]={10,9,7,10};
+for (i=0; i < Dmax ; i++){
+	cout << "\n\n\tAdresa elementului " << i << " este: " << & note[i];
+	cout << "\n\n\tValoarea elementului " << i << " este: " << note[i];
+}
+cin.ignore();
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand pointeri, aceeasi aplicatie poate fi scrisa:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul initializeaza un pointer cu  numele unui tablou.
+// Afiseaza adresa elementelor tabloului ca fiind chiar pointerul
+// Afiseaza valoarea elementelor tabloului ca fiind referentierea pointer-ului
+// Pentru a parcurge tabloul s-a utilizat operatiunea de incrementare pointer
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE aritmetica pointerilor ");// Titlul ferestrei consola
+system("COLOR F9");		// Fundal alb caractere albastre
+const int Dmax=4;
+int i, note[Dmax]={10,9,7,10};
+int* Ptr=note;
+for (i=0; i < Dmax ; i++, Ptr++){
+	cout << "\n\n\tAdresa elementului " << i << " este: " << Ptr;
+	cout << "\n\n\tValoarea elementului " << i << " este: " << * Ptr;
+}
+
+cin.ignore();
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea aplicatiilor de sus, obtinem acelasi rezultat adica:
+<br><br><center><img src="im_cpp54.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In exemplul de sus, un pointer a fost incrementat. Cu pointerii se pot face toate operatiile se se pot face si cu numerele asa ca 
+un pointer poate fi si decrementat. Sa afisam acum notele in ordine inversa. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul initializeaza un pointer cu  numele unui tablou.
+// Se afiseaza notele in ordine inversa, prin decrementarea pointerului.
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Decrementarea unui pointer ");// Titlul ferestrei consola
+system("COLOR F9");		// Fundal alb caractere albastre
+const int Dmax=4;
+int i, note[Dmax]={10,9,7,10};
+int* Ptr=note+3;
+for (i=Dmax-1; i >=0 ; i--, Ptr--){
+	cout << "\n\n\tAdresa elementului " << i << " este: " << Ptr;
+	cout << "\n\n\tValoarea elementului " << i << " este: " << * Ptr;
+}
+cin.ignore();
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom utiliza in continuare pointeri si operatii cu point-eri pentru vizualizarea reprezentarii diverselor tipuri de 
+date in memorie. Vom defini un pointer spre un numar de tip int. Tipul int este reprezentat in calculator pe 4 octeti. Deci pointerul indica spre 
+inceputul celor 4 octeti. Daca definim un nou pointer ce indica spre tipul de date char vom putea analiza cei 4 octeti din care e compus tipul int
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Utilizarea pointer-ilor pentru vizualizarea reprezentarii datelor ");// Titlul ferestrei consola
+system("COLOR F9"); // Fundal alb caractere albastre
+int x=123456789;
+int* Ptr ;  // Ptr- variabila pointer catre un int 
+Ptr=&x;
+char* p;
+p=(char *)Ptr;
+cout << "\n\n\tVariabila x=123456789 este reprezentata pe 4 octeti astfel:";
+cout << "\n\n\tOctetul 0:" << hex << static_cast< short int >(*p);
+cout << "\n\tOctetul 1:" << hex << static_cast< short int >(*(p+1));
+cout << "\n\tOctetul 2:" << hex << static_cast< short int >(*(p+2));
+cout << "\n\tOctetul 3:" << hex << static_cast< short int >(*(p+3));
+cin.ignore();
+cin.get();
+}
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp57.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Se observa ca cei 4 octeti sunt : 75bcd15 care in zecimal inseamna 123456789:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Putem initializa un pointer cu o adresa absoluta astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Initializarea unui pointer cu o adresa ");// Titlul ferestrei consola
+system("COLOR F9"); // Fundal alb caractere albastre
+int* Ptr ;  // Ptr- variabila pointer catre un int 
+
+Ptr=(int *)0xb8000000;
+*Ptr=100;
+cout << "\n\n\tVariabila pointer Ptr are valoarea:" << *Ptr;
+cin.ignore();
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca rulam acest program  se va da un mesaj de eroare de genul : 'System.AccessViolationException' 
+deoarece programul incearca sa acceseze o zona de memorie care nu este alocaa pentru acest program.
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Putem realiza un program de genul:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Initializarea unui pointer cu o adresa ");// Titlul ferestrei consola
+system("COLOR F9"); // Fundal alb caractere albastre
+int x=100;
+int* Ptr ;  // Ptr- variabila pointer catre un int 
+cout << "\n\n\t Adresa variabilei x este: "<<&x;
+cin.ignore();
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Programul returneaza mesajul:"Adresa variabilei x este: 0012F098". Realizam apoi programul
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Initializarea unui pointer cu o adresa ");// Titlul ferestrei consola
+system("COLOR F9"); // Fundal alb caractere albastre
+int* Ptr ;  // Ptr- variabila pointer catre un int 
+int x=100;
+cout << "\n\n\t Adresa variabilei x este: "<<&x;
+Ptr=(int *)0x0012F098;
+cout << "\n\n\tContinutul adresei 0012F098 este:" << *Ptr;
+cin.ignore();
+cin.get();
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><a name="p_func"></a>
+<font color= "Black" size=4><li><b>Pointeri ca argumente de functii </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul functiilor s-au transmis argumente spre functii si proceduri, prin referinta pentru ca 
+la intoarverea din procedura sau functie sa se poata utiliza argumentul modificat de functie sau procedura.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Am realizat atunci o aplicatie care calcula cubul unui numar utilizand o procedura careia i se transmitea 
+argumentul prin referinta. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul foloseste procedura cub careia i se transmite un parametriu prin referinta
+// Se cere un numar de la tastatura si se apeleaza procedura cub
+// Procedura afiseaza cubul numarului introdus
+// La intoarcerea din procedura se afiseaza noua valoare a parametrului transmis
+
+#include "stdafx.h"
+#include < iostream >
+
+using namespace std;
+void cub(int&);// prototipul 
+int main(void)
+{
+	system("TITLE Pointeri ca argumente de functii ");
+	system("COLOR F9"); 
+	int x;
+	cout << " \n\n\tIntroduceti un numar: ";
+	cin >> x;
+	cub(x);
+	cout << "\n\n\tValoarea numarului introdus dupa apelul procedurii cub este : ";
+	cout << x;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+// Incepe definirea procedurii cub
+void cub(int& nr)
+{
+	cout << "\n\n\tCubul numarului : ";
+	cout << nr;
+	cout << " este : ";
+	nr=nr*nr*nr;
+	cout << nr;
+} 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utlizand pointeri, putem rescrie aplicatia astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul foloseste procedura cub careia i se transmite adresa argumentului
+// Se cere un numar de la tastatura si se apeleaza procedura cub
+// Procedurii cub i se transmite adresa argumentului
+// Procedura cub, utilizeaza un pointer int* pentru a avea acces la argumentul transmis
+// Procedura cub, face calcule asupra argumentului refereentiind pointerul
+// Procedura cub afiseaza cubul numarului introdus
+// La intoarcerea din procedura se afiseaza noua valoare a argumentului transmis
+
+#include "stdafx.h"
+#include < iostream >
+
+using namespace std;
+void cub(int*);// prototipul 
+int main(void)
+{
+	system("TITLE Pointeri ca argumente de functii ");
+	system("COLOR F9"); 
+	int x;
+	cout << " \n\n\tIntroduceti un numar: ";
+	cin >> x;
+	cub(&x);
+	cout << "\n\n\tValoarea numarului introdus dupa apelul procedurii cub este : ";
+	cout << x;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+// Incepe definirea procedurii cub
+void cub(int* nr)
+{
+	cout << "\n\n\tCubul numarului : ";
+	cout << *nr;
+	cout << " este : ";
+	*nr=(*nr)*(*nr)*(*nr);
+	cout << *nr;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom transmite un tablou ca argument folosind pointeri. Vom realiza o aplicatie simpla care cere 5 numere, 
+le pastreaza intr-un tablou dupa care apeleaza o functie careia i se transmite ca argument acest tablou pentru a afisa elementele tabloului.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul cere 5 numere dupa care le afiseaza ";
+// Se defineste si se apeleaza o functie care afiseaza elementele tabloului
+// Functia are ca argument un pointer
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+void afisare(double* v,int imdex_max);
+int main(void)
+{
+	system("TITLE Pointeri ca argumente de functii ");
+	system("COLOR F9"); 
+	const int nr_max=5;
+	int i;
+	double nr[nr_max];
+	cout << "\n\tProgramul cere " << nr_max << " numere dupa care le afiseaza \n\n";
+// introducere numere
+
+	for (i=0;i < nr_max;i++){
+		cout <<"\tIntroduceti numarul : [" << i << "] : ";
+		cin >> nr[i];
+	}
+	afisare(nr,nr_max);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+void afisare(double* v, int index_max)
+{ 
+	cout <<"\n\n\tNumerele introduse sunt :";
+	for (int i=0; i < index_max; i++){
+		cout << " : " << v[i] ;	 
+		}
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Putem rescrie aplicatia astfel incat sa utilizam pointeri si in programul principal.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul cere 5 numere dupa care le afiseaza ";
+// Cele cinci elemente sun salvate intr-un tablou utilizand pointeri.
+// Se defineste si se apeleaza o functie care afiseaza elementele tabloului
+// Functia are ca argument un pointer
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+void afisare(double* v,int imdex_max);
+int main(void)
+{
+	system("TITLE Pointeri ca argumente de functii ");
+	system("COLOR F9"); 
+	const int nr_max=5;
+	int i;
+	double nr[nr_max];
+	double* p;
+	p=nr;
+	cout << "\n\tProgramul cere " << nr_max << " numere dupa care le afiseaza \n\n";
+// introducere numere
+
+	for (i=0;i < nr_max;i++,p++){
+		cout <<"\tIntroduceti numarul : [" << i << "] : ";
+		cin >> *p;
+	}
+	afisare(nr,nr_max);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+void afisare(double* v, int index_max)
+{ 
+	cout <<"\n\n\tNumerele introduse sunt :";
+	for (int i=0; i < index_max; i++){
+		cout << " : " << v[i] ;	 
+		}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Reluam o aplicatie mai veche pentru afisarea cubului unor numere introduse folosind o functie careia i se transmite 
+tabloul cu numerele citite ca argument folosind pointeri in vederea afisarii cubului elementelor tabloului.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul cere 5 numere dupa care le ridica la patrat si le afiseaza ";
+// Se defineste si se apeleaza o functie care inlocuieste valorile din tablou cu patratele acestora
+// Functia are ca argument un pointer
+// La sfarsit se afiseaza elementele tabloului rezultat rezultat
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+void patrat(double* v,int imdex_max);
+int main(void)
+{
+	system("TITLE Pointeri ca argumente de functii ");
+	system("COLOR F9"); 
+	const int nr_max=5;
+	int i;
+	double nr[nr_max];
+	cout << "\n\tProgramul cere " << nr_max << " numere dupa care le ridica la patrat si le afiseaza \n\n";
+// introducere numere
+
+	for (i=0;i < nr_max;i++){
+		cout <<"\tIntroduceti numarul : [" << i << "] : ";
+		cin >> nr[i];
+	}
+// afisarea numerelor
+
+	cout << "\n\n\tNumerele introduse sunt: \n\n";
+	for (i=0;i < nr_max;i++){
+		cout << " : " << nr[i] ;
+	}
+// calcularea patratelor numerelor
+	patrat(nr,nr_max);
+
+// afisarea patratelor numerelor 
+
+	cout << "\n\n\tPatratele numerelor sunt: \n\n";
+	for (i=0;i < nr_max;i++){
+		cout << " : " << nr[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+void patrat(double*v , int index_max)
+{ 
+
+	for (int i=0; i < index_max; i++){
+			v[i]=v[i]*v[i]; 
+		}
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="aloc_d"></a>
+<font color= "Black" size=4><li><b>Alocarea dinamica a memoriei </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In spatiul de nume std: nu exista posibilitatea sa definim dimensiunea unui tablou prin intermediul unei variabile. 
+Aplicatia care cere dimensiunea unui vector dupa care cere elementele acestuia cuprindea definirea unui tablou unidimensional la o dimensiune maxima. 
+astfel in aplicatia de jos cerem numarul de elemente dar precizam faptul ca valoarea poate fi maxim 10.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul cere n numere dupa care le afiseaza
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+int main(void)
+{
+	system("TITLE Alocarea dinamica a memoriei ");
+	system("COLOR F9"); 
+	int i,n;
+	const int nmax=10;
+	cout << "\n\tProgramul cere n numere dupa care le afiseaza \n\n";
+	cout <<" \n\tIntroduceti valoarea lui n (maxim 10):";
+	cin >> n;
+	double numere[nmax];
+	for (i=0;i < n;i++){
+		cout <<"\tIntroduceti numarul : [" << i << "] : ";
+	cin >> numere[i];
+	}
+	cout << "\n\n\tNumerele introduse sunt:  \n";
+	for (i=0;i < n;i++){
+	cout << "\n\tNumarul [ " << i << "] ="<< numere[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a dimensiona tabloul la exact numarul de elemente precizate , trebuie sa modificam programul astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul cere n numere dupa care le afiseaza
+// Programul utilizeaza alocarea dinamica a memoriei
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+int main(void)
+{
+	system("TITLE Alocarea dinamica a memoriei ");
+	system("COLOR F9"); 
+	int i,n;
+	cout << "\n\tProgramul cere n numere dupa care le afiseaza \n\n";
+	cout <<" \n\tIntroduceti valoarea lui n :";
+	cin >> n;
+	double* ptr = new double[n];
+	for (i=0;i < n;i++){
+		cout <<"\tIntroduceti numarul : [" << i << "] : ";
+	cin >> ptr[i];
+	}
+	cout << "\n\n\tNumerele introduse sunt:  \n";
+	for (i=0;i < n;i++){
+	cout << "\n\tNumarul [ " << i << "] ="<< ptr[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	delete [] ptr;
+	return 0;
+} 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa trebuie folosit un pointer pentru alocarea dinamica a memoriei. 
+In cadrul programunlui de sus, alocarea se face cu instructiunea:
+<center><b>double *ptr = new double[n];</b></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Operatorul <b> new </b> este cel care face alocarea memoriei in mod dinamic.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;La compilarea unui program , acestuia i se aloca memorie statica. Aici este tinut codul si spatiul de memorie pentru 
+diverse variabile si tablouri. Din acest motiv tablourile nu pot fi redimensionate dupa lansarea programului. In momentul compilarii, compilatorul 
+trebuie sa stie exact cata memorie trebuie rezervata. In momentul lansarii, sistemul de operare rezerva si memorie dinamica (memorie de <b> heap </b>), 
+memorie in care se pate face alocare dinamica. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Durata de viata a variabilei alocata dinamic este durata de viata a programului. La iesirea din program nu mai avem 
+acces la memoria alocata deoarece pointerul nu mai este vizibil. Memoria ramne deci ocupata si dupa iesirea din program si se creaza astfel o 
+pierdere de memorie.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Memoria alocata dinamic se sterge cu operatorul "delete nume_pointer" ea fiind restituita astfel sistemului de operare. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca variabila dinamica este un tablou, ea se sterge cu: "delete [] nume_pointer "
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa alocam dinamic memorie pentru un vector cu un singur element pe care il initializam sa zicem cu valoarea 22, 
+sa afisam continutul dupa care sa stergem pointerul si sa vedem continutul memoriei 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//Alocarea dinamica a memoriei
+//Stergerea pointerului
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main()
+{  
+	int* ip= new int[1];
+	*ip=22;
+	cout<<"\n\tip = "<< ip <<" \t*ip= "<< *ip <<"\n";
+	cout<<"\n\tDupa stergerea pointerului avem:\n";
+	delete ip;
+	cout<<"\n\n\tip = "<< ip <<" \t*ip= "<< *ip <<"\n";
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa incercam acum sa initializam un vector, sa facem realocare si sa vedem continutul
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//Programul utilizeaza pointeri pentru realocarea dinamica a memoriei
+//La sfarsit se sterge pointerul
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+int main(void)
+{
+	system("TITLE Realocarea dinamica a memoriei ");
+	system("COLOR F9"); 
+	int i,n;
+	cout << "\n\tProgramul initializeaza un vector cu n elemente \n\n";
+	cout <<" \n\tIntroduceti valoarea lui n :";
+	cin >> n;
+	double* ptr = new double[n];
+	for (i=0;i < n;i++){
+	ptr[i]=rand();
+	}
+	cout << "\n\n\tNumerele generate sunt:  \n";
+	for (i=0;i < n;i++){
+	cout << "\n\tNumarul [ " << i << "] ="<< ptr[i] ;
+	}
+	realloc(ptr,n+3);// Realocare dinamica
+	cout << "\n\n\tDupa redimensionare a vectorului cu 3 elemente obtinem: \n";
+	for (i=0;i < n+3;i++)
+	cout << "\n\tNumarul [ " << i << "] ="<< ptr[i] ;
+	
+	delete [] ptr;
+	cout << "\n\n\tDupa stergerea pointerului avem: \n";
+	for (i=0;i < n+3;i++)
+	cout << "\n\tNumarul [ " << i << "] ="<< ptr[i] ;
+	cin.ignore();
+	cin.get();
+
+	return 0;
+} 
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa realocarea dinamica, continutul locatiilor este afectat, iar dupa stergerea pointerului continutul este initializat.
+
+<br><br><a name="ret_p"></a>
+<font color= "Black" size=4><li><b>Returnarea pointerilor din functii </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie care defineste in pointer la o tabela de caractere. In cadrul aplicatiei vrem sa scriem o 
+functie care atribuie valori tabelei si returneaza adresa tabelei astfel incat in programul principal sa putem afisa tabela. Functia trebuie sa 
+returneze deci un pointer.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru inceput sa realizam o aplicatie care initializeaza si afiseaza o tabela de caractere, utilizand pointeri
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Returnarea pointerilor din functii 
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+int main(void)
+{
+	system("TITLE Returnarea pointerilor din functii  ");
+	system("COLOR F9"); 
+	cout << "\n\tProgramul afiseaza un sir initializat cu ajutorul pointerilor \n\n";
+	char* sectia ="Inginerie Electrica";
+	cout <<"\n\n\tSectia este: " << sectia;
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom modifica acum aplicatia si vom introduce o functie care atribuie valori tabelei si returneaza adresa tabelei, adica un 
+pointer. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Returnarea pointerilor din functii 
+// Programul cere si afiseaza un sir utilizand un pointer
+// Pointerul este returnat de o functie
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+char* cere_sectia();
+int main(void)
+{
+	system("TITLE Returnarea pointerilor din functii  ");
+	system("COLOR F9"); 
+	cout << "\n\tProgramul cere si afiseaza un sir utilizand un pointer.";
+	cout << "\n\tPointerul este returnat de o functie \n\n";
+	char* sec =cere_sectia();
+	cout <<"\n\n\tSectia este: " << sec;
+	cin.get();
+	return 0;
+} 
+char* cere_sectia(){
+	static char sectia[55];
+	cout << "\n\n\tIntroduceti  sectia: ";
+	cin.getline(sectia,80);
+	return sectia;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca s-a definit tabloul sectia folosind declaratia <b> static char sectia[55] </b> altfel variabila "sectia" nu 
+ar fi vizibila si in programul principal. Cu alte cuvinte un pointer returnat dintr-o functie trebuie sa indice spre o variabila statica sau dinamica, in 
+nici un caz nu trebuie sa indice spre o variabila locala.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pointrtul poate indica si spre o variabila creata dinamic. Urmatoarea aplicatie returneaza un pointer dintr-o functie, 
+pointerul indicand spre o variabila dinamica.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Returnarea pointerilor din functii 
+// Programul cere si afiseaza un sir utilizand un pointer
+// Pointerul este returnat de o functie si indica spre o variabila dinamica.
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+char* cere_sectia();
+int main(void)
+{
+	system("TITLE Returnarea pointerilor din functii  ");
+	system("COLOR F9"); 
+	cout << "\n\t- Programul cere si afiseaza un sir utilizand un pointer.";
+	cout << "\n\t- Pointerul este returnat de o functie \n\n";
+	cout << "\n\t- Pointerul indica spre o variabila dinamica \n\n";
+
+	char* sec =cere_sectia();
+	cout <<"\n\n\tSectia este: " << sec;
+	cin.get();
+	delete [] sec;
+	return 0;
+} 
+char* cere_sectia(){
+	char* sectia;
+	sectia= new char[80];
+	cout << "\n\n\tIntroduceti  sectia: ";
+	cin.getline(sectia,80);
+	return sectia;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In acest caz nu s-a mai eclarat  char* sectia de tip static, deoarece durata de viata a unei variabile dinamice este pe 
+toata durata de viata a programului.
+<br><br><a name="p_sys"></a>
+<font color= "Blue" size=5><li><b>Pointeri in spatiul System </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In CLR, spatiul System pointerii sunt tipuri speciale de variabile care indica spre adresa altei variabile sau spre un 
+obiect. Exista trei tipuri de pointeri acceptati in CLR:
+<ul>
+ <li>managed pointers (pointeri gestionati)
+ <li>unmanaged pointers (pointeri negestionati)
+ <li>managed function pointers (pointeri  negestionati spre functii) 
+</ul> 
+&nbsp;&nbsp;&nbsp;&nbsp; -  Un pointer gestionat cunoscut ca si pointer spre un obiect in memoria heap este un tip nou de pointer, disponibil pentru a 
+gestiona aplicatiile. Pointeri gestionati indica spre blocuri de memorie din memoria heap pentru CLR. In memoria heap CLR ruleaza automat Garbage 
+collection. Toate obiectele lansate aici sunt automat sterse din memorie dupa ce aplicatia se incheie.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; In Visual C++ 2002 si Visual C++ 2003, un pointer gestionat se declara cu <b>__gc *</b> In Visual C++ 2005 - 2008, 
+aceasta notatie a fost inlocuita cu <b> ^ </b>  astfel la declararea unui tablou unidimensional de exemplu se utilizeaza:
+<center> <b> array < int >^ numere = gcnew array < int > (10); </b></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; -  Pointerii negestionati sunt pointerii traditionali din C++. Acesti pointeri indica spre memoria statica. Din cauza 
+faptului ca pointerii negestionati nu fac parte din Common Language Specification (CLS), nu exista specificatii pentru a accesa acest tip de pointeri.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; - Pointerii  negestionati spre functii sunt de asemenea pointeri traditionali din C++ indicand adresa unei functii. 
+CLS furnizeaza "delegati" ca o metoda alternativa spre pointeri  negestionati spre functii.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Common Language Specification (CLS) furnizeaza trei operatii aritmetice asupra pointerilor : adunare cu un intreg, 
+scadere cu un intreg si adunarea a doi pointeri. 
+<br><br><a name="p_clr"></a>
+<font color= "Black" size=4><li><b>Aplicatii CRL cu pointeri </b> </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi in continuare, pointeri gestionati in spatiul System::. Sa realizam o aplicatie care utilizeaza un vector 
+de anumita dimensiune dupa care il redimensioneaza. Vom constata in urma rularii aplicatiei daca dupa redimensionare se pastreaza valorile vechilor 
+elemente sau nu.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul initializeaza un vector de dimensiune 0
+// Cere numarul de elementesi redimensioneaza vectorul
+// Atribuire valori aleatoare intre 0-100 elementelor vecorului
+// Se afiseaza elementele vectorului
+// Se redimensioneaza vectorul dupa care se afiseaza din nou
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+using namespace System;
+
+int main(void)
+{
+	system("TITLE Redimensionare vector ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i, nrmax ;
+	array < int >^ numere = gcnew array < int > (0);
+	Console::Write("\n\tDimensiunea vectorului: ");
+	nrmax=System::Convert::ToInt16(Console::ReadLine());	// Citirea dimensiuni vectorului
+	Array::Resize(numere,nrmax);				// Redimensionare vector
+	for (i=0;i < nrmax; i++)				// Atribuire valori aleatoare intre 0-100
+		numere[i]=100*rand()/RAND_MAX;
+	Console::WriteLine("\n\tNumerele sunt: \n\n");		// Afisare numere
+	for (i=0;i < nrmax; i++)
+		Console::WriteLine("\t\t\tNr["+i+"]="+numere[i]);
+
+	Console::Write("\n\tNoua dimensiune: ");
+	nrmax=System::Convert::ToInt16(Console::ReadLine());	// Citirea noii dimensiuni
+	Array::Resize(numere,nrmax);
+	Console::Write("\n\tDupa redimensionare, elementele vectorului sunt: \n\n");
+	for (i=0;i < nrmax; i++)
+		Console::WriteLine("\t\t\tNr["+i+"]="+numere[i]);	
+	Console::ReadLine();
+	delete numere;
+    return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In urma rularii aplicatiei obtinem:
+<br><br><center><img src="im_cpp82.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa reluam in continuare aplicatia pentru afisarea consumurilor zilnice si a consumului mediu lunar, dar sa
+utilizam pointeri negestionati pentru a salva consumurile intr-o matrice, in vederea calculului consumului mediu.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In CLR, spatiul System pointerii sunt tipuri speciale de variabile care indica spre adresa altei variabile sau spre un 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat "point_v1" pe care plasam un obiect de tip button numit button1. 
+Completam procedura deschisa pe evenimentul Clik al obiectului button1 cu :  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	const int nr_z=31;
+	int poz_x=14; // pozitia curenta pe axa x
+	float w_r=1,w_a=3; // grosimea(in pixeli) a liniei rosii respectiv albastre
+	double consum[nr_z+1]; // vector ce pastreaza consumurile pe nr_z zile
+	double* d_ptr=consum; // pointer negestionat
+	double v_rand; // valoare aleatoare
+	double c_lun; // consum lunar
+	double c_med; // consum lunar mediu
+
+	// Se definesc pointerii gestionati 
+	
+	System::Drawing::Graphics^ Desen;
+	System::Drawing::Pen^ Creion_rosu;
+	System::Drawing::Pen^ Creion_albastru;
+	System::Random^ n;
+
+	// Se instantiaza clasele pentu a crea diferite obiecte folosite pe parcursul aplicatiei. Obiectele create se mai numesc si instante.
+
+	Desen = this->CreateGraphics();
+	Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red,w_r);
+	Creion_albastru=gcnew System::Drawing::Pen(System::Drawing::Color::BlueViolet ,w_a);
+	n = gcnew System::Random();
+
+	// Stergere desen prin invocarea metodei Clear
+
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+
+	// Trasare axa x si axa y
+
+	Desen->DrawLine( Creion_rosu,6,0,6,this->Height-40);
+	Desen->DrawLine( Creion_rosu,6,this->Height-40,this->Width-20,this->Height-40);
+	
+	// Trasare consumuri si salvare in matricea consum
+
+	for ( d_ptr=consum; d_ptr < consum+nr_z; d_ptr++){
+		v_rand=n->Next(this->Height-40);// se genereaza o valoare aleatoare
+		Desen->DrawLine( Creion_albastru,poz_x,this->Height-40,poz_x,Height-40-v_rand);
+		poz_x+=14;
+		*d_ptr=v_rand;
+	}
+	c_lun=0;
+
+	// Calculez consum lunar
+
+	for ( d_ptr=consum; d_ptr < consum + nr_z; d_ptr++){
+		c_lun=c_lun + *d_ptr;
+	}
+
+	// calculez si afisez consumul mediu
+
+	c_med=c_lun/nr_z;
+	Desen->DrawLine( Creion_rosu,6,this->Height-40-c_med,this->Width-20,this->Height-40-c_med);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia ruleaza la fel cu aplicatia descrisa in cadrul capitolului "Tablouri", difera doar codul sursa.
+<br><br><center><img src="im_cpp56.gif"></center>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+</body>
+</html>
