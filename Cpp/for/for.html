@@ -1,0 +1,3078 @@
+<html><head>
+<title>Instructiuni repetitive:while, do while, for</title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Instructiuni repetitive: while, do while, for</Center></TD></TR>
+</table>
+<br><a name="while"></a>
+<font color= "blue" size=5> Instructiunea while :</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>while</b> Se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni atata timp
+cat o expresie este adevarata.
+<br><li><b>Formatul instructiunii:</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>while</b> are urmatorul format:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>while (expresie) instructiune;</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea se executa repetat atîta timp cît valoarea expresiei este adevarata. 
+Testul are loc înaintea fiecarei executii a instructiunii. Modul de functionare al instructiunii este urmatorul:
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se testeaza expresia din paranteze. Daca ea este adevarata (sau expresia din paranteze are o valoare diferita de zero) 
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se executa corpul instructiunii while
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se reia testarea si executia pana expresia devine falsa (sau valoarea expresiei din paranteze este zero) 
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se continua executia cu instructiunea de dupa corpul instructiunii while, deci instructiunea while se termina.
+<br><br><center><img src="im_cpp32.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un program care afiseaza primele 10 numere naturale.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// Programul afiseaza primele 10 numere naturale
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int i=1;
+	cout <<" \n\tNumerele sunt: ";
+	while (i<=10)
+	{
+		cout << i << " ";
+		i+=1;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului in "Command Prompt" se afiseaza:
+<br><br><center><img src="im_cpp34.jpg"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatorul program afiseaza 500 numere naturale aleatoare intre 0 si 9.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+int main(void)
+{
+    int i=0;
+	while(i < 500)
+	{
+		cout << rand()%10 <<" ";
+		i++;
+	}
+	
+	cin.ignore();
+	cin.get();
+	return 0;
+}</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului in "Command Prompt" se afiseaza:
+<br><br><center><img src="im_cpp37.jpg"></center>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Schema logica de de mai jos, calculeaza n!. Sa realizam programul care implementeaza aceasta schema logica.
+<br><br><center><img src="../s_logice/im_cpp24.jpg"></center> 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Programul calculeaza n factorial.
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int i=1,n;
+	double fact=1;
+	cout <<" \n\tProgramul calculeaza n Factorial ";
+	cout <<" \n\n\tIntroduceti numarul n: ";
+	cin >> n;
+	while (i<=n)
+	{
+		fact*=i;
+		i+=1;
+	}
+	cout <<" \n\n\tRezultat: "<< n << "! =" << fact;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Schema logica animata a aplicatiei pentru calculul n! prezinta pas cu pas rularea aplicatiei pentru n=4
+<br><br><center><img src="../s_logice/im_cpp24_a.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rularea pas cu pas efectiva a aplicatiei se poate realiza prin plasarea unui Breakpoint in program la inceputul 
+instructiunii repetitive "while".
+<br><br><center><img src="im_cpp42.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa plasarea Breakpoint-ului programul se lanseaza normal dupa care rularea acestuia se va opri la instructiunea 
+corespunzatoare Breakpoint-ului
+<br><br><center><img src="im_cpp43.jpg"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din acest moment se poate rula pas cu pas prin apasarea tastei F10
+<br><br><center><img src="im_cpp44.jpg"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunile repetitive se pot utiliza pentru calculul integralelor functiilor pe diverse intervale.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Tinand cont ca integrala reprezinta aria suprafetei delimitata de functie pe intervalul dat, aceasta arie se poate 
+calcula prin insumarea ariei dreptunghiurilor cuprinse sub graficul functiei pe intervalul dat. Spre exemplu integrala functiei x<sup>2</sup> pe 
+intervalul x0 - x1 este reprezenta in imaginea de jos. 
+<br><br><center><img src="im_cpp18.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cu cat impartim intervalul in mai multe dreptunghiuri, calculul integralei se face cu precizie mai mare. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se poate realiza deci o aplicatie pentru calculul integralei functiei f(x)=x<sup>2</sup>  pe intervalul x0-x1 astfel:
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Programul calculeaza integrala functiei x^2 pe intervalul 0-10
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	double s=0;
+	double x0=0;
+	double x1=10;
+	double nr_pasi=1000000;
+	const double pas=(x1-x0)/nr_pasi;
+	double x=x0;
+	while (x<=x1)
+	{
+		s=s+x*x*pas;
+		x=x+pas;
+	}
+	cout <<" \n\tIntegrala este: " << s;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Primitiva functiei x<sup>2</sup>  este x<sup>3</sup>/3.  Pe intervalul [0-10] integrala este 1000/3=333.333
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca se ruleaza programul cu nr_pasi=1000 obtinem rezultatul 333.834
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca se ruleaza programul cu nr_pasi=10000 obtinem rezultatul 333.383
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca se ruleaza programul cu nr_pasi=100000 obtinem rezultatul 333.338
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca se ruleaza programul cu nr_pasi=1000000 obtinem rezultatul 333.334
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca se ruleaza programul cu nr_pasi=10000000 obtinem rezultatul 333.333
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca eroarea depinde de finetea pasului (numarul de pasi).
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b> while </b> se foloseste la fel si in modul grafic Windows Forms Application. Sa folosim instructiunea while
+pentru a afisa o serie de dreptunghiuri concentrice de forma celor de mai jos:
+<br><br><center><img src="im_cpp14.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> n_dreptunghiuri </b></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <font color="red">"n_dreptunghiuri"</font>. De aceasta data nu mai plasam nici un Buton. Vom 
+pune procedura noastra sa se execute odata cu deschiderea aplicatiei. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul paint al form-ului cu:
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i,j,h,w,d,n=10;
+	// i contor dreptunghiuri concentrice
+	// n nr dreptunghiuri concentrice
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_albastru;
+	Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	h=this->Height-30;	//inaltimea maxima a dreptunghiurilor
+	w=this->Width;		//latimea maxima a dreptunghiului
+	d=h/2/n;		//distanta intre doua dreptunghiuri concentrice			
+	i=0;				
+	while (i<=d*n){
+		Desen->DrawRectangle(Creion_albastru, i+10, i+10, (w-30-2*i), (h-30-2*i));
+		i+=d;
+	}
+	delete Creion_albastru;
+	delete Desen;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca inainte de trasarea dreptunghiurilor s-a sters ecranul cu instructiunea:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Desen->Clear(System::Drawing::Color(this->BackColor));</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea: <b>Desen->DrawRectangle(Creion_albastru, i+10, i+10, (w-30-2*i), (h-30-2*i));</b> traseaza
+un dreptunghi incepand cu pozitia x1=i la care s-a adaugat o margine de 10 pixeli si y1=i la care s-a adaugat o margine de 10 pixeli. Latimea
+dreptunghiului este w latimea maxima calculata - 2 margini de 15 pixeli adica 30 -2*i adica. I se incrementeaza cu d, d fiind distanta calculata intre doua dreptunghiuri
+Inaltimea este h -30-2*i similar cu latimea dreptunghiului.
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i,j,h,w,d,n=10;
+	// i contor dreptunghiuri concentrice
+	// n nr dreptunghiuri concentrice
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_albastru;
+	Creion_albastru =new System.Drawing.Pen(System.Drawing.Color.Blue);
+	Desen.Clear(this.BackColor);
+	h=this.Height-30;	//inaltimea maxima a dreptunghiurilor
+	w=this.Width;		//latimea maxima a dreptunghiului
+	d=h/2/n;		//distanta intre doua dreptunghiuri concentrice			
+	i=0;				
+	while (i<=d*n){
+		Desen.DrawRectangle(Creion_albastru, i+10, i+10, (w-30-2*i), (h-30-2*i));
+		i+=d;
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; In cadrul instructiunii while se pot insera si alte instructiuni de exemplu instructiunea <b> if </b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi in continuare instructiunea <b> if </b> in cadrul instructiunii <b> while </b> in modul grafic Windows Forms Application pentru a
+desena mai multe dreptunghiuri de dimensiuni aleatoare pentru a imita blocurile turn din centrul unui oras. 
+<br><br><center><img src="im_cpp40.jpg"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> turnuri </b></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect C# Windows Forms Application intitulat <font color="red">"turnuri"</font>. Vom pune procedura pentru desenarea turnurilor
+sa se execute odata cu deschiderea aplicatiei si anume pe evenimentul "paint".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a obtine valori aleatoare, vom crea un obiect n prin instantierea clasei "System.Random" si vom 
+invoca metoda "Next". 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul paint al form-ului cu:
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+         	int i, x1, y1, w, h;
+           	System.Drawing.Graphics Desen;
+           	System.Drawing.SolidBrush Pens_g, Pens_w;
+           	System.Drawing.Pen Creion_g;
+			Desen = this.CreateGraphics();
+           	Pens_g = new System.Drawing.SolidBrush(System.Drawing.Color.LightGray);
+           	Pens_w = new System.Drawing.SolidBrush(System.Drawing.Color.WhiteSmoke);
+           	Creion_g = new System.Drawing.Pen(System.Drawing.Color.Gray, 3);
+           	System.Random n = new System.Random();
+           	Desen.Clear(this.BackColor);
+           	i = 0;
+          	while (i <= 50)
+           	{
+               		x1 = n.Next(this.Width);
+               		y1 = n.Next(this.Height);
+               		w = n.Next(75);
+               		h = this.Height - y1;
+               		if (i % 2 == 0)
+               		{
+                   		Desen.DrawRectangle(Creion_g, x1, y1, w, h);
+                   		Desen.FillRectangle(Pens_g, x1 + 1, y1 + 1, w - 1, h - 1);
+               		}
+               		else
+               		{
+                   		Desen.DrawRectangle(Creion_g, x1, y1, w, h);
+                   		Desen.FillRectangle(Pens_w, x1 + 1, y1 + 1, w - 1, h - 1);
+               		}
+               		i++;
+           	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+
+ 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Ingineria electrica se ocupa in general de studiul si utilizarea semnalelor electice de diferite forme, valori si intensitati. 
+Un mare rol important il are analiza semnalelor electrice, analiza care presupune in primul rand vizualizarea acestora. Exista o serie de dispozitive 
+menite sa afiseze formele de unda a diferitelor semnale electrice (osciloscoape, vobuloscoape, analizoare spectrale etc..). 
+De multe ori aceste semnale pot fi modelate matematic si simulate pe calculator. Vom incerca in continuare sa folosim programarea in mod grafic pentru 
+a afisa diverse forme de unda ale diferitelor semnale electrice. Vom incepe prin a genera un grid peste care urmeaza in viitor sa trasam formele de unda.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa incercam sa realizam aplicatia care traseaza urmatorul grid pe ecran:
+<br><br><center><img src="im_cpp11.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> grid </b></center>    
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat<font color="red"> "grid"</font>. Nu inseram nici un obiect pe form.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul paint al form-ului cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_gri;
+	Creion_gri=gcnew System::Drawing::Pen(System::Drawing::Color::LightGray);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	// linii verticale
+	while (i<=this->Width){
+	Desen->DrawLine(Creion_gri, i, 0, i,this->Height);
+	i+=10;
+	}
+	// linii orizontale
+	i=0;
+	while (i<=this->Height){
+	Desen->DrawLine(Creion_gri, 0, i,this->Width,i);
+	i+=10;
+	}
+	delete Creion_gri;
+	delete Desen;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_gri;
+	Creion_gri=new System.Drawing.Pen(System.Drawing.Color.LightGray);
+	Desen.Clear(this.BackColor);
+	// linii verticale
+	while (i<=this.Width){
+	Desen.DrawLine(Creion_gri, i, 0, i,this.Height);
+	i+=10;
+	}
+	// linii orizontale
+	i=0;
+	while (i<=this.Height){
+	Desen.DrawLine(Creion_gri, 0, i,this.Width,i);
+	i+=10;
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca inainte de trasarea liniilor orizontale si verticale s-a sters ecranul cu instructiunea:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Desen->Clear(System::Drawing::Color(this->BackColor));</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca dorim sa accentuam unele linii adica sa realizam un grid mai mare peste gridul mic sa zicem tot la 5 griduri mici
+sa trasam cate un grid mai mare procedam astfel: daca ne aflam pe pozitia 10*5=50 schimbam culoarea cu un  gri mai intens si optinem imaginea:
+<br><br><center><img src="im_cpp12.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> grid_mm </b></center>  
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+    	System::Drawing::Pen^ Creion_gri_d;
+	Creion_gri_d=gcnew System::Drawing::Pen(System::Drawing::Color::LightGray);
+	System::Drawing::Pen^ Creion_gri;
+	Creion_gri=gcnew System::Drawing::Pen(System::Drawing::Color::Gray);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	
+	// linii verticale
+	while (i<=this->Width){
+		if (i%50==0)
+			Desen->DrawLine(Creion_gri, i, 0, i,this->Height);
+		else
+			Desen->DrawLine(Creion_gri_d, i, 0, i,this->Height);
+	i+=10;
+	}
+	// linii orizontale
+	i=0;
+	while (i<=this->Height){
+		if (i%50==0)
+			Desen->DrawLine(Creion_gri, 0, i,this->Width,i);
+		else
+			Desen->DrawLine(Creion_gri_d, 0, i,this->Width,i);
+	i+=10;
+	}
+	delete Creion_gri_d;
+	delete Creion_gri;
+	delete Desen;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen  Creion_gri_d;
+	Creion_gri_d=new System.Drawing.Pen(System.Drawing.Color.LightGray);
+	System.Drawing.Pen Creion_gri;
+	Creion_gri=new System.Drawing.Pen(System.Drawing.Color.Gray);
+	Desen.Clear(this.BackColor);
+	
+	// linii verticale
+	while (i<=this.Width){
+		if (i%50==0)
+			Desen.DrawLine(Creion_gri, i, 0, i,this.Height);
+		else
+			Desen.DrawLine(Creion_gri_d, i, 0, i,this.Height);
+	i+=10;
+	}
+	// linii orizontale
+	i=0;
+	while (i<=this.Height){
+		if (i%50==0)
+			Desen.DrawLine(Creion_gri, 0, i,this.Width,i);
+		else
+			Desen.DrawLine(Creion_gri_d, 0, i,this.Width,i);
+	i+=10;
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca s-a folosit functia <b> % </b> numita si functia <b>mod</b> functie care ne returneaza restul impartirii. In
+cazul de fata am testat daca restul impartirii lui i cu 50 este 0 si atunci am schimbat culoare de la gri_d la gri.
+
+<br><br><a name="while_i"></a>
+<font color= "blue" size=5> Instructiuni while imbricate:</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunile <b>while</b> se pot insera unele in altele pe oricate nivele. Se spune ca s-a imbricat o instructiune while
+in alta instructiune while. Sa reluam aplicatia de desenare a n dreptunghiuri concentrice si sa desenam m grupuri de cite n dreptunghiuri concentrice. 
+Vezi imaginea de jos.:
+<br><br><center><img src="im_cpp13.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> n_x_m_dreptunghiuri </b></center>  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Singura diferenta se gaseste in procedura atasata evenimentului pain al form-ului care devine:
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i,j,h,w,d,m=3,n=10;
+	// j contor dreptunghiuri
+	// i contor dreptunghiuri concentrice
+	// m nr dreptunghiuri
+	// n nr dreptunghiuri concentrice
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_albastru;
+	Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	h=this->Height-30;	//inaltimea maxima a dreptunghiurilor
+	w=this->Width/m;	//latimea maxima a dreptunghiului
+	d=w/2/n;			// distanta intre doua dreptunghiuri concentrice
+	j=0;				
+	while (j<=m*w){
+		i=0;				
+		while (i<=d*n){
+				Desen->DrawRectangle(Creion_albastru, j+i+10, i+10, (w-20-2*i), (h-20-2*i));
+				i+=d;
+			}
+		j+=w;
+		}
+	delete Creion_albastru;
+	delete Desen;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i,j,h,w,d,m=3,n=10;
+	// j contor dreptunghiuri
+	// i contor dreptunghiuri concentrice
+	// m nr dreptunghiuri
+	// n nr dreptunghiuri concentrice
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing::Pen Creion_albastru;
+	Creion_albastru =new System.Drawing.Pen(System.Drawing.Color.Blue);
+	Desen.Clear(this.BackColor);
+	h=this.Height-30;	//inaltimea maxima a dreptunghiurilor
+	w=this.Width/m;	//latimea maxima a dreptunghiului
+	d=w/2/n;			// distanta intre doua dreptunghiuri concentrice
+	j=0;				
+	while (j<=m*w){
+		i=0;				
+		while (i<=d*n){
+				Desen.DrawRectangle(Creion_albastru, j+i+10, i+10, (w-20-2*i), (h-20-2*i));
+				i+=d;
+			}
+		j+=w;
+		}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="do"></a>
+<font color= "blue" size=5> Instructiunea do while :</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>do while</b> Se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni atata timp
+cat o expresie este adevarata, insa testul are loc dupa executia instructiunii deci ea se va executa cel putin o data.
+<br><li><b>Formatul instructiunii:</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>do while</b> are urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>do instructiune;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;while (expresie);</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea se executa repetat pîna cînd expresia devine falsa. Testul are loc dupa fiecare executie a instructiunii.
+<br><br><center><img src="im_cpp33.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca vrem sa calculam aria sectiunii unui conductor electric. Programul cere diametrul conductorului
+si afiseaza aria sectiunii conductorului. In cazul ca avem de calculat mai multe sectiuni pentru diferite cabluiri, trebuie de fiecare data sa lansam programul, sa dam
+diametrul si dupa afisarea rezultatului, programul se termina si trebuie lansat din nou. Vom completa programul cu interbarea :Continuati(D/N) ? si daca
+raspunsul este D sa reluam executia pana se raspunde cu "N". Practic este ideal de folosit instructiunea do while care executa instructiunea si
+pe urma testeaza daca e adevarata expresia.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// Program pentru calculul sectiunii unui conductor electric
+// Se citeste diametrul conductorului electric se afiseaza aria sectiunii lui 
+// Se reia programul pana se raspunde cu N la intrebarea : "Continuati ?"
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	double d,s;
+	char c='D';
+	cout <<" \nProgram pentru calculul sectiunii unui conductor electric";
+	do {
+		cout <<" \n\n\tIntroduceti diametrul conductorului:";
+		cin >> d;
+		s=System::Math::PI*(d/2)*(d/2);
+		cout <<" \n\n\tSectiunea conductorului de diametru : "<< d << " este : " << s;
+		cin.ignore();
+		cout <<" \n\n\tContinuati (D/N) ?:";
+		cin >> c;
+	} while (c=='D' || c=='d' );
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru optimizare am putea sa eliminam intrebarea :Continuati? si sa continuam programul pana se introduce 0 pentru diametru.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In acest caz programul devine:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// Program pentru calculul sectiunii unui conductor electric
+// Se citeste diametrul conductorului electric se afiseaza aria sectiunii lui 
+// Programul se reia pana se introduce valoarea 0 la diametru
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	double d,s;
+	cout <<" \nProgram pentru calculul sectiunii unui conductor electric";
+	do {
+	cout <<" \n\n\tIntroduceti diametrul conductorului (0=terminare program):";
+	cin >> d;
+	s=System::Math::PI*(d/2)*(d/2);
+	cout <<" \n\n\tSectiunea conductorului de diametru : "<< d << " este : " << s;
+	cin.ignore();
+	} while (d!=0 );
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosin instructiunea <b> do while </b>, sa realizam programul care traseaza mai multe linii pe formul deschis de forma imaginii de jos:
+<br><br><center><img src="im_cpp10.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> linii_m </b></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat<font color="red"> "linii_m"</font> si plasam un Buton cu numele button1 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul click al butonului1 cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+    	System::Drawing::Pen^ Creion_albastru;
+	Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	do {
+		Desen->DrawLine(Creion_albastru, this->Width/2, 0, i, this->Height-30);
+		i+=10;
+	}
+	while (i<=this->Width);
+	
+	delete Desen;
+	delete Creion_albastru;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+    	System.Drawing.Pen Creion_albastru;
+	Creion_albastru =new System.Drawing.Pen(System.Drawing.Color.Blue);
+	do {
+		Desen.DrawLine(Creion_albastru, this.Width/2, 0, i, this.Height-30);
+		i+=10;
+	}
+	while (i<=this.Width);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosin instructiunea <b> do while </b>, sa realizam un prgram ce deseneaza ceva asemanator stalactitelor.
+<br><br><center><img src="im_cpp41.jpg"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> stalactite </b></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect C# Windows Forms Application intitulat<font color="red"> "stalactite"</font> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul paint cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+            int x1, y1, w, h;
+            int nr_s = 20;
+            System.Drawing.Graphics Desen;
+            Desen = this.CreateGraphics();
+            System.Drawing.Pen Creion_g;
+            Creion_g = new System.Drawing.Pen(System.Drawing.Color.LightGray, 2);
+            System.Random n = new System.Random();
+            Desen.Clear(this.BackColor);
+            x1 = 0;
+            do
+            {
+                y1 = 0;
+                w = 3 + n.Next(12);
+                h = n.Next(this.Height);
+                Desen.DrawLine(Creion_g, x1, y1, x1 + w / 2, h);
+                Desen.DrawLine(Creion_g, x1 + w, y1, x1 + w / 2, h);
+                x1 = x1 + this.Width / nr_s;
+            }
+            while (x1 <= this.Width);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosin instructiunea <b> do while </b>, sa realizam un prgram ce deseneaza 20 de cercuri aleatoare.
+<br><br><center><img src="im_cpp26.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> cercuri aleatoare </b></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect C# Windows Forms Application intitulat<font color="red"> "cercuri_rnd"</font> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul paint cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+            int i, x0, y0, w;
+            System.Drawing.Graphics Desen;
+            System.Random n;
+            System.Drawing.Pen Creion_albastru;
+            Desen = this.CreateGraphics();
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            n = new System.Random();
+            w = 30;
+            i = 0;
+            do
+            {
+                x0 = n.Next(this.Width-w);
+                y0 = n.Next(this.Height-w);
+                Desen.DrawEllipse(Creion_albastru, x0, y0, w, w);
+                i ++;
+            }
+            while (i < 20);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa desenam acum folosind instructiunea "do while", graficul functiei sinus
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <font color="red">"sinus_v0"</font >. 
+Procedura de desenare se va execute odata cu deschiderea aplicatiei pe evenimentul paint. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul paint al form-ului cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_blue;
+	Creion_blue=gcnew System::Drawing::Pen(System::Drawing::Color::DeepSkyBlue);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	do {
+		int factor_s=this->Height/2-22;
+		int y=5+factor_s*(1-System::Math::Sin(0.0314*i));
+		Desen->DrawLine(Creion_blue, i, this->Height, i, y);
+		i+=2;
+	}
+	while (i<=this->Width);
+	delete Creion_blue;
+	delete Desen;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_blue;
+	Creion_blue=new System.Drawing.Pen(System.Drawing.Color.DeepSkyBlue);
+	Desen.Clear(this.BackColor);
+	do {
+		int factor_s=this.Height/2-22;
+		int y = System.Convert.ToInt16(5 + factor_s * (1 - System.Math.Sin(0.0314 * i)));
+		Desen.DrawLine(Creion_blue, i, this.Height, i, y);
+		i+=2;
+	}
+	while (i<=this.Width);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului ecranul aplicatiei afieaza:
+<br><br><center><img src="im_cpp9.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> sinus_v0 </b></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se vede in procedura ce se activeaza pe evenimentul "paint" al form-ului s-a folosit variabila "factor_s" pentru
+a defini factorul de scala. Avand in vedere ca vrem sa afisam graficul functiei sin(i) si sa dimensionam graficul in functie de marimea ferestrei deschise, 
+definim acest factor de scala ca fiind:<br><b>this->Height/2-22</b> adica inaltimea form-ului curent/2-22( 22 de pixeli pentru a scadea latimea benzii de sus
+a formului in jur de 17 pixeli +5 pixeli loc liber) pentru a marca mijlocul form-ului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Stiind ca sin(i) poate lua valori inte +1 si -1, inmultim cu factorul de scala si graficul va fi desfasurat pe aproape toata 
+zona libera din form.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Valorile functiei sin(i) se calculeaza cu expresia:<b>int y=5+factor_s*(1-System::Math::Sin(0.0314*i));</b>, unde am adaugat 5 
+pixeli pentru margine si valoarea functiei sin inmultita cu factorul de scala. I ia valori intre 0 si latimea form-ului cu increment 2. Am folosit increment 2
+deoarece pentru increment 1 nu s-ar mai vedea liniile, ele fiind una langa alta, s-ar vedea o zona compacta. De ce am folosit sin(0.0314*i) si nu sin(i)?
+<br>&nbsp;&nbsp;&nbsp;&nbsp;I ia valori intre 0 si this->Width. Am vrea sa afisam o semi-perioada pe 100 de puncte. Perioada functiei sin fiid 2 pi radiani
+ar rezulta 3,14/100 adica 0.0314.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Putem imbunatati aplicatia de sus si sa cerem numarul de perioade care sa fie afisate, iar afisarea sa nu se mai faca folosind
+linii verticale ci linii care sa uneasca doua puncte consecutive. Vom introduce un obiect NumericUpDown cu numele "numericUpDown1" iar pe evenimentul
+"ValueChanged" vom introduce procedura:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0,y=0,y_v=0,lat,factor_s;
+	double x,rad;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_blu;
+	Creion_blu=gcnew System::Drawing::Pen(System::Drawing::Color::DeepSkyBlue);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	factor_s=this->Height/2-37;
+	rad=System::Convert::ToDouble(this->numericUpDown1->Value);
+	lat=this->Width;
+	do {
+		x=i*rad*System::Math::PI/(lat-10);
+		y=35+factor_s*(1-System::Math::Sin(x));
+		Desen->DrawLine(Creion_blu, i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+	while (i<=lat);
+	delete Creion_blu;
+	delete Desen;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0,y=0,y_v=0,lat,factor_s;
+	double x,rad;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_blu;
+	Creion_blu=new System.Drawing.Pen(System.Drawing.Color.DeepSkyBlue);
+	Desen.Clear(this.BackColor);
+	factor_s=this.Height/2-37;
+	rad=System.Convert.ToDouble(this.numericUpDown1.Value);
+	lat=this.Width;
+	do {
+		x=i*rad*System.Math.PI/(lat-10);
+		y=System.Convert.ToInt16(35+factor_s*(1-System.Math.Sin(x)));
+		Desen.DrawLine(Creion_blu, i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+	while (i<=lat);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia, setam butonul numericUpDown1 la valoarea 10 si obtinem:
+<br><br><center><img src="im_cpp5.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> sinus_v1 </b></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca:<br>
+<ul>
+<li>-la factorul de scala :<b> factor_s=this->Height/2-37; </b> am scazut 37 pentru a avea loc si pentru butonul numericUpDown1
+<li>-numarul de radiani pentru care se afiseaza functia s-a calculat cu: <b>rad=System::Convert::ToDouble(this->numericUpDown1->Value);</b>
+<li>-valorile lui x se calculeaza pentru fiecare i astfel: <b>x=i*rad*System::Math::PI/(lat-10);</b>10 fiind latimea border-ului form-ului
+<li>-latimea ferestrei in care se afiseaza este: <b>lat=this->Width;</b>
+<li>-pentru i parcurgand intervalui i...lat, x ia valorile 0...rad 
+</ul>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa incercam sa afisam forma de unda a tensiunii trifazate, compusa din trei sinusoide defazate intre ele cu cate
+2*pi/3
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia este asemanatoare cu cea anterioara cu deosebirea ca initializam trei creoane de culorile rosu, galben, albastru ,culori
+consacrate pentru cele 3 faze: R S T si afisarea a trei sinusoide defazate intre ele cu cate 2*pi/3
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0,y=0,y_v=0,lat,factor_s;
+	double x,rad;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_r;
+	Creion_r=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	System::Drawing::Pen^ Creion_g;
+	Creion_g=gcnew System::Drawing::Pen(System::Drawing::Color::Yellow);
+	System::Drawing::Pen^ Creion_a;
+	Creion_a=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	factor_s=this->Height/2-37;
+	rad=System::Convert::ToDouble(this->numericUpDown1->Value);
+	lat=this->Width;
+	i=0;
+	do {
+		x=i*rad*System::Math::PI/(lat-10);
+		y=35+factor_s*(1-System::Math::Sin(x));
+		Desen->DrawLine(Creion_r, i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+	while (i<=lat);
+	i=0;
+	do {
+		x=(i+2*lat/rad/3)*rad*System::Math::PI/(lat-10);
+		y=35+factor_s*(1-System::Math::Sin(x));
+		Desen->DrawLine(Creion_g, i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+	while (i<=lat);
+	i=0;
+	do {
+		x=(i+4*lat/rad/3)*rad*System::Math::PI/(lat-10);
+		y=35+factor_s*(1-System::Math::Sin(x));
+		Desen->DrawLine(Creion_a, i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+	while (i<=lat);
+	delete Creion_r;
+	delete Creion_g;
+	delete Creion_a;
+	delete Desen;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0,y=0,y_v=0,lat,factor_s;
+	double x,rad;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_r;
+	Creion_r=new System.Drawing.Pen(System.Drawing.Color.Red);
+	System.Drawing.Pen Creion_g;
+	Creion_g=new System.Drawing.Pen(System.Drawing.Color.Yellow);
+	System.Drawing.Pen Creion_a;
+	Creion_a=new System.Drawing.Pen(System.Drawing.Color.Blue);
+	Desen.Clear(this.BackColor);
+	factor_s=this.Height/2-37;
+	rad=System.Convert.ToDouble(this.numericUpDown1.Value);
+	lat=this.Width;
+	i=0;
+	do {
+		x=i*rad*System.Math.PI/(lat-10);
+		y=System.Convert.ToInt16(35+factor_s*(1-System.Math.Sin(x)));
+		Desen.DrawLine(Creion_r, i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+	while (i<=lat);
+	i=0;
+	do {
+		x=(i+2*lat/rad/3)*rad*System.Math.PI/(lat-10);
+		y=System.Convert.ToInt16(35+factor_s*(1-System.Math.Sin(x)));
+		Desen.DrawLine(Creion_g, i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+	while (i<=lat);
+	i=0;
+	do {
+		x=(i+4*lat/rad/3)*rad*System.Math.PI/(lat-10);
+		y=System.Convert.ToInt16(35+factor_s*(1-System.Math.Sin(x)));
+		Desen.DrawLine(Creion_a, i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+	while (i<=lat);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia, setam butonul numericUpDown1 la valoarea 3 si obtinem:
+<br><br><center><img src="im_cpp4.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> u_trifazica </b></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Graficele desenate pana acum au fost realizate in coordonate carteziene. Modul de reprezentare in sistemul cartezian 
+de coordonate, nu este singurul mod in care se pot reprezenta grafic functiile matematice. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sistemul polar de coordonate este un sistem de coordonate bidimensional în care fiecarui punct din plan i se asociaza 
+un unghi si o distanta. Fiecare punct este determinat de doua coordonate polare: coordonata radiala si coordonata unghiulara.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; - Coordonata radiala (notata de obicei cu r) reprezinta distanta unui punct fata de un punct central, numit pol 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; - Coordonata unghiulara (cunoscuta si sub numele de unghi polar, sau azimut, si notata cu t) reprezinta unghiul
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cele doua coordonate polare r si t pot fi convertite în coordonate carteziene x si y prin utilizarea functiilor 
+trigonometrice sinus si cosinus astfel:
+<ul>
+ <li> x=r*cos(t)
+ <li> y=r*sin(t)
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Sa incercam sa reprezentam grafic in coordonate polare functia:
+<ul>
+ <li> r(t)=cos(3*t)
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Functia se mai numeste si roza polara cu 3 petale.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Roza polara este o curba matematica celebra care arata ca o floare cu petale si care poate fi exprimata ca o ecuatie 
+polara simpla, de forma r(t)=cos(3*t).Daca n este întreg, aceasta ecuatie produce o roza cu n petale, daca n este impar, sau cu 2n petale daca este 
+par. Daca n este rational dar nu întreg, o forma asemanatoare cu roza ar putea aparea, dar va avea petale suprapuse. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Tinand cont de ecuatiile de transformare in coordonate carteziene,
+<ul>
+ <li> x=r*cos(t)
+ <li> y=r*sin(t)
+</ul>
+<br> si de ecuatia rozei polare cu 3 petale:
+<ul>
+ <li> r(t)=cos(3*t)
+</ul>
+<br>vom obtine expresiile lui x si y de forma:
+<ul>
+ <li> x=cos(3*t)*cos(t);
+ <li> y=cos(3*t)*sin(t);
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;T ia valori intre o si 2pi adica 0 si 6.3 radiani
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Tinand cont ca x si y vor lua valori intere -1 si 1 trebuie sa le inmultim cu un factor de scala=inaltimea form-ului/2.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a incepe din mijlocul formulul x si y trebuie adunati cu x0 respectiv y0 
+<ul>
+ <li> x0=latimea formului/2
+ <li> y0=inaltimea form-ului/2
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect in Windows Forms Application numit <font color="red"> r_polara </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul paint punem procedura:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	double t=0;
+	int x_v,y_v,x,y,x0,y0;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_albastru = gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	x0=(this->Width-50)/2;
+	y0=(this->Height-50)/2;
+	x_v=x0+x0*System::Math::Cos(3*t)*System::Math::Cos(t);
+	y_v=y0+y0*System::Math::Cos(3*t)*System::Math::Sin(t);
+	do {
+	x=x0+x0*System::Math::Cos(3*t)*System::Math::Cos(t);
+	y=y0+y0*System::Math::Cos(3*t)*System::Math::Sin(t);
+	Desen->DrawLine(Creion_albastru, x_v, y_v, x, y);
+	x_v=x;
+	y_v=y;
+	t+=0.001;
+	}
+	while (t<=6.3);
+	delete Desen;
+	delete Creion_albastru;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	double t=0;
+	int x_v,y_v,x,y,x0,y0;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+	Desen.Clear(this.BackColor);
+	x0=(this.Width-50)/2;
+	y0=(this.Height-50)/2;
+	x_v=System.Convert.ToInt16(x0+x0*System.Math.Cos(3*t)*System.Math.Cos(t));
+	y_v=System.Convert.ToInt16(y0+y0*System.Math.Cos(3*t)*System.Math.Sin(t));
+	do {
+	x=System.Convert.ToInt16(x0+x0*System.Math.Cos(3*t)*System.Math.Cos(t));
+	y=System.Convert.ToInt16(y0+y0*System.Math.Cos(3*t)*System.Math.Sin(t));
+	Desen.DrawLine(Creion_albastru, x_v, y_v, x, y);
+	x_v=x;
+	y_v=y;
+	t+=0.001;
+	}
+	while (t<=6.3);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului, obtinem:
+<br><br><center><img src="im_cpp20.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> r_polara </b></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; - Pe baza aplicatiei de mai sus sa realizam un nou proiect in Windows Forms Application numit <b> r_polara_n </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; - Plasam un obiect de tip NumericUpDown cu numele numericUpDown1 pentru a permite introducerea ordinului n
+<br>&nbsp;&nbsp;&nbsp;&nbsp; - Pe evenimentul ValueChanged plasam procedura:
+
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	double t=0,n;
+	int x_v,y_v,x,y,x0,y0;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_albastru = gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	x0=(this->Width-50)/2;
+	y0=(this->Height-50)/2;
+	n=System::Convert::ToDouble(this->numericUpDown1->Value);
+	x_v=x0+x0*System::Math::Cos(n*t)*System::Math::Cos(t);
+	y_v=y0+y0*System::Math::Cos(n*t)*System::Math::Sin(t);
+	do {
+		x=x0+x0*System::Math::Cos(n*t)*System::Math::Cos(t);
+		y=y0+y0*System::Math::Cos(n*t)*System::Math::Sin(t);
+		Desen->DrawLine(Creion_albastru, x_v, y_v, x, y);
+		x_v=x;
+		y_v=y;
+		t+=0.001;
+	}
+	while (t<=6.3);
+	delete Desen;
+	delete Creion_albastru;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	double t=0,n;
+	int x_v,y_v,x,y,x0,y0;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_albastru =new System.Drawing.Pen(System.Drawing.Color.Blue);
+	Desen.Clear(this.BackColor);
+	x0=(this.Width-50)/2;
+	y0=(this.Height-50)/2;
+	n=System.Convert.ToDouble(this.numericUpDown1.Value);
+	x_v=System.Convert.ToInt16(x0+x0*System.Math.Cos(n*t)*System.Math.Cos(t));
+	y_v=System.Convert.ToInt16(y0+y0*System.Math.Cos(n*t)*System.Math.Sin(t));
+	do {
+		x=System.Convert.ToInt16(x0+x0*System.Math.Cos(n*t)*System.Math.Cos(t));
+		y=System.Convert.ToInt16(y0+y0*System.Math.Cos(n*t)*System.Math.Sin(t));
+		Desen.DrawLine(Creion_albastru, x_v, y_v, x, y);
+		x_v=x;
+		y_v=y;
+		t+=0.001;
+	}
+	while (t<=6.3);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului, modificam NumericUpDown la 8 si obtinem:
+<br><br><center><img src="im_cpp21.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> r_polara_n </b></center>
+
+<br><br><a name="do_i"></a>
+<font color= "blue" size=5> Instructiuni do while imbricate:</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunile <b>do while</b> pot fi imbricate putindu-se astfel implementa algoritmi cu un grad inalt de complexitate.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa incercam sa afisam pe ecran cercuri de diametru 25, cercuri asezate pe linii si coloane astfel incat sa umplem tot 
+ecranul indiferent de marimea form-ului deschis. Vezi imaginea de jos
+<br><br><center><img src="im_cpp15.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> cercuri </b></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <font color="red">"cercuri"</font>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul paint al form-ului cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0,j=0;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+    	System::Drawing::Pen^ Creion_rosu;
+	Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	do{
+		i=0;
+		do{
+			Desen->DrawEllipse( Creion_rosu, i, j, 25,25);
+			i+=30;
+		}while (i<=this->Width-30);
+		j+=30;
+	}while (j<=this->Height-50);
+	delete Creion_rosu;
+	delete Desen;
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0,j=0;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+   	System.Drawing.Pen Creion_rosu;
+	Creion_rosu=new System.Drawing.Pen(System.Drawing.Color.Red);
+	Desen.Clear(this.BackColor);
+	do{
+		i=0;
+		do{
+			Desen.DrawEllipse( Creion_rosu, i, j, 25,25);
+			i+=30;
+		}while (i<=this.Width-30);
+		j+=30;
+	}while (j<=this.Height-50);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pe baza aplicatiei "linii_m", folosind instructiuni Do while imbricate, sa realizam imaginea de jos:
+<br><br><center><img src="im_cpp25.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> munti </b></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect C# Windows Forms Application intitulat <font color="red">"munti"</font>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul paint al form-ului cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+            int i,j, x0, y0, w;
+            System.Drawing.Graphics Desen;
+            System.Random n;
+            System.Drawing.Pen Creion_albastru;
+            Desen = this.CreateGraphics();
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            n = new System.Random();
+            j = 0;
+            do
+            {
+                w = n.Next(this.Width);
+                x0 = n.Next(this.Width);
+                y0 = n.Next(this.Height);
+                i = x0-w/2;
+                do
+                {
+                    Desen.DrawLine(Creion_albastru, x0, y0, i, this.Height - 30);
+                    i += 10;
+                }
+                while (i < x0 + w);
+            
+            j++;
+            }
+            while (j < 10);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><a name="for"></a>
+<font color= "blue" size=5> Instructiunea for :</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>for</b> Se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni. De obicei
+implementeaza structura ciclica cu numar cunoscut de pasi.
+<br><li><b>Formatul instructiunii:</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>for</b> are urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>for ([expresie1]; [expresie2]; [expresie3]) instructiune</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aceasta instructiune este echivalenta cu:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>expresie1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;while (expresie2) {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;expresie3;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Unde :
+<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie1 constituie initializarea ciclului si se executa o singura data înaintea ciclului. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie2 specifica testul care controleaza ciclul. El se executa înaintea fiecarei iteratii. 
+Daca conditia din test este adevarata atunci se executa corpul ciclului, dupa care se executa expresie3, care consta de cele mai multe ori în 
+modificarea valorii variabilei de control al ciclului. Se revine apoi la reevaluarea conditiei. Ciclul se termina cînd expresie2 devine falsa.
+<br><br><center><img src="im_cpp31.jpg"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Oricare dintre expresiile instructiunii for sau chiar toate pot lipsi.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca lipseste expresie2, atunci clauza while este echivalenta cu while (1), ceea ce înseamna o conditie totdeauna adevarata. Alte omisiuni de expresii sînt pur si simplu eliminate din expandarea de mai sus.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunile while si for executa testul de control la începutul ciclului si înaintea intrarii în corpul instructiunii.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea do executa cel putin o data instructiunea sau secventa de instructiuni.
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un program (folosind instructiunea for) pentru afisarea numerelor de la 0 la 100 sub forma unui tabel cu 5 coloane
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	cout << " Numerele afisate pe 5 coloane sunt:\n";
+	for(int i=0; i<=100; i++)
+	{
+		if(i%5==0)
+			cout<<"\n";
+		cout << i << " \t";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un program (folosind instructiunea for) pentru afisarea patratelor primelor 100 de numere naturale
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+int main(void)
+{
+	cout << " Primele 100 de patrate sunt:\n";
+	int p=1;
+	for(int i=0; i<100; i++)
+	{
+		if(i%5==0)
+			cout<<"\n";
+		cout << p*p <<" \t";
+		p++;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un program (folosind instructiunea for) pentru a afisa 100 de numere aleatoare
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+int main(void)
+{
+	cout << " 100 de numere aleatoare intre 0 si " << RAND_MAX << "\n";
+	for(int i=0; i < 100; i++)
+	{
+		if(i%5==0)
+			cout<<"\n";
+		cout << rand() <<" \t";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un program (folosind instructiunea for) pentru a afisa 100 de numere aleatoare intre 0 si 700
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+int main(void)
+{
+	cout << " 100 de numere aleatoare intre 0 si 700 \n";
+	for(int i=0; i < 100; i++)
+	{
+		if(i%5==0)
+			cout<<"\n";
+		cout << rand()%700 <<" \t";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un program (folosind instructiunea for) pentru a afisa 100 de numere  aleatoare din alt set
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+int main(void)
+{
+	srand(1000);	
+	cout << " 100 de numere aleatoare intre 0 si " << RAND_MAX << "\n";
+	for(int i=0; i < 100; i++)
+	{
+		if(i%5==0)
+			cout<<"\n";
+		cout << rand() <<" \t";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un program (folosind instructiunea for) pentru a afisa 100 de numere  total aleatoare
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < ctime >    // pentru functia time()
+using namespace std;
+int main(void)
+{
+	int nr;
+	int seed=time(0);
+	srand(seed);
+	nr=rand();	cout << " 100 de numere aleatoare intre 0 si " << RAND_MAX << "\n";
+	for(int i=0; i < 100; i++)
+	{
+		if(i%5==0)
+			cout<<"\n";
+		cout << rand() <<" \t";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un program in spatiul System, program care afiseaza 500 de cifre aleatoare intre 0-9 despartite prin spatiu
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Program scris in C++ Visual Studio 2005 de tipul:CLR console application
+// Se utilizeaza spatiul de nume System::
+// programul afiseaza 500 de cifre aleatoare intre 0-9 despartite prin spatiu
+
+#include "stdafx.h"
+
+using namespace System;
+
+int main(void)
+{
+	System::Random^ n = gcnew System::Random(8);
+	for ( int i=1; i<=500; i++)
+		Console::Write(n->Next(10)+" ");
+		Console::ReadLine();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului in "Command Prompt" se afiseaza:
+<br><br><center><img src="im_cpp37.jpg"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind generatorul de numere aleatoare descris mai sus, sa incercam sa realizam o aplicatie care deseneaza pe ecran 
+figuri geometrice aleatoare de forma:
+<br><br><center><img src="im_cpp16.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> random_dr </b></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <font color="red">"random_dr"</font> . 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul paint al form-ului cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_rosu;
+	Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	System::Drawing::Pen^ Creion_albastru;
+	Creion_albastru=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	System::Random^ n = gcnew System::Random(8);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	i=0;
+	for (i=1; i<=100; i++){
+	 Desen->DrawRectangle(Creion_albastru,n->Next(this->Width),n->Next(this->Height),n->Next(75),n->Next(50));
+	 Desen->DrawEllipse(Creion_rosu,n->Next(this->Width),n->Next(this->Height),n->Next(50),n->Next(75));
+	}
+	delete Creion_rosu;
+	delete Creion_albastru;
+	delete Desen;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_rosu;
+	Creion_rosu=new System.Drawing.Pen(System.Drawing.Color.Red);
+	System.Drawing.Pen Creion_albastru;
+	Creion_albastru=new System.Drawing.Pen(System.Drawing.Color.Blue);
+	System.Random n = new System.Random(8);
+	Desen.Clear(this.BackColor);
+	i=0;
+	for (i=1; i<=100; i++){
+	 Desen.DrawRectangle(Creion_albastru,n.Next(this.Width),n.Next(this.Height),n.Next(75),n.Next(50));
+	 Desen.DrawEllipse(Creion_rosu,n.Next(this.Width),n.Next(this.Height),n.Next(50),n.Next(75));
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa texte in mod grafic desigur se pot folosi etichete carora sa le atribuim textele dorite. De multe ori
+trebuie sa scriem multe texte si la pozitii diferite. Solutia este sa desenam textele la fel cum desenam formele geometrice. Va trebui sa definim si 
+sa initializam un obiect grafic pe care sa "desenam" aceste texte. Ne propunem deci sa scriem texte pe form-ul deschis la diferite coordonate, fara
+a folosi obiecte de tip label.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat<font color="red"> "text_grafic" </font>si plasam un Buton "Start" cu numele button1. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul click al butonului1 cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::SolidBrush^ Pensula;
+	Pensula=gcnew System::Drawing::SolidBrush(System::Drawing::Color::Red);
+	System::Drawing::Font^ font_arial;
+	font_arial=gcnew System::Drawing::Font("Arial",12);
+	System::String^ text_t="Text Arial de marime 12 \n -de culoare rosie \n- scris incepand cu pozitia 20,75";
+	Desen->DrawString(text_t,font_arial,Pensula,20,75);
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.SolidBrush Pensula;
+	Pensula=new System.Drawing.SolidBrush(System.Drawing.Color.Red);
+	System.Drawing.Font font_arial;
+	font_arial=new System.Drawing.Font("Arial",12);
+	System.String text_t="Text Arial de marime 12 \n -de culoare rosie \n- scris incepand cu pozitia 20,75";
+	Desen.DrawString(text_t,font_arial,Pensula,20,75);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Avem deci nevoie de un obiect grafic de tip <b>System::Drawing::Graphics^</b> pe care sa "desenam" numit:"Desen" si o 
+pensula de tip <b>System::Drawing::SolidBrush^</b> numita chiar "Pensula". Mai trebuie sa definim fontul cu care lucram adica :<b>System::Drawing::Font^ font_arial;</b> si
+sa initializam fontul respectiv :<b>font_arial=gcnew System::Drawing::Font("Arial",12);</b> setand numele fontului si inaltimea.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a scrie textul dorit, vom insera linia de cod:<b>Desen->DrawString(text_t,font_arial,Pensula,20,75);</b>, unde textul de tiparit text_t este definit ca:
+<b>System::String^ text_t="Text Arial de marime 12 \n -de culoare rosie \n- scris incepand cu pozitia 20,75";</b> iar 20, 75 reprezinta coordonatele (x1,y1 in pixeli) unde
+incepe textul de afisat.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului avem:
+<br><br><center><img src="im_cpp6.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> text_grafic </b></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosindu-ne de modul de "desenare" ale caracterelor sa incercam sa scriem cifrele de la 1 la 20 pe un form la apasarea unui buton "Start"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <font color="red">"linie_numere"</font> si plasam un Buton "Start" cu numele button1. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul click al butonului1 cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::SolidBrush^ Pensula;
+	Pensula=gcnew System::Drawing::SolidBrush(System::Drawing::Color::DarkOrchid );
+	System::Drawing::Font^ font_nina;
+	font_nina=gcnew System::Drawing::Font("Nina",8);
+	for ( int i=1; i<=20; i++)
+		Desen->DrawString(System::Convert::ToString(i),font_nina,Pensula,10+i*15,50);	
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.SolidBrush Pensula;
+	Pensula=new System.Drawing.SolidBrush(System.Drawing.Color.DarkOrchid );
+	System.Drawing.Font font_nina;
+	font_nina=new System.Drawing.Font("Nina",8);
+	for ( int i=1; i<=20; i++)
+		Desen.DrawString(System.Convert.ToString(i),font_nina,Pensula,10+i*15,50);	
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului ecranul aplicatiei arata astfel:
+<br><br><center><img src="im_cpp8.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> linie_numere </b></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosim din nou sistemul de coordonate polare pentru a afisa o spirala. Spirala are o ecuatie extrem de simpla in 
+sistemul de coordonate polare, fiind echivalentul dreptei in sistemul de coordonate carteziene.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Ecuatia spiralei este:
+<ul>
+ <li>r(t)=a*t&nbsp;&nbsp;&nbsp;&nbsp; , a fiind o constanta ce controleaza distanta dintre brate.
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Pe baza ecuatiilor de conversie in sistemul cartezian:
+<ul>
+ <li> x=r*cos(t)
+ <li> y=r*sin(t)
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Obtinem:
+<ul>
+ <li> x=a*t*cos(t)
+ <li> y=a*t*sin(t)
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a desena 4 spirale, t trebuie sa ia valori intre 0 si 8 radiani .
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <font color="red">"spirala"</font>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul paint al form-ului cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	double t=0;
+	int x_v,y_v,x,y,x0,y0;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_albastru = gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	x0=(this->Width-10)/2;
+	y0=(this->Height-50)/2;
+	x_v=x0+x0*t/30*System::Math::Cos(t);
+	y_v=y0+10+y0*t/30*System::Math::Sin(t);
+	for (t=0; t<=8*System::Math::PI; t+=0.001){
+	x=x0+x0*t/30*System::Math::Cos(t);
+	y=y0+10+y0*t/30*System::Math::Sin(t);
+	Desen->DrawLine(Creion_albastru, x_v, y_v, x, y);
+	x_v=x;
+	y_v=y;
+	}
+	delete Desen;
+	delete Creion_albastru;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	double t=0;
+	int x_v,y_v,x,y,x0,y0;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_albastru =new System.Drawing.Pen(System.Drawing.Color.Blue);
+	Desen.Clear(this.BackColor);
+	x0=(this.Width-10)/2;
+	y0=(this.Height-50)/2;
+	x_v=System.Convert.ToInt16(x0+x0*t/30*System.Math.Cos(t));
+	y_v=System.Convert.ToInt16(y0+10+y0*t/30*System.Math.Sin(t));
+	for (t=0; t<=8*System.Math.PI; t+=0.001){
+	x=System.Convert.ToInt16(x0+x0*t/30*System.Math.Cos(t));
+	y=System.Convert.ToInt16(y0+10+y0*t/30*System.Math.Sin(t));
+	Desen.DrawLine(Creion_albastru, x_v, y_v, x, y);
+	x_v=x;
+	y_v=y;
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; - a=1/30 constanta care da departarea intre brate
+<br>&nbsp;&nbsp;&nbsp;&nbsp; - xo si yo realizeaza scalarea imaginii pe centrul ecranului, imaginea fiind amplasata aproximativ pe centrul form-ului, 
+dupa cum se poate vedea si in imaginea de jos:
+<br><br><center><img src="im_cpp22.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> spirala </b></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a controla numarul de spire plasam un obiect NumericUpDown si plasam urmatoarea procedura pe evenimentul  
+Value Changed cu:
+
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	double t=0,n;
+	int x_v,y_v,x,y,x0,y0;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+    	System::Drawing::Pen^ Creion_rosu =
+    	gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	x0=(this->Width-10)/2;
+	y0=(this->Height-50)/2;
+	n=System::Convert::ToDouble(this->numericUpDown1->Value);
+	x_v=x0+x0*t/30*System::Math::Cos(t);
+	y_v=y0+10+y0*t/30*System::Math::Sin(t);
+	for (t=0; t<=n*System::Math::PI; t+=0.001){
+	x=x0+x0*t/30*System::Math::Cos(t);
+	y=y0+10+y0*t/30*System::Math::Sin(t);
+	Desen->DrawLine(Creion_rosu, x_v, y_v, x, y);
+	x_v=x;
+	y_v=y;
+	}
+	delete Desen;
+	delete Creion_rosu;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	double t=0,n;
+	int x_v,y_v,x,y,x0,y0;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+    	System.Drawing::Pen Creion_rosu =new System.Drawing.Pen(System.Drawing.Color.Red);
+	Desen.Clear(this.BackColor);
+	x0=(this.Width-10)/2;
+	y0=(this.Height-50)/2;
+	n=System.Convert.ToDouble(this.numericUpDown1.Value);
+	x_v=System.Convert.ToInt16(x0+x0*t/30*System.Math.Cos(t));
+	y_v=System.Convert.ToInt16(y0+10+y0*t/30*System.Math.Sin(t));
+	for (t=0; t<=n*System.Math.PI; t+=0.001){
+	x=System.Convert.ToInt16(x0+x0*t/30*System.Math.Cos(t));
+	y=System.Convert.ToInt16(y0+10+y0*t/30*System.Math.Sin(t));
+	Desen.DrawLine(Creion_rosu, x_v, y_v, x, y);
+	x_v=x;
+	y_v=y;
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><a name="for_i"></a>
+<font color= "blue" size=5> Imbricarea instructiunilor for :</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunile <b>for imbricate </b> ne dau posibilitatea sa rezolvam aplicatii in care sunt necesare repetitii
+in cadrul unor repetitii. In cazul masivelor de date, al matricilor este nevoie de astfel de instructiuni imbricate. O simpla afisare de numere
+pe ecran sub forma de linii si coloane necesita instructiuni for imbricate.  Instructiunile for imbricate se folosesc de obicei atunci cand 
+cunoastem numarul de iteratii pentru fiecare ciclu.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa afisam de exemplu numerele de la 100 la 150 pe 15 linii a cate 10 caractere.
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Se utilizeaza spatiul de nume std
+// programul afiseaza numerele de la 100 la 150 pe 15 linii a cate 10 caractere.
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+int main(void)
+{
+	int k=100;
+	for (int j=1; j<=15 ; j++){
+		for ( int i=1; i<=10; i++)
+			cout << k++ << " ";
+		cout <<":\n";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// Se utilizeaza spatiul de nume System::
+// programul afiseaza numerele de la 100 la 150 pe 15 linii a cate 10 caractere.
+
+#include "stdafx.h"
+
+using namespace System;
+
+int main(void)
+{
+	int k=100;
+	for (int j=1; j<=15 ; j++){
+		for ( int i=1; i<=10; i++)
+			Console::Write(k++ + " ");
+		Console::WriteLine(":");
+	}
+    Console::ReadLine();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului in "Command Prompt" se afiseaza:
+<br><br><center><img src="im_cpp38.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa afisam acum primele 100 de numere naturale, cate 10 pe un rand, folosind modul grafic.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <font color="red">"tabel_numere"</font> si plasam un Buton 
+"Start" cu numele button1. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul click al butonului1 cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::SolidBrush^ Pensula;
+	Pensula=gcnew System::Drawing::SolidBrush(System::Drawing::Color::Red);
+	System::Drawing::Font^ font_arial;
+	font_arial=gcnew System::Drawing::Font("Arial",8);
+	for (int j=1; j<=10 ; j++ ){
+		for ( int i=1; i<=10; i++)
+			Desen->DrawString(System::Convert::ToString(i+10*(j-1)),font_arial,Pensula,10+i*30,25+j*15);
+		}	
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.SolidBrush Pensula;
+	Pensula=new System.Drawing.SolidBrush(System.Drawing.Color.Red);
+	System.Drawing.Font font_arial;
+	font_arial=new System.Drawing.Font("Arial",8);
+	for (int j=1; j<=10 ; j++ ){
+		for ( int i=1; i<=10; i++)
+			Desen.DrawString(System.Convert.ToString(i+10*(j-1)),font_arial,Pensula,10+i*30,25+j*15);
+		}	
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului, obtinem:
+<br><br><center><img src="im_cpp7.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> tabel_numere </b></center>
+<br><a name="timer"></a>
+<font color= "blue" size=5> Structuri repetitive realizate cu timere :</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizarea timerelor
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Reluand aplicatia care deseneaza figuri aleatoare si dorind sa executam operatia intr-o bucla infinita adica sa afisam
+un anumit numar de figuri  dupa care sa stergerm ecranul si sa redesenam alte figuri, s-ar parea ca solutia ar fi sa imbricam procedura scrisa pe
+evenimentul paint intr- bucla infinita de forma:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>	
+	int i=0; 
+	bool repeta=true;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_rosu;
+	Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	System::Drawing::Pen^ Creion_albastru;
+	Creion_albastru=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	System::Random^ n = gcnew System::Random();
+	while (repeta=true){
+	 Desen->Clear(System::Drawing::Color(this->BackColor));
+	 i=0;
+	  for ( int i=1; i<=100; i++){
+		Desen->DrawRectangle(Creion_albastru,n->Next(this->Width),n->Next(this->Height),n->Next(75),n->Next(50));
+		Desen->DrawEllipse(Creion_rosu,n->Next(this->Width),n->Next(this->Height),n->Next(50),n->Next(75));
+	  }
+	}
+	delete Creion_rosu;
+	delete Creion_albastru;
+	delete Desen;
+	delete n;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>	
+	int i=0; 
+	bool repeta=true;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_rosu;
+	Creion_rosu=new System.Drawing.Pen(System.Drawing.Color.Red);
+	System.Drawing.Pen Creion_albastru;
+	Creion_albastru=new System.Drawing.Pen(System.Drawing.Color.Blue);
+	System.Random n = new System::Random();
+	while (repeta=true){
+	 Desen.Clear(this.BackColor);
+	 i=0;
+	  for ( int i=1; i<=100; i++){
+		Desen.DrawRectangle(Creion_albastru,n.Next(this.Width),n.Next(this.Height),n.Next(75),n.Next(50));
+		Desen.DrawEllipse(Creion_rosu,n.Next(this.Width),n.Next(this.Height),n.Next(50),n.Next(75));
+	  }
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca generam un nou proiect cu numele <font color="red">"bucla_random" </font>si completam procedura generata pe evenimentul paint cu grupul 
+de instructiuni de sus aplicatia ruleaza dar dupa un timp este blocata de sistemul de operare care sesizeaza buclarea infinita.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Solutia nu este acceptabila, asa ca pentru a realiza astfel de programe ce ruleaza in bucla infinita vom alege o alta 
+abordare. Vom folosi timere pentru a rula intr-o bucla infinita aplicatia de sus vom folosi timere. Timerele sunt obiecte care se activeaza la intervale
+prestabilite de timp. Pe evenimentul Tick ( lansat la scurgerea unui anumit interval de timp) putem atasa secventa de program pentru a fi rulata.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <font color="red">"n_random"</font>. 
+Vom plasa un obiect de tipul "Timer" numit timer1.
+<br><br><center><img src="im_cpp23.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Setam proprietatea "Enabled" la "True" iar proprietatea "Interval" la 500. Completam procedura deschisa pe evenimentul 
+"Tick" al butonului timer1 cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_rosu;
+	Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	System::Drawing::Pen^ Creion_albastru;
+	Creion_albastru=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	System::Random^ n = gcnew System::Random();
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	i=0;
+	for ( int i=1; i<=100; i++){
+	 Desen->DrawRectangle( Creion_albastru,n->Next(this->Width),n->Next(this->Height),n->Next(75),n->Next(50));
+	 Desen->DrawEllipse( Creion_rosu,n->Next(this->Width),n->Next(this->Height),n->Next(50),n->Next(75));
+	}
+	delete Creion_rosu;
+	delete Creion_albastru;
+	delete Desen;
+	delete n;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_rosu;
+	Creion_rosu=new System.Drawing.Pen(System.Drawing.Color.Red);
+	System.Drawing.Pen Creion_albastru;
+	Creion_albastru=new System.Drawing.Pen(System.Drawing.Color.Blue);
+	System.Random n = new System.Random();
+	Desen.Clear(this.BackColor);
+	for (i=1; i<=100; i++){
+	 Desen.DrawRectangle( Creion_albastru,n.Next(this.Width),n.Next(this.Height),n.Next(75),n.Next(50));
+	 Desen.DrawEllipse( Creion_rosu,n.Next(this.Width),n.Next(this.Height),n.Next(50),n.Next(75));
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><center><img src="im_cpp39.jpg"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> n_random </b></center>
+<br><br><a name="combin"></a>
+<font color= "blue" size=5> Combinarea instructiunilor repetitive :</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosindu-ne de instructiunea for si de programul care deseneaza un grid mic suprapus cu un grid mare, sa trasam 
+graficul functiei x^2. Tinand cont ca fereastra are latimea sa zicem <b>lat</b> si inaltimea <b>h</b>, am putea sa dam valori lui x incepand de 
+la valoarea -lat/2 la valoarea lat/2. Valoarea maxima a lui y=x*x va fi 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ymax=(lat/2)*(lat/2)=lat*lat/4. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a putea vizualiza toate valorile lui y intr-o , fereastra de latimea <b>lat</b> si inaltimea <b>h</b> 
+pe domeniul -lat/2... lat/2 va trebui sa scalam valoarea lui y adica sa o impartim cu factorul de scala 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;k=h/ymax 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;astfel incat sa afisam toate valorile lui y iar imaginea graficului sa fie ajustata la dimensiunea form-ului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Tinand cont ca [x=0,y=0] este coordonata punctului stanga sus, iar [x=0, y=h] este coordonata punctului stanga jos, 
+va trebui sa inversam functia. Vom afisa deci h-x^2 nu x^2. Tinand cont si de factorul de scala functia afisata va fi 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;y=h-k*x^2
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <font color="red"> "grafic_x_p" </font>. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul paint al form-ului cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0,lat,h;
+	double x,ymax,y=0,y_v=0,k;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_gri_d;
+	Creion_gri_d=gcnew System::Drawing::Pen(System::Drawing::Color::LightGray);
+	System::Drawing::Pen^ Creion_gri;
+	Creion_gri=gcnew System::Drawing::Pen(System::Drawing::Color::Gray);
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	System::Drawing::Pen^ Creion_rosu;
+	Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	//Grid 
+	// linii verticale
+	for (i=0; i <=this->Width; i+=10){
+		if (i%50==0)
+			Desen->DrawLine(Creion_gri, i, 0, i,this->Height);
+		else
+			Desen->DrawLine(Creion_gri_d, i, 0, i,this->Height);
+	}
+	// linii orizontale
+	
+	for (i=0; i <=this->Height; i+=10){
+		if (i%50==0)
+			Desen->DrawLine(Creion_gri, 0, i,this->Width,i);
+		else
+			Desen->DrawLine(Creion_gri_d, 0, i,this->Width,i);
+	}
+	// Trasare grafic x*x
+	h=this->Height-35;
+	i=0;
+	lat=this->Width-8;
+	ymax=(lat/2)*(lat/2); // ymax pe intervalul -lat/2... lat/2 este (lat/2)^2
+	k=h/ymax; // factorul de scala
+	for(x=-lat/2; x <=lat/2; x++) {
+		y=h-k*x*x; // y=k*x^2
+		Desen->DrawLine(Creion_rosu, i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+	delete Creion_rosu;
+	delete Creion_gri_d;
+	delete Creion_gri;
+	delete Desen;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0,lat,h;
+	float x,ymax,y=0,y_v=0,k;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_gri_d;
+	Creion_gri_d=new System.Drawing.Pen(System.Drawing.Color.LightGray);
+	System.Drawing.Pen Creion_gri;
+	Creion_gri=new System.Drawing.Pen(System.Drawing.Color.Gray);
+	Desen.Clear(this.BackColor);
+	System.Drawing.Pen Creion_rosu;
+	Creion_rosu=new System.Drawing.Pen(System.Drawing.Color.Red);
+	//Grid 
+	// linii verticale
+	for (i=0; i <=this.Width; i+=10){
+		if (i%50==0)
+			Desen.DrawLine(Creion_gri, i, 0, i,this.Height);
+		else
+			Desen.DrawLine(Creion_gri_d, i, 0, i,this.Height);
+	}
+	// linii orizontale
+	
+	for (i=0; i <=this.Height; i+=10){
+		if (i%50==0)
+			Desen.DrawLine(Creion_gri, 0, i,this.Width,i);
+		else
+			Desen.DrawLine(Creion_gri_d, 0, i,this.Width,i);
+	}
+	// Trasare grafic x*x
+	h=this.Height-50;
+	i=0;
+	lat=this.Width-20;
+	ymax=(lat/2)*(lat/2); // ymax pe intervalul -lat/2... lat/2 este (lat/2)^2
+	k=h/ymax; // factorul de scala
+	for(x=-lat/2; x <=lat/2; x++) {
+		y=h-k*x*x; // y=k*x^2
+		Desen.DrawLine(Creion_rosu, i-1,y_v, i, y);
+		y_v=y;
+		i+=1;
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului obtinem:
+<br><br><center><img src="im_cpp17.gif">
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> grafic_x_p </b></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De multe ori e nevoie sa afisam pe un grafic valorile mai multor parametrii sau componente. La analiza spectrala
+de exemplu e necesara afisarea continutului de diferite substante dintr-un anumit compus. Un semnal electric poate  contine o serie de armonici adica
+semnale sinusoidale de diferite frecvente si amplitudini. Un spectrometru poate afisa sub forma de histograma aceste armonici. Ne propunem sa 
+folosim generatorul de numere aleatoare pentru a simula o histograma. Sa presupunem ca analiza spectrala se face la intervale de 1 secunda. Pentru
+a afisa o astfel de histograma vom folosi un timer setat la intervalul de 1 secunda.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <font color="red"> "histograma"</font> . 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa un obiect de tipul "Timer" numit timer1 setal cu valoarea intervalului la 1000. Completam procedura deschisa pe evenimentul 
+"Tick" al butonului timer1 cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0;
+	float w_r=2,w_a=5;
+	System::Drawing::Graphics^ Desen;
+	Desen = this->CreateGraphics();
+	System::Drawing::Pen^ Creion_rosu;
+	Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red,w_r);
+	System::Drawing::Pen^ Creion_albastru;
+	Creion_albastru=gcnew System::Drawing::Pen(System::Drawing::Color::Blue,w_a);
+	System::Random^ n = gcnew System::Random();
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	Desen->DrawLine( Creion_rosu,7,0,7,this->Height-40);
+	Desen->DrawLine( Creion_rosu,6,this->Height-40,this->Width-20,this->Height-40);
+	for ( int i=14; i<=this->Width-20; i+=10){
+		Desen->DrawLine( Creion_albastru,i,this->Height-40,i,n->Next(this->Height-50));
+	}
+	delete Creion_rosu;
+	delete Creion_albastru;
+	delete Desen;
+	delete n;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+	int i=0;
+	float w_r=2,w_a=5;
+	System.Drawing.Graphics Desen;
+	Desen = this.CreateGraphics();
+	System.Drawing.Pen Creion_rosu;
+	Creion_rosu=new System.Drawing.Pen(System.Drawing.Color.Red,w_r);
+	System.Drawing.Pen Creion_albastru;
+	Creion_albastru=new System.Drawing.Pen(System.Drawing.Color.Blue,w_a);
+	System.Random n = new System.Random();
+	Desen.Clear(this.BackColor);
+	Desen.DrawLine( Creion_rosu,7,0,7,this.Height-40);
+	Desen.DrawLine( Creion_rosu,6,this.Height-40,this.Width-20,this.Height-40);
+	for ( int i=14; i<=this.Width-20; i+=10){
+		Desen.DrawLine( Creion_albastru,i,this.Height-40,i,n.Next(this.Height-50));
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea programului obtinem:
+<br><br><center><img src="im_cpp24.gif"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> histograma </b></center>
+<br><br><a name="fract"></a>
+<font color= "blue" size=5> Utilizarea instructiunilor repetitive pentru realizarea fractalilor</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Un fractal este "o figura geometrica fragmentata sau frânta care poate fi divizata în parti, 
+astfel încât fiecare dintre acestea sa fie (cel putin aproximativ) o copie miniaturala a întregului".
+<br><br><center><img src="fractal_00.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In imagunea de sus este reprezentat unul din cei mai simpli fractali realizat din 4 iteratii.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Tot pe baza unui triungi Koch a definit urmatorul fractal:
+<br><br><center><img src="Koch_01.jpg"><img src="Koch_02.jpg"><img src="Koch_03.jpg"><img src="Koch_04.jpg"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Despre fractali puteti gasi mai multe referinte la urmatoarele link-uri:
+<ul>
+ <li><a href="http://en.wikipedia.org/wiki/Fractal">http://en.wikipedia.org/wiki/Fractal</a>
+ <li><a href="http://en.wikipedia.org/wiki/Mandelbrot_set">http://en.wikipedia.org/wiki/Mandelbrot_set</a>
+ <li><a href="http://www.artacunoasterii.ro/curiozitati/fractali">http://www.artacunoasterii.ro/curiozitati/fractali</a>
+ <li><a href="http://www.fractali.org">http://www.fractali.org</a> 
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Termenul de fractal a fost introdus de Benoît Mandelbrot în 1975 si este derivat din latinescul fractus, însemnând "spart" 
+sau "fracturat".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Fractalul, ca obiect geometric, are în general urmatoarele caracteristici:
+<ul>
+ <li>Are o structura fina la scari arbitrar de mici.
+ <li>Are o definitie simpla si recursiva.
+ <li>Este prea neregulat pentru a fi descris în limbaj geometric euclidian traditional.
+</ul>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Benoît Mandelbrot a definit matematic fractalul care ii poarta numele. Mandelbrot a definit defapt un set de numere a 
+caror granita reprezinta un fractal bi-dimensional. Setul de numere Mandelbrot se defineste astfel:
+<P>
+<CENTER>
+<STRONG>
+  Z<SUB>n+1</SUB> = Z<SUB>n</SUB><SUP>2</SUP> + Z
+</STRONG>
+</CENTER>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa setul Mandelbrot este un set de numere complexe, set care ramane marginit indiferent de numarul de 
+iteratii. Setul Mandelbrot este un set particular de puncte a carui granita genereaza un fractal bidimensional.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Acest set de numere este strans legat de setul de numere Julia care genereaza de asemenea un fractal complex. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Chiar daca definitia setului de numere este extrem de smpla, pentru a genera imaginea acestui set de numere, adica 
+pentr a-l afisa grafic avem nevoie de o relatie care sa ne precizeze daca o pereche de de numere corespondentul unui pixel pe ecran, se afla sau nu in 
+interiorul granitei setului de numere.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa luam de exemplu setul Mandelbrot
+<CENTER>
+<STRONG>
+  Z<SUB>n+1</SUB> = Z<SUB>n</SUB><SUP>2</SUP> + Z
+</STRONG>
+</CENTER>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca Z(n)=a+ib iar un punct oarecare Z=x+iy. Rezulta conform definitiei ca:
+<center> Z(n+1)=Z(n)<SUP>2</SUP>+Z=(a*a-b*b)+i(2*a*b)+x+iy=(a*a-b*b+x)+i(2*a*b+y)</center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Partea reala a lul Z(n+1) fiind : a*a - b*b + x
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Partea imaginara a lul Z(n+1) fiind : 2*a*b + y	
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Mandelbrot a demonstrat faptul ca daca modulul numarului complex <=2 atunci setul de numere ce compune numarul complex, 
+se afla in interiorul granitei.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deci daca (a*a + b*b <=4) atunci numarul complex Z(n)=a+ib, apartine fractalului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Presupunand ca vrem sa realizam un numar maxim de iteratii "max_it", am putea transpune consideratiile de sus, intr-un 
+algoritm de forma:
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+int max_it;		//numarul maxim de iteratii
+int it; 		//iteratia	
+in_fractal=true;	//variabila de tip bool-ean care precizeaza daca setul se afla in fractal
+for (it=0; it <= max_it ; it++ )
+	{
+	if((a*a +b*b) >=4){
+		in_fractal=false;
+		it=max_it;
+	}
+	temp = a*a-b*b + x;
+	b = 2*a*b + y;
+	a=temp;
+	}
+	if(in_fractal)
+		"Deseneaza un pixel colorat";
+	else
+	"Deseneaza un pixel de culoarea fundalului";						
+}
+</pre> </font>					
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Algoritmul testeaza deci daca dupa maxim "max_it" de iteratii, punctul se afla in interiorul fractalului sau nu.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Obs: A fost nevoie de introducerea variabilei temp pentru a nu altera valoarea vechiului a, valoare ce va fi folosita pentru calcului noului b
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom lua succesiv toate punctele ce apartin unei imagini si testam daca ele se afla sau nu in interiorul fractalului 
+intr-un numar prestabilit de iteratii. Daca punctul se afla in interiorul fractalului, el va fi colorat.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem un nou proiect Windows Forms Application intitulat <font color="red"> "fractal_v0"</font>, pe care plasam un 
+buton "Start". 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Completam procedura deschisa pe evenimentul click al butonului cu:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+System::Drawing::Graphics^ Desen;
+Desen = this->CreateGraphics();
+Desen->Clear(System::Drawing::Color(this->BackColor));
+System::Drawing::Pen^Creion=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+System::Drawing::Pen^Creion_f=gcnew System::Drawing::Pen(System::Drawing::Color(this->BackColor));
+double im_w=400, im_h=300; // latimea si inaltimea imaginii
+double x, y; //coordonatele curente 
+double x_i=-1.5, y_i=-1; // coordonatele initiale
+double x_f=1, y_f=1; // coordonatele finale
+double x0=(x_f-x_i)/im_w; // pasul pe x
+double y0=(y_f-y_i)/im_h; // pasul pe y
+double a, b; // a partea reala, b partea imaginara
+double temp; // necesar pentru calculul Z(n+1)
+bool in_fractal; // variabila ce indica faptul ca punctul este inauntrul fractalului
+int i=0,j=0,it;
+int max_it=25;
+y=y_i;
+for ( j=1; j<=im_h; j++)
+{
+	x=x_i;
+	y+=y0;
+	for ( i=1; i<=im_w; i++)
+	{
+		x+=x0;	
+		a=x;
+		b=y;
+		in_fractal=true;
+		for (it=0; it <= max_it ; it++ )
+		{
+			if((a*a +b*b) >=4){
+				in_fractal=false;
+				it=max_it;
+			}
+			temp = a*a-b*b + x;
+			b = 2*a*b + y;
+			a=temp;
+		}
+		if(in_fractal)
+			Desen->DrawLine(Creion,i+1,j,i,j);
+		else
+			Desen->DrawLine(Creion_f,i+1,j,i,j);						
+	}
+}
+delete Creion;
+delete Creion_f;
+delete Desen; 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace fractal_v0
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            System.Drawing.Graphics Desen;
+            Desen = this.CreateGraphics();
+            Desen.Clear(this.BackColor);
+            System.Drawing.Pen Creion=new System.Drawing.Pen(System.Drawing.Color.Blue);
+            System.Drawing.Pen Creion_f=new System.Drawing.Pen(this.BackColor);
+            double im_w=400, im_h=300; // latimea si inaltimea imaginii
+            double x, y; //coordonatele curente 
+            double x_i=-1.5, y_i=-1; // coordonatele initiale
+            double x_f=1, y_f=1; // coordonatele finale
+            double x0=(x_f-x_i)/im_w; // pasul pe x
+            double y0=(y_f-y_i)/im_h; // pasul pe y
+            double a, b; // a partea reala, b partea imaginara
+            double temp; // necesar pentru calculul Z(n+1)
+            bool in_fractal; // variabila ce indica faptul ca punctul este inauntrul fractalului
+            int i=0,j=0,it;
+            int max_it=25;
+            y=y_i;
+            for ( j=1; j<=im_h; j++)
+            {
+	            x=x_i;
+	            y+=y0;
+	            for ( i=1; i<=im_w; i++)
+	            {
+		            x+=x0;	
+		            a=x;
+		            b=y;
+		            in_fractal=true;
+		                for (it=0; it <= max_it ; it++ )
+		                {
+			                if((a*a +b*b) >=4){
+				            in_fractal=false;
+				            it=max_it;
+			            }
+			            temp = a*a-b*b + x;
+			            b = 2*a*b + y;
+			            a=temp;
+		        }
+		        if(in_fractal)
+			        Desen.DrawLine(Creion,i+1,j,i,j);
+		        else
+			        Desen.DrawLine(Creion_f,i+1,j,i,j);						
+	            }
+            }
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem:
+<br><br><center><img src="fractal_03.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se pune problema colorarii fractalului. In functie de iteratia curenta am putea stabili cate o culoare.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Avem nevoie de un mecanism care sa creeze o culoare variabila. Vom folosi metoda: 
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+			System::Drawing::Color::FromArgb(r,g,b)
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+			System.Drawing.Color.FromArgb(r,g,b)
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, avem nevoie de trei parametrii si anume: r,g,b. Acesti parametrii sunt numere intregi intre 0-255 
+reprezentand cantitatea de culoare din componentele principale (rosu,verde,albastru). Avem nevoie deci de trei numere intre 0-255, numere in 
+concordanta cu iteratia curenta. Daca cele trei componente au valori egale se vor obtine nuante de gri. Pentru diverse culori, aceste valori 
+trebuie sa fie diferite intre ele. Vom opta pentru urmatoarele valori:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+			int r=25*(System::Math::Cos(it)*System::Math::Cos(it));
+			int g=125*(1-System::Math::Sin(it));
+			int b=125*(1-System::Math::Cos(it));
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+			int r=25*(System.Math.Cos(it)*System.Math.Cos(it));
+			int g=125*(1-System.Math.Sin(it));
+			int b=125*(1-System.Math.Cos(it));
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cu aceste precizari, aplicatia anterioara devine:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+System::Drawing::Graphics^ Desen;
+Desen = this->CreateGraphics();
+double im_w=400, im_h=300; // latimea si inaltimea imaginii
+Desen->Clear(System::Drawing::Color(this->BackColor));				
+double x, y; //coordonatele curente 
+double x_i=-2, y_i=-1.3; // coordonatele initiale
+double x_f=1, y_f=1.3; // coordonatele finale
+double x0=(x_f-x_i)/im_w; // pasul pe x
+double y0=(y_f-y_i)/im_h; // pasul pe y
+double a, b; // a partea reala, b partea imaginara
+double temp; // necesar pentru calculul Z(n+1)
+int i=0,j=0,it;
+int max_it=77;// numarul de iteratii
+y=y_i;
+for ( j=1; j<=im_h; j++)
+{
+	x=x_i;
+	y+=y0;
+	for ( i=1; i<=im_w; i++)
+	{
+		x+=x0;	
+		a=x;
+		b=y;
+		for (it=0; (it <= max_it)&&(a*a+b*b<=4) ; it++ )
+		{
+			temp = a*a-b*b +x;
+			b = 2*a*b +y;
+			a=temp;
+		}
+		int r=25*(System::Math::Cos(it)*System::Math::Cos(it));
+		int g=125*(1-System::Math::Sin(it));
+		int b=125*(1-System::Math::Cos(it));
+		System::Drawing::Pen^Creion=gcnew System::Drawing::Pen(System::Drawing::Color::FromArgb(r,g,b));
+		Desen->DrawLine(Creion,i+1,j,i,j);
+		delete Creion;
+	}
+}
+delete Desen;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace fractal_v1_1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            System.Drawing.Graphics Desen;
+            Desen = this.CreateGraphics();
+            double im_w = 400, im_h = 300; // latimea si inaltimea imaginii
+            Desen.Clear(this.BackColor);
+            double x, y; //coordonatele curente 
+            double x_i = -2, y_i = -1.3; // coordonatele initiale
+            double x_f = 1, y_f = 1.3; // coordonatele finale
+            double x0 = (x_f - x_i) / im_w; // pasul pe x
+            double y0 = (y_f - y_i) / im_h; // pasul pe y
+            double a=0; //  partea reala
+            double b = 0; //  partea imaginara
+            double temp; // necesar pentru calculul Z(n+1)
+            int i = 0, j = 0, it;
+            int max_it = 77;// numarul de iteratii
+            y = y_i;
+            for (j = 1; j <= im_h; j++)
+            {
+                x = x_i;
+                y += y0;
+                for (i = 1; i <= im_w; i++)
+                {
+                    x += x0;
+                    a = x;
+                    b = y;
+                    for (it = 0; (it <= max_it) && (a * a + b * b <= 4); it++)
+                    {
+                        temp = a * a - b * b + x;
+                        b = 2 * a * b + y;
+                        a = temp;
+                    }
+                    int r = System.Convert.ToInt16( 25 * (System.Math.Cos(it) * System.Math.Cos(it)));
+                    int g = System.Convert.ToInt16(125 * (1 - System.Math.Sin(it)));
+                    int bl = System.Convert.ToInt16(125 * (1 - System.Math.Cos(it)));
+                    System.Drawing.Pen Creion = new System.Drawing.Pen(System.Drawing.Color.FromArgb(r, g, bl));
+                    Desen.DrawLine(Creion, i + 1, j, i, j);
+                }
+            }
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtnem:
+<br><br><center><img src="fractal_04.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am putea colora sa zicem primele 7 iteratii cu albastru modificand sursa programului astfel:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+System::Drawing::Graphics^ Desen;
+Desen = this->CreateGraphics();
+double im_w=400, im_h=300; // latimea si inaltimea imaginii
+Desen->Clear(System::Drawing::Color(this->BackColor));				
+double x, y; //coordonatele curente 
+double x_i=-2, y_i=-1.3; // coordonatele initiale
+double x_f=1, y_f=1.3; // coordonatele finale
+double x0=(x_f-x_i)/im_w; // pasul pe x
+double y0=(y_f-y_i)/im_h; // pasul pe y
+double a, b; // a partea reala, b partea imaginara
+double temp; // necesar pentru calculul Z(n+1)
+int i=0,j=0,it;
+int max_it=77;// numarul de iteratii
+y=y_i;
+for ( j=1; j<=im_h; j++)
+{
+	x=x_i;
+	y+=y0;
+	for ( i=1; i<=im_w; i++)
+	{
+		x+=x0;	
+		a=x;
+		b=y;
+		for (it=0; (it <= max_it)&&(a*a+b*b<=4) ; it++ )
+		{
+			temp = a*a-b*b +x;
+			b = 2*a*b +y;
+			a=temp;
+		}
+		if (it<7){
+			System::Drawing::Pen^Creion=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+			Desen->DrawLine(Creion,i+1,j,i,j);
+			delete Creion;
+		}
+		else{
+			int r=25*(System::Math::Cos(it)*System::Math::Cos(it));
+			int g=125*(1-System::Math::Sin(it));
+			int b=125*(1-System::Math::Cos(it));
+			System::Drawing::Pen^Creion=gcnew System::Drawing::Pen(System::Drawing::Color::FromArgb(r,g,b));
+			Desen->DrawLine(Creion,i+1,j,i,j);
+			delete Creion;
+		}	
+	}
+}
+delete Desen;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace fractal_v1_2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            System.Drawing.Graphics Desen;
+            Desen = this.CreateGraphics();
+            double im_w = 400, im_h = 300; // latimea si inaltimea imaginii
+            Desen.Clear(this.BackColor);
+            double x, y; //coordonatele curente 
+            double x_i = -2, y_i = -1.3; // coordonatele initiale
+            double x_f = 1, y_f = 1.3; // coordonatele finale
+            double x0 = (x_f - x_i) / im_w; // pasul pe x
+            double y0 = (y_f - y_i) / im_h; // pasul pe y
+            double a, b; // a partea reala, b partea imaginara
+            double temp; // necesar pentru calculul Z(n+1)
+            int i = 0, j = 0, it;
+            int max_it = 77;// numarul de iteratii
+            y = y_i;
+            for (j = 1; j <= im_h; j++)
+            {
+                x = x_i;
+                y += y0;
+                for (i = 1; i <= im_w; i++)
+                {
+                    x += x0;
+                    a = x;
+                    b = y;
+                    for (it = 0; (it <= max_it) && (a * a + b * b <= 4); it++)
+                    {
+                        temp = a * a - b * b + x;
+                        b = 2 * a * b + y;
+                        a = temp;
+                    }
+                    if (it < 7)
+                    {
+                        System.Drawing.Pen Creion = new System.Drawing.Pen(System.Drawing.Color.Blue);
+                        Desen.DrawLine(Creion, i + 1, j, i, j);
+                    }
+                    else
+                    {
+                        int r = System.Convert.ToInt16( 25 * (System.Math.Cos(it) * System.Math.Cos(it)));
+                        int g = System.Convert.ToInt16( 125 * (1 - System.Math.Sin(it)));
+                        int bl = System.Convert.ToInt16( 125 * (1 - System.Math.Cos(it)));
+                        System.Drawing.Pen Creion = new System.Drawing.Pen(System.Drawing.Color.FromArgb(r, g, bl));
+                        Desen.DrawLine(Creion, i + 1, j, i, j);
+                    }
+                }
+            }
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtnem de data aceasta:
+<br><br><center><img src="fractal_05.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In metodele anterioare, pentru a desena un pixel am desenat o linie de dimensiune 1. Se observa si la rulare ca 
+metoda este destul de lenta. Din pacate nu exista o metoda DrawPixel. Vom utiliza o alta metoda pentru a obtine rezultate mai bune. Vom defini 
+un obiect de tip "Bitmap" astfel:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+		System::Drawing::Bitmap^ Img;
+		Img=gcnew Bitmap(im_w+2, im_h+2, System::Drawing::Imaging::PixelFormat::Format32bppArgb);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+		System.Drawing.Bitmap Img;
+		Img=new Bitmap(im_w+2, im_h+2, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Obiectul "Img" admite metoda "SetPixel" astfel:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+Img->SetPixel(i+1,j+1,System::Drawing::Color::FromArgb(r,g,b));
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+Img.SetPixel(i+1,j+1,System.Drawing.Color.FromArgb(r,g,b));
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa ce au fost setati toti pixelii din "Img", aceasta se poate afisa cu metoda:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+Desen->DrawImage(Img,0,0);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+Desen.DrawImage(Img,0,0);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicand aceste consideratii asupra aplicatiei anterioare obtinem:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+System::Drawing::Graphics^ Desen;
+Desen = this->CreateGraphics();
+double im_w=400, im_h=300; // latimea si inaltimea imaginii
+System::Drawing::Bitmap^ Img;
+Img=gcnew Bitmap(im_w+2, im_h+2, System::Drawing::Imaging::PixelFormat::Format32bppArgb);
+Desen->Clear(System::Drawing::Color(this->BackColor));				
+double x, y; //coordonatele curente 
+double x_i=-2, y_i=-1.3; // coordonatele initiale
+double x_f=1, y_f=1.3; // coordonatele finale
+double x0=(x_f-x_i)/im_w; // pasul pe x
+double y0=(y_f-y_i)/im_h; // pasul pe y
+double a, b; // a partea reala, b partea imaginara
+double temp; // necesar pentru calculul Z(n+1)
+int i=0,j=0,it;
+int max_it=77;// numarul de iteratii
+y=y_i;
+for ( j=1; j<=im_h; j++)
+{
+	x=x_i;
+	y+=y0;
+	for ( i=1; i<=im_w; i++)
+	{
+		x+=x0;	
+		a=x;
+		b=y;
+		for (it=0; (it <= max_it)&&(a*a+b*b<=4) ; it++ )
+		{
+			temp = a*a-b*b +x;
+			b = 2*a*b +y;
+			a=temp;
+		} 
+		if (it < 7){
+			Img->SetPixel(i+1,j+1,System::Drawing::Color::Blue);
+		}
+		else{
+			int r=25*(System::Math::Cos(it)*System::Math::Cos(it));
+			int g=125*(1-System::Math::Sin(it));
+			int b=125*(1-System::Math::Cos(it));
+			Img->SetPixel(i+1,j+1,System::Drawing::Color::FromArgb(r,g,b));
+		}	
+	}
+}
+Desen->DrawImage(Img,0,0);
+delete Desen;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace fractal_v1_3
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            System.Drawing.Graphics Desen;
+            Desen = this.CreateGraphics();
+            int im_w = 400, im_h = 300; // latimea si inaltimea imaginii
+            System.Drawing.Bitmap Img;
+            Img = new Bitmap(im_w + 2, im_h + 2, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Desen.Clear(this.BackColor);
+            double x, y; //coordonatele curente 
+            double x_i = -2, y_i = -1.3; // coordonatele initiale
+            double x_f = 1, y_f = 1.3; // coordonatele finale
+            double x0 = (x_f - x_i) / im_w; // pasul pe x
+            double y0 = (y_f - y_i) / im_h; // pasul pe y
+            double a, b; // a partea reala, b partea imaginara
+            double temp; // necesar pentru calculul Z(n+1)
+            int i = 0, j = 0, it;
+            int max_it = 77;// numarul de iteratii
+            y = y_i;
+            for (j = 1; j <= im_h; j++)
+            {
+                x = x_i;
+                y += y0;
+                for (i = 1; i <= im_w; i++)
+                {
+                    x += x0;
+                    a = x;
+                    b = y;
+                    for (it = 0; (it <= max_it) && (a * a + b * b <= 4); it++)
+                    {
+                        temp = a * a - b * b + x;
+                        b = 2 * a * b + y;
+                        a = temp;
+                    }
+                    if (it < 7)
+                    {
+                        Img.SetPixel(i + 1, j + 1, System.Drawing.Color.Blue);
+                    }
+                    else
+                    {
+                        int r = System.Convert.ToInt16( 25 * (System.Math.Cos(it) * System.Math.Cos(it)));
+                        int g = System.Convert.ToInt16( 125 * (1 - System.Math.Sin(it)));
+                        int bl = System.Convert.ToInt16( 125 * (1 - System.Math.Cos(it)));
+                        Img.SetPixel(i + 1, j + 1, System.Drawing.Color.FromArgb(r, g, bl));
+                    }
+                }
+            }
+            Desen.DrawImage(Img, 0, 0);
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem acelasi lucru ca data trecuta dar mult mai rapid.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, in aplicatia anterioara, coordonatele initiale si cele finale au fost introduse direct 
+in program. In urmatoarea aplicatie "fractal_v2" vom introduce niste obiecte de tipul "numericUpDown" care sa permita introducerea parametrilor 
+mentionati mai sus, de catre utilizator. Utilizatorul poate introduce astfel: numarul de iteratii, coordonatele initiale si marimea fractalului (
+latimea si lungimea) .
+<br><br><center><img src="fractal_06.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Procedura declansata pe evenimentul click al butonului "Start", fiind:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+System::Drawing::Graphics^ Desen;
+Desen = this->CreateGraphics();
+Desen->Clear(System::Drawing::Color(this->BackColor));
+double im_w=400, im_h=300; // latimea si inaltimea imaginii
+System::Drawing::Bitmap^ Img;
+Img=gcnew Bitmap(im_w+2, im_h+2, System::Drawing::Imaging::PixelFormat::Format32bppArgb);
+double x, y; //coordonatele curente
+double x_i, y_i; // coordonatele initiale
+x_i=System::Convert::ToDouble(this->numericUpDown2->Value);
+y_i=System::Convert::ToDouble(this->numericUpDown3->Value);
+double s; //latimea si lungimea fractalului
+double x0=(System::Convert::ToDouble(this->numericUpDown4->Value))/im_w; // pasul pe x
+double y0=(System::Convert::ToDouble(this->numericUpDown4->Value))/im_h;// pasul pe y
+double a, b; // a partea reala, b partea imaginara
+double temp; // necesar pentru calculul Z(n+1)
+int max_it=System::Convert::ToInt16(this->numericUpDown1->Value);// numarul maxim de iteratii
+y=y_i;
+int i=0,j=0,it;
+for ( j=1; j<=im_h; j++){
+	x=x_i;
+	y+=y0;
+	for ( i=1; i<=im_w; i++){
+		it=1;
+		a=x;
+		b=y;
+		x+=x0;	
+		double temp;
+		while (((a*a + b*b) <=4) && (it <= max_it )) 
+			{
+				temp = a*a - b*b + x;
+				b = 2*a*b + y;
+				a=temp;
+				it = it + 1;
+			}
+		if (it < 13){
+			Img->SetPixel(i+1,j+1,System::Drawing::Color::Black);
+		}
+		else{
+			int r=25*(System::Math::Cos(it)*System::Math::Cos(it));
+			int g=125*(1-System::Math::Sin(it));
+			int b=125*(1-System::Math::Cos(it));
+			Img->SetPixel(i+1,j+1,System::Drawing::Color::FromArgb(r,g,b));
+			}		
+		}
+	}
+Desen->DrawImage(Img,0,0);
+delete Desen;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace fractal_v2_1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            System.Drawing.Graphics Desen;
+            Desen = this.CreateGraphics();
+            Desen.Clear(this.BackColor);
+            int im_w = 400, im_h = 300; // latimea si inaltimea imaginii
+            System.Drawing.Bitmap Img;
+            Img = new Bitmap(im_w + 2, im_h + 2, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            double x, y; //coordonatele curente
+            double x_i, y_i; // coordonatele initiale
+            x_i = System.Convert.ToDouble(this.numericUpDown2.Value);
+            y_i = System.Convert.ToDouble(this.numericUpDown3.Value);
+            double s; //latimea si lungimea fractalului
+            double x0 = (System.Convert.ToDouble(this.numericUpDown4.Value)) / im_w; // pasul pe x
+            double y0 = (System.Convert.ToDouble(this.numericUpDown4.Value)) / im_h;// pasul pe y
+            double a, b; // a partea reala, b partea imaginara
+            double temp; // necesar pentru calculul Z(n+1)
+            int max_it = System.Convert.ToInt16(this.numericUpDown1.Value);// numarul maxim de iteratii
+            y = y_i;
+            int i = 0, j = 0, it;
+            for (j = 1; j <= im_h; j++)
+            {
+                x = x_i;
+                y += y0;
+                for (i = 1; i <= im_w; i++)
+                {
+                    it = 1;
+                    a = x;
+                    b = y;
+                    x += x0;
+                    while (((a * a + b * b) <= 4) && (it <= max_it))
+                    {
+                        temp = a * a - b * b + x;
+                        b = 2 * a * b + y;
+                        a = temp;
+                        it = it + 1;
+                    }
+                    if (it < 13)
+                    {
+                        Img.SetPixel(i + 1, j + 1, System.Drawing.Color.Black);
+                    }
+                    else
+                    {
+                        int r =  System.Convert.ToInt16( 25 * (System.Math.Cos(it) * System.Math.Cos(it)));
+                        int g =  System.Convert.ToInt16( 125 * (1 - System.Math.Sin(it)));
+                        int bl =  System.Convert.ToInt16( 125 * (1 - System.Math.Cos(it)));
+                        Img.SetPixel(i + 1, j + 1, System.Drawing.Color.FromArgb(r, g, bl));
+                    }
+                }
+            }
+            Desen.DrawImage(Img, 0, 0);
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca introducem obiecte de tipul "numericUpDown" atat pentru latimea fractalului cat si pentru inaltimea 
+fractalului si marim rezolutia imaginii, obtinem aplicatia "fractal_v2":
+<br><br><center><img src="fractal_07.jpg"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Procedura fiind:
+
+<br><br>&nbsp;&nbsp;&nbsp;C++
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+System::Drawing::Graphics^ Desen;
+Desen = this->CreateGraphics();
+Desen->Clear(System::Drawing::Color(this->BackColor));
+double im_w=1024, im_h=700; // latimea si inaltimea imaginii
+System::Drawing::Bitmap^ Img;
+Img=gcnew Bitmap(im_w+2, im_h+2, System::Drawing::Imaging::PixelFormat::Format32bppArgb);
+double x, y; //coordonatele curente
+double x_i, y_i; // coordonatele initiale
+x_i=System::Convert::ToDouble(this->numericUpDown2->Value);
+y_i=System::Convert::ToDouble(this->numericUpDown3->Value);
+double w=System::Convert::ToDouble(this->numericUpDown4->Value); //latimea  fractalului
+double h=System::Convert::ToDouble(this->numericUpDown5->Value); //inaltimea  fractalului
+double x0=w/im_w; // pasul pe x
+double y0=h/im_h;// pasul pe y
+double a, b; // a partea reala, b partea imaginara
+double temp; // necesar pentru calculul Z(n+1)
+int max_it=System::Convert::ToInt16(this->numericUpDown1->Value);// numarul maxim de iteratii
+int i,j,it;
+y=y_i;
+for ( j=1; j<=im_h; j++){
+	x=x_i;
+	y+=y0;
+	for ( i=1; i<=im_w; i++){
+		x+=x0;
+		it=1;
+		a=x;
+		b=y;
+		double temp;
+		while (((a*a + b*b) <=4) && (it <= max_it )) 
+		{
+			temp = a*a - b*b + x;
+			b = 2*a*b + y;
+			it = it + 1;
+			a=temp;
+		}
+		if (it < 15){
+			Img->SetPixel(i+1,j+1,System::Drawing::Color::Black);
+		}
+		else{
+			int r=25*(System::Math::Cos(it)*System::Math::Cos(it));
+			int g=125*(1-System::Math::Sin(it));
+			int b=125*(1-System::Math::Cos(it));
+			Img->SetPixel(i+1,j+1,System::Drawing::Color::FromArgb(r,g,b));
+			}			
+		}
+	}
+Desen->DrawImage(Img,0,0);
+delete Desen;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;C#
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace fractal_v2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            System.Drawing.Graphics Desen;
+            Desen = this.CreateGraphics();
+            Desen.Clear(this.BackColor);
+            int im_w = 1024, im_h = 700; // latimea si inaltimea imaginii
+            System.Drawing.Bitmap Img;
+            Img = new Bitmap(im_w + 2, im_h + 2, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            double x, y; //coordonatele curente
+            double x_i, y_i; // coordonatele initiale
+            x_i = System.Convert.ToDouble(this.numericUpDown2.Value);
+            y_i = System.Convert.ToDouble(this.numericUpDown3.Value);
+            double w = System.Convert.ToDouble(this.numericUpDown4.Value); //latimea  fractalului
+            double h = System.Convert.ToDouble(this.numericUpDown5.Value); //inaltimea  fractalului
+            double x0 = w / im_w; // pasul pe x
+            double y0 = h / im_h;// pasul pe y
+            double a, b; // a partea reala, b partea imaginara
+            double temp; // necesar pentru calculul Z(n+1)
+            int max_it = System.Convert.ToInt16(this.numericUpDown1.Value);// numarul maxim de iteratii
+            int i, j, it;
+            y = y_i;
+            for (j = 1; j <= im_h; j++)
+            {
+                x = x_i;
+                y += y0;
+                for (i = 1; i <= im_w; i++)
+                {
+                    x += x0;
+                    it = 1;
+                    a = x;
+                    b = y;
+                    //temp;
+                    while (((a * a + b * b) <= 4) && (it <= max_it))
+                    {
+                        temp = a * a - b * b + x;
+                        b = 2 * a * b + y;
+                        it = it + 1;
+                        a = temp;
+                    }
+                    if (it < 15)
+                    {
+                        Img.SetPixel(i + 1, j + 1, System.Drawing.Color.Black);
+                    }
+                    else
+                    {
+                        int r = System.Convert.ToInt16( 25 * (System.Math.Cos(it) * System.Math.Cos(it)));
+                        int g = System.Convert.ToInt16( 125 * (1 - System.Math.Sin(it)));
+                        int bl = System.Convert.ToInt16( 125 * (1 - System.Math.Cos(it)));
+                        Img.SetPixel(i + 1, j + 1, System.Drawing.Color.FromArgb(r, g, bl));
+                    }
+                }
+            }
+            Desen.DrawImage(Img, 0, 0);
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Similar formulei lui Mandelbrot se defineste formula Newton Raphson astfel:
+<CENTER><H3>-X<SUP>3</SUP> + 9 X <SUP>2</SUP> - 18X + C </H3></CENTER>
+&nbsp;&nbsp;&nbsp;&nbsp;Newton Raphson este o metoda utilizata in analiza numerica pentru a gasi radacinile ecuatiei:-X<SUP>3</SUP> + 9 X <SUP>2</SUP> - 18X + C=0
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Realizarea unui fractal, se bazeaza pe gasirea punctelor care satisfac conditia:<br><br> 
+<CENTER>
+<STRONG>
+ Z<SUP>3</SUP> - C = 0
+</STRONG>
+</CENTER>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Iterand deci formula:
+<STRONG>
+Z<SUB>n+1</SUB> = Z<SUB>n</SUB> - ( -X<SUP>3</SUP> + 9X<SUP>2</SUP> - 18X + C ) / ( -3 X<SUP>2</SUP> + 18X - 18 )
+</STRONG>
+, obtinem un fractal.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Utilizand fractali, se pot genera imagini de-a dreptul spectaculoase. Va prezitnt cateva in imaginile de mai jos.
+<br><br><center><img src="fractal_01.jpg"> &nbsp;&nbsp;&nbsp;&nbsp; <img src="fractal_02.jpg"></center>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br>
+</html>
