@@ -1,0 +1,731 @@
+<html><head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<title>Servicii web </title>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Servicii web </Center></TD></TR>
+</table>
+
+<br><br><a name="realiz"></a>
+<font color= "black" size=4><li><b> Realizarea serviciilor web </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea un nou proiect utilizand Visual Studio 2008. Proiectul creat va fi de tipul C#-->WEB-->ASP.NET web Service Application
+<br><br><center><img src="im1.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va genera automat un serviciu web Service1.asmx  de forma:
+<br><br><textarea width="100%" height="400px" style="width:100%;height:510px" name="code" wrap="logical" rows="12" cols="42">
+using System;
+using System.Collections;
+using System.ComponentModel;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+using System.Web.Services.Protocols;
+using System.Xml.Linq;
+
+namespace WebService0
+{
+    /// <summary>
+    /// Summary description for Service1
+    /// </summary>
+    [WebService(Namespace = "http://tempuri.org/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [ToolboxItem(false)]
+    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+    // [System.Web.Script.Services.ScriptService]
+    public class Service1 : System.Web.Services.WebService
+    {
+
+        [WebMethod]
+        public string HelloWorld()
+        {
+            return "Hello World";
+        }
+    }
+}
+</textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se ruleaza acest serviciu si se observa startarea unui server ASP.NET in acest caz pe portul 49707. Adresa portului 
+este data aleator in momentul generarii serviciului. Adresa  "http://tempuri.org/" va trebui inlocuita cu "http://localhost:49707/Service0"
+
+
+<br><br><a name="utiliz"></a>
+<font color= "black" size=4><li><b> Utilizarea serviciilor web </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Odata realizat un serviciu web, acesta poate fi utilizat de clienti constituiti din pagini web.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom adauga deci o pagina web care sa foloseasca acest serviciu. Pagina se va numi "Test_Service1.html"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Adaugarea se face cu Click dreapta pe Webservice0-->Add-->New Ittem-->Html Page
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Continutul fisierului html fiind:
+<br><br><textarea width="100%" height="400px" style="width:100%;height:310px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+ <link rel="alternate" type="text/xml" href="/Service1.asmx?disco" /> 
+ <title>Service1 Web Service</title>
+</head>
+  <body>
+    <div id="content">
+    <table border="1">
+    <tr><td colspan=2> <center> Descrierea serviciului Service1 </center> </td></tr>
+      <tr><td> Informatii despre serviciu</td><td> <a href="Service1.asmx?WSDL">Descrierea serviciului</a></td></tr>       
+      <tr><td> Lansare serviciu</td>           
+          <td><a href="Service1.asmx?op=HelloWorld">HelloWorld</a>
+      </td></tr>                                                
+    </table>
+    </div>    
+ </body>
+</html>
+</textarea>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea un nou serviciu <b> WebService1 </b> mai complex, serviciu care permite accesul la o baza de date MySQL
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Fisierul Service1.asmx  de forma:
+<br><br><textarea width="100%" height="400px" style="width:100%;height:970px" name="code" wrap="logical" rows="12" cols="42">
+using System;
+using System.Collections;
+using System.ComponentModel;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+using System.Web.Services.Protocols;
+using System.Xml.Linq;
+using System.Data.Odbc;
+
+namespace WebService1
+{
+    /// <summary>
+    /// Summary description for Service1
+    /// </summary>
+    [WebService(Namespace = "http://localhost:50430/Service1")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [ToolboxItem(false)]
+    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+    [System.Web.Script.Services.ScriptService]
+    public class Service1 : System.Web.Services.WebService
+    {
+
+        [WebMethod]
+        public string HelloWorld()
+        {
+            return "Hello World";
+        }
+
+        [WebMethod(Description = "Returneaza valorile masurate in TP")]
+        public double val_tp(int act, int cod)
+        {
+
+            String myConnString = "driver={MySQL ODBC 5.1 Driver};server=193.226.19.29;database=cons_el;uid=student;pwd=psw;";
+            String mySelectQuery = "SELECT tp_id, val FROM t_points WHERE tp_id=" + System.Convert.ToString(act);
+            OdbcConnection myConnection = new OdbcConnection(myConnString);
+            OdbcCommand myCommand = new OdbcCommand(mySelectQuery, myConnection);
+            myConnection.Open();
+            OdbcDataReader myReader;
+            myReader = myCommand.ExecuteReader();
+            // Always call Read before accessing data.
+            //while (myReader.Read()) {
+            //  Console.WriteLine("{0}, {1}", myReader.GetInt32(0), myReader.GetString(1));
+            //}
+            // always call Close when done reading.
+            myReader.Read();
+            double x = myReader.GetDouble(1);
+            myReader.Close();
+            // Close the connection when done with it.
+            myConnection.Close();
+
+            return x;
+        }
+    }
+}
+
+</textarea>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, serviciul presupune ca exista deja instalata o conexiune ODBC spre baza de date 
+cons_el care se afla pe serverul 193.226.19.20, username "student" parola "psw"
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pagina web care sa foloseasca acest serviciu, va fi:
+
+<br><br><textarea width="100%" height="400px" style="width:100%;height:650px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+  <title> Service1 Web Service </title></head>
+   <body>
+
+      <p class="heading1">Service1</p><br>
+ 
+          <p class="intro">Click <a href="Service1.asmx">here</a> for a complete list of operations.</p>
+          <h2>val_tp</h2>
+          <p class="intro">Returneaza valorile masurate in TP</p>
+ 
+          <h3>Test</h3>
+ 
+      <form target="_blank" action='http://localhost:50430/Service1.asmx/val_tp' method="POST">                                              
+        <table cellspacing="0" cellpadding="4" frame="box" bordercolor="#dcdcdc" rules="none" style="border-collapse: collapse;">
+         <tr>
+        	<td class="frmHeader" background="#dcdcdc" style="border-right: 2px solid white;">Parameter</td>
+	        <td class="frmHeader" background="#dcdcdc">Value</td>
+        </tr>
+        <tr>
+           <td class="frmText" style="color: #000000; font-weight: normal;">act:</td>
+           <td><input class="frmInput" type="text" size="50" name="act"></td>
+        </tr>
+        <tr>
+          <td class="frmText" style="color: #000000; font-weight: normal;">cod:</td>
+          <td><input class="frmInput" type="text" size="50" name="cod"></td>
+       </tr>
+       <tr>
+         <td></td>
+         <td align="right"> <input type="submit" value="Invoke" class="button"></td>
+        </tr>
+      </table>
+  </form>
+</body>
+</html>
+</textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa incarcarea paginii obtinem:
+<br><br>
+<center><img src="im2.gif">
+<br><br><INPUT onclick=window.open("./apl_scada/serv_val_tp.html","buton1Window",'resizable=yes,width=540,height=520') type=button value="Lansare serviciu Val_TP"> 
+</center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia web poate fi lansata din orce browser ruland cu conditia sa fie pornit serviciul web<br><br>
+<hr>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa invocarea serviciului, se obtine valoarea ceruta in baza de date in format XML sub forma:
+<br><br><textarea width="100%" height="400px" style="width:100%;height:70px" name="code" wrap="logical" rows="12" cols="42">
+<?xml version="1.0" encoding="utf-8" ?> 
+  <double xmlns="http://localhost:50430/Service1">38.12</double> 
+</textarea>
+<br><br><a name="soap"></a>
+<font color= "black" size=4><li><b> Utilizarea protocolului SOAP </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi in continuare protocolul SOAP bazat pe XML pentru a citi date prin intermediul serviciului web creat
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia este realizata in JavaScript si folosete protocolul SOAP pentru a citi date prin intermediul serviciului 
+Service1.
+<br><br><textarea width="100%" height="400px" style="width:100%;height:2250px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Web Service Test </title>
+<script type="text/javascript">
+	var SERVICE_URL = "http://localhost:51655/Service1.asmx";
+	var SOAP_ACTION_BASE = "http://localhost:51655/Service1";
+	var bEnabled;
+	var oXmlHttp;
+	function setUIEnabled(bEnabled)
+	{
+		var oButton = document.getElementById("cmdRequest");
+		oButton.disabled = false;
+		var oList = document.getElementById("lstMethods");
+		oList.disabled = false;
+	}
+
+	function performOperation()
+	{
+		var oList = document.getElementById("lstMethods");
+		var sMethod = oList.options[oList.selectedIndex].value;
+		var sact = document.getElementById("txtact").value;
+		var scod = document.getElementById("txtcod").value;
+		//Clear the message panes
+		document.getElementById("txtRequest").value = "";
+		document.getElementById("txtResponse").value = "";
+		document.getElementById("txtResult").value = "";
+		performSpecificOperation(sMethod, sact, scod);
+	}
+	var iCallId = 0;
+
+	function getRequest(sMethod, sact, scod)
+	{
+		var sRequest ="<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"+
+		"<soap:Envelope xmlns:xsi=\""
+		+ "http://www.w3.org/2001/XMLSchema-instance\" "
+		+ "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" "
+		+ "xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+		+ "<soap:Body>\n"
+		+ "<" + sMethod + " xmlns=\"" + SOAP_ACTION_BASE + "\">\n"
+		+ "<act>" + sact + "</act>\n"
+		+ "<cod>" + scod + "</cod>\n"
+		+ "</" + sMethod + ">\n"
+		+ "</soap:Body>\n"
+		+ "</soap:Envelope>\n";
+		return sRequest;
+	}
+	function CreateCallObject ()
+	{
+
+		try {
+			  xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+		     } 
+		catch (e) 
+		{
+		  try {
+			   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		      }
+		  catch (E) 
+		     {
+			   xmlhttp = false;
+              }
+		 }
+		if (!xmlhttp) 
+        {
+		try {
+			xmlhttp = new XMLHttpRequest();
+	        } 
+        catch (e)
+           {
+			xmlhttp=false;
+		   }
+	    }
+	    return xmlhttp;
+	    }
+
+
+
+
+	function performSpecificOperation(sMethod, sact, scod) 
+	{
+		oXmlHttp = CreateCallObject();
+        //alert(oXmlHttp);
+	    var sRequest = getRequest(sMethod, sact, scod);
+		var sSoapActionHeader = SOAP_ACTION_BASE + "/" + sMethod;
+	
+		oXmlHttp.open("POST", SERVICE_URL, true);
+
+		oXmlHttp.onreadystatechange = handleResponse;
+		oXmlHttp.setRequestHeader("Content-Type", "text/xml");
+		oXmlHttp.setRequestHeader("SOAPAction", sSoapActionHeader);
+		oXmlHttp.send(sRequest);
+		document.getElementById("txtRequest").value = sRequest;
+	}
+	function handleResponse()
+	{
+		if (oXmlHttp.readyState == 4)
+		{
+			setUIEnabled(true);
+			var oResponseOutput = document.getElementById("txtResponse");
+			var oResultOutput = document.getElementById("txtResult");
+			var oXmlResponse = oXmlHttp.responseXML;
+			var sHeaders = oXmlHttp.getAllResponseHeaders();
+			if (oXmlHttp.status != 200 || !oXmlResponse.xml)
+			{
+				alert("Error accessing Web service.\n"+ oXmlHttp.statusText+ "\nSee response pane for further details.");
+				
+				var sResponse = (oXmlResponse.xml ? oXmlResponse.xml : oXmlResponseText);
+				var sResponse =oXmlResponse.xml;
+				oResponseOutput.value = sHeaders + sResponse;
+				return;
+			}
+			oResponseOutput.value = sHeaders + oXmlResponse.xml;
+			var sResult =oXmlResponse.documentElement.firstChild.firstChild.firstChild.firstChild.data;
+			oResultOutput.value = sResult;
+		}
+	}
+</script>
+</head>
+<body> <!--onLoad>"setUIEnabled(true)"> -->
+
+	Operation:
+	<select id="lstMethods" style="width: 200px">
+	<option value="val_tp" selected="selected">Valoare TP</option>
+	<option value="stare_act">Stare Actuator</option>
+	<option value="poz_act">Pozitie Actuator</option>
+	<option value="torq_act">Cuplu Actuator</option>
+	</select>
+
+	<br/><br/>
+	Operand 1: <input type="text" id="txtact" size="10"/><br/>
+	Operand 2: <input type="text" id="txtcod" size="10"/><br/><br/>
+	<input type="button" id="cmdRequest" value="performOperation" onClick="performOperation();"/>
+	<br/><br/>
+	Result: <input type="text" size="20" id="txtResult">
+<br/>
+	&lttextarea rows="12" cols="120" id="txtRequest"&gt &lt/textarea&gt
+	&lttextarea rows="14" cols="120" id="txtResponse"&gt &lt/textarea&gt
+	&lttextarea rows="3" cols="120" id="oXmlResponseText"&gt &lt/textarea&gt
+</body>
+</html>
+</textarea>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa lansarea paginii si completarea cu parametrii ceruti, obtinem:
+<center><img src="im3.gif">
+</center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia web poate fi lansata local din orice browser ruland cu conditia sa fie pornit serviciul web<br><br>
+<hr>
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cererea este in format XML sub forma:
+<br><br><textarea width="100%" height="400px" style="width:100%;height:200px" name="code" wrap="logical" rows="12" cols="42">
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+<soap:Body>
+<val_tp xmlns="http://localhost:50430/Service1">
+<act>1</act>
+<cod>1</cod>
+</val_tp>
+</soap:Body>
+</soap:Envelope>
+
+</textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Raspunsul fiind tot in format XML sub forma:
+<br><br><textarea width="100%" height="400px" style="width:100%;height:240px" name="code" wrap="logical" rows="12" cols="42">
+Server: ASP.NET Development Server/9.0.0.0
+Date: Fri, 11 Mar 2011 13:38:24 GMT
+X-AspNet-Version: 2.0.50727
+Cache-Control: private, max-age=0
+Content-Type: text/xml; charset=utf-8
+Content-Length: 353
+Connection: Close
+<?xml version="1.0"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Body><val_tpResponse xmlns="http://localhost:50430/Service1"><val_tpResult>38.12</val_tpResult></val_tpResponse></soap:Body></soap:Envelope>
+</textarea>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In acest moment serverul "Webservice1" poate fi imbogatit cu noi servicii. Sa adaugam Service2 care citeste 
+valorile maxime din tabela t_points
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Fisierul Service2.asmx  are  forma:
+<br><br><textarea width="100%" height="400px" style="width:100%;height:970px" name="code" wrap="logical" rows="12" cols="42">
+using System;
+using System.Collections;
+using System.ComponentModel;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+using System.Web.Services.Protocols;
+using System.Xml.Linq;
+using System.Data.Odbc;
+
+namespace WebService1
+{
+    /// <summary>
+    /// Summary description for Service2
+    /// </summary>
+    [WebService(Namespace = "http://localhost:50430/Service2")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [ToolboxItem(false)]
+    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+    // [System.Web.Script.Services.ScriptService]
+    public class Service2 : System.Web.Services.WebService
+    {
+
+        [WebMethod]
+        public string HelloWorld()
+        {
+            return "Hello World";
+        }
+
+        [WebMethod(Description = "Returneaza valorile maxime in TP")]
+        public double max_tp(int act, int cod)
+        {
+
+            String myConnString = "driver={MySQL ODBC 5.1 Driver};server=193.226.19.29;database=cons_el;uid=student;pwd=psw;";
+            String mySelectQuery = "SELECT tp_id, v_max FROM t_points WHERE tp_id=" + System.Convert.ToString(act);
+            OdbcConnection myConnection = new OdbcConnection(myConnString);
+            OdbcCommand myCommand = new OdbcCommand(mySelectQuery, myConnection);
+            myConnection.Open();
+            OdbcDataReader myReader;
+            myReader = myCommand.ExecuteReader();
+            // Always call Read before accessing data.
+            //while (myReader.Read()) {
+            //  Console.WriteLine("{0}, {1}", myReader.GetInt32(0), myReader.GetString(1));
+            //}
+            // always call Close when done reading.
+            myReader.Read();
+            double x = myReader.GetDouble(1);
+            myReader.Close();
+            // Close the connection when done with it.
+            myConnection.Close();
+
+            return x;
+        }
+    }
+}
+
+</textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pagina html client este similara cu clientul seviciului Service1
+
+
+<br><br><a name="apl_scada"></a>
+<font color= "black" size=4><li><b> Aplicatie SCADA ce utilizeaza serviciul SOAP </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam acum un serviciu web si o aplicatie pentru monitorizarea unei instalatii de gaz in care exista mai 
+multe puncte de masura si mai ulte actuatoare care trebuiesc monitorizate.
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea un nou server "ScadaWebServer" care contine serviciul Service1 in care vom include mai multe operatii 
+cum ar fi: citeste valori t_points, citire stare actuatoare, citire pozitia actuatorului etc.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Fisierul Service1.asmx  are  forma:
+<br><br><textarea width="100%" height="400px" style="width:100%;height:1750px" name="code" wrap="logical" rows="12" cols="42">
+using System;
+using System.Collections;
+using System.ComponentModel;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+using System.Web.Services.Protocols;
+using System.Xml.Linq;
+using System.Data.Odbc;
+
+namespace ScadaWebService
+{
+    /// <summary>
+    /// Summary description for Service1
+    /// </summary>
+    [WebService(Namespace = "http://localhost:51655/Service1")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [ToolboxItem(false)]
+    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+    //[System.Web.Script.Services.ScriptService]
+    public class Service1 : System.Web.Services.WebService
+    {
+        [WebMethod(Description = "Returneaza valorile masurate in TP")]
+        public double val_tp(int act, int cod)
+        {
+            String myConnString = "driver={MySQL ODBC 5.1 Driver};server=193.226.19.29;database=cons_el;uid=student;pwd=psw;";
+            String mySelectQuery = "SELECT tp_id, val FROM t_points WHERE tp_id=" + System.Convert.ToString(act);
+            OdbcConnection myConnection = new OdbcConnection(myConnString);
+            OdbcCommand myCommand = new OdbcCommand(mySelectQuery, myConnection);
+            myConnection.Open();
+            OdbcDataReader myReader;
+            myReader = myCommand.ExecuteReader();
+            myReader.Read();
+            double x = myReader.GetDouble(1);
+            myReader.Close();
+            // Close the connection when done with it.
+            myConnection.Close();
+            return x;
+        }
+        [WebMethod(Description = "Returneaza stare actuator")]
+        public string stare_act(int act, int cod)
+        {
+            String myConnString = "driver={MySQL ODBC 5.1 Driver};server=193.226.19.29;database=cons_el;uid=student;pwd=psw;";
+            String mySelectQuery = "SELECT act_id, valve_close, valve_open, valve_closing, valve_opening, warnings FROM actuators WHERE act_id=" + System.Convert.ToString(act);
+            OdbcConnection myConnection = new OdbcConnection(myConnString);
+            OdbcCommand myCommand = new OdbcCommand(mySelectQuery, myConnection);
+            myConnection.Open();
+            OdbcDataReader myReader;
+            myReader = myCommand.ExecuteReader();
+            myReader.Read();
+            string x = myReader.GetString(1) + myReader.GetString(2) + myReader.GetString(3) + myReader.GetString(4) + myReader.GetString(5);
+            myReader.Close();
+            // Close the connection when done with it.
+            myConnection.Close();
+            return x;
+        }
+
+        [WebMethod(Description = "Returneaza pozitie actuator")]
+        public double poz_act(int act, int cod)
+        {
+            String myConnString = "driver={MySQL ODBC 5.1 Driver};server=193.226.19.29;database=cons_el;uid=student;pwd=psw;";
+            String mySelectQuery = "SELECT act_id, position FROM actuators WHERE act_id=" + System.Convert.ToString(act);
+            OdbcConnection myConnection = new OdbcConnection(myConnString);
+            OdbcCommand myCommand = new OdbcCommand(mySelectQuery, myConnection);
+            myConnection.Open();
+            OdbcDataReader myReader;
+            myReader = myCommand.ExecuteReader();
+            myReader.Read();
+            double x = myReader.GetDouble(1);
+            myReader.Close();
+            // Close the connection when done with it.
+            myConnection.Close();
+            return x;
+        }
+        [WebMethod(Description = "Returneaza cuplul actuator")]
+        public double torq_act(int act, int cod)
+        {
+            String myConnString = "driver={MySQL ODBC 5.1 Driver};server=193.226.19.29;;database=cons_el;uid=student;pwd=psw;";
+            String mySelectQuery = "SELECT act_id, torque FROM actuators WHERE act_id=" + System.Convert.ToString(act);
+            OdbcConnection myConnection = new OdbcConnection(myConnString);
+            OdbcCommand myCommand = new OdbcCommand(mySelectQuery, myConnection);
+            myConnection.Open();
+            OdbcDataReader myReader;
+            myReader = myCommand.ExecuteReader();
+            myReader.Read();
+            double x = myReader.GetDouble(1);
+            myReader.Close();
+            // Close the connection when done with it.
+            myConnection.Close();
+            return x;
+        }
+        private void InitializeComponent()
+        {
+
+        }
+
+    }
+}
+</textarea>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea acum o aplicatie client intr-o pagin web de forma:
+<br><br><textarea width="100%" height="400px" style="width:100%;height:2770px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Scada Web Service </title>
+<script type="text/javascript">
+	var SERVICE_URL = "http://localhost:51655/Service1.asmx";
+	var SOAP_ACTION_BASE = "http://localhost:51655/Service1";
+	var bEnabled;
+	var oXmlHttp;
+	var rq="";
+	var rasp="";
+	function set_val(){
+		window.open("val_tp_m.php","Wtpt","resizable=no,width=400,height=300");
+	}
+	function set_act(){
+		window.open("set_act_m.php","Wac","resizable=no,width=600,height=150");
+	}
+	function webs(){
+		window.open("http://localhost:51655/Service1.asmx","Wac","resizable=no,width=600,height=350");
+	}
+	function setUIEnabled(bEnabled)
+	{
+		var oButton = document.getElementById("cmdRequest");
+		oButton.disabled = false;
+		var oList = document.getElementById("lstMethods");
+		oList.disabled = false;
+	}
+
+	function performOperation()
+	{
+		var oList = document.getElementById("lstMethods");
+		var sMethod = oList.options[oList.selectedIndex].value;
+		var sact = document.getElementById("txt_act").value;
+		var scod = document.getElementById("txt_cod").value;
+		//Clear the message panes
+		//document.getElementById("txtRequest").value = "";*******
+		//document.getElementById("txtResponse").value = "";******
+		document.getElementById("txtResult").value = "";
+		performSpecificOperation(sMethod, sact, scod);
+	}
+	var iCallId = 0;
+
+	function getRequest(sMethod, sact, scod)
+	{
+		var sRequest ="<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"+
+		"<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+		+ "<soap:Body>\n"
+		+ "<" + sMethod + " xmlns=\"" + SOAP_ACTION_BASE + "\">\n"
+		+ "<act>" + sact + "</act>\n"
+		+ "<cod>" + scod + "</cod>\n"
+		+ "</" + sMethod + ">\n"
+		+ "</soap:Body>\n"
+		+ "</soap:Envelope>\n";
+		return sRequest;
+	}
+	function CreateCallObject ()
+	{
+
+		try {
+			  xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+		     } 
+		catch (e) 
+		{
+		  try {
+			   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		      }
+		  catch (E) 
+		     {
+			   xmlhttp = false;
+              }
+		 }
+		if (!xmlhttp) 
+        {
+		try {
+			xmlhttp = new XMLHttpRequest();
+	        } 
+        catch (e)
+           {
+			xmlhttp=false;
+		   }
+	    }
+	    return xmlhttp;
+	    }
+
+	function performSpecificOperation(sMethod, sact, scod) 
+	{
+		oXmlHttp = CreateCallObject();
+        //alert("S-a creat oXmlHttp");
+        rq= getRequest(sMethod, sact, scod);
+		var sRequest = getRequest(sMethod, sact, scod);
+		var sSoapActionHeader = SOAP_ACTION_BASE + "/" + sMethod;
+		oXmlHttp.open("POST", SERVICE_URL, true);
+		oXmlHttp.onreadystatechange = handleResponse;
+		//alert("S-a apelat handleResponse ");
+		oXmlHttp.setRequestHeader("Content-Type", "text/xml");
+		oXmlHttp.setRequestHeader("SOAPAction", sSoapActionHeader);
+		oXmlHttp.send(sRequest);
+		//document.getElementById("txtRequest").value = sRequest;********
+	}
+	function handleResponse()
+	{
+	//alert("S-a lansat");
+		if (oXmlHttp.readyState == 4)
+		{
+			setUIEnabled(true);
+			var oResponseOutput ="" //document.getElementById("txtResponse"); *********
+			var oResultOutput = document.getElementById("txtResult");
+			var oXmlResponse = oXmlHttp.responseXML;
+			var sHeaders = oXmlHttp.getAllResponseHeaders();
+			if (oXmlHttp.status != 200 || !oXmlResponse.xml)
+			{
+				alert("Error accessing Web service.\n"+ oXmlHttp.statusText+ "\nSee response pane for further details.");
+				//var sResponse = (oXmlResponse.xml ? oXmlResponse.xml : oXmlResponseText);
+				var sResponse =oXmlResponse.xml;
+				oResponseOutput.value = sHeaders + sResponse;
+				return;
+			}
+			oResponseOutput.value = sHeaders + oXmlResponse.xml;
+			rasp=sHeaders + oXmlResponse.xml;
+			var sResult =oXmlResponse.documentElement.firstChild.firstChild.firstChild.firstChild.data;
+			oResultOutput.value = sResult;
+		}else{
+			//alert("Status="+oXmlHttp.readyState);
+		}
+	}
+</script>
+</head>
+<body> <!--onLoad>"setUIEnabled(true)"> -->
+<center><table border="1" width="500">
+<tr><td>
+<center><h3><font color="blue"> <br> Aplicatie SCADA <br> Monitorizare puncte de masura si actuatoare</font></h3>
+<font color="red">-Serverul ScadaWebServer trebuie pornit! </font><br> </center>
+</td></tr>
+<tr><td><br>
+<center><table border="1" bgcolor="WhiteSmoke" width=400><tr>
+<td colspan=2><center> Acces direct in baza de date</center></td></tr>
+<tr><td><center><input type="button" id="db" value="Puncte de masura TP" onClick="set_val()"></center></td>
+<td><center><input type="button" id="db" value="Actuatoare" onClick="set_act()"></center></td>
+</tr></table><br><br>
+
+<center><table border="1" bgcolor="WhiteSmoke" width=400><tr>
+	<td colspan=2><center> Serviciul WEB SCADA : Service1 </center></td></tr>
+	<tr><td>Operatia</td><td>
+	<select id="lstMethods" style="width: 150px">
+	<option value="val_tp" selected="selected">Citeste valoare TP</option>
+	<option value="stare_act">Citeste stare Actuator</option>
+	<option value="poz_act">Citeste pozitie Actuator</option>
+	<option value="torq_act">Citeste cuplu Actuator</option>
+	</select></td></tr>
+	
+	<tr><td>Actuator nr:</td>
+	<td><input type="text" id="txt_act" size="10"/></td></tr>
+
+	<tr><td>Cod:</td>
+	<td> <input type="text" id="txt_cod" value="1" size="5"/></td></tr>
+	
+	<tr><td colspan="2"><center><input type="button" id="cmdRequest" value="Executa operatia" onClick="performOperation()"/></center></td>
+	<tr><td>Valoare citita : </td> <td> <input type="text" size="20" id="txtResult"></td></tr>
+	</table>
+<br><br>
+<center><table border="1" bgcolor="WhiteSmoke" width=400><tr>
+<td colspan=2><center> XML  </center></td></tr>
+<tr><td><center><input type="button" id="rq" value="Cerere-XML" onClick="alert(rq);"></center></td>
+<td><center><input type="button" id="rasp" value="Raspuns-XML" onClick="alert(rasp);"></center></td>
+</tr></table>
+<br><br>
+<center><table border="1" bgcolor="WhiteSmoke" width=400><tr>
+<td><center>  Web Service1 - operatii oferite   </center></td></tr>
+<td><center><input type="button" id="db" value="Web service" onClick="webs()"></center></td>
+</tr></table>
+</td></tr></table></center>	
+</body>
+</html></textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa lansarea paginii si completarea cu parametrii ceruti, obtinem:
+<center><img src="im4.gif">
+</center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia web poate fi lansata local din orice browser ruland cu conditia sa fie pornit serviciul web<br><br>
+<hr>
+
+</body>
+</html>

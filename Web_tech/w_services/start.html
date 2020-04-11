@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html xmlns:t="urn:schemas-microsoft-com:time">
+<HTML> 
+<HEAD> 
+  	<?import namespace="t" implementation="#default#time2">
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+	<title>Cursuri C++</title>
+	<style type="text/css" media="screen">@import "../../layout.css";</style>
+
+</HEAD> 
+
+<SCRIPT LANGUAGE="JavaScript">
+ <!-- 
+
+function frm1(){
+	continut_p.innerHTML = '<iframe src ="w_services.html" width="100%" height="560"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm2(){
+	continut_p.innerHTML = '<iframe src ="w_services.html#realiz" width="100%" height="560"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm3(){
+	continut_p.innerHTML = '<iframe src ="w_services.html#utiliz" width="100%" height="560"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm20(){
+	continut_p.innerHTML = '<iframe src ="w_services.html#soap" width="100%" height="560"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm30(){
+	continut_p.innerHTML = '<iframe src ="w_services.html#apl_scada" width="100%" height="560"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm100(){
+	zona_jos.innerHTML = '<iframe src ="../../zona_jos.html" width=101% height="45" marginheight="0" marginwidth="0" frameborder=0 > </iframe>';
+}
+function showTheHours(theHour) {
+ return (theHour);
+ 
+} 
+
+function showZeroFilled(inValue) { 
+if (inValue > 9) { return "" + inValue; 
+} 
+return "0" + inValue; 
+}
+ 
+
+function showAmPm() { 
+if (now.getHours() < 12) { 
+return (" am"); 
+} 
+return (" pm"); 
+}
+
+	  
+
+function showTheTime() { 
+	now = new Date 
+	document.form.showTime.value =dayNum+" "+montharray[monthIs]+" "+yearIs+" ora:"+showTheHours(now.getHours()) + ":" + 
+	showZeroFilled(now.getMinutes()) + ":" + showZeroFilled(now.getSeconds()) + 
+	showAmPm() 
+	setTimeout("showTheTime()",1000)
+ }  
+
+var todayIs=new Date();
+var yearIs=todayIs.getFullYear();
+var monthIs=todayIs.getMonth();
+var dayNum=todayIs.getDate();
+var montharray=new Array("Ian","Febr","Mar","Apr","Mai","Iun","Iul","Aug","Sept","Oct","Noi","Dec");
+
+//--> 
+</SCRIPT>  
+<body class="pag_centr" onLoad="showTheTime();frm1();frm100()"> 
+<div id="continut"> 
+<table  width="100%"  border=0>
+<tr><td valign="top">
+<table width="100%" border=0>
+ <tr><td>
+  <table class="tcoll" width="100%" border=1>
+   <tr>
+    <td width="200" align="center" valign= "top">
+    <FORM name=form><INPUT type=text name=showTime ></FORM> 
+    <center><img src="leduri.gif" </center>
+  
+    <!-----------------------------Meniu ------------------------------------------------------------->  
+
+     <table width="100%" border="1" cellspacing="0" cellpadding="2">
+      <tr bgcolor=""> 
+       <td width="201" bgcolor="#83A0BA" valign="top"> 
+        <table width="200" border="0" cellspacing="1" cellpadding="1">        
+         <tr>
+          <!--<td bgcolor="#doaodd" class="forTexts"></td>-->
+          <td bgcolor="#83A0BA" class="forTexts"></td>
+          <td bgcolor="#83A0BA" class="forTexts" align="center"><font color="white" size="2" face="arial"<strong><b> SERVICII WEB </b></strong></font></td>
+         </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts">
+                 
+          <td width="165" bgcolor="#D9E3EE" class="forTexts">
+           <a style="text-decoration: none"  href="../start.html"  >Revenire la pagina principala</a>
+          </td> 
+         </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("l_java1.html","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts" align="center"><a style="text-decoration: none"  href="#" onclick=frm1()><b>SERVICII WEB </b></a>
+          </td>           
+         </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("l_java1.html#elem_p","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm2()><li>Realizarea unui serviciu web </a>
+          </td> 
+	     </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("l_java1.html#elem_p","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm3()><li>Utilizarea unui serviciu web </a>
+          </td> 
+	     </tr>
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("l_java1.html#elem_p","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm20()><li>Utilizarea protocolului SOAP</a>
+          </td> 
+	     </tr>    
+ 	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("l_java1.html#elem_p","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm30()><li>Aplicatie SCADA</a>
+          </td> 
+	     </tr>                                                 	     		     			     		     		     	     	     	     
+	   </table>
+      </td>
+     </tr>
+    </table>
+<!----------------------------Terminare -Meniu ------------------------------------------------------------->  
+           <td>
+             <div id="continut_p">
+             </div><!-- sfarsit # continut_p -->
+          </td>
+         </tr>
+        </td>
+       </tr>
+      </table>
+      <tr>
+       <td>
+        <div id="zona_jos">
+        </div><!-- sfarsit # zona_jos -->
+       </td>
+      </tr>
+     </table>
+    </div><!-- sfarsit # continut -->
+   </div><!-- sfarsit # pag_centr -->
+ </body> 
+</html> 
