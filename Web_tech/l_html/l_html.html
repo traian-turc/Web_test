@@ -1,0 +1,2567 @@
+<html><head>
+<title>Limbajul HTML </title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Limbajul HTML </Center></TD></TR>
+</table>
+<br><a name="start"></a>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Serviciul World Wide Web (WWW sau 3W) este cel mai utilizat serviciu din Internet, bazele acestuia fiind puse 
+in 1989 de catre Tim Berners Lee de la CERN (Centrul European pentru Fizica Nucleara) din Geneva. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Solutia de baza era ideea de a face legatura între documente via "hipertext". 
+Hipertext înseamna, a marca sirurile de text sau alte obiecte si de a le lega cu alte obiecte, 
+care ar putea fi din punct de vedere fizic la mare distanta de obiectul original. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Când legatura este selectata, cineva poate "sari" la documentul legat. 
+În acest fel este posibil de a lega un numar nelimitat de documente între ele într-o structura web ne-ierarhica. 
+Pentru a putea deosebi aceste documente si pentru a le regasi, fiecare are o adresa unica (URL) Unique Resource Locator. 
+URL-urile constau într-un protocol de transmitere (în cazul WWW-ului acesta este Hypertext Transfer Protocol - http), 
+urmat de www (în cele mai multe cazuri) si de domeniu (de exemplu numele serverului si numele paginii). Vezi <i> http://www.info-portal.ro/articol/istoria-internetului/269/1/0/</i>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;HTML, sau HyperText Markup Language, a fost proiectat sã poatã opera cu functionalitãtile multimedia ale WWW. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Limbajul de marcare permite transformarea oricãrui text într-un hipertext prin introducerea unor marcaje, 
+care vor indica modul cum se efectueaza legãturile documentului, cum vor apãrea paginile documentului etc. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Un document HTML poate fi fãcut public dacã este pe un calculator care are acces la Internet. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Un document fãcut public poate fi vãzut din orice punct al Internet-ului.Vezi <i> http://thor.info.uaic.ro/~val/istoric.html</i>
+ 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color= "blue" size=5>Utilizarea limbajului HTML</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;HTML este prescurtarea de la HyperText Markup Language, limbajul utilizat în World Wide Web pentru
+descrierea hipertextelor. HTML nu este un limbaj de programare propriu-zis, ci doar un limbaj de descriere, continând elemente ce permit construirea 
+paginilor Web. 
+
+<br><br><a name="cl_s"></a>
+<font color= "black" size=4><li><b>Procesul client-server  </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<CENTER><IMG SRC  = "im01.jpg"> </CENTER>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Procesul client-server la solicitarea unei pagini HTML statice . 
+<br><br><a name="brow"></a>
+<font color= "black" size=4><li><b>Browsere de Internet </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><a name="sin"></a>
+<font color= "black" size=4><li><b>Sintaxa limbajului HTML</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a putea fi transmise prin INTERNET documentele trebuie sa fie realizate sau convertite in fisiere de tip HTML.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Fisierele de tip HTML pot fi  transmise prin INTERNET de "Serverele HTML".
+<br>&nbsp;&nbsp;&nbsp;&nbsp; La destinatie browserele convertesc fisierele HTML si le afiseaza sub forma documentului initial.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;HTML (acronim de la HyperText Markup Language) este un limbaj de descriere a documentelor. Specificatiile acestui 
+limbaj definesc o serie de TAG-uri( marcatori) si regulile de utilizare a acestora pentru a putea descrie documentele. Un marcator (sau tag) este 
+cuprins între caracterele <b> &lt si &gt </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul general al unei instructiuni HTML </b>
+<ul>
+<table>
+ <tr bgcolor=yellow> 
+  <td><b>&ltNume Tag&gt Text de afisat &lt/Nume Tag&gt</b></td>
+ </tr>
+</table>
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul general al unui fisier HTML</b>
+<br><br>
+ <Table width=100% border=1>
+ <tr>
+  <td>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;Un fisier HTML este structurat pe doua parti:
+    <ul>
+      <li> antet (head)
+      <li> continut (body)
+    </ul>
+ </td>
+ <td>
+<table>
+ <tr bgcolor=cyel> 
+  <td><b>&ltHTML&gt</b></td>
+ </tr>
+
+<tr bgcolor=yellow> 
+  <td><b>&ltHEAD&gt</b></td>
+</tr>
+<tr bgcolor=yellow> 
+  <td><b>&ltTITLE&gtTitlul documentului&lt/TITLE&gt </b></td>
+</tr>
+<tr bgcolor=yellow> 
+  <td><b>&lt/HEAD&gt</b></td>
+</tr>
+<tr bgcolor=yellow> 
+  <td><b>&ltBODY&gt</b></td>
+</tr>
+<tr bgcolor=cyan>
+<td>
+...<br></b>
+Instructiuni HTML<br> 
+...<br>
+</b></td>
+</tr>
+<tr bgcolor=yellow> 
+  <td><b>&lt/BODY&gt</b></td>
+</tr>
+<tr bgcolor=cyel> 
+ <td><b>&lt/HTML&gt</b></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Marcatorul <b> &lt BODY &gt </b> admite urmatoarele atribute:
+<ul>
+<li> URL - este un sir de caractere ce reprezinta adresa Web a unei imagini care va fi utilizata de catre browser ca fundal (background) pentru document. 
+Daca imaginea nu ocupa întreaga zona din fereastra browser-ului destinata vizualizarii paginii respective, ea va fi multiplicata.
+<li> BGCOLOR = culoare (BackGround COLOR) - stabileste culoarea fundalului (culoarea zonei din fereastra browser-ului în care este vizualizat documentul).
+<li> TEXT = culoare - stabileste culoarea textului.
+<li> LINK = culoare - stabileste culoarea cu care vor fi marcate în text link-urile nevizitate.
+<li> VLINK = culoare - stabileste culoarea cu care vor fi marcate în text link-urile vizitate.
+<li> ALINK = culoare - stabileste culoarea cu care va fi marcat în text link-ul activ (cel
+asupra caruia este plasat cursorul mouse-ului).
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;În HTML culorile se pot specifica în doua moduri :
+<ul>
+ <li> utilizând denumiri predefinite asociate unor culori (de exemplu RED semnificând rosu, GREEN verde, BLUE albastru etc.) ;
+ <li> prin combinarea a trei culori de baza - rosu, verde si albastru (modelul RGB). În acest caz, specificarea unei culori se face indicând în ordinea 
+rosu, verde, albastru trei valori hexazecimale cuprinse între 00 si FF, câte una pentru fiecare culoare de baza, astfel : #rrggbb
+</ul>
+<br><br><a name="txt"></a>
+<font color= "black" size=4><li><b>Inserarea textelor in pagini HTML</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Marcatori referitori la texte </b>
+<br><br><center>
+<table bgcolor=yellow border =1>
+<tr>
+<td width=33%>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Rand nou (CR) </b>
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Marcatorul: <b> &ltBR&gt </b>
+</td>
+<td width=33%>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Linie orizontala </b>
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Marcatorul: <b> &ltHR&gt </b>
+</tr>
+</table></center>
+<br> <br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Marcatori pentru texte</b>
+<br>
+<ul>
+ <li>&nbsp;&nbsp;&nbsp;&nbsp;<b>Texte de diferite marimi</b>
+</ul>
+ <center><table bgcolor=cyan border =1>
+<tr>
+ <td width="300">
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Marcatorul &ltH&gt </b>
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Pentru  text de marime H4 : </b> <H4>Text de marime H4</h4>
+<table>
+ <tr bgcolor=yellow width=33%> 
+  <td><b>&ltH4&gt Text de marime H4 &lt/H4&gt</b></td>
+ </tr>
+</table>
+</td></tr></table></center>
+<br><br>
+<ul>
+ <li><b>Text Inclinat</b>
+</ul>
+<center><table bgcolor=cyan border =1>
+<tr>
+ <td width="300">
+<Center><b> Marcatorul &ltI&gt </b></center>
+<hr>
+<br>
+ Pentru text inclinat :<br> <i>Text inclinat</i><br>
+<table>
+ <tr bgcolor=yellow > 
+  <td><b>&ltI&gt Text inclinat &lt/I&gt</b></td>
+ </tr>
+</table>
+</td></tr></table></center>
+<ul>
+<li> <b>Text centrat </b>
+</ul>
+<center><table bgcolor=cyan border =1>
+<tr>
+<td width="300">
+<Center><b>Marcatorul &ltCenter&gt </b></Center>
+<hr>
+ Pentru text centrat:<br> <Center>Text centrat</Center>
+<br>
+<table>
+<tr bgcolor=yellow > 
+  <td><b>&ltCenter&gt Text centrat &lt/Center&gt</b></td>
+ </tr>
+</table>
+</tr>
+</table></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Exemple de tipuri de texte care pot fi inserate in paginile WEB</b>
+<br><br><center><table bgcolor=yellow border=1>
+<tr><td width="400">
+Text obisnuit
+
+<Center>
+Text obisnuit centrat
+</Center>
+
+<b>
+Text obisnuit "bold" 
+</b>
+
+<Center>
+<b>
+Text obisnuit centrat "bold" 
+</b>
+</Center>
+
+<i>
+Text obisnuit "inclinat" 
+</i>
+<Center>
+<i>
+Text obisnuit centrat "inclinat" 
+</i>
+</Center>
+</td></tr></table></center></b></b>
+<INPUT onclick=window.open("11.html","buton1Window",'resizable=yes,width=400,height=150') type=button value=Vezi_pagina:>
+<HR>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br> 
+<textarea width="100%" height="400px" style="width:100%;height:230px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Texte in pagini WEB</title>
+</head>
+<body>
+Text obisnuit
+<Center> Text obisnuit centrat </Center>
+<b> Text obisnuit "bold" </b>
+<Center><b> Text obisnuit centrat "bold" </b> </Center>
+<i> Text obisnuit "inclinat" </i>
+<Center><i> Text obisnuit centrat "inclinat" </i></Center>
+</body>
+</html>
+</textarea>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o pagina web care foloseste texte de diferite marimi
+<br><br><center><table bgcolor=yellow border=1>
+<tr><td width="400">
+<h1> Text de marimea h1 </h1>
+<h2> Text de marimea h2 </h2> 
+<h3> Text de marimea h3 </h3> 
+<h4> Text de marimea h4 </h4> 
+<h5> Text de marimea h5 </h5> 
+<h6> Text de marimea h6 </h6> 
+</td></tr></table></center>
+<INPUT onclick=window.open("12.html","buton1Window",'resizable=yes,width=400,height=250') type=button value=Vezi_pagina:>
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:230px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Texte in pagini WEB</title>
+</head>
+<body>
+<h1> Text de marimea h1 </h1>
+<h2> Text de marimea h2 </h2> 
+<h3> Text de marimea h3 </h3> 
+<h4> Text de marimea h4 </h4> 
+<h5> Text de marimea h5 </h5> 
+<h6> Text de marimea h6 </h6> 
+</body>
+</html>
+</textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Marcatorii pot fi combinati intre ei. Putem obtine diverse tipuri de texte prin imbricarea unor marcatori in alti 
+marcatori 
+<br><br><center><table bgcolor=yellow border=1>
+<tr><td width="400">
+<i>
+<h3> Text "inclinat" de marimea h3 </h3>
+</i>
+
+<Center>
+<h2> Text centrat de marimea h2 </h2> 
+</Center>
+</td></tr></table></center>
+<INPUT onclick=window.open("13.html","buton1Window",'resizable=yes,width=400,height=120') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:170px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Texte in pagini WEB</title>
+</head>
+<body>
+<i> <h3> Text "inclinat" de marimea h3 </h3> </i>
+<Center> <h2> Text centrat de marimea h2 </h2> </Center>
+</body>
+</html>
+</textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Un alt exemplu de imbricare a marcatorilor:
+
+<br><br><center><table bgcolor=yellow border=1>
+<tr><td width="400">
+<Center>
+<i><h3> Text centrat "inclinat" de marimea h3 </h3></i>
+<i><h4> Text centrat "inclinat" de marimea h4 </h4> </i>
+</Center>
+</td></tr></table></center></b></b>
+<INPUT onclick=window.open("14.html","buton1Window",'resizable=yes,width=400,height=120') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:200px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Texte in pagini WEB</title>
+</head>
+<body>
+<Center>
+<i><h3> Text centrat "inclinat" de marimea h3 </h3></i>
+<i><h4> Text centrat "inclinat" de marimea h4 </h4> </i>
+</Center>
+</body>
+</html>
+</textarea>
+<br><br><a name="t_din"></a>
+<font color= "black" size=4><li><b>Texte dinamice</b></font>
+<br><br>
+<ul>
+ <b>Text Marquee</b>
+</ul>
+<center><table bgcolor=cyan border =1>
+<tr>
+ <td width="430">
+<Center><b> Marcatorul &lt Marquee &gt </b></center>
+<hr>
+<br>
+ Pentru text dinamic :<br> <marquee > Text dinamic </marquee> <br>
+<table>
+ <tr bgcolor=yellow > 
+  <td><b>&lt marquee width=" valoare % " &gt Text dinamic &lt /marquee &gt</b></td>
+ </tr>
+</table>
+</td></tr></table></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; In cazul in care se utilizeaza <b> width= </b> , textul se desfasoare pe o portiune prestabilita din pagina.
+<br><br><center><table bgcolor=yellow border=1>
+<tr><td width="430">
+<Center>
+<br> <marquee width="50%" > Text marquee width=50% </marquee> <br><br>
+</Center>
+</td></tr></table></center></b></b>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:200px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Marquee</title>
+</head>
+<body>
+<Center>
+<br> <marquee width="50%" > Text marquee width=50% </marquee> <br><br>
+</Center>
+</body>
+</html>
+</textarea>
+
+<br><br><a name="liste"></a>
+<font color= "blue" size=5>Utlilizarea listelor</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Listele sunt deseori folosite in paginile WEB pentru a realiza opratia de operatiile de "Numbering" si "Bullets" 
+existente in editoarele de texte.
+<br><br><a name="marc_l"></a>
+<font color= "black" size=4><li><b>Marcatori pentru definirea listelor</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<center><table bgcolor=cyan border =1>
+<tr>
+ <td width=33%>
+<Center><H3> Marcatorul &ltOL&gt </h3></Center>
+<hr>
+ Pentru liste numerotate
+<table>
+ <tr bgcolor=yellow> 
+  <td>
+   <b>&ltOL&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&ltLI&gt Text linia 1 &lt/LI&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&ltLI&gt Text linia 2 &lt/LI&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&ltLI&gt Text linia 3 &lt/LI&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&ltLI&gt Text linia n &lt/LI&gt</b>
+   <br><b>&lt/OL&gt</b>
+  </td>
+ </tr>
+</table>
+<td width=33%>
+<Center><H4> Marcatorul &ltUL&gt </h4></center>
+<hr>
+ Pentru liste nenumerotate
+<br>
+<table>
+ <tr bgcolor=yellow > 
+ <td>  
+   <b>&ltUL&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&ltLI&gt Text linia 1 &lt/LI&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&ltLI&gt Text linia 2 &lt/LI&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&ltLI&gt Text linia 3 &lt/LI&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&ltLI&gt Text linia n &lt/LI&gt</b>
+   <br><b>&lt/UL&gt</b>
+
+ </td>
+ </tr>
+</table>
+<td width=33%>
+<br>
+<Center><H4> Marcatorul &ltDL&gt </h4></Center>
+<hr>
+ Pentru liste de definitii
+<br>
+<table>
+<tr bgcolor=yellow > 
+  <td>
+   <b>&ltDL&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&ltDT&gt Termen 1 de definit &lt/DT&gt</b>
+   <br>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltDD&gt Def. termen 1 &lt/DD&gt
+   <br><b> &nbsp;&nbsp;&nbsp;&ltDT&gt Termen 2 de definit &lt/DT&gt</b>
+   <br>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltDD&gt Def. termen 2 &lt/DD&gt
+
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&ltDT&gt Termen n de definit &lt/DT&gt </b>
+   <br>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltDD&gt Def. termen n &lt/DD&gt
+   <br><b>&lt/DL&gt</b>  
+ </td>
+ </tr>
+</table>
+</tr>
+</table></center>
+
+<br><br><a name="ex_l"></a>
+<font color= "black" size=4><li><b> Exemple de utilizare a listelor </b></font>
+<hr>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; <b>Liste numerotate </b>
+<center><table border=1 width="400">
+<tr>
+<td width=25% bgcolor=yellow>
+<center><br>
+<h4> Liste numerotate </h4>
+<hr>
+</center>
+<ol>
+ <li> Romania </li>
+ <li> Franta </li>
+ <li> Germania </li>
+ <li> Italia </li>
+ <li> Grecia </li>
+ <li> Anglia </li>
+</ol>
+</td></tr></table></center>
+<INPUT onclick=window.open("21.html","buton1Window",'resizable=yes,width=400,height=250') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:330px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Utilizarea listelor numerotate</title>
+</head>
+<body>
+<center><br>
+<h4> Liste numerotate </h4>
+<hr>
+</center>
+<ol>
+ <li> Romania </li>
+ <li> Franta </li>
+ <li> Germania </li>
+ <li> Italia </li>
+ <li> Grecia </li>
+ <li> Anglia </li>
+</ol>
+</body>
+</html>
+</textarea>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Liste nenumerotate </b>
+<center><table border=1 width="400">
+<tr>
+<td width=25% bgcolor=magenta>
+<center><br>
+<h4> Liste nenumerotate </h4>
+<hr>
+</center>
+<ul>
+ <li> Romania </li>
+ <li> Franta </li>
+ <li> Italia </li>
+ <li> Grecia </li>
+ <li> Germania </li>
+ <li> Anglia </li>
+</ul>
+</td></tr></table></center>
+<INPUT onclick=window.open("22.html","buton1Window",'resizable=yes,width=350,height=250') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:330px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Utilizarea listelor nenumerotate</title>
+</head>
+<body>
+<center><br>
+<h4> Liste nenumerotate </h4>
+<hr>
+</center>
+<ul>
+ <li> Romania </li>
+ <li> Franta </li>
+ <li> Italia </li>
+ <li> Grecia </li>
+ <li> Germania </li>
+ <li> Anglia </li>
+</ul>
+</body>
+</html>
+</textarea>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Liste de definitii </b>
+<center><table border=1 width="400">
+<tr>
+<td width=25%  bgcolor=cyan>
+<center><br>
+<h4> Liste de definitii </h4>
+<hr>
+</center>
+<dl>
+ <dt> Romania
+   <dd> -tara latina 
+ <dt> Egipt 
+   <dd> -tara araba   
+ <dt> Cehia
+   <dd> -tara slava 
+</dl>
+</td></tr></table></center>
+<INPUT onclick=window.open("23.html","buton1Window",'resizable=yes,width=400,height=240') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:330px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Utlizarea listelor de definitii</title>
+</head>
+<body>
+<center><br>
+<h4> Liste de definitii </h4>
+<hr>
+</center>
+<dl>
+ <dt> Romania
+   <dd> -tara latina 
+ <dt> Egipt 
+   <dd> -tara araba   
+ <dt> Cehia
+   <dd> -tara slava 
+</dl>
+</body>
+</html>
+</textarea>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Liste imbricate </b>
+<center><table border=1 width="600">
+<tr>
+<td width=25% bgcolor=#B1F5DF>
+<center><br>
+<h4> Liste imbricate </h4>
+<hr>
+</center>
+<ol>
+ <li> Romania </li>
+  <ul>  
+   <li> Bucuresti </li>
+   <ul>
+    <li>B-dul Victoriei</li>
+    <li>Igoanei</li>
+    <li>B-dul Aviatorilor</li>
+    <li>Ana Ipatescu</li>
+   </ul>
+   <li> Brasov </li>
+   <li> Cluj-Napoca </li>
+   <li> Tg.Mures </li>
+   <ul>
+    <li>B-dul 1848</li>
+    <li>Pandurilor</li>
+    <li>Calarasilor</li>
+    <li>Magurei</li>
+   </ul>
+   <li> Alba-Iulia </li>
+  </ul>
+ <li> Spania </li> 
+ <li> Italia </li>
+</ol>
+</td></tr></table></center>
+<INPUT onclick=window.open("24.html","buton1Window",'resizable=yes,width=400,height=440') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:590px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Utilizarea listelor imbricate</title>
+</head>
+<body>
+<center><br>
+<h4> Liste imbricate </h4>
+<hr>
+</center>
+<ol>
+ <li> Romania </li>
+  <ul>  
+   <li> Bucuresti </li>
+   <ul>
+    <li>B-dul Victoriei</li>
+    <li>Igoanei</li>
+    <li>B-dul Aviatorilor</li>
+    <li>Ana Ipatescu</li>
+   </ul>
+   <li> Brasov </li>
+   <li> Cluj-Napoca </li>
+   <li> Tg.Mures </li>
+   <ul>
+    <li>B-dul 1848</li>
+    <li>Pandurilor</li>
+    <li>Calarasilor</li>
+    <li>Magurei</li>
+   </ul>
+   <li> Alba-Iulia </li>
+  </ul>
+ <li> Spania </li> 
+ <li> Italia </li>
+ <ol>
+</body>
+</html>
+</textarea>
+
+
+<br><br><a name="img"></a>
+<font color= "blue" size=5><b>Imagini in pagini WEB </b> </font>
+<br><br><font color= "black" size=4> <li> Inserarea imaginilor  </font>
+<ul>
+ <li><b>Marcatorul &lt IMG SRC &gt</b> 
+</ul>
+
+<br> Afisarea imaginii la dimensiunile cu care a fost creata imaginea 
+<table>
+ <tr bgcolor=yellow> 
+  <td><b>&ltIMG SRC="Nume_imagine.extensie"&gt </b></td>
+ </tr>
+</table>
+<hr>
+<br> Afisarea imaginii la dimensiuni impuse Ex: 150 X 125 pixeli
+<table>
+ <tr bgcolor=yellow> 
+  <td><b>&ltIMG SRC="Nume_imagine.extensie" width=150 , height=125 &gt </b></td>
+ </tr>
+</table>
+<hr>
+<br> Afisarea imaginii la dimensiuni impuse in procente fata de dimensiunile ferestrei in care se
+afiseaza imaginea.
+<br> Exemplu 50 % x 25 %
+<br>
+
+<table>
+ <tr bgcolor=yellow> 
+  <td><b>&ltIMG SRC="Nume_imagine.extensie" width=50% , height=25% &gt </b></td>
+ </tr>
+</table>
+<hr>
+<br> Afisarea imaginii cu chenar
+<table>
+ <tr bgcolor=yellow> 
+  <td><b>&ltIMG SRC="Nume_imagine.extensie" width=150 , height=125 , border=1&gt</b></td>
+ </tr>
+</table>
+<hr>
+<br> Afisarea imaginii aliniata (Top, Middle, Bottom)
+<table>
+ <tr bgcolor=yellow> 
+  <td><b>&ltIMG SRC="Nume_imagine.extensie" width=150 , height=125 , ALIGN=TOP &gt</b></td>
+ </tr>
+</table>
+<ul>
+ <li><b>Exemple de insertii imagini</b> 
+</ul>
+<br><Center>
+<table border=1 width="550">
+<tr><td >
+<Center>
+<br> Afisarea imaginii la dimensiunile cu care a fost creata imaginea 
+<hr>
+<img SRC="imagine0.jpg">
+</center>
+</td></tr></table></Center>
+<INPUT onclick=window.open("41.html","buton1Window",'resizable=yes,width=600,height=400') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:220px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Insertii imagini</title>
+</head>
+<body>
+<Center>
+<br> Afisarea imaginii la dimensiunile cu care a fost creata imaginea
+<hr>
+<img SRC="imagine0.jpg">
+</center>
+</body>
+</html>
+</textarea>
+<Center>
+<table border=1 width="400">
+<tr><td >
+<center>
+<br> Afisarea imaginii la dimensiuni impuse Ex: 150 X 125 pixeli
+<hr>
+<img SRC="imagine0.jpg" width=150 , height=125 > </center>
+<br>
+</td></tr></table></Center>
+<INPUT onclick=window.open("42.html","buton1Window",'resizable=yes,width=400,height=250') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:250px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>
+Insertii imagini
+</title>
+</head>
+<body>
+<center>
+<br> Afisarea imaginii la dimensiuni impuse Ex: 150 X 125 pixeli
+<hr>
+<img SRC="imagine0.jpg" width=150 , height=125 > 
+</center>
+</body>
+</html>
+</textarea>
+<Center>
+<br> Afisarea imaginii la dimensiuni impuse in procente fata de dimensiunile ferestrei in care se
+afiseaza imaginea. 
+<br> Exemplu 25 % x 40 %<br><br>
+<img SRC="imagine0.jpg" width=25% , height=40% >
+</center>
+<br>
+<INPUT onclick=window.open("43.html","buton1Window",'resizable=yes,width=400,height=400') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:240px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Insertii de imagini</title>
+</head>
+<body>
+<Center>
+<br> Afisarea imaginii la dimensiuni impuse in procente fata de dimensiunile ferestrei in care se
+afiseaza imaginea.
+<br> Exemplu 75 % x 50 %<br><br><br>
+<img SRC="imagine0.jpg" width=75% , height=50% >
+</center>
+</body>
+</html>
+</textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Marcatorul de imagine poate fi imbricat in cadrul altor marcatori. Se poate imbrica de exemplu un marcator de 
+imagine in marcatorul <b> marquee </b> obtinandu-se efectul de mai jos.
+
+<MARQUEE><IMG SRC="imagine10.jpg" HEIGHT=36 WIDTH=48 ALT="Marquee"></MARQUEE>
+<ul>
+ <li><b>Imagini la diferite dimensiuni </b> 
+</ul>
+<br>-Sa realizam o pagina WEB asemnatoare cu pagina din figura de jos:<br>
+<Center>
+<table border=1>
+ <tr>
+  <td>
+  <Center><img SRC="im42.jpg"></Center>
+  </td>
+ </tr>
+</table>
+</Center>
+<INPUT onclick=window.open("44.html","buton1Window",'resizable=yes,width=575,height=375') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:410px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Insertii imagini</title>
+</head>
+<Center>
+<br> Imaginii la diferite dimensiuni
+</center>
+<hr>
+<img SRC="imagine0.jpg" width=150 , height=125 >
+<img SRC="imagine0.jpg" width=125 , height=100 >
+<img SRC="imagine0.jpg" width=100 , height=75 >
+<img SRC="imagine0.jpg" width=75 , height=50 >
+<img SRC="imagine0.jpg" width=50 , height=25 >
+<br>
+<img SRC="imagine0.jpg" width=150 , height=125 >
+<img SRC="imagine0.jpg" width=125 , height=100 >
+<img SRC="imagine0.jpg" width=100 , height=75 >
+<img SRC="imagine0.jpg" width=75 , height=50 >
+<img SRC="imagine0.jpg" width=50 , height=25 >
+</body>
+</html>
+</textarea>
+<ul>
+ <li><b>Atributul ALIGN</b> 
+</ul>
+
+<br>-Folosind atributul ALIGN, sa realizam o pagina WEB asemnatoare cu pagina din figura de jos:<br>
+<Center>
+<table border=1>
+ <tr>
+  <td>
+  <Center><img SRC="im40.jpg"></Center>
+  </td>
+ </tr>
+</table>
+</Center>
+<INPUT onclick=window.open("45.html","buton1Window",'resizable=yes,width=575,height=375') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:410px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>
+Insertii imagini
+</title>
+</head>
+
+<Center>
+<br> Imaginii la diferite dimensiuni
+</center>
+<hr>
+<img SRC="Imagine0.jpg" width=150 , height=125 >
+<img SRC="Imagine0.jpg" width=125 , height=100 >
+<img SRC="Imagine0.jpg" width=100 , height=75 >
+<img SRC="Imagine0.jpg" width=75 , height=50 >
+<img SRC="Imagine0.jpg" width=50 , height=25 >
+<br>
+<img SRC="Imagine0.jpg" width=150 , height=125 >
+<img SRC="Imagine0.jpg" width=125 , height=100 ALIGN =Top >
+<img SRC="Imagine0.jpg" width=100 , height=75 ALIGN =Top  >
+<img SRC="Imagine0.jpg" width=75 , height=50 ALIGN =Top  >
+<img SRC="Imagine0.jpg" width=50 , height=25 ALIGN =Top  >
+</body>
+</html>
+</textarea>
+<br><br><a name="leg"></a>
+<font color= "blue" size=5><b>Legaturi </b> </font>
+<br><br><font color= "black" size=4> <li> Legaturi cu alte documente </font>
+<ul>
+ <li><b>Marcatorul &ltA HREF &gt</b> 
+</ul>
+
+<table>
+ <tr bgcolor=yellow> 
+  <td><b>&ltA HREF="Document"&gt Text activ&lt/A&gt</b></td>
+ </tr>
+</table>
+<ul>
+ <li><b> Legaturi locale </b> 
+</ul>
+<table>
+ <tr bgcolor=yellow> 
+  <td><b>&ltA HREF="Document.html"&gt Text activ&lt/A&gt</b></td>
+  <td><b>&ltA HREF="dir/subdir/Document.html"&gt Text activ&lt/A&gt</b></td>
+  </tr>
+ <tr bgcolor=cyan> 
+  <td><b>&ltA HREF="../Document.html"&gt Text activ&lt/A&gt</b></td>
+  <td><b>&ltA HREF="../../Document.html"&gt Text activ&lt/A&gt</b></td>
+ </tr>
+</table>
+<ul>
+ <li><b> Legaturi interne </b> 
+</ul>
+
+<table>
+ <tr bgcolor=yellow > 
+  <td> <b>&ltA HREF="Cuvant cheie"&gt Text activ&lt/A&gt</b></td>
+ </tr> 
+ <tr bgcolor=cyan > 
+ <td><b>&ltA HREF="Document.html#cuvant_cheie"&gt Text activ&lt/A&gt</b></td>
+ </td>
+ </tr>
+</table>
+<ul>
+ <li><b> Legaturi indepartate </b> 
+</ul>
+
+<table>
+<tr bgcolor=yellow > 
+  <td>
+  <td><b>&ltA HREF="http://www.adresa"&gt Text activ&lt/A&gt</b></td>
+ </td>
+ </tr>
+</table>
+<ul>
+ <li><b> Exemplu de utilizare a legaturilor locale </b> 
+</ul>
+<center>
+<table border=1 width="400">
+<tr>
+<td width=25% bgcolor=yellow>
+<center>
+<h3> Legaturi locale </h3>
+<hr>
+<h4> Legatura spre pagina modemuri </h4>
+<a href="./leg/modem.html"> Modemuri, Fax-modemuri </a> 
+</center>
+</td></tr></table></center>
+<INPUT onclick=window.open("32.html","buton1Window",'resizable=yes,width=400,height=250') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:220px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Legaturi locale</title>
+</head>
+<center>
+<h3> Legaturi locale </h3>
+<hr>
+<h4> Legatura spre pagina modemuri </h4>
+<a href="modem.html"> Modemuri, Fax-modemuri </a> 
+</center>
+</body>
+</html>
+</textarea>
+<ul>
+ <li><b> Exemplu de utilizare a legaturilor in pagina </b> 
+</ul>
+<center>
+<table border=1 width="400">
+<td width=25% bgcolor=magenta>
+<center>
+<h3> Legaturi interne </h3>
+<hr>
+<h4> Legatura spre diferite locuri in pagina </h4>
+</center>
+<A HREF="./leg/imprim.html#ace"> Imprim. cu ace </A><br>
+<A HREF="./leg/imprim.html#jet"> Imprim. cu cerneala </A><br>
+<A HREF="./leg/imprim.html#laser">Imprim. laser </A><br>
+</td></tr></table></center>
+<INPUT onclick=window.open("33.html","buton2Window") type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:270px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Legaturi interne</title>
+</head>
+<center>
+<h3> Legaturi interne </h3>
+<hr>
+<h4> Legatura spre diferite locuri in pagina </h4>
+</center>
+<A HREF="./leg/imprim.html#ace"> Imprim. cu ace </A><br>
+<A HREF="./leg/imprim.html#jet"> Imprim. cu cerneala </A><br>
+<A HREF="./leg/imprim.html#laser">Imprim. laser </A><br>
+</center>
+</body>
+</html>
+</textarea>
+<ul>
+ <li><b> Exemplu de utilizare a legaturilor indepartate </b> 
+</ul>
+<center>
+<table border=1 width="400">
+<td width=25%  bgcolor=cyan>
+<center>
+<h3> Legaturi indepartate </h3>
+<hr>
+<h4> Legatura spre pagina universitatii </h4>
+<a href="http://www.umfst.ro"> UMFST </a> 
+</center>
+</td></tr></table></center>
+<INPUT onclick=window.open("34.html","buton3Window",'resizable=yes,width=400,height=250') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:260px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>
+Legaturi indepartate
+</title>
+</head>
+<center>
+<h3> Legaturi indepartate </h3>
+<hr>
+<h4> Legatura spre pagina universitatii </h4>
+<a href="http://www.upm.ro"> UMFST" </a> 
+</center>
+</body>
+</html>
+</textarea>
+<ul>
+ <li><b> Exemplu de utilizare a legaturilor si listelor imbricate </b> 
+</ul>
+<center>
+<table border=1 width="600">
+<tr>
+<td width=25% bgcolor=#B1F5DF>
+<center>
+<h2> Liste imbricate si legaturi </h2>
+<hr>
+</center>
+<uL> 
+ <LI><h3>1. Periferice</h3> 
+   <UL>    
+    <li><a href="./leg/monit.html">1.1 Monitoare </A>
+    <li>1.2 Imprimante
+      <UL>     
+       <li><a href="./leg/impact.html"> 1.2.1 Imprimante cu impact (cu ace) </A> 
+       <li><a href="./leg/jet.html"> 1.2.2 Imprimante cu jet de cerneala </A> 
+       <li><a href="./leg/laser.html"> 1.2.3 Imprimante laser</A> 
+      </UL>
+    <li><a href="./leg/scan.html">1.3 Scanere </a> 
+    <li><a href="./leg/modem.html">1.4 Modemuri, Fax-modemuri </a> 
+   </ul>
+ <LI><h3>2.Retele</h3> 
+
+      <UL>     
+       <li><a href="./leg/inel.html"> 2.1 Retele inel </A> 
+       <li><a href="./leg/stea.html"> 2.2 Retele stea</A> 
+       <li><a href="./leg/bus.html"> 2.3 Retele bus</A> 
+      </UL>
+
+</ul> 
+</td></tr></table></center>
+<INPUT onclick=window.open("31.html","buton2Window") type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:510px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Liste imbricate si legaturi</title>
+</head>
+<center>
+<h2> Liste imbricate si legaturi </h2>
+<hr>
+</center>
+<uL> 
+ <LI><h3>1. Periferice</h3> 
+   <UL>    
+    <li><a href="./leg/monit.html">1.1 Monitoare </A>
+    <li>1.2 Imprimante
+      <UL>     
+       <li><a href="./leg/impact.html"> 1.2.1 Imprimante cu impact (cu ace) </A> 
+       <li><a href="./leg/jet.html"> 1.2.2 Imprimante cu jet de cerneala </A> 
+       <li><a href="./leg/laser.html"> 1.2.3 Imprimante laser</A> 
+      </UL>
+    <li><a href="./leg/scan.html">1.3 Scanere </a> 
+    <li><a href="./leg/modem.html">1.4 Modemuri, Fax-modemuri </a> 
+   </ul>
+ <LI><h3>2.Retele</h3> 
+      <UL>     
+       <li><a href="./leg/inel.html"> 2.1 Retele inel </A> 
+       <li><a href="./leg/stea.html"> 2.2 Retele stea</A> 
+       <li><a href="./leg/bus.html"> 2.3 Retele bus</A> 
+      </UL>
+</ul> 
+</body>
+</html>
+</textarea>
+
+<br><br><a name="ims"></a>
+<font color= "blue" size=5><b>Imagini senzitive </b> </font>
+<br><br><font color= "black" size=4> <li> Link-uri prin imagini </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Imbricand un marcator pentru imagini intr-un marcator pentru legaturi, obtinem link-uri in care in loc de un text activ, 
+avem o imagine activa (senzitiva), care prin click de pe mouse furnizeaza o legatura spre pagina dorita.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o astfel de legatura intr-o pagina web<br><br>  
+<form name="f30">  
+<textarea width="100%" height="400px" style="width:100%;height:170px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td><br>
+<center> Imagine senzitiva </center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.upm.ro"><img src="../../Images/logo_upm.gif"></a><br><br>
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f30.code.value);</script>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Putem sa avem simultan si text activ si imagine senzitiva <br><br>  
+<form name="f31">  
+<textarea width="100%" height="400px" style="width:100%;height:170px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td><br>
+<center> Text activ si imagine senzitiva </center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.upm.ro"><img src="../../Images/logo_upm.gif"> Spre site-ul UPM Tg.Mures </a><br><br>
+</script>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f31.code.value);</script>
+<br><br><font color= "black" size=4> <li> Meniuri grafice </font>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Imaginile senzitive se folosesc deseori pentru a realiza meniuri mai placute, combinand grafica si text. <br><br>  
+<form name="f32">  
+<textarea width="100%" height="400px" style="width:100%;height:200px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<center> Meniuri grafice </center><hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" ><img src="../../Images/butoane/but_s.jpg"></a> Univ. "UMFST" Tg.Mures
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" ><img src="../../Images/butoane/but_s.jpg"></a> Univ. Tehnica din Cluj
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" ><img src="../../Images/butoane/but_s.jpg"></a> Univ. "Babes Bolyai Cluj
+<br><br>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f32.code.value);</script>
+
+
+<br><br><a name="tab"></a>
+<font color= "blue" size=5><b>Tabele </b> </font>
+<br><br><font color= "black" size=4> <li> Inserarea tabelelor in pagini WEB </font>
+<ul>
+ <li><b>Marcatorul &ltTable&gt</b> 
+</ul>
+<table bgcolor=cyan border =1>
+<tr>
+ <td>
+ <Center><H3> Tabel cu n linii si n coloane </h3></Center>
+ <hr>
+ <table>
+ <tr bgcolor=yellow> 
+  <td>
+   <b>&ltTable&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&lt TR &gt
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 11 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 12 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 1N &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&lt/TR&gt
+   <br><b> &nbsp;&nbsp;&nbsp;&ltTR&gt
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 21 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 22 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 2N &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&lt/TR&gt
+   <br><b> &nbsp;&nbsp;&nbsp;.
+   <br><b> &nbsp;&nbsp;&nbsp;.
+   <br><b> &nbsp;&nbsp;&nbsp;.
+   <br><b> &nbsp;&nbsp;&nbsp;&ltTR&gt
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula N1 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula N2 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. 
+  <br><b> &nbsp;&nbsp;&nbsp;&lt/TR&gt
+  <br><b>&lt/Table&gt</b><br>
+  </td>
+ </tr>
+</table>
+ <td>
+ <Center><H3> Exemplu tabel cu 3 coloane si 3 randuri </h3></Center>
+ <hr>
+ <table>
+ <tr bgcolor=yellow> 
+  <td>
+   <b>&ltTable&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&ltTR&gt
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 11 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 12 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 13 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&lt/TR&gt
+   <br><b> &nbsp;&nbsp;&nbsp;&ltTR&gt
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 21 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 22 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 23 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&lt/TR&gt
+   <br><b> &nbsp;&nbsp;&nbsp;&ltTR&gt
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 31 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 32 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 33 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&lt/TR&gt
+  <br><b>&lt/Table&gt</b><br>
+  </td>
+ </tr>
+</table>
+ <td>
+ <Center><H3> Exemplu tabel cu 3 coloane si 4 randuri </h3></Center>
+ <hr>
+ <table>
+ <tr bgcolor=yellow> 
+  <td>
+   <b>&ltTable&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&ltTR&gt
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 11 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 12 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 13 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&lt/TR&gt
+   <br><b> &nbsp;&nbsp;&nbsp;&ltTR&gt
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 21 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 22 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 23 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&lt/TR&gt
+   <br><b> &nbsp;&nbsp;&nbsp;&ltTR&gt
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 31 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 32 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 33 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&lt/TR&gt
+    <br><b> &nbsp;&nbsp;&nbsp;&ltTR&gt
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 41 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 42 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltTD&gt Celula 43 &lt/TD&gt</b>
+   <br><b> &nbsp;&nbsp;&nbsp;&lt/TR&gt
+  <br><b>&lt/Table&gt</b><br>
+  </td>
+ </tr>
+</table>
+</table>
+<ul>
+ <li><b>Exemplu de utilizare tabele </b>
+</ul>
+<br><br><Center>
+<Table border=1>
+  <td><b>Bucuresti</b> </td>
+  <td>B-dul Victoriei </td>
+  <td>Igoanei</td>
+  <td>B-dul Aviatorilor </td>
+  <td>Ana Ipatescu </td>
+</tr> 
+<TR>
+  <td><b>Brasov </b></td>
+  <td>B-dul 1848 </td>
+  <td>Pandurilor</td>
+  <td>Calarasilor</td>
+  <td>Magurei</td>
+</tr> 
+<TR>  
+  <td><b>Cluj </b></td>
+  <td>Motilor </td>
+  <td>Martasti</td>
+  <td>Grigoresu</td>
+  <td>Pata</td>
+</tr>
+</table> 
+</center>
+<br>
+<INPUT onclick=window.open("51.html","buton1Window",'resizable=yes,width=400,height=150') type=button value=Vezi_pagina:> 
+<hr>
+</td>
+</tr>
+</table>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br> 
+<textarea width="100%" height="400px" style="width:100%;height:520px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Utilizarea tabelelor</title>
+</head>
+<body>
+<Table border=1>
+  <td><b>Bucuresti</b> </td>
+  <td>B-dul Victoriei </td>
+  <td>Igoanei</td>
+  <td>B-dul Aviatorilor </td>
+  <td>Ana Ipatescu </td>
+</tr> 
+<TR>
+  <td><b>Brasov </b></td>
+  <td>B-dul 1848 </td>
+  <td>Pandurilor</td>
+  <td>Calarasilor</td>
+  <td>Magurei</td>
+</tr> 
+<TR>
+</body>
+</html>  
+  <td><b>Cluj </b></td>
+  <td>Motilor </td>
+  <td>Martasti</td>
+  <td>Grigoresu</td>
+  <td>Pata</td>
+</tr>
+</table> 
+</body>
+</html>
+</textarea>
+
+<ul>
+ <li><b> Concatenarea celulelor si coloanelor </b>
+</ul>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Celulele si coloanele pot fi unite folosind parametrul <b> colspan  </b> respectiv <b> rowspan </b>. Tabelul de jos 
+a fost realizat prin utilizarea atributelor <b> colspan  </b> si <b> rowspan </b>
+<br><br>
+<center>
+<title>Tablouri - celule si coloane unite</title>
+</head>
+<body>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Cap de tabel </center></td>
+</tr> 
+<tr>
+  <td><b> - x - </b>  </td>
+  <td><b> - 1 - </b> </td>
+  <td><b> - 2 - </b></td>
+  <td><b> - 3 - </b> </td>
+  <td><b> - 4 - </b> </td>
+</tr> 
+
+<tr>
+  <td><b> -1- </b> </td>
+  <td rowspan="2" bgcolor="yellow"> 11 <br>  21 </td>
+  <td> 12 </td>
+  <td colspan="2" bgcolor="yellow" > 13  & 14 </td>
+  
+</tr> 
+<tr>
+  <td><b> -2- </b></td>
+  <td> 22 </td>
+  <td> 23 </td>
+  <td> 24 </td>
+</tr> 
+<tr>
+</body>
+</html>  
+  <td><b> -3- </b></td>
+  <td> 31 </td>
+  <td colspan="3" bgcolor="yellow"> 32 & 33 & 34</td>
+</tr>
+</table> 
+</center
+<br>
+<br>
+<INPUT onclick=window.open("54.html","buton1Window",'resizable=yes,width=400,height=150') type=button value=Vezi_pagina:> 
+<hr>
+</td>
+</tr>
+</table>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br> 
+<textarea width="100%" height="400px" style="width:100%;height:640px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Tablouri - celule si coloane unite</title>
+</head>
+<body>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Cap de tabel </center></td>
+</tr> 
+<tr>
+  <td><b> - x - </b>  </td>
+  <td><b> - 1 - </b> </td>
+  <td><b> - 2 - </b></td>
+  <td><b> - 3 - </b> </td>
+  <td><b> - 4 - </b> </td>
+</tr> 
+
+<tr>
+  <td><b> -1- </b> </td>
+  <td rowspan="2" bgcolor="yellow"> 11 <br>  21 </td>
+  <td> 12 </td>
+  <td colspan="2" bgcolor="yellow" > 13  & 14 </td>
+  
+</tr> 
+<tr>
+  <td><b> -2- </b></td>
+  <td> 22 </td>
+  <td> 23 </td>
+  <td> 24 </td>
+</tr> 
+<tr>
+  <td><b> -3- </b></td>
+  <td> 31 </td>
+  <td colspan="3" bgcolor="yellow"> 32 & 33 & 34</td>
+</tr>
+</table> 
+</body>
+</html>
+</textarea>
+
+<br>-Sa realizam o pagina WEB asemnatoare cu pagina din figura de jos:<br><br>
+<Center>
+<table border=1>
+ <tr>
+  <td>
+  <Center><img SRC="im51.jpg"></Center>
+  </td>
+ </tr>
+</table>
+</Center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a putea plasa diferite elemente in locuri diferite in pagina se defineste un tabel imaginar cu atatea celule 
+cate elemente cuprinde pagina, urmand ca fiecare element sa se plaseze in celula corespunzatoare. Pentru inceput se seteaza border=1.
+<br><br>
+<INPUT onclick=window.open("52.html","buton1Window",'resizable=yes,width=400,height=250') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:480px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Utilizarea tabelelor</title>
+</head>
+<body>
+<table border=1>
+ <tr>
+  <td> <img SRC="imagine1.jpg" width=80 height=60 ></td>
+  <td> Locuri interesante</td>
+  <td> <img SRC="imagine5.jpg" width=80 height=60 ></td>
+  <td> Loc gol</td>
+ </tr>
+ <tr>
+  <td> <img SRC="imagine2.jpg" width=80 height=60 ></td>
+  <td>  Pasiuni</td>
+  <td> <img SRC="imagine6.jpg" width=80 height=60 ></td>
+  <td> Cursuri favorite</td>
+ </tr>
+ <tr>
+  <td> Filme preferate</td>
+  <td> <img SRC="imagine7.jpg" width=80 height=60 ></td>
+  <td> Link-uri</td>
+  <td> <img SRC="imagine4.jpg" width=80 height=60 ></td>
+ </tr>
+</table>
+</body>
+</html>
+</textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La sfarsit se seteaza border=0 si avem pagina finala.
+<br><br>
+<INPUT onclick=window.open("53.html","buton1Window",'resizable=yes,width=400,height=250') type=button value=Vezi_pagina:> 
+<hr>
+<ul>
+ <li> <b>Tabele de imagini </b>
+</ul>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tabel de 12 imagini grupate pe 2 linii si 6 coloane
+<br><br><center>
+<table border=1>
+ <tr>
+  <td> <img SRC="imagine1.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine2.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine3.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine4.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine5.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine6.jpg" width=80 height=60 ></td>
+
+ </tr>
+ <tr>
+  <td> <img SRC="imagine7.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine8.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine9.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine10.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine11.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine12.jpg" width=80 height=60 ></td>
+ </tr>
+</table>
+</center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:460px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Texte in pagini WEB</title>
+</head>
+<body>
+<center>
+<table border=1>
+ <tr>
+  <td> <img SRC="imagine1.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine2.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine3.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine4.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine5.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine6.jpg" width=80 height=60 ></td>
+ </tr>
+ <tr>
+  <td> <img SRC="imagine7.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine8.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine9.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine10.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine11.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine12.jpg" width=80 height=60 ></td>
+ </tr>
+</table>
+</center>
+</body>
+</html>
+</textarea>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Tabel de 12 imagini grupate pe 3 linii si 4 coloane
+<br><br><center>
+<table border=1>
+ <tr>
+  <td> <img SRC="imagine1.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine2.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine3.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine4.jpg" width=80 height=60 ></td>
+ </tr>
+ <tr>
+  <td> <img SRC="imagine5.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine6.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine7.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine8.jpg" width=80 height=60 ></td>
+ </tr>
+ <tr>
+  <td> <img SRC="imagine9.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine10.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine11.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine12.jpg" width=80 height=60 ></td>
+ </tr>
+</table>
+</center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa paginii<br><br>  
+<textarea width="100%" height="400px" style="width:100%;height:490px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Tabele</title>
+</head>
+<body>
+<center>
+<table border=1>
+ <tr>
+  <td> <img SRC="imagine1.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine2.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine3.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine4.jpg" width=80 height=60 ></td>
+ </tr>
+ <tr>
+  <td> <img SRC="imagine5.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine6.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine7.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine8.jpg" width=80 height=60 ></td>
+ </tr>
+ <tr>
+  <td> <img SRC="imagine9.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine10.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine11.jpg" width=80 height=60 ></td>
+  <td> <img SRC="imagine12.jpg" width=80 height=60 ></td>
+ </tr>
+</table>
+</center>
+</body>
+</html>
+</textarea>
+<ul>
+ <li> <b> Culori in tabele </b>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Avem posibilitatea sa definim background-ul si culoarea caracterelor in fiecare celula.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie cu tabele ce contin celule si texte de diferite culori.
+<br><br>
+<form name="f45">  
+<textarea width="100%" height="400px" style="width:100%;height:630px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="Azure" border =1>
+<tr>
+ <td width="300">
+<center><b> Culori in tabele </b>
+<hr>Celule de diferite culori </center><br>
+<center><table border=1>
+ <tr>
+  <td bgcolor="Yellow" > Galben </td>
+  <td bgcolor="Green" > Verde </td>
+  <td bgcolor="Red" > Rosu </td>
+ </tr>
+ <tr>
+  <td bgcolor="DarkSeaGreen" > Verde marin </td>
+  <td bgcolor="WhiteSmoke" > Fum alb </td>
+  <td bgcolor="Violet" > Violet </td>
+ </tr>
+ </table>
+ <br><br>
+ <hr>Celule cu text de diferite culori </center><br>
+<center><table border=1>
+ <tr>
+  <td bgcolor="White" ><font color="Yellow"> Galben </font></td>
+  <td bgcolor="White" ><font color="Green"> Verde </font> </td>
+  <td bgcolor="White" ><font color="Red"> Rosu </font>  </td>
+ </tr>
+ <tr>
+  <td bgcolor="White" ><font color="Indigo"> Indigo </font></td>
+  <td bgcolor="White" ><font color="LightGreen"> Verde pal </font></td>
+  <td bgcolor="White" ><font color="Violet"> Violet </font></td>
+ </tr>
+</table>
+<br><br>
+</td></tr></table></center>
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f45.code.value);</script>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Folosindu-ne de posibilitatea de a seta culoarea pentru fiecare celula, aa realizam o aplicatie care deseneaza o tabla 
+de sah. Celulele sunt patratele de pe tabla de sah. Aceste patrate nu trebuie sa contina text, numai spatii albe. Spatiile albe , le scriem cu 
+caractere speciale <b>nbsp</b>.
+<br><br>
+<form name="f46">  
+<textarea width="100%" height="400px" style="width:100%;height:1520px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="Azure" border =1>
+<tr>
+ <td width="300">
+<center><b> Tabla de sah </b>
+<hr></center><br>
+<center><table border=1>
+ <tr>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+ </tr>
+ <tr>  
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+ </tr>
+  <tr>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+ </tr>
+ <tr>  
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+ </tr>
+  <tr>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+ </tr>
+ <tr>  
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+ </tr>
+  <tr>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+ </tr>
+ <tr>  
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="Black" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td bgcolor="White" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+ </tr>
+</table>
+<br><br>
+</td></tr></table></center>
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f46.code.value);</script>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Metoda nu este prea eficienta. Aplicatia se rezolva mult mai simplu folosind limbaje de scriptare.
+<ul>
+ <li> <b> Chenare subtiri </b>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;De multe ori se intalnesc in pagini chenare subtiri de diferite culori
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Iata o modalitate de a le realiza utilizand marcatorul &lt;table&gt
+<br><br>  
+<form name="f47">  
+<textarea width="100%" height="400px" style="width:100%;height:380px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center> 
+<table bgcolor="White" border =1 width="400"><tr><td align="center" valign="center"><br>
+     <table width="300" cellpadding="1" cellspacing="0" align="center" bgcolor="#83A0BA"> 
+       <tr><td>        
+         <table width="100%" cellpadding="1" cellspacing="0" align="center" >          
+           <tr bgcolor="#FFFFFF"><td>
+             <table align="center" cellpadding="1" cellspacing="1" >
+               <tr><td>
+    Text in chenar subtire colorat:
+             </td></tr>            
+            </table>
+           </td></tr>
+          </table>
+         </td></tr>
+        </table>
+<br>
+</td></tr></table></center>  
+</body>
+</html>
+
+</textarea>
+</form>
+<script>document.write(f47.code.value);</script>
+
+<br><br><a name="div"></a>
+<font color= "black" size=4><li><b>Utilizarea div-urilor  </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a grupa diverse elemente in cadrul unei pagini se utilizeaza marcatorul <b> div </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prin parametrul <b> id </b> se poate declara un nume unic prin intermediul caruia se poate accesa zona din cadrul 
+zonei delimitate de marcatorul <b> div </b> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Accesarea zonei delimitate de marcatorul  <b> div </b> se face utilizand diverse limbaje de programare 
+specifice tehnologiilor web.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prin parametrul <b> style </b> se poate declara stilul intregii zone delimitate de marcatorul <b> div </b>  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In continuare este prezentat un exemplu de utilizare a marcatorului  <b> div </b> avand parametrul id="exempl" si 
+style="color:#00FF00" <br><br>
+<textarea width="100%" height="400px" style="width:100%;height:220px" name="code" wrap="logical" rows="12" cols="42">
+<center>
+<table bgcolor="Azure" border="1" width="200" ><tr><td>
+<div id="exempl" style="color:#00FF00">
+  <center>
+  <br><font size-"3">Text size=3</font><br>
+  <b>Text bold</b><br>
+  <h3>Text h3 </h3>
+  </center>
+</div>
+</table>
+</center>
+</textarea>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Codul de mai sus este interpretat de browser astfel:
+<br><br>
+<center>
+<table bgcolor="Azure" border="1" width="200" ><tr><td>
+<div id="exempl" style="color:#00FF00">
+  <center>
+  <br><font size-"3">Text size=3</font><br>
+  <b>Text bold</b><br>
+  <h3>Text h3 </h3>
+  </center>
+</div>
+</table>
+</center>
+
+<br><br><a name="svg"></a>
+<font color= "black" size=4><li><b> SVG </b> </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Pentru a realiza grafica in pagini WEB se utilizeaza marcatorul SVG (Scalable Vector Graphics)
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Vom utiliza in continuare marcatorul SVG cu diferite atribute pentru a trasa diferite forme geometrice in pagina WEB.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Trasarea unei linii:<br><br>
+<textarea width="100%" height="400px" style="width:100%;height:80px" name="code" wrap="logical" rows="12" cols="42">
+<svg width="400" height="100">
+   <polygon points="10,10 340,75"
+   style="stroke:purple;"/>
+   Browser-ul d-voastra nu suporta SVG.
+</svg>
+
+</textarea>
+<br><br><center><table bgcolor="Azure" border=0>
+<tr><td width="400">
+<Center>
+<svg width="400" height="100">
+   <polygon points="10,10 340,75"
+   style="stroke:purple;stroke-width:1"/>
+   Browser-ul d-voastra nu suporta SVG.
+</svg>
+</Center>
+</td></tr></table></center></b></b>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Trasarea unui poligon:<br><br>
+
+<textarea width="100%" height="400px" style="width:100%;height:80px" name="code" wrap="logical" rows="12" cols="42">
+<svg width="200" height="200">
+   <polygon points="100,10 190,78 160,198 40,198 10,78 "
+   style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;"/>
+ </svg>
+</textarea>
+<br><br><center><table bgcolor="Azure" border=0>
+<tr><td>
+<Center>
+<svg width="200" height="200">
+   <polygon points="100,10 190,78 160,198 10,78 "
+   style="fill:lime;stroke:purple;stroke-width:3;fill-rule:evenodd;"/>
+   Browser-ul d-voastra nu suporta SVG.
+ </svg>
+</Center>
+</td></tr></table></center></b></b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Trasarea unui dreptungi:<br><br>
+
+<textarea width="100%" height="400px" style="width:100%;height:70px" name="code" wrap="logical" rows="12" cols="42">
+<svg width="400" height="100">
+  <rect width="400" height="100" style="fill:rgb(0,0,255);stroke-width:10;stroke:rgb(0,0,0)" />
+</svg></textarea>
+<br><br><center><Center>
+<svg width="400" height="100">
+  <rect width="400" height="100" style="fill:rgb(0,0,255);stroke-width:10;stroke:rgb(0,0,0)" />
+   Browser-ul d-voastra nu suporta SVG.
+</svg></Center>
+</center></b></b>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Trasarea unui cerc:<br><br>
+
+<textarea width="100%" height="400px" style="width:100%;height:80px" name="code" wrap="logical" rows="12" cols="42">
+<svg width="100" height="100">
+  <circle cx="50" cy="50" r="40" stroke="blue" stroke-width="4" fill="pink" />
+   Browser-ul d-voastra nu suporta SVG.
+</svg></textarea>
+<br><br><center><table bgcolor="Azure" border=0>
+<tr><td>
+<Center>
+<svg width="100" height="100">
+  <circle cx="50" cy="50" r="40" stroke="blue" stroke-width="2" fill="pink" />
+   Browser-ul d-voastra nu suporta SVG.
+</svg></Center>
+</td></tr></table></center></b></b>
+
+
+<br><br><a name="pag"></a>
+<font color= "black" size=4><li><b>Schitarea unei pagini WEB  </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom schita in continuare o pagina WEB .Plasarea principalelor elemente in pagina se va realiza prin
+intermediul tabelelor
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sursa acestei pagini o puteti vedea mai jos <br><br>  
+<form name="f48">  
+<textarea width="100%" height="400px" style="width:100%;height:940px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body >
+<center> 
+<table border=0 bgcolor="whiteSmoke" width="800" >
+ <tr>
+  <td bgcolor="OliveDrab" align="center">
+   <font color="white"><h1>Schitarea unei pagini WEB</font></h1></font>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <table width="100%">
+    <tr>
+     <td bgcolor="LightGrey" width="200" align="center">
+      <font color="Red">
+	   <h3> Meniu </h3>	
+	   <p><a href="#"><strong>Meniu 1</strong></a></p>
+	   <p><a href="#"><strong>Meniu 2</strong></a></p>
+	   <p><a href="#"><strong>Meniu 3</strong></a></p>
+	   <p><a href="#"><strong>.</strong></a></p>
+	   <p><a href="#"><strong>.</strong></a></p>
+	   <p><a href="#"><strong>.</strong></a></p>
+	   <p><a href="#"><strong>Meniu n</strong></a></p>
+	 </font>
+	</td>
+     <td bgcolor="Lavender"  height="500">
+      <font color="Blue">  
+      	<center> <h2> Continut </h2> </center>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+	  </font>
+	 </td>
+    </tr>
+   </table
+  </td>
+ </tr>
+ <tr>
+  <td bgcolor="YellowGreen">
+		Baza paginii
+  </td>
+ </tr>
+</table>
+</center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f48.code.value);</script>
+<br><a name="form"></a>
+<font color= "blue" size=5>Utilizarea formularelor HTML</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Formularele sunt elemente cu ajutorul carora se pot crea pagini web interactive. Formularele contin o serie de 
+elemente interactive care permit interactiunea cu utilizatorul paginii, in vederea colectarii de date si obtiuni de la acesta. Datele astfel obtinute 
+sunt transmise unei aplicatii de tip server-side care le va prelucra si va transmite informatii inapoi spre client. 
+Un formular poate contine elemente speciale – elemente de control (controls) – cum ar fi:
+<ul>
+ <li>Butoane de comanda
+ <li>Butoane radio
+ <li>Butoane de validare
+ <li>Câmpuri text
+ <li>Liste de selectie
+ <li>Elemente de control ascunse
+</ul>
+<br><a name="a_form"></a>
+<font color= "black" size=4><li><b> Adaugarea unui fomular </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Adaugarea unui fomular într-un document HTML se face folosind marcatorul <b> &lt FORM &gt  &lt /FORM &gt </b> . 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Formatul general <b> &lt FORM &gt ACTION="actiune" METHOD="metoda"  &lt /FORM &gt </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Atributele marcatorului FORM
+<ul>
+ <li>ACTION-specifica natura actiunii sau numele programului ce va fi executat de aplicatia server-side
+ <li>METHOD-metoda folosita. Acesta poate lua doua valori (GET sau POST), în conformitate cu metoda protocolului HTTP utilizata pentru transfer.
+</ul>&nbsp;&nbsp;&nbsp;&nbsp;De exemplu daca realizam un formular care cefre datele unui utilizator vom defini un form de genul:
+<br><br><textarea width="100%" height="400px" style="width:100%;height:40px" name="code" wrap="logical" rows="12" cols="42">
+<form action="add_utiliz.php" method="post">
+</textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Elementul cel mai frecvent intalnit in cadrul form-urilor este marcatorul <b>  &lt INPUT &gt  </b> . El permite amplasarea mai 
+multor tipuri de controale care permit interactiunea cu utilizatorul.
+<br><br><font color= "black" size=4><li><b> Marcatorul  &lt INPUT &gt  </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Forma generala <b>&lt INPUT TYPE="tip" NAME="nume" VALUE="valoare" &gt  </b> unde:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;TYPE = sir_de_caractere - specifica tipul de control
+<br>&nbsp;&nbsp;&nbsp;&nbsp;NAME = sir_de_caractere - asociaza elementului de control un nume.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;VALUE = sir_de_caractere - specifica valoarea initiala a elementului de control.
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Atributul TYPE se refera la o gama larga de controale cum ar fi:
+<br><br><font color= "black" size=4><li><b> Elemente text</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; –Campurile de tip  text se folosesc pentru introducerea în formular a unui text pe o singura linie .
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un form care cere numele prenumele si adresa de mail<br><br>  
+<form name="f65">  
+<textarea width="100%" height="400px" style="width:100%;height:220px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="450"><tr><td>
+<form><br>
+ <p><b> &nbsp;&nbsp;Numele:</b> <input type="text" name="first_name" size="15" maxlength="15" value=" " /></p>
+ <p><b> &nbsp;&nbsp;Prenumele:</b> <input type="text" name="last_name" size="30" maxlength="30" value=" " /></p>
+ <p><b> &nbsp;&nbsp;Adresa de email:</b> <input type="text" name="email" size="40" maxlength="40" value=" " /></p>
+ </form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f65.code.value);</script>
+<br><br><font color= "black" size=4><li><b> Elemente password</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a introduce parole se utilizeaza elemente de tip password. Sa completam form-ul precedent cu un camp care cere parola.
+<br><br>  
+<form name="f66">  
+<textarea width="100%" height="400px" style="width:100%;height:230px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="450"><tr><td>
+<form><br>
+ <p><b> &nbsp;&nbsp;Numele:</b> <input type="text" name="first_name" size="15" maxlength="15" value=" " /></p>
+ <p><b> &nbsp;&nbsp;Prenumele:</b> <input type="text" name="last_name" size="30" maxlength="30" value=" " /></p>
+ <p><b> &nbsp;&nbsp;Adresa de email:</b> <input type="text" name="email" size="40" maxlength="40" value=" " /></p>
+ <p><b> &nbsp;&nbsp;Parola:</b> <input type="password" name="password" size="20" maxlength="20" /> <small>Utilizati numai litere si numere.</small></p>
+ </form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f66.code.value);</script>
+
+<br><br><font color= "black" size=4><li><b> Elemente textarea</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Elementul TEXTAREA permite inserarea unui câmp text constituit din mai multe linii. Acest lucru se realizeaza cu 
+atributul: ROWS = numar_de_linii. Pe fiecare linie se poate specifica numarul maxim de caractere prin atributul : COLS = numar_de_caractere
+Exemplu : introducerea unei zone de 5 linii si 60 de coloane pentru a da posibilitatea utilizatorului sa scrie un text.
+<br><br>
+<textarea width="100%" height="400px" style="width:100%;height:110px" name="code" wrap="logical" rows="12" cols="42">
+<Center>
+<TEXTAREA NAME = "Comentarii" ROWS = 5 COLS = 60>
+Descrieti modul d-voastra de a va distra!
+&lt/TEXTAREA&gt
+</Center>
+</TEXTAREA>
+<br><br>
+<Center>
+<TEXTAREA NAME = "Comentarii" ROWS = 5 COLS = 60>
+Descrieti modul d-voastra de a va distra!
+</TEXTAREA>
+</Center>
+<br><br><font color= "black" size=4><li><b> Butoane de validare (checkboxes) </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;  – sunt butoane care permit utilizatorului sa selecteze sau nu anumite optiuni, prin activarea (sau dezactivarea) 
+butoanelor asociate. Butoanele de validare pot fi incluse în formular prin intermediul elementului INPUT.
+<form name="f63">  
+<textarea width="100%" height="400px" style="width:100%;height:250px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<form><br>
+<P><I><center> Selectati disciplinele faforite </center></I>
+<BR>
+<INPUT TYPE = "CHECKBOX" VALUE = „a” CHECKED> Tehnologii web<BR>
+<INPUT TYPE = "CHECKBOX" VALUE = „b” > Programare C++ <BR>
+<INPUT TYPE = "CHECKBOX" VALUE = „c” CHECKED> Programare C# <BR>
+<INPUT TYPE = "CHECKBOX" VALUE = „d”> Programare Java <BR>
+ </form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f63.code.value);</script>
+
+<br><br><font color= "black" size=4><li><b> Butoane radio </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; – sunt butoane de selectie cu excludere (adica utilizatorul poate selecta doar una dintre optiuni). Acestea se 
+includ în formular prin elementul INPUT.
+<form name="f64">  
+<textarea width="100%" height="400px" style="width:100%;height:200px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<form><br>
+ <P> Sunteti student la Inginerie Electrica?
+ <P> <input type="radio" name="stud" value="Da" checked="checked"> Da </p>
+ <P> <input type="radio" name="stud" value="Nu"> Nu</p>
+ </form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f64.code.value);</script>
+
+<br><br><font color= "black" size=4><li><b> Butoane de comanda </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Butoane de comanda, se introduc în formulare prin intermediul elementelor BUTTON si INPUT avand functii diverse :
+<ul>
+ <li> - butoane de tip submit - când sunt activate, transmit informatiile înscrise în formular catre server.
+ <li> - butoane de tip reset – când sunt activate reinitializeaza formularul (adica toate câmpurile sunt completate cu valorile lor initiale).
+ <li> - Butoane de tip push – când sunt activate, este executata o actiune definita de autorul formularului.
+</ul>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand elementele amintite mai sus, sa schitam un form care cere datele personale si le trimite spre aplicatia server-side
+<br><br>  
+<form name="f69">  
+<textarea width="100%" height="400px" style="width:100%;height:270px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="450"><tr><td>
+<form action="apl_s.html" ><br>
+ <p><b> &nbsp;&nbsp;Numele:</b> <input type="text" name="first_name" size="15" maxlength="15" value=" " /></p>
+ <p><b> &nbsp;&nbsp;Prenumele:</b> <input type="text" name="last_name" size="30" maxlength="30" value=" " /></p>
+ <p><b> &nbsp;&nbsp;Adresa de email:</b> <input type="text" name="email" size="40" maxlength="40" value=" " /></p>
+ <p><b> &nbsp;&nbsp;Parola:</b> <input type="password" name="password" size="20" maxlength="20" /> <small>Utilizati numai litere si numere.</small></p>
+ <p>    &nbsp;&nbsp;<INPUT type = SUBMIT value="OK"> &nbsp;&nbsp<INPUT type = RESET value="Renunt"> &nbsp;&nbsp <INPUT type = BUTTON value="Help!">
+ </form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f69.code.value);</script>
+
+<br><br><font color= "black" size=4><li><b>  Elementul SELECT</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Prin intermediul elementului SELECT se pot introduce într-un formular liste de selectie.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Atributele elementului SELECT sunt :
+<ul>
+ <li>NAME = sir_de_caractere - asociaza elementului de control un nume.
+ <li>SIZE = valoare – specifica numarul de optiuni în fereastra derulanta în care este vizualizata lista de selectie.
+ <li>MULTIPLE – specifica selectarea mai multor optiuni din lista. 
+ <li>OPTION - ptiunile din care este constituita lista se introduc prin intermediul atributelor :
+ <ul>
+  <li> SELECTED – specifica faptul ca acea optiune este selectata
+  <li> VALUE = sir_de_caractere – specifica valoarea initiala a elementului de control.
+ </ul>
+ <li> LABEL = sir_de_caractere – specifica o denumire mai scurta decât continutul acesteia (eticheta) pentru aceasta optiune.
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa introducem intr-un form un element de selectie din lista care sa ne permita selectarea sectiei.
+<form name="f67">  
+<textarea width="100%" height="400px" style="width:100%;height:360px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<form><br>
+	<center><b> Selectati ectia:</b><br>
+	<hr>
+	<select name="sc" size="5" >
+	<option value="3">Calculatoare an I</option>
+	<option selected value="4">A.I.A an I</option>
+	<option value="5">I.S.E an I</option>
+	<option value="6">Calculatoare an II</option>
+	<option value="1">Calculatoare an III</option>
+	<option value="7">Calculatoare an IV</option>
+	<option value="8">A.I.A an IV</option>
+	<option value="2">S.A.C.P.I- Masterat</option>
+	</select></center>
+</form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f67.code.value);</script>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca vrem sa facem selectii multiple trebuie sa utilizam atributul "multiple".
+<form name="f68">  
+<textarea width="100%" height="400px" style="width:100%;height:360px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<form><br>
+	<center><b> Selectati ectia:</b><br>
+	<hr>
+	<select name="sc" size="7" multiple>
+	<option value="3">Calculatoare an I</option>
+	<option selected value="4">A.I.A an I</option>
+	<option value="5">I.S.E an I</option>
+	<option value="6">Calculatoare an II</option>
+	<option value="1">Calculatoare an III</option>
+	<option selected value="7">Calculatoare an IV</option>
+	<option value="8">A.I.A an IV</option>
+	<option value="2">S.A.C.P.I- Masterat</option>
+	</select></center>
+</form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f68.code.value);</script>
+
+<br><br><font color= "black" size=4><li><b>  Elementul FILE</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; - se foloseste atunci când dorim sa specificam un fisier ce va fi transmis porin intermediul formularului:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Atributele elementului FILE sunt :
+<ul>
+ <li> SIZE = valoare – specifica dimensiunea initiala a elementului de control specificata în numar de caractere.
+</ul> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un form care permite cautarea unui fisier si trimiterea lui .
+<form name="f62">  
+<textarea width="100%" height="400px" style="width:100%;height:220px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<form action="apl_s.html"><br>
+<center><b> Selectati fisierul:</b><br><br>
+<input type="file" name="upld" size="40" />
+<hr>&nbsp;&nbsp;<INPUT TYPE = SUBMIT  VALUE="Trimit"><br> 
+</center>
+</form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f62.code.value);</script>
+<br><br><font color= "black" size=4><li><b>  Elemente de control ascunse (hidden)</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; – nu sunt vizualizate în browser, dar permit autorului formularului sa transmita, o data cu informatiile înscrise în 
+formular, si alte informatii utile. Se insereaza în formular cu INPUT.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa reluam formul anterior care permite cautarea unui fisier si trimiterea lui dar trimite si diverse date  spre aplicatia 
+server-side, informatii care nu sunt vizibile pe form.
+<form name="f61">  
+<textarea width="100%" height="400px" style="width:100%;height:330px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<form action="apl_s.html" >
+	<fieldset><legend><font color="blue" size="2">Completati formularul pentru a trimite un fisier </legend>
+	<font color="red" size="2"><br>Atentie!!<br><br>
+	<li>Dimensiunea maxima a fisierului 5MO <br><br>
+	</font>
+	<input type="hidden" name="MAX_FILE_SIZE" value="5120000">
+	<p><b>Fisierul:</b> <input type="file" name="upld" size="30" /></p>		
+	</fieldset>
+	<input type="hidden" name="submitted" value="TRUE" />
+	<div align="center"><input type="submit"  name="submit" value="Trimit" /></div>
+
+</form>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f61.code.value);</script>
+<br><br><a name="fr"></a>
+<font color= "black" size=4><li><b>Frames (cadre) </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cu ajutorul frames-urilor se pot afisa mai multe pagini web in acelasi browser.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Putem deci sa definim în fereastra browserului subferestre (cadre) în care sa fie încarcate documente
+HTML diferite. Frames-urile sunt definite într-un fisier HTML unde blocul &lt body &gt ...&lt /body &gt este înlocuit de blocul &lt frameset &gt...&lt /frameset &gt.
+În interiorul acestui bloc, fiecare cadru este introdus prin eticheta &lt frame &gt. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Structura fisierului in care se definesc frame-urilr este:
+<center> 
+<table>
+ <tr bgcolor=cyel> 
+  <td><b>&ltHTML&gt</b></td>
+ </tr>
+
+<tr bgcolor=yellow> 
+  <td><b>&ltHEAD&gt</b></td>
+</tr>
+<tr bgcolor=yellow> 
+  <td><b>&ltTITLE&gtTitlul documentului&lt/TITLE&gt </b></td>
+</tr>
+<tr bgcolor=yellow> 
+  <td><b>&lt/HEAD&gt</b></td>
+</tr>
+<tr bgcolor=yellow> 
+  <td><b>&lt FRAMESET &gt</b></td>
+</tr>
+<tr bgcolor=cyan>
+<td>
+ &lt FRAME  src="nume document" &gt <br> 
+</b></td>
+</tr>
+<tr bgcolor=yellow> 
+  <td><b>&lt /FRAMESET> &gt</b></td>
+</tr>
+<tr bgcolor=cyel> 
+ <td><b>&lt/HTML&gt</b></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul unui "frameset" poat fi imbricati alti marcatori "frameset"
+<br><br><a name="def_fr"></a>
+<font color= "black" size=4><li><b>Definirea  frames-urilor  </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Definirea frames-urilor se face prin împartirea ferestrelor în linii si coloane, utilizand atributele marcatorului 
+&lt frameset &gt astfel:
+<ul>
+ <li> cols pentru împartirea unei ferestre într-un numar de subferestre de tip coloana
+ <li> rows pentru împartirea unei ferestre într-un numar de subferestre de tip linie 
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o pagina web cu trei frame-uri mixte. Prima agina va fi împartita în doua subferestre de tip
+coloana, dupa care a doua subfereastra este împartita în doua subferestre de tip linie. In fiecare frame se va afisa cate un document html.
+<br><br><center><img src="web_01.gif"></center>
+<hr>
+<INPUT onclick=window.open("fr_v1.html","buton1Window",'resizable=yes,width=800,height=450') type=button value=Vezi_pagina:>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Sursa acestei pagini fiind fisierul html de mai jos:<br><br>
+
+<textarea width="100%" height="400px" style="width:100%;height:220px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Exemplu de utilizare frame-uri</title>
+</head>
+<frameset cols="25%,*">
+<frame src="l_html.html#fr">
+  <frameset rows="*,*">
+   <frame src="l_html.html#start">
+   <frame src="l_html.html#cl_s">
+  </frameset>
+</frameset>
+</html>
+</textarea>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Frames-urile se folosesc in general pentru a realiza pagini web in care sa avem elemente stabile in pagina si zone de 
+continut. Meniurile si zonele de reclame se pozitioneaza in astfel de frames-uri plasate de obicei in zonele laterale. Continutul se afiseaza in tot 
+zone de tip frame dar plasate central. Se poate naviga in farme-ul continut avand totodata frame-urile meniu si reclame tot timpul pe ecran. 
+Mai jos este prezentata imaginea unei astfel de pagini.
+<br><br><center><img src="web_02.gif"></center>
+<hr>
+<INPUT onclick=window.open("fr_v2.html","buton1Window",'resizable=yes,width=800,height=550') type=button value=Vezi_pagina:>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pagina de sus, se lanseaza prin lansarea fisierului "fr_v2.html" prezentat mai jos:<br><br>
+<textarea width="100%" height="400px" style="width:100%;height:220px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Exemplu de utilizare frame-uri</title>
+</head>
+<frameset cols="220,*">
+<frame src="meniu_fr.html">
+ <frame src="l_html.html#ims" name="frame_dr">
+</frameset>
+</html>
+</textarea>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In momentul definirii frame-ului, se precizeaza si fisierul sursa care trebuie incarcat. Pentru frame-ul din stanga, 
+s-a definit <b> &lt frame src="meniu_fr.html" &gt </b>. Pentru frame-ul din dreapta, s-a utilizat <b> &lt frame src="l_html.html#ims" name="frame_dr" &gt </b>. 
+In acest caz, s-a precizat si numele frame-ului respectiv "frame_dr" in vederea afisarii ulterioare, in acest frame a altor fisiere dupa cum se 
+poate vedea in fisierul "meniu_fr":<br><br>
+<textarea width="100%" height="400px" style="width:100%;height:220px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<a href ="l_html.html" target ="frame_dr">Limbajul HTML </a><br>
+<a href ="l_html.html#ims" target ="frame_dr">Imagini senzitive </a><br>
+<a href ="l_html.html#t_din" target ="frame_dr">Texte dinamice </a><br>
+<a href ="l_html.html#pag" target ="frame_dr">Schitarea unei pagini </a><br>
+<a href ="l_html.html#a_form" target ="frame_dr">Adaugarea unui formular </a><br>
+<a href ="http://www.google.ro" target ="frame_dr">Google </a><br>
+<a href ="stop.html" target ="_parent">Stop</a><br>
+</body>
+</html>
+</textarea>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Continutul fisierului "stop.html" fiind : <br><br>
+<textarea width="100%" height="400px" style="width:100%;height:220px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Revenirea din frames-uri</title>
+</head>
+<body>
+<Center><h2> Revenirea din frames-uri</h2> </Center>
+<br> Pentru a reveni din frames-uri se utilizeaza atributul <b>_parent </b>. De exemplu pentru a reveni la afisarea intr-o singura pagina a fisierului l_html, folosim:
+<center> <b> &lt a href ="l_html.html" target ="_parent"&gt  Stop &lt /a&gt </b> </center>
+<br> <a href ="fr_v2.html" > Revenire la fereastra cu frames-uri </a><br>
+</body>
+</html>
+</textarea>
+<br> Revenirea din frame-uri se face cu optiunea stop.  In cadrul fisierului stop.html s-a utilizeaza atributul <b>_parent </b>. 
+<center> <b> &lt a href ="l_html.html" target ="_parent"&gt  Stop &lt /a&gt </b> </center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Valori pentru atributul target al etichetei &lt frame &gt
+<ul> 
+ <li>"_self" -încarcarea noii pagini are loc în cadrul curen
+ <li> "_blank" -încarcarea noii pagini are loc într-o fereastra noua anonima
+ <li> "_parent" -încarcarea noii pagini are loc în cadrul parinte al cadrului curent daca acesta exista, altfel are loc în fereastra browserului curent
+ <li> "_top" -încarcarea noii pagini are loc în fereastra browserului ce contine cadrul current.
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Pe langa atributul target mai exista o serie de atribute care pot fi setate cum ar fi:
+<ul>
+ <li> - atributele marginheight si marginwidth  permit stabilirea distantei în pixeli dintre continutul unui cadru si marginile verticale, respectiv 
+ orizontale ale frame-ului.
+ <li> - atributul scrolling este utilizat pentru a adauga unui frame, o bara de derulare care permite navigarea în interiorul documentului afisat 
+ în interiorul frame-ului.
+ <li>  - atributul bordercolor este utilizat pentru a stabili culoarea chenarului unui frame. Acest atribut primeste ca valoare un nume de culoare 
+ sau o culoare definita în conformitate cu modelul de culoare RGB. Atributul bordercolor poate fi atasat atât etichetei &lt frameset &gt  pentru a 
+ stabili culoarea tuturor chenarelor frame-urilor incluse, cât si etichetei &lt frame &gt pentru a stabili culoarea chenarului pentru un 
+ frame individual.
+</ul> 
+<a name="i_fr"></a>
+<font color= "black" size=4><li><b>Iframe - Inline frame  </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Un Iframe este specificat prin intermediul blocului <b> &lt iframe &gt ...&lt/iframe&gt. </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Un Iframe se insereaza într-o pagina Web în mod asemanator cu o imagine sau în modul în care se specifica
+marcatorul  &lt frame &gt, astfel: &lt  iframe src="l_html.html" height=40% width=50%&gt &lt /iframe&gt deschide un freame de dimensiunile  height=40% width=50%
+relative la zona curenta in care se gaseste acest marcator.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa utilizam acest marcator pentru a afisa inntr-o fereastra separata site-ul "UPM"<br><br>  
+<form name="f70">  
+<textarea width="100%" height="400px" style="width:100%;height:300px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<title>Exemplu de utilizare Iframe-uri</title>
+</head>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="860"><tr><td>
+<center> Site-ul  UMFST "George Emil Palade" din Tg.Mures</center>
+<hr>
+</td></tr>
+<tr><td>
+<iframe src="http://www.umfst.ro"  width="100%" height="3300"></iframe>
+</td></tr>
+<tr><td>
+<center> Exemplu de Iframe <center> 
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f70.code.value);</script>
+
+<hr>
+
+<INPUT onclick=window.open("ifr.html","buton1Window",'resizable=yes,width=900,height=600') type=button value=Vezi_pagina:>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Atributele acceptate de eticheta &ltiframe&gt sunt în parte preluate de la marcatorii &ltframe&gt si &lt frameset&gt, 
+cum ar fi: src, border, frameborder, bordercolor, marginheight, marginwidth, scrolling, name, noresize; sau de la marcatorul &lt img &gt vspace, hspace, 
+align, width, height;
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind marcatorul iframe putem reproiecta schita paginii web creata anterior astfel incat ea sa devina dinamica: <br><br>
+<textarea width="100%" height="400px" style="width:100%;height:650px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body >
+<center> 
+<table border=0 bgcolor="whiteSmoke" width="800" >
+ <tr>
+  <td bgcolor="OliveDrab" align="center">
+   <font color="white"><h1>Schitarea unei pagini WEB</font></h1></font>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <table width="100%">
+    <tr>
+     <td bgcolor="LightGrey" width="200" Align="left" Valign="top">
+      <font color="Red">
+	<center><h3> Meniu </h3></center>	
+	<li><strong><a href="jet.html" target="continut">Imprimante cu jet</a></strong></li>
+	<li><strong><a href="laser.html" target="continut">Imprimante laser</a></strong></li>
+	<li><strong><a href="scan.html" target="continut">Scanere</a></strong></li>
+      </font>
+     </td>
+     <td bgcolor="Lavender"  height="420">
+      <font color="Blue">  
+      	<iframe src="jet.html" name="continut" width="100%" height="100%"></iframe>
+      </font>
+     </td>
+    </tr>
+   </table
+  </td>
+ </tr>
+ <tr>
+  <td bgcolor="YellowGreen"> Baza paginii
+  </td>
+ </tr>
+</table>
+</center>  
+</body>
+</html>
+</textarea>
+<br><br>
+<center> 
+<table border=0 bgcolor="whiteSmoke" width="800" >
+ <tr>
+  <td bgcolor="OliveDrab" align="center">
+   <font color="white"><h1>Schitarea unei pagini WEB</font></h1></font>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <table width="100%">
+    <tr>
+     <td bgcolor="LightGrey" width="200" Align="left" Valign="top">
+      <font color="Red">
+	<center><h3> Meniu </h3></center>	
+	<li><strong><a href="./leg/jet.html" target="continut">Imprimante cu jet</a></strong></li>
+	<li><strong><a href="./leg/laser.html" target="continut">Imprimante laser</a></strong></li>
+	<li><strong><a href="./leg/scan.html" target="continut">Scanere</a></strong></li>
+      </font>
+     </td>
+     <td bgcolor="Lavender"  height="420">
+      <font color="Blue">  
+      	<iframe src="./leg/jet.html" name="continut" width="100%" height="100%"></iframe>
+      </font>
+     </td>
+    </tr>
+   </table
+  </td>
+ </tr>
+ <tr>
+  <td bgcolor="YellowGreen"> Baza paginii
+  </td>
+ </tr>
+</table>
+</center>  
+
+<br><br><a name="lab"></a>
+<font color= "blue" size=5>Tematica de laborator</font>
+<ul>
+ <li><b> Utilizarea limbajului HTML </b> 
+</ul>
+<br><br>- Utilizati interpretorul HTML de mai jos:
+
+<table bgcolor="WhiteSmoke" border =1 width="100%"><tr><td>
+<center>Interpretor HTML on line</center>
+<script type="text/javascript">
+function afis_html(){
+af_html.innerHTML = form_html.cod_html.value;
+setTimeout("afis_html()",500);
+}
+</script>
+<FORM name="form_html">
+<INPUT type="button" value="Start interpretor" onClick="afis_html()"><br><br>
+<TEXTAREA NAME = "cod_html" ROWS = 10 COLS = 100>
+<h3> Interpretor HTML </h3>
+Incercati si <i> d-voastra </i>
+<br> Interpretarea <b> codului </b> se face <font color="red" > instantaneu </font>
+<center> Succes !! </center> 
+</TEXTAREA>
+<div id="af_html">
+<font color="blue">Scrieti cod HTML, apasati "Start interpretor" si obtineti un interpretor HTML on line </font>
+</div>
+</FORM> 
+</center>
+</td></tr></table> 
+
+
+<ul>
+ <li><b> Inserare texte in pagini WEB </b> 
+</ul>
+<br><br>- Folosind Notepad-ul editati textul de mai jos:
+<center><img src="im12.jpg"></center>
+<br>- Se salveaza ca si Text Documents (ANSI) cu numele prima_p.html in contul d-voastra 
+<center><img src="im13.jpg"></center>
+<br>- Din Internet Explorer cu  File-Open deschideti fisierul creat (prima_p.html)
+<center><img src="im14.jpg"></center>
+<br>- Trebuie sa vedeti pagina creata sub forma:
+<center><img src="im15.jpg"></center>
+<br> Cu "click dreapta"  in pagina afisata, cu optiunea View Source se poate vedea sau edita sursa paginii
+
+<center><img src="im16.jpg"></center>
+
+<br>- Realizati o pagina asemanatoare cu pagina din figura de mai jos:
+<center>
+<Table border=1>
+ <tr>
+  <td>
+   <img src="im11.jpg">
+  </td>
+ </tr>
+</table>
+</center>
+<br>- Realizati o noua pagina asemanatoare cu pagina din figura de mai sus dar de aceasta data
+despre d-voastra.
+<ul>
+ <li><b> Liste </b>
+</ul> 
+<br>-Realizati o pagina in care sa aveti o lista numerotata cu facultatile din universitate
+<br>-Realizati o pagina in care sa aveti o lista nenumerotata cu cartierele din Tg.Mures
+<br>-Realizati o pagina in care sa aveti o lista de definitii pentru urmatorii termeni:
+<ul>
+ <li> Sistem de calcul
+ <li> Sistem de operare
+ <li> Baze de date
+ <li> Sisteme de dezvoltare
+</ul>
+<br>-Realizati o pagina in care sa aveti o lista imbricata care sa contina facultatile din universitate
+si specializarile de la fiecare facultate 
+<br>-Realizati o pagina in care sa aveti o lista imbricata care sa contina facultatile din universitate
+si specializarile de la fiecare facultate precum si o descriere sumara a fiecarei specializari folosind
+listele de definitii. Facultatile se vor scrie cu H2, specializarile cu H3
+<br>-Realizati o pagina WEB asemnatoare cu pagina din figura de jos:<br><br>
+<Center><img SRC="im21.jpg"></Center>
+<ul>
+ <li><b>Imagini </b> 
+</ul>
+<br>-Copiati cateva imagini in subdirectorul in care lucrati. Pentru a copia imagini din diferite
+sit-uri se pozitioneaza cursorul mouse-ului pe imagine si dupa ce se apasa click dreapta, 
+din meniul afisat se alege optiunea <i>Save image as:</i>
+<br>-Realizati o pagina in care sa inserati imaginile copiate anterior.
+<br>-Afisati imaginile la alte dimensiuni decit cele cu care au fost create
+<ul>
+ <li><b>Legaturi </b> 
+</ul> 
+<br>-Realizati o pagina numita pers.html care sa contina datele d-voastra personale 
+<br>-Realizati o pagina cu numele start.html care sa cuprinda date generale pentru o pagina de 
+start precum si o legatura spre fisierul pers.html
+<br>-Modificati pagina pers.html astfel incat sa avem o legatura de intoarcere spre pagina start.html 
+<br>-Realizati o pagina hoby.html care sa cuprinda o descriere a pasiunilor d-voastra si o legatura
+spre pagina start.html.
+<br>-Puneti in pagina start.html o legatura spre pagina hoby.html
+<br>-Modificati pagina start si adaugati o lista nenumerotata cu legaturi indepartate de forma: 
+<ul>
+ <li> UMFST :http://www.umfst.ro
+ <li> Firma producatoare de microprocesoare :http://www.intel.com
+ <li> Site pentru cautari pe NET:http://www.google.ro 
+</ul>
+<br>-Modificati pagina hoby.html astfel incat pagina sa cuprinda si capitolele <ul>
+ <li> Sport
+ <li> Muzica
+ <li> Filme
+</ul>
+<br>-Realizati in pagina hoby.html legaturi interne spre capitolele mai sus amintite:
+<br>-Realizati in pagina start.html legaturi interne spre capitolele mai sus amintite:
+<br>-Realizati o pagina WEB asemnatoare cu pagina din figura de jos:
+<br><br><Center><img SRC="im31.jpg" border=1 ></Center>
+<ul>
+ <li><b> Tabele </b>
+</ul>
+<br>-Realizati o pagina in care sa aveti un tabel cu facultatile din universitate si specializarile fiecarei facultati.
+<br>-Preluati 12 imagini
+<br>-Realizati o pagina WEB in care sa inserati un tabel cu cele 12 imagini aranjate intr-un
+tabel cu 4 linii si 3 coloane 
+
+</body>
+</html>
