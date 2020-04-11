@@ -1,0 +1,669 @@
+<html><head>
+<script type="text/javascript" src="wz_jsgraphics.js"></script>
+</head>
+<title>XML: eXtensible Markup Language </title>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>XML: eXtensible Markup Language</Center></TD></TR>
+</table>
+
+<br><br><a name="def"></a>
+<font color= "black" size=4><li><b> Despre XML </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;XML a fost creat pentru a defini strcturi de date, in ideea stocarii si transmiterii acestora. XML este un limbaj de 
+descriere asemanator cu HTML. In cazul XML-ului, tagurile nu sunt predefinite, acestea fiind definite de utilizator. XML este un limbaj autodescriptiv 
+fiind totodata o recomandare W3C <a href="http://www.w3schools.com/w3c/w3c_xml.asp"> Vezi W3C" </a> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Spre deosebire de HTML care ofera facilitati pentru afisare date, XML nu este destinat afisarii datelor, acesta fiind 
+utilizat in special pentru stocarea si transmiterea datelor.
+<br><br><a name="ex"></a>
+<font color= "black" size=4><li><b> Exemple de XML </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom defini acum utilizand XML un instrument virtual. Pentru a defini un instrument virtual avem nevoie de o serie de 
+parametri cum ar fi tip aparat, domeniu de masura, dimensiune, culoare, valori maxime, minime, unitate de masura, texte de inscriptionare etc.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Exemplu XML
+<!------------------------------------------------------------------->
+<br><br><textarea width="100%" height="400px" style="width:600;height:300px"  >
+<?xml version="1.0"?>
+<vimeter>
+	<caption> Voltmetru </caption>	
+	<code> VA-220 </code>
+	<mod> analog </mod>
+	<aspect> bar markmax="1" </aspect>
+	<backcolor> blue </backcolor>
+	<forecolor> white </forecolor>
+	<width> 150 </width>
+	<height> 100 </height>
+	<poz> vertical </poz>
+	<unit> volt </unit>
+	<val> 220 </val>
+	<minval> 50 </minval>
+	<maxval> 250 </maxval>
+</vimeter>
+</textarea>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se vede au fost definite o serie de tag-uri de catre utilizator. Se observa de asemenea imbricarea unor tag-uri 
+in alte tag-uri. Astfel in interiorul tag-ului "Vimeter" au fost definite alte tag-uri care reprezinta atributele instrumentului virtual. Dupa cum se 
+observa, utilizatorul poate sa-si defineasca propriile tag-uri.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;XML este extrem de util pentru transferul de date intre diverse aplicatii. Odata definit instrumentul virtual prin 
+intermediul structurii XML, se pot transmite date spre alte aplicatii. 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca se trnsmite urmatorul XML:
+<!------------------------------------------------------------------->
+<br><br><textarea width="100%" height="400px" style="width:600;height:300px"  >
+<?xml version="1.0"?>
+<vimeter>
+	<caption> Manometer </caption>	
+	<code> Bar-276 </code>
+	<mod> analog </mod>
+	<aspect> bar markmax="1" </aspect>
+	<backcolor> white </backcolor>
+	<forecolor> magenta </forecolor>
+	<width> 288  </width>
+	<height> 316 </height>
+	<poz> vertical </poz>
+	<unit>  bar </unit>
+	<val> 27.5  </val>
+	<minval> 0 </minval>
+	<maxval> 50 </maxval>
+</vimeter>
+</textarea>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pe baza datelor continute de xml, alta aplicatie ar putea realiza urmatorul instrument virtual:
+<br><br><center><img src="manometer.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care se doreste realizarea unei aplicatii dinamice intr-o pagina web in care sa se afiseze in mod dinamic 
+un astfel de instrument virtual, este absolut necesar sa se separe codul HTML de date, datele fiind pastrate deci in structuri XML. Alta modalitate ar 
+fi utilizarea bazelor de date pentru pastrarea datelor insa, pentru fiecare tip de baza de date exista modalitati si protocoale diferite pentru accesul 
+la date, in schimb XML asigura un mod standard de acces la date.
+<br><br><a name="three"></a>
+<font color= "black" size=4><li><b> Structura arborescenta XML </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum s-a abservat din exemplele anterioare XML-ul are o structura arborescenta. In prima linie, se defineste 
+versiunea si modul de codificare iar in linia a doua se descrie elementul "radacina" (in cazul de sus "vimeter"). Urmatoarele linii, descriu elementele 
+"copil" sau "ramuri" (caption, cod, mood, aspect, etc.). Fiecare element poate avea "copii" (subelemente). 
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am putea redefini structura "vimeter" astfel:
+<!------------------------------------------------------------------->
+<br><br><textarea width="100%" height="400px" style="width:600;height:400px"  >
+<?xml version="1.0"?>
+<vimeter>
+	<type id="45">
+		<caption> Voltmetru </caption>	
+		<code> VA-220 </code>
+	</type> 
+	<attrib>
+		<mod> analog </mod>
+		<aspect> bar markmax="1" </aspect>
+		<backcolor> blue </backcolor>
+		<forecolor> white </forecolor>
+		<width> 150 </width>
+		<height> 100 </height>
+		<poz> vertical </poz>
+	</attrib>
+	<values>
+		<unit> volt </unit>
+		<val> 220 </val>
+		<minval> 50 </minval>
+		<maxval> 250 </maxval>
+	</values>
+</vimeter>
+</textarea>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca in noua structura XML, parametrii vimeter-ului au fost grupati in mai multe categorii (tip ,atribute,valori)
+Practic structura unui XML are forma:
+<br><br><textarea width="100%" height="400px" style="width:600;height:110px"  >
+<root>
+  <child>
+    <subchild>.....</subchild>
+  </child>
+</root>
+</textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand structura ierarhica, putem descrie o instrumentatie virtula compusa din mai multe instrumente virtuale astfel:
+<!------------------------------------------------------------------->
+<br><br><textarea width="100%" height="400px" style="width:600;height:820px"  >
+<?xml version="1.0"?>
+<vimeter>
+	<displ>
+		<caption> Voltmetru </caption>	
+		<code> VA-220 </code>
+		<mod> analog </mod>
+		<aspect> bar markmax="1" </aspect>
+		<backcolor> blue </backcolor>
+		<forecolor> white </forecolor>
+		<width> 150 </width>
+		<height> 100 </height>
+		<poz> vertical </poz>
+		<unit> volt </unit>
+		<val> 220 </val>
+		<minval> 50 </minval>
+		<maxval> 250 </maxval>
+	</displ>
+	<displ>
+		<caption> Ampermetru </caption>	
+		<code> A-100 </code>
+		<mod> analogic </mod>
+		<aspect> arc markmax="1" </aspect>
+		<backcolor> blue </backcolor>
+		<forecolor> white </forecolor>
+		<width> 150 </width>
+		<height> 150 </height>
+		<poz> vertical </poz>
+		<unit> amper </unit>
+		<val> 120 </val>
+		<minval> 0 </minval>
+		<maxval> 150 </maxval>
+	</displ>
+		<displ>
+		<caption> Frecventmetru </caption>	
+		<code> F-50 </code>
+		<mod> digital </mod>
+		<aspect> segm </aspect>
+		<backcolor> black </backcolor>
+		<forecolor> green </forecolor>
+		<width> 100 </width>
+		<height> 50 </height>
+		<poz> orizontal </poz>
+		<unit> Hz </unit>
+		<val> 50 </val>
+		<minval> 0 </minval>
+		<maxval> 75 </maxval>
+	</displ>		
+</vimeter>
+</textarea>
+<!------------------------------------------------------------------->
+
+<br><br><a name="valid"></a>
+<font color= "black" size=4><li><b> Descriere corecta XML  </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru ca o structura XML sa fie corecta trebuie sa indeplineasca urmatoarele cerinte:
+<ul>
+ <li> trebuie sa contina relementul radacina 
+ <li> trebuie sa contina tag-uri de inchidere 
+ <li> tagurile sunt case sensitive 
+ <li> nu sunt admise erori de "neasted" 
+</ul>
+<br><br><a name="a_html"></a>
+<font color= "black" size=4><li><b> Afisare XML intr-o pagina html </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O structura XML nu este afisata ca atare intr-o pagina html.  Sa presupunem ca avem structura de tip XML: 
+<br><br><textarea width="100%" height="400px" style="width:600;height:300px"  >
+<?xml version="1.0"?>
+<vimeter>
+	<caption> Manometer </caption>	
+	<code> Bar-276 </code>
+	<mod> analog </mod>
+	<aspect> bar markmax="1" </aspect>
+	<backcolor> white </backcolor>
+	<forecolor> magenta </forecolor>
+	<width> 288  </width>
+	<height> 316 </height>
+	<poz> vertical </poz>
+	<unit>  bar </unit>
+	<val> 27.5  </val>
+	<minval> 0 </minval>
+	<maxval> 50 </maxval>
+</vimeter>
+</textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Structura de sus, inclusa intr-o pagina hthl va fi afisata astfel:<br><br>
+<?xml version="1.0"?>
+<vimeter>
+	<caption> Manometer </caption>	
+	<code> Bar-276 </code>
+	<mod> analog </mod>
+	<aspect> bar markmax="1" </aspect>
+	<backcolor> white </backcolor>
+	<forecolor> magenta </forecolor>
+	<width> 288  </width>
+	<height> 316 </height>
+	<poz> vertical </poz>
+	<unit>  bar </unit>
+	<val> 27.5  </val>
+	<minval> 0 </minval>
+	<maxval> 50 </maxval>
+</vimeter>
+
+<br><br><a name="a_css"></a>
+<font color= "black" size=4><li><b> Afisare XML intr-o pagina html utilizand CSS </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se vede in exemplul de sus, afisarea datelor dintr-un XML intr-o pagina HTML nu este prea aspectuoasa. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se poate utiliza CSS pentru a imbunatati modul de afisare al datelor provenite dintr-un XML.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom defini un fisier CSS "vimeter_vo.css" cu urmatorul continut:
+<br><br><textarea width="100%" height="400px" style="width:600;height:345px" >
+vimeter
+{
+background-color: #ffffff;
+width: 100%;
+}
+caption
+{
+display: block;
+margin-bottom: 10pt;
+margin-left: 0;
+color: #FF0000;
+font-size: 16pt;
+}
+code,mod,aspect,backcolor,forecolor,width,height,poz,unit,val,minval,maxval
+{
+display: block;
+color: #0000FF;
+margin-left: 12pt;
+}
+</textarea>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom defini urmatorul XML:
+<br><br><textarea width="100%" height="400px" style="width:600;height:325px" >
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/css" href="vimeter_v0.css"?>
+<vimeter>
+	<caption> Voltmetru </caption>	
+	<code> VA-220 </code>
+	<mod> analog </mod>
+	<aspect> bar markmax="1" </aspect>
+	<backcolor> blue </backcolor>
+	<forecolor> white </forecolor>
+	<width> 150 </width>
+	<height> 100 </height>
+	<poz> vertical </poz>
+	<unit> volt </unit>
+	<val> 220 </val>
+	<minval> 50 </minval>
+	<maxval> 250 </maxval>
+</vimeter>	
+</textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In acest caz, afisarea intr-o pagina web, are forma:
+<br><br><div id="af_css_0">
+</div>
+<script>
+af_css_0.innerHTML='<iframe src="./xml_css/css_view_vimeter_v0.xml" width="600" height="320" scrolling="no" </iframe>';
+</script>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca XML-ul este definit pe mai multe nivele descrierea CSS trebiuie sa se refere la acestea astfel se va 
+realiza fisierul CSS "vimeter_v1.css" cu urmatorul continut:
+<br><br><textarea width="100%" height="400px" style="width:600;height:920px" >
+vimeter
+{
+background-color: #ffffff;
+width: 100%;
+}
+
+type
+{
+display: block;
+margin-bottom: 10pt;
+margin-left: 0;
+color: #00FF00;
+font-size: 14pt;
+}
+code
+{
+display: block;
+color: #000000;
+font-size: 10pt;
+margin-left: 10pt;
+}
+
+attrib
+{
+display: block;
+margin-bottom: 10pt;
+margin-left: 0;
+color: #FF0000;
+font-size: 14pt;
+}
+aspect,backcolor,forecolor,width,height,poz
+{
+display: block;
+color: #000000;
+font-size: 10pt;
+margin-left: 10pt;
+}
+
+values
+{
+display: block;
+margin-bottom: 10pt;
+margin-left: 0;
+color: #0000FF;
+font-size: 14pt;
+}
+val,minval,maxval
+{
+display: block;
+color: #000000;
+font-size: 12pt;
+margin-left: 10pt;
+
+}
+</textarea>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatorul XML cu continutul:
+
+<br><br><textarea width="100%" height="400px" style="width:600;height:400px" >
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/css" href="vimeter_v1.css"?>
+<vimeter>
+	<type id="45">
+		<caption> Voltmetru </caption>	
+		<code> VA-220 </code>
+	</type> 
+	<attrib>
+		<mod> analog </mod>
+		<aspect> bar markmax="1" </aspect>
+		<backcolor> blue </backcolor>
+		<forecolor> white </forecolor>
+		<width> 150 </width>
+		<height> 100 </height>
+		<poz> vertical </poz>
+	</attrib>
+	<values>
+		<unit> volt </unit>
+		<val> 220 </val>
+		<minval> 50 </minval>
+		<maxval> 250 </maxval>
+	</values>
+</vimeter>
+</textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In acest caz, afisarea intr-o pagina web, are forma:
+<br><br><div id="af_css_1">
+</div>
+<script>
+af_css_1.innerHTML='<iframe src="./xml_css/css_view_vimeter_v1.xml" width="600" height="300" scrolling="no" </iframe>';
+</script>
+
+<br><br><a name="a_js"></a>
+<font color= "black" size=4><li><b> Afisare XML utilizand Java Script </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O structura XML poate fi utilizata si afisata utilizand Java Script. Java Script fiind un mediu de rogramare, 
+dispune de o serie de metode prin care sa identifice datele continute de structura XML, deci afisarea nu se rezuma numai la afisarea XML-ului 
+ci se pot crea diverse aplicatii in care sa se utilizeze datele continute de XML. Dupa cum se stie toate browser-ele de Internet interpreteaza 
+in mod nativ codul JavaScript. Exista totusi diferente intre diverse browsere. Astfel majoritatea browser-elor in afara de Internet Explorer 
+recunosc obiectul  <b> XMLHttpRequest() </b> . Internet Explorer-ul recunoaste obiectul  <b> ActiveXObject("Microsoft.XMLHTTP") </b> . 
+Ambele obiecte dispun de metoda: <b> responseXML </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie realizata in html si JavaScript citeste si interpreteaza un XML indiferent de browser. 
+<br><br><textarea width="100%" height="400px" style="width:100%;height:470px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<h2>Preluare date din XML</h3>
+<p><b>Instrument virtual:</b> <span id="caption"></span><br />
+<b>Mod</b> <span id="mod"></span><br />
+<b>Valoare:</b> <span id="val"></span>
+
+<script type="text/javascript">
+if (window.XMLHttpRequest)
+  {
+  xhttp=new XMLHttpRequest()
+  }
+else
+  {
+  xhttp=new ActiveXObject("Microsoft.XMLHTTP")
+  }
+xhttp.open("GET","vimeter_v0.xml",false);
+xhttp.send("");
+xmlDoc=xhttp.responseXML;
+
+document.getElementById("caption").innerHTML=xmlDoc.getElementsByTagName("caption")[0].childNodes[0].nodeValue;
+document.getElementById("mod").innerHTML=xmlDoc.getElementsByTagName("mod")[0].childNodes[0].nodeValue;
+document.getElementById("val").innerHTML=xmlDoc.getElementsByTagName("val")[0].childNodes[0].nodeValue;
+</script>
+</body>
+</html>
+</textarea>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, in pagina principala , s-au definit trei span-uri cu id-urile:"caption","mod" si "valoare". 
+Dupa cum se stie tag-ul <b> span </b> ofera posibilitatea de a defini un "carlig" in cadrul unui text sau a unui document, "carlig" spre care 
+putem face ulterior referiri utilizand nume de id atribuit. 
+Acestor span-uri li se atribuie prin metoda <b> innerHTML </b> valori citite dintr-un XML. XML-ul se precizaza prin metoda <b> open </b> care 
+are unul din parametri chiar numele XML-ului. Prin metoda <b> send </b> se trimite efectiv cerere, iar prin metoda  <b> responseXML </b> se 
+face citirea. Dupa cum se observa in aplicatie, raspunsul este atribuit variabilei <b> xmlDoc </b>. Prin metoda: 
+<b> getElementsByTagName.childNodes.nodeValue </b>, se pot extrage datele din raspunsul primit.
+<br><br><center><img src="./xml_java_script/im_xml_001.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Structura fisierului "vimeter_v0.xml" fiind:
+<!------------------------------------------------------------------->
+<br><br><textarea width="100%" height="400px" style="width:600;height:300px"  >
+<?xml version="1.0"?>
+<vimeter>
+	<caption> Voltmetru </caption>	
+	<code> VA-220 </code>
+	<mod> analog </mod>
+	<aspect> bar markmax="1" </aspect>
+	<backcolor> blue </backcolor>
+	<forecolor> white </forecolor>
+	<width> 150 </width>
+	<height> 100 </height>
+	<poz> vertical </poz>
+	<unit> volt </unit>
+	<val> 220 </val>
+	<minval> 50 </minval>
+	<maxval> 250 </maxval>
+</vimeter>
+</textarea>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Citirea se face la fel daca utilizam o alta structura a fisierului si anume fisierul "vimeter_v1.xml":
+<!------------------------------------------------------------------->
+<br><br><textarea width="100%" height="400px" style="width:600;height:350px"  >
+<?xml version="1.0"?>
+<vimeter>
+	<type id="45">
+		<caption> Voltmetru </caption>	
+		<code> VA-220 </code>
+	</type> 
+	<attrib>
+		<mod> analog </mod>
+		<aspect> bar markmax="1" </aspect>
+		<backcolor> blue </backcolor>
+		<forecolor> white </forecolor>
+		<width> 150 </width>
+		<height> 100 </height>
+		<poz> vertical </poz>
+	</attrib>
+	<values>
+		<unit> volt </unit>
+		<val> 220 </val>
+		<minval> 50 </minval>
+		<maxval> 250 </maxval>
+	</values>
+</vimeter>
+</textarea>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Avand un XML care contine mai multe instrumente virtuale : "vimeter_v2.xml":
+<!------------------------------------------------------------------->
+<br><br><textarea width="100%" height="400px" style="width:600;height:820px"  >
+<?xml version="1.0"?>
+<vimeter>
+	<displ>
+		<caption> Voltmetru </caption>	
+		<code> VA-220 </code>
+		<mod> analog </mod>
+		<aspect> bar markmax="1" </aspect>
+		<backcolor> blue </backcolor>
+		<forecolor> white </forecolor>
+		<width> 150 </width>
+		<height> 100 </height>
+		<poz> vertical </poz>
+		<unit> volt </unit>
+		<val> 220 </val>
+		<minval> 50 </minval>
+		<maxval> 250 </maxval>
+	</displ>
+	<displ>
+		<caption> Ampermetru </caption>	
+		<code> A-100 </code>
+		<mod> analogic </mod>
+		<aspect> arc markmax="1" </aspect>
+		<backcolor> blue </backcolor>
+		<forecolor> white </forecolor>
+		<width> 150 </width>
+		<height> 150 </height>
+		<poz> vertical </poz>
+		<unit> amper </unit>
+		<val> 120 </val>
+		<minval> 0 </minval>
+		<maxval> 150 </maxval>
+	</displ>
+		<displ>
+		<caption> Frecventmetru </caption>	
+		<code> F-50 </code>
+		<mod> digital </mod>
+		<aspect> segm </aspect>
+		<backcolor> black </backcolor>
+		<forecolor> green </forecolor>
+		<width> 100 </width>
+		<height> 50 </height>
+		<poz> orizontal </poz>
+		<unit> Hz </unit>
+		<val> 50 </val>
+		<minval> 0 </minval>
+		<maxval> 75 </maxval>
+	</displ>		
+</vimeter>
+</textarea>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia care citeste datele referitoare la frecventmetru de exemplu este:
+<br><br><textarea width="100%" height="400px" style="width:100%;height:470px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<h2>Preluare date din XML</h3>
+<p><b>Instrument virtual:</b> <span id="caption"></span><br />
+<b>Mod</b> <span id="mod"></span><br />
+<b>Valoare:</b> <span id="val"></span>
+
+<script type="text/javascript">
+if (window.XMLHttpRequest)
+  {
+  xhttp=new XMLHttpRequest()
+  }
+else
+  {
+  xhttp=new ActiveXObject("Microsoft.XMLHTTP")
+  }
+xhttp.open("GET","vimeter_v2.xml",false);
+xhttp.send("");
+xmlDoc=xhttp.responseXML;
+
+document.getElementById("caption").innerHTML=xmlDoc.getElementsByTagName("caption")[2].childNodes[0].nodeValue;
+document.getElementById("mod").innerHTML=xmlDoc.getElementsByTagName("mod")[2].childNodes[0].nodeValue;
+document.getElementById("val").innerHTML=xmlDoc.getElementsByTagName("val")[2].childNodes[0].nodeValue;
+</script>
+</body>
+</html>
+
+</textarea>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa caracteristicile tuturor instrumentelor virtuale, vom folosi aplicatia:
+<br><br><textarea width="100%" height="400px" style="width:100%;height:630px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<body>
+<script type="text/javascript">
+if (window.XMLHttpRequest)
+  {
+  xhttp=new XMLHttpRequest();
+  }
+else // Internet Explorer 5/6
+  {
+  xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xhttp.open("GET","vimeter_v2.xml",false);
+xhttp.send("");
+xmlDoc=xhttp.responseXML; 
+
+document.write("<center><table border='1'>");
+document.write("<tr bgcolor='yellow'><td>Instrument virtual</td><td>Mod</td><td>Unit_mas</td><td>Val_n</td><td>Val_max</td></tr>");
+
+var x=xmlDoc.getElementsByTagName("displ");
+for (i=0;i<x.length;i++)
+  { 
+  document.write("<tr><td>");
+  document.write(x[i].getElementsByTagName("caption")[0].childNodes[0].nodeValue);
+  document.write("</td><td>");
+  document.write(x[i].getElementsByTagName("mod")[0].childNodes[0].nodeValue);
+  document.write("</td><td>");
+  document.write(x[i].getElementsByTagName("unit")[0].childNodes[0].nodeValue);
+  document.write("</td><td>");
+  document.write(x[i].getElementsByTagName("val")[0].childNodes[0].nodeValue);
+  document.write("</td><td>");
+  document.write(x[i].getElementsByTagName("maxval")[0].childNodes[0].nodeValue);
+  document.write("</td></tr>");
+  }
+document.write("</table></center>");
+</script>
+</body>
+</html>
+</textarea>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Am folosit deci o iteratie pentru a citi toate elementele. Avand n elemente descrise in XML, iteratia se reia de n ori.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa lansarea paginii cu sursa de mai sus, obtinem:
+<br><br><center><img src="./xml_java_script/im_xml_002.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Am putea imbunatatii applicatia si sa afisam pe rand instrumentele descrise in XML. In aceasta situatie sursa paginii devine:
+<br><br><textarea width="100%" height="400px" style="width:100%;height:1110px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+
+<script type="text/javascript">
+var xmlDoc;
+if (window.XMLHttpRequest)
+  {
+  xhttp=new XMLHttpRequest();
+  }
+else // Internet Explorer 5/6
+  {
+  xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xhttp.open("GET","vimeter_v2.xml",false);
+xhttp.send("");
+xmlDoc=xhttp.responseXML;
+
+var x=xmlDoc.getElementsByTagName("displ");
+i=0;
+
+function next()
+{
+if (i<x.length-1)
+  {
+  i++;
+  display();
+  }
+}
+
+function previous()
+{
+if (i>0)
+  {
+  i--;
+  display();
+  }
+}
+
+function display()
+{
+caption=(x[i].getElementsByTagName("caption")[0].childNodes[0].nodeValue);
+mod=(x[i].getElementsByTagName("mod")[0].childNodes[0].nodeValue);
+unit=(x[i].getElementsByTagName("unit")[0].childNodes[0].nodeValue);
+val=(x[i].getElementsByTagName("val")[0].childNodes[0].nodeValue);
+document.getElementById("show").innerHTML=" <table width='350' border=1> <tr><td>Instrument virtual: </td><td><b>" + caption + "</b></td></tr><tr><td>Mod afisare:</td><td> " + mod + "</td></tr><tr><td>Unitate de masura: </td><td>"+ unit+ "</td></tr><tr><td>Valoare nominala: </td><td>" + val +"</td></tr></table><br>";
+}
+</script>
+</head>
+
+<body onload="display()">
+<center>
+<table border=1 width="400" bgcolor="whitesmoke"><tr><td><br>
+<center>
+<div id='show'></div>
+</center>
+</td></tr>
+<tr><td>
+<center>
+<input type="button" onclick="previous()" value="previous" />
+<input type="button" onclick="next()" value="next" /><br>
+</center>
+</td></tr>
+</table>
+</center>
+</body>
+</html>
+
+</textarea>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa lansarea paginii cu sursa de mai sus, obtinem:
+<br><br><center><img src="./xml_java_script/im_xml_003.gif"></center>
+
+
+</body>
+</html>
