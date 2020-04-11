@@ -1,0 +1,2243 @@
+<html><head>
+<title> Cascading Style Sheets - CSS  </title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Cascading Style Sheets - CSS  </Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;CSS-Cascading Style Sheets (foi de stil in cascada), este un standard, ce ofera designerilor/programatorilor un mod 
+eficient de a controla modul de prezentare al paginilor "WEB".
+
+<br><br><a name="elem_b"></a>
+<font color= "blue" size=5>Elemente de baza</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Ce se poate face cu CSS ?
+<ul>
+ <li> -CSS defineste modul de afisare al elementelor de tip HTML
+ <li> -Stilurile utilizate se pot salva intr-un fisier extern (numit de obicei 'style.css' ) sau in sectiunea "head"
+</ul>
+<br><br><a name="sintaxa"></a>
+<font color= "black" size=4><li>Sintaxa</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sintaxa declaratiilor CSS contine trei elemente: selector, proprietate, valoare
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="AliceBlue">
+<font size="3" color="Blue"><pre>
+selector {proprietate: valoare}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Selectorul este elementul HTML pe care vrem sa-l definim. Prprietatea este atributul pe care vrem sa-l modificam prin 
+atribuirea valorii "valoare"
+<br><br><a name="back"></a>
+<font color= "black" size=4><li>Setare background</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Setare background body
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="AliceBlue">
+<font size="3" color="Blue"><pre>
+body {background-color: culoare}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Setare background texte
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="AliceBlue">
+<font size="3" color="Blue"><pre>
+h1 {background-color: #00ff00}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Setare background paragraf
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="AliceBlue">
+<font size="3" color="Blue"><pre>
+h1 {background-color: #00ff00}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Exemplu de utilizare <br><br>  
+<form name="f10">  
+<textarea width="100%" height="400px" style="width:100%;height:350px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<style type="text/css">
+/*body {background-color: yellow}*/
+h1 {background-color: #00ff00}
+h1 {color:blue}
+h2 {background-color: transparent}
+p {background-color: rgb(250,0,255)}
+</style>
+</head>
+<body>
+<center><table bgcolor="WhiteSmoke" border =1 width="400"><tr><td>
+<h1>Text de marime h1</h1>
+<h2>Text de marime h2</h2>
+<p> Paragraful </p>
+</body>
+</html>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f10.code.value);</script>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se remarca , stilurile sunt definite in sectiunea "head" 
+<br><br><a name="tr_im"></a>
+<font color= "black" size=4><li>Transparenta imaginii</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza o imagine care isi schimba opacitatea in momentul cand mouse-ul se afla deasupra imaginii <br><br>  
+<form name="f60">  
+<textarea width="100%" height="400px" style="width:100%;height:430px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<style type="text/css">
+img
+{
+opacity:1;
+filter:alpha(opacity=100)
+}
+</style>
+</head>
+<body>
+<center><table bgcolor="White" border =1 width="400"><tr><td>
+<center><b>Transparenta imaginii</b></center><br>
+<img src="im0.jpg" alt="Teatrul National"
+onload="this.style.opacity=0.4;this.filters.alpha.opacity=40"
+onmouseover="this.style.opacity=1;this.filters.alpha.opacity=100"
+onmouseout="this.style.opacity=0.4;this.filters.alpha.opacity=40" />
+
+<img src="im1.jpg" alt="Toamna"
+onload="this.style.opacity=0.4;this.filters.alpha.opacity=40"
+onmouseover="this.style.opacity=1;this.filters.alpha.opacity=100"
+onmouseout="this.style.opacity=0.4;this.filters.alpha.opacity=40" />
+</td></tr></table></center>
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f60.code.value);</script>
+
+<br><br><a name="tb"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue" size="5"> Clase in CSS</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; In urmatoarea aplicatie, caracteristicile tabelelor vor fi modificate folosind clase CSS. Se vor realiza doua tabele cu doua tipuri de border (normal si collapse)<br><br>
+<form name="f50">  
+<textarea width="100%" height="400px" style="width:100%;height:1160px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<style type="text/css">
+table.t1 
+{
+border-collapse: collapse
+}
+</style>
+<body>
+<center> 
+<table width="800"><tr><td align="center" valign="center">
+<center> Tabel border=1<br><br></center> 
+<table cellspacing="0" border="1" width="400">
+<tr>
+<th align="center" width="25%">Nume-culoare</th>
+<th align="center" width="25%">Valoarea HEX</th>
+<th align="center" width="50%">Culoare</th>
+</tr>
+<tr>
+<td align="left">AliceBlue&nbsp;</td>
+<td align="left">#F0F8FF</td>
+<td bgcolor="#F0F8FF">&nbsp;</td></tr>
+<tr>
+<td align="left">AntiqueWhite&nbsp;</td>
+<td align="left">#FAEBD7</td>
+<td bgcolor="#FAEBD7">&nbsp;</td></tr>
+<tr>
+<td align="left">Aqua&nbsp;</td>
+<td align="left">#00FFFF</td>
+<td bgcolor="#00FFFF">&nbsp;</td></tr>
+<tr>
+<td align="left">Aquamarine&nbsp;</td>
+<td align="left">#7FFFD4</td>
+<td bgcolor="#7FFFD4">&nbsp;</td></tr>
+<tr>
+<td align="left">Azure&nbsp;</td>
+<td align="left">#F0FFFF</a></td>
+<td bgcolor="#F0FFFF">&nbsp;</td></tr>
+</table>
+</td><td>&nbsp;&nbsp;</td><td>
+<center> Tabel border=1 collapse </center>
+<br>
+<table class="t1" cellspacing="0" border="1" width="400">
+<tr>
+<th align="center" width="25%">Nume-culoare</th>
+<th align="center" width="25%">Valoarea HEX</th>
+<th align="center" width="50%">Culoare</th>
+</tr>
+<tr>
+<td align="left">AliceBlue&nbsp;</td>
+<td align="left">#F0F8FF</td>
+<td bgcolor="#F0F8FF">&nbsp;</td></tr>
+<tr>
+<td align="left">AntiqueWhite&nbsp;</td>
+<td align="left">#FAEBD7</td>
+<td bgcolor="#FAEBD7">&nbsp;</td></tr>
+<tr>
+<td align="left">Aqua&nbsp;</td>
+<td align="left">#00FFFF</td>
+<td bgcolor="#00FFFF">&nbsp;</td></tr>
+<tr>
+<td align="left">Aquamarine&nbsp;</td>
+<td align="left">#7FFFD4</td>
+<td bgcolor="#7FFFD4">&nbsp;</td></tr>
+<tr>
+<td align="left">Azure&nbsp;</td>
+<td align="left">#F0FFFF</a></td>
+<td bgcolor="#F0FFFF">&nbsp;</td></tr>
+</table>
+</td></tr></table></center>  
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f50.code.value);</script>
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie afiseaza un text transparent peste background folosind clase CSS <br><br>  
+<form name="f61">  
+<textarea width="100%" height="400px" style="width:100%;height:550px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<style type="text/css">
+div.background
+{
+  width: 400px;
+  height: 150px;
+  background: url(im2.jpg) repeat;
+  border: 2px solid black;
+}
+div.transbox
+{
+  width: 300px;
+  height: 80px;
+  margin: 30px 50px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  filter:alpha(opacity=50);
+  opacity:0.6;
+}
+</style>
+</head>
+<body>
+<center><table bgcolor="White" border =1 width="400"><tr><td>
+<div class="background">
+<div class="transbox">
+<br><Center><b>Universitatea "UMFST"</b>
+<br>Targu Mures</center>
+</div>
+</div>
+</td></tr></table></center>
+</body>
+</html>
+</textarea>
+</form>
+<script>document.write(f61.code.value);</script>
+
+<br><br><a name="pl_el"></a>
+<font color= "black" size=4><li>Plasarea elementelor in pagina utilizand CSS</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizarea tabelelor pentru a plasa diferite elemente intr-o pagina WEB este destul de greoaie, si nu ofera
+control absolut la plasarea elementelor in diverse celule ale tabelelor imaginare deschise. O solutie mult mai buna este realizarea paginilor
+utilizand marcatori <b>&ltdiv&gt</b> impreuna cu CSS in care se declara tot felul de atribute referitoare la "div"-uri. Centrarea paginii pe 
+centrul ecranului indiferent de rezolutia acestuia nu se poate face decat prin utilizarea "div"-urilor si CSS-urilor. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam pentru inceput o schita de pagina care se centreaza pe mijlocul ecranului indiferent de rezolutie.
+<br><br><center><img src="im41.jpg"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru inceput, vom realiza numai continutul principal, centrat in pagina.
+<br><br> 
+<textarea width="100%" height="400px" style="width:100%;height:750px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Test pagini centrate</title>
+<style type="text/css"> 
+<!-- 
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 0; 
+	padding: 0;
+	text-align: center;
+	font-size: 12px; 
+	color: Red;
+	background-color: Wheat;
+}
+h1 {
+	padding:0px;
+	font-size:18px;
+	line-height:2px;
+	font-weight:5;
+	color:#ccc;
+	}
+.pag_centr #continut {
+	/*width: 60em;*/
+	width: 860px;
+	/*1 em este echivalent cu  font-size-ul fontului curent.*/
+	margin: 0 auto; 
+	border: 1px solid #000;
+	text-align: left; 
+	background-color: WhiteSmoke;
+} 
+--> 
+</style>
+</head>
+<body class="pag_centr">
+<div id="continut">
+    <center><h3> Continut principal (continut_p) </h3></center><br>
+ 	<br>
+	.
+	.
+	.
+    <br><center>Sfarsit continut principal</center><br>
+  </div><!-- sfarit # continut_p -->
+</body>
+</html>
+</textarea>
+<br> 
+<INPUT onclick=window.open("pagina_v0.html","buton1Window",'resizable=yes,width=950,height=500') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmeaza sa plasam antetul si baza paginii (zona de jos)
+<br><br> 
+<textarea width="100%" height="400px" style="width:100%;height:1200px" name="code" wrap="logical" rows="12" cols="42">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Test pagini centrate</title>
+<style type="text/css"> 
+<!-- 
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 0; 
+	padding: 0;
+	text-align: center;
+	font-size: 12px; 
+	color: Red;
+	background-color: Wheat;
+}
+h1 {
+	padding:0px;
+	font-size:18px;
+	line-height:2px;
+	font-weight:5;
+	color:#ccc;
+	}
+.pag_centr #continut {
+	/*width: 60em;*/
+	width: 860px;
+	/*1 em este echivalent cu  font-size-ul fontului curent.*/
+	margin: 0 auto; 
+	border: 1px solid #000;
+	text-align: left; 
+	background-color: WhiteSmoke;
+} 
+.pag_centr #antet {
+	padding: 0 10px; 
+	background-color: OliveDrab;
+} 
+.pag_centr #antet h1 {
+	margin: 0;
+	padding: 15px 0; 
+}
+.pag_centr #zona_jos {
+	padding: 0 10px;
+	background-color: YellowGreen;
+} 
+.pag_centr #zona_jos p {
+	margin: 0; 
+	padding: 10px 0;
+}
+--> 
+</style>
+</head>
+<body class="pag_centr">
+<div id="continut">
+  <div id="antet">
+    <h1><strong><center>Utilizarea CSS pentru desig-ul paginilor WEB</center></strong></h1>
+    <h1><center> Antet (antet) </center></h1>
+  </div><!-- sfarsit # antet  -->
+
+  <div id="continut_p">
+    <center><h3> Continut principal (continut_p) </h3></center><br>
+	<br>
+	.
+	.
+	.
+	<br>
+    <br><center>Sfarsit continut principal</center><br>
+  </div><!-- sfarit # continut_p -->
+   <div id="zona_jos">
+    <p> Zona de jos (zona_jos) </p>
+  <!-- sfarit #zona_jos --></div>
+<!-- sfarit #continut --></div>
+</body>
+</html>
+</textarea>
+<br>
+<INPUT onclick=window.open("pagina_v1.html","buton1Window",'resizable=yes,width=950,height=550') type=button value=Vezi_pagina:> 
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa in continuare meniul lateral
+<br><br> 
+<textarea width="100%" height="400px" style="width:100%;height:3000px" name="code" wrap="logical" rows="12" cols="42">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Pagina web centrata</title>
+<style type="text/css"> 
+<!-- 
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 0; 
+	padding: 0;
+	text-align: center;
+	font-size: 12px; 
+	color: Red;
+	background-attachment: scroll;
+	background-image: url(imm_j.bmp);
+	background-repeat: repeat-x;
+	/*background-color: Wheat;*/
+	background-color: #8EBBDB;
+}
+
+h1 {
+	padding:0px;
+	font-size:18px;
+	line-height:2px;
+	font-weight:5;
+	color:#ccc;
+	}
+.pag_centr #continut {
+	/*width: 60em;*/
+	width: 860px;
+	/*1 em este echivalent cu  font-size-ul fontului curent.*/
+	margin: 20 auto ; 
+	border: 1px solid #000;
+	text-align: left; 
+	background-color: WhiteSmoke;
+} 
+.pag_centr #antet {
+	padding: 0 10px; 
+	background-color: OliveDrab;
+} 
+.pag_centr #antet h1 {
+	margin: 0;
+	padding: 15px 0; 
+}
+.pag_centr #meniu {
+	border:hidden;
+	float: left;
+	margin: 10px 10px 0px 10px;
+	/*width: 12em;*/
+	width: 160px;
+	padding: 15px 25px; 
+	background-color: LightGrey;
+}
+.pag_centr #meniu h3{
+	margin-left: 10px; 
+	margin-right: 10px;
+} 
+.pag_centr #meniu p {
+	margin-left: 10px; 
+	margin-right: 20px;
+}
+.pag_centr #continut_p {
+	margin: 10px 10px 10px 10px;
+	background-color: Lavender ; 
+} 
+#c1{
+	border:hidden;
+	float: left;
+	margin: 10px 10px 0px 10px;
+	top: 100px;
+	left: 70px;
+	width: 160px;
+	padding: 15px 25px; 
+	background-color: Yellow;
+} 
+
+#c2{
+	border:hidden;
+	float: left;
+	margin: 10px 10px 0px 10px;
+	top: 150px;
+	left: 170px;
+	width: 200px;
+	height: 200px;
+	padding: 15px 25px; 
+	background-color: GreenYellow;
+} 
+
+.pag_centr #zona_jos {
+	padding: 0 10px;
+	background-color: YellowGreen;
+} 
+.pag_centr #zona_jos p {
+	margin: 0; 
+	padding: 10px 0;
+}
+
+/* Diferite resurse */
+.fltrt { 
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { 
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { 
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+a:link {
+	color: Red
+}
+a:visited {
+	color: Blue; font-size: 12px;
+}
+--> 
+</style>
+<!--[if IE]>
+<style type="text/css"> 
+.pag_centr #meniu { padding-top: 30px; }
+.pag_centr #continut_p { zoom: 1; padding-top: 15px; }
+</style>
+<![endif]--></head>
+<body class="pag_centr">
+<div id="continut">
+  <div id="antet">
+    <h1><strong><center>Utilizarea CSS pentru desig-ul paginilor WEB</center></strong></h1>
+    <h1><center> Antet (antet) </center></h1>
+  </div><!-- sfarsit # antet  -->
+  <div id="meniu"> 
+  <h5><center> Meniu (meniu) </center></h5>
+    <div align="left">
+      <p><a href="#"><strong>Meniu 1</strong></a>	</p>
+      <p><a href="#"><strong>Meniu 2</strong></a>	</p>
+      <p><strong><a href="#">Meniu 3</a></strong>	</p>
+      <p><strong><a href="#">.</a></strong>			</p>
+      <p><strong><a href="#">.</a></strong>			</p>
+      <p><strong><a href="#">.</a></strong>			</p>
+      <p><strong><a href="#">Meniu n</a></strong>	</p>
+    </div>
+    <!-- sfarit #meniu -->
+  </div>
+  <div id="continut_p">
+    <center><h3> Continut principal (continut_p) </h3></center><br>
+	<div id="c1">
+		Text 1
+	</div>
+	<div id="c2">
+		Text 2
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+    <br><center>Sfarsit continut principal</center><br>
+  </div><!-- sfarit # continut_p -->
+<br class="clearfloat" /> 	<!-- Acest element de stergere trebuie plasat dupa div-ul  #continut_p -->
+				<!-- pentru a forta div-ul  #continut sa contina toate div-urile flotant -->
+   <div id="zona_jos">
+    <p> Zona de jos (zona_jos) </p>
+  <!-- sfarit #zona_jos --></div>
+<!-- sfarit #continut --></div>
+</body>
+</html>
+
+</textarea>
+<br>
+<INPUT onclick=window.open("pagina_v2.html","buton1Window",'resizable=yes,width=1000,height=600') type=button value=Vezi_pagina:> 
+<hr>
+<br><br><a name="menu"></a>
+<font color= "black" size=4><li>Realizarea meniurilor utilizand CSS</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom modifica vechiul meniu folosindu-ne de CSS
+<br><br>
+<textarea width="100%" height="400px" style="width:100%;height:2825px" name="code" wrap="logical" rows="12" cols="42">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Pagina web centrata</title>
+<style type="text/css"> 
+<!-- 
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 0; 
+	padding: 0;
+	text-align: center;
+	font-size: 12px; 
+	color: Red;
+	background-attachment: scroll;
+	background-image: url(imm_j.bmp);
+	background-repeat: repeat-x;
+	/*background-color: Wheat;*/
+	background-color: #8EBBDB;
+}
+
+h1 {
+	padding:0px;
+	font-size:18px;
+	line-height:2px;
+	font-weight:5;
+	color:#ccc;
+	}
+.pag_centr #continut {
+	/*width: 60em;*/
+	width: 860px;
+	/*1 em este echivalent cu  font-size-ul fontului curent.*/
+	margin: 20 auto ; 
+	border: 1px solid #000;
+	text-align: left; 
+	background-color: WhiteSmoke;
+} 
+.pag_centr #antet {
+	padding: 0 10px; 
+	background-color: OliveDrab;
+} 
+.pag_centr #antet h1 {
+	margin: 0;
+	padding: 15px 0; 
+}
+
+.pag_centr #meniu {
+	float: left;
+	margin: 0px -3px 0px 0px;
+	/*width: 12em;*/
+	width: 110px;
+	height: 400px;
+	padding: 25px 25px;
+	background-color: LightGrey;
+}
+
+.pag_centr #meniu ul {
+	margin: 15px 0 15px 0;
+	padding: 0;
+	list-style: none;
+	border: 0;
+}
+.pag_centr #meniu li {
+	text-align: center;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	width: 100px;
+	margin: 0;
+	padding: 0;
+	font: 10px/15px "Lucida Sans Unicode", Verdana, sans-serif;
+	color: #000;
+	background: #FFF;
+}
+.pag_centr #meniu li a {
+	display: block;
+	font-weight: normal;
+	padding: 0;
+	border-left: 1px solid #000;
+	border-right:1px solid #000;
+	background: #FFF;
+	color: #000;
+	text-decoration: none;
+	width: 100px;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	width: 100px;
+}
+
+.pag_centr #meniu li a:hover {
+	font-weight: normal;
+	background: #999;
+	color: #000;
+	text-decoration: none;
+}
+.pag_centr #meniu h3 {
+	font-size: 120%;
+	text-decoration: underline;
+	background-image: none;
+	text-align: center;
+	padding: 0;
+}
+
+.pag_centr #continut_p {
+	margin: 0px 0px 0px 0px;
+	padding-top: 15px; 
+	/*zoom: 1;*/
+	background-color: Lavender ; 
+} 
+.pag_centr #zona_jos {
+	padding: 0 10px;
+	background-color: YellowGreen;
+} 
+.pag_centr #zona_jos p {
+	margin: 0; 
+	padding: 10px 0;
+}
+
+/* Diferite resurse */
+.fltrt { 
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { 
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { 
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+a:link {
+	color: Red
+}
+a:visited {
+	color: Blue; font-size: 12px;
+}
+--> 
+</style>
+</head>
+<body class="pag_centr">
+<div id="continut">
+  <div id="antet">
+    <h1><strong><center>Utilizarea CSS pentru desig-ul paginilor WEB</center></strong></h1>
+    <h1><center> Antet (antet) </center></h1>
+  </div><!-- sfarsit # antet  -->
+  <div id="meniu"> 
+    <div align="center">
+    <center> Meniu (meniu) </center>
+     <ul>
+      <li><a href="#">Meniu 1</a></li>
+      <li><a href="#">Meniu 2</a></li>
+      <li><a href="#">Meniu 3</a></li>
+      <li><a href="#">.</a></li>
+      <li><a href="#">.</a></li>
+      <li><a href="#">.</a></li>
+      <li><a href="#">Meniu n</a></li>
+      </ul>
+    </div>
+    <!-- sfarit #meniu -->
+  </div>
+  <div id="continut_p">
+    <center><h3> Continut principal (continut_p) </h3></center><br>
+  </div><!-- sfarit # continut_p -->
+	<br class="clearfloat" /> 	<!-- Acest element de stergere trebuie plasat dupa div-ul  #continut_p -->
+								<!-- pentru a forta div-ul  #continut sa contina toate div-urile flotant -->
+   <div id="zona_jos">
+    <p> Zona de jos (zona_jos) </p>
+  <!-- sfarit #zona_jos --></div>
+<!-- sfarit #continut --></div>
+</body>
+</html>
+
+</textarea>
+<br>
+<INPUT onclick=window.open("pagina_v3.html","buton1Window",'resizable=yes,width=950,height=550') type=button value=Vezi_pagina:> 
+<hr>
+<br><br><a name="menu_h"></a>
+<font color= "black" size=4><li>Realizarea meniurilor orizontale utilizand CSS</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom adauga acum, folosindu-ne de CSS, un meniu orizontal.
+<br><br>
+<textarea width="100%" height="400px" style="width:100%;height:3640px" name="code" wrap="logical" rows="12" cols="42">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Pagina web centrata</title>
+<style type="text/css"> 
+<!-- 
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 0; 
+	padding: 0;
+	text-align: center;
+	font-size: 12px; 
+	color: Red;
+	background-attachment: scroll;
+	background-image: url(imm_j.bmp);
+	background-repeat: repeat-x;
+	/*background-color: Wheat;*/
+	background-color: #8EBBDB;
+}
+
+h1 {
+	padding:0px;
+	font-size:18px;
+	line-height:2px;
+	font-weight:5;
+	color:#ccc;
+	}
+.pag_centr #continut {
+	/*width: 60em;*/
+	width: 850px;
+	/*1 em este echivalent cu  font-size-ul fontului curent.*/
+	margin: 20 auto ; 
+	border: 1px solid #000;
+	text-align: left; 
+	background-color: WhiteSmoke;
+} 
+.pag_centr #antet {
+	padding: 0 10px; 
+	background-color: OliveDrab;
+} 
+.pag_centr #antet h1 {
+	margin: 0;
+	padding: 15px 0; 
+}
+
+.pag_centr #meniu {
+	float: left;
+	margin: 0px -3px 0px 0px;
+	/*width: 12em;*/
+	width: 110px;
+	height: 400px;
+	padding: 25px 25px;
+	background-color: LightGrey;
+}
+
+.pag_centr #meniu ul {
+	margin: 15px 0 15px 0;
+	padding: 0;
+	list-style: none;
+	border: 0;
+}
+.pag_centr #meniu li {
+	text-align: center;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	width: 100px;
+	margin: 0;
+	padding: 0;
+	font: 10px/15px "Lucida Sans Unicode", Verdana, sans-serif;
+	color: #000;
+	background: #FFF;
+}
+.pag_centr #meniu li a {
+	display: block;
+	font-weight: normal;
+	padding: 0;
+	border-left: 1px solid #000;
+	border-right:1px solid #000;
+	background: #FFF;
+	color: #000;
+	text-decoration: none;
+	width: 100px;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	width: 100px;
+}
+
+.pag_centr #meniu li a:hover {
+	font-weight: normal;
+	background: #999;
+	color: #000;
+	text-decoration: none;
+}
+.pag_centr #meniu h3 {
+	font-size: 120%;
+	text-decoration: underline;
+	background-image: none;
+	text-align: center;
+	padding: 0;
+}
+
+.pag_centr #continut_p {
+	margin: 0px 0px 0px 0px;
+	padding-top: 0px;
+	width: 800px 
+	/*zoom: 1;*/
+	background-color: Lavender ; 
+} 
+.pag_centr #zona_jos {
+	padding: 0 10px;
+	background-color: YellowGreen;
+} 
+.pag_centr #zona_jos p {
+	margin: 0; 
+	padding: 10px 0;
+}
+
+#meniu_h {
+	height:16px;
+	list-style:none;
+	text-transform:uppercase;
+	font-size:12px;
+	margin:0;
+	padding:0;
+	position:relative;
+	background-color: #D0D0D0;
+}	
+a {
+	color:#09c;
+	font-size:12px;
+	text-decoration:none;
+	font-weight:normal;
+	font-family:verdana, arial, helvetica, sans-serif;
+	}
+    A:link {color: #000fff; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+    A:visited {color: #0000ff; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+    A:hover{color: #ff0000; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+       
+#meniu_h li
+{
+	width:230px;
+	height:18px;
+	position:relative;
+	float:left;
+	background-color: #D0D0D0;
+	border-top: 1px solid #000;
+	border-bottom:1px solid #000;	
+	border-left: 1px solid #000;
+	border-right:1px solid #000;
+}
+
+#meniu_h li a:hover
+{
+	height:15px;
+	width:228px;
+	font-size:12;
+	text-indent:0px;
+	background-color: #7EBBDB;
+}
+
+
+/* Diferite resurse */
+.fltrt { 
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { 
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { 
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+a:link {
+	color: Red
+}
+a:visited {
+	color: Blue; font-size: 12px;
+}
+--> 
+</style>
+</head>
+<body class="pag_centr">
+<div id="continut">
+  <div id="antet">
+    <h1><strong><center>Utilizarea CSS pentru plasarea meniurilor in pagini WEB</center></strong></h1>
+    <h1><center> Antet (antet) </center></h1>
+  </div><!-- sfarsit # antet  -->
+  <div id="meniu"> 
+    <div align="center">
+    <center> Meniu (meniu) </center>
+     <ul>
+      <li><a href="#">Meniu 1</a></li>
+      <li><a href="#">Meniu 2</a></li>
+      <li><a href="#">Meniu 3</a></li>
+      <li><a href="#">.</a></li>
+      <li><a href="#">.</a></li>
+      <li><a href="#">.</a></li>
+      <li><a href="#">Meniu n</a></li>
+      </ul>
+    </div>
+    <!-- sfarit #meniu -->
+  </div>
+  <div id="continut_p">
+           <ul id="meniu_h">
+            <tr><td><li><a href="#">&nbsp;&nbsp; Facultatea de Inginerie &nbsp;&nbsp; </a></li>
+            <li><a href="#">&nbsp;&nbsp; Facultatea de Litere &nbsp;&nbsp; </a></li>
+            <li><a href="#">&nbsp;&nbsp; Facultatea de st.Economice &nbsp;&nbsp; </a></li>
+  		</ul> 
+    <center><h3> Continut principal (continut_p) </h3></center><br>
+  </div><!-- sfarit # continut_p -->
+	<br class="clearfloat" /> 	<!-- Acest element de stergere trebuie plasat dupa div-ul  #continut_p -->
+								<!-- pentru a forta div-ul  #continut sa contina toate div-urile flotant -->
+   <div id="zona_jos">
+    <p> Zona de jos (zona_jos) </p>
+  <!-- sfarit #zona_jos --></div>
+<!-- sfarit #continut --></div>
+</body>
+</html>
+
+</textarea>
+<br>
+<INPUT onclick=window.open("meniu_h.html","buton1Window",'resizable=yes,width=950,height=550') type=button value=Vezi_pagina:> 
+<hr>
+
+<br><br><a name="m_din"></a>
+<font color= "black" size=4><li>Realizarea meniurilor dinamice utilizand CSS</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul unor pagini web complexe, cu multe optiuni, se utilizeaza meniuri dinamice, meniuri care permit inserarea 
+unui numar mare de optiuni. Una din metodele des utilizate pentru realizarea meniurilor dinamice este utilizarea CSS.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un meniu dinamic cu complexitate redusa.
+<br><br> 
+<INPUT onclick=window.open("./meniu_dinam_s/pagina_v4.html","buton1Window",'resizable=yes,width=950,height=450') type=button value=Vezi_meniu:>
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Fisierul sursa pagina_v4.html:<br><br>
+<textarea width="100%" height="400px" style="width:100%;height:840px" name="code" wrap="logical" rows="12" cols="42">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Meniu dinamic simplu</title>
+<link href="style_meniu.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="container">
+      <div class="content">
+       <h2> <center><br> Meniu dinamic </center> </h2>
+    	 <div class="meniu_principal">
+        	<ul>
+            	<li><a href="#">Pagina1</a>
+                
+               		<ul>
+                    	<li><a href="#">Pagina 1.1</a></li>
+                        <li><a href="#">Pagina 1.2</a></li>
+                        <li><a href="#">Pagina 1.3</a></li>
+                    </ul>
+               	</li>
+                <li><a href="#">Pagina2</a>
+                
+               		<ul>
+                    	<li><a href="#">Pagina 2.1</a></li>
+                        <li><a href="#">Pagina 2.2</a></li>
+                    </ul>
+                 </li> 
+                 <li><a href="#">Pagina3</a>
+                 
+                 	<ul>
+                    	<li><a href="#">Pagina 3.1</a></li>
+                        <li><a href="#">Pagina 3.2</a></li>
+                        <li><a href="#">Pagina 3.3</a></li>
+                 	</ul>
+                 
+                 </li>
+                 <li><a href="#">Pagina4</a></li>
+                 <li><a href="#">Pagina5</a></li>
+                 <li><a href="#">Pagina6</a></li>
+        	</ul>
+        </div>
+   </div> 
+<div class="continut_p">
+ <h2>Continut pagina</h2>
+ <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div> 
+</body>
+</html>
+</textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Fisierul sursa style_meniu.css:<br><br>
+<textarea width="100%" height="400px" style="width:100%;height:1430px" name="code" wrap="logical" rows="12" cols="42">
+@charset "utf-8";
+/* CSS Document */
+
+html,body{
+	background-image: url(main_blue_bg.jpg);
+}
+body{
+	behavior: url(csshover.htc);  /*   SCRIPT PENTRU  IE6 DEOARECE IE6 nu stie unele comenzi de ex: li:hover sau a:hover ul    */
+}
+
+.container{
+	width:850px;
+	margin:0 auto;
+	height:auto !important;
+	min-height:75%;
+	height:75%;
+	background-attachment: scroll;
+	/*background-image: url(midlle_bg.jpg);*/
+	background-color:#808080;
+	background-repeat: repeat-y;
+	position:relative;
+}
+.meniu_principal{
+	width:850px;
+	height:35px;
+	margin:0;
+	padding:0;
+	position:relative;
+	background-color:#6633CC;
+}
+.meniu_principal li{
+	display:block;
+	float:left;
+	width:120px;
+	line-height:35px;
+	padding-left:15px;
+}
+.meniu_principal li a{
+	color:#FFFFFF;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration:none;
+}
+.meniu_principal li a:hover{
+	text-decoration:underline;
+}
+.meniu_principal li:hover ul,
+.meniu_principal li a:hover ul{
+	display:block;
+}
+.meniu_principal li ul{
+	display:none;
+	position:absolute;
+	height:35px;
+	top:35px;
+	left:0;
+	background-color:#FFFFFF;
+	width:850px;
+	margin:0;
+	padding:0;
+}
+
+.meniu_principal li ul li{
+	color:#000099;
+	font-weight:bold;
+	padding-left:25px;
+}
+
+.meniu_principal li ul li a{
+	color:#000099;
+	font-weight:bold;
+	padding-left:25px;
+}
+.content{
+	width:850px;
+	position:relative;
+}
+.continut_p{
+	width:850px;
+	background-color:#D3D3D3;
+}
+
+#menu li:hover ul,
+#menu  a:hover ul{
+	display:block;
+}
+</textarea>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Fisierul sursa csshover.htc:<br><br>
+<textarea width="100%" height="400px" style="width:100%;height:2010px" name="code" wrap="logical" rows="12" cols="42">
+
+<attach event="ondocumentready" handler="parseStylesheets" />
+<script>
+/**
+ *	Whatever:hover - V1.42.060206 - hover & active
+ *	------------------------------------------------------------
+ *	(c) 2005 - Peter Nederlof
+ *	Peterned - http://www.xs4all.nl/~peterned/
+ *	License  - http://creativecommons.org/licenses/LGPL/2.1/
+ *
+ *	Whatever:hover is free software; you can redistribute it and/or
+ *	modify it under the terms of the GNU Lesser General Public
+ *	License as published by the Free Software Foundation; either
+ *	version 2.1 of the License, or (at your option) any later version.
+ *
+ *	Whatever:hover is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ *	Lesser General Public License for more details.
+ *
+ *	Credits and thanks to:
+ *	Arnoud Berendsen, Martin Reurings, Robert Hanson
+ *
+ *	howto: body { behavior:url("csshover.htc"); }
+ *	------------------------------------------------------------
+ */
+
+var csshoverReg = /(^|\s)(([^a]([^ ]+)?)|(a([^#.][^ ]+)+)):(hover|active)/i,
+currentSheet, doc = window.document, hoverEvents = [], activators = {
+	onhover:{on:'onmouseover', off:'onmouseout'},
+	onactive:{on:'onmousedown', off:'onmouseup'}
+}
+
+function parseStylesheets() {
+	if(!/MSIE (5|6)/.test(navigator.userAgent)) return;
+	window.attachEvent('onunload', unhookHoverEvents);
+	var sheets = doc.styleSheets, l = sheets.length;
+	for(var i=0; i<l; i++) 
+		parseStylesheet(sheets[i]);
+}
+	function parseStylesheet(sheet) {
+		if(sheet.imports) {
+			try {
+				var imports = sheet.imports, l = imports.length;
+				for(var i=0; i<l; i++) parseStylesheet(sheet.imports[i]);
+			} catch(securityException){}
+		}
+
+		try {
+			var rules = (currentSheet = sheet).rules, l = rules.length;
+			for(var j=0; j<l; j++) parseCSSRule(rules[j]);
+		} catch(securityException){}
+	}
+
+	function parseCSSRule(rule) {
+		var select = rule.selectorText, style = rule.style.cssText;
+		if(!csshoverReg.test(select) || !style) return;
+
+		var pseudo = select.replace(/[^:]+:([a-z-]+).*/i, 'on$1');
+		var newSelect = select.replace(/(\.([a-z0-9_-]+):[a-z]+)|(:[a-z]+)/gi, '.$2' + pseudo);
+		var className = (/\.([a-z0-9_-]*on(hover|active))/i).exec(newSelect)[1];
+		var affected = select.replace(/:(hover|active).*$/, '');
+		var elements = getElementsBySelect(affected);
+		if(elements.length == 0) return;
+
+		currentSheet.addRule(newSelect, style);
+		for(var i=0; i<elements.length; i++)
+			new HoverElement(elements[i], className, activators[pseudo]);
+	}
+
+function HoverElement(node, className, events) {
+	if(!node.hovers) node.hovers = {};
+	if(node.hovers[className]) return;
+	node.hovers[className] = true;
+	hookHoverEvent(node, events.on, function() { node.className += ' ' + className; });
+	hookHoverEvent(node, events.off, function() { node.className = node.className.replace(new RegExp('\\s+'+className, 'g'),''); });
+}
+	function hookHoverEvent(node, type, handler) {
+		node.attachEvent(type, handler);
+		hoverEvents[hoverEvents.length] = { 
+			node:node, type:type, handler:handler 
+		};
+	}
+
+	function unhookHoverEvents() {
+		for(var e,i=0; i<hoverEvents.length; i++) {
+			e = hoverEvents[i]; 
+			e.node.detachEvent(e.type, e.handler);
+		}
+	}
+
+function getElementsBySelect(rule) {
+	var parts, nodes = [doc];
+	parts = rule.split(' ');
+	for(var i=0; i<parts.length; i++) {
+		nodes = getSelectedNodes(parts[i], nodes);
+	}	return nodes;
+}
+	function getSelectedNodes(select, elements) {
+		var result, node, nodes = [];
+		var identify = (/\#([a-z0-9_-]+)/i).exec(select);
+		if(identify) {
+			var element = doc.getElementById(identify[1]);
+			return element? [element]:nodes;
+		}
+		
+		var classname = (/\.([a-z0-9_-]+)/i).exec(select);
+		var tagName = select.replace(/(\.|\#|\:)[a-z0-9_-]+/i, '');
+		var classReg = classname? new RegExp('\\b' + classname[1] + '\\b'):false;
+		for(var i=0; i<elements.length; i++) {
+			result = tagName? elements[i].all.tags(tagName):elements[i].all; 
+			for(var j=0; j<result.length; j++) {
+				node = result[j];
+				if(classReg && !classReg.test(node.className)) continue;
+				nodes[nodes.length] = node;
+			}
+		}	
+		
+		return nodes;
+	}
+</script>
+</textarea>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un meniu dinamic cu complexitate ridicata.
+<br><br> 
+<INPUT onclick=window.open("./meniu_dinamic/pagina_v5.html","buton1Window",'resizable=yes,width=950,height=480') type=button value=Vezi_meniu:>
+<hr>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Fisierul sursa pagina_v5.html:<br><br>
+<textarea width="100%" height="400px" style="width:100%;height:2300px" name="code" wrap="logical" rows="12" cols="42">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>INDEX</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body><br><br>
+  <div class="container">
+    <div class="header">
+    <center><h1> Utilizarea CSS pentru realizarea meniurilor dinamice</h1></center>
+    </div>
+    <div class="content">
+      <div class="contentTop">
+        <div class="contentMenu">
+          <ul id="menu">
+            <li id="item1"><a href="#">&nbsp;&nbsp; Facultatea de Inginerie &nbsp;&nbsp; </a>
+              <ul>
+                <li class="level2"><a href="">Inginerie Electrica</a>
+                  <ul class="level3_ul">
+                    <li class="level3"><a href="">Calculatoare</a></li>
+                    <li class="level3"><a href="">A.I.A</a></li>
+                    <li class="level3"><a href="">I.S.E</a></li>
+                  </ul>
+                </li>
+                <li class="level2"><a href="">Inginerie Mecanica</a>
+                  <ul class="level3_ul">
+                    <li class="level3"><a href="">Mecatronica</a></li>
+                    <li class="level3"><a href="">T.C.M</a></li>
+                    <li class="level3"><a href="">Inginerie economica</a></li>
+                    <li class="level3"><a href="">Design industrial</a></li>                   
+                  </ul>
+                </li>
+                <div class="bottom"></div>
+              </ul>
+            </li>
+            <li id="item2"><a href="">&nbsp;&nbsp; Facultatea de Stiinte si Litere &nbsp;&nbsp;</a>
+              <ul>
+                <li class="level2"><a href="">Stiinte</a></li>
+                   <ul class="level3_ul">
+                    <li class="level3"><a href="">Informatica</a></li>
+                    <li class="level3"><a href="">Matematica-Informatica</a></li>
+                  </ul>
+                </li>
+                <li class="level2"><a href="">Litere</a></li>
+                   <ul class="level3_ul">
+                    <li class="level3"><a href="">Istorie</a></li>
+                    <li class="level3"><a href="">Limba si literatura engleza</a></li>
+                    <li class="level3"><a href="">Relatii internationale</a></li>
+                    <li class="level3"><a href="">Limbi moderne aplicate</a></li>                   
+                  </ul>
+                </li>
+                <div class="bottom"></div>
+              </ul>
+            </li>
+            <li id="item3"><a href="">&nbsp;&nbsp; Facultatea de Stiinte Ecnomice &nbsp;&nbsp;</a>
+              <ul>
+                <li class="level2"><a href="">Management</a>
+                  <ul class="level3_ul">
+                      <li class="level3"><a href="">C.I.G</a>
+                      <li class="level3"><a href="">Finante Banci</a></li>
+                      <li class="level3"><a href="">E.C.T.S</a></li>
+                     </ul>
+                    </li>
+                <li class="level2"><a href="">Administratie publica</a>
+                     <ul class="level3_ul">
+                      <li class="level3"><a href="">A.P.</a>
+                      <li class="level3"><a href="">Drept</a></li>
+                   </ul>
+                </li>
+                <div class="bottom"></div>
+              </ul>
+            </li>
+            <li id="item4"><a href="">&nbsp;&nbsp; Masterate &nbsp;&nbsp;</a>
+              <ul>
+                <li class="level2"><a href="">Facultatea de Inginerie</a>
+                  <ul class="level3_ul">
+                    <li class="level3"><a href="">Managementul energiei</a></li>
+                    <li class="level3"><a href="">Grafica si design industrial</a></li>
+                  </ul>
+                </li>
+                <li class="level2"><a href="">Stiinte Economice</a>
+                   <ul class="level3_ul">
+                    <li class="level3"><a href="">Managementul afacerilor</a></li>
+                    <li class="level3"><a href="">Managementul proiectelor</a></li>
+                  </ul>
+                </li>
+                <div class="bottom"></div>
+              </ul>
+            </li>
+            <li id="item5"><a href="">&nbsp;&nbsp; Despre UPM &nbsp;&nbsp;</a>
+              <ul>
+                <li class="level2"><a href="">Misiune</a>
+                  <ul class="level3_ul">
+                    <li class="level3"><a href="">Invatamant</a></li>
+                    <li class="level3"><a href="">Cercetare</a></li>
+                  </ul>
+                </li>
+                <li class="level2"><a href="">Baza materiala</a></li>
+                <li class="level2"><a href="">Publicatii</a></li>
+                <li class="level2"><a href="">Evenimente</a></li>
+                <div class="bottom"></div>
+              </ul>
+            </li>
+            <li id="item6"><a href="">&nbsp;&nbsp; Contact &nbsp;&nbsp;</a>
+              <ul>
+                <li class="level2"><a href="">NET</a>
+                  <ul class="level3_ul">
+                    <li class="level3"><a href="">Pagina web</a></li>
+                    <li class="level3"><a href="">Mail</a></li>
+                  </ul>
+                </li>
+                <li class="level2"><a href="">Telefoane</a></li>
+                <div class="bottom"></div>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="contentMidle">
+        <div class="contentLeft">
+          <div class="mainContent"><br>
+          <h1>O UNIVERSITATE PENTRU COMUNITATE </h1>
+	 De la fondarea sa in anul 1960, asigurandu-si continuitatea institutionala si permanenta culturala 
+in ciuda a numeroase constrangeri si obstacole, Universitatea "UMFST", la inceput de mileniu, 
+se prezinta in deplina sa maturitate si reputatie ca o autentica si generoasa "Universitate pentru comunitate".
+        </div>
+        </div>
+        <div class="contentRight"><center>  <br><br> <h3> UPM-Targu Mures </h3><br><img src="../../../Images/logo_upm.gif"></div>
+      </div>
+    </div>
+    <div class="clear" style="height:100px;"></div>
+    <div class="footer">
+    </div>
+  </div>
+</body>
+</html>
+
+</textarea>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Fisierul sursa style.css:<br><br>
+<textarea width="100%" height="400px" style="width:100%;height:1430px" name="code" wrap="logical" rows="12" cols="42">
+@charset "utf-8";
+/* CSS Document */
+@import url(contentMenu.css);
+
+html{
+	margin:0;
+	padding:0;
+	height:100%; /* needed for container min-height */
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#000000;
+}
+body{
+	background-attachment: scroll;
+	background-image: url(main_blue_bg.jpg);
+	background-repeat: repeat-x;
+	height:100%;
+	background-color: #8EBBDB;
+}
+body{
+	behavior: url(csshover.htc);
+}
+form{
+	margin:0;
+	padding:0;
+}
+*{
+	margin:0;
+	padding:0;
+}
+.container{
+	width:900px;
+	margin:0 auto;
+	height:auto !important;
+	min-height:75%;
+	height:85%;
+	background-attachment: scroll;
+	background-image: url(midlle_bg.jpg);
+	background-repeat: repeat-y;
+	position:relative;
+}
+.header{
+	height:70px;
+	background-attachment: scroll;
+	background-color: OliveDrab;
+	background-repeat: repeat-x;
+	background-position:left top;
+}
+.header h1 {
+	margin: 0;
+	padding: 10px; 
+	font-size:18px;
+	color:#ffffff;
+}
+
+/*****    CONTENT   **************************/
+.content{
+	width:900px;
+	position:relative;
+}
+.contentTop{
+}
+.contentMidle{
+	padding-left:20px;
+	width:880px;
+}
+.contentLeft{
+	width:590px;
+	float:left;
+	padding-left:20px;
+}
+.mainContent{
+	width:540px;
+}
+
+.contentRight{
+	width:270px;
+	float:left;
+}
+.mainContent H1,
+.mainContent_home H1{
+	color:#F27C08;
+	font-size:18px;
+	letter-spacing:-1px;
+	font-weight:normal;
+	padding-bottom:5px;
+}
+
+</textarea>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Fisierul sursa "contentMenu.css" pentru definirea meniului dinamic fiind: <br><br>
+<textarea width="100%" height="400px" style="width:100%;height:5940px" name="code" wrap="logical" rows="12" cols="42">
+@charset "utf-8";
+/* CSS Document */
+
+.contentMenu{
+	width:900px;
+}
+#menu {
+	height:16px;
+	list-style:none;
+	text-transform:uppercase;
+	font-size:12px;
+	margin:0;
+	padding:0;
+	position:relative;
+	background-color: #D3D3D3;
+}	
+a {
+	color:#09c;
+	font-size:12px;
+	text-decoration:none;
+	font-weight:400;
+	font-family:verdana, arial, helvetica, sans-serif;
+	}
+    A:link {color: #000fff; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+    A:visited {color: #0000ff; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+    A:hover{color: #ff0000; font-size: 8pt; font-family: arial, helvetica, sans-serif; text-decoration:none;}
+
+
+/***  ITEM 1  ***/
+
+#menu li#item1,
+#menu li#item1_active{
+	width:180px;
+	height:16px;
+	display:block;
+	position:relative;
+	float:left;
+	background-color: #8EBBDB;
+}
+
+#menu li#item1:hover a,                                  
+#menu li#item1_active a{
+	display:block;
+	height:16px;
+	font-size:12;
+	text-indent:0px;
+	background-color: #D3D3D3;
+}
+#menu li#item1 ul,
+#menu li#item1_active ul{
+	position: absolute;
+	width:220px;
+	list-style:none;
+	top:16px;
+	left:0px;
+}
+#menu li#item1 ul li ul.level3_ul,
+#menu li#item1_active ul li ul.level3_ul{
+	position: relative;
+	top:0;
+	left:0;
+	border:0;
+	width:220px;
+}
+
+/**  ITEM 2   ****/
+#menu li#item2,
+#menu li#item2_active{
+	width:200px;
+	display:block;
+	height:16px;
+	position:relative;
+	float:left;
+	background-color: #8EBBDB;	
+}
+
+#menu li#item2:hover a,                                        
+#menu li#item2_active a{
+	background-attachment: scroll;
+	display:block;
+	height:16px;
+	font-size:12;
+	text-indent:0px;
+	background-color: #D3D3D3;
+}
+#menu li#item2 ul,
+#menu li#item2_active ul{
+	position: absolute;
+	width:220px;
+	z-index: 10;
+	list-style:none;
+	top:16px;
+	left:0px;
+}
+#menu li#item2 ul li ul.level3_ul,
+#menu li#item2_active ul li ul.level3_ul{
+	position: relative;
+	top:0;
+	left:0;
+	border:0;
+	width:220px;
+}
+
+/**  ITEM 3   ****/
+#menu li#item3,
+#menu li#item3_active{
+	width:200px;
+	display:block;
+	height:16px;
+	position:relative;
+	float:left;
+	background-color: #8EBBDB;
+}
+
+#menu li#item3:hover a,                                            
+#menu li#item3_active a{
+	background-attachment: scroll;
+	display:block;
+	height:16px;
+	font-size:12;
+	text-indent:0px;
+	background-color: #D3D3D3;
+}
+#menu li#item3 ul,
+#menu li#item3_active ul{
+	position: absolute;
+	width:220px;
+	z-index: 10;
+	list-style:none;
+	top:16px;
+	left:0px;
+}
+#menu li#item3 ul li ul.level3_ul,
+#menu li#item3_active ul li ul.level3_ul{
+	position: relative;
+	top:0;
+	left:0;
+	border:0;
+	width:220px;
+}
+
+/**  ITEM 4   ****/
+#menu li#item4,
+#menu li#item4_active{
+	width:106px;
+	display:block;
+	height:16px;
+	position:relative;
+	float:left;
+	background-color: #8EBBDB;
+}
+
+#menu li#item4:hover a,                                    
+#menu li#item4_active a{
+	display:block;
+	height:16px;
+	font-size:12;
+	text-indent:0px;
+	background-color: #D3D3D3;
+}
+#menu li#item4 ul,
+#menu li#item4_active ul{
+	position: absolute;
+	width:220px;
+	z-index: 10;
+	list-style:none;
+	top:16px;
+	left:0px;
+}
+#menu li#item4 ul li ul.level3_ul,
+#menu li#item4_active ul li ul.level3_ul{
+	position: relative;
+	top:0;
+	left:0;
+	border:0;
+	width:219px;
+}
+
+
+/**  ITEM 5   ****/
+#menu li#item5,
+#menu li#item5_active{
+	width:109px;
+	display:block;
+	height:16px;
+	position:relative;
+	float:left;
+	background-color: #8EBBDB;
+}
+
+#menu li#item5:hover a,                                                  
+#menu li#item5_active a{
+	display:block;
+	height:16px;
+	font-size:12;
+	text-indent:0px;
+	background-color: #D3D3D3;
+}
+#menu li#item5 ul,
+#menu li#item5_active ul{
+	position: absolute;
+	width:220px;
+	z-index: 10000;
+	list-style:none;
+	top:16px;
+	left:-110px;
+}
+#menu li#item5 ul li ul.level3_ul,
+#menu li#item5_active ul li ul.level3_ul{
+	position: relative;
+	top:0;
+	left:0;
+	border:0;
+	width:219px;
+}
+
+/**  ITEM 6   ****/
+#menu li#item6,
+#menu li#item6_active{
+	width:103px;
+	display:block;
+	height:16px;
+	position:relative;
+	float:left;
+	background-color: #8EBBDB;
+}
+
+#menu li#item6:hover a,                                                  
+#menu li#item6_active a{
+	display:block;
+	height:16px;
+	font-size:12;
+	text-indent:0px;
+	background-color: #D3D3D3;
+}
+#menu li#item6 ul,
+#menu li#item6_active ul{
+	position: absolute;
+	width:220px;
+	z-index: 10;
+	list-style:none;
+	top:16px;
+	left:-114px;
+}
+#menu li#item6 ul li ul.level3_ul,
+#menu li#item6_active ul li ul.level3_ul{
+	position: relative;
+	top:0;
+	left:0;
+	border:0;
+	width:219px;
+}
+
+#menu li:hover ul,
+#menu  a:hover ul{
+	display:block;
+}
+
+/*submeniu ul */
+
+#menu li ul{
+	display: none;
+	position: absolute;
+	width:224px;
+	z-index: 10;
+	color:#000000;
+	list-style:none;
+/*	margin-bottom:-8px;*/
+
+}
+#menu  li.level2 ul.level3_ul{
+	position:relative;
+	background:#8EBBDB;
+}
+
+div.bottom{
+	width:220px;
+	height:8px;
+	display:block;
+
+}
+html .bottom{
+	width:220px;
+	height:8px;
+	display:block;
+
+}
+#menu li#item1 ul li.level2,#menu li#item1_active ul li.level2,#menu li#item1_active ul li.level2_active,
+#menu li#item2 ul li.level2,#menu li#item2_active ul li.level2,#menu li#item2_active ul li.level2_active,
+#menu li#item3 ul li.level2,#menu li#item3_active ul li.level2,#menu li#item3_active ul li.level2_active,
+#menu li#item4 ul li.level2,#menu li#item4_active ul li.level2,#menu li#item4_active ul li.level2_active,
+#menu li#item5 ul li.level2,#menu li#item5_active ul li.level2,#menu li#item5_active ul li.level2_active{
+	display:block;
+	padding-top:5px;
+	background-color:#FFFF00;
+	border-left:0px solid #E2E2E2;
+	border-right:0px solid #E2E2E2;
+}
+#menu li#item6 ul li.level2,#menu li#item6_active ul li.level2,#menu li#item6_active ul li.level2_active{
+	display:block;
+	padding-top:5px;
+	background-color:#FFFF00;
+	border-left:1px solid #E2E2E2;
+	border-right:1px solid #E2E2E2;
+}
+#menu li#item1 ul li.level2 a,
+#menu li#item2 ul li.level2 a,
+#menu li#item3 ul li.level2 a,
+#menu li#item4 ul li.level2 a,
+#menu li#item5 ul li.level2 a,
+#menu li#item6 ul li.level2 a{
+	list-style:none;
+	background-color:#FFFF00;
+	background-image:none;
+	color:#325C91;
+	text-decoration:none;
+	font-size:11px;
+	font-weight:bold;
+	height:auto;
+	padding-left:15px;
+	padding-top:5px;
+
+}
+#menu li#item1_active ul li.level2 a,#menu li#item1_active ul li.level2_active a,
+#menu li#item2_active ul li.level2 a,#menu li#item2_active ul li.level2_active a,
+#menu li#item3_active ul li.level2 a,#menu li#item3_active ul li.level2_active a,
+#menu li#item4_active ul li.level2 a,#menu li#item4_active ul li.level2_active a,
+#menu li#item5_active ul li.level2 a,#menu li#item5_active ul li.level2_active a,
+#menu li#item6_active ul li.level2 a,#menu li#item6_active ul li.level2_active a{
+	list-style:none;
+	background-color:#FFFF00;
+	background-image:none;
+	color:#325C91;
+	text-decoration:none;
+	font-size:11px;
+	font-weight:bold;
+	height:auto;
+	padding-left:15px;
+	padding-top:5px;
+}
+#menu li.level3{
+	display:block;
+	padding-bottom:3px;
+	background-color:#FFFF00;
+	border-right:0px solid #E2E2E2;
+	
+}
+#menu li#item1 ul li.level3 a,#menu li#item1_active ul li.level3 a,
+#menu li#item2 ul li.level3 a,#menu li#item2_active ul li.level3 a,
+#menu li#item3 ul li.level3 a,#menu li#item3_active ul li.level3 a,
+#menu li#item4 ul li.level3 a,#menu li#item4_active ul li.level3 a,
+#menu li#item5 ul li.level3 a,#menu li#item5_active ul li.level3 a,
+#menu li#item6 ul li.level3 a,#menu li#item6_active ul li.level3 a{
+	list-style:none;
+	background-color:#FFFF00;
+	background-image:none;
+	color:#8A8A8A;
+	text-decoration:none;
+	font-size:11px;
+	font-weight:bold;
+	height:auto;
+	padding-top:5px;
+	padding-left:23px;
+}
+ul#menu li ul li ul{
+	position:relative;
+	
+}
+</textarea>
+
+<a name="m_boot"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue" size="4"> Utilizare HTML CSS Bootstrap: </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Meniu dinamic </b> <br><br>
+<textarea width="100%" height="10px" style="width:100%;height:900px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head> 
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+	<title>Meniu dinamic</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="slideshow-container">
+<font color="red" size="4"> Meniu dinamic Web responsive</h3> </font>
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">UMFST</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Produse<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            	<li><a href="#" >Produse 1-1</a></li>
+            	<li><a href="#" >Produse 1-2</a></li>
+            	<li><a href="#" >Produse 1-3</a></li>
+		<li><a href="#" >Produse 1-4</a></li>
+          </ul>
+        </li>
+	<li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Noutati<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Noutati 2-1</a></li>
+            <li><a href="#">Noutati 2-2</a></li>
+            <li><a href="#">Noutati 2-3</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Despre noi</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</body>
+</html>		
+</textarea>
+<br><br>
+<INPUT onclick=window.open("./pag_css_v0.html","buton1Window",'resizable=yes,width=900,height=400') type=button value=Vezi_pagina:>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; <b> Pagina web responsive </b> <br><br>
+<textarea width="100%" height="10px" style="width:100%;height:770px" name="code" wrap="logical" rows="12" cols="42">
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Requirements</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+            .row > div {
+                padding: 10px;
+                background-color: yellow;
+                border: 1px solid teal;
+            }
+        </style>
+    </head>
+<body>
+  <div class="container">
+	<h5><font color="OliveDrab">Utilizare Bootstrap</font></h4>
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+		Text1
+        </div>
+        <div class="col-lg-3 col-sm-6">
+		Text2
+        </div>
+        <div class="col-lg-3 col-sm-6">
+		Text3
+        </div>
+        <div class="col-lg-3 col-sm-6">
+		Text4
+        </div>
+	<div class="col-lg-3 col-sm-6">
+		Text5
+        </div>
+	<div class="col-lg-3 col-sm-6">
+		Text6         
+	</div>
+	<div class="col-lg-3 col-sm-6">
+		Text7
+	</div>
+	<div class="col-lg-3 col-sm-6">
+		Text8
+	</div>							
+    </div>
+  </div>
+</body>
+</html>	
+</textarea>
+<br><br>
+<INPUT onclick=window.open("./pag_css_v1.html","buton1Window",'resizable=yes,width=1200,height=400') type=button value=Vezi_pagina:>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Bootstrap's grid model</b> <br><br>
+<textarea width="100%" height="10px" style="width:100%;height:500px" name="code" wrap="logical" rows="12" cols="42">
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+       	<style>
+            .row > div {
+                padding: 20px;
+                background-color: teal;
+                border: 2px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    Bootstrap 4.0
+                </div>
+                <div class="col-3">
+                    Bootstrap grid model.
+                </div>
+                <div class="col-6">
+                    Trei coloane Bootstrap utilizand Bootstrap's grid model.
+                </div>
+            </div>
+        </div>
+    </body>
+</html>		
+</textarea>
+<br><br>
+<INPUT onclick=window.open("./pag_css_v2.html","buton1Window",'resizable=yes,width=1200,height=400') type=button value=Vezi_pagina:>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Animatie CSS utilizand Django</b> <br><br>
+<textarea width="100%" height="10px" style="width:100%;height:450px" name="code" wrap="logical" rows="12" cols="42">
+  <html>
+      <head>
+          <script src="https://d3js.org/d3.v4.min.js"></script>
+      </head>
+      <body>
+          <svg id="svg" style="width:100%; height:400px"/>
+      </body>
+      <script>
+
+const svg = d3.select('#svg');
+
+  const c = svg.append('circle')
+               .attr('cx', 100)
+               .attr('cy', 100)
+               .attr('r', 50)
+               .style('fill', 'blue');
+
+  c.transition()
+   .duration(1000)
+   .attr('cx', 300)
+   .attr('cy', 300)
+   .style('fill', 'red');
+
+      </script>
+  </html>		
+</textarea>
+<br><br>
+<INPUT onclick=window.open("./pag_css_v4.html","buton1Window",'resizable=yes,width=450,height=450') type=button value=Vezi_pagina:>
+
+<a name="s_web"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue" size="4"> Schitare pagina web</font> <br><br>
+<textarea width="100%" height="10px" style="width:100%;height:870px" name="code" wrap="logical" rows="12" cols="42">
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pabina web</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="layout.css" rel="stylesheet" type="text/css" />
+    </head>
+<body>
+<center> 
+<table border=0 bgcolor="whiteSmoke" width="100%" >
+ <tr>
+  <td bgcolor="OliveDrab" align="center" valign="center">
+    <h1> Pagina web </h1>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <table width="100%">
+    <tr>
+     <td bgcolor="LightGrey" width="100" Align="left" Valign="top">
+      <font color="Red">
+	<div id="menu">	
+	 <ul>
+	   <li><strong><a href="pag0.html" target="content">Pagina 0</a></strong></li>
+	    <li><strong><a href="pag1.html" target="content">Pagina 1</a></strong></li>
+	    <li><strong><a href="pag2.html" target="content">Pagina 2</a></strong></li>
+	    <li><strong><a href="pag3.html" target="content">Pagina 3</a></strong></li>
+	    <li><strong><a href="pag_css_v1.html" target="content">Web responsive </a></strong></li>
+	 </ul>
+	</div>
+      </font>
+     </td>
+     <td bgcolor="Lavender"  height="100%">
+      <font color="Blue">
+	<div id="ifr">
+		<iframe src="pag0.html" name="content" width="100%" height="100%"></iframe>
+	</div>
+      </font>
+     </td>
+    </tr>
+   </table
+  </td>
+ </tr>
+ <tr>
+  <td bgcolor="OliveDrab" align="right">
+   <font color="yellow" size="3" >Traian Turc &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+  </td>
+ </tr>
+</table>
+</center>  
+</body>
+</html>		
+</textarea>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;"layout.css" fiind<br><br>
+<textarea width="100%" height="10px" style="width:100%;height:1200px" name="code" wrap="logical" rows="12" cols="42">
+@media (min-width: 600px) {
+	body {
+		background-color: Azure;
+	}
+	 div[id="ifr"] {
+		 height: 60vh;
+	}
+	 div[id="menu"] {
+		 height: 45vh;
+	}
+}
+ @media (max-width: 599px) {
+	 body {
+		 background-color: DarkSeaGreen;
+	}
+	 div[id="ifr"] {
+		 height: 70vh;
+	}
+	 div[id="menu"] {
+		 height: 55vh;
+	}
+}
+ h1 {
+	 font-size: 28px;
+	 text-decoration: none;
+	 background-image: none;
+	 text-align: center;
+	 color: Yellow;
+	 padding: 0;
+}
+ menu {
+	 float: left;
+	 margin: 0 -3px 0 0;
+	 width: 110px;
+	 padding: 5px 5px;
+}
+ #menu ul {
+	 margin: 15px 0 15px 0;
+	 padding: 0;
+	 list-style: none;
+	 border: 0;
+}
+ #menu li {
+	 text-align: center;
+	 border-top: 1px solid #000;
+	 border-bottom: 1px solid #000;
+	 width: 100px;
+	 margin: 0;
+	 padding: 0;
+	 font: 10px/15px "Lucida Sans Unicode", Verdana, sans-serif;
+	 color: #000;
+	 background: #fff;
+}
+ #menu li a {
+	 display: block;
+	 font-weight: normal;
+	 padding: 0;
+	 border-left: 1px solid #000;
+	 border-right: 1px solid #000;
+	 background: #fff;
+	 color: #000;
+	 text-decoration: none;
+	 width: 100px;
+}
+ #menu li a:hover {
+	 font-weight: normal;
+	 background: #999;
+	 color: #000;
+	 text-decoration: none;
+}
+ 	
+</textarea>
+
+
+
+<br><br><INPUT onclick=window.open("./pag_css_v3.html","buton1Window",'resizable=yes,width=800,height=400') type=button value=Vezi_pagina:>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Schitare pagina web utilizand meniu dinamic<br><br>
+<textarea width="100%" height="10px" style="width:100%;height:830px" name="code" wrap="logical" rows="12" cols="42">
+<html>
+<head> 
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+	<title>Meniu dinamic</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="slideshow-container">
+<font color="red" size="4"> Meniu dinamic Web responsive</h3> </font>
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">UMFST</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pagini web<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+         	<li><a href="pag0.html" target="content">Pagina 0</a></li>
+        	<li><a href="pag1.html" target="content">Pagina 1</a></li>
+		<li><a href="pag2.html" target="content">Pagina 2</a></li>
+		<li><a href="pag3.html" target="content">Pagina 3</a></li>
+          </ul>
+        </li>
+	<li><a href="pag_css_v1.html" target="content">Web responsive </a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div id="ifr">
+	<iframe src="pag0.html" name="content" width="100%" height="450"></iframe>
+</div>
+
+</body>
+</html>		
+</textarea>
+<br><br><INPUT onclick=window.open("./pag_css_v5.html","buton1Window",'resizable=yes,width=900,height=600') type=button value=Vezi_pagina:>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+<textarea width="100%" height="10px" style="width:100%;height:50px" name="code" wrap="logical" rows="12" cols="42">
+		
+</textarea>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<HTML> 
+<HEAD> 
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+   <TITLE>Achizitii de date in retea</TITLE> 
+</HEAD> 
+
+<BODY> 
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- 
+men_activ=0; 
+function Activ (img){ 
+	if (men_activ) { 
+		document[img].src=eval(img+'on.src'); 
+		} 
+	} 
+function InActiv(img) { 
+	if(men_activ) { 
+		document[img].src=eval(img+'off.src');
+ 		}
+ 	} 
+
+men_activ=1;
+
+/* Preincarcare imagini */
+ 
+menu0off=new Image(); 
+menu0off.src="menu0.gif"; 
+menu0on=new Image(); 
+menu0on.src="menu0_hl.gif";  
+
+menu1off=new Image(); 
+menu1off.src="menu1.gif"; 
+menu1on=new Image(); 
+menu1on.src="menu1_hl.gif";
+
+menu2off=new Image();
+menu2off.src="menu2.gif"; 
+menu2on=new Image();
+menu2on.src="menu2_hl.gif"; 
+
+menu3off=new Image(); 
+menu3off.src="menu3.gif"; 
+menu3on=new Image();
+menu3on.src="menu3_hl.gif"; 
+
+menu4off=new Image(); 
+menu4off.src="menu4.gif"; 
+menu4on=new Image(); 
+menu4on.src="menu4_hl.gif";
+
+menu5off=new Image(); 
+menu5off.src="menu5.gif"; 
+menu5on=new Image(); 
+menu5on.src="menu5_hl.gif"; 
+
+//--> 
+</SCRIPT> 
+
+<A HREF="#"  
+onMouseOver="Activ('menu0');window.status='Notiuni introductive despre HTML'; return true" 
+onMouseOut="InActiv('menu0')"><IMG SRC="menu0.gif" NAME="menu0" ALT="Meniu 0" BORDER=0></A> 
+
+<BR><A HREF="#" 
+onMouseOver="Activ('menu1');window.status='Cascading Style Sheets - CSS '; return true" 
+onMouseOut="InActiv('menu1')"><IMG SRC="menu1.gif" NAME="menu1" ALT="Meniul 1" BORDER=0></A> 
+
+<br><A HREF=".#"
+onMouseOver="Activ('menu2');window.status='Limbajul Java Script'; return true" 
+onMouseOut="InActiv('menu2')"><IMG SRC="menu2.gif" NAME="menu2" ALT="Meniul 2" BORDER=0></A> 
+
+<BR><A HREF="#"
+onMouseOver="Activ('menu3');window.status='Programarea aplicatiilor Server-Side'; return true" 
+onMouseOut="InActiv('menu3')"><IMG SRC="menu3.gif" NAME="menu3" ALT="Meniul 3" BORDER=0></A> 
+
+<BR><A HREF="#" 
+onMouseOver="Activ('menu4');window.status='Baze de date in pagini Web '; return true" 
+onMouseOut="InActiv('menu4')"><IMG SRC="menu4.gif" NAME="menu4" ALT="Meniul 4" BORDER=0></A> 
+
+<BR><A HREF="#" 
+onMouseOver="Activ('menu5');window.status='Dezvoltarea aplicatiilor WEB '; return true" 
+onMouseOut="InActiv('menu5')"><IMG SRC="menu5.gif" NAME="menu5" ALT="Meniul 5" BORDER=0></A> 
+
+</BODY> 
+</HTML> 

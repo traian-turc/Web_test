@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Test pagini centrate</title>
+<style type="text/css"> 
+<!-- 
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 0; 
+	padding: 0;
+	text-align: center; 
+	color: #FFF;
+	background-color: #900;
+}
+
+.pag_centr #container {
+	width: 60em;
+	margin: 0 auto; 
+	border: 1px solid #000000;
+	text-align: left; 
+	background-color: #666;
+} 
+.pag_centr #header {
+	padding: 0 10px; 
+	background-color: #000;
+} 
+.pag_centr #header h1 {
+	margin: 0;
+	padding: 10px 0; 
+}
+
+.pag_centr #sidebar1 {
+	border:hidden;
+	float: left;
+	width: 12em; 
+	padding: 15px 0; 
+	background-color: #444444;
+}
+.pag_centr #sidebar1 h3, .pag_centr #sidebar1 p {
+	margin-left: 10px; 
+	margin-right: 10px;
+}
+.pag_centr #mainContent {
+	margin: 0 1.5em 0 13em; 
+} 
+.pag_centr #footer {
+	padding: 0 10px;
+	background-color: #000;
+} 
+.pag_centr #footer p {
+	margin: 0; 
+	padding: 10px 0;
+}
+
+/* Miscellaneous classes for reuse */
+.fltrt { 
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { 
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { 
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+a:link {
+	color: #F00;
+}
+a:visited {
+	color: #F9F6E4;
+}
+--> 
+</style>
+
+<!--[if IE]>
+<style type="text/css"> 
+.pag_centr #sidebar1 { padding-top: 30px; }
+.pag_centr #mainContent { zoom: 1; padding-top: 15px; }
+</style>
+<![endif]--></head>
+
+<body class="pag_centr">
+
+<div id="container">
+  <div id="header">
+    <h1><strong>Test CSS</strong>
+  <!-- end #header -->
+    </h1>
+  </div>
+  <div id="sidebar1"> 
+    <div align="right">
+      <p><a href="#"><strong>Meniu 1</strong></a>    </p>
+      <p><a href="#"><strong>Meniu 2</strong></a>    </p>
+      <p><strong><a href="#">Meniu 3</a></strong>    </p>
+      <p><strong><a href="#">Linkuri</a>
+      </strong></p>
+    </div>
+    <!-- end #sidebar1 -->
+  </div>
+  <div id="mainContent"><img src="im01.jpg" alt="Noi"  align="middle" />
+    <!-- end #mainContent -->
+</div>
+	<!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --><br class="clearfloat" />
+   <div id="footer">
+    <p>Pagina test</p>
+    <p>Pentru a trimite un e-mail, apasati <a href="mailto:daroczililiana@yahoo.com">aici.</a></p>
+  <!-- end #footer --></div>
+<!-- end #container --></div>
+</body>
+</html>
