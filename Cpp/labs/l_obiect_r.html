@@ -1,0 +1,690 @@
+<html>
+<title> Elemente de programare orientata obiect - realizarea claselor </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Elemente de programare orientata obiect - realizarea claselor </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font>
+<ol>
+
+<li> Creati o clasa denumita "ochi" dupa care realizati doua obiecte prin instantierea clasei ochi
+<br><br><center><img src="im_cpp135.jpg"></center><br>
+<li> Creati o clasa denumita "ventil" dupa care realizati un obiect prin instantierea clasei ventil
+ <br><br><center><img src="im_cpp122.jpg"></center><br>
+<li> Creati o clasa denumita "ventil" dupa care realizati mai multe obiecte prin instantierea clasei ventil
+<br><br><center><img src="im_cpp123.jpg"></center><br>
+<li> Creati o clasa denumita "piston" dupa care realizati patru obiecte prin instantierea clasei piston, de forma
+<br><br><center><img src="im_cpp125.jpg"></center><br>
+<li> Creati o clasa denumita "bird" care imita zborul unei pasari dupa care realizati trei obiecte prin instantierea clasei bird, de forma
+<br><br><center><img src="im_cpp127.jpg"></center><br>
+<li> Creati o clasa denumita "egg" dupa care realizati trei obiecte prin instantierea clasei egg, de forma
+<br><br><center><img src="im_cpp134.jpg"></center><br>
+<li> Creati o clasa denumita "snow" care imita un fulg de zapada. Creati un vector de obiecte snow dupa care realizati o aplicatie care imita ninsoarea
+<br><br><center><img src="im_cpp143.jpg"></center><br>
+
+</ol>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Creati o clasa denumita "ochi" dupa care realizati doua obiecte prin instantierea clasei ochi
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace oop_11
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        public System.Drawing.Graphics desen;
+        public System.Drawing.Pen creion_albastru;
+        public System.Drawing.Pen creion_rosu;
+        public System.Drawing.SolidBrush radiera;
+        public ochi ok1;
+        public ochi ok2;
+        System.Random nr;
+        int px1=50;
+        int py1=100;
+        int rz1 = 50;
+        int ir1 = 20;
+
+        int px2 = 170;
+        int py2 = 100;
+        int rz2 = 50;
+        int ir2 = 20;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            desen = this.CreateGraphics();
+            creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+            radiera = new System.Drawing.SolidBrush(this.BackColor);
+            nr = new System.Random();
+            ok1 = new ochi();
+            ok1.init_ochi(px1, py1, rz1, ir1);
+            ok2 = new ochi();
+            ok2.init_ochi(px2, py2, rz2, ir2);
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            ok1.desenez(desen, creion_albastru);
+            ok2.desenez(desen, creion_albastru);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            ok1.sterg(desen, radiera);
+            ok2.sterg(desen, radiera);
+            int rr=nr.Next(rz1-ir1/2);
+            double alfa=nr.Next(6280) / 1000.0;
+            int xx = rz1-ir1/2+System.Convert.ToInt16(rr * Math.Sin(alfa));
+            int yy = rz1-ir1/2-System.Convert.ToInt16(rr * Math.Cos(alfa));
+	     // acopera numai zona unui patrat inscris
+            //int xx = ir1 + nr.Next(2*rz1 - 3*ir1 - 2);
+            //int yy = ir1 + nr.Next(2*rz1 - 3*ir1 - 2);
+            ok1.priveste(desen, creion_rosu, xx, yy);
+            ok2.priveste(desen, creion_rosu, xx, yy);        }
+
+    }
+    public class ochi
+    {
+        int x0, y0, r0, r;
+        public void desenez(System.Drawing.Graphics zona_des, System.Drawing.Pen creion_a)
+        {
+            zona_des.DrawEllipse(creion_a, x0, y0, 2 * r0, 2 * r0);
+        }
+        public void sterg(System.Drawing.Graphics zona_des, System.Drawing.Brush rad)
+        {
+            zona_des.FillEllipse(rad, x0 + 1, y0 + 1, 2 * (r0 - 2), 2 * (r0 - 2));
+        }
+        public void priveste(System.Drawing.Graphics zona_des, System.Drawing.Pen creion, int xp, int yp)
+        {
+            int x = System.Convert.ToInt16(System.Convert.ToDouble(x0) + System.Convert.ToDouble(xp));
+            int y = System.Convert.ToInt16(System.Convert.ToDouble(y0) + System.Convert.ToDouble(yp));
+            zona_des.DrawEllipse(creion, x, y, r, r);
+        }
+        public void init_ochi(int pozx, int pozy, int raz, int ri)
+        {
+            x0 = pozx;
+            y0 = pozy;
+            r0 = raz;
+            r = ri;
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp135.jpg"></center><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp; Creati o clasa denumita "ventil" dupa care realizati un obiect prin instantierea clasei ventil
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace oop_04
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_rosu;
+        System.Drawing.SolidBrush Pens_blu;
+        System.Drawing.SolidBrush Pens_back;
+        public ventil vent;
+        System.Random nr;
+        float alfa;
+
+        public class ventil
+        {
+            float x0;
+            float y0;
+            float w;
+
+            public void setval(float alfa_i, System.Drawing.Graphics zona_des, System.Drawing.Pen creion, System.Drawing.SolidBrush pens_albastra, System.Drawing.SolidBrush radiera)
+            {
+                zona_des.FillPie(pens_albastra, x0, y0, w, w, alfa_i, 90);
+                zona_des.FillPie(radiera, x0, y0, w, w, alfa_i + 90, 90);
+                zona_des.FillPie(pens_albastra, x0, y0, w, w, alfa_i + 180, 90);
+                zona_des.FillPie(radiera, x0, y0, w, w, alfa_i + 270, 90);
+                zona_des.DrawEllipse(creion, x0, y0, w, w);
+            }
+            public void init_vent(float pozx, float pozy, float lat, float inalt)
+            {
+                x0 = pozx;
+                y0 = pozy;
+                w = lat;
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+            Pens_blu = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
+            Pens_back = new System.Drawing.SolidBrush(this.BackColor);
+            Desen = this.CreateGraphics();
+            nr = new System.Random();
+            vent = new ventil();
+            vent.init_vent(100, 100, 100, 75);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //vent.setval(nr.Next(360),Desen, Creion_rosu,pens_blu,pens_back);
+            vent.setval(alfa, Desen, Creion_rosu, Pens_blu, Pens_back);
+            alfa += 10;
+            if (alfa > 360)
+                alfa = 0;
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp122.jpg"></center><br>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Creati o clasa denumita "ventil" dupa care realizati mai multe obiecte prin instantierea clasei ventil
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace oop_05
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_rosu;
+        System.Drawing.SolidBrush Pens_blu;
+        System.Drawing.SolidBrush Pens_back;
+        public ventil vent1;
+        public ventil vent2;
+        public ventil vent3;
+        System.Random nr;
+        float alfa;
+
+        public class ventil
+        {
+            float x0;
+            float y0;
+            float w;
+
+            public void setval(float alfa_i, System.Drawing.Graphics zona_des, System.Drawing.Pen creion, System.Drawing.SolidBrush pens_albastra, System.Drawing.SolidBrush radiera)
+            {
+                zona_des.FillPie(pens_albastra, x0, y0, w, w, alfa_i, 90);
+                zona_des.FillPie(radiera, x0, y0, w, w, alfa_i + 90, 90);
+                zona_des.FillPie(pens_albastra, x0, y0, w, w, alfa_i + 180, 90);
+                zona_des.FillPie(radiera, x0, y0, w, w, alfa_i + 270, 90);
+                zona_des.DrawEllipse(creion, x0, y0, w, w);
+            }
+            public void init_vent(float pozx, float pozy, float lat, float inalt)
+            {
+                x0 = pozx;
+                y0 = pozy;
+                w = lat;
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+            Pens_blu = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
+            Pens_back = new System.Drawing.SolidBrush(this.BackColor);
+            Desen = this.CreateGraphics();
+            nr = new System.Random();
+            vent1 = new ventil();
+            vent1.init_vent(100, 100, 100, 75);
+            vent2 = new ventil();
+            vent2.init_vent(200, 100, 50, 175);
+            vent3 = new ventil();
+            vent3.init_vent(200, 200, 100, 100);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //vent1.setval(nr.Next(360), Desen, Creion_rosu, Pens_blu, Pens_back);
+            //vent2.setval(nr.Next(360),Desen, Creion_rosu,Pens_blu,Pens_back);
+            vent1.setval(alfa+15, Desen, Creion_rosu, Pens_blu, Pens_back);
+            vent2.setval(alfa+45, Desen, Creion_rosu, Pens_blu, Pens_back);
+            vent3.setval(alfa, Desen, Creion_rosu, Pens_blu, Pens_back);
+            alfa += 10;
+            if (alfa > 360)
+                alfa = 0;
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp123.jpg"></center><br>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Creati o clasa denumita "piston" dupa care realizati patru obiecte prin instantierea clasei piston.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace oop_06
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_rosu;
+        System.Drawing.SolidBrush Pens_blu;
+        System.Drawing.SolidBrush Pens_back;
+        public piston piston1;
+        public piston piston2;
+        public piston piston3;
+        public piston piston4;
+        System.Random nr;
+        int alfa;
+
+        public class piston
+        {
+            int x0;
+            int y0;
+            int w;
+            int h;
+
+            public void setval(System.Drawing.Graphics zona_des, System.Drawing.Pen creion, System.Drawing.SolidBrush radiera, System.Drawing.SolidBrush p_blu, int alfa_gr)
+            {
+                // alfa_gr unghiul in grade
+                int xc = x0 + w / 2;
+                int yc = y0 + w / 2;
+                int raza = w / 2;
+                int yl;
+                zona_des.FillRectangle(radiera, x0, y0, w, 3*w);
+
+                double alfa_r = 2 * System.Math.PI * (alfa_gr) / 360;// unghiul in radiani
+                int x = System.Convert.ToInt16(xc + raza * System.Math.Cos(alfa_r));
+                int y = System.Convert.ToInt16(yc - raza * System.Math.Sin(alfa_r));
+                yl = System.Convert.ToInt16(raza*System.Math.Sin(alfa_r));
+                zona_des.DrawEllipse(creion, xc - raza, yc - raza, 2 * raza, 2*raza);
+                zona_des.DrawLine(creion, x, y, xc, y0 + 2*w - yl);
+                zona_des.DrawLine(creion, x, y, xc, yc);
+                zona_des.FillRectangle(p_blu, x0, y0 + 2 * w - yl, w, raza);
+                zona_des.DrawRectangle(creion, x0, y0 +w+raza, w, 2*w-raza/2);
+              
+            }
+
+            public void init_piston(int pozx, int pozy, int lat, int inalt)
+            {
+                x0 = pozx;
+                y0 = pozy;
+                w = lat;
+                h = inalt;
+            }
+        } 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+            Pens_blu = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
+            Pens_back = new System.Drawing.SolidBrush(this.BackColor);
+            Desen = this.CreateGraphics();
+            nr = new System.Random();
+            piston1 = new piston();
+            piston1.init_piston(10, 10, 75, 35);
+            piston2 = new piston();
+            piston2.init_piston(90, 10, 75, 35);
+            piston3 = new piston();
+            piston3.init_piston(170, 10, 75, 35);
+            piston4 = new piston();
+            piston4.init_piston(250, 10, 75, 35);
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            piston1.setval(Desen, Creion_rosu, Pens_back,Pens_blu, alfa);
+            piston2.setval(Desen, Creion_rosu, Pens_back,Pens_blu, alfa+90);
+            piston3.setval(Desen, Creion_rosu, Pens_back,Pens_blu, alfa+180);
+            piston4.setval(Desen, Creion_rosu, Pens_back,Pens_blu, alfa+270);
+
+            alfa -= 7;
+            if (alfa <0)
+                alfa = 360;
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp125.jpg"></center><br>
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Creati o clasa denumita "bird" care imita zborul unei pasari dupa care realizati trei obiecte prin instantierea clasei bird.
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace oop_07
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        public System.Drawing.Graphics desen;
+        public System.Drawing.Pen creion_albastru;
+        public System.Drawing.SolidBrush radiera;
+        public bird bird1;
+        public bird bird2;
+        public bird bird3;
+        System.Random nr;
+        int r1=100,r2=150,r3=70,alfa1, alfa2, alfa3;
+        public class bird
+        {
+            int x, y, x0, y0, w, alfa_gr;
+
+            public void setdr(System.Drawing.Graphics zona_des, System.Drawing.Pen creion, System.Drawing.SolidBrush pensula, int alfa_gr)
+            {
+                zona_des.FillEllipse(pensula, x0-1, y0-1, w+2 , w+2);
+                //zona_des.DrawEllipse(creion, x0, y0, w, w);
+                // alfa_gr unghiul in grade
+                double alfa_r = 2 * System.Math.PI * (alfa_gr) / 360;// unghiul in radiani
+                x = System.Convert.ToInt16(x0 + w / 2 * (1 + System.Math.Cos(alfa_r)));
+                y = System.Convert.ToInt16(y0 + w / 2 * (1 - System.Math.Sin(alfa_r)));
+                zona_des.DrawLine(creion, x0 + w / 2, y0+w/2, x, y);
+
+                alfa_r = 2 * System.Math.PI * (180-alfa_gr) / 360;// unghiul in radiani
+                x = System.Convert.ToInt16(x0 + w / 2 * (1 + System.Math.Cos(alfa_r)));
+                y = System.Convert.ToInt16(y0 + w / 2 * (1 - System.Math.Sin(alfa_r)));
+                zona_des.DrawLine(creion, x0 + w / 2, y0 + w / 2, x, y);
+
+            }
+            public void init_dr(int pozx, int pozy, int lat, int alfa)
+            {
+                x0 = pozx;
+                y0 = pozy;
+                w = lat;
+                alfa_gr = alfa;
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            desen = this.CreateGraphics();
+            creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            radiera = new System.Drawing.SolidBrush(this.BackColor);
+            nr = new System.Random();
+            bird1 = new bird();
+            bird1.init_dr(250, 20, r1, 0);
+            bird2 = new bird();
+            bird2.init_dr(180, 150, r2, 0);
+            bird3 = new bird();
+            bird3.init_dr(30, 170, r3, 0);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            double alfa1_r = 2 * System.Math.PI * (alfa1) / 360;// unghiul in radiani
+            int alf1 = System.Convert.ToInt16( 45* Math.Cos(alfa1_r));
+            double alfa2_r = 2 * System.Math.PI * (alfa2) / 360;// unghiul in radiani
+            int alf2 = System.Convert.ToInt16(45 * Math.Cos(alfa2_r));
+            double alfa3_r = 2 * System.Math.PI * (alfa3) / 360;// unghiul in radiani
+            int alf3 = System.Convert.ToInt16(45 * Math.Cos(alfa3_r));
+            bird1.setdr(desen, creion_albastru, radiera, alf1);
+            bird2.setdr(desen, creion_albastru, radiera, alf2);
+            bird3.setdr(desen, creion_albastru, radiera, alf3);
+
+            alfa1 += 2000 / r1;
+            if (alfa1 > 360)
+                alfa1 = 0;
+
+            alfa2 += 2000 / r2;
+            if (alfa2 > 360)
+                alfa2 = 0;
+
+            alfa3 += 2000 / r3;
+            if (alfa3 > 360)
+                alfa3 = 0;
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp127.jpg"></center><br>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Creati o clasa denumita "egg" care imita zborul unei pasari dupa care realizati trei obiecte prin instantierea clasei bird.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace oop_v11
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        public System.Drawing.Graphics desen;
+        public System.Drawing.Pen creion_albastru;
+        public System.Drawing.Pen creion_rosu;
+        public System.Drawing.SolidBrush radiera;
+            
+        public egg egg_1;
+        public egg egg_2;
+        public egg egg_3;
+        public System.Random nr;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            desen = this.CreateGraphics();
+            creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+            radiera = new System.Drawing.SolidBrush(this.BackColor);
+   
+            nr = new System.Random();
+            egg_1 = new egg();
+            egg_1.init_egg(10, 100, 100);
+            egg_2 = new egg();
+            egg_2.init_egg(200, 50, 120);
+            egg_3 = new egg();
+            egg_3.init_egg(150, 200, 50);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            egg_1.sterg(desen, radiera, 10, 100, 100);
+            egg_1.setc(desen, creion_rosu, 1 + nr.Next(18));
+            egg_2.sterg(desen, radiera, 200, 50, 120);
+            egg_2.setc(desen, creion_rosu, 4+nr.Next(12));
+            egg_3.sterg(desen, radiera, 150, 200, 50);
+            egg_3.setc(desen, creion_rosu, 2+nr.Next(6));
+
+        }
+    }
+    public class egg
+    {
+        int x0, y0, d;
+
+        public void sterg(System.Drawing.Graphics zona_des, System.Drawing.Brush rad, int pozx, int pozy, int diam)
+        {
+            zona_des.FillEllipse(rad, x0 + 1, y0 + 1, d - 1, d - 1);
+        }
+
+        public void setc(System.Drawing.Graphics zona_des, System.Drawing.Pen creion, int np)
+        {
+            double alfa_g, alfa_r;
+            int[,] puncte_c;
+            puncte_c = new int[np+1, 2];
+            int x, y, xc, yc, i, j;
+            xc = x0 + d / 2;
+            yc = y0 + d / 2;
+
+            zona_des.DrawEllipse(creion, x0, y0, d, d);
+            i = 0;
+            for (alfa_g = 0; alfa_g < 360; alfa_g += 360 / np)
+            {
+                alfa_r = 2 * System.Math.PI * alfa_g / 360;// unghiul in radiani
+                x = System.Convert.ToInt16(xc + d / 2 * System.Math.Cos(alfa_r));
+                y = System.Convert.ToInt16(yc - d / 2 * System.Math.Sin(alfa_r));
+                puncte_c[i, 0] = x;
+                puncte_c[i, 1] = y;
+                i++;
+            }
+            for (j = 0; j < np; j++)
+            {
+                for (i = 0; i < np; i++)
+                {
+                    zona_des.DrawLine(creion, puncte_c[j, 0], puncte_c[j, 1], puncte_c[i, 0], puncte_c[i, 1]);
+                }
+            }
+
+        }
+        public void init_egg(int pozx, int pozy, int diam)
+        {
+            x0 = pozx;
+            y0 = pozy;
+            d = diam;
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp134.jpg"></center><br>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Creati o clasa denumita "snow" care imita un fulg de zapada. Creati un vector de obiecte snow dupa care realizati o aplicatie care imita ninsoarea
+<br><br><center><img src="im_cpp143.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace ninsoare
+{
+    public partial class Form1 : Form
+    {
+        Graphics draw;
+        int snowflakes = 0;
+        Snow[] snow = new Snow[snowNumber];
+        Random r = new Random();
+        const int snowNumber = 200;
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            draw = CreateGraphics();
+            for (int i = 0; i < snowNumber; i++)
+            {
+                snow[i] = new Snow();
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (snowflakes < snowNumber)
+            {
+                for (int i = 0; i < snowNumber; i++)
+                {
+                    if (snow[i].IsActive == false)
+                    {
+                        if (r.Next(0, 50) == 1)
+                        {
+                            int xValue = r.Next(0, this.Width);
+                            int size = r.Next(10, 15);
+                            int speed = r.Next(3, 6);
+                            snow[i] = new Snow(draw, BackColor, Height, Width, xValue, size, speed);
+                        }
+                    }
+                }
+            }
+            snowflakes = 0;
+            for (int i = 0; i < snowNumber; i++)
+            {
+                if (snow[i].IsActive)
+                    snow[i].Fall(r.Next(0, 3) - 2);
+                else
+                    snowflakes++;
+            }
+        }
+    }
+
+    public class Snow
+    {
+        public Point pos;
+        public int size;
+        public int speed;
+        public bool IsActive;
+        public int height;
+        public int width;
+
+        Color backColor;
+        Graphics draw;
+
+        public Snow()
+        {
+            this.draw = null;
+            this.size = 0;
+            this.pos = new Point (0,0);
+            this.speed = 0;
+            this.IsActive = false;
+        }
+
+        public Snow(Graphics draw, Color backcolor, int height, int width, int xValue, int size, int speed)
+        {
+            this.draw = draw;
+            this.backColor = backcolor;
+            this.height = height;
+            this.width = width;
+            this.pos = new Point(xValue, 0);
+            this.size = size;
+            this.speed = speed;
+            this.IsActive = true;
+        }
+
+        public void Fall(int windSpeed)
+        {
+            draw.DrawEllipse(new Pen(backColor), new Rectangle(pos, new Size(size, size)));
+            if (pos.X + windSpeed > 0 && pos.X + windSpeed < width)
+            {
+                pos = new Point(pos.X + windSpeed, pos.Y + speed);
+                draw.DrawEllipse(new Pen(Color.Blue), new Rectangle(pos, new Size(size, size)));
+                if (pos.Y > height)
+                {
+                    draw.DrawEllipse(new Pen(backColor), new Rectangle(pos, new Size(size, size)));
+                    this.IsActive = false;
+                }
+            }
+            else
+            {
+                draw.DrawEllipse(new Pen(backColor), new Rectangle(pos, new Size(size, size)));
+                this.IsActive = false;
+            }
+            
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+</body>
+</html>

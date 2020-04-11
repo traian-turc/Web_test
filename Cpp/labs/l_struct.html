@@ -1,0 +1,841 @@
+<html>
+<title> Laborator utilizare structuri de date si clase </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator utilizare structuri de date si clase </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font>
+<ol>
+<li> Creati o structura de date <b> student </b> compusa din: nume, prenume, sec, an, n_ex1, n_ex2, n_ex3
+<li> Realizati o aplicatie care atribuie valori elementelor structurii de date, dupa care afiseaza valorile elementelor structurii de date.
+<li> Adaugati un constructor fara parametri si afisati valorile implicite ale elementelor structurii.
+<li> Adaugati un constructor cu parametri, creati o variabila de tip student cu  valorile impuse ale elementelor structurii si afisati valorile implicite ale acestei variabile.
+<li> Realizati o aplicatie care defineste structura val_a ce contine perechi de numere n1,n2";
+<li> Declarati o variabila de tip tablou ce contine elemente de forma val_a, dupa care atribuiti 100 de valori aleatoare elementelor vectorului si apoi afisati-le;
+
+<li> Transformati structura de date <b> student </b> compusa din: nume, prenume, sec, an, n_ex1, n_ex2, n_ex3 in clasa.
+<li> Realizati metode pentru initializarea clasei, setarea notelor, afisarea mediei etc.
+<li> Adaugati un constructor fara argumente.
+<li> Adaugati un constructor cu argumente.
+<li> Utilizare structuri de date in C#
+<li> Utilizare clase in C#
+
+</ol>
+
+<li>Structuri in spatiul System
+ <ol>
+	<li>Defuniti o structura "semnal_ac" cu doua elemente de tip int :u_n si i_n.
+	<br>Folosind un vector cu ememente de tip "semnal_ac"  ,trasati evolutia in timp a celor doua elemente (u_n,i_n);
+	<br><br><center><img src="im_cpp131.jpg"></center><br>
+	<li>Defuniti o structura "cerc" cu doua elemente de tip int :pozitia pe x numita "poz" si diametrul unui cerc numit "diam"
+	<br>Folosind un vector cu ememente de tip "cerc"  ,trasati cercurile, dupa care colorati cu rosu cercul a carui raza este cea mai mare.
+	<br><br><center><img src="im_cpp110.jpg"></center><br>
+	<li>Defuniti o structura "cerc" cu trei elemente de tip int :pozitia pe x numita "pozx",pozitia pe y numita "pozy" si diametrul unui cerc numit "diam"
+	<br>Folosind un vector cu ememente de tip "cerc"  ,trasati cercurile, dupa care colorati cu rosu cercul a carui raza este cea mai mare.
+	<br><br><center><img src="im_cpp130.jpg"></center><br>
+	<li>Defuniti o structura "cerc" cu trei elemente de tip int :pozitia pe x numita "pozx",pozitia pe y numita "pozy" si raza unui cerc numit "raza"
+	<br>Folosind un vector cu ememente de tip "cerc"  ,trasati cercurile, pe un alt cerc dupa care colorati cu rosu cercul a carui raza este cea mai mare.
+	<br><br><center><img src="im_cpp133.jpg"></center><br>
+	<br><br>Sugestii
+	<br><br><center><img src="im_cpp132.jpg"></center><br>
+
+
+ </ol>
+
+&nbsp;&nbsp;&nbsp;&nbsp; Creati o structura de date <b> student </b> compusa din: nume, prenume, sec, an, n_ex1, n_ex2, n_ex3
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+struct student {
+	string nume, prenume ,sec;
+	int an;
+	double n_ex1,n_ex2,n_ex3;
+	};
+
+int main(void)
+{
+	system("TITLE Utilizarea structurii de date - student");
+	system("COLOR F9"); 
+	student s;
+	cout << "\n\t Introduceti numele studentului: ";
+	cin>>s.nume;
+	cout << "\n\t Introduceti prenumele studentului: ";
+	cin>>s.prenume;
+	cout << "\n\t Introduceti sectia: "; 
+	cin >>s.sec;
+	cout << "\n\t Introduceti anul de studiu : "; 
+	cin >> s.an;
+	cout << "\n\t Introduceti nota la examenul 1 : "; 
+	cin >> s.n_ex1;
+	cout << "\n\t Introduceti nota la examenul 2 : "; 
+	cin >> s.n_ex2;
+	cout << "\n\t Introduceti nota la examenul 3 : "; 
+	cin >> s.n_ex3;
+	cout << "\n\n\n\t Studentul  " << s.nume <<"  "<< s.prenume ;
+	cout << "\n\n\t  - sectia " << s.sec;
+	cout << "\n\t  - anul  " << s.an; 
+	cout << "\n\t  - are urmatoarele note:  " ;
+	cout << "\n\t\t" << "Nota ex1: "<< s.n_ex1 ;
+	cout << "\n\t\t" << "Nota ex2: "<< s.n_ex2 ;
+	cout << "\n\t\t" << "Nota ex3: "<< s.n_ex3 ;
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Adaugati un constructor fara parametri si afisati valorile implicite ale elementelor structurii. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+struct student {
+	string nume, prenume, sec;
+	int an;
+	double n_ex1, n_ex2, n_ex3;
+	student(){
+		nume="";
+		prenume="";
+		sec="AIA";
+		an=1;
+		n_ex1=0;
+		n_ex2=0;
+		n_ex3=0;
+	}
+
+};
+
+int main(void)
+{
+	system("TITLE Utilizarea structurii de date - student");
+	system("COLOR F9"); 
+	student s;
+	cout << "\n\n\n\t Studentul  " << s.nume <<"  " << s.prenume ;
+	cout << "\n\n\t  - sectia " << s.sec;
+	cout << "\n\t  - anul  " << s.an; 
+	cout << "\n\t  - are urmatoarele note:  " ;
+	cout << "\n\t\t" << "Nota ex1: "<< s.n_ex1 ;
+	cout << "\n\t\t" << "Nota ex2: "<< s.n_ex2 ;
+	cout << "\n\t\t" << "Nota ex3: "<< s.n_ex3 ;
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Adaugati un constructor cu parametri, creati un obiect cu  
+valorile impuse ale elementelor structurii si afisati valorile implicite ale elementelor structurii.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+struct student {
+	string nume, prenume, sec;
+	int an;
+	double n_ex1,n_ex2,n_ex3;
+	student(){
+		nume="";
+		prenume="";
+		sec="AIA";
+		an=1;
+		n_ex1=0;
+		n_ex2=0;
+		n_ex3=0;
+	}
+	student(string nu, string pnu, string se , int a, double n1, double n2, double n3){
+		nume=nu;
+		prenume=pnu;
+		sec=se;
+		an=a;
+		n_ex1=n1;
+		n_ex2=n2;
+		n_ex3=n3;
+	}
+	};
+int main(void)
+{
+	system("TITLE Utilizarea structurii de date - student");
+	system("COLOR F9"); 
+	student s("Ionescu", "Victor","AIA",1,7.22,5.55,10);
+	cout << "\n\n\n\t Studentul  " << s.nume << " " << s.prenume;
+	cout << "\n\n\t  - sectia " << s.sec;
+	cout << "\n\t  - anul  " << s.an; 
+	cout << "\n\t  - are urmatoarele note:  " ;
+	cout << "\n\t\t" << "Nota ex1: "<< s.n_ex1 ;
+	cout << "\n\t\t" << "Nota ex2: "<< s.n_ex2 ;
+	cout << "\n\t\t" << "Nota ex3: "<< s.n_ex3 ;
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Realizati o aplicatie care defineste structura val_a ce contine perechi de numere n1,n2";
+<br>Declarati o variabila de tip tablou ce contine elemente de forma val_a, dupa care atribuiti 100 de valori aleatoare elementelor vectorului si apoi afisati-le;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Utilizarea structurilor de date
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+struct val_a {
+	int n1;
+	int n2;
+	};
+int main(void)
+{
+	system("TITLE Vectori cu elemente structuri de date ");
+	system("COLOR F9"); 
+	cout << "\n\t Programul defineste structura val_a care contine perechi de numere aleatoare"; 
+	cout << "\n\t Se declara o variabila de structura de tip tablou\n\n";
+	const int nr_n=100;
+	val_a num[nr_n];
+	for (int i=0; i < nr_n ;i++){
+	num[i].n1=100+100*rand()/RAND_MAX; 
+	num[i].n2=10+10*rand()/RAND_MAX; 
+	}
+	cout << "\n\n\t Perechile de numere aleatoare\n ";
+	for (int i=0; i < nr_n ;i++){
+	cout << "\n\t " << num[i].n1 <<" - " << num[i].n2;
+	}
+	cin.get();
+	return 0;
+} 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Transformati structura de date <b> student </b> compusa din: nume, prenume, sec, an, n_ex1, n_ex2, n_ex3 in clasa. 
+<br>Realizati metode pentru initializarea clasei, setarea mediilor, afisarea mediei etc.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+class student {
+private:
+	string nume, prenume, sec;
+	int an;
+	double n_ex1;
+	double n_ex2;
+	double n_ex3;
+public:
+		void student_i(string, string);
+		void set_note(double,double,double);
+		void afis_d(void);
+		double vezi_media() const;
+	};
+void student::student_i(string nu, string pn){ //Constructorul implicit
+		nume=nu;
+		prenume=pn;
+		sec="AIA";
+		an=1;
+		n_ex1=0;
+		n_ex2=0;
+		n_ex3=0;
+	}
+
+void student::set_note(double n1,double n2,double n3) {
+	n_ex1=n1;
+	n_ex2=n2;
+	n_ex3=n3;
+}
+void student::afis_d(){
+	cout << "\n\n\t\t" << nume <<"  "<< prenume <<"  " << sec <<"  " << an;
+}
+double student::vezi_media() const {
+	return (n_ex1+n_ex2+n_ex3)/3;
+}
+
+int main(void)
+{
+	system("TITLE Utilizarea clasei - student");
+	system("COLOR F9"); 
+	student s;
+	string nu, pn;
+	double n1,n2,n3;
+	cout << "\n\t" << "Introduceti numele:";
+	cin >> nu;
+	cout << "\n\t" << "Introduceti prenumele:";
+	cin >> pn;
+	s.student_i(nu,pn);
+	cout << "\n\t" << "Introduceti notele celor 3 examene:";
+	cout << "\n\n\t\t" << "Nota ex1: ";
+	cin >> n1 ;
+	cout << "\n\t\t" << "Nota ex2: ";
+	cin >> n2 ;
+	cout << "\n\t\t" << "Nota ex3: ";
+	cin >> n3 ;
+	s.set_note(n1,n2,n3);
+	s.afis_d();
+	cout << "\n\n\t Media la examene : " << s.vezi_media() ;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Adaugati un constructor fara argumente.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+class student {
+private:
+	string nume, prenume, sec;
+	int an;
+	double n_ex1;
+	double n_ex2;
+	double n_ex3;
+
+public:
+		student(){
+			sec="AIA";
+			an=1;
+			n_ex1=0;
+			n_ex2=0;
+			n_ex3=0;
+		}
+		void student_i(string,string);
+		void set_note(double,double,double);
+		void afis_d(void);
+		double vezi_media() const;
+	};
+void student::student_i(string nu, string pr){ //Constructorul implicit
+		nume=nu;
+		prenume=pr;
+	}
+
+void student::set_note(double n1,double n2,double n3) {
+	n_ex1=n1;
+	n_ex2=n2;
+	n_ex3=n3;
+}
+void student::afis_d(){
+	cout << "\n\n\t\t" << nume<<"  "<< prenume<<"  "<< sec<<"  "<< an;
+}
+double student::vezi_media() const {
+	return (n_ex1+n_ex2+n_ex3)/3;
+}
+
+int main(void)
+{
+	system("TITLE Utilizarea clasei - student");
+	system("COLOR F9"); 
+	student s;
+	string nu,pr;
+	double n1,n2,n3;
+	cout << "\n\t" << "Introduceti numele:";
+	cin >> nu;
+	cout << "\n\t" << "Introduceti prenumele:";
+	cin >> pr;
+	s.student_i(nu,pr);
+	cout << "\n\t" << "Introduceti notele celor 3 examene:";
+	cout << "\n\n\t\t" << "Nota ex1: ";
+	cin >> n1 ;
+	cout << "\n\t\t" << "Nota ex2: ";
+	cin >> n2 ;
+	cout << "\n\t\t" << "Nota ex3: ";
+	cin >> n3 ;
+	s.set_note(n1,n2,n3);
+	s.afis_d();
+	cout << "\n\n\t Media la examene : " << s.vezi_media() ;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Adaugati un constructor cu argumente.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+class student {
+private:
+	string nume, prenume, sec;
+	int an;
+	double n_ex1;
+	double n_ex2;
+	double n_ex3;
+
+public:
+		student(){
+			sec="AIA";
+			an=1;
+			n_ex1=0;
+			n_ex2=0;
+			n_ex3=0;
+		}
+		student(string s, int a ){
+		sec=s;
+		an=a;
+		}
+		void student_i(string,string);
+		void set_note(double,double,double);
+		void afis_d(void);
+		double vezi_media() const;
+	};
+void student::student_i(string nu,string pr) { //Constructorul implicit
+		nume=nu;
+		prenume=pr;
+	}
+
+void student::set_note(double n1,double n2,double n3) {
+	n_ex1=n1;
+	n_ex2=n2;
+	n_ex3=n3;
+}
+void student::afis_d(){
+	cout << "\n\n\t\t" << nume<<"  "<< prenume<<"  "<< sec<<"  "<< an;
+}
+double student::vezi_media() const {
+	return (n_ex1+n_ex2+n_ex3)/3;
+}
+
+int main(void)
+{
+	system("TITLE Utilizarea clasei - student");
+	system("COLOR F9"); 
+	student s("ISE",1);
+	string nu,pr;
+	double n1,n2,n3;
+	cout << "\n\t" << "Introduceti numele:";
+	cin >> nu;
+	cout << "\n\t" << "Introduceti prenumele:";
+	cin >> pr;
+	s.student_i(nu,pr);
+	cout << "\n\t" << "Introduceti notele celor 3 examene:";
+	cout << "\n\n\t\t" << "Nota ex1: ";
+	cin >> n1 ;
+	cout << "\n\t\t" << "Nota ex2: ";
+	cin >> n2 ;
+	cout << "\n\t\t" << "Nota ex3: ";
+	cin >> n3 ;
+	s.set_note(n1,n2,n3);
+	s.afis_d();
+	cout << "\n\n\t Media la examene : " << s.vezi_media() ;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<li>Structuri in spatiul System
+
+<br><br>Defuniti o structura "semnal_ac" cu doua elemente de tip int :u_n si i_n.
+<br>Folosind un vector cu ememente de tip "semnal_ac"  ,trasati evolutia in timp a celor doua elemente (u_n,i_n);
+<br><br><center><img src="im_cpp131.jpg"></center><br>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+namespace Struct_01
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        struct semnal_ac
+        {
+            public int u_n;
+            public int i_n;
+        };
+        static int nr_max;
+        static int val_max = 1024;
+        int val_u;
+        int val_i;
+        static semnal_ac[] valori = new semnal_ac[0];
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_albastru;
+        System.Drawing.Pen Creion_rosu;
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            nr_max = 1 + this.Width / 20;
+            Desen = this.CreateGraphics();
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int i, x;
+            Array.Resize(ref valori, nr_max + 1);
+            Desen.Clear(this.BackColor);
+            System.Random n = new System.Random();
+            i = 0;
+            for (x = 20; x <= this.Width; x += 20, i++)
+            {
+                val_u = n.Next(val_max);
+                valori[i].u_n = val_u;
+                val_i = n.Next(val_max);
+                valori[i].i_n = val_i;
+            }
+            this.button2.Enabled = true;
+            this.label1.Text = "Au fost generate " + nr_max.ToString()+" valori! ";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int i, x, x_v, y_u, y_i, y_u_v, y_i_v;
+            x_v = 0;
+            val_u = valori[0].u_n;
+            y_u_v = this.Height - 50 - System.Convert.ToInt16(((double)val_u / (double)val_max) * (this.Height - 50));
+            val_i = valori[0].i_n;
+            y_i_v = this.Height - 50 - System.Convert.ToInt16(((double)val_i / (double)val_max) * (this.Height - 50));
+            i = 1;
+            for (x = 20; x <= this.Width; x += 20, i++)
+            {
+                val_u = valori[i].u_n;
+                y_u = this.Height - 50 - System.Convert.ToInt16(((double)val_u / (double)val_max) * (this.Height - 50));
+                Desen.DrawLine(Creion_albastru, x_v, y_u_v, x, y_u);
+		Desen.DrawEllipse(Creion_albastru, x-2, y_u-2, 4, 4);
+                y_u_v = y_u;
+                val_i = valori[i].i_n;
+                y_i = this.Height - 50 - System.Convert.ToInt16(((double)val_i / (double)val_max) * (this.Height - 50));
+                Desen.DrawLine(Creion_rosu, x_v, y_i_v, x, y_i);
+		Desen.DrawEllipse(Creion_rosu, x-2, y_i-2, 4, 4);
+                x_v = x;
+                y_i_v = y_i;
+            }
+            this.button2.Enabled = false;
+            this.label1.Text = "Generati noi valori!";
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>Defuniti o structura "cerc" cu doua elemente de tip int :pozitia pe x numita "poz" si diametrul unui cerc numit "diam"
+<br>Folosind un vector cu ememente de tip "cerc"  ,trasati cercurile, dupa care colorati cu rosu cercul a carui raza este cea mai mare.
+<br><br><center><img src="im_cpp110.jpg"></center><br>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace Struct_02
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        public struct cerc
+        {
+            public int poz;
+            public int diam;
+        };
+        System.Drawing.Pen creion1, creion2;
+        System.Drawing.Graphics desen;
+        System.Random aleat;
+        int nrc, max, pozitie;
+        static cerc[] cercuri;
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            creion1 = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            creion2 = new System.Drawing.Pen(System.Drawing.Color.Red);
+            desen = this.CreateGraphics();
+            aleat = new System.Random();
+            nrc = 30;
+            cercuri = new cerc[nrc];
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            max = 0;
+            for (int i = 0; i < nrc; i++)
+            {
+                if (cercuri[i].diam > max)
+                {
+                    max = cercuri[i].diam;
+                    pozitie = cercuri[i].poz;
+                }
+            }
+            desen.DrawEllipse(creion2,pozitie, 50, max, max);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < nrc; i++)
+            {
+                cercuri[i].poz = aleat.Next(this.Width - 10);
+                cercuri[i].diam = aleat.Next(this.Height / 3);
+            }
+            desen.Clear(this.BackColor);
+            for (int i = 0; i < nrc; i++)
+            {
+                desen.DrawEllipse(creion1, cercuri[i].poz, 50, cercuri[i].diam, cercuri[i].diam);
+            }
+
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>Defuniti o structura "cerc" cu trei elemente de tip int :pozitia pe x numita "pozx",pozitia pe y numita "pozy" si diametrul unui cerc numit "diam"
+<br>Folosind un vector cu ememente de tip "cerc"  ,trasati cercurile, dupa care colorati cu rosu cercul a carui raza este cea mai mare.
+<br><br><center><img src="im_cpp130.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace Struct_03
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        public struct cerc
+        {
+            public int pozx;
+            public int pozy;
+            public int diam;
+        };
+        System.Drawing.Pen creion1, creion2;
+        System.Drawing.Graphics desen;
+        System.Random aleat;
+        int nrc, max, pozitiex, pozitiey;
+        static cerc[] cercuri;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            creion1 = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            creion2 = new System.Drawing.Pen(System.Drawing.Color.Red);
+            desen = this.CreateGraphics();
+            aleat = new System.Random();
+            nrc = 30;
+            cercuri = new cerc[nrc];
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < nrc; i++)
+            {
+                cercuri[i].pozx = aleat.Next(this.Width - 100);
+                cercuri[i].pozy = aleat.Next(this.Height - 150);
+                cercuri[i].diam = aleat.Next(this.Height / 3);
+            }
+            desen.Clear(this.BackColor);
+            for (int i = 0; i < nrc; i++)
+            {
+                desen.DrawEllipse(creion1, cercuri[i].pozx, cercuri[i].pozy, cercuri[i].diam, cercuri[i].diam);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            max = 0;
+            for (int i = 0; i < nrc; i++)
+            {
+                if (cercuri[i].diam > max)
+                {
+                    max = cercuri[i].diam;
+                    pozitiex = cercuri[i].pozx;
+                    pozitiey = cercuri[i].pozy;
+                }
+            }
+            desen.DrawEllipse(creion2, pozitiex, pozitiey, max, max);
+
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Defuniti o structura "cerc" cu trei elemente de tip int :pozitia pe x numita "pozx",pozitia pe y numita "pozy" si raza unui cerc numit "raza"
+<br>Folosind un vector cu ememente de tip "cerc"  ,trasati cercurile, pe un alt cerc dupa care colorati cu rosu cercul a carui raza este cea mai mare.
+	<br><br><center><img src="im_cpp133.jpg"></center><br>
+	<br><br>Sugestii
+	<br><br><center><img src="im_cpp132.jpg"></center><br>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Etapa I
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace Struct_04
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Pen creion1, creion2;
+        System.Drawing.Graphics desen;
+        System.Random aleat;
+        int nrc,x,y,r,xi,yi,ri,xci,yci,alfai;
+        double alfair;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            creion1 = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            creion2 = new System.Drawing.Pen(System.Drawing.Color.Red);         
+            aleat = new System.Random();
+            nrc = 30;
+            x = 100;
+            y = 30;
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            desen = this.CreateGraphics();
+            desen.Clear(this.BackColor);
+            r = (this.Width - 30)/4;
+            alfai = aleat.Next(360);
+            alfair = 2 * Math.PI * alfai / 360;
+            ri=10+aleat.Next(r/5);
+            xci = x + r + System.Convert.ToInt32(r * Math.Cos(alfair));
+            yci = y + r - System.Convert.ToInt32(r * Math.Sin(alfair));
+            xi = xci - ri;
+            yi = yci - ri;
+            desen.DrawEllipse(creion1, x, y, 2*r, 2*r);
+            desen.DrawEllipse(creion2, xi, yi, 2*ri, 2*ri);
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Etapa II
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace Struct_04
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        public struct cerc
+        {
+            public int pozx;
+            public int pozy;
+            public int diam;
+        };
+        System.Drawing.Pen creion1, creion2;
+        System.Drawing.Graphics desen;
+        System.Random aleat;
+        int nrc,x,y,r,xi,yi,ri,xci,yci,alfai, max, pozitiex, pozitiey;
+        double alfair;
+        static cerc[] cercuri;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            creion1 = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            creion2 = new System.Drawing.Pen(System.Drawing.Color.Red);         
+            aleat = new System.Random();
+            nrc = 30;
+            x = 100;
+            y = 70;
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            cercuri = new cerc[nrc];
+            desen = this.CreateGraphics();
+            desen.Clear(this.BackColor);
+            r = (this.Width - 30)/4;
+            desen.DrawEllipse(creion1, x, y, 2 * r, 2 * r);
+            for (int i = 0; i < nrc; i++)
+            {
+                alfai = aleat.Next(360);
+                alfair = 2 * Math.PI * alfai / 360;
+                ri = 10 + aleat.Next(r / 5);
+                xci = x + r + System.Convert.ToInt32(r * Math.Cos(alfair));
+                yci = y + r - System.Convert.ToInt32(r * Math.Sin(alfair));
+                xi = xci - ri;
+                yi = yci - ri;
+                cercuri[i].pozx = xi;
+                cercuri[i].pozy = yi;
+                cercuri[i].diam = 2*ri;
+                desen.DrawEllipse(creion1, xi, yi, 2 * ri, 2 * ri);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            max = 0;
+            for (int i = 0; i < nrc; i++)
+            {
+                if (cercuri[i].diam > max)
+                {
+                    max = cercuri[i].diam;
+                    pozitiex = cercuri[i].pozx;
+                    pozitiey = cercuri[i].pozy;
+                }
+            }
+            desen.DrawEllipse(creion2, pozitiex, pozitiey, max, max);
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+</body>
+</html>

@@ -1,0 +1,387 @@
+<html>
+<title> Laborator utilizare fisiere </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>  Laborator utilizare fisiere </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font>
+<ol>
+<li> Deschideti un fisier text, afisati continutul transformand toate literele in litere mari.
+<li> Deschideti un fisier text, afisati continutul, numarul de caractere gasite precum si numarul de linii gasite.
+<li> Deschideti un fisier text, afisati continutul prin citirea linie cu linie , afisati numarul de linii gasite precum si numarul de caractere, folosind functia <b> strlen </b>.
+<li> Creati un fisier text care contine 8 numere intregi intre 0 si 255 despartite prin virgula, reprezentand un caracter in format 8x8 pixeli. Realizati un program 
+care citeste valorile din fisier, foloseste procedura <b> afis_bin </b> si afiseaza caracterul reprezentat in fisier sub forma de puncte intr-o matrice 8X8. 
+  <br><br><center><img src="im_cpp104.jpg"></center><br>
+</ol>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp; Deschideti un fisier text, afisati continutul transformand toate literele in litere mari.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < fstream >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Citirea unui fisier text ");
+system("COLOR F9");
+char c;
+char nume_f[80];
+   cout << "\n\tSe afiseaza un fisier text\n";
+   cout << "\n\tIntroduceti numele fisierului : ";
+   cin.getline(nume_f,80);
+   ifstream fis_r(nume_f);
+   if(!fis_r){
+	   cout << "\n\tNu se poate deschide fisierul : " << nume_f ;
+       cin.get();
+       return -1;
+    }
+   cout << "\n\tContinutul fisierului este: \n\n\n";
+   
+   while(fis_r.get(c)){
+		c=toupper(c);
+		cout << c;
+   }
+	fis_r.close();
+	cin.get();
+   return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+&nbsp;&nbsp;&nbsp;&nbsp; Deschideti un fisier text, afisati continutul, numarul de caractere gasite precum si numarul de linii gasite.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+/// Programul cere numele unui fisier text, il deschide si afiseaza continutul, nr de caractere si nr de linii.
+#include "stdafx.h"
+#include < iostream >
+#include < fstream >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Citirea unui fisier text ");
+system("COLOR F9");
+char c;
+char nume_f[80];
+   cout << "\n\tSe afiseaza un fisier text\n";
+   cout << "\n\tIntroduceti numele fisierului : ";
+   cin.getline(nume_f,80);
+   ifstream fis_r(nume_f);
+   if(!fis_r){
+	   cout << "\n\tNu se poate deschide fisierul : " << nume_f ;
+       cin.get();
+       return -1;
+    }
+   cout << "\n\tContinutul fisierului este: \n\n\n";
+   int i,l;
+   while(fis_r.get(c)){
+	cout << c;
+   if (c !='\n')// atentie se pun ghilimele simple pentru ca c este caracter nu string
+	   i++;
+   else
+	   l++;
+   }
+	fis_r.close();
+	cout << "\n\tNumarul de caractere gasit: " << i; 
+	cout << "\n\tNumarul de linii gasit: " << l; 
+
+	cin.get();
+   return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+&nbsp;&nbsp;&nbsp;&nbsp; Deschideti un fisier text, afisati continutul prin citirea linie cu linie , afisati numarul de linii gasite precum si numarul de caractere, folosind functia <b> strlen </b>.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul cere numele unui fisier text, il deschide si afiseaza continutul.
+#include "stdafx.h"
+#include < iostream >
+#include < fstream >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Citescirea unui fisier text ");
+system("COLOR F9");
+char c;
+char nume_f[80],linie[100];
+   cout << "\n\tSe afiseaza un fisier text\n";
+   cout << "\n\tIntroduceti numele fisierului : ";
+   cin.getline(nume_f,80);
+   ifstream fis_r(nume_f);
+   if(!fis_r){
+	   cout << "\n\tNu se poate deschide fisierul : " << nume_f ;
+       cin.get();
+       return -1;
+    }
+   cout << "\n\tContinutul fisierului este: \n\n\n";
+   int i,l;
+   while(!fis_r.eof()){
+	fis_r.getline(linie,100);
+	l++;
+	i=i+strlen(linie);
+    cout << linie << '\n';
+	}
+	fis_r.close();
+	cout << "\n\tNumarul de caractere gasit: " << i; 
+	cout << "\n\tNumarul de linii gasit: " << l; 
+	cin.get();
+   return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Creati un fisier text care contine 8 cifre intre 0 si 255 despartite prin virgula, reprezentand un caracter in format 8x8 pixeli. Realizati un program 
+care citeste valorile din fisier, foloseste procedura <b> afis_bin </b> si afiseaza caracterul reprezentat in fisier sub forma de puncte intr-o matrice 8X8. 
+<br><br><center><img src="im_cpp104.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < fstream >
+using namespace std;
+int main(void)
+{
+	int i=0,j=0;
+	char c;
+	char num[3]; 
+	unsigned int n[8];
+	char nume_f[80];
+	cout << "\n\tIntroduceti numele fisierului ce contine caracterul de afisat\n\t\t:";
+	cin.getline(nume_f,80);
+	ifstream fis_r(nume_f);
+	if(!fis_r){
+		cout << "\n\tNu se poate deschide fisierul : " << nume_f ;
+		cin.get();
+		return -1;
+	}
+	while(fis_r.get(c)){
+		if(c!=','){
+			num[j]=c;
+			j++;
+		}
+		else{
+			n[i]=atoi(num);
+			 for (j=0; j < 3; j++)
+				num[j]=' ';
+			i++;
+			j=0;
+		}
+	}
+	n[i]=atoi(num);
+	fis_r.close();
+	cout<<"\n\n\n\n";
+	for(i=0; i < 8 ;i++){
+		cout<<"\n\t";
+		afis_bin(n[i],8);
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati o aplicatie in care se genereaza numere n intre 0-1000 pe care le afisati 
+si totodata le salvati intr-un fisier text care contine n linii cu cele n valori generate.
+<br> cititi apoi valorile din fisier si afisati-le din nou decalate cu o pozitie pentru a se putea face comparatie intre
+numerele generate si numerele citite din fisier.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+namespace fisier_v3
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+    static int nr_max;
+    	Int16 val;
+    	static Int16[] valori = new Int16[0];
+	System.Drawing.Graphics Desen;
+	System.Drawing.Pen Creion_albastru;
+	System.Drawing.Pen Creion_rosu;
+
+    private void Form1_Paint(object sender, PaintEventArgs e)
+    {
+	nr_max=1+this.Width/20;
+	Desen = this.CreateGraphics();
+	Creion_albastru=new System.Drawing.Pen(System.Drawing.Color.Blue);
+	Creion_rosu=new System.Drawing.Pen(System.Drawing.Color.Red);
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+        	int i=0,x,y,x_v,y_v;
+        	Array.Resize(ref valori,nr_max+1);
+	System.Random n = new System.Random();
+	Desen.Clear(this.BackColor);
+	x_v=0;
+	val=System.Convert.ToInt16(n.Next(200));
+	valori[0]=val;
+	y_v=this.Height-50-val;
+	i=1;
+	for ( x=20; x <= this.Width; x+=20,i++){
+		val=System.Convert.ToInt16(n.Next(200));
+		valori[i]=val;
+		y=this.Height-50-val;	
+		Desen.DrawLine( Creion_albastru,x_v,y_v,x,y);
+		x_v=x;
+		y_v=y;
+	}
+	this.button2.Enabled=true;
+    }
+
+    private void button2_Click(object sender, EventArgs e)
+    {
+	System.IO.StreamWriter fis_w;
+	fis_w= new System.IO.StreamWriter(this.textBox1.Text);
+	for (int i=0; i <= nr_max; i++)
+		fis_w.WriteLine(System.Convert.ToString(valori[i]));
+	fis_w.Close();
+	this.label1.Text="A fost creat fisierul: "+this.textBox1.Text;
+   }
+
+    private void button3_Click(object sender, EventArgs e)
+    {
+	int x,y,x_v,y_v;
+	System.IO.StreamReader fis_r;
+	fis_r=new System.IO.StreamReader(this.textBox1.Text);
+	val = System.Convert.ToInt16(fis_r.ReadLine());
+	val = System.Convert.ToInt16(fis_r.ReadLine());
+	y_v=Height-50-val;
+	x_v=0;
+	for ( x=20; x <= this.Width; x+=20){
+		val = System.Convert.ToInt16(fis_r.ReadLine());
+		y=this.Height-50-val;
+		Desen.DrawLine( Creion_rosu,x_v,y_v,x,y);
+		x_v=x;
+		y_v=y;
+	}
+	fis_r.Close();
+	this.label1.Text="A fost citit: "+this.textBox1.Text;
+    }
+
+    private void button4_Click(object sender, EventArgs e)
+    {
+        Desen.Clear(this.BackColor);
+    }
+    }
+}
+
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>Scalare
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+namespace fisier_v4
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        static int nr_max;
+        static int val_max=1024;
+        Int16 val;
+        static Int16[] valori = new Int16[0];
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_albastru;
+        System.Drawing.Pen Creion_rosu;
+
+    private void Form1_Paint(object sender, PaintEventArgs e)
+    {
+        nr_max=1+this.Width/20;
+        Desen = this.CreateGraphics();
+        Creion_albastru=new System.Drawing.Pen(System.Drawing.Color.Blue);
+        Creion_rosu=new System.Drawing.Pen(System.Drawing.Color.Red);
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+        int i=0,x,y,x_v,y_v;
+        Array.Resize(ref valori,nr_max+1);
+        System.Random n = new System.Random();
+        Desen.Clear(this.BackColor);
+        x_v=0;
+        val=System.Convert.ToInt16(n.Next(val_max));
+        valori[0]=val;
+        y_v = this.Height - 50 - System.Convert.ToInt16(((double)val / (double)val_max) * (this.Height-50));
+        i=1;
+        for ( x=20; x <= this.Width; x+=20,i++){
+            val=System.Convert.ToInt16(n.Next(val_max));
+            valori[i]=val;
+            y = this.Height - 50 - System.Convert.ToInt16(((double)val / (double)val_max) * (this.Height-50));	
+            Desen.DrawLine( Creion_albastru,x_v,y_v,x,y);
+            x_v=x;
+            y_v=y;
+        }
+        this.button2.Enabled=true;
+    }
+
+    private void button2_Click(object sender, EventArgs e)
+    {
+        System.IO.StreamWriter fis_w;
+        fis_w= new System.IO.StreamWriter(this.textBox1.Text);
+        for (int i=0; i <= nr_max; i++)
+            fis_w.WriteLine(System.Convert.ToString(valori[i]));
+        fis_w.Close();
+        this.label1.Text="A fost creat fisierul: "+this.textBox1.Text;
+    }
+
+    private void button3_Click(object sender, EventArgs e)
+    {
+	int x,y,x_v,y_v;
+	System.IO.StreamReader fis_r;
+	fis_r=new System.IO.StreamReader(this.textBox1.Text);
+	val = System.Convert.ToInt16(fis_r.ReadLine());
+	val = System.Convert.ToInt16(fis_r.ReadLine());
+	y_v = Height - 50 - System.Convert.ToInt16(((double)val / (double)val_max) * (this.Height-50));
+	x_v=0;
+	for ( x=20; x <= this.Width; x+=20){
+		val = System.Convert.ToInt16(fis_r.ReadLine());
+		y = this.Height - 50 - System.Convert.ToInt16(((double)val / (double)val_max) * (this.Height-50));
+		Desen.DrawLine( Creion_rosu,x_v,y_v,x,y);
+		x_v=x;
+		y_v=y;
+	}
+	fis_r.Close();
+	this.label1.Text="A fost citit: "+this.textBox1.Text;    }
+
+    private void button4_Click(object sender, EventArgs e)
+    {
+        Desen.Clear(this.BackColor);
+    }
+  }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+</body>
+</html>

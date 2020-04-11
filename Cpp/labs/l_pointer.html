@@ -1,0 +1,546 @@
+<html>
+<title> Laborator pointeri </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator pointeri </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font><br><br>
+<li><b>Utilizarea vectorilor folosind pointeri</b>
+<ol>
+<li> Initializarea unui vector atribuirea de valori aleatoare si afisarea lui folosind pointeri
+	<ul>
+ 	 <li> Afisati elementele vectorului in ordine inversa
+ 	 <li> Afisati valoarea maxima
+ 	 <li> Afisati valoarea minima
+ 	 <li> Reluati aplicatia folosind alocarea dinamica
+ 	 <li> Dupa initializaerea si afisarea vectorului, redimensionati vectorul si observati daca se pastreaza vechile valori.
+	 <li> Atribuiti valori numai elementelor adaugate dupa redimensionare
+	</ul>
+<li> Initializarea unei matrici, atribuirea de valori aleatoare si afisarea lui folosind pointeri
+	<ul>
+ 	 <li> Afisati elementele de pe diagonala principala
+ 	 <li> Afisati valoarea maxima
+ 	 <li> Afisati valoarea minima
+	</ul>
+<li> Utilizarea pointerilor pentru a afisa consumurile zilnice
+<ul>
+<li>-reluati aplicatia point_v1
+<li>-sa se traseze, valoarea maxima si minima
+<li>-colorati cu rosu consumul maxim si cu verde consumul minim
+<li>-sa se scrie pe linia val_med valoarea (point_v2)
+<li>-sa se scrie valorile pe ecran sub forma de tabel utilizand pointeri(point_v3)
+<li>-scrieti cu rosu valoarea maxima
+<li>-scrieti cu verde valoarea minima
+<ul>
+</ol>
+
+&nbsp;&nbsp;&nbsp;&nbsp;Initializarea unui vector atribuirea de valori aleatoare si afisarea lui folosind pointeri.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul initializeaza un pointer cu  numele unui tablou.
+// Se atribuie valori aleatoare elementelor tabloului
+// Se afiseaza elementele tabloului.
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Pointeri ");
+system("COLOR F9");		
+const int nmax=7;
+int i;
+double numere[nmax],nr;
+double* Ptr=numere;
+for (i=0;i < nmax;i++,Ptr++){
+	nr=rand();
+	*Ptr= 100*nr/RAND_MAX ; // pentru a genera numere intre 0-100
+}
+Ptr=numere;
+for (i=0; i <  nmax; i++, Ptr++){
+	cout << "\n\n\tValoarea elementului " << i << " este: " << * Ptr;
+}
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;Se afiseaza elementele tabloului si valoarea maxima.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul initializeaza un pointer cu  numele unui tablou.
+// Se atribuie valori aleatoare elementelor tabloului
+// Se afiseaza elementele tabloului si valoarea maxima.
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Pointeri ");
+system("COLOR F9");		
+const int nmax=7;
+int i;
+int adr;
+double numere[nmax],nr;
+double max=0;
+double* Ptr=numere;
+for (i=0;i < nmax;i++,Ptr++){
+	nr=rand();
+	*Ptr= 100*nr/RAND_MAX ; // pentru a genera numere intre 0-100
+}
+Ptr=numere;
+for (i=0; i <  nmax; i++, Ptr++){
+	cout << "\n\tNr[" << i << "]= " << * Ptr << " Adresa= " << Ptr;
+}
+cout<<"\n\n\t Numerele in ordine inversa sunt: \n\n";
+//Ptr=numere+nmax-1;
+Ptr--;
+for (i=nmax-1; i >=0; i--, Ptr--){
+	cout << "\n\tNr[" << i << "]= " << *Ptr;
+}
+Ptr=numere;
+for (i=0; i <  nmax; i++, Ptr++){
+	if(* Ptr>max){
+	
+		max=* Ptr;
+	}
+}
+cout << "\n\n\tValoarea maxima este " << max; 
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+&nbsp;&nbsp;&nbsp;&nbsp;Se afiseaza elementele tabloului valoarea maxima si adresa acesteia. - ver 1
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul initializeaza un pointer cu  numele unui tablou.
+// Se atribuie valori aleatoare elementelor tabloului
+// Se afiseaza elementele tabloului valoarea maxima si adresa acesteia.
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Pointeri ");
+system("COLOR F9");		
+const int nmax=7;
+int i;
+int adr;
+double numere[nmax],nr;
+double max=0;
+double* Ptr=numere;
+for (i=0;i < nmax;i++,Ptr++){
+	nr=rand();
+	*Ptr= 100*nr/RAND_MAX ; // pentru a genera numere intre 0-100
+}
+Ptr=numere;
+for (i=0; i <  nmax; i++, Ptr++){
+	cout << "\n\n\tValoarea elementului " << i << " este: " << *Ptr;
+}
+
+Ptr=numere;
+for (i=0; i <  nmax; i++, Ptr++){
+	 if(* Ptr>max)
+	
+		max=* Ptr;
+		
+}
+cout << "\n\n\tValoarea maxima este " << max; 
+cout << "\n\n\tAdresa este " << max; 
+
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+&nbsp;&nbsp;&nbsp;&nbsp; Se afiseaza elementele tabloului valoarea maxima si adresa acesteia. - ver 2
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul initializeaza un pointer cu  numele unui tablou.
+// Se atribuie valori aleatoare elementelor tabloului
+// Se afiseaza elementele tabloului valoarea maxima si adresa acesteia.
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Pointeri ");
+system("COLOR F9");		
+const int nmax=7;
+int i;
+int adr;
+double numere[nmax],nr;
+double max=0;
+double* Ptr=numere;
+for (i=0;i < nmax;i++,Ptr++){
+	nr=rand();
+	*Ptr= 100*nr/RAND_MAX ; // pentru a genera numere intre 0-100
+}
+Ptr=numere;
+for (i=0; i <  nmax; i++, Ptr++){
+	cout << "\n\tNr[" << i << "]= " << * Ptr << " Adresa= " << Ptr;
+}
+cout<<"\n\n\t Numerele in ordine inversa sunt: \n\n";
+//Ptr=numere+nmax-1;
+Ptr--;
+for (i=nmax-1; i >= 0; i--, Ptr--){
+	cout << "\n\tNr[" << i << "]= " << *Ptr;
+}
+Ptr=numere;
+for (i=0; i <  nmax; i++, Ptr++){
+	if(* Ptr>max){
+	
+		max=* Ptr;
+		adr=i;	
+	}
+}
+cout << "\n\n\tValoarea maxima este " << max; 
+cout << "\n\n\tAdresa este " << numere+adr; 
+cin.get();
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+&nbsp;&nbsp;&nbsp;&nbsp;Se afiseaza elementele tabloului valoarea maxima si adresa acesteia. - ver 3
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul initializeaza un pointer cu  numele unui tablou.
+// Se atribuie valori aleatoare elementelor tabloului
+// Se afiseaza elementele tabloului.
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Pointeri ");
+	system("COLOR F9");
+	int i;
+	int adr,nmax,nr;
+	double max = 0;
+	cout << " \n\tIntroduceti valoarea lui nmax :";
+	cin >> nmax;
+	double* Ptr = new double[nmax];
+	double* numere = Ptr;
+
+	for (i = 0; i < nmax; i++, Ptr++){
+		nr = rand();
+		*Ptr = 100 * nr / RAND_MAX; // pentru a genera numere intre 0-100
+	}
+	Ptr = numere;
+	for (i = 0; i < nmax; i++, Ptr++){
+		cout << "\n\tNr[" << i << "]= " << *Ptr << *Ptr << " Adresa= " << Ptr;
+	}
+	cout << "\n\n\t Numerele in ordine inversa sunt: \n\n";
+	//Ptr=numere+nmax-1;
+	Ptr--;
+	for (i = nmax - 1; i >= 0; i--, Ptr--){
+		cout << "\n\tNr[" << i << "]= " << *Ptr;
+	}
+	Ptr = numere;
+	for (i = 0; i < nmax; i++, Ptr++){
+		if (*Ptr>max){
+
+			max = *Ptr;
+			adr = i;
+		}
+	}
+	cout << "\n\n\tValoarea maxima este " << max;
+	cout << "\n\n\tAdresa este " << numere + adr;
+	cin.ignore();
+	cin.get();
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+&nbsp;&nbsp;&nbsp;&nbsp;Se afiseaza elementele tabloului valoarea maxima si adresa acesteia. - ver 4
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul initializeaza un pointer cu  numele unui tablou.
+// Se atribuie valori aleatoare elementelor tabloului
+// Se afiseaza elementele tabloului.
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Pointeri ");
+system("COLOR F9");		
+int i;
+int adr;
+int nmax;
+double nr,max=0;
+cout <<" \n\tIntroduceti valoarea lui nmax :";
+cin >> nmax;
+double* Ptr = new double[nmax];
+
+
+for (i=0;i < nmax;i++){
+	nr=rand();
+	Ptr[i]= 100*nr/RAND_MAX ; // pentru a genera numere intre 0-100
+}
+
+for (i=0; i <  nmax; i++){
+	cout << "\n\tNr[" << i << "]= " << Ptr[i] << " Adresa= " << Ptr;
+}
+cout<<"\n\n\t Numerele in ordine inversa sunt: \n\n";
+
+for (i=nmax-1; i >=0; i--){
+	cout << "\n\tNr[" << i << "]= " << Ptr[i];
+}
+
+for (i=0; i <  nmax; i++){
+	if(* Ptr>max){	
+		max=Ptr[i];
+		adr=i;	
+	}
+}
+cout << "\n\n\tValoarea maxima este " << max; 
+cout << "\n\n\tAdresa este " << Ptr+adr; 
+cin.ignore();
+cin.get();
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;Redimensionare vector
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+using namespace System;
+
+int main(void)
+{
+	system("TITLE Redimensionare vector ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i, nrmax ;
+	array < int >^ numere = gcnew array < int > (0);
+	Console::Write("\n\tDimensiunea vectorului: ");
+	nrmax=System::Convert::ToInt16(Console::ReadLine());	// Citirea dimensiuni vectorului
+	Array::Resize(numere,nrmax);				// Redimensionare vector
+	for (i=0;i < nrmax; i++)				// Atribuire valori aleatoare intre 0-100
+		numere[i]=100*rand()/RAND_MAX;
+	Console::WriteLine("\n\tNumerele sunt: \n\n");		// Afisare numere
+	for (i=0;i < nrmax; i++)
+		Console::WriteLine("\t\t\tNr["+i+"]="+numere[i]);
+
+	Console::Write("\n\tNoua dimensiune: ");
+	nrmax=System::Convert::ToInt16(Console::ReadLine());	// Citirea noii dimensiuni
+	Array::Resize(numere,nrmax);
+	Console::Write("\n\tDupa redimensionare, elementele vectorului sunt: \n\n");
+	for (i=0;i < nrmax; i++)
+		Console::WriteLine("\t\t\tNr["+i+"]="+numere[i]);	
+	Console::ReadLine();
+	delete numere;
+    return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+&nbsp;&nbsp;&nbsp;&nbsp;Initializare matrice folosind pointeri
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Matrice cu n x m  elemente");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n,m;
+	double **matr;
+	cout <<" \n\  Introduceti valoarea lui n :";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m :";
+	cin >> m;
+
+	matr = new double*[n];
+	for(i=0; i < n; i++)
+   		matr[i] = new double[m];
+	for (j=0; j < m; j++) {
+		for (i=0;i < n;i++){
+		matr[i][j]= 100*rand()/RAND_MAX ; // pentru a genera numere intre 0-100
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j=0; j < m; j++) {
+		cout << "\n" ;
+		for (i=0;i < n;i++){
+			cout << "  matr[" << i << "][" << j << "]=" << matr[i][j] << "\t";
+		}
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Point_v2:scrie pe linia val_med valoarea . Se adauga procedura de jos pe evenimentul click al button1.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	const int nr_z=31;
+	int poz_x=14; // pozitia curenta pe axa x
+	float w_r=1,w_a=3; // grosimea(in pixeli) a liniei rosii respectiv albastre
+	double consum[nr_z+1]; // vector ce pastreaza consumurile pe nr_z zile
+	double* d_ptr=consum; // pointer negestionat
+	double v_rand; // valoare aleatoare
+	double c_lun; // consum lunar
+	double c_med; // consum lunar mediu
+
+	// Se definesc pointerii gestioati 
+	
+	System::Drawing::Graphics^ Desen;
+	System::Drawing::Pen^ Creion_rosu;
+	System::Drawing::Pen^ Creion_albastru;
+	System::Random^ n;
+	System::Drawing::SolidBrush^ Pensula;
+	System::Drawing::Font^ font_nina;
+
+	// Instantiere obiecte folosite
+
+	Desen = this->CreateGraphics();
+	Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red,w_r);
+	Creion_albastru=gcnew System::Drawing::Pen(System::Drawing::Color::BlueViolet ,w_a);
+	n = gcnew System::Random();
+	Pensula=gcnew System::Drawing::SolidBrush(System::Drawing::Color::DarkOrchid );
+	font_nina=gcnew System::Drawing::Font("Nina",8);
+
+	// Stergere desen prin invocarea metodei Clear
+
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+
+	// Trasare axa x si axa y
+
+	Desen->DrawLine( Creion_rosu,6,0,6,this->Height-40);
+	Desen->DrawLine( Creion_rosu,6,this->Height-40,this->Width-20,this->Height-40);
+	
+	// Trasare consumuri si salvare in matricea consum
+
+	for ( d_ptr=consum; d_ptr < consum+nr_z; d_ptr++){
+		v_rand=n->Next(this->Height-40);// se genereaza o valoare aleatoare
+		Desen->DrawLine( Creion_albastru,poz_x,this->Height-40,poz_x,Height-40-v_rand);
+		poz_x+=14;
+		*d_ptr=v_rand;
+	}
+	c_lun=0;
+
+	// Calculez consum lunar
+
+	for ( d_ptr=consum; d_ptr < consum + nr_z; d_ptr++){
+		c_lun=c_lun + *d_ptr;
+	}
+
+	// calculez si afisez consumul mediu
+
+	c_med=c_lun/nr_z;
+	Desen->DrawLine( Creion_rosu,6,this->Height-40-c_med,this->Width-20,this->Height-40-c_med);
+	Desen->DrawString(System::Convert::ToString(c_med),font_nina,Pensula,this->Width-100,Height-40-c_med);	
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp68.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Point_v3:scrie valorile pe ecran si coloreaza val_max . Se adauga procedura de jos pe evenimentul click al button1.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+	const int nr_z=31;
+	double consum[nr_z+1]; // vector ce pastreaza consumurile pe nr_z zile
+	double* d_ptr=consum; // pointer negestionat
+	double v_rand; // valoare aleatoare
+	double max; // consum maxim
+
+	// Se definesc pointerii gestioati
+
+	System::Random^ n;
+	System::Drawing::Graphics^ Desen;
+	System::Drawing::SolidBrush^ Pensula;
+	System::Drawing::SolidBrush^ Pensula_r;
+	System::Drawing::Font^ font_nina;
+
+	// Instantiere obiecte folosite
+
+	Desen = this->CreateGraphics();
+	n = gcnew System::Random();
+	Pensula=gcnew System::Drawing::SolidBrush(System::Drawing::Color::DarkOrchid );
+	Pensula_r=gcnew System::Drawing::SolidBrush(System::Drawing::Color::Red );
+	font_nina=gcnew System::Drawing::Font("Nina",8);
+
+	// Stergere desen prin invocarea metodei Clear
+
+	Desen->Clear(System::Drawing::Color(this->BackColor));
+	
+	// Generarea vectorului consum
+    max=0;
+	for ( d_ptr=consum; d_ptr < consum+nr_z; d_ptr++){
+		v_rand=n->Next(this->Height-40);// se genereaza o valoare aleatoare
+		*d_ptr=v_rand;
+		if (max < *d_ptr)
+			max=*d_ptr;
+	}
+	// Afisarea vectorului consum
+	d_ptr=consum;
+	int i=0,r=1,j=1;
+	for ( int i=0; i < 31; i++,d_ptr++){
+		if (max==*d_ptr)
+			Desen->DrawString(System::Convert::ToString(*d_ptr),font_nina,Pensula_r,10+j*35,30+25*r);	
+		else
+			Desen->DrawString(System::Convert::ToString(*d_ptr),font_nina,Pensula,10+j*35,30+25*r);	
+		j++;
+		if (j==11){
+			r++;
+			j=1;
+		}
+	}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp69.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+</body>
+</html>

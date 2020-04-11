@@ -1,0 +1,959 @@
+<html>
+<title> Date simple, operatori, expresii </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Laborator: Date simple, operatori, expresii </Center></TD></TR>
+</table>
+<ol>
+
+
+<br> - Se porneste de la scheletul de program
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Programe simple ce demonstreaza necesitatea introducerii de variabile
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	cout << 458*758;
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Cout pe doua linii
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	cout << "Produsul 458*758=";
+	cout << 458*758;
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Cout pe o singura linie
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	cout << "Produsul 458*758="<< 458*758;
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Mai multe calcule care impun introducerea unei variabile
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	cout << "Patratul numarului 785="<< 785*785;
+	cout << "Cubul numarului 785="<< 785*785*785;
+	cout << "Numarul de sute al numarului 785="<< 785/100 ;
+	cin.get();
+	return 0;
+
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Introducerea unei variabile
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int x=785;	
+	cout << "Patratul numarului "<< x <<" este: "<< x*x;
+	cout << "\nCubul numarului "<< x <<" este: "<< x*x*x;
+	cout << "\nNumarul de sute al numarului "<< x <<" este: "<< x/100 ;
+	cin.get();
+	return 0;
+
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Introducerea instr cin
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int x;
+	cout << "Introduceti un numar:";
+	cin >> x;	
+	cout << "\nPatratul numarului "<< x <<" este: "<< x*x;
+	cout << "\nCubul numarului "<< x <<" este: "<< x*x*x;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Descompunerea unui numar zecimal si afisare temporizata
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	cout << " Numarul 4731 are:";
+	cout << "\n 4 mii";
+	Sleep(500);
+	cout << "\n 7 sute";
+	Sleep(500);
+	cout << "\n 3 zeci";
+	Sleep(500);
+	cout << "\n 1 unitati\n";
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Descompunerea unui numar zecimal
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	cout << " Numarul: " << 4731 << " are:";
+	cout << "\n " << (4731/1000) << " mii";
+	cout << "\n " << (4731-(4731/1000)*1000)/100 << " sute";
+	cout << "\n " << (4731-(4731/100)*100)/10 << " zeci";
+	cout << "\n " << (4731-(4731/10)*10) << " unitati";
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;  Folosind functia afis_bin() si Sleep(), realizati un joc de lumini.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < math.h >
+#include < windows.h >
+using namespace std;
+
+int main()
+{
+	double l;
+	afis_bin(129,8);
+	Sleep(500);
+	afis_bin(66,8);
+	Sleep(500);
+	afis_bin(36,8);
+	Sleep(500);
+	afis_bin(24,8);
+	Sleep(500);
+	afis_bin(0,8);
+	Sleep(500);
+	afis_bin(255,8);
+	cin.ignore();
+  cin.get();
+  return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Descompunerea unui numar zecimal si introducerea unei variabile
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+int nr;
+nr=4731;
+	cout << " Numarul: " << nr << " are:";
+	cout << "\n " << nr/1000 << " mii";
+	cout << "\n " << (nr-(nr/1000)*1000)/100 << " sute";
+	cout << "\n " << (nr-(nr/100)*100)/10 << " zeci";
+	cout << "\n " << (nr-(nr/10)*10) << " unitati";
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Descompunerea unui numar zecimal si introducerea unei variabile citite cu cin
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+int nr;
+cout << "Introduceti un numar intreg de maxim 4 cifre:";
+	cin >> nr;
+	cout << " Numarul: " << nr << " are:";
+	cout << "\n " << nr/1000<< " mii";
+	cout << "\n " << (nr-(nr/1000)*1000)/100 << " sute";
+	cout << "\n " << (nr-(nr/100)*100)/10 << " zeci";
+	cout << "\n " << (nr-(nr/10)*10)/1 << " unitati";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Afisarea unui numar in binar
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br> - Se insista pe definirea variabilelor, alegerea numelor sugestive, unice etc
+<br> - Se realizeaza aplicatii care afiseaza rezultate cu numere foarte mari
+<br> - Se demonstreaza <b> float </b> adica se exemplfica modul de afisare al float, virgula mobila precizie etc
+
+<li> Folosind functia afis_bin() si Sleep(), realizati un joc de lumini.
+<li> Descompunerea unui numar zecimal<999 in sute,zeci, unitati si afisarea lor temporizata. 
+<li> Realizati un program pentru calculul diagonalei si ariei unui patrat 
+<br> -se foloseste spatiul de nume std
+<br> -in std se  include biblioteca matematica  folosind   declaratia  #include < math.h >
+ <ul>
+  <li> -se cere lungimea laturii patratului
+  <li> -se afiseaza diagonala si aria patratului
+  <li> -se vor folosi functiile sqrt() si pow() din biblioteca math.h 
+ </ul>
+<li> Realizati un program pentru calculul ipotenuzei cand se cunosc catetele (in std si System:)
+ <ul>
+  <li> -se cere cateta1
+  <li> -se cere cateta2
+  <li> -se afiseaza ipotenuza
+  <li> -se va folosi functia sqrt() 
+ </ul>
+  <li> Realizati un program pentru rezolvarea unui triungi (cazul LLL, LUL,ULU) (in std si System:)
+ <ul>
+  <li> -se cer trei parametri
+  <li> -se afiseaza restul parametrilor
+  <li> -se vor folosi functiile sin() si cos() din math.h
+ </ul>
+ 
+ <li> Realizati un program pentru calculul pretului cu TVA, valorii cu TVA si valoarea TVA-ului 
+  <ul>
+  <li> -se cere cantitatea si pretul
+  <li> -se afiseaza pretul cu TVA, valoarea cu TVA si valoarea TVA-ului 
+ </ul>
+ <li> Realizati un program pentru calculul expresiei  pow(x,3.0)*(7*y+sqrt(7*pow(z,4.0)))/(x+y)*pow((z-x),2.0);
+  <ul>
+  <li> -se cer z,y,z
+  <li> -se afiseaza rezultatul 
+ </ul> 
+<li> Realizati un program pentru conversia temperaturii in gr Celsius, Farenheit, Kelvin (in std si System:)
+ <ul>
+  <li> -se cere temperatura in grade Celsius
+  <li> -se afiseaza temperatura in gr Celsius, Farenheit, Kelvin (tF=t*1.8+32) (tK=t+273.15)
+ </ul>
+ <li>  Realizatiun program pentru conversia temperaturii utilizand WFA  
+ <li>  Realizati un program pentru afisarea sinusului unui unghi utilizand WFA si controlul TrackBar
+ <li>  Realizati un program utilizand WFA si controlul TrackBar pentru a colora un buton.
+ <br><br><center><img src="im_cpp20.jpg"></center><br><br> 
+  <li>  Realizati un program utilizand WFA in care plasam 4 butoane. La apasarea oricarui buton sa se sctrie textul X pe buton iar la pozitionarea 
+ cu mouse-ul pe buton si apasarea oricarei taste, sa se sctrie textul 0 pe buton.
+ <br><br><center><img src="im_cpp21.jpg"></center><br><br> 
+ <li>  Realizatiun program pentru conversia unui numar intreg in binar 
+  <ul>
+  <li> -se cere un numar intreg intre 0 si 255on si apasarea oricarei tasre, sa 
+  <li> -folosind operatorul operatorul % (modulo) si impartiri repetate afisati, unumarul in binar
+  <li> -folosind operatorul operatorul % (modulo) si impartiri repetate afisati, unumarul in binar (bitii fiind afisati in ordine inversa)
+  <li> -folosind operatorul operatorul % (modulo) , impartiri repetate si  back space (\b) afisati, unumarul in binar (bitii fiind afisati in ordine directa)
+  <li> -afisati numarul in binar, apoi folositi operatorul de siftare dreapta pentru a deplasa numarul initial dreapta cu o pozitie, apoi afisati binar numarul obtinut.  
+ </ul> 
+ 
+ </ol>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Program pentru calculul diagonalei si ariei unui patrat in spatiul std::
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// program pentru calculul diagonalei si ariei unui patrat
+
+#include "stdafx.h"
+#include < iostream >
+#include < math.h >
+using namespace std;
+
+int main(void)
+{
+	double l;
+	cout <<" \n\tIntroduceti un valoarea laturii :";
+	cin >> l;
+	cout <<" \n\tDiagonala patratului de latura :"<< l << "este : " << l*sqrt(2.0);
+	cout <<" \n\tAria patratului de latura :"<< l << "este : " << pow(l,2);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+ 
+<li>  Realizatiun program pentru conversia temperaturii utilizand WFA  
+</ol>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Program pentru conversia temperaturii in spatiul System
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// program pentru conversia temperaturii
+#include "stdafx.h"
+
+using namespace System;
+
+int main(void)
+{
+	double temp;
+	String^ temp_s;
+	Console::Write( L"\n\n\tIntroduceti temperatura in grade Celsius:" );
+	temp_s= Console::ReadLine();
+	temp = System::Convert::ToDouble( temp_s );
+	Console::WriteLine( "\n\n\tTemperatura in grade Celsius este: "+ temp );
+	Console::WriteLine( "\n\n\tTemperatura in grade Farenheit este: "+ (temp*1.8+32) );
+	Console::WriteLine( "\n\n\tTemperatura in grade Kellvin este: "+ (temp+273.15) );
+	Console::ReadLine();
+    return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Atentie !! <b> Console::WriteLine( "\n\n\tTemperatura in grade Kellvin este: "+ temp+273.15 );</b>
+<br> da raspuns gresit pentru ca se aduna siruri nu face adunarea temp+273.15 ci face "temp"+"273.15" 
+ 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Program pentru conversia temperaturii in spatiul System in care functia Writeline are ca argument numai siruri
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// program pentru conversia temperaturii
+#include "stdafx.h"
+
+using namespace System;
+
+int main(void)
+{
+	double temp;
+	String^ temp_s;
+	Console::Write( L"\n\n\tIntroduceti temperatura in grade Celsius:" );
+	temp_s= Console::ReadLine();
+	temp = System::Convert::ToDouble( temp_s );
+	Console::WriteLine( "\n\n\tTemperatura in grade Celsius este: "+ temp );
+	temp_s=System::Convert::ToString(temp*1.8+32);
+	Console::WriteLine( "\n\n\tTemperatura in grade Farenheit este: "+ temp_s );
+	temp_s=System::Convert::ToString(temp+273.15);
+	Console::WriteLine( "\n\n\tTemperatura in grade Kellvin este: "+ temp_s );
+	Console::ReadLine();
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Program pentru calculul expresiei 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < math.h >
+using namespace std;
+
+int main()
+{
+  double x,y,z,rez;
+  cout << " x=";
+  cin >> x;
+  cout << " y=";
+  cin >> y;
+  cout << " z=";
+  cin >> z;
+  rez=pow(x,3.0)*(7*y+sqrt(7*pow(z,4.0)))/(x+y)*pow((z-x),2.0);
+  cout << " rez=";
+  cout << rez;
+  cin.ignore();
+  cin.get();
+  return 0;
+}
+
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se verifica daca rez pentru 3,4,5 este 90.7815
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisare binara
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//Se afiseaza un nr intr 0 si 255 in binar
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main()
+{
+    int nr;
+    cout <<"Introduceti un numar intre 0 si 255 :";
+    cin >>nr;
+    cout <<"\n\nNumarul in binar este:\t\t";
+    cout <<"\b\b" << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr;
+
+
+  cin.ignore();
+  cin.get();
+  return 0;
+}
+
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Shl
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//Se afiseaza un nr intr 0 si 127 in binar dupa care se deplaseaza stanga o pozitie
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main()
+{
+    int nr , nr_i;
+    cout <<"Introduceti un numar intre 0 si 127 :";
+    cin >>nr;
+    nr_i=nr;
+    cout <<"\n\nNumarul in binar este:\t\t";
+    cout <<"\b\b" << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr;
+
+nr_i=nr_i << 1 ;
+nr=nr_i ;
+    cout <<"\n\nNumarul shl este:\t\t";
+    cout <<"\b\b" << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr;
+cout  <<"\n\n\t\tValoarea in zecimal:"  << nr_i;
+
+  cin.ignore();
+  cin.get();
+  return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Shr
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//Se afiseaza un nr intr 0 si 255 in binar dupa care se deplaseaza dreapta o pozitie
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main()
+{
+    int nr , nr_i;
+    cout <<"Introduceti un numar intre 0 si 255 :";
+    cin >>nr;
+    nr_i=nr;
+    cout <<"\n\nNumarul in binar este:\t\t";
+    cout <<"\b\b" << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr;
+
+nr_i=nr_i >> 1 ;
+nr=nr_i ;
+    cout <<"\n\nNumarul shr este:\t\t";
+    cout <<"\b\b" << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr%2;
+    nr=nr/2;
+    cout  <<"\b\b"  << nr;
+    cout  <<"\n\n\t\tValoarea in zecimal:"  << nr_i;
+  cin.ignore();
+  cin.get();
+  return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Program pentru conversia temperaturii utilizand WFA
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+this->label1->Text= System::Convert::ToString( this->numericUpDown1->Value);
+double t_k;
+t_k=System::Convert::ToDouble( this->numericUpDown1->Value);
+this->label2->Text= System::Convert::ToString(t_k*1.8+32);
+this->label3->Text= System::Convert::ToString(t_k+273.15);
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatii propuse
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+
+	afis_bin(32768,16);
+	Sleep(500);
+	afis_bin(16384,16);
+	Sleep(500);
+	afis_bin(8192,16);
+	Sleep(500);
+	afis_bin(4096,16);
+	Sleep(500);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+
+	afis_bin(0x8000,16);
+	Sleep(500);
+	afis_bin(0x4000,16);
+	Sleep(500);
+	afis_bin(0x2000,16);
+	Sleep(500);
+	afis_bin(0x1000,16);
+	Sleep(500);
+	afis_bin(0x0800,16);
+	Sleep(500);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+
+{
+	
+	int x=32768;
+	//int x=0x8000;
+	//int x=45667;
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include <windows.h>
+using namespace std;
+
+int main(void)
+
+{
+	int x=2;
+	//int x=0x8000;
+	//int x=45667;
+	afis_bin(x,16);
+	x=x*2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x*2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x*2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x*2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x*2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x*2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x*2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x*2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+int x=65536;
+for (int i=0; i < 16; i++){
+	afis_bin(x,16);
+	x=x/2;
+	Sleep(500);
+}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main()
+{
+	double pret;
+	const double tva=0.24;
+	cout << "\n\n\tIntroduceti pretul:";
+	cin >> pret;
+	cout << "\n\n\tPretul cu TVA este:" << pret*(1+tva);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace System;
+
+int main()
+{
+	double pret;
+	const double tva=0.24;
+	String^ pret_s;
+
+	Console::Write("\n\n\tIntroduceti pretul:" );
+	pret_s = Console::ReadLine();
+	pret = System::Convert::ToDouble( pret_s );
+	Console::WriteLine("\n\n\tPretul cu TVA este:" +pret*(1+tva));
+	Console::ReadLine();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+ <br><br><li>  Aplicatia <font color="red"> CS_elem_02 </font>: un program utilizand WFA si controlul TrackBar pentru a colora un buton.
+ <br><br><center><img src="im_cpp20.jpg"></center><br><br> 
+ 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+private void trackBar1_Scroll(object sender, EventArgs e)
+{
+	this.button1.BackColor = System.Drawing.Color.FromArgb(this.trackBar1.Value,this.trackBar2.Value, this.trackBar3.Value);
+}
+private void trackBar2_Scroll(object sender, EventArgs e)
+{
+	this.button1.BackColor = System.Drawing.Color.FromArgb(this.trackBar1.Value, this.trackBar2.Value, this.trackBar3.Value);
+}
+private void trackBar3_Scroll(object sender, EventArgs e)
+{
+	this.button1.BackColor = System.Drawing.Color.FromArgb(this.trackBar1.Value, this.trackBar2.Value, this.trackBar3.Value);
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+  <br><br><li>  Aplicatia <font color="red"> CS_elem_03 </font>: un program utilizand WFA in care plasam 4 butoane. La apasarea oricarui buton sa se sctrie textul X pe buton iar la pozitionarea 
+ cu mouse-ul pe buton si apasarea oricarei taste, sa se sctrie textul 0 pe buton.
+ <br><br><center><img src="im_cpp21.jpg"></center><br><br> 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.button1.Text = "X";
+        }
+
+        private void button1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            this.button1.Text = "0";
+        }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+ 
+ 
+ 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+</body>
+</html>

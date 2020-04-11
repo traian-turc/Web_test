@@ -1,0 +1,3729 @@
+<html>
+<title> Laborator tablouri </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator tablouri </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font>
+<li>Vectori
+<ol>
+<li>Creati un tablou unidimensional cu 7 elemente, reprezentand consumurile zilnice de energie dintr-o saptamana.
+	<ul> 
+		<li> Calculati consumul saptamanal de energie.
+		<li> Calculati consumul mediu de energie.
+		<li> Afisati consumurile din zilele in care s-a depasit consumul mediu
+		<li> Creati un nou tablou cu consumurile din zilele in care s-a depasit consumul mediu
+
+	</ul>
+<li> Reluati aplicatia anterioara si pentru consumurile lunare (31 zile). Valorile consumurilor vor fi generate aleator cu valori intre 100 si 200
+<li> Realizati un programul cere 5 numere, le salveaza intr-un vector dupa care afiseaza elementele vectorului in ordine inversa 
+<li> Creati un tablou unidimensional cu n elemente random. Construiti un nou tablou din elementele primului, astfel incat 
+elementul curent sa reprezinte suma elementelor din primul tablou pana la pozitia elementului curent.
+<li> Creati un tablou unidimensional cu n elemente random, dupa care :
+<ul>
+<li> afisati media aritmetica a elementelor tabloului
+<li> afisati media geometrica a elementelor tabloului - folosind functia pow
+<li> afisati elementele insotite de textul "par" sau "impar"
+<li> afisati elementele pare, apoi afisarea elementelor impare.
+<li> realizati un nou vector unde numerele pare sa ocupe primele locuri
+</ul>
+
+<li> Creati un tablou unidimensional cu n elemente random, dupa care atribuiti elementelor valorile unei functii (ex x*x) si afisarea lui
+<li> Realizati o aplicatie care realizeaza shift-ari intr-un vector
+ <ul>
+   <li> se va utiliza un tablou unidimensional (un vector)
+   <li> se cer n numere de la tastatura 
+   <li> Se shift-eaza dreapta 1 pozitie
+   <li> Se atribuie 0 primului element
+ </ul>
+<li> Realizati o aplicatie care realizeaza o rotire intr-un vector
+ <ul>
+   <li> se va utiliza un tablou unidimensional (un vector)
+   <li> se cer n numere de la tastatura 
+   <li> Se shift-eaza dreapta 1 pozitie
+   <li> Se atribuie primului element valoarea ultimului element
+ </ul>
+<li> Reluati aplicatia anterioara si realizati o noua aplicatie care realizeaza  k rotiri intr-un vector
+<li> Realizati un programul cere n numere, le salveaza intr-un vector, se pun elementele vectorului in ordine inversa dupa care se afiseaza 
+
+<li> Diverse teme:
+<ul> 
+	<li> eliminarea unui element dintr-un vector
+	<li> eliminarea duplicatelor dintr-un vector
+	<li> intersectia a doi vectori
+	<li> reuniunea a doi vectori
+	<li> sortarea unui vector
+	<li> interclasarea a doi vectori
+	<li> afisarea sumei elementelor, media elementelor, max, minim, 
+</ul>
+
+</ol>
+<li>Matrici
+<ol>
+ <li> Realizati un tablou bidimensional cu nxn elemente initializat cu numere pozitive
+ <br><br><center><img src="im_cpp81.gif"></center><br>
+ <li> Afisati elementele de pe diagonala principala unui tablou bidimensional cu nxn elemente
+ <li> Afisati elementele de pe diagonala secundara unui tablou bidimensional cu nxn elemente
+ <br><br><center><img src="im_cpp82.gif"></center><br>
+ <li> Afisati minimul si maximul unui tablou bidimensional cu nxn elemente
+ <li> Afisati media aritmetica a elementelor unui tablou bidimensional cu nxn elemente
+ <li> Realizati un tablou bidimensional cu 25X20 elemente initializat cu numere pozitive,dupa care extrageti o matrice aflata la
+5 elemente distanta pe verticala, 7 elemente distanta pe orizontala. Dimensiunea noii matrici va fi:w=12, h=10. 
+ <br><br><center><img src="im_cpp83.gif"></center><br>
+ <li> Realizati un tablou bidimensional cu mazim 25X25 elemente. Initializati 20X15 elemente cu numere pozitive, 
+ dupa care rotiti matricea 20X15 spre stanga 90 de grade
+ <br><br><center><img src="im_cpp84.gif"></center><br>
+  <li> Realizati un tablou bidimensional cu mazim 25X25 elemente. Initializati 20X15 elemente cu numere pozitive, 
+ dupa care rotiti matricea 20X15 spre dreapta 90 de grade
+   <li> Realizati un tablou bidimensional cu mazim 25X25 elemente. Initializati 20X15 elemente cu numere pozitive, 
+ dupa care rotiti matricea 20X15 pe axa x
+	   <li> Realizati un tablou bidimensional cu mazim 25X25 elemente. Initializati 20X15 elemente cu numere pozitive, 
+ dupa care rotiti matricea 20X15 pe axa y
+    <li> Realizati un tablou bidimensional cu mazim 25X25 elemente. Initializati 20X15 elemente cu numere pozitive, 
+ dupa care rasturnati matricea 20X15
+<li>Se genereaza o matrice de numere aleatoare si se afiseaza suma pe coloane.
+<li>Deplasare dreapta o pozitie intr-o matrice
+</ol>
+ <li>Vectori in spatiul System
+	<ol>
+		<li>Folosind un vector in care pastrati diametrele mai multor cercuri ,trasati cercurile, dupa care colorati cu rosu cercul a carui raza este cea mai mare.
+		<br><br><center><img src="im_cpp110.jpg"></center><br>
+		<li>Folosind un vector in care pastrati 180 de puncte echidistante pe un cerc realizati aplicatia.
+		<br><br><center><img src="im_cpp158.jpg"></center><br>
+		<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Vectorul de puncte va fi definit sub forma: 
+		<i>Point[] vector_puncte = new Point[180];</i>
+		<br>&nbsp;&nbsp;&nbsp;&nbsp; Punctele se unesc dupa regula ”se uneste punctul nr x cu punctul nr (m * x)%180”, 
+		unde m este un nr intreg intre 1-179 selectat intr-un numeric updown.
+	</ol>
+ <li>Matrici in spatiul System
+ <br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa se realizeze o aplicatie in care se atribuie valori elementelor unui tablou. 
+ Se redimensioneaza dupa care se verifica daca s-au mai pastrat valorile atribuite anterior.
+<ol>
+	<li>Folosind o matrce in care pastrati diametrele, si poxitiile pe x a mai multor cercuri, trasati cercurile dupa care colorati cu rosu cercul a carui raza este cea mai mare.
+	<br><br><center><img src="im_cpp110.jpg"></center><br>
+	<li>Simulati caderea picaturilor de ploaie
+	<br><br><center><img src="im_cpp111.jpg"></center><br>
+	<li>modificati legea de miscare pentru a simula miscarea browniana a particolelor
+	<li>Simulare grafica metode de ordonare
+	<br><br><center><img src="im_cpp99.jpg"></center><br>
+	<li>Se realizeaza aplicatia cu baloane de sapun
+	<li>Se coloreaza jumatate cu albastru (metoda 1 dublarea instructiunilor, metoda 2 if (i%2))
+	<li>Modificarea aplicatiei pentru a reimprospata pozitiile aleatoare pentru a nu se repeta pozitiile 
+	<li>Desenati 10 cercuri la pozitii si de diametre aleatoare. Pozitiile si diametrele vor fi memorate intr-un array
+	<br><br><center><img src="im_cpp91.jpg"></center><br>
+	<li>Rotiti dreapta imaginea cu cercuri realizata anterior.
+	<li>Realizati o aplicatie care imparte cercul in 12 arce egale, memoreaza pozitia punctelor de pe cerc intr-un array 
+	dupa care realizeaza imaginea:
+ 	<br><br><center><img src="im_cpp100.jpg"></center><br>
+	<li>Realizati o aplicatie care imparte cercul in 12 arce egale, memoreaza pozitia punctelor de pe cerc intr-un array 
+	dupa care realizeaza imaginea:
+ 	<br><br><center><img src="im_cpp92.jpg"></center><br>
+	<li>Realizati o aplicatie care imparte cercul in 16 de arce egale. Memoreaza pozitia punctelor de pe cerc intr-un array 
+	dupa care traseaza linii rezultand imaginea:
+	<br><br><center><img src="im_cpp93.jpg"></center><br>
+	<li>Realizati o aplicatie care imparte cercul in 16 de arce egale. Memoreaza pozitia punctelor de pe cerc intr-un array 
+	dupa care traseaza linii rezultand imaginea:
+	<br><br><center><img src="im_cpp94.jpg"></center><br>
+	<li>Reluati aplicatia anterioara si realizati imaginea:
+	<br><br><center><img src="im_cpp95.jpg"></center><br>
+	<li>Adaugati un TrackBar pentru a seta numarul de puncte. Aplicatia va fi similara cu:
+	<br><br><center><img src="im_cpp96.jpg"></center><br>
+	<li>Realizati o aplicatie grafica pentru afisarea  grafica a evolutiei in timp a unei valori de forma :
+	<br><br><center><img src="im_cpp29.jpg"></center><br>
+	<li> Simulare afisare imagine ecran
+</ol>
+&nbsp;&nbsp;&nbsp;&nbsp;Creati un tablou unidimensional cu 7 elemente, reprezentand consumurile zilnice de energie dintr-o saptamana.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	int i=0,k=0;
+	const int nrz=7;
+	double cons[nrz],consm[nrz];
+	double consum=0,med;
+	cout << "\n\tProgramul cere " << nrz <<" valori ale consumului dupa care afiseaza consumul total \n\n";
+	for (i=0; i < nrz; i++){
+		cout <<"\n\tIntroduceti consumul din ziua : [" << i+1 << "] : ";
+	cin >> cons[i];
+	}
+	cout << "\n\n\tconsumurile introduse sunt:  \n";
+	for (i=0;i < nrz;i++){
+		cout << "\n\tConsum ziua: [ " << i+1 << "] =" << cons[i] ;
+		consum=consum+cons[i];
+	}
+	cout << "\n\n\tConsumul total este:"<< consum;
+	med=consum/nrz;
+	cout << "\n\n\tConsumul mediu este:"<< med;
+	cout << "\n\n\tConsumurile peste medie sunt:";
+	for (i=0;i < nrz;i++){
+		if(cons[i]>med){
+			consm[k]=cons[i];
+			k++;
+		}
+	}	
+
+	for (i=0;i < k;i++){
+		
+		cout << "\n\tConsum: [ " << i+1 << "] =" << consm[i] ;
+		
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca avem un tablou cu 7 elemente, reprezentand consumurile zilnice de energie dintr-o saptamana. Calculati consumul saptamanal de energie.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+#include "math.h"
+using namespace std;
+int main(void)
+{
+	int i=0,cons_t;
+	const int n=7;
+	double p=1,consum[n];
+	cout << "\n\tProgramul cere 7 consumuri zilnice dupa care le afiseaza \n\n";
+	for (i=0;i < n; i++){
+		cout <<"\n\tIntroduceti consumul in ziua :  [" << i+1 << "] : ";
+		cin >> consum[i];
+	}
+	cout << "\n\n\tConsumurile zilnice sunt:  \n";
+	for (i=0; i < n; i++){
+		cout << "\n\tConsumul in ziua [ " << i+1 << "] =" << consum[i] ;
+		cons_t=cons_t+consum[i];
+		p=p*consum[i];
+	}
+	cout << "\n\n\tConsumul total este: " << cons_t;
+	cout << "\n\n\tMedia este: " << cons_t/n;
+	cout << "\n\n\tMedia geometrica este: " << pow(p,1.0/n);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;Creati un tablou unidimensional cu n elemente random. Construiti un nou tablou din elementele primului, astfel incat 
+elementul curent sa reprezinte suma elementelor din primul tablou pana la pozitia elementului curent.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	
+	int i,j,n,sum;
+	
+	cout << "\n\tProgramul genereaza n numere si creaza un nou vector \n\n";
+	cout <<" \n\tIntroduceti valoarea lui n (maxim 10):";
+	cin >> n;
+	const int nmax=10;
+	int numere[nmax],v_gen[nmax],nr;
+	for (i=0;i < n;i++){
+	nr=rand();
+	numere[i]= 100*nr/RAND_MAX ; // pentru a genera numere intre 0-100
+	}
+	cout << "\n\n\tNumerele generate in tabloul numere[] sunt:  \n";
+	for (i=0;i < n;i++){
+	cout << "\n\tNumere [ " << i << "] ="<< numere[i] ;
+	}
+
+	cout << "\n\n\tNoul vector v_gen[] este:  \n";
+	for (i=0;i < n;i++){
+		sum=0;
+		for(j=0; j< i; j++){
+			sum=sum+numere[j];
+		}
+			v_gen[i]=sum;
+			cout << "\n\tv_gen [ " << i << "] ="<< v_gen[i] ;
+
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;Realizati un programul care cere 5 numere, le salveaza intr-un vector dupa care afiseaza elementele vectorului in ordine inversa 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Varianta 0
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "numere"
+// Programul cere 5 numere dupa care le afiseaza in ordine inversa 
+// Varianta 0
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	int temp;
+	const int n=5;
+	double numere[n];
+	cout << "\n\tProgramul cere 5 numere dupa care le afiseaza \n\n";
+	for (i=0;i < n;i++){
+		cout <<"\n\tIntroduceti numarul : [" << i << "] : ";
+		cin >> numere[i];
+	}
+	cout << "\n\n\tNumerele introduse sunt:  \n";
+	for (i=n-1;i >=0;i--){
+		cout << "\n\tNumarul [ " << i << "] =" << numere[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Varianta 1
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "numere"
+// Programul cere 5 numere dupa care le afiseaza in ordine inversa 
+// Varianta 1
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	int temp;
+	const int n=5;
+	double numere[n];
+	cout << "\n\tProgramul cere 5 numere dupa care le afiseaza \n\n";
+	for (i=0;i < n;i++){
+		cout <<"\n\tIntroduceti numarul : [" << i << "] : ";
+	cin >> numere[i];
+	}
+	cout << "\n\n\tNumerele introduse sunt:  \n";
+	for (i=0;i < n;i++){
+		cout << "\n\tNumarul [ " << i << "] =" << numere[n-1-i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Realizati o aplicatie care realizeaza shift-ari intr-un vector
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "numere"
+// Programul cere 5 numere 
+// Se shift-eaza dreapta 1 pozitie
+// Se atribuie 0 primului element
+ 
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	int temp;
+	const int n=5;
+	double numere[n];
+	cout << "\n\tProgr cere 5 numere dupa care le prelucreaza si le afiseaza \n\n";
+	for (i=0;i < n; i++){
+		cout <<"\n\tIntroduceti numarul : [" << i << "] : ";
+	cin >> numere[i];
+	}
+
+	for (i=n-1; i >=1; i--){
+		numere[i]=numere[i-1];  
+	}
+    numere[0]=0;
+	cout << "\n\n\tNumerele introduse sunt:  \n";
+	for (i=0; i < n; i++){
+		cout << "\n\tNumarul [ " << i << "] =" << numere[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatie care realizeaza k deplasari intr-un vector
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "numere"
+// Programul cere 5 numere 
+// Se shift-eaza dreapta k pozitii
+// Se atribuie 0 primului element
+ 
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	int temp;
+	const int n=5;
+	double numere[n];
+	cout << "\n\tProgr cere 5 numere dupa care le prelucreaza si le afiseaza \n\n";
+	for (i=0;i < n;i++){
+		cout <<"\n\tIntroduceti numarul : [" << i << "] : ";
+	cin >> numere[i];
+	}
+
+	for (int k=1;k <=3;k++){
+		for (i=n-1;i >=1;i--){
+			numere[i]=numere[i-1];  
+		}
+   		numere[0]=0;
+	}
+
+	cout << "\n\n\tNumerele introduse sunt:  \n";
+	for (i=0;i < n;i++){
+		cout << "\n\tNumarul [ " << i << "] =" << numere[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatie care realizeaza k deplasari intr-un vector cu animatie
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "numere"
+// Programul cere 5 numere 
+// Se shift-eaza dreapta k pozitii cu animatie
+// Se atribuie 0 primului element
+ 
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+#include "windows.h"
+
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	int temp;
+	const int n=5;
+	double numere[n];
+	int kmax=3;// numarul de shift-ari
+	cout << "\n\tProgr cere 5 numere dupa care le prelucreaza si le afiseaza \n\n";
+	for (i=0;i < n;i++){
+		cout <<"\n\tIntroduceti numarul : [" << i << "] : ";
+	cin >> numere[i];
+	}
+	cout << "\n\n\n";
+	for (int k=1;k <=kmax; k++){
+		for (i=n-1;i >=1;i--){
+			numere[i]=numere[i-1];  
+		}
+   		numere[0]=0;
+
+		cout << char(13) <<"    ";
+		for (i=0; i < n; i++){
+			cout << " " << numere[i] ;
+		}
+		Sleep(500);
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati o aplicatie care realizeaza rotiri intr-un vector
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "numere"
+// Programul cere 5 numere 
+// Se roteste dreapta 1 pozitie
+// Se atribuie primului element valoarea ultimului element
+ 
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	int temp;
+	const int n=5;
+	double numere[n];
+	cout << "\n\tProgr cere 5 numere dupa care le prelucreaza si le afiseaza \n\n";
+	for (i=0;i <n;i++){
+		cout <<"\n\tIntroduceti numarul : [" << i << "] : ";
+	cin >> numere[i];
+	}
+        temp=numere[n-1];
+	for (i=n-1;i >=1; i--){
+		numere[i]=numere[i-1];  
+	}
+        numere[0]=temp;
+
+	cout << "\n\n\tNumerele introduse sunt:  \n";
+	for (i=0;i < n; i++){
+		cout << "\n\tNumarul [ " << i << "] =" << numere[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<li> Ralizati o aplicatie care realizeaza  k rotiri intr-un vector
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "numere"
+// Programul cere 5 numere 
+// Se roteste dreapta k pozitii
+// Se atribuie primului element valoarea ultimului element
+ 
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	int temp;
+	const int n=5;
+	double numere[n];
+	int k=3; // numarul de rotatii
+	cout << "\n\tProgr cere 5 numere dupa care le prelucreaza si le afiseaza \n\n";
+	for (i=0;i <n;i++){
+		cout <<"\n\tIntroduceti numarul : [" << i << "] : ";
+	cin >> numere[i];
+	}
+	for (j=1; j <=k;j++){
+        	temp=numere[n-1];
+		for (i=n-1;i >=1;i--){
+			numere[i]=numere[i-1];  
+		}
+        	numere[0]=temp;
+        }
+	cout << "\n\n\tNumerele introduse sunt:  \n";
+	for (i=0;i < n; i++){
+		cout << "\n\tNumarul [ " << i << "] =" << numere[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Nu au sens k rotiri, numai n%k rotiri si se obtine acelasi lucru
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<li> Realizati un programul cere n numere, le salveaza intr-un vector, se pun elementele vectorului in ordine inversa dupa care se afiseaza 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Algoritmul pare corect dar e gresit. Trebuie sa schimbam locatiile intre ele numai de n/2 ori
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "numere"
+// Programul cere 5 numere 
+// Se inverseaza elementele vectorului
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	int temp;
+	const int n=5;
+	double numere[n];
+	cout << "\n\tProgr cere 5 numere dupa care le prelucreaza si le afiseaza \n\n";
+	for (i=0;i <5; i++){
+		cout <<"\n\tIntroduceti numarul : [" << i << "] : ";
+	cin >> numere[i];
+	}
+	for (i=0;i < n;i++){
+		temp=numere[i];
+		numere[i]=numere[n-1-i];
+                numere[n-1-i]=temp;        
+	}
+	cout << "\n\n\tNumerele introduse sunt:  \n";
+	for (i=0;i < n; i++){
+		cout << "\n\tNumarul [ " << i << "] =" << numere[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Varianta corecta:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "numere"
+// Programul cere 5 numere 
+// Se inverseaza elementele vectorului
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	int temp;
+	const int n=5;
+	double numere[n];
+	cout << "\n\tProgr cere 5 numere dupa care le prelucreaza si le afiseaza \n\n";
+	for (i=0;i < n;i++){
+		cout <<"\n\tIntroduceti numarul : [" << i << "] : ";
+	cin >> numere[i];
+	}
+	for (i=0;i <=n/2; i++){
+		temp=numere[i];
+		numere[i]=numere[n-1-i];
+                numere[n-1-i]=temp;        
+	}
+	cout << "\n\n\tNumerele introduse sunt:  \n";
+	for (i=0;i < n; i++){
+		cout << "\n\tNumarul [ " << i << "] =" << numere[i] ;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatie care realizeaza  k rotiri intr-un vector cu animatie
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza un tablou numit "numere"
+// Programul cere 5 numere 
+// Se roteste dreapta k pozitii cu animatie
+// Se atribuie primului element valoarea ultimului element
+ 
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+#include "windows.h"
+using namespace std;
+int main(void)
+{
+	int i=0;
+	int temp;
+	const int n=10;
+	double numere[n];
+	int k=20; // numarul de rotatii
+	cout << "\n\tProgr cere 5 numere dupa care le prelucreaza si le afiseaza \n\n";
+	for (i=0;i<n;i++){
+		cout <<"\tIntroduceti numarul : [" << i << "] : ";
+		cin >> numere[i];
+	}
+	cout << "\n\n\n Rotire elemente:\n\n";
+
+	for (int j=1; j <=k;j++){
+		temp=numere[n-1];
+		for (i=n-1;i >=1;i--){
+			numere[i]=numere[i-1];  
+		}
+        	numere[0]=temp;
+
+		cout << char(13) <<"  ";
+		for (i=0; i < n ;i++){
+			cout << numere[i] <<"  " ;
+		}
+		Sleep(1000);
+	}
+	cout << "\n\n\nGata!";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se initializeaza un vector cu 1001 valori x*x si se calculeaza integrala pe [1-10]
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+double max(double v[],int imdex_max);
+double integra(double v[],int imdex_max,double inerv);
+int main(void)
+{
+    system("TITLE Atribuire de valori ");// Titlul ferestrei consola
+    system("COLOR F9"); // Fundal alb caractere albastre
+    int i;
+    
+    cout << "\n\tProgramul init o matr \n\n";
+
+    const int nmax=1001;
+    double x1=1;
+    double x2=10;
+    double x=x1;
+    double numere[nmax],xp;
+    for (i=0;i <= nmax;i++){
+    xp=x*x;
+    numere[i]= xp;
+    x=x+(x2-x1)/nmax;
+    }
+    cout << "\n\n\tNumerele generate in tabloul numere[] sunt:  \n";
+    for (i=0;i <= nmax;i++){
+    cout << "\n\tNumere [ " << i << "] ="<< numere[i] ;
+    }
+    cout << "Maximul este: " << max(numere,nmax);
+    cout << "\n Integrala  este: " << integra(numere,nmax,(x2-x1)/nmax);
+    cin.ignore();
+    cin.get();
+    return 0;
+}
+double max(double v[], int index_max)
+{ 
+double max=v[0];
+    for (int i=0; i <=index_max; i++){
+            if(v[i] > max)
+                max=v[i];
+        }
+    return max;
+}
+
+double integra(double v[], int index_max, double pas)
+{ 
+double inte=0;
+    for (int i=0; i < index_max; i++){
+            inte=inte+v[i]*pas;
+        }
+    return inte;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Intersectia a doi vectori
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main()
+{
+ int a[100],b[100],v[100],i,j,n,m,k,bn;
+ // n -nr max elemente vector a
+ // m -nr max elemente vector b
+ // k -nr elemente vector intersectie v
+ // bn -semafor - exista cel putin un element comun
+ cout << "\n\t\tIntersectia a doi vectori ";
+ cout << "\n\n\tIntroduceti numarul de elemente al vectorului A:";
+ cin  >> n;
+ cout << "\tIntroduceti numarul de elemente al vectorului B:";
+ cin >> m;
+ cout << "\n\n";
+ for(i=0;i < n;i++)
+	{
+	 cout << "\tIntroduceti elementul A["<<i<<"]:";
+	 cin >> a[i];
+	}
+ cout << "\n\tVectorul A este: ";
+ for(i=0;i < n;i++)
+	{
+	 cout << " " << a[i];
+    }
+ cout << "\n\n";
+ for(i=0;i < m;i++)
+	{
+	 cout << "\tIntroduceti elementul B["<<i<<"]:";
+	 cin >> b[i];
+	}
+ cout << "\n\tVectorul B este: ";
+ for(i=0;i < m;i++)
+	{
+	 cout << " " << b[i];
+    }
+ k=0;
+ for(j=0;j < m;j++)
+	{
+	 bn=0;
+     for(i=0;i < n;i++)
+		{
+		 if(b[j]==a[i])
+				{
+				 bn++;
+				}
+		}
+		if(bn >= 1)
+			{
+			 v[k]=b[j];
+			 k++;
+			}
+		
+	}
+ cout << "\n\n\n\tIntersectia vectorilor este: ";
+ for(i=0;i < k;i++)
+	{
+	 cout << " " << v[i];
+	}
+ cin.ignore();
+ cin.get();
+ return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Reuniunea vectorilor
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main()
+{
+ int a[100],b[100],v[100],i,j,n,m,k,l,gasit,poz;
+ cout << "\nReuniunea a doi vectori cu eliminarea duplicatelor a doi vectori ";
+ cout << "\n\n\tIntroduceti numarul de elemente al vectorului A:";
+ cin >> n;
+ cout << "\tIntroduceti numarul de elemente al vectorului B:";
+ cin >> m;
+ cout << "\n";
+ for(i=0;i < n;i++)
+	{
+	 cout << "\tIntroduceti elementul A[" << i << "]:";
+	 cin >> a[i];
+	}
+ cout << "\n\tVectorul A este: ";
+ for(i=0;i < n;i++)
+	{
+	 cout << " " << a[i];
+    }
+ cout << "\n\n";
+ for(i=0;i < m;i++)
+	{
+	 cout << "\tIntroduceti elementul B[" << i << "]:";
+	 cin >> b[i];
+	}
+ cout<<"\n\tVectorul B este: ";
+ for(i=0;i < m;i++)
+	{
+	 cout << " " << b[i];
+    }
+ k=0;
+ for(i=0;i < n;i++)
+	{
+	 v[k]=a[i];
+	 k++;
+	}
+ for(i=0;i < m;i++)
+	{
+	 v[k]=b[i];
+	 k++;
+	}
+ cout<<"\n\n\tVectorul rezultat din concatenare: ";
+ for(i=0;i < k;i++)
+	{
+	 cout << " " << v[i];
+	}
+ for(i=0;i < k;i++)
+	{
+	 for(j=i+1;j < k;j++)
+		{
+		 if(v[i]==v[j])
+		 {
+			 poz=j;
+			 for(l=poz;l < k-1;l++)
+				{
+				 v[l]=v[l+1];
+				}
+			 k=k-1;
+			 j=j-1;
+		 }
+		 
+		}
+	}
+ cout<<"\n\tVectorul fara duplicate rezultat este: ";
+ for(i=0;i < k;i++)
+	 cout<<" " << v[i];
+ cin.ignore();
+ cin.get();
+ return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<li>Matrici :
+Paralele elementele unei matrici cu alunele ascunse de veverita, alune care trebuiesc regasite.
+<ol>
+<li> initializarea unei matrici atribuirea de valori aleatoare si afisarea ei
+<br><br><center><img src="im_cpp81.gif"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std ;
+int main(void)
+{
+	system("TITLE Matrice de dimensiunea n x m ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n,m;
+	cout <<" \n\  Introduceti valoarea lui n (maxim 25):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 25):";
+	cin >> m;
+	const int nmax=25;
+	const int mmax=25;
+	int matr[nmax][mmax],nr;
+	for (j=0; j < m; j++) {
+		for (i=0;i < n;i++){
+		matr[i][j]= 10+89*rand()/RAND_MAX ; // pentru a genera numere intre 10-99
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j=0; j < m; j++) {
+		cout << "\n" ;
+		for (i=0;i < n;i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<li> 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Afisarea elementelor de pe diagonala principala, respectiv secundara a unui tablou bidimensional cu nxn elemente
+ <br><br><center><img src="im_cpp82.gif"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Matrice de dimensiunea n x m ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n,m;
+	cout <<" \n\  Introduceti valoarea lui n (maxim 25):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 25):";
+	cin >> m;
+	const int nmax=25;
+	const int mmax=25;
+	int matr[nmax][mmax],nr;
+	for (j=0; j < m; j++) {
+		for (i=0;i < n;i++){
+		matr[i][j]= 10+89*rand()/RAND_MAX ; // pentru a genera numere intre 10-99
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j=0; j < m; j++) {
+		cout <<"\n" ;
+		for (i=0;i < n;i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+	cout << "\n\n\  Diagonala principala este:  \n\n";
+	for (j=0; j < m; j++) {
+		for (i=0;i < n;i++){
+			if (i==j)
+			cout << matr[i][j] << " ";
+		}
+	}
+	cout << "\n\n\  Diagonala secundara este:  \n\n";
+	for (j=0; j < m; j++) {
+		for (i=0;i < n;i++){
+			if ((i+j)==(n-1))
+			cout << matr[i][j] << " ";
+		}
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Varianta II-a fara IF-uri
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Matrice de dimensiunea n x m ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n,m;
+	cout <<" \n\  Introduceti valoarea lui n (maxim 25):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 25):";
+	cin >> m;
+	const int nmax=25;
+	const int mmax=25;
+	int matr[nmax][mmax],nr;
+	for (j=0; j < m; j++) {
+		for (i=0;i < n;i++){
+		matr[i][j]= 10+89*rand()/RAND_MAX ; // pentru a genera numere intre 10-99
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j=0; j < m; j++) {
+		cout << "\n" ;
+		for (i=0;i < n;i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+	cout << "\n\n\  Diagonala principala este:  \n\n";
+	for (j=0; j < m; j++) {
+	
+		cout << matr[j][j] << " ";
+		
+	}
+
+	cout << "\n\n\  Diagonala secundara este:  \n\n";
+	
+	for (j=0; j < m; j++) {
+	
+		cout << matr[n-1-j][j] << " ";
+		
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Media aritmetica a elementelor
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Matrice de dimensiunea n x m ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n,m;
+	cout <<" \n\  Introduceti valoarea lui n (maxim 25):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 25):";
+	cin >> m;
+	const int nmax=25;
+	const int mmax=25;
+	int matr[nmax][mmax],nr;
+	for (j=0; j < m; j++) {
+		for (i=0;i < n;i++){
+		matr[i][j]= 10+89*rand()/RAND_MAX ; // pentru a genera numere intre 10-99
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j=0; j < m; j++) {
+		cout << "\n" ;
+		for (i=0;i < n;i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+	cout << "\n\n\  Media aritmetica a tuturor elementelor este: ";
+	int s=0;
+	
+	for (j=0; j < m; j++) {
+		for (i=0;i < n;i++){
+			s=s+matr[i][j];
+		}
+	}
+
+	cout << (double) s/(n*m);
+
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati un tablou bidimensional cu 25X20 elemente initializat cu numere pozitive,dupa care extrageti o matrice aflata la
+5 elemente distanta pe verticala, 7 elemente distanta pe orizontala. Dimensiunea noii matrici va fi:w=12, h=10. 
+<br><br><center><img src="im_cpp83.gif"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// translatare l pe orizontala si h pe verticala
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Matrice de dimensiunea n x m ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n,m;
+	int k=5; //distanta pe verticala
+	int l=7; //distanta pe orizontala
+	int w=12; //latimea ecranului
+	int h=10; //inaltimea ecranului
+	cout <<" \n\  Introduceti valoarea lui n (maxim 25):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 25):";
+	cin >> m;
+	const int nmax=25;
+	const int mmax=25;
+	int matr[nmax][mmax],nr;
+        int ecran[nmax][mmax];
+
+	for (j=0; j < m; j++) {
+		for (i=0;i < n;i++){
+		matr[i][j]= 10+89*rand()/RAND_MAX ; // pentru a genera numere intre 10-99
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j=0; j < m; j++) {
+		cout << "\n" ;
+		for (i=0;i < n;i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+
+        // Generare matrice ecran
+	for (j=0; j < h; j++) {	
+		for (i=0;i < w;i++){
+			ecran[i][j]=matr[i+l][j+k];
+		}
+	}
+
+
+	cout << "\n\n\ Matricea de 12X10 este: ";
+
+	cout << "\n\n\  Matricea ecran este:  \n\n";
+	
+	for (j=0; j < h; j++) {
+		cout << "\n" ;
+		for (i=0;i < w;i++){
+			cout << ecran[i][j] << " ";
+		}
+	}
+
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati un tablou bidimensional cu 25X20 elemente initializat cu numere pozitive,dupa 
+care initializati elementele din dreapta lateral si de jos cu valoarea 0  asemanator cu imaginea de jos:
+<br><br><center><img src="im_cpp84.gif"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Matrice de dimensiunea n x m ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i, j, n, m;
+	int k = 5; //distanta pe verticala
+	int l = 7; //distanta pe orizontala
+	int w = 12; //latimea ecranului
+	int h = 10; //inaltimea ecranului
+	cout << " \n\  Introduceti valoarea lui n (maxim 25):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 25):";
+	cin >> m;
+	const int nmax = 25;
+	const int mmax = 25;
+	int matr[nmax][mmax], nr;
+	int ecran[nmax][mmax];
+
+	for (j = 0; j < m; j++) {
+		for (i = 0; i < n; i++){
+			matr[i][j] = 1 + 8 * rand() / RAND_MAX; // pentru a genera numere intre 10-99
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j = 0; j < m; j++) {
+		cout << "\n";
+		for (i = 0; i < n; i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+
+	// Sterge partea laterala
+
+	for (j = 0; j < m; j++) {
+		for (i = w; i < n; i++){
+			matr[i][j] = 0;
+		}
+	}
+
+
+	// Sterge partea de jos
+
+	for (j = h; j < m; j++) {
+		for (i = 0; i < n; i++){
+			 matr[i][j]=0;
+		}
+	}
+
+
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j = 0; j < m; j++) {
+		cout << "\n";
+		for (i = 0; i < n; i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;programul transpune inaginea din landscape in prtrait dar face si oglindire
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// programul transpune inaginea din landscape in prtrait dar face si oglindire
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Matrice de dimensiunea n x m ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n,m;
+
+	int w=m; //latimea ecranului
+	int h=n; //inaltimea ecranului
+	cout <<" \n\  Introduceti valoarea lui n (maxim 25):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 25):";
+	cin >> m;
+	const int nmax=25;
+	const int mmax=25;
+	int matr[nmax][mmax],nr;
+        int ecran[nmax][mmax];
+
+	for (j=0; j < m; j++) {
+		for (i=0;i < n;i++){
+		matr[i][j]= 10+89*rand()/RAND_MAX ; // pentru a genera numere intre 10-99
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j=0; j < m; j++) {
+		cout << "\n" ;
+		for (i=0;i < n;i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+
+        // Generare matrice ecran
+
+	for (j=0; j < n; j++) {	
+		for (i=0;i < m;i++){
+			ecran[i][j]=matr[j][i];
+		}
+	}
+
+
+
+	cout << "\n\n\  Matricea ecran este:  \n\n";
+	
+	for (j=0; j < n; j++) {
+		cout << "\n" ;
+		for (i=0;i < m;i++){
+			cout << ecran[i][j] << " ";
+		}
+	}
+
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;programul transpune inaginea din landscape in prtrait dar face si oglindire
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// programul transpune inaginea din landscape in prtrait dar face si oglindire
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Matrice de dimensiunea n x m ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n,m;
+
+	int w=m; //latimea ecranului
+	int h=n; //inaltimea ecranului
+	cout <<" \n\  Introduceti valoarea lui n (maxim 25):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 25):";
+	cin >> m;
+	const int nmax=25;
+	const int mmax=25;
+	int matr[nmax][mmax],nr;
+        int ecran[nmax][mmax];
+
+	for (j=0; j < m; j++) {
+		for (i=0;i < n;i++){
+		matr[i][j]= 10+89*rand()/RAND_MAX ; // pentru a genera numere intre 10-99
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j=0; j < m; j++) {
+		cout << "\n" ;
+		for (i=0;i < n;i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+
+        // Generare matrice ecran
+
+	for (j=0; j < n; j++) {	
+		for (i=0;i < m;i++){
+			ecran[i][j]=matr[j][i];
+		}
+	}
+
+	cout << "\n\n\  Matricea ecran este:  \n\n";
+	
+	for (j=0; j < n; j++) {
+		cout << "\n" ;
+		for (i=0;i < m;i++){
+			cout << ecran[i][j] << " ";
+		}
+	}
+
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rotire spre dreapta 90 grade
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// rotire spre dreapta 90 grade
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Matrice de dimensiunea n x m ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n,m;
+	cout <<" \n\  Introduceti valoarea lui n (maxim 25):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 25):";
+	cin >> m;
+	const int nmax=25;
+	const int mmax=25;
+	int matr[nmax][mmax],nr;
+        int ecran[nmax][mmax];
+	for (j=0; j < nmax; j++) {	
+		for (i=0;i < mmax;i++){
+		  if ((i < n) && (j < m))
+			matr[i][j]= 1+8*rand()/RAND_MAX ; // pentru a genera numere intre 1-9
+
+		  else
+			matr[i][j]=0;
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j=0; j < mmax; j++) {
+		cout << "\n" ;
+		for (i=0;i < nmax;i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+
+        // Generare matrice ecran
+
+	for (j=0; j < n; j++) {	
+		for (i=0;i < m;i++){
+			ecran[i][j]=matr[j][m-1-i];
+		}
+	}
+
+
+
+	cout << "\n\n\  Matricea ecran este:  \n\n";
+	
+	for (j=0; j < n; j++) {
+		cout << "\n" ;
+		for (i=0;i < m;i++){
+			cout << ecran[i][j] << " ";
+		}
+	}
+
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rotire spre stanga 90 grade
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// rotire spre stanga 90 grade
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Matrice de dimensiunea n x m ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n,m;
+	cout <<" \n\  Introduceti valoarea lui n (maxim 25):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 25):";
+	cin >> m;
+	const int nmax=25;
+	const int mmax=25;
+	int matr[nmax][mmax],nr;
+        int ecran[nmax][mmax];
+	for (j=0; j < nmax; j++) {	
+		for (i=0;i < mmax;i++){
+			if ((i < n) && (j < m))
+				matr[i][j]=1+8*rand()/RAND_MAX ; // pentru a genera numere intre 10-99;
+			else
+				matr[i][j]=0;
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j=0; j < mmax; j++) {
+		cout << "\n" ;
+		for (i=0;i < nmax;i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+
+        // Generare matrice ecran
+
+	for (j=0; j < n; j++) {	
+		for (i=0;i < m;i++){
+			ecran[i][j]=matr[n-1-j][i];
+		}
+	}
+
+	cout << "\n\n\  Matricea ecran este:  \n\n";
+	
+	for (j=0; j < n; j++) {
+		cout << "\n" ;
+		for (i=0;i < m;i++){
+			cout << ecran[i][j] << " ";
+		}
+	}
+
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Rasturnare imagine
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// rasturnare imagine
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Matrice de dimensiunea n x m ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n,m;
+	cout <<" \n\  Introduceti valoarea lui n (maxim 25):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 25):";
+	cin >> m;
+	const int nmax=25;
+	const int mmax=25;
+	int matr[nmax][mmax],nr;
+        int ecran[nmax][mmax];
+	for (j=0; j < nmax; j++) {	
+		for (i=0;i < mmax;i++){
+			if ((i < n) && (j < m))
+				matr[i][j]=1+8*rand()/RAND_MAX ; // pentru a genera numere intre 10-99;
+			else
+				matr[i][j]=0;
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j=0; j < mmax; j++) {
+		cout << "\n" ;
+		for (i=0;i < nmax;i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+
+        // Generare matrice ecran
+
+	for (j=0; j < n; j++) {	
+		for (i=0;i < m;i++){
+			ecran[i][j]=matr[i][n-1-j];
+		}
+	}
+
+
+
+	cout << "\n\n\  Matricea ecran este:  \n\n";
+	
+	for (j=0; j < n; j++) {
+		cout << "\n" ;
+		for (i=0;i < m;i++){
+			cout << ecran[i][j] << " ";
+		}
+	}
+
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Rotire dupa axa y
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// rotire dupa axa y
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Matrice de dimensiunea n x m ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n,m;
+	cout <<" \n\  Introduceti valoarea lui n (maxim 25):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 25):";
+	cin >> m;
+	const int nmax=25;
+	const int mmax=25;
+	int matr[nmax][mmax],nr;
+        int ecran[nmax][mmax];
+	for (j=0; j < nmax; j++) {	
+		for (i=0;i < mmax;i++){
+			if ((i < n) && (j < m))
+				matr[i][j]=1+8*rand()/RAND_MAX ; // pentru a genera numere intre 10-99;
+			else
+				matr[i][j]=0;
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j=0; j < mmax; j++) {
+		cout << "\n" ;
+		for (i=0;i < nmax;i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+
+        // Generare matrice ecran
+
+	for (j=0; j < n; j++) {	
+		for (i=0;i < m;i++){
+			ecran[i][j]=matr[m-1-i][j];
+		}
+	}
+
+
+
+	cout << "\n\n\  Matricea ecran este:  \n\n";
+	
+	for (j=0; j < n; j++) {
+		cout << "\n" ;
+		for (i=0;i < m;i++){
+			cout << ecran[i][j] << " ";
+		}
+	}
+
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<li> afisarea elementelor de sub diagonala principala(inclusiv elem de pe diagonala)
+<li> afisarea sumelor pe coloana
+</ol> 
+&nbsp;&nbsp;&nbsp;&nbsp;Se genereaza o matrice de numere aleatoare si se afiseaza suma pe coloane.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza o matrice de dimensiunea n x m
+// Elementelor matricii li se atribuite valori intregi aleatoare intre 0 si 100
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Matrice de dimensiunea n x m ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n,m;
+	cout <<" \n\  Introduceti valoarea lui n (maxim 10):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 10):";
+	cin >> m;
+	const int nmax=10;
+	const int mmax=10;
+	int matr[nmax][mmax],nr;
+	for (j=0; j < m; j++) {
+		for (i=0;i < n;i++){
+		matr[i][j]= 100*rand()/RAND_MAX ; // pentru a genera numere intre 0-100
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j=0; j < m; j++) {
+		cout << "\n" ;
+		for (i=0;i < n;i++){
+			cout << "  matr[" << i << "][" << j << "]=" << matr[i][j] << "\t";
+		}
+	}
+	cout << "\n\n\  Totaluri:  \n\n";
+	for (i=0; i < n; i++) {
+		int sum=0;
+		for (j=0;j < m;j++){
+			sum=sum+matr[i][j];
+		}
+		cout << "  Suma[" << i << "]=" << sum <<"\t";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+</ol>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Integrala functiei x^2 pe intervalul x1 x2
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul calculeaza integrala functiei x^2 pe intervalul x1 x2
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	double x1=1;
+	double x2=10;
+	double integr=0;
+	const int nrmax=2001;
+	double val[nrmax],x;
+	double nrm=nrmax;
+	double w=(x2-x1)/nrm;
+	cout << "\n\tProgramul afiseaza integrala functiei x2 \n\n";
+	x=x1;
+	do {
+		val[i]=x*x*w;
+		x=x+w;
+		i=i+1;
+	}
+	while(i < nrmax);
+
+	for (i=0;i < nrmax;i++){
+		integr=integr+val[i];	
+	}
+	cout << "\n\n\Integrala  este:  \n" << integr;
+
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deplasare dreapta o pozitie <br><br>
+
+
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Matrice cu n x m  elemente");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i, j, n, m;
+	cout << " \n\  Introduceti valoarea lui n (maxim 10):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 10):";
+	cin >> m;
+	const int nmax = 10;
+	const int mmax = 10;
+	int matr[nmax][mmax], nr;
+	for (j = 0; j < m; j++) {
+		for (i = 0; i < n; i++){
+			matr[i][j] = 10+90 * rand() / RAND_MAX; // pentru a genera numere intre 0-100
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j = 0; j < m; j++) {
+		cout << "\n";
+		for (i = 0; i < n; i++){
+			cout <<  matr[i][j] << " ";
+		}
+	}
+	cout << "\n\n\  Dupa shift-are dreapta o pozitie, matricea este:  \n\n";
+
+	for (i = n-1; i >=0; i--) {
+		for (j = 0; j < m; j++) {
+			if (i == 0)
+				matr[i][j] = 0;
+			else
+			matr[i][j] = matr[i - 1][j];
+		}
+	}
+
+	for (j = 0; j < m; j++) {
+		cout << "\n";
+		for (i = 0; i < n; i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deplasare repetitiva dreapta <br><br>
+
+
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+#include <Windows.h>
+
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Matrice cu n x m  elemente");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i, j, n, m,k;
+	cout << " \n\  Introduceti valoarea lui n (maxim 10):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 10):";
+	cin >> m;
+	const int nmax = 10;
+	const int mmax = 10;
+	int matr[nmax][mmax], nr;
+	for (j = 0; j < m; j++) {
+		for (i = 0; i < n; i++){
+			matr[i][j] = 10+90 * rand() / RAND_MAX; // pentru a genera numere intre 0-100
+		}
+	}
+
+	System::Console::Clear();
+	for (j = 0; j < m; j++) {
+		cout << "\n";
+		for (i = 0; i < n; i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+	for (k = 0; k < n; k++){
+		for (i = 0; i < n; i++) {
+			for (j = 0; j < m; j++) {
+				if (i == n - 1)
+					matr[i][j] = 0;
+				else
+					matr[i][j] = matr[i + 1][j];
+			}
+		}
+		Sleep(1000);
+		System::Console::Clear();
+		for (j = 0; j < m; j++) {
+			cout << "\n";
+			for (i = 0; i < n; i++){
+				cout << matr[i][j] << " ";
+			}
+		}
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rotire pe aza x <br><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Matrice cu n x m  elemente");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i, j, n, m, temp;
+	cout << " \n\  Introduceti valoarea lui n (maxim 10):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 10):";
+	cin >> m;
+	const int nmax = 10;
+	const int mmax = 10;
+	int matr[nmax][mmax], nr;
+	for (j = 0; j < m; j++) {
+		for (i = 0; i < n; i++){
+			matr[i][j] = 10 + 90 * rand() / RAND_MAX; // pentru a genera numere intre 0-100
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j = 0; j < m; j++) {
+		cout << "\n";
+		for (i = 0; i < n; i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+	cout << "\n\n\  Dupa rotire axa x, matricea este:  \n\n";
+
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < m/2; j++) {
+				temp = matr[i][j];
+				matr[i][j] = matr[i][m-1-j];
+				matr[i][m -1- j] = temp;
+		}
+	}
+
+	for (j = 0; j < m; j++) {
+		cout << "\n";
+		for (i = 0; i < n; i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rotire pe aza x <br><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Matrice cu n x m  elemente");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i, j, n, m, temp;
+	cout << " \n\  Introduceti valoarea lui n (maxim 10):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 10):";
+	cin >> m;
+	const int nmax = 10;
+	const int mmax = 10;
+	int matr[nmax][mmax], nr;
+	for (j = 0; j < m; j++) {
+		for (i = 0; i < n; i++){
+			matr[i][j] = 10 + 90 * rand() / RAND_MAX; // pentru a genera numere intre 0-100
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j = 0; j < m; j++) {
+		cout << "\n";
+		for (i = 0; i < n; i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+	cout << "\n\n\  Dupa rotire axa y, matricea este:  \n\n";
+
+	for (i = 0; i < n/2; i++) {
+		for (j = 0; j < m; j++) {
+				temp = matr[i][j];
+				matr[i][j] = matr[n-1-i][j];
+				matr[n-1-i][j] = temp;
+		}
+	}
+
+	for (j = 0; j < m; j++) {
+		cout << "\n";
+		for (i = 0; i < n; i++){
+			cout << matr[i][j] << " ";
+		}
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br> <li>Vectori in spatiul System
+
+	<li>Folosind un vector in care pastrati diametrele mai multor cercuri ,trasati cercurile, dupa care colorati cu rosu cercul a carui raza este cea mai mare.
+	<br><br><center><img src="im_cpp110.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace raza_max
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Pen creion1, creion2, creion3, creion4;
+        System.Drawing.Graphics desen;
+        System.Random aleat;
+        int nrele, max, pozitie;
+        static int[] vect;
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            creion1 = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            creion2 = new System.Drawing.Pen(System.Drawing.Color.Red);
+            desen = this.CreateGraphics();
+            aleat = new System.Random();
+            nrele = 30;
+            vect = new int[nrele];
+            for (int i = 0; i < nrele; i++)
+            {
+                vect[i] = aleat.Next(this.Height - 50);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            desen.Clear(this.BackColor);
+            for (int i = 0; i < nrele; i++)
+            {
+                vect[i] = aleat.Next(this.Height - 200);
+            }
+            for (int i = 0; i < nrele; i++)
+            {
+                desen.DrawEllipse(creion1, 10 + i * 20, this.Height / 4, vect[i], vect[i]);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            max = 0;
+            for (int i = 0; i < nrele; i++)
+            {
+                if (vect[i] > max)
+                {
+                    max = vect[i];
+                    pozitie = i;
+                }
+            }
+            desen.DrawEllipse(creion2, 10 + pozitie * 20, this.Height / 4, max, max);
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+		<li>Folosind un vector in care pastrati 180 de puncte echidistante pe un cerc realizati aplicatia.
+		<br><br><center><img src="im_cpp158.jpg"></center><br>
+		<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Vectorul de puncte va fi definit sub forma: 
+		<i>Point[] vector_puncte = new Point[180];</i>
+		<br>&nbsp;&nbsp;&nbsp;&nbsp; Punctele se unesc dupa regula ”se uneste punctul nr x cu punctul nr (m * x)%180”, 
+		unde m este un nr intreg intre 1-179 selectat intr-un numeric updown.
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace Motive_cerc_v6
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        Graphics desen;
+        Pen pen = new Pen(Color.Red);
+        Pen circle = new Pen(Color.Blue);
+        Point[] vector_puncte = new Point[180];
+        int Ox = 150; int Oy = 150; int radius = 100; double alfa = 0.00; int multi;
+        Random n;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            n = new Random();
+            desen = this.CreateGraphics();
+            desen.Clear(this.BackColor);
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            multi = (int)(numericUpDown1.Value);
+            pen = new Pen(Color.FromArgb(n.Next(256), n.Next(256), n.Next(256)));
+            desen.Clear(this.BackColor);
+            desen.DrawEllipse(circle, 50, 50, 200, 200);
+            for (int i = 0; i < 180; i++)
+            {
+                vector_puncte[i].X = (int)(Ox + radius * Math.Cos(Math.PI * alfa / 180));
+                vector_puncte[i].Y = (int)(Oy + radius * Math.Sin(Math.PI * alfa / 180));
+                alfa += 2;
+            }
+            alfa = 0;
+            for (int i = 0; i < 180; i++)
+            {
+                desen.DrawLine(pen, vector_puncte[i], vector_puncte[(multi * i) % 180]);
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (numericUpDown1.Value < 180)
+                numericUpDown1.Value++;
+            else
+                numericUpDown1.Value = 1;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.timer1.Enabled = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.timer1.Enabled = false;
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br> <li>Matrici in spatiul System
+	
+
+
+<li>Folosind o matrce in care pastrati diametrele, si poxitiile pe x a mai multor cercuri, trasati cercurile dupa care colorati cu rosu cercul a carui raza este cea mai mare.
+<br><br><center><img src="im_cpp110.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace raza_max_v1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Pen creion1, creion2;
+        System.Drawing.Graphics desen;
+        System.Random aleat;
+        int nrc, max, pozitie;
+        static int[,] cercuri;
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            creion1 = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            creion2 = new System.Drawing.Pen(System.Drawing.Color.Red);
+            desen = this.CreateGraphics();
+            aleat = new System.Random();
+            nrc = 30;
+            cercuri = new int[nrc, 2];
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            max = 0;
+            for (int i = 0; i < nrc; i++)
+            {
+                if (cercuri[i,1] > max)
+                {
+                    max = cercuri[i, 1];
+                    pozitie = cercuri[i,0];
+                }
+            }
+            desen.DrawEllipse(creion2,pozitie, 50, max, max);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < nrc; i++)
+            {
+                cercuri[i, 0] = aleat.Next(this.Width - 10);
+                cercuri[i, 1] = aleat.Next(this.Height / 3);
+            }
+            desen.Clear(this.BackColor);
+            for (int i = 0; i < nrc; i++)
+            {
+                desen.DrawEllipse(creion1, cercuri[i, 0], 50, cercuri[i, 1], cercuri[i, 1]);
+            }
+
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;Simulati caderea picaturilor de ploaie
+. <b><font color="red"> "C#" </font></b>
+<br><br><center><img src="im_cpp111.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace ploaia
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        static int nr_c = 100;
+        static int i = 0;
+        static int j = 0;
+        static int k = nr_c / 2;
+        static System.Drawing.Graphics Desen;
+        static System.Drawing.Pen Creion_rosu;
+        static System.Drawing.Pen Creion_pic;
+        static System.Random n;
+        static int[,] cercuri = new int[nr_c, 3];
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+            Desen = this.CreateGraphics();
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+            Creion_pic = new System.Drawing.Pen(this.BackColor);
+            n = new System.Random();
+            Desen.Clear(this.BackColor);
+            for (i = 0; i < nr_c; i++)
+            {
+                cercuri[i, 0] = n.Next(this.Width);
+                cercuri[i, 1] = n.Next(this.Height);
+                cercuri[i, 2] = 10;
+            }
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+            for (i = 0; i < nr_c; i++)
+            {
+                Desen.DrawEllipse(Creion_pic, cercuri[i, 0], cercuri[i, 1], cercuri[i, 2], cercuri[i, 2]);
+                if (cercuri[i, 1] > this.Height)
+                {
+                    cercuri[i, 0] = n.Next(this.Width);
+                    cercuri[i, 1] = 0;
+                    cercuri[i, 2] = 10;
+                }
+                cercuri[i, 1] = cercuri[i, 1] + 10;
+                Desen.DrawEllipse(Creion_rosu, cercuri[i, 0], cercuri[i, 1], cercuri[i, 2], cercuri[i, 2]);
+
+            }
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;Modificati legea de miscare pentru a simula miscarea browniana a particolelor
+. <b><font color="red"> "C#" </font></b>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace m_brown
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        static int nr_c = 100;
+        static int i = 0;
+        static int j = 0;
+        static int k = nr_c / 2;
+        static System.Drawing.Graphics Desen;
+        static System.Drawing.Pen Creion_rosu;
+        static System.Drawing.Pen Creion_pic;
+        static System.Random n;
+        static int[,] cercuri = new int[nr_c, 3];
+        System.Int32 dir = 1;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Desen = this.CreateGraphics();
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+            Creion_pic = new System.Drawing.Pen(this.BackColor);
+            n = new System.Random();
+            Desen.Clear(this.BackColor);
+            for (i = 0; i < nr_c; i++)
+            {
+                cercuri[i, 0] = n.Next(this.Width);
+                cercuri[i, 1] = n.Next(this.Height);
+                cercuri[i, 2] = 10;
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            for (i = 0; i < nr_c; i++)
+            {
+                Desen.DrawEllipse(Creion_pic, cercuri[i, 0], cercuri[i, 1], cercuri[i, 2], cercuri[i, 2]);
+
+                if (cercuri[i, 1] > this.Height - 60)
+                    cercuri[i, 1] = cercuri[i, 1] - 50;
+                if (cercuri[i, 1] < 10)
+                    cercuri[i, 1] = cercuri[i, 1] + 10;
+
+                if (cercuri[i, 0] > this.Width - 30)
+                    cercuri[i, 0] = cercuri[i, 0] - 20;
+                if (cercuri[i, 0] < 10)
+                    cercuri[i, 0] = cercuri[i, 0] + 10;
+                dir = System.Convert.ToInt32(n.Next(3));
+                if (dir==0)
+                     cercuri[i, 1] = cercuri[i, 1] + 0;
+                if (dir == 1)
+                    cercuri[i, 1] = cercuri[i, 1] + n.Next(10);
+                if (dir == 2)
+                    cercuri[i, 1] = cercuri[i, 1] - n.Next(10);
+                dir = System.Convert.ToInt32(n.Next(3));
+                if (dir == 0)
+                    cercuri[i, 0] = cercuri[i, 0] + 0;
+                if (dir == 1)
+                    cercuri[i, 0] = cercuri[i, 0] + n.Next(10);
+                if (dir == 2)
+                    cercuri[i, 0] = cercuri[i, 0] - n.Next(10);
+                Desen.DrawEllipse(Creion_rosu, cercuri[i, 0], cercuri[i, 1], cercuri[i, 2], cercuri[i, 2]);
+            }
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<li>Simulare grafica metode de ordonare <b><font color="red"> "sort_w" </font></b>
+<br><br><center><img src="im_cpp99.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace sort_w
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        int i = 0,j=0, t=0, pas=7;
+        int nr_z;
+        int poz_x; // pozitia curenta pe axa x
+        float w_r = 1, w_a = 3; // grosimea(in pixeli) a liniei rosii respectiv albastre
+        float[] consum;// vector consumuri zilnice
+        float v_rand,temp; // valoare aleatoare
+        float c_lun; // consum lunar
+        float c_med; // consum lunar mediu
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_albastru;
+        System.Drawing.Pen Creion_rosu;
+        System.Drawing.Pen Creion_pic;
+        System.Random n;
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            Desen = this.CreateGraphics();
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red, w_r);
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue, w_a);
+            Creion_pic = new System.Drawing.Pen(this.BackColor, w_a);
+            n = new System.Random();
+            nr_z = this.Width / pas - 5;
+            poz_x = pas;
+            consum = new float[nr_z];
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Desen.Clear(this.BackColor);
+            Desen.DrawLine(Creion_rosu, 6, 0, 6, this.Height - 40);
+            Desen.DrawLine(Creion_rosu, 6, this.Height - 40, this.Width - 20, this.Height - 40);
+            poz_x = pas;
+            for (i = 0; i < nr_z; i++)
+            {
+                v_rand = n.Next(this.Height - 40);// se genereaza o valoare aleatoare
+                Desen.DrawLine(Creion_albastru, poz_x, this.Height - 40, poz_x, Height - 40 - v_rand);
+                poz_x += pas;
+                consum[i] = v_rand;
+            }
+            c_lun = 0;
+            for (i = 0; i < nr_z; i++)
+            {
+                c_lun = c_lun + consum[i];
+            }
+            //calculez si afisez consumul mediu
+            c_med = c_lun / nr_z;
+            Desen.DrawLine(Creion_rosu, 6, this.Height - 40 - c_med, this.Width - 20, this.Height - 40 - c_med);
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // ordonarea crescatoare a numerelor
+            j = 0;
+            while (j < nr_z-1)
+            {
+                i = 0;
+                while (i < nr_z-1)
+                {
+                    if (consum[i] > consum[i + 1])
+                    {
+                        temp = consum[i];
+                        consum[i] = consum[i + 1];
+                        consum[i + 1] = temp;
+                    }
+                    i++;
+                }
+                j++;
+            }          
+            poz_x = pas;
+            Desen.Clear(this.BackColor);
+            for (i = 0; i < nr_z-1; i++)
+            {            
+                v_rand=consum[i];
+                Desen.DrawLine(Creion_albastru, poz_x, this.Height - 40, poz_x, Height - 40 - v_rand);
+                poz_x += pas;
+                
+            }
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            t++;
+            if (t > nr_z-2)
+                t = 0;
+            if (consum[t] > consum[t + 1])
+            {
+                temp = consum[t];
+                consum[t] = consum[t + 1];
+                consum[t + 1] = temp;
+            }
+            poz_x = pas;
+            for (i = 0; i < nr_z; i++)
+            {
+                v_rand = consum[i];
+                Desen.DrawLine(Creion_pic, poz_x, this.Height - 40-v_rand, poz_x,0);
+                Desen.DrawLine(Creion_albastru, poz_x, this.Height - 40, poz_x, Height - 40 - v_rand);
+                poz_x += pas;
+            }
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<li>Se realizeaza o aplicatie in care se atribuie valori elementelor unui tablou. Se redimensioneaza dupa care se verifica daca s-au mai 
+pastrat valorile atribuite anterior.
+<ol>
+<li>Se realizeaza aplicatia cu baloane de sapun
+<li>Se coloreaza jumatate cu albastru (metoda 1 dublarea instructiunilor, metoda 2 if (i%2))
+<li>Modificarea aplicatiei pentru a reimprospata pozitiile aleatoare pentru a nu se repeta pozitiile ( poz 0 desenez, poz (1/3)*inteerval 
+generez, poz (2/3)*inteerval sterg)
+<li>Se realizeaza aplicatia cu simulare achizitie pe ecran de la mouse
+<li>Trasez o linie orizontala, una verticala, incadrez zona de desen cu un dreptungi.
+<li>Pun diviziuni si valori
+</ol>
+
+&nbsp;&nbsp;&nbsp;&nbsp;Pentru diviziuni pe  axa ox si oy
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+	System::Drawing::Graphics^ Desen;
+	System::Drawing::Pen^ Creion_blu ;
+	System::Drawing::Pen^ Creion_rosu ;
+	
+    Creion_blu=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+    Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	Desen= this->CreateGraphics();
+    Desen->Clear(System::Drawing::Color(this->BackColor));
+    int w=this->Size.Width;
+    int h=this->Size.Height;
+
+    Desen->DrawLine( Creion_rosu,10,50, 10, h);
+    Desen->DrawLine(Creion_rosu,0,h-45, w, h-45);
+    for (int j=10; j < w-30; j+=10)
+    	Desen->DrawLine(Creion_blu,10+j,h-43, 10+j, h-47);
+
+    for (int j=10;j < h-95; j+=10)
+    	Desen->DrawLine(Creion_blu,8,50+j,12,50+j);
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Desenati 10 cercuri la pozitii si de diametre aleatoare. Pozitiile si diametrele vor fi memorate intr-un array
+<br><br><center><img src="im_cpp91.jpg"></center><br>
+
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Oglinditi pe x si pe y imaginea cu cercuri realizata anterior.
+
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+        static int nr_c=10;
+        static int i=0;
+        static int j=0;
+        static int dmax=50; // diametrul maxim al cercurilor
+        static int w; // latimea zonei
+        static int h; // inaltimea zonei
+        static int y1,x1;
+        static System.Drawing.Graphics Desen;
+        static System.Drawing.Pen Creion_rosu ;
+        static System.Random n;
+        static int[,] cercuri = new int[nr_c,3];
+       private void deseneaza(){
+
+           Desen.Clear(this.BackColor);
+           Desen.DrawRectangle(Creion_rosu,0,0,w+dmax,h);
+           for (i=0;i < nr_c;i++){
+               Desen.DrawEllipse(Creion_rosu, cercuri[i, 0] - dmax+cercuri[i, 2] / 2, cercuri[i, 1] - cercuri[i, 2]/2, cercuri[i, 2], cercuri[i, 2]);
+            }
+        }
+       private void Form1_Load(object sender, EventArgs e)
+        {
+            Desen = this.CreateGraphics();
+	        Creion_rosu=new System.Drawing.Pen(System.Drawing.Color.Red);
+	        n = new System.Random();
+	        //Desen.Clear(this.BackColor);
+	        w=this.Width/3+dmax;
+	        h=this.Height/3+dmax;
+	        Desen.DrawRectangle(Creion_rosu,0,0,w+dmax,h+dmax);
+	        for(i=0 ; i < nr_c ; i++){
+		        cercuri[i,0]=n.Next(w);
+		        cercuri[i,1]=n.Next(h);
+		        cercuri[i,2]=n.Next(dmax);
+            }
+	    }
+ 
+        private void button1_Click(object sender, EventArgs e)
+        {
+  
+           deseneaza();
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            for (i = 0; i < nr_c; i++ ){
+                y1 = cercuri[i, 1];
+                if (y1 < h){
+                    cercuri[i, 1] = h / 2 + (h / 2 - y1) ;
+                }
+                else{
+                    cercuri[i, 1] = h / 2 - (h / 2 - y1);
+                }
+            }
+            deseneaza();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            for (i = 0; i < nr_c; i++)
+            {
+                x1 = cercuri[i, 0];
+                if (x1 < w)
+                {
+                    cercuri[i, 0] = w / 2 + (w / 2 - x1);
+                }
+                else
+                {
+                    cercuri[i, 0] = w / 2 - (w / 2 - x1);
+                }
+            }
+            deseneaza();
+        }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Rotiti dreapta imaginea cu cercuri realizata anterior.
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+static int nr_c=10;
+static int i=0;
+static int j=0;
+static int dmax=50; // diametrul maxim al cercurilor
+static int w; // latimea zonei
+static int h; // inaltimea zonei
+static System::Drawing::Graphics^ Desen;
+static System::Drawing::Pen^ Creion_rosu ;
+static System::Random^ n;
+static array < int,2 >^ cercuri = gcnew array < int,2 > (nr_c,3);
+private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
+	Desen = this->CreateGraphics();
+	Creion_rosu=gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	n = gcnew System::Random();
+	//Desen->Clear(System::Drawing::Color(this->BackColor));
+	w=this->Width/2-dmax;
+	h=this->Height/3-dmax;
+	Desen->DrawRectangle(Creion_rosu,0,0,w+dmax,h+dmax);
+	for(i=0 ; i < nr_c ; i++){
+		cercuri[i,0]=n->Next(w);
+		cercuri[i,1]=n->Next(h);
+		cercuri[i,2]=n->Next(dmax);
+	}
+}
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+ Desen->Clear(System::Drawing::Color(this->BackColor));
+ Desen->DrawRectangle(Creion_rosu,0,0,w+dmax,h+dmax);
+ for (i=0;i < nr_c;i++){
+ 	Desen->DrawEllipse( Creion_rosu, cercuri[i,0], cercuri[i,1], cercuri[i,2], cercuri[i,2]);
+ }
+}
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+ Desen->Clear(System::Drawing::Color(this->BackColor));
+ Desen->DrawRectangle(Creion_rosu,0,0,h+dmax,w+dmax);
+ for (i=0;i < nr_c;i++){
+	Desen->DrawEllipse( Creion_rosu, (w*0.72-cercuri[i,1])*0.72, cercuri[i,0], cercuri[i,2], cercuri[i,2]);
+ }
+}
+};
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati o aplicatie care imparte cercul in 12 arce egale, memoreaza pozitia punctelor de pe cerc intr-un array 
+dupa care realizeaza imaginea:
+ <br><br><center><img src="im_cpp100.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace Motive_cerc_v0
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_albastru;
+        System.Drawing.Pen Creion_rosu;
+        int  x0, y0, x, y, xi, yi, d, di, xc, yc, nrp, i,  j;
+        double alfa_g, alfa_r;
+        static int[,] puncte_c;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            x0 = this.Width / 5;
+            y0 = this.Height / 5;
+            d = this.Width / 2;
+            di = d - 20;
+            xc = x0 + d / 2;
+            yc = y0 + d / 2;
+            nrp = 12;
+            puncte_c = new int[nrp, 2];
+            Desen = this.CreateGraphics();
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Desen.Clear(this.BackColor);
+            Desen.DrawEllipse(Creion_albastru, x0, y0, d, d);
+            i = 0;
+            for (alfa_g = 0; alfa_g < 360; alfa_g += 360 / nrp)
+            {
+                alfa_r = 2 * System.Math.PI * alfa_g / 360;// unghiul in radiani
+                x = System.Convert.ToInt16(xc + d / 2 * System.Math.Cos(alfa_r));
+                y = System.Convert.ToInt16(yc - d / 2 * System.Math.Sin(alfa_r));
+                puncte_c[i, 0] = x;
+                puncte_c[i, 1] = y;
+                i++;
+            }
+            
+            for (i = 0; i < nrp; i++)
+            {
+                Desen.DrawEllipse(Creion_rosu, puncte_c[i, 0]-4, puncte_c[i, 1]-4, 8, 8);
+            }
+   
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati o aplicatie care imparte cercul in 12 arce egale, memoreaza pozitia punctelor de pe cerc intr-un array 
+dupa care realizeaza imaginea:
+ <br><br><center><img src="im_cpp92.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace Motive_cerc_v1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_albastru;
+        System.Drawing.Pen Creion_rosu;
+        int x0, y0, x, y, xi, yi, d, di, xc, yc, nrp, i, j;
+        double alfa_g, alfa_r;
+        static int[,] puncte_c;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            x0 = this.Width / 5;
+            y0 = this.Height / 5;
+            d = this.Width / 2;
+            di = d - 20;
+            xc = x0 + d / 2;
+            yc = y0 + d / 2;
+            nrp = 12;
+            puncte_c = new int[nrp, 2];
+            Desen = this.CreateGraphics();
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Desen.Clear(this.BackColor);
+            Desen.DrawEllipse(Creion_albastru, x0, y0, d, d);
+            i = 0;
+            for (alfa_g = 0; alfa_g < 360; alfa_g += 360 / nrp)
+            {
+                alfa_r = 2 * System.Math.PI * alfa_g / 360;// unghiul in radiani
+                x = System.Convert.ToInt16(xc + d / 2 * System.Math.Cos(alfa_r));
+                y = System.Convert.ToInt16(yc - d / 2 * System.Math.Sin(alfa_r));
+                puncte_c[i, 0] = x;
+                puncte_c[i, 1] = y;
+                i++;
+            }
+            i = 0;
+            for (alfa_g=0; alfa_g < 360; alfa_g+=360/nrp){
+                alfa_r=2*System.Math.PI*alfa_g/360;// unghiul in radiani
+                xi = System.Convert.ToInt16(xc + di / 2 * System.Math.Cos(alfa_r));
+                yi = System.Convert.ToInt16(yc-di/2*System.Math.Sin(alfa_r));
+                Desen.DrawLine(Creion_rosu, xi, yi, puncte_c[i, 0], puncte_c[i, 1]);
+                i++;
+              }
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati o aplicatie care imparte cercul in 16 de arce egale. Memoreaza pozitia punctelor de pe cerc intr-un array 
+dupa care traseaza linii rezultand imaginea:
+<br><br><center><img src="im_cpp93.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+System::Drawing::Graphics^ Desen;
+System::Drawing::Pen^ Creion_albastru;
+System::Drawing::Pen^ Creion_rosu;
+System::Drawing::SolidBrush^ Pensula;
+int x,y,x0,y0,xc,yc,x1,y1,x2,y2,i,j,d,di,alfa_g,nrp;
+double alfa_r;
+static array < int,2 >^ puncte_c;
+
+#pragma endregion
+private: System::Void Form1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+	Desen = this->CreateGraphics();
+	Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Creion_rosu =gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	Pensula=gcnew System::Drawing::SolidBrush(this->BackColor);
+	nrp=17;
+	puncte_c = gcnew array < int ,2> (2*nrp,2);
+	x0=this->Width/5;
+	y0=this->Height/5;
+	d=this->Width/2;
+	di=d-10;
+	xc=x0+d/2;
+	yc=y0+d/2;
+	Desen->Clear(this->BackColor);
+	Desen->DrawEllipse(Creion_albastru,x0,y0,d,d);
+	i=0;
+	for (alfa_g=0; alfa_g < 360; alfa_g+=360/nrp){
+		double alfa_r=2*System::Math::PI*alfa_g/360;// unghiul in radiani
+		y1=yc-d/2*System::Math::Sin(alfa_r);
+		x1=xc+d/2*System::Math::Cos(alfa_r);
+		puncte_c[i,0]=x1;
+		puncte_c[i,1]=y1;
+		i++;	
+	}
+		
+	for (i=0;i < nrp; i++){
+  		Desen->DrawLine(Creion_rosu,puncte_c[0,0],puncte_c[0,1],puncte_c[i,0],puncte_c[i,1]);
+	}	
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;  <b><font color="red"> "C#" </font></b>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace Motive_cerc_v2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_albastru;
+        System.Drawing.Pen Creion_rosu;
+        int x0, y0, x, y, d, xc, yc, nrp, i, j;
+        double alfa_g, alfa_r;
+        static int[,] puncte_c;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            x0 = this.Width / 5;
+            y0 = this.Height / 5;
+            d = this.Width / 2;
+            xc = x0 + d / 2;
+            yc = y0 + d / 2;
+            nrp = 12;
+            puncte_c = new int[nrp, 2];
+            Desen = this.CreateGraphics();
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Desen.Clear(this.BackColor);
+            Desen.DrawEllipse(Creion_albastru, x0, y0, d, d);
+            i = 0;
+            for (alfa_g = 0; alfa_g < 360; alfa_g += 360 / nrp)
+            {
+                alfa_r = 2 * System.Math.PI * alfa_g / 360;// unghiul in radiani
+                x = System.Convert.ToInt16(xc + d / 2 * System.Math.Cos(alfa_r));
+                y = System.Convert.ToInt16(yc - d / 2 * System.Math.Sin(alfa_r));
+                puncte_c[i, 0] = x;
+                puncte_c[i, 1] = y;
+                i++;
+            }
+
+            for (i = 0; i < nrp; i++)
+            {
+                Desen.DrawLine(Creion_rosu, puncte_c[0, 0], puncte_c[0, 1], puncte_c[i, 0], puncte_c[i, 1]);
+            }
+ 
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati o aplicatie care imparte cercul in 16 de arce egale. Memoreaza pozitia punctelor de pe cerc intr-un array 
+dupa care traseaza linii rezultand imaginea:
+<br><br><center><img src="im_cpp94.jpg"></center><br><br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+System::Drawing::Graphics^ Desen;
+System::Drawing::Pen^ Creion_albastru;
+System::Drawing::Pen^ Creion_rosu;
+System::Drawing::SolidBrush^ Pensula;
+int x,y,x0,y0,xc,yc,x1,y1,x2,y2,i,j,d,di,alfa_g,nrp;
+double alfa_r;
+static array < int,2 >^ puncte_c;
+
+#pragma endregion
+private: System::Void Form1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+	Desen = this->CreateGraphics();
+	Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Creion_rosu =gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	Pensula=gcnew System::Drawing::SolidBrush(this->BackColor);
+	nrp=17;
+	puncte_c = gcnew array < int ,2> (nrp+1,2);
+	x0=this->Width/5;
+	y0=this->Height/5;
+	d=this->Width/2;
+	di=d-10;
+	xc=x0+d/2;
+	yc=y0+d/2;
+	Desen->Clear(this->BackColor);
+	Desen->DrawEllipse(Creion_albastru,x0,y0,d,d);
+	i=0;
+	for (alfa_g=0; alfa_g < 360; alfa_g+=360/nrp){
+		double alfa_r=2*System::Math::PI*alfa_g/360;// unghiul in radiani
+		y1=yc-d/2*System::Math::Sin(alfa_r);
+		x1=xc+d/2*System::Math::Cos(alfa_r);
+		puncte_c[i,0]=x1;
+		puncte_c[i,1]=y1;
+		i++;	
+	}
+		
+	for (j=0;j < nrp; j++){	
+		for (i=0;i < nrp; i++){
+  			Desen->DrawLine(Creion_rosu,puncte_c[j,0],puncte_c[j,1],puncte_c[i,0],puncte_c[i,1]);
+		}
+	}		
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;  <b><font color="red"> "C#" </font></b>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace Motive_cerc_v3
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_albastru;
+        System.Drawing.Pen Creion_rosu;
+        int x, y, x0, y0, d, xc, yc, nrp, i, j;
+        double alfa_g, alfa_r;
+        static int[,] puncte_c;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            x0 = this.Width / 5;
+            y0 = this.Height / 5;
+            d = this.Width / 2;
+            xc = x0 + d / 2;
+            yc = y0 + d / 2;
+            nrp = 12;
+            puncte_c = new int[nrp, 2];
+            Desen = this.CreateGraphics();
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Desen.Clear(this.BackColor);
+            Desen.DrawEllipse(Creion_albastru, x0, y0, d, d);
+            i = 0;
+            for (alfa_g = 0; alfa_g < 360; alfa_g += 360 / nrp)
+            {
+                alfa_r = 2 * System.Math.PI * alfa_g / 360;// unghiul in radiani
+                x = System.Convert.ToInt16(xc + d / 2 * System.Math.Cos(alfa_r));
+                y = System.Convert.ToInt16(yc - d / 2 * System.Math.Sin(alfa_r));
+                puncte_c[i, 0] = x;
+                puncte_c[i, 1] = y;
+                i++;
+            }
+            for (j = 0; j < nrp; j++)
+            {
+                for (i = 0; i < nrp; i++)
+                {
+                    Desen.DrawLine(Creion_rosu, puncte_c[j, 0], puncte_c[j, 1], puncte_c[i, 0], puncte_c[i, 1]);
+                }
+            }
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Reluati aplicatia anterioara si realizati imaginea:
+<br><br><center><img src="im_cpp95.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+System::Drawing::Graphics^ Desen;
+System::Drawing::Pen^ Creion_albastru;
+System::Drawing::Pen^ Creion_rosu;
+System::Drawing::SolidBrush^ Pensula;
+int x,y,x0,y0,xc,yc,x1,y1,x2,y2,i,j,d,h,di,alfa_g,nrp;
+double alfa_r;
+static array < int,2 >^ puncte_c;
+
+#pragma endregion
+private: System::Void Form1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+	Desen = this->CreateGraphics();
+	Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Creion_rosu =gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	Pensula=gcnew System::Drawing::SolidBrush(this->BackColor);
+	nrp=12;
+	puncte_c = gcnew array < int ,2> (2*nrp,2);
+	x0=this->Width/7;
+	y0=this->Height/7;
+	d=this->Width/2+x0;
+   	h=this->Height/2;
+ 	di=d-10;
+	xc=x0+d/2;
+	yc=y0+d/2;
+	Desen->Clear(this->BackColor);
+	Desen->DrawEllipse(Creion_albastru,x0,yc-h/2,d,h);
+	i=0;
+	for (alfa_g=0; alfa_g < 360; alfa_g+=360/nrp){
+		double alfa_r=2*System::Math::PI*alfa_g/360;// unghiul in radiani
+		y1=yc-h/2*System::Math::Sin(alfa_r);
+		x1=xc+d/2*System::Math::Cos(alfa_r);
+		puncte_c[i,0]=x1;
+		puncte_c[i,1]=y1;
+		i++;	
+	}
+	for (j=0;j < nrp; j++){	
+		for (i=0;i < nrp; i++){
+  			Desen->DrawLine(Creion_rosu,puncte_c[j,0],puncte_c[j,1],puncte_c[i,0],puncte_c[i,1]);
+		}
+	}	
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Adaugati un TrackBar pentru a seta numarul de puncte. La Trackbar se seteaza maxim=24 si minim 0 pentu a nu avea impartire cu 0.
+
+Aplicatia va fi similara cu:
+<br><br><center><img src="im_cpp96.jpg"></center><br>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+System::Drawing::Graphics^ Desen;
+System::Drawing::Pen^ Creion_albastru;
+System::Drawing::Pen^ Creion_rosu;
+System::Drawing::SolidBrush^ Pensula;
+int x,y,x0,y0,xc,yc,x1,y1,x2,y2,i,j,d,di,alfa_g,nrp;
+double alfa_r;
+static array < int,2 >^ puncte_c;
+#pragma endregion
+	private: System::Void Form1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+	Desen = this->CreateGraphics();
+	Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Creion_rosu =gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	Pensula=gcnew System::Drawing::SolidBrush(this->BackColor);
+	puncte_c = gcnew array < int ,2> (24,2);
+}
+
+private: System::Void trackBar1_Scroll(System::Object^  sender, System::EventArgs^  e) {
+	this->label1->Text=System::Convert::ToString(this->trackBar1->Value);
+	nrp=System::Convert::ToInt16(this->trackBar1->Value);
+	x0=this->Width/5;
+	y0=this->Height/5;
+	d=this->Width/2;
+	xc=x0+d/2;
+	yc=y0+d/2;
+	i=0;
+	for (alfa_g=0; alfa_g < 360; alfa_g+=360/nrp){
+		double alfa_r=2*System::Math::PI*alfa_g/360;// unghiul in radiani
+		y1=yc-d/2*System::Math::Sin(alfa_r);
+		x1=xc+d/2*System::Math::Cos(alfa_r);
+		puncte_c[i,0]=x1;
+		puncte_c[i,1]=y1;
+		i++;
+	}
+	Desen->Clear(this->BackColor);
+	Desen->DrawEllipse(Creion_albastru,x0,y0,d,d);
+	Desen->Clear(this->BackColor);
+	for(j=0;j < nrp; j++){
+		for(i=0;i < nrp; i++){
+			x0=puncte_c[j,0];
+			y0=puncte_c[j,1];
+			x1=puncte_c[i,0];
+			y1=puncte_c[i,1];
+			Desen->DrawLine(Creion_rosu,x0,y0,x1,y1);
+		}
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;  <b><font color="red"> "C#" </font></b>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace Motive_cerc_v4
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_albastru;
+        System.Drawing.Pen Creion_rosu;
+        int x, y, x0, y0, d, xc, yc, nrp, i, j;
+        double alfa_g, alfa_r;
+        static int[,] puncte_c;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            x0 = this.Width / 5;
+            y0 = this.Height / 7;
+            d = this.Width / 2;
+            xc = x0 + d / 2;
+            yc = y0 + d / 2;
+            nrp = 12;
+            puncte_c = new int[nrp, 2];
+            Desen = this.CreateGraphics();
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Desen.Clear(this.BackColor);
+            Desen.DrawEllipse(Creion_albastru, x0, y0, d, d);
+            i = 0;
+            for (alfa_g = 0; alfa_g < 360; alfa_g += 360 / nrp)
+            {
+                alfa_r = 2 * System.Math.PI * alfa_g / 360;// unghiul in radiani
+                x = System.Convert.ToInt16(xc + d / 2 * System.Math.Cos(alfa_r));
+                y = System.Convert.ToInt16(yc - d / 2 * System.Math.Sin(alfa_r));
+                puncte_c[i, 0] = x;
+                puncte_c[i, 1] = y;
+                i++;
+            }
+            for (j = 0; j < nrp; j++)
+            {
+                for (i = 0; i < nrp; i++)
+                {
+                    Desen.DrawLine(Creion_rosu, puncte_c[j, 0], puncte_c[j, 1], puncte_c[i, 0], puncte_c[i, 1]);
+                }
+            }
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+                        nrp = this.trackBar1.Value;
+            puncte_c = new int[nrp+1, 2];
+            //Array.Resize(ref puncte_c, (nrp + 1),2);
+            Desen.Clear(this.BackColor);
+            Desen.DrawEllipse(Creion_albastru, x0, y0, d, d);
+            i = 0;
+            for (alfa_g = 0; alfa_g < 360; alfa_g += 360 / nrp)
+            {
+                alfa_r = 2 * System.Math.PI * alfa_g / 360;// unghiul in radiani
+                x = System.Convert.ToInt16(xc + d / 2 * System.Math.Cos(alfa_r));
+                y = System.Convert.ToInt16(yc - d / 2 * System.Math.Sin(alfa_r));
+                puncte_c[i, 0] = x;
+                puncte_c[i, 1] = y;
+                i++;
+            }
+            for (j = 0; j < nrp; j++)
+            {
+                for (i = 0; i < nrp; i++)
+                {
+                    Desen.DrawLine(Creion_rosu, puncte_c[j, 0], puncte_c[j, 1], puncte_c[i, 0], puncte_c[i, 1]);
+                }
+            }
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Reluati aplicatia si desenati o elipsa. 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+System::Drawing::Graphics^ Desen;
+System::Drawing::Pen^ Creion_albastru;
+System::Drawing::Pen^ Creion_rosu;
+System::Drawing::SolidBrush^ Pensula;
+int x,y,x0,y0,xc,yc,x1,y1,x2,y2,i,j,d,h,alfa_g,nrp;
+double alfa_r;
+static array < int,2 >^ puncte_c;
+#pragma endregion
+	private: System::Void Form1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+	Desen = this->CreateGraphics();
+	Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+	Creion_rosu =gcnew System::Drawing::Pen(System::Drawing::Color::Red);
+	Pensula=gcnew System::Drawing::SolidBrush(this->BackColor);
+	puncte_c = gcnew array < int ,2> (24,2);
+}
+
+private: System::Void trackBar1_Scroll(System::Object^  sender, System::EventArgs^  e) {
+	this->label1->Text=System::Convert::ToString(this->trackBar1->Value);
+	nrp=System::Convert::ToInt16(this->trackBar1->Value);
+	x0=this->Width/5;
+	y0=this->Height/16;
+	d=this->Width/2;
+   	h=this->Height/2;
+	xc=x0+d/2;
+	yc=y0+d/2;
+	i=0;
+	for (alfa_g=0; alfa_g < 360; alfa_g+=360/nrp){
+		double alfa_r=2*System::Math::PI*alfa_g/360;// unghiul in radiani
+		y1=yc-h/2*System::Math::Sin(alfa_r);
+		x1=xc+d/2*System::Math::Cos(alfa_r);
+		puncte_c[i,0]=x1;
+		puncte_c[i,1]=y1;
+		i++;
+	}
+	Desen->Clear(this->BackColor);
+	Desen->DrawEllipse(Creion_albastru,x0,y0,d,d);
+	Desen->Clear(this->BackColor);
+	for(j=0;j < nrp; j++){
+		for(i=0;i < nrp; i++){
+			x0=puncte_c[j,0];
+			y0=puncte_c[j,1];
+			x1=puncte_c[i,0];
+			y1=puncte_c[i,1];
+			Desen->DrawLine(Creion_rosu,x0,y0,x1,y1);
+		}
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;  <b><font color="red"> "C#" </font></b>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace Motive_cerc_v5
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_albastru;
+        System.Drawing.Pen Creion_rosu;
+        int x, y, x0, y0, d, h, xc, yc, nrp, i, j;
+        double alfa_g, alfa_r;
+        static int[,] puncte_c;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            x0 = this.Width / 5;
+            y0 = this.Height / 7;
+            d = this.Width / 2;
+            h = this.Height / 2;
+            xc = x0 + d / 2;
+            yc = y0 + h / 2;
+            nrp = 12;
+            puncte_c = new int[nrp, 2];
+            Desen = this.CreateGraphics();
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Desen.Clear(this.BackColor);
+            Desen.DrawEllipse(Creion_albastru, x0, y0, d, h);
+            i = 0;
+            for (alfa_g = 0; alfa_g < 360; alfa_g += 360 / nrp)
+            {
+                alfa_r = 2 * System.Math.PI * alfa_g / 360;// unghiul in radiani
+                x = System.Convert.ToInt16(xc + d / 2 * System.Math.Cos(alfa_r));
+                y = System.Convert.ToInt16(yc - h/ 2 * System.Math.Sin(alfa_r));
+                puncte_c[i, 0] = x;
+                puncte_c[i, 1] = y;
+                i++;
+            }
+            for (j = 0; j < nrp; j++)
+            {
+                for (i = 0; i < nrp; i++)
+                {
+                    Desen.DrawLine(Creion_rosu, puncte_c[j, 0], puncte_c[j, 1], puncte_c[i, 0], puncte_c[i, 1]);
+                }
+            }
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            nrp = this.trackBar1.Value;
+            puncte_c = new int[nrp + 1, 2];
+            Desen.Clear(this.BackColor);
+            Desen.DrawEllipse(Creion_albastru, x0, y0, d, h);
+            i = 0;
+            for (alfa_g = 0; alfa_g < 360; alfa_g += 360 / nrp)
+            {
+                alfa_r = 2 * System.Math.PI * alfa_g / 360;// unghiul in radiani
+                x = System.Convert.ToInt16(xc + d / 2 * System.Math.Cos(alfa_r));
+                y = System.Convert.ToInt16(yc - h/ 2 * System.Math.Sin(alfa_r));
+                puncte_c[i, 0] = x;
+                puncte_c[i, 1] = y;
+                i++;
+            }
+            for (j = 0; j < nrp; j++)
+            {
+                for (i = 0; i < nrp; i++)
+                {
+                    Desen.DrawLine(Creion_rosu, puncte_c[j, 0], puncte_c[j, 1], puncte_c[i, 0], puncte_c[i, 1]);
+                }
+            }
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;Redimensionare tablou unidimensional <b><font color="red"> "C++" </font></b>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace redim_v
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_albastru;
+        System.Drawing.Pen Creion_rosu;
+        System.Drawing.SolidBrush Pensula;
+        static int x0, y0, xc, yc, xi, yi, i, j, d, h, alfa_g, nrp;
+        //static int[,] puncte_c ;
+        static int[] coord_x;
+        static int[] coord_y;
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Desen = this.CreateGraphics();
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+            Pensula = new System.Drawing.SolidBrush(this.BackColor);
+            //puncte_c = new int[25, 2];
+            coord_x = new int[0];
+            coord_y = new int[0];
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            nrp = System.Convert.ToInt16(this.trackBar1.Value);
+            Array.Resize(ref coord_x, nrp + 1);
+            Array.Resize(ref coord_y, nrp + 1);
+            x0 = this.Width / 5;
+            y0 = this.Height / 16;
+            d = this.Width / 2;
+            h = this.Height / 2;
+            xc = x0 + d / 2;
+            yc = y0 + d / 2;
+            i = 0;
+            for (alfa_g = 0; alfa_g < 360; alfa_g += 360 / nrp)
+            {
+                double alfa_r = 2 * System.Math.PI * alfa_g / 360;// unghiul in radiani
+                yi = System.Convert.ToInt16(yc - h / 2 * System.Math.Sin(alfa_r));
+                xi = System.Convert.ToInt16(xc + d / 2 * System.Math.Cos(alfa_r));
+                coord_x[i] = xi;
+                coord_y[i] = yi;
+                //puncte_c[i, 0] = xi;
+                //puncte_c[i,1]=yi;
+                i++;
+            }
+            Desen.Clear(this.BackColor);
+            Desen.DrawEllipse(Creion_albastru, x0, y0, d, h);
+            Desen.Clear(this.BackColor);
+            for (j = 0; j < nrp; j++)
+            {
+                for (i = j; i < nrp; i++)
+                {
+                    x0 = coord_x[j];
+                    y0 = coord_y[j];
+                    xi = coord_x[i];
+                    yi = coord_y[i];
+                    Desen.DrawLine(Creion_rosu, x0, y0, xi, yi);
+                }
+            }
+
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;Redimensionare tablou unidimensional <b><font color="red"> "C#" </font></b>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace redim_v
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_albastru;
+        System.Drawing.Pen Creion_rosu;
+        System.Drawing.SolidBrush Pensula;
+        static int x0, y0, xc, yc, xi, yi, i, j, d, h, alfa_g, nrp;
+        //static int[,] puncte_c ;
+        static int[] coord_x;
+        static int[] coord_y;
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Desen = this.CreateGraphics();
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+            Pensula = new System.Drawing.SolidBrush(this.BackColor);
+            //puncte_c = new int[25, 2];
+            coord_x = new int[0];
+            coord_y = new int[0];
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            nrp = System.Convert.ToInt16(this.trackBar1.Value);
+            Array.Resize(ref coord_x, nrp + 1);
+            Array.Resize(ref coord_y, nrp + 1);
+            x0 = this.Width / 5;
+            y0 = this.Height / 16;
+            d = this.Width / 2;
+            h = this.Height / 2;
+            xc = x0 + d / 2;
+            yc = y0 + d / 2;
+            i = 0;
+            for (alfa_g = 0; alfa_g < 360; alfa_g += 360 / nrp)
+            {
+                double alfa_r = 2 * System.Math.PI * alfa_g / 360;// unghiul in radiani
+                yi = System.Convert.ToInt16(yc - h / 2 * System.Math.Sin(alfa_r));
+                xi = System.Convert.ToInt16(xc + d / 2 * System.Math.Cos(alfa_r));
+                coord_x[i] = xi;
+                coord_y[i] = yi;
+                //puncte_c[i, 0] = xi;
+                //puncte_c[i,1]=yi;
+                i++;
+            }
+            Desen.Clear(this.BackColor);
+            Desen.DrawEllipse(Creion_albastru, x0, y0, d, h);
+            Desen.Clear(this.BackColor);
+            for (j = 0; j < nrp; j++)
+            {
+                for (i = j; i < nrp; i++)
+                {
+                    x0 = coord_x[j];
+                    y0 = coord_y[j];
+                    xi = coord_x[i];
+                    yi = coord_y[i];
+                    Desen.DrawLine(Creion_rosu, x0, y0, xi, yi);
+                }
+            }
+
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;Realizati o aplicatie grafica pentru afisarea  grafica a evolutiei in timp a unei valori de forma :
+<br><br><center><img src="im_cpp29.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace achiz_v0
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        static int nr = 1;
+        static int j=0,i = 0;
+        static int scr_h ;
+        static int val;
+        static double scala;
+        static int y, y_v;
+        static int[] date_ac;
+        static System.Drawing.Graphics Desen;
+        static System.Drawing.Pen Creion_blu;
+        static System.Drawing.Pen Creion_pic;
+        static System.Drawing.Bitmap img ;
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            nr = this.Size.Width - 70;
+            scr_h = this.Height;
+            i = 0;
+            date_ac = new int[nr];
+            Desen = this.CreateGraphics();
+            img = new Bitmap(nr + 2, scr_h-50 + 2, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Creion_blu = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Creion_pic = new System.Drawing.Pen(this.BackColor);
+            Desen.Clear(this.BackColor);
+            //scala = System.Convert.ToDouble(this.Size.Height - 70) / Screen.PrimaryScreen.Bounds.Height;
+            scala = System.Convert.ToDouble(this.Size.Height - 70) / this.trackBar1.Maximum;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //val = scr_h - Control.MousePosition.Y;
+            val = this.trackBar1.Value;
+            // afisare inversa
+            
+            // for (i = nr - 1; i >= 1; i--){
+            //    date_ac[i] = date_ac[i - 1];
+            //}
+            //date_ac[0] = val;
+
+            // afisare directa
+
+            for (i = 0; i < nr-1; i++)
+            {
+                date_ac[i] = date_ac[i + 1];
+            }
+            date_ac[nr-1] = val;
+
+            // afisare grafic
+            
+            Desen.DrawLine(Creion_pic, 50, 0, 50, this.Height);
+            y_v = System.Convert.ToInt16(this.Size.Height - 55 - scala * date_ac[0]);
+            for (i = 1; i < nr-1; i++)
+            {
+                y = System.Convert.ToInt16(this.Size.Height - 55 - scala * date_ac[i]);
+                Desen.DrawLine(Creion_pic, i+50,0, i + 50, this.Height);
+                Desen.DrawLine(Creion_blu, i + 49, y_v, i+50, y);
+                y_v = y;
+            }
+           
+
+            // utilizarea unui obiect imagine
+            /*
+            for (i = 1; i < nr-1; i++)
+            {
+                // stergere img veche
+                for (j=1;j<scr_h-50;j++){
+                     img.SetPixel(i, j, this.BackColor); 
+                }
+                y = System.Convert.ToInt16(this.Size.Height-70- scala * date_ac[i]);
+                img.SetPixel(i, y, System.Drawing.Color.Blue);
+            }
+            Desen.DrawImage(img,45,18);  
+            */
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br><br>&nbsp;Simulare formare imagine pe ecran <b><font color="red"> "C#" </font></b>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace imag_01
+{
+    public partial class Form1 : Form
+    {
+        int [,] imag;
+        int x, y; // pozitia pe x respectiv pe y
+        const int nr_lin=7, nr_col=11; // numarul de linii respectiv coloane
+        int w, h ; // h, w dimensiunile unui dreptunghi
+        System.Drawing.Graphics Desen;
+        System.Drawing.SolidBrush Pensula, Pensula_pic;
+        System.Drawing.Pen Creion_blu;
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Desen = this.CreateGraphics();
+            Pensula = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
+            Pensula_pic = new System.Drawing.SolidBrush(this.BackColor);
+            Creion_blu = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Desen.Clear(this.BackColor);
+            w = this.Size.Width / 62;
+            h = this.Size.Height / 20;
+            imag = new int[nr_lin, nr_col] {
+ 
+         { 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0 }, 
+            { 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0 }, 
+            { 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 }, 
+            { 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 }, 
+            { 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0 }
+            };
+  /*
+            { 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0 },
+            { 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0 }, 
+            { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 }, 
+            { 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 }, 
+            { 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 }, 
+            { 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0 }
+            };
+ */
+        }
+
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            {
+                y = y + 1;
+                if (y > nr_lin)
+                {
+                    y = 1;
+                    //Desen.FillRectangle(Pensula_pic, 3 * w, (this.Size.Height / 3) + h, nr_col * w + 2 * w, nr_lin * h);
+
+                }
+                Desen.FillRectangle(Pensula_pic, 3 * w, (this.Size.Height / 3) + h, nr_col * w + 2 * w, nr_lin * h);
+                Desen.DrawRectangle(Creion_blu, 2 * w, this.Size.Height / 3, (nr_col + 3) * w, (nr_lin + 3) * h);
+
+                for (x = 1; x < nr_col; x += 1)
+                {
+                    //if ((x + y) % 2 == 1)
+                    if(imag[y-1,x-1]==1)
+                    {
+                        Desen.FillRectangle(Pensula, 3 * w + x * w, (this.Size.Height / 3) + y * h, w, h);
+                    }
+
+                }
+            }
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            this.timer1.Interval = this.trackBar1.Value;
+            this.label1.Text = this.trackBar1.Value.ToString();
+
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;  <b><font color="red"> "C#" </font></b>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+</body>
+</html>

@@ -1,0 +1,951 @@
+<html>
+<title> Laborator diverse </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator diverse </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font>
+<li>Functii
+<ol>
+<li> Durata de viata a variabilelor
+<li> Paralelism cu reincarnarea 
+<li> 
+<li> 
+<li> 
+</ol>
+
+<li>Sirul lui fiobonaci
+<ol>
+<li> Realizat cu functii
+<li> Functii recursive
+<li> Discutii - Raportul de aur
+</ol>
+
+
+<li>Intrari iesiri
+<ol>
+<li> utilizare printf si scanf
+<li> 
+<li> 
+</ol>
+
+<li>Aplicatii smartphone :
+<ol>
+<li> -Game 
+<li> 
+<li> 
+<li> 
+<li> 
+</ol>
+
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Utilizare printf si scanf.</b>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < stdio.h >
+
+void main(){ 
+int a[100][100];
+int n,m,i,j,suma=0,produs=1;
+  printf("Introduceti nr de linii: ");
+  scanf("%d",&n);
+  printf("Introduceti nr de coloane: ");
+  scanf("%d",&m);
+  if(n > 100){
+   printf("Numarul introdus este prea mare\n"); 
+   return;}
+  else if(m > 100){
+   printf("Numarul introdus este prea mare\n");
+   return;}
+for(i=0;i < n;i++){
+	for(j=0;j < m;j++){
+		printf("a[%d][%d]= ",i,j);
+		scanf("%d",& a[i][j]);
+		suma+=a[i][j];
+		}
+	printf("Suma elementelor de pe aceasta linie este %d\n",suma);
+	suma=0;
+	}
+for(i=0;i < n;i++){
+	for(j=0;j < m;j++)
+		printf("%3d",a[i][j]);
+	    printf("\n");
+		}
+for (i=0;i < n;i++)
+	for (j=0;j < m;j++)
+		produs*=a[i][j];
+printf("Produsul coloanelor este %d\n", produs);
+ }
+
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>
+<li>Utilizare ODBC
+<ol>
+<li>
+<li>
+<li>
+<li>
+<li>
+<li>
+</ol>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// odbc.cpp : main project file.
+
+#include "stdafx.h"
+#include <stdlib.h>
+#include <iostream>
+
+using namespace std;
+using namespace System;
+using namespace System::Data;
+using namespace System::Data::Odbc;
+
+int main(void)
+{
+		String^ myConnString = "driver={MySQL ODBC 5.1 Driver};server=193.226.19.29;database=cons_el;uid=student;pwd=psw;";
+        
+        String^ mySelectQuery = "SELECT ap_id, den_ap FROM ap_electr";
+        OdbcConnection^ myConnection = gcnew OdbcConnection(myConnString);
+        OdbcCommand^ myCommand = gcnew OdbcCommand(mySelectQuery, myConnection);
+        myConnection->Open();
+        OdbcDataReader^ myReader;
+        myReader = myCommand->ExecuteReader();
+        // Always call Read before accessing data.
+        while (myReader->Read()) {
+            Console::WriteLine("{0}, {1}", myReader->GetInt32(0), myReader->GetString(1));
+        }
+        // always call Close when done reading.
+        myReader->Close();
+        // Close the connection when done with it.
+        myConnection->Close();
+
+Console::ReadLine();
+
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatie smartphone-game-main
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "s3e.h"
+#include "IwDebug.h"
+#include "Iw2DSceneGraph.h"
+#include "IwGx.h"
+#include "resources.h"
+#include "input.h"
+#include "main.h"
+#include "mainMenu.h"
+#include "singleplayerMenu.h"
+#include "scene.h"
+#include "game.h"
+#include "optionsmenu.h"
+#include "multiplayermenu.h"
+
+using namespace IwTween;
+
+#define FRAME_TIME  (30.0f / 1000.0f)
+// Scene root node
+CNode* g_SceneRoot = NULL;
+
+CTweenManager*  g_pTweener = 0;
+
+// Main entry point for the application
+int main()
+{
+    //Initialise graphics system(s)
+    Iw2DInit();
+
+    // Create root node
+    g_SceneRoot = new CNode();
+    // Create resource node
+	g_pResources = new Resources();
+    // Create input node
+	g_pInput = new Input();
+	// Create tween manager
+	g_pTweener = new CTweenManager();
+	// Create scene manager
+	g_pSceneManager = new SceneManager();
+	
+	// Init the singleplayer menu
+	
+	singleplayerMenu* singleplayer_menu = new singleplayerMenu();
+    singleplayer_menu->SetName("singleplayer_menu");
+    g_pSceneManager->Add(singleplayer_menu);
+	singleplayer_menu->Init();
+
+	// Init the multiplayer menu
+    multiplayerMenu* multiplayer_menu = new multiplayerMenu();
+    multiplayer_menu->SetName("multiplayer_menu");
+    g_pSceneManager->Add(multiplayer_menu);
+	multiplayer_menu->Init();
+
+	// Init the options menu
+    optionsMenu* options_menu = new optionsMenu();
+    options_menu->SetName("options_menu");
+    g_pSceneManager->Add(options_menu);
+	options_menu->Init();
+	
+	// Init the main menu
+    MainMenu* main_menu = new MainMenu();
+    main_menu->SetName("main_menu");
+    g_pSceneManager->Add(main_menu);
+	main_menu->Init();
+
+	// Switch to main menu scene
+	g_pSceneManager->SwitchTo(main_menu);
+
+    // Loop forever, until the user or the OS performs some action to quit the app
+    while (!s3eDeviceCheckQuitRequest())
+    {
+        uint64 new_time = s3eTimerGetMs();
+		
+		// Update input system
+		s3eKeyboardUpdate();
+        g_pInput->Update();
+		s3ePointerUpdate();
+		// Update global tween manager
+        g_pTweener->Update(FRAME_TIME);
+
+        // Update scene manager
+        g_pSceneManager->Update(FRAME_TIME);
+
+        // Clear the drawing surface
+        Iw2DSurfaceClear(0xff000000);
+
+        // Render scene manager
+        g_pSceneManager->Render();
+
+        // Show the drawing surface
+        Iw2DSurfaceShow();
+
+       // Lock frame rate
+        int yield = (int)(FRAME_TIME * 1000 - (s3eTimerGetMs() - new_time));
+        if (yield < 0)
+            yield = 0;
+        // Yield to OS
+        s3eDeviceYield(yield);
+    }
+
+    //Terminate modules being used
+    delete g_SceneRoot;
+	delete g_pResources;
+    delete g_pInput;
+    delete g_pSceneManager;
+    delete g_pTweener;
+	Iw2DTerminate();
+    
+    // Return
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatie smartphone-game 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "Iw2D.h"
+#include "IwGx.h"
+#include "IwTween.h"
+#include "input.h"
+#include "scene.h"
+#include "game.h"
+#include "mainMenu.h"
+#include "main.h"
+#include "configs.h"
+#include "resources.h"
+#include "grid.h"
+#include "tile.h"
+#include "singleplayerMenu.h"
+
+Configs Configs;
+
+Game::~Game()
+{
+	if(killed==false)
+	delete grid;
+}
+
+void Game::showInfoPanel()
+{
+	char scorelabel[16];
+    snprintf(scorelabel, 16, "%d", score);
+	finalScoreLabel->m_Text = scorelabel;
+	infoPanel->m_IsVisible = true;
+	finalScoreLabel->m_IsVisible = true;
+
+
+}
+
+void Game::endofRound()
+{
+	if(gameState != gameend)
+gameState = gameend;
+showInfoPanel();
+
+}
+
+int Game::TimeDistribution(GameType gametype)
+{
+	if (gametype == classic)
+		return 60;
+	else if (gametype == expert)
+		return 60;
+	else if (gametype == time_attack)
+		return 60;
+	else if (gametype == score_attack)
+		return 30;
+	else if (gametype == casual || gametype == letters)
+		return -299;
+}
+
+void Game::CheckTopLineFull()
+{
+	if(grid->CheckOvershot() == 8)
+		roundtimer = -1;
+}
+
+void Game::ScoreUpdate()
+{
+    char str[16];
+    snprintf(str, 16, "%d", score);
+	scoreLabel->m_Text = str;
+
+}
+
+void Game::NullTile(Tile* tile)
+{
+	grid->NullTile(tile);
+}
+
+void Game::resetoldXYinput()
+{
+	oldXinput = -298;//out of range,298 for debugging convenience,reinitialise
+	oldYinput = -298;//out of range,298 for debugging convenience,reinitialise
+}
+
+void Game::resetInput(int grid_x,int grid_y)
+{
+grid_x=-299;//out of range,299 for debugging convenience,reinitialise
+grid_y=-299;//out of range,299 for debugging convenience,reinitialise
+}
+
+void Game::removeSelectors()
+{
+	int counter = 0;
+	do
+	{
+		selector[counter]->m_IsVisible = false;
+		selector[counter]->m_Y=-250;
+		counter++;
+	}while(counter != 100);
+}
+
+void Game::putSelectors(int gridTouchesX[],int gridTouchesY[])
+{
+	int counter = 0;
+	do
+	{
+		
+	if(gridTouchesX[counter] > -1 && gridTouchesY[counter] > -1)
+	{
+		int x = gridTouchesX[counter];
+		int y = gridTouchesY[counter];
+
+	selector[counter]->m_X = grid->Tiles[y*8+x]->m_X;
+	selector[counter]->m_Y = grid->Tiles[y*8+x]->m_Y;
+	selector[counter]->m_IsVisible = true;
+	}
+	counter++;
+	}while(counter != 100);
+
+}
+
+void Game::changeGameState(eGameState game_state)
+{
+	
+	 gameState = game_state;
+
+
+}
+
+void Game::reinitialiseXYmem(int gridTouchesX[],int gridTouchesY[])
+{
+	int counter = 0;
+  do
+	{
+		gridTouchesX[counter]=-299;//out of range,299 for debugging convenience,reinitialise
+		gridTouchesY[counter]=-299;//out of range,299 for debugging convenience,reinitialise
+	counter++;
+	}while(counter != 100);
+	removeSelectors();
+	resetoldXYinput();
+}
+
+bool Game::checkprevioustouch(int gridTouchesX[],int gridTouchesY[],int grid_x,int grid_y)
+{
+	int counter=0;
+	do
+	{
+		if(gridTouchesX[counter]==grid_x && gridTouchesY[counter]==grid_y)//is not rendered useless
+		{
+		return false;
+		}
+		else if((grid_x > 8 || grid_y > 11) || (grid_x < 0 || grid_y < 0))//touch out of game board
+		{
+			return false;
+		}
+		else if(gameState==firstTile && grid->Tiles[grid_x+grid_y*8]->m_IsVisible == false)
+		{
+			return false;
+		}
+		else if(grid->Tiles[grid_x+grid_y*8]->m_IsVisible == false)
+		{
+			return false;
+		}
+		else if( gridTouchesX[counter] <= 8 && gridTouchesX[counter] >= 0  && gridTouchesY[counter] <= 12 && gridTouchesY[counter] >= 0)
+		{
+             if(grid->Tiles[gridTouchesX[counter]+gridTouchesY[counter]*8]->m_IsVisible == false)
+		      {
+              return false;
+		      }
+		}
+		counter++;
+	}while(counter != 100);
+	return true;
+}
+
+
+
+void Game::Render()
+{
+	if(m_IsInputActive)
+    Scene::Render();
+}
+
+void Game::NewGame(GameType gametype)
+{
+game_type = gametype;
+Init();
+}
+
+int Game::GetTargetScore(int stage)
+{
+	int score=0;
+	if(stage == 0)
+		score = 50;
+	else if(stage == 1)
+		score = 200;
+	else if(stage == 2)
+		score = 500;
+	else
+		score = 2000;
+	return score;
+}
+
+void Game::Init()
+{
+Scene::Init();
+ m_Tweener.Clear();
+ m_Timers.Clear();
+initUI();
+killed = false;
+tap = false;
+score = 0;
+if(game_type == score_attack)
+{
+stage=0;
+TargetScore = GetTargetScore(0);
+ChangeTargetScoreLabel(TargetScore);
+}
+roundtimer = TimeDistribution(game_type);
+lastTime = roundtimer;
+grid = new Grid(this,12,8,RandomGrid(game_type));
+initSelectors();
+InitInfoPanel();
+if(game_type != casual && game_type != letters)
+	grid->HalfenGrid();
+changeGameState(firstTile);
+}
+
+void Game::ScoreChange(bool ceiling,int touches[])
+{
+	int counter = 0;
+	if(ceiling == false)
+	{
+      do{
+		if(touches[counter]>-1)
+			roundtimer++;
+		counter++;
+		}while(counter != 95);
+	}
+	else if(ceiling == true && lastTime - roundtimer > 1)
+	{
+		score = score - (10 * grid->CheckOvershot());
+		lastTime = roundtimer;
+	}
+	ScoreUpdate();
+}
+
+bool Game::RandomGrid(GameType game_type)
+{
+	if(game_type == expert)
+		return true;
+	else
+		return false;
+
+}
+
+void Game::UpdateDisplayWithin(float deltaTime,float alphaMul)
+{
+		   
+			Iw2DSurfaceClear(0xff000000);
+            g_pSceneManager->Render();
+			Iw2DSurfaceShow();
+			s3eDeviceYield(0);
+			Scene::Update(deltaTime, alphaMul);
+}
+
+void Game::initSelectors()
+{
+ //init selector
+	 int counter = 0;
+	 do
+	 {
+	 selector[counter] = new CSprite();
+	 selector[counter]->m_X = -250;
+     selector[counter]->m_Y = -250;
+     selector[counter]->SetImage(g_pResources->getSelector());
+	 selector[counter]->m_IsVisible = false;
+	 selector[counter]->m_ScaleX=grid->getTileScale();
+     selector[counter]->m_ScaleY=grid->getTileScale();
+	 AddChild(selector[counter]);
+	     /*g_pTweener->Tween(1.0f,
+                    MIRROR,
+                    FLOAT, &selector[counter]->m_Alpha, 0.3f,
+                    EASING, Ease::sineInOut,
+                    END); 
+					//glow tween */
+	 counter++;
+	 }while(counter != 100);
+}
+
+void Game::ChangeTargetScoreLabel(int target)
+{
+	char str[32];
+            snprintf(str, 32, "%d", (int)target);
+            targetScoreLabel->m_Text = str;
+}
+
+void Game::EndSequence()
+{
+	if(grid->getWord(gridTouchesX,gridTouchesY)>0 )//get the score;if score=0->do nothing,else change score
+				{
+					
+					score=score+grid->getWord(gridTouchesX,gridTouchesY);//update score
+					putSelectors(gridTouchesX,gridTouchesY);
+					grid->RemoveTile(this,gridTouchesX,gridTouchesY);
+					ScoreUpdate();
+                    if(game_type != casual && game_type != letters)//if classic,lift grid after valid word
+				        {
+							m_Timers.Add(new Timer(0.3f*grid->maxTilesFall, 1, &Game::Lift, (void*)this));
+				 	        
+
+					   }
+					if(game_type == time_attack)
+					{
+		            ScoreChange(false,gridTouchesX);
+					}
+				
+				reinitialiseXYmem( gridTouchesX, gridTouchesY);
+				changeGameState(animating);
+				tap = false;
+		}	
+	else 
+	{
+	reinitialiseXYmem( gridTouchesX, gridTouchesY);
+    changeGameState(firstTile);
+    tap = false;
+	}
+}
+
+void Game::FirstMoveorSwipe(float deltaTime, float alphaMul)
+{
+	    state = s3ePointerGetState(S3E_POINTER_BUTTON_SELECT);
+		reinitialiseXYmem(gridTouchesX, gridTouchesY);
+		if(gameState == firstTile){
+		int grid_x, grid_y;
+		counter = 0;
+		grid->screenToGridSwipe(s3ePointerGetX(), s3ePointerGetY(), grid_x, grid_y);
+		if(grid_x+grid_y*8 > -1 && grid_x+grid_y*8 <=95){
+		if(grid_x < 8 && grid_y < 12 && grid->Tiles[grid_x+grid_y*8]->m_IsVisible != false){
+		gridTouchesX[counter] = grid_x;
+	    gridTouchesY[counter] = grid_y;
+		oldYinput = grid_y;
+		oldXinput = grid_x;
+		putSelectors(gridTouchesX,gridTouchesY);
+		gameState = nonfirstTile;
+		do{
+			g_pInput->Reset();
+			grid->screenToGridSwipe(s3ePointerGetX(), s3ePointerGetY(), grid_x, grid_y);
+			s3ePointerUpdate();
+			state = s3ePointerGetState(S3E_POINTER_BUTTON_SELECT);
+            UpdateDisplayWithin(deltaTime, alphaMul);
+			if(checkprevioustouch(gridTouchesX, gridTouchesY, grid_x, grid_y)&&(oldXinput-grid_x >= -1 &&oldXinput-grid_x <= 1)&&(oldYinput-grid_y >= -1 &&oldYinput-grid_y <= 1))
+			{
+			oldXinput=grid_x;
+			oldYinput=grid_y;
+			counter++;
+			gridTouchesX[counter] = grid_x;
+	        gridTouchesY[counter] = grid_y;
+			putSelectors(gridTouchesX,gridTouchesY);
+			}
+		}while(state == S3E_POINTER_STATE_DOWN);
+		if(gridTouchesX[0]>-1 && gridTouchesX[1]<0)//in case it tried to get swiped but only one gotswiped
+			{
+				tap = true;
+				changeGameState(nonfirstTile);
+		}
+		else
+		{
+		EndSequence();
+		}
+		}
+		}}}
+
+void Game::NonFirstMoveTap()
+{
+	            int grid_x, grid_y;
+				grid->screenToGrid(g_pInput->m_X, g_pInput->m_Y, grid_x, grid_y);
+				if (gameState == nonfirstTile && (oldYinput !=grid_y || oldXinput !=grid_x)&&checkprevioustouch(gridTouchesX, gridTouchesY, grid_x, grid_y))//touched and is not the same
+				{
+					counter++;
+				    gridTouchesX[counter] = grid_x;
+				    gridTouchesY[counter] = grid_y;
+				    oldYinput = grid_y;
+					oldXinput = grid_x;
+					int dx = gridTouchesX[counter] - gridTouchesX[counter-1];
+                    int dy = gridTouchesY[counter] - gridTouchesY[counter-1];
+					if (dx >= -1 && dx <= 1 && dy >= -1 && dy <= 1)
+					{
+					putSelectors(gridTouchesX,gridTouchesY);
+					}
+					else
+					{
+					reinitialiseXYmem(gridTouchesX, gridTouchesY);
+					changeGameState(firstTile);
+					}
+				
+				}
+				else if (oldYinput ==grid_y && oldXinput ==grid_x)//last touched again
+				{
+				EndSequence();
+	 
+
+	
+				}}
+
+void Game::Update(float deltaTime, float alphaMul)
+{
+    if (!m_IsActive)
+        return;
+	if(m_IsInputActive)
+    Scene::Update(deltaTime, alphaMul);
+
+	if(gameState == animating)
+	{
+		if(this->m_Tweener.GetNumTweens() == 0)
+			changeGameState(firstTile);
+	}
+	if(gameState == gameend)
+	{
+		
+    endofRound();
+	}
+
+	else if(roundtimer < 0 && roundtimer != -299 && gameState >-1)
+	{
+    changeGameState(gameend);
+	}
+
+	 if (gameState != gameend && roundtimer >= 0 && roundtimer != -299)
+	{
+            char str[32];
+            snprintf(str, 32, "%d", (int)roundtimer);
+            timeLabel->m_Text = str;
+            roundtimer -= deltaTime;
+            CheckTopLineFull();//check if top row is full
+			ScoreChange(true,gridTouchesX);
+			if(game_type == score_attack && score >= TargetScore)
+			{
+				stage++;
+				TargetScore = GetTargetScore(stage);
+				ChangeTargetScoreLabel(TargetScore);
+				roundtimer = roundtimer * 2;//bocus, to be changed
+			    lastTime = roundtimer;
+			}
+    }
+	
+	if (m_IsInputActive && m_Manager->GetCurrent() == this && g_pInput->m_Touched )
+    {
+		if (tap == true )
+		NonFirstMoveTap();	
+		if(gameState == firstTile)
+		FirstMoveorSwipe(deltaTime,alphaMul);
+		
+
+        g_pInput->Reset();
+		
+		if(menuButton->HitTest(g_pInput->m_X, g_pInput->m_Y))
+			endofRound();
+		else if(gameState == gameend && infoPanel->HitTest(g_pInput->m_X, g_pInput->m_Y))//when info panel is touched after game
+				{
+				singleplayerMenu* singleplayer_menu = (singleplayerMenu*)g_pSceneManager->Find("singleplayer_menu");
+                singleplayer_menu->InitAnimations();
+				g_pSceneManager->SwitchTo(singleplayer_menu);
+				delete grid;
+				killed = true;
+				}
+
+    }}
+
+void Game::Lift(Timer* timer, void* userData)
+{
+	Game* self = (Game*)userData;
+	self->grid->LiftGrid();
+}
+
+void Game::InitInfoPanel()
+{
+	infoPanel = new CSprite();
+    infoPanel->m_X = (float)IwGxGetScreenWidth() / 2;
+    infoPanel->m_Y = (float)IwGxGetScreenHeight() / 2;
+    infoPanel->SetImage(g_pResources->getBlankBG());
+    infoPanel->m_W = infoPanel->GetImage()->GetWidth();
+    infoPanel->m_H = infoPanel->GetImage()->GetHeight();
+    infoPanel->m_AnchorX = 0.5;
+    infoPanel->m_AnchorY = 0.5;
+    infoPanel->m_ScaleX = (float)IwGxGetScreenWidth() / infoPanel->GetImage()->GetWidth();
+    infoPanel->m_ScaleY = (float)IwGxGetScreenHeight() / infoPanel->GetImage()->GetHeight();
+    AddChild(infoPanel);
+	infoPanel->m_IsVisible = false;
+
+	finalScoreLabel = new CLabel();
+    finalScoreLabel->m_X = IwGxGetScreenWidth()/2;
+    finalScoreLabel->m_Y = IwGxGetScreenHeight()/2;
+	finalScoreLabel->m_AnchorX = 0.5;
+    finalScoreLabel->m_AnchorY = 0.5;
+	finalScoreLabel->m_W = 30;
+	finalScoreLabel->m_H = 30;
+    finalScoreLabel->m_Text = "0";
+	finalScoreLabel->m_Color = CColor(0x00, 0x00, 0x00, 0xff);
+	finalScoreLabel->m_Font = g_pResources->getFont();
+    finalScoreLabel->m_ScaleX = 7*(double)IwGxGetScreenWidth()/768;
+    finalScoreLabel->m_ScaleY = 7*(double)IwGxGetScreenWidth()/768;
+    AddChild(finalScoreLabel);
+	finalScoreLabel->m_IsVisible = false;
+}
+
+void Game::initUI()
+{
+
+	double bottomGrid = IwGxGetDisplayHeight()/12 + (g_pResources->getButtonEmpty()->GetHeight()*(((IwGxGetDisplayWidth()-(Configs.GetXorigin() *2))/8)/g_pResources->getButtonEmpty()->GetHeight())*12);
+	double topGrid = IwGxGetDisplayHeight()/12;
+
+	CSprite* background = new CSprite();
+    background->m_X = (float)IwGxGetScreenWidth() / 2;
+    background->m_Y = (float)IwGxGetScreenHeight() / 2;
+    background->SetImage(g_pResources->getBlankBG());
+    background->m_W = background->GetImage()->GetWidth();
+    background->m_H = background->GetImage()->GetHeight();
+    background->m_AnchorX = 0.5;
+    background->m_AnchorY = 0.5;
+    //Fit background to screen size
+    background->m_ScaleX = (float)IwGxGetScreenWidth() / background->GetImage()->GetWidth();
+    background->m_ScaleY = (float)IwGxGetScreenHeight() / background->GetImage()->GetHeight();
+    AddChild(background);
+
+	CSprite* bottom_banner = new CSprite();
+	bottom_banner->SetImage(g_pResources->getBottomBanner());
+	//bottom_banner->m_IsVisible = false;
+    bottom_banner->m_X = (float)IwGxGetScreenWidth() / 2;
+	bottom_banner->m_Y = IwGxGetDisplayHeight()/12 + (g_pResources->getButtonEmpty()->GetHeight()*(((IwGxGetDisplayWidth()-(Configs.GetXorigin() *2))/8)/g_pResources->getButtonEmpty()->GetHeight())*12)+(IwGxGetDisplayHeight()/100);
+    bottom_banner->m_AnchorX = 0.5;
+    bottom_banner->m_AnchorY = 0;
+    //Fit background to screen size
+    bottom_banner->m_ScaleX = (double)IwGxGetScreenWidth()/768;
+    bottom_banner->m_ScaleY = 1;
+    AddChild(bottom_banner);
+
+	CSprite* top_banner = new CSprite();
+	top_banner->SetImage(g_pResources->getTopBanner());
+	//top_banner->m_IsVisible = false;
+    top_banner->m_X = (float)IwGxGetScreenWidth() / 2;
+	top_banner->m_Y = IwGxGetDisplayHeight()/12 - (IwGxGetDisplayHeight()/12/10);
+    top_banner->m_AnchorX = 0.5;
+    top_banner->m_AnchorY = 1;
+    //Fit background to screen size
+    top_banner->m_ScaleX = (double)IwGxGetScreenWidth()/768;
+    top_banner->m_ScaleY = 1;
+    AddChild(top_banner);
+	
+	menuButton = new CSprite();
+	menuButton->SetImage(g_pResources->getButtonPause());
+	menuButton->m_X = (float)IwGxGetScreenWidth() / 2;
+    menuButton->m_Y = bottomGrid + (IwGxGetDisplayHeight() - bottomGrid)/2;
+	menuButton->m_W = menuButton->GetImage()->GetWidth();
+    menuButton->m_H = menuButton->GetImage()->GetHeight();
+    menuButton->m_AnchorX = 0.5;
+    menuButton->m_AnchorY = 0.5;
+    //Fit background to screen size
+    menuButton->m_ScaleX = ((double)IwGxGetDisplayHeight()/480)/4;
+    menuButton->m_ScaleY = ((double)IwGxGetDisplayHeight()/480)/4;
+    AddChild(menuButton);
+	
+	CLabel* scoreTextLabel = new CLabel();
+    scoreTextLabel->m_X = (IwGxGetScreenWidth()/6);
+    scoreTextLabel->m_Y = topGrid - (topGrid/5*4);
+	scoreTextLabel->m_AnchorX = 0.5;
+	scoreTextLabel->m_AnchorY = 0.5;
+	scoreTextLabel->m_W = 800*((double)IwGxGetDisplayWidth()/320)/3;
+    scoreTextLabel->m_Text = "SCORE";
+	scoreTextLabel->m_AlignHor= IW_2D_FONT_ALIGN_CENTRE;
+	scoreTextLabel->m_Color = CColor(0xff, 0xff, 0xff, 0xff);
+	scoreTextLabel->m_Font = g_pResources->getOdinFont();
+    scoreTextLabel->m_ScaleX = ((double)IwGxGetDisplayHeight()/480)/7;
+    scoreTextLabel->m_ScaleY = ((double)IwGxGetDisplayHeight()/480)/7;
+    AddChild(scoreTextLabel);
+
+	scoreLabel = new CLabel();
+    scoreLabel->m_X = (IwGxGetScreenWidth()/6);
+    scoreLabel->m_Y = topGrid - (topGrid/5*2);
+	scoreLabel->m_AnchorX = 0.5;
+	scoreLabel->m_AnchorY = 0.5;
+	scoreLabel->m_W = 800*((double)IwGxGetDisplayWidth()/320)/3;
+    scoreLabel->m_Text = "0";
+	scoreLabel->m_AlignHor= IW_2D_FONT_ALIGN_CENTRE;
+	scoreLabel->m_Color = CColor(0xff, 0xff, 0xff, 0xff);
+	scoreLabel->m_Font = g_pResources->getOdinFont();
+    scoreLabel->m_ScaleX = ((double)IwGxGetDisplayHeight()/480)/3.5;
+    scoreLabel->m_ScaleY = ((double)IwGxGetDisplayHeight()/480)/3.5;
+    AddChild(scoreLabel);
+
+    timeLabel = new CLabel();
+	if(game_type == casual)//hide timer for certain modes
+	timeLabel->m_IsVisible = false;
+    timeLabel->m_X = IwGxGetScreenWidth() - (IwGxGetScreenWidth()/6);
+	timeLabel->m_Y = topGrid - (topGrid/5*2);
+	timeLabel->m_AnchorX = 0.5;
+	timeLabel->m_AnchorY = 0.5;
+	timeLabel->m_AlignHor= IW_2D_FONT_ALIGN_CENTRE;
+    timeLabel->m_Text = "0";
+	timeLabel->m_Color = CColor(0xff, 0xff, 0xfff, 0xff);
+	timeLabel->m_Font = g_pResources->getOdinFont();
+    timeLabel->m_ScaleX =  ((double)IwGxGetDisplayHeight()/480)/3.5;
+    timeLabel->m_ScaleY =  ((double)IwGxGetDisplayHeight()/480)/3.5;
+    AddChild(timeLabel);
+
+	CLabel* timeTextLabel = new CLabel();
+	if(game_type == casual)//hide timer for certain modes
+	timeTextLabel->m_IsVisible = false;
+    timeTextLabel->m_X = IwGxGetScreenWidth() - (IwGxGetScreenWidth()/6);
+	timeTextLabel->m_Y = topGrid - (topGrid/5*4);
+	timeTextLabel->m_AnchorX = 0.5;
+	timeTextLabel->m_AnchorY = 0.5;
+    timeTextLabel->m_Text = "TIME";
+	timeTextLabel->m_Color = CColor(0xff, 0xff, 0xfff, 0xff);
+	timeTextLabel->m_Font = g_pResources->getOdinFont();
+    timeTextLabel->m_ScaleX =  ((double)IwGxGetDisplayHeight()/480)/7;
+    timeTextLabel->m_ScaleY =  ((double)IwGxGetDisplayHeight()/480)/7;
+    AddChild(timeTextLabel);
+
+	CLabel* targetScoreTextLabel = new CLabel();
+	if(game_type != score_attack)//hide timer for certain modes
+	targetScoreTextLabel->m_IsVisible = false;
+    targetScoreTextLabel->m_X = IwGxGetScreenWidth() - (IwGxGetScreenWidth()/6);
+	targetScoreTextLabel->m_Y = bottomGrid + (IwGxGetDisplayHeight() - bottomGrid)/3;
+	targetScoreTextLabel->m_AnchorX = 0.5;
+	targetScoreTextLabel->m_AnchorY = 0.5;
+    targetScoreTextLabel->m_Text = "TARGET";
+	targetScoreTextLabel->m_Color = CColor(0xff, 0xff, 0xfff, 0xff);
+	targetScoreTextLabel->m_Font = g_pResources->getOdinFont();
+    targetScoreTextLabel->m_ScaleX =  ((double)IwGxGetDisplayHeight()/480)/7;
+    targetScoreTextLabel->m_ScaleY =  ((double)IwGxGetDisplayHeight()/480)/7;
+    AddChild(targetScoreTextLabel);
+
+    targetScoreLabel = new CLabel();
+	targetScoreLabel->m_IsVisible = false;
+	if(game_type == score_attack)//hide timer for certain modes
+	targetScoreLabel->m_IsVisible = true;
+    targetScoreLabel->m_X = IwGxGetScreenWidth() - (IwGxGetScreenWidth()/6);
+    targetScoreLabel->m_Y = bottomGrid + (IwGxGetDisplayHeight() - bottomGrid)/3*2;
+	targetScoreLabel->m_W = 800*((double)IwGxGetDisplayWidth()/320)/3;
+	targetScoreLabel->m_AlignHor= IW_2D_FONT_ALIGN_CENTRE;
+	targetScoreLabel->m_AnchorX = 0.5;
+	targetScoreLabel->m_AnchorY = 0.5;
+	targetScoreLabel->m_Color = CColor(0xff, 0xff, 0xff, 0xff);
+	targetScoreLabel->m_Font = g_pResources->getOdinFont();
+    targetScoreLabel->m_ScaleX = ((double)IwGxGetDisplayHeight()/480)/3.5;
+    targetScoreLabel->m_ScaleY = ((double)IwGxGetDisplayHeight()/480)/3.5;
+    AddChild(targetScoreLabel);
+	
+    CLabel* HighscoreTextLabel = new CLabel();
+    HighscoreTextLabel->m_X = (IwGxGetScreenWidth()/6);
+	HighscoreTextLabel->m_Y = bottomGrid + (IwGxGetDisplayHeight() - bottomGrid)/3;
+	HighscoreTextLabel->m_AnchorX = 0.5;
+	HighscoreTextLabel->m_AnchorY = 0.5;
+    HighscoreTextLabel->m_Text = "HIGHSCORE";
+	HighscoreTextLabel->m_Color = CColor(0xff, 0xff, 0xfff, 0xff);
+	HighscoreTextLabel->m_Font = g_pResources->getOdinFont();
+    HighscoreTextLabel->m_ScaleX =  ((double)IwGxGetDisplayHeight()/480)/7;
+    HighscoreTextLabel->m_ScaleY =  ((double)IwGxGetDisplayHeight()/480)/7;
+    AddChild(HighscoreTextLabel);
+	
+	highScoreLabel = new CLabel();
+    highScoreLabel->m_X = (IwGxGetScreenWidth()/6);
+    highScoreLabel->m_Y = bottomGrid + (IwGxGetDisplayHeight() - bottomGrid)/3*2;
+	highScoreLabel->m_W = 800*((double)IwGxGetDisplayWidth()/320)/3;
+	highScoreLabel->m_AlignHor= IW_2D_FONT_ALIGN_CENTRE;
+	highScoreLabel->m_Text="0";
+	highScoreLabel->m_AnchorX = 0.5;
+	highScoreLabel->m_AnchorY = 0.5;
+	highScoreLabel->m_Color = CColor(0xff, 0xff, 0xff, 0xff);
+	highScoreLabel->m_Font = g_pResources->getOdinFont();
+    highScoreLabel->m_ScaleX = ((double)IwGxGetDisplayHeight()/480)/3.5;
+    highScoreLabel->m_ScaleY = ((double)IwGxGetDisplayHeight()/480)/3.5;
+    AddChild(highScoreLabel);
+
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+</body>
+</html>

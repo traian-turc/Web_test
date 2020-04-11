@@ -1,0 +1,278 @@
+<html>
+<title> Elemente de programare orientata obiect - utilizarea claselor  </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Elemente de programare orientata obiect - utilizarea claselor  </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font>
+<ol>
+<li> Utilizati clasa cercuri concentrice <b>ccon</b> si realizati aplicatia 
+<br><br><center><img src="im_cpp139.jpg"></center><br> prin instantierea clase ccon de 4 ori
+<li> Utilizati clasa cercuri concentrice <b>ccon</b> si realizati aplicatia:
+<br><br><center><img src="im_cpp147.jpg"></center><br>
+<li> Utilizati clasa dreptunghiuri concentrice <b>drcon</b> si realizati aplicatiile:
+<br><br><center><img src="im_cpp146.jpg"></center><br>
+<li> Utilizati clasa  <b>ceas</b> si realizati aplicatia care afiseaza diverse ore pe glob
+ <br><br><center><img src="im_cpp140.jpg"></center><br> 
+ <br><br> - Sugestie: modificati metoda  <b>setval</b> si adaugati un parametru de tip int reprezentand fusul orar + sau minus ore fata de ora system
+<li> Pe baza clasei "afisor_xt" pentru trasarea graficelor x-t, afisati:
+<br><br><center><img src="im_cpp141.jpg"> <img src="im_cpp142.jpg"></center><br>
+<li> Pe baza clasei "afisor_xt", afisati valorile sub forma de histograma:
+<br><br><center><img src="im_cpp148.jpg"></center><br>
+<li> Pe baza clasei "afisor_xt", afisati functia sinus:
+<br><br><center><img src="im_cpp149.jpg"></center><br>
+<li> Pe baza clasei "afisor_xt", afisati functia sinus si cosinus pe acelasi grafic:
+<br><br><center><img src="im_cpp150.jpg"></center><br>
+<li> Pe baza clasei "afisor_xy" pentru trasarea graficelor x-y, afisati functia x=sin(i); y=cos(k*i)-reprezentand figurile lui Lisajou 
+<br><br><center><img src="im_cpp152.jpg"></center><br>
+<li> Pe baza clasei "afisor_xy" pentru trasarea graficelor x-y, afisati grafic functia x=cos(3*t)*cos(t); y=cos(3*t)*sin(t);
+<br><br><center><img src="im_cpp129.jpg"></center><br>
+
+</ol>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Clasa ccon
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+    public class ccon
+    {
+        int x0, y0, r0, r;
+        public void desenez(System.Drawing.Graphics zona_des, System.Drawing.Pen creion_a)
+        {
+            zona_des.DrawEllipse(creion_a, x0, y0, r0+2, r0+2);
+        }
+        public void sterg(System.Drawing.Graphics zona_des, System.Drawing.Brush rad)
+        {
+            zona_des.FillEllipse(rad, x0 + 1, y0 + 1, r0 - 1, r0 - 1);
+        }
+
+        public void setc(System.Drawing.Graphics zona_des, System.Drawing.Pen creion, int r)
+        {
+            int x = System.Convert.ToInt16(System.Convert.ToDouble(x0) + System.Convert.ToDouble(r0 - r) / 2);
+            int y = System.Convert.ToInt16(System.Convert.ToDouble(y0) + System.Convert.ToDouble(r0 - r) / 2);
+            zona_des.DrawEllipse(creion, x + 1, y + 1, r, r);
+
+        }
+        public void init_c(int pozx, int pozy, int raza)
+        {
+            x0 = pozx;
+            y0 = pozy;
+            r0 = raza;
+        }
+    }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Clasa drcon
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+        public class drcon
+        {
+            int x0, y0, w0, h0;
+
+            public void setdr(System.Drawing.Graphics zona_des, System.Drawing.Pen creion, System.Drawing.Pen creion_a, System.Drawing.Brush rad, int w, int h)
+            {
+                zona_des.FillRectangle(rad, x0 + 1, y0 + 1, w0 - 1, h0 - 1);
+                zona_des.DrawRectangle(creion_a, x0, y0, w0, h0);
+                int x = System.Convert.ToInt16(System.Convert.ToDouble(x0) + System.Convert.ToDouble(w0 - w) / 2);
+                int y = System.Convert.ToInt16(System.Convert.ToDouble(y0) + System.Convert.ToDouble(h0 - h) / 2);
+                zona_des.DrawRectangle(creion, x + 1, y + 1, w, h);
+
+            }
+            public drcon(int pozx, int pozy, int lat, int inalt)
+            {
+                x0 = pozx;
+                y0 = pozy;
+                w0 = lat;
+                h0 = inalt;
+            }
+        }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Clasa ceas
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+        public class ceas
+        {
+            int x0;
+            int y0;
+            int w;
+
+            public void des_ceas(System.Drawing.Graphics zona_des,System.Drawing.SolidBrush radiera)
+            {
+                int x = x0+w / 5;
+                int y = y0+ w / 5;
+                int d = w / 2;
+                int x1 = x + d / 2;
+                int y1 = y + d / 2;
+                double g;
+                System.Drawing.Pen c_min = new System.Drawing.Pen(System.Drawing.Color.Blue);
+                System.Drawing.Pen c_5min = new System.Drawing.Pen(System.Drawing.Color.Red);
+                zona_des.DrawEllipse(c_5min, x, y, d, d);
+                for (g = 0; g < 360; g += 6)
+                {
+                    double r = 2 * System.Math.PI * g / 360;
+                    int x2 = Convert.ToInt16(x1 + (d / 2) * System.Math.Cos(r));
+                    int y2 = Convert.ToInt16(y1 - (d / 2) * System.Math.Sin(r));
+                    zona_des.DrawLine(c_min, x1, y1, x2, y2);
+                    if (g % 30 == 0)
+                        zona_des.DrawLine(c_5min, x1, y1, x2, y2);
+                    else
+                        zona_des.DrawLine(c_min, x1, y1, x2, y2);
+                }
+                zona_des.FillEllipse(radiera, x + 5, y + 5, d - 10, d - 10);
+            }
+
+            public void setval(System.Drawing.Graphics zona_des,System.Drawing.SolidBrush radiera)
+            {
+                System.Drawing.Pen c_sec = new System.Drawing.Pen(System.Drawing.Color.Purple);
+                System.Drawing.Pen c_min = new System.Drawing.Pen(System.Drawing.Color.Blue);
+                System.Drawing.Pen c_ore = new System.Drawing.Pen(System.Drawing.Color.Red);
+                int x = x0+w / 5;
+                int y = y0+w / 5;
+                int d = w / 2;
+                int x1 = x + d / 2;
+                int y1 = y + d / 2;
+                int i ,x3,y3;
+                double r;
+                //secundar
+                i = 90 - 6 * System.DateTime.Now.Second;
+                r = (2 * System.Math.PI * i) / 360;
+                x3 = Convert.ToInt16(x1 + (d / 2 - 6) * System.Math.Cos(r));
+                y3 = Convert.ToInt16(y1 - (d / 2 - 6) * System.Math.Sin(r));
+                zona_des.FillEllipse(radiera, x + 5, y + 5, d - 10, d - 10);
+                zona_des.DrawLine(c_sec, x1, y1, x3, y3);
+                //minutar
+                i = 90 - 6 * System.DateTime.Now.Minute;
+                r = (2 * System.Math.PI * i) / 360;
+                x3 = Convert.ToInt16(x1 + (d / 2 - 10) * System.Math.Cos(r));
+                y3 = Convert.ToInt16(y1 - (d / 2 - 10) * System.Math.Sin(r));
+                zona_des.DrawLine(c_min, x1, y1, x3, y3);
+                //ora
+                i = 90 - (30 * System.Convert.ToInt16(System.DateTime.Now.Hour) + System.Convert.ToInt16(System.DateTime.Now.Minute) / 2);
+                r = (2 * System.Math.PI * i) / 360;
+                x3 = Convert.ToInt16(x1 + (d / 2 - 15) * System.Math.Cos(r));
+                y3 = Convert.ToInt16(y1 - (d / 2 - 15) * System.Math.Sin(r));
+                zona_des.DrawLine(c_ore, x1, y1, x3, y3);
+                zona_des.DrawEllipse(c_ore, x1 - 2, y1 - 2, 4, 4);
+            }
+            public void init_ceas(int pozx, int pozy, int lat)
+            {
+                x0 = pozx;
+                y0 = pozy;
+                w = lat;
+            }
+      }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Clasa afisor_xt
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+    public class afisor_xt
+    {
+        float x0;
+        float y0;
+        float w;
+        float h;
+        float val_max;
+        public void desenez(System.Drawing.Graphics zona_des, System.Drawing.Pen creion_a)
+        {
+            zona_des.DrawRectangle(creion_a, x0, y0, w, h);
+        }
+        public void sterg(System.Drawing.Graphics zona_des, System.Drawing.Brush rad)
+        {
+            zona_des.FillRectangle(rad, x0 + 1, y0 + 1, w - 1, h - 1);
+        }
+
+        public void setval(System.Drawing.Graphics zona_des, System.Drawing.Pen creion, float[] vals, int nrv)
+        {
+            float val_v,val;
+            val_v = 0;
+            for(int i=1;i<=nrv;i++){
+                val = System.Convert.ToInt16(System.Convert.ToDouble(vals[i]) * (System.Convert.ToDouble(h) / System.Convert.ToDouble(val_max))); //scalare
+                zona_des.DrawLine(creion, x0 +(i-1)*10, y0+val_v, x0 +i*10, y0+val);
+                val_v=val;
+            }
+        }
+        public void init_ins(float pozx, float pozy, float lat, float inalt, float vmax)
+        {
+            x0 = pozx;
+            y0 = pozy;
+            w = lat;
+            h = inalt;
+            val_max = vmax;
+        }
+    }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Clasa afisor_xy
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+        public class afisor_xy
+        {
+            float x0, y0, w, h, val_maxx, val_maxy;
+            public void desenez(System.Drawing.Graphics zona_des, System.Drawing.Pen creion_a)
+            {
+                zona_des.DrawRectangle(creion_a, x0 - 1, y0 - 1, w + 2, h + 2);
+            }
+            public void sterg(System.Drawing.Graphics zona_des, System.Drawing.Brush rad)
+            {
+                zona_des.FillRectangle(rad, x0, y0, w+1, h+1);
+            }
+            public void setval(System.Drawing.Graphics zona_des, System.Drawing.Pen creion, float[] valsx, float[] valsy, int nrv)
+            {
+                float val_vx, valx, val_vy, valy;
+                val_vx = System.Convert.ToInt16(System.Convert.ToDouble(valsx[0]) * (System.Convert.ToDouble(w) / System.Convert.ToDouble(val_maxx))); 
+                val_vy = System.Convert.ToInt16(System.Convert.ToDouble(valsy[0]) * (System.Convert.ToDouble(h) / System.Convert.ToDouble(val_maxy))); 
+                for (int i = 0; i < nrv; i++)
+                {
+                    valx = System.Convert.ToInt16(System.Convert.ToDouble(valsx[i]) * (System.Convert.ToDouble(w) / System.Convert.ToDouble(val_maxx))); //scalare
+                    valy = System.Convert.ToInt16(System.Convert.ToDouble(valsy[i]) * (System.Convert.ToDouble(h) / System.Convert.ToDouble(val_maxy))); //scalare
+                    zona_des.DrawLine(creion, x0 + val_vx, y0 + val_vy, x0 + valx, y0 + valy);
+                    val_vx = valx;
+                    val_vy = valy;
+                }
+            }
+            public void init_ins(float pozx, float pozy, float lat, float inalt, float vmaxx, float vmaxy)
+            {
+                x0 = pozx;
+                y0 = pozy;
+                w = lat;
+                h = inalt;
+                val_maxx = vmaxx;
+                val_maxy = vmaxy;
+            }
+        }
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+</body>
+</html>

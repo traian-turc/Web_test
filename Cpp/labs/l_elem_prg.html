@@ -1,0 +1,292 @@
+<html>
+<title> Laborator elemente de programare </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>  Laborator elemente de programare  </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font>
+<ol>
+<li> Realizati un program care afiseaza un dreptungi realizat din stelute - se utilizeaza \t
+<li> Afisati textul :Sunt student la UMFST "Emil Palade" - se utilizeaza \"
+<li> Simulare deplasare * - se afiseaza "*" pe prima pozitie, se sterge ecranul, se afiseaza "  *", etc
+<li> Simulare deplasare * - folosesc optiunea \b backspace
+<li> Simulare deplasare * - folosesc optiunea sleep()
+<li> Afisare binara fara a folosi afis_bin()
+<li> Afisare binara folosind afis_bin()
+
+<li> Programe simple ce demonstreaza necesitatea introducerii de variabile
+<li> Utilizare WFA- Realizarea unei aplicatii in care avem trei butoane ce afiseaza texte diferite in acelasi label
+<li> Utilizare WFA- Realizarea unei aplicatii in care un text se muta in diverse pozitii in functie de butonul apasat
+<li> Utilizare WFA- Realizarea unei aplicatii in care un text se muta in alta pozitie cand trecem mouse-ul peste el
+<li> Utilizare WFA- Realizarea unei aplicatii care muta fereastra curenta in alta pozitie cand trecem mouse-ul peste un element din form (text, buton etc)
+<li> Utilizare WFA- Realizarea unei aplicatii in care un buton isi schimba textul la apasarea altui buton
+<li> Utilizare WFA- Realizarea unei aplicatii in care un buton isi schimba BacckColor la apasarea altui buton(Simulare Start Stop cu afisare rosu verde pe un alt buton)
+<li> Utilizare WFA- Realizarea unei aplicatii in care un text plaseaza sus stanga sau jos stanga in functie de butonul apasat (sus jos)
+<li> Utilizare WFA- Realizarea unei aplicatii in care un text se se afiseaza in diverse formate si culori in functie de butonul apasat
+
+</ol> 
+&nbsp;&nbsp;&nbsp;&nbsp;Simulare deplasare * - se afiseaza "*" pe prima pozitie, se sterge ecranul, se afiseaza "  *", etc
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Simulare deplasare * prin stergerea ecranului
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	cout <<"*";
+	 _sleep(500);
+	system("cls");
+	cout <<" *";
+	_sleep(500);
+	system("cls");
+	cout <<"  *";
+	_sleep(500);
+	system("cls");
+	cout <<"   *";
+	_sleep(500);
+	system("cls");
+	cout <<"     *";
+	_sleep(500);
+	system("cls");
+	cout <<"      *";
+	_sleep(500);
+	system("cls");
+	cout <<"       *";
+	_sleep(500);
+	system("cls");
+	cout <<"        *";
+	_sleep(500);
+	system("cls");
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;Simulare deplasare * in System - se afiseaza "*" pe prima pozitie, se sterge ecranul, se afiseaza "  *", etc
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Simulare deplasare * prin stergerea ecranului
+
+#include "stdafx.h"
+
+using namespace System;
+
+int main(void)
+{
+	Console::WriteLine("*");
+	Console::ReadLine();
+	Console::Clear();
+
+	Console::WriteLine("  *");
+	Console::ReadLine();
+	Console::Clear();
+
+	Console::WriteLine("    *");
+	Console::ReadLine();
+	Console::Clear();
+
+	Console::WriteLine("      *");
+	Console::ReadLine();
+	Console::Clear();
+
+	Console::WriteLine("         *");
+	Console::ReadLine();
+	Console::Clear();
+
+    return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Simulare deplasare * - folosesc optiunea \b backspace si readkey() pentru a nu apasa CR ci alta tasta
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Simulare deplasare * folosesc optiunea \b backspace si readkey() 
+// pentru a nu apasa CR ci alta tasta de ex sageata jos
+
+#include "stdafx.h"
+
+using namespace System;
+
+int main(void)
+{
+	Console::Write("*");
+	Console::ReadKey();
+
+	Console::Write("\b\b *");
+	Console::ReadKey();
+	
+
+	Console::Write("\b\b *");
+	Console::ReadKey();
+
+	Console::Write("\b\b *");
+	Console::ReadKey();
+
+	Console::Write("\b\b *");
+	Console::ReadKey();
+
+    return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Simulare deplasare * - folosesc optiunea sleep()
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Simulare deplasare * - folosesc optiunea sleep()
+
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	cout << "*";
+	Sleep(500);
+	cout << "\b *";
+
+	Sleep(500);
+	cout << "\b *";
+
+	Sleep(500);
+	cout << "\b *";
+
+	Sleep(500);
+	cout << "\b *";
+
+	Sleep(500);
+	cout << "\b *";
+
+	Sleep(500);
+	cout << "\b *";
+
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Afisare binara fara a folosi afis_bin()
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+int nr;
+cout << "Introduceti un numar intreg de maxim 255:";
+	cin >> nr;
+	cout << " Numarul: " << nr << " in binar este:";
+	cout << nr/128;
+	cout << (nr-(nr/128)*128)/64;
+	cout << (nr-(nr/64)*64)/32;
+	cout << (nr-(nr/32)*32)/16;
+	cout << (nr-(nr/16)*16)/8;
+	cout << (nr-(nr/8)*8)/4;
+	cout << (nr-(nr/4)*4)/2;
+	cout << (nr-(nr/2)*2)/1;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizare WFA- Realizarea unei aplicatii in care un text se muta in diverse pozitii in functie de butonul apasat
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+this->tx1->Location=System::Drawing::Point(300,200);
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizare WFA- Realizarea unei aplicatii in care un text se se afiseaza in diverse formate si culori in functie de butonul apasat
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+this->tx1->ForeColor=System::Drawing::Color::Gold;
+this->BackColor=System::Drawing::Color::Blue;
+ 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizare WFA- Realizarea unei aplicatii in care un buton isi schimba textul la apasarea altui buton
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+    this->button2->Text="Alt text pe buton";
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizare WFA- Realizarea unei aplicatii in care se schimba formatul textului unui label
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+    	this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Italic)); 
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizare WFA- Realizarea unei aplicatii in care un text plaseaza sus stanga sau jos stanga in functie de butonul apasat (sus jos)
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+    	this->label1->Location=System::Drawing::Point(0,this->Height-60);
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizare WFA-C# Realizarea unei aplicatii in care un text plaseaza sus stanga sau jos stanga in functie de butonul apasat (sus jos)
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+    	this.label1.Location= new Point(0,this.Height-60);
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+</body>
+</html>

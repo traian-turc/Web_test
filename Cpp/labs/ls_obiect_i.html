@@ -1,0 +1,372 @@
+<html>
+<title> Clase din domeniul ingineriei electrice </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Utilizarea de clase care descriu obiecte ce vor fi utilizate in aplicatii din domeniul ingineriei electrice </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font>
+<ol>
+<li> Pe baza clasei "termo" afisati dinamic temperatura intre 0-150 grade Celsius, si corespunzator in grade Kelvin, si in grade Fahrenheit 
+<br><br><center><img src="im_cpp151.jpg"></center><br>
+<li> Modificati clasa "termo" si afisati dinamic temperatura intre -50 si 150 grade Celsius. 
+<br><br><center><img src="im_cpp155.jpg"></center><br>
+<li> Pe baza clasei "voltm" afisati dinamic tensiunea in domeniul 0-250 V curentul in domeniul 0-20 A si puterea ca fiind produsul dintre tensiune si curent  
+<br><br><center><img src="im_cpp153.jpg"></center><br>
+<li> Pe baza clasei "osciloscop" pentru trasarea graficelor x-t, afisati grafic functia<b> f(x)=e<sup>x</sup></b> unde x &isin;[0 &#8760;5]
+<br><br><center><img src="im_cpp154.jpg"></center><br>
+<li>Adaugati un control trakBar pentru a controla amplificarea
+<br><br><center><img src="im_cpp156.jpg"></center><br>
+<li> Pe baza clasei "osciloscop" pentru trasarea graficelor x-t, afisati grafic functia<b>  sin(alfa)*(1-e<sup>x</sup>)</b> unde x &isin;[0 &#8760;1]
+<br><br><center><img src="im_cpp128.jpg"></center><br>
+<li> Pe baza clasei "binar" pentru afisare binara afisati dinamic : 
+<br><br><center><img src="im_cpp157.jpg"></center><br>
+<li> Pornind de la clasa "binar" pentru afisare binara, modificati clasa si afisati un joc de lumini care imita un vu-metru;
+<br><br><center><img src="im_cpp144.jpg"></center><br>
+</ol>
+<a name="clase"></a>
+<font color= "Blue" size=5> Clase  </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Clasa termo
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+    public class termo
+    {
+        float x0;
+        float y0;
+        float w;
+        float h;
+        float val_max;
+        public void desenez(System.Drawing.Graphics zona_des, System.Drawing.Pen creion_a, System.Drawing.Pen creion_gr, System.Drawing.SolidBrush pens_r, System.Drawing.Font font_ni)
+        {
+            zona_des.DrawRectangle(creion_a, x0, y0, w, h);
+            for (int j = 0; j <= h; j += 5)// desenez gradatii
+            {
+                if (j % 25 == 0)
+                {
+                    zona_des.DrawLine(creion_gr, x0 + w + 2, y0 + j, x0 + w + 12, y0 + j);
+                    zona_des.DrawString(System.Convert.ToString(val_max - j * val_max / h), font_ni, pens_r, x0 + w + 20, y0 + j - 7);
+                }
+                else
+                {
+                    zona_des.DrawLine(creion_gr, x0 + w + 2, y0 + j, x0 + w + 7, y0 + j);
+                }
+            }
+
+        }
+        public void sterg(System.Drawing.Graphics zona_des, System.Drawing.SolidBrush rad)
+        {
+            zona_des.FillRectangle(rad, x0 + 1, y0 + 1, w - 1, h - 1);
+        }
+
+        public void setval(float val, System.Drawing.Graphics zona_des, System.Drawing.SolidBrush pens_r)
+        {
+            val = System.Convert.ToInt16(System.Convert.ToDouble(val) * (System.Convert.ToDouble(h) / System.Convert.ToDouble(val_max))); //scalare
+            zona_des.FillRectangle(pens_r, x0 + 1, y0 + h - val, w - 1, val);
+
+        }
+        public void init_ins(float pozx, float pozy, float lat, float inalt, float vmax)
+        {
+            x0 = pozx;
+            y0 = pozy;
+            w = lat;
+            h = inalt;
+            val_max = vmax;
+        }
+    }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Clasa voltm
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+        public class voltm
+        {
+            int x0;
+            int y0;
+            int w;
+            double vm;
+            System.Drawing.Pen creion= new System.Drawing.Pen(System.Drawing.Color.Red);
+            System.Drawing.Font font_ni = new System.Drawing.Font("Nina", 8);
+            System.Drawing.SolidBrush pens_blu = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
+            
+            public void desen_voltm(System.Drawing.Graphics zona_des)
+            {
+                int lt = 15;
+                int lg = 22;
+                int x1, x2, xt, y1, y2, yt;
+                int xc = x0 + w / 2;
+                int yc = y0 + w / 2;
+                int raza = w / 2;
+                int nrd;
+                int val_a=0;
+                // alfa_gr unghiul in grade
+                double alfa_gr = 140;
+                nrd = 0;
+                while (alfa_gr >=40)
+                {
+                    double alfa_r = 2 * System.Math.PI * (alfa_gr) / 360;// unghiul in radiani
+                    if (nrd % 5 == 0)
+                    {
+                        x1 = System.Convert.ToInt16(xc + (raza-lt) * System.Math.Cos(alfa_r));
+                        y1 = System.Convert.ToInt16(yc - (raza-lt) * System.Math.Sin(alfa_r));
+                        xt = System.Convert.ToInt16(xc-5 + raza * System.Math.Cos(alfa_r));
+                        yt = System.Convert.ToInt16(yc - raza * System.Math.Sin(alfa_r));
+                        zona_des.DrawString(System.Convert.ToString(val_a), font_ni, pens_blu, xt, yt);
+                        val_a = val_a + System.Convert.ToInt16(vm /10);
+
+                    }
+                    else
+                    {
+                        x1 = System.Convert.ToInt16(xc + (raza - lg) * System.Math.Cos(alfa_r));
+                        y1 = System.Convert.ToInt16(yc - (raza - lg) * System.Math.Sin(alfa_r));
+                    }
+                    x2 = System.Convert.ToInt16(xc + (raza - 2 * lt) * System.Math.Cos(alfa_r));
+                    y2 = System.Convert.ToInt16(yc - (raza - 2 * lt) * System.Math.Sin(alfa_r));
+                    zona_des.DrawLine(creion, x1, y1, x2, y2);
+                    alfa_gr -= 2;
+                    nrd++;
+                }
+                zona_des.DrawRectangle(creion, xc - raza, yc - raza - 2, 2 * raza, 5 * raza / 4);
+            }
+            public void setval(System.Drawing.Graphics zona_des, double val)
+            {
+                int alfa_gr = 140 - System.Convert.ToInt16(100 * val / vm); ;//unghiul in grade
+
+                int lg = 17;
+                int xc = x0 + w / 2;
+                int yc = y0 + w / 2;
+                int raza = w / 2;
+                System.Drawing.SolidBrush radiera = new System.Drawing.SolidBrush(System.Drawing.Color.White);
+                zona_des.FillPie(radiera, x0 + 2 * lg - 1, y0 + 2 * lg - 1, w - 4 * lg + 2, w - 4 * lg + 2, 10, -180);
+                double alfa_r = 2 * System.Math.PI * (alfa_gr) / 360;// unghiul in radiani
+                int x = System.Convert.ToInt16(xc + (raza - 2 * lg) * System.Math.Cos(alfa_r));
+                int y = System.Convert.ToInt16(yc - (raza - 2 * lg) * System.Math.Sin(alfa_r));
+                zona_des.DrawLine(creion, x, y, xc, yc);
+                alfa_gr = 40;
+                zona_des.DrawRectangle(creion, xc - raza, yc - raza - 2, 2 * raza, 5 * raza / 4);
+            }
+
+            public voltm(int pozx, int pozy, int lat, double val_max)
+            {
+                x0 = pozx;
+                y0 = pozy;
+                w = lat;
+                vm = val_max;
+            }
+        } 
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Clasa osciloscop
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+        public class osciloscop
+        {
+            int x0;
+            int y0;
+            int w;
+            int h;
+            int val_max, val_max_af, val, val_v;
+            int nr_max;
+            System.Drawing.Graphics zona_des;
+            System.Drawing.Pen creion_r = new System.Drawing.Pen(System.Drawing.Color.Red);
+            System.Drawing.Font font_ni = new System.Drawing.Font("Nina", 8);
+            System.Drawing.SolidBrush pens_blu = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
+            System.Drawing.SolidBrush radiera = new System.Drawing.SolidBrush(System.Drawing.Color.White);
+
+            System.Drawing.Bitmap img;
+            System.Drawing.Bitmap ims;
+
+            public void setval(int[] vals, int nrv)
+            {
+                img = new Bitmap(nr_max, val_max, zona_des);
+                int i, j;
+
+                // afisare grafic sub forma de puncte
+
+                val_v = val_max - 1 - System.Convert.ToInt16(System.Convert.ToDouble(vals[0]) * (System.Convert.ToDouble(h) / System.Convert.ToDouble(val_max))); //scalare
+                if (val_v >= val_max)
+                    val_v = val_max - 1;
+                if (val_v <= 0)
+                    val_v = 1;
+                for (i = 0; i < w; i++)
+                {
+                    val = val_max - 1 - System.Convert.ToInt16(System.Convert.ToDouble(vals[i]) * (System.Convert.ToDouble(h) / System.Convert.ToDouble(val_max))); //scalare
+                    if (val >= val_max)
+                        val = val_max - 1;
+                    if (val <= 0)
+                        val = 1;
+                    if (val_v < val)
+                    {
+                        for (j = val_v; j <= val; j++)
+                            img.SetPixel(i, j, System.Drawing.Color.Red);
+                    }
+                    else
+                    {
+                        for (j = val; j <= val_v; j++)
+                            img.SetPixel(i, j, System.Drawing.Color.Red);
+
+                    }
+                    val_v = val;
+                }
+                zona_des.DrawImage(ims, x0, y0);
+                zona_des.DrawImage(img, x0, y0);
+
+                //valori axa x
+                //zona_des.FillRectangle(radiera, x0, y0 + h, w + 20, 20); // pentru afisare dinamica valori axa x
+
+                for (i = 0; i <= w; i += 50)
+                {
+                    val = System.Convert.ToInt16(System.Convert.ToDouble(i) * (System.Convert.ToDouble(nr_max) / System.Convert.ToDouble(w))); //scalare
+                    zona_des.DrawString(val.ToString(), font_ni, pens_blu, x0 + i, y0 + h);
+                }
+
+                //valori axa y
+                //zona_des.FillRectangle(radiera, x0 - 20, y0 - 10, 20, h + 20);// pentru afisare dinamica valori axa y
+
+                for (i = 0; i <= h; i += 50)
+                {
+                    val = System.Convert.ToInt16(System.Convert.ToDouble(i) * (System.Convert.ToDouble(val_max_af) / System.Convert.ToDouble(h))); //scalare
+                    zona_des.DrawString(val.ToString(), font_ni, pens_blu, x0 - 20, y0 + h - i - 10);
+                }
+
+            }
+            public osciloscop(System.Drawing.Graphics desen, int pozx, int pozy, int n_maxx, int n_maxy, int vmaxa)
+            {
+                x0 = pozx;
+                y0 = pozy;
+                w = n_maxx;
+                h = n_maxy;
+                nr_max = n_maxx;
+                val_max = n_maxy;
+                val_max_af = vmaxa;
+                zona_des = desen;
+                int i, j;
+                img = new Bitmap(nr_max, n_maxy, zona_des);
+                ims = new Bitmap(nr_max, n_maxy, zona_des);
+                // sterg imaginea
+
+                for (j = 0; j < val_max; j++)
+                {
+                    for (i = 0; i < nr_max; i++)
+                    {
+                        ims.SetPixel(i, j, System.Drawing.Color.WhiteSmoke);
+                    }
+                }
+                // grid
+                for (j = 0; j < val_max; j++)
+                {
+
+                    // grid orizontal
+
+
+                    if ((n_maxy - j - 1) % 10 == 0)
+                    {
+                        for (i = 0; i < nr_max; i++)
+                        {
+                            if ((n_maxy - j - 1) % 50 == 0)
+                                ims.SetPixel(i, j, System.Drawing.Color.Gray);
+                            else
+                                ims.SetPixel(i, j, System.Drawing.Color.LightGray);
+                        }
+                    }
+                    else
+                    {
+
+                        // grid orizontal vertical
+
+                        for (i = 0; i < nr_max; i++)
+                        {
+                            if (i % 10 == 0)
+                            {
+                                if (i % 50 == 0)
+                                    ims.SetPixel(i, j, System.Drawing.Color.Gray);
+                                else
+                                    ims.SetPixel(i, j, System.Drawing.Color.LightGray);
+                            }
+                        }
+                    }
+                }
+
+                //chenar
+
+                for (i = 0; i < n_maxx; i++)
+                {
+                    ims.SetPixel(i, 0, System.Drawing.Color.Blue);
+                    ims.SetPixel(i, val_max - 1, System.Drawing.Color.Blue);
+                }
+                for (j = 0; j < val_max; j++)
+                {
+                    ims.SetPixel(0, j, System.Drawing.Color.Blue);
+                    ims.SetPixel(nr_max - 1, j, System.Drawing.Color.Blue);
+                }
+
+            }
+
+        }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Clasa bin
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+        public class binar
+        {
+            int x0;
+            int y0;
+            int w;
+            int h;
+
+
+            public void setval(int nrb, UInt64 n, System.Drawing.Graphics zona_des, System.Drawing.Pen creion, System.Drawing.SolidBrush pens_albastra, System.Drawing.SolidBrush radiera)
+            {
+
+                int wb = w / (3 * nrb);
+                int hb = h / 3;
+                int x = x0 + w - 3 * wb;
+                int y = y0 + hb;
+                int i;
+                zona_des.DrawRectangle(creion, x0, y0, w, h);
+                for (i = nrb - 1; i >= 0; i--)
+                {
+                    System.UInt64 bit = ((n >> (nrb - i-1)) & 1);
+                    zona_des.DrawRectangle(creion, x - 1, y - 1, wb + 1, hb + 1);
+                    if (bit == 1)
+                        zona_des.FillRectangle(pens_albastra, x, y, wb, hb);
+                    else
+                        zona_des.FillRectangle(radiera, x, y, wb, hb);
+
+                    x -= 3 * wb;
+
+                }
+            }
+            public void init_binar(int pozx, int pozy, int lat, int inalt)
+            {
+                x0 = pozx;
+                y0 = pozy;
+                w = lat;
+                h = inalt;
+            }
+        }
+</pre> </font>
+</td></tr></table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+</body>
+</html>

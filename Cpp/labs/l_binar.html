@@ -1,0 +1,1458 @@
+<html>
+<title> Operatii binare </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Operatii binare </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font><br><br>
+<li><b>Binar</b>
+<ol>
+<li> Deplasare stanga dreapta 
+<li> Deplasare dreapta repetata.
+<li> Deplasare stanga repetata.
+<li> Joc de lumini stanga dreapta  dar folosind n=0x55555 apoi n=~n
+<li> Joc de lumini deplasare simultana st dr cu explozie la mijloc;
+<li> Joc aleator de lumini
+<li> Folosind procedura <b> afis_bin </b> , afisati cu o temporizare de 50 ms toate numerele 0-255 in format binar
+<li> Folosind procedura <b> afis_bin </b> , simulati o deplasare stanga pe 16 biti
+<li> Folosind procedura <b> afis_bin </b> , simulati o deplasare dreapta pe 16 biti
+<li> Folosind procedura <b> afis_bin </b> , simulati o deplasare stanga dreapta pe 16 biti
+<li> Folosind procedura <b> afis_bin </b> , simulati o deplasare simultana stanga dreapta pe 16 biti
+<li> Folosind procedura <b> afis_bin </b> , simulati o deplasare simultana stanga dreapta pe 16 biti cu marcarea coliziunii la mijloc
+<li> Folosind procedura <b> afis_bin </b> , simulati o deplasare o pozitie stanga dupa care o pozitie dreapta pe 16 biti 
+<li> Folosind procedura <b> afis_bin </b> , realizati un program care afiseaza:
+  <br><br><center><img src="im_cpp101.jpg"></center><br>  
+<li> Folosind procedura <b> afis_bin </b> , realizati un program care afiseaza repetitiv, in format binar  numere aleatoare pe 16 biti
+  <br><br><center><img src="im_cpp102.jpg"></center><br>  
+<li> Folosind procedura <b> afis_bin </b> , realizati un program care afiseaza repetitiv, in format binar  16 numere aleatoare pe 16 biti
+  <br><br><center><img src="im_cpp103.jpg"></center><br>  
+<li> Folosind procedura <b> afis_bin </b> , realizati un program care afiseaza cifra 1 sub forma de puncte intr-o matrice 8X8
+  <br><br><center><img src="im_cpp104.jpg"></center><br>
+<li> Fara a folosi procedura <b> afis_bin </b> , realizati un program care afiseaza cifra 1 sub forma de puncte intr-o matrice 8X8
+  <br><br><center><img src="im_cpp104.jpg"></center><br>
+<li> Folosind procedura <b> afis_bin </b> , realizati un program care afiseaza cifrele de la 0 la 9 sub forma de puncte intr-o matrice 8X8
+  <br><br><center><img src="im_cpp105.jpg"></center><br>
+<li> Folosind procedura <b> afis_bin </b> , realizati un program care afiseaza repetitiv cifrele de la 0 la 9 sub forma de puncte intr-o matrice 8X8
+<li> Avand o matrice binara 8X8 cu un continut prestabilit , realizati un program care creaza o matrice 16X16 folosind matricea 8X8 prin oglindirea acesteia stanga dreapta 
+si sus jos dupa modelul din figura de jos
+  <br><br><center><img src="im_cpp106.jpg"></center><br>
+<li> Avand o matrice binara 8X8  cu continut aleator , realizati un program care creaza o matrice 16X16 si o afiseaza repetitiv, folosind matricea 
+8X8 prin oglindirea acesteia stanga dreapta si sus jos dupa modelul din figura de jos
+  <br><br><center><img src="im_cpp107.jpg"></center><br>
+<li> Utilizand reprezentarea grafica in binar exemolificati paradoxul lui ahile cu broasca
+<li> Avand un vector binar cu n elemente, realizati un program in C# care se afiseaza continutul, sub forma:
+  <br><br><center><img src="im_cpp164.jpg"></center><br>
+  <br> schimbati dinamic continutul vectorului si afisati-l
+  <br> realizati un joc de lumini.
+
+</ol>
+&nbsp;&nbsp;&nbsp;&nbsp;Deplasare dreapta repetata.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Deplasare dreapta repetata
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+void af_binar(unsigned int );
+
+int main(void)
+{
+	system("TITLE Deplasare dreapta repetata");
+	system("COLOR F9");
+	cout << "\n\n\tDeplasare stanga 7 pozitii \n\n\n\t\t\t";
+	unsigned short int n=0x80;
+	int i;
+	for(i=0; i < 8; i++) {
+		af_binar(n);
+		n = n >> 1 ;
+	}
+	cin.ignore();
+	cin.get();
+
+  return 0;
+}
+// Afisarea bitilor ce corespund valorii parametrului u
+void af_binar(unsigned int u)
+{
+  int j;
+      for (int j=7; j>=0; j--) {
+         int bit = ((u >> j) & 1);
+         cout << bit<<" ";
+      }
+  cout << "\n\t\t\t";
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deplasare dreapta pe 8 biti
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int i=128;
+	cout << "\n\n\n\n";
+	while (i > 0){
+		cout<<"\n\n\t";
+		afis_bin(i,8);
+		i=i >> 1;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deplasare dinamica dreapta pe 8 biti
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	int i=128;
+	cout << "\n\n\n\n";
+	while (i > 0){
+		cout<<"\t";
+		afis_bin(i,8);
+		Sleep(100);
+		i=i >> 1;
+		//i=i/2;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deplasare dinamica stanga pe 8 biti
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	int i=1;
+	cout << "\n\n\n\n";
+	while (i < 129){
+		cout<<"\t";
+		afis_bin(i,8);
+		Sleep(100);
+		i=i << 1;
+		//i=i*2;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deplasare dreapta pe 32 biti
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	int i=0x40000000; // cel mai mare numar intreg pozitiv
+	cout << "\n\n\n\n";
+	while (i > 0){
+		cout<<"\t";
+		afis_bin(i,32);
+		Sleep(100);
+		i=i >> 1;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deplasare stanga pe 32 biti
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	int i=1; 
+	cout << "\n\n\n\n";
+	while (i < 0x40000000){
+		cout<<"\t";
+		afis_bin(i,32);
+		Sleep(100);
+		i=i << 1;
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deplasare stanga dreapta pe 16 biti
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	unsigned short int nr=0xAAAA;
+	cout << "\n\n\n\n";
+	while (i < 25){
+		cout<<"\t";
+		afis_bin(nr,16);
+		Sleep(250);
+		nr=~nr;
+		i++;
+	}
+	cout <<"\n\n\n\tGata!";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deplasare stanga dreapta pe 16 biti in bucla infinita
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	unsigned short int nr=0xAAAA;
+	cout << "\n\n\n\n";
+	while (true){
+		cout<<"\t";
+		afis_bin(nr,16);
+		Sleep(250);
+		nr=~nr;
+	}
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deplasare stanga-dreapta 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	unsigned short int a=0x8000;
+	unsigned short int b=0x0001;
+	unsigned short int c;
+	cout << "\n\n\n\n";
+	while (i < 16){
+		cout<<"\t";
+		c=a+b;
+		afis_bin(c,16);
+		Sleep(250);
+		a=a>>1;
+		b=b<<1;
+		i++;
+	}
+	cout <<"\n\n\n\tGata!";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deplasare stanga-dreapta in bucla infinita
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	int i;
+	unsigned short int a;
+	unsigned short int b;
+	unsigned short int c;
+	cout << "\n\n\n\n";
+	while (true){
+		a=0x8000;
+		b=0x0001;
+		i=0;
+		while (i < 16){
+			cout<<"\t";
+			c=a|b;//Atentie! nu punem c=a||b 
+			//a|b realizeaza operatia sau logic pe biti 
+			//a||b realizeaza operatia logica sau intre a, b
+			afis_bin(c,16);
+			Sleep(250);
+			a=a>>1;
+			b=b<<1;
+			i++;
+		}
+	}
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deplasare unui singur led stanga-dreapta in bucla infinita
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	//int i=128;
+	int dir=0;
+	int i=0x0001;
+	cout << "\n\n\n\n";
+
+	while (true){
+		cout << "\t";
+		afis_bin(i,16);
+		Sleep(100);
+		if(dir==0){
+			i=i << 1;
+			if (i > 0xFFFF){
+				dir=1;
+				i=0x8000;
+			}
+		
+		}else{
+			i=i >> 1;
+			if (i==0){
+				dir=0;
+				i=0x0001;
+			}
+		}
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Joc de lumini realizat binar.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se plaseaza 5 butoane radiobutton si un timer.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In zona pragma region se pune:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+static unsigned short int n=0x5555; // numarul ce va fi deplasat stanga dreapta si afisat
+static unsigned short int o=0x8000;
+static unsigned short int p=0x0001;
+static int i, j, x, w, h; // h, v dimensiunile unui dreptunghi
+static int sem=0;
+static System::Drawing::Graphics^ Desen;
+static System::Drawing::SolidBrush^ Pensula;
+static System::Drawing::Pen^ Creion_blu ;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul paint pun:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Desen = this->CreateGraphics();				 	
+Pensula=gcnew System::Drawing::SolidBrush(System::Drawing::Color::Blue);
+Creion_blu=gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+Desen->Clear(System::Drawing::Color(this->BackColor));
+r= gcnew System::Random();
+w=this->Size.Width/50;
+h=this->Size.Height/20;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul tick pun:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Desen->Clear(System::Drawing::Color(this->BackColor));
+x=this->Size.Width-6*w;
+if(this->radioButton1->Checked){
+	if (sem==0){
+		n=n << 1;
+		sem=1;
+	}else{
+		n=n >> 1;
+		sem=0;
+	}
+}
+if(this->radioButton2->Checked){
+	o=o >> 1;
+	p=p << 1;
+	
+	j++;
+	if (j>7){
+		j=0;
+		o=0x8000;
+		p=0x0001;
+	}
+	n=o|p;
+}
+if(this->radioButton3->Checked){
+		n=r->Next(65535);
+}
+if(this->radioButton4->Checked){
+	unsigned short int led[7]={1234,0xffff,0101,0x7777,0xaaaa,0x55555,7654};
+	j++;
+	if (j>7){
+		j=-1;
+			
+	}
+	n=led[j];
+}
+if(this->radioButton5->Checked){
+	n=0xaaaa;
+}
+for (i=15; i >= 0; i--){
+	int bit=((n >> (15-i)) & 1);
+	if (bit==1)
+		Desen->FillRectangle(Pensula, x, this->Size.Height/3, w,h);
+	else
+		Desen->DrawRectangle(Creion_blu, x, this->Size.Height/3, w,h);
+	x-=3*w;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Simulare explozie lumini
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+//efectul de explozie
+if(this->radioButton2->Checked){
+
+	if (o==0x0080){
+		o=0x8000;
+		p=0x0001;
+	}
+	else{
+		o=o >> 1;
+		p=p << 1;
+	}
+	n=o|p;
+	if (o==0x0080)
+	n=0xFFFF;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind procedura <b> afis_bin </b> , afisati cu o temporizare de 50 ms toate numerele 0-255 in format binar
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+int main(void)
+{
+	for (int i=0; i < 256; i++){
+	afis_bin(i,8);
+	Sleep(50);
+	}
+	cout<<"\n\n\t";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind procedura <b> afis_bin </b> , simulati o deplasare stanga pe 16 biti
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+int main(void)
+{
+	int n=1;
+	for (int i=0; i < 16; i++){
+	afis_bin(n,16);
+	Sleep(100);
+	n=n<<1;
+	}
+	cout<<"\n\n\t";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind procedura <b> afis_bin </b> , simulati o deplasare dreapta pe 16 biti
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+int main(void)
+{
+	int n=0x8000;
+	for (int i=0; i <16; i++){
+	afis_bin(n,16);
+	Sleep(100);
+	n=n>>1;
+	}
+	cout<<"\n\n\t";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind procedura <b> afis_bin </b> , simulati o deplasare stanga dreapta pe 16 biti
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+int main(void)
+{
+	bool con=true;
+	while (con){
+	int n=0x8000;
+	for (int i=0; i <16; i++){
+	afis_bin(n,16);
+	Sleep(100);
+	n=n >> 1;
+	}
+	n=1;
+	for (int i=0; i < 16; i++){
+	afis_bin(n,16);
+	Sleep(100);
+	n=n << 1;
+	}
+	}
+	cout<<"\n\n\t";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind procedura <b> afis_bin </b> , simulati o deplasare simultana stanga dreapta pe 16 biti
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+int main(void)
+{
+bool con=true;
+cout<<"\n\n\n\n";
+while (con){
+	int n=0x8000;
+	int m=1;
+	for (int i=0; i < 16; i++){
+		cout<<"\t";
+		afis_bin(n|m,16);
+		Sleep(100);
+		n=n >> 1;
+		m=m << 1;
+	}
+}
+cout<<"\n\n\t";
+cin.ignore();
+cin.get();
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind procedura <b> afis_bin </b> , simulati o deplasare simultana stanga dreapta pe 16 biti cu marcarea coliziunii la mijloc
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+int main(void)
+{
+bool con=true;
+cout<<"\n\n\n\n";
+while (con){
+	int n=0x8000;
+	int m=1;
+	for (int i=0; i <16; i++){
+	cout<<"\t";
+	if (i==8)
+		afis_bin(0xffff,16);
+	else
+		afis_bin(n|m,16);
+	Sleep(100);
+	n=n >> 1;
+	m=m << 1;
+	}
+}
+cout<<"\n\n\t";
+cin.ignore();
+cin.get();
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind procedura <b> afis_bin </b> , simulati o deplasare o pozitie stanga dupa care o pozitie dreapta pe 16 biti 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+int main(void)
+{
+	bool con=true;
+	cout<<"\n\n\n\n";
+	int n=0x5555;
+	while (con){
+		cout<<"\t";
+		afis_bin(n,16);
+		Sleep(300);
+		n=(~n)&0xffff;
+	}
+	cout<<"\n\n\t";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;// alfisare linie din tabla de sah // afiseaza un numar par de coloane chiar daca m este impar
+<br><br><center><img src="im_cpp76.gif"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// alfisare linie din tabla de sah
+// afiseaza un numar par de coloane chiar daca m este impar
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+int m; //numar de coloane
+int i; //contor coloane
+cout << "\n\tCate coloane? :";
+cin >> m;
+cout << "\n\n\n\t";
+for (i=1; i <= m;i+=2)
+ //cout << " X";
+ cout << char(176) << char(219);
+cin.ignore();
+cin.get();
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;// alfisare linie din tabla de sah // afiseaza un numar par de coloane chiar daca m este impar
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// alfisare linie din tabla de sah
+// afiseaza un numar par de coloane chiar daca m este impar
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+int m; //numar de coloane
+int i; //contor coloane
+cout << "\n\tCate coloane? :";
+cin >> m;
+cout << "\n\n\n\t";
+for (i=1; i <= m;i++){
+	if (i%2==0)
+		cout << char(176);
+	else
+		cout << char(219);
+}
+cin.ignore();
+cin.get();
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;// alfisare n linii din tabla de sah // afiseaza un numar par de linii
+<br><br><center><img src="im_cpp77.gif"></center><br>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// alfisare n linii din tabla de sah
+// afiseaza un numar par de linii
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+int m; //numar de coloane
+int i; //contor coloane
+int n; //numar de linii
+int j; //contor linii
+cout << "\n\tCate coloane? :";
+cin >> m;
+cout << "\n\tCate linii? :";
+cin >>n;
+
+cout << "\n\n\n\t";
+for (j=1; j<=n; j+=2){
+	for (i=1; i <= m;i+=1)
+ 		if (i%2==0)
+			cout << char(176);
+		else
+			cout << char(219);
+	cout << "\n\t";
+
+	for (i=1; i<=m;i+=1)
+ 		if (i%2==0)
+			cout << char(219);
+		else
+			cout << char(176);
+	cout << "\n\t";
+}
+cin.ignore();
+cin.get();
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;// alfisare n linii din tabla de sah
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// alfisare n linii din tabla de sah
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+int m; //numar de coloane
+int i; //contor coloane
+int n; //numar de linii
+int j; //contor linii
+cout << "\n\tCate coloane? :";
+cin >> m;
+cout << "\n\tCate linii? :";
+cin >>n;
+
+cout << "\n\n\n\t";
+for (j=1; j <=n; j++){
+	for (i=1; i<=m;i++)
+		if((i+j)%2==0)
+ 			cout << char(176);
+		else
+			cout << char(219);
+
+		cout << "\n\t";
+	}
+cin.ignore();
+cin.get();
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;// alfisare diagonala principala
+<br><br><center><img src="im_cpp78.gif"></center><br>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// alfisare diagonala principala
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+int m; //numar de coloane
+int i; //contor coloane
+int n; //numar de linii
+int j; //contor linii
+cout << "\n\tCate coloane? :";
+cin >> m;
+cout << "\n\tCate linii? :";
+cin >>n;
+
+cout << "\n\n\n\t";
+for (j=1; j<=n; j++){
+	for (i=1; i<=m;i++)
+		if(i==j)
+ 			cout << char(219);
+		else
+			cout << char(176);
+
+		cout << "\n\t";
+	}
+cin.ignore();
+cin.get();
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;// alfisare diagonala secundara
+<br><br><center><img src="im_cpp79.gif"></center><br>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// alfisare diagonala secundara
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+int m; //numar de coloane
+int i; //contor coloane
+int n; //numar de linii
+int j; //contor linii
+cout << "\n\tCate coloane? :";
+cin >> m;
+cout << "\n\tCate linii? :";
+cin >>n;
+
+cout << "\n\n\n\t";
+for (j=1; j<=n; j++){
+	for (i=1; i<=m;i++)
+		if(i+j==m+1)
+ 			cout << char(219);
+		else
+			cout << char(176);
+
+		cout << "\n\t";
+	}
+cin.ignore();
+cin.get();
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;// alfisare diagonala principala si secundara
+<br><br><center><img src="im_cpp80.gif"></center><br>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+// alfisare diagonala principala si secundara
+
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+int m; //numar de coloane
+int i; //contor coloane
+int n; //numar de linii
+int j; //contor linii
+cout << "\n\tCate coloane? :";
+cin >> m;
+cout << "\n\tCate linii? :";
+cin >>n;
+
+cout << "\n\n\n\t";
+for (j=1; j<=n; j++){
+	for (i=1; i<=m;i++)
+		if((i+j==m+1)||(i==j))
+ 			cout << char(219);
+		else
+			cout << char(176);
+
+		cout << "\n\t";
+	}
+cin.ignore();
+cin.get();
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind procedura <b> afis_bin </b> , realizati un program care afiseaza:
+  <br><br><center><img src="im_cpp101.jpg"></center><br>  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+int main(void)
+{
+	bool con=true;
+	int i=0;
+	int n=0x5555;
+	while (con){
+		cout<<"\n\n\n\n";
+		for(i=0; i <= 16 ;i++){
+			cout<<"\n\t";
+			afis_bin(n,16);
+			n=(~n)&0xffff;
+		}
+	Sleep(1000);
+	system("cls");
+	}
+	cout<<"\n\n\t";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind procedura <b> afis_bin </b> , realizati un program care afiseaza repetitiv, in format binar  numere aleatoare pe 16 biti
+  <br><br><center><img src="im_cpp102.jpg"></center><br>  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+int main(void)
+{
+	bool con=true;
+	int i=0;
+	int n=0x5555;
+	cout<<"\n\n\n\n";
+	while (con){
+		afis_bin(n,16);
+		n=65535*rand()/RAND_MAX;
+		Sleep(1000);
+	}
+	cout<<"\n\n\t";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind procedura <b> afis_bin </b> , realizati un program care afiseaza repetitiv, in format binar  16 numere aleatoare pe 16 biti
+  <br><br><center><img src="im_cpp103.jpg"></center><br> 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+int main(void)
+{
+	bool con=true;
+	int i=0;
+	int n=0x5555;
+	while (con){
+	   cout<<"\n\n\n\n";
+	   for(i=1; i <= 16;i++){
+		cout<<"\n";
+		afis_bin(n,16);
+		n=65536*rand()/RAND_MAX;;
+	   }
+	   Sleep(1000);
+	   system("cls");
+	}
+	cout<<"\n\n\t";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind procedura <b> afis_bin </b> , realizati un program care afiseaza cifra 1 sub forma de puncte intr-o matrice 8X8
+  <br><br><center><img src="im_cpp104.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+int main(void)
+{
+	int i=0;
+	unsigned int n[8]={0x08,0x18,0x28,0x08,0x08,0x08,0x08,0x1c};
+		cout<<"\n\n\n\n";
+		for(i=0; i < 8 ;i++){
+			cout<<"\n\t";
+			afis_bin(n[i],8);
+		}
+		Sleep(1000);
+	cout<<"\n\n\tGata!";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Fara a folosi procedura <b> afis_bin </b> , realizati un program care afiseaza cifra 1 sub forma de puncte intr-o matrice 8X8
+  <br><br><center><img src="im_cpp104.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+int main(void)
+{
+	system("COLOR 0B");
+	bool con=true;
+	int i=0,j=0;
+	int n[8][8]={
+		{0,0,0,0,1,0,0,0},
+		{0,0,0,1,1,0,0,0},
+		{0,0,1,0,1,0,0,0},
+		{0,0,0,0,1,0,0,0},
+		{0,0,0,0,1,0,0,0},
+		{0,0,0,0,1,0,0,0},
+		{0,0,0,0,1,0,0,0},
+		{0,0,0,1,1,1,0,0},
+	};
+		cout<<"\n\n\n\n";
+		for(i=0; i <= 7 ;i++){
+			cout<<"\n\t";
+			for(j=0; j <= 7 ;j++){
+			if(n[i][j] == 0)
+		   		 cout << char(176);
+			else
+				cout << char(219);
+			}
+		}
+	cout<<"\n\n\tGata!";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<li> Folosind procedura <b> afis_bin </b> , realizati un program care afiseaza cifrele de la 0 la 9 sub forma de puncte intr-o matrice 8X8
+  <br><br><center><img src="im_cpp105.jpg"></center><br>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+int main(void)
+{
+	bool con=true;
+	int i=0,j=0;
+	unsigned int n[10][8]={
+		{0x08,0x18,0x28,0x08,0x08,0x08,0x08,0x1c},
+		{0x1c,0x22,0x02,0x04,0x08,0x10,0x20,0x3e},
+		{60,66,4,24,4,2,4,120},
+		{125,123,77,15,212,88,42,88},
+		{25,23,177,25,12,188,92,188},
+		{125,123,77,15,212,88,42,88},
+		{25,123,177,25,212,88,52,28},
+		{125,23,77,15,212,188,2,188},
+		{125,123,77,15,212,88,42,88},
+		{235,177,25,12,188,32,38,33}
+	    };
+	for(j=0;j < 10;j++){
+		cout<<"\n\n\n\n";
+		for(i=0; i < 8 ;i++){
+			cout<<"\n\t";
+			afis_bin(n[j][i],8);
+		}
+		Sleep(1000);
+		system("cls");
+	}
+	cout<<"\n\n\tGata!";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind procedura <b> afis_bin </b> , realizati un program care afiseaza repetitiv cifrele de la 0 la 9 sub forma de puncte intr-o matrice 8X8
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+int main(void)
+{
+	bool con=true;
+	int i=0,j=0;
+	unsigned int n[10][8]={
+		{0x08,0x18,0x28,0x08,0x08,0x08,0x08,0x1c},
+		{0x1c,0x22,0x02,0x04,0x08,0x10,0x20,0x3e},
+		{60,66,4,24,4,2,66,60},
+		{0x20,0x24,0x24,0x24,0x3e,0x04,0x04,0x04},
+		{60,64,64,56,4,4,4,120},
+		{124,64,64,64,124,68,68,124},
+		{126,2,4,8,16,32,64,64},
+		{124,68,68,124,68,68,68,124},
+		{124,68,68,124,4,4,4,124},
+		{124,68,68,68,68,68,68,124}
+	    };
+	while(con){
+	i=0,j=0;
+	for(j=0;j<10;j++){
+		cout<<"\n\n\n\n";
+		for(i=0; i<8 ;i++){
+			cout<<"\n\t";
+			afis_bin(n[j][i],8);
+		}
+		Sleep(1000);
+		system("cls");
+	}
+	}
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Avand o matrice binara 8X8  , realizati un program care creaza o matrice 16X16 folosind matricea 8X8 prin oglindirea acesteia stanga dreapta 
+si sus jos dupa modelul din figura de jos
+  <br><br><center><img src="im_cpp106.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+int main(void)
+{
+	system("COLOR 0B");
+	bool con=true;
+	int i=0,j=0;
+	int largemat[16][16]; 
+	int n[8][8]={
+		{1,0,0,0,0,0,0,0},
+		{0,1,0,0,0,0,0,0},
+		{0,0,1,0,0,0,0,0},
+		{0,0,0,1,0,0,0,0},
+		{0,0,1,0,0,0,0,0},
+		{0,1,0,0,0,0,0,1},
+		{1,0,0,0,0,0,1,0},
+		{0,1,0,0,0,1,0,0},
+		};
+	while (con){
+		cout<<"\n\n\n\n";
+		for(i=0; i <= 7 ;i++){
+			cout<<"\n\t";
+			for(j=0; j <= 7 ;j++){
+			if(n[i][j] == 0)
+		   		 cout << char(176);
+			else
+				cout << char(219);
+			}
+		}
+		
+		for(i=0; i <= 7 ;i++){
+			for(j=0; j <= 7 ;j++){
+           			largemat[i][15-j] = n[i][j];
+			}
+		}
+		for(i=0; i <= 7 ;i++){
+			for(j=0; j <= 7 ;j++){
+           			largemat[i][j] = n[i][j];
+			}
+		}
+		for(i=0; i <= 7 ;i++){
+			for(j=0; j <= 7 ;j++){
+           			largemat[15-i][j] = n[i][j];
+			}
+		}
+		for(i=0; i <= 7 ;i++){
+			for(j=0; j <= 7 ;j++){
+           			largemat[15-i][15-j] = n[i][j];
+			}
+		}
+		cout<<"\n\n";
+		for(i=0; i <= 15 ;i++){
+			cout<<"\n\t";
+			for(j=0; j <= 15 ;j++){
+				if(largemat[i][j] == 0)
+		    			cout << char(176);
+				else
+					cout << char(219);
+			}
+		}
+		Sleep(1000000);
+		system("cls");
+	}
+	cout<<"\n\n\t";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Avand o matrice binara 8X8  cu continut aleator , realizati un program care creaza o matrice 16X16 si o afiseaza repetitiv, folosind matricea 
+8X8 prin oglindirea acesteia stanga dreapta si sus jos dupa modelul din figura de jos
+  <br><br><center><img src="im_cpp107.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < windows.h >
+using namespace std;
+
+
+int main(void)
+{
+	system("COLOR 0B");
+	bool con=true;
+	int i=0,j=0;
+	int largemat[16][16]; 
+	int n[8][8];
+	while (con){
+		for(i=0; i <= 7 ;i++){
+			for(j=0; j <= 7 ;j++){
+				n[i][j]=rand()%2;
+			}
+		}
+		cout<<"\n\n\n\n";
+		for(i=0; i <= 7 ;i++){
+			for(j=0; j <= 7 ;j++){
+           			largemat[i][15-j] = n[i][j];
+			}
+		}
+		for(i=0; i <= 7 ;i++){
+			for(j=0; j <= 7 ;j++){
+           			largemat[i][j] = n[i][j];
+			}
+		}
+		for(i=0; i <= 7 ;i++){
+			for(j=0; j <= 7 ;j++){
+           			largemat[15-i][j] = n[i][j];
+			}
+		}
+		for(i=0; i <= 7 ;i++){
+			for(j=0; j <= 7 ;j++){
+           			largemat[15-i][15-j] = n[i][j];
+			}
+		}
+		cout<<"\n\n";
+		for(i=0; i <= 15 ;i++){
+			cout<<"\n\t";
+			for(j=0; j <= 15 ;j++){
+				if(largemat[i][j] == 0)
+		    			cout << char(176);
+				else
+				cout << char(219);
+			}
+		}
+		Sleep(1000);
+		system("cls");
+	}
+	cout<<"\n\n\t";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Paradoxul lui Ahile cu broasca
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+    public partial class Form1 : Form
+    {
+        static System.UInt64 a, b, bit; // numarul ce va fi convertit in binar si afisat grafic
+        static int i, w, h, x, v; // h, w dimensiunile unui dreptunghi
+        static System.Drawing.Graphics Desen;
+        static System.Drawing.SolidBrush Pensula, Pensula_pic;
+        static System.Drawing.Pen Creion_blu;
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Desen = this.CreateGraphics();
+            Pensula = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
+            Pensula_pic = new System.Drawing.SolidBrush(this.BackColor);
+            Creion_blu = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Desen.Clear(this.BackColor);
+            w = this.Size.Width / 67;
+            h = this.Size.Height / 20;
+            a = 0x8000000000000000;
+            b = 0x0000000008000000;
+            v = 3;
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            a = a / 2;
+            if (a == 0)
+            {
+                a = 0x8000000000000000;
+                b = 0x0000000008000000;
+            }
+            x = this.Size.Width - 4 * w;
+            for (i = 63; i >= 0; i--)
+            {
+                bit = ((a >> (63 - i)) & 1);
+                if (bit == 1)
+                    Desen.FillRectangle(Pensula, x, this.Size.Height / 3, w, h);
+                else
+                {
+                    Desen.FillRectangle(Pensula_pic, x, this.Size.Height / 3, w, h);
+                    Desen.DrawRectangle(Creion_blu, x, this.Size.Height / 3, w, h);
+                }
+                x -= w;
+            }
+            if (v == 3)
+            {
+                b = b / 2;
+                x = this.Size.Width - 4 * w;
+                for (i = 63; i >= 0; i--)
+                {
+                    bit = ((b >> (63 - i)) & 1);
+                    if (bit == 1)
+                        Desen.FillRectangle(Pensula, x, (this.Size.Height / 3) + h, w, h);
+                    else
+                    {
+                        Desen.FillRectangle(Pensula_pic, x, (this.Size.Height / 3) + h, w, h);
+                        Desen.DrawRectangle(Creion_blu, x, (this.Size.Height / 3) +  h, w, h);
+                    }
+                    x -= w;
+                    v = 0;
+                }
+            }
+            v = v + 1;
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            this.timer1.Interval = this.trackBar1.Value;
+        }
+    }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+</body>
+</html>

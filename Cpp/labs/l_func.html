@@ -1,0 +1,2013 @@
+<html>
+<title> Laborator functii </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator functii </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font>
+<li>Functii
+<ol>
+<li> Realizati o aplicatie care foloseste o functie pentru a afisa numerele pare
+<li> Realizati o aplicatie care foloseste o functie pentru a afisa numerele pare. Se va defini prototipul functiei
+<li> Realizati un program care apeleaza o functie pentru a afisa numerele naturale de la 0 la 100 pe 5 coloane.
+<li> Modificati programul anterior astfel incat functia main sa apara in program inaintea functiei. Se va utiliza prototipul functiei.
+<li> Modificati functia anterioara astfel incat ea sa fie apelata cu un parametru, astfel afisarea sa se faca pana la un numar dat nu pana la 100.
+<li> Se vor introduce 2 parametri astfel afisarea sa se faca de la un numar dat pana la un numar un alt numar dat.
+<li> Se vor introduce 3 parametri astfel afisarea sa se faca de la un numar dat pana la un numar un alt numar dat pe un numar dat de coloane.
+<li> Se reia aplicatia anterioara, si se modifica astfel incat functia sa returneze numarul de caractere afisate 
+<li> Folosind transmiterea parametrilor prin referinta, se vor returna 2 parametri: numarul de numere afisate si suma lor
+<li> Realizati un program care utilizeaza o functie pentru a calcula suma numerelor din intervalul n1,n2
+<li> Realizati un program care utilizeaza o functie recursiva pentru a calcula suma numerelor din intervalul n1,n2
+<li> Realizati un program care utilizeaza o functie recursiva pentru a calcula media aritmetica numerelor din intervalul n1,n2
+<li> Realizati o aplicatie care afiseaza meniul de jos si foloseste functii pentru realizarea fiecarei optiuni in parte.
+	<ul>
+	 <li> 1. Afisarea numerelor pare pana la n(n citit de la tastatura
+	 <li> 2. Calculeaza minimul din n nr intregi citite de la tastatura
+	 <li> 3. Afiseaza toate nr de 5 cifre divizibile cu m si n citite de la tastatura
+	 <li> 4. IESIRE
+     </ul>
+<li> Realizati un program care apleaza functii ce utilizeaza variabile statice.
+<li>Realizati o aplicatie grafica de forma imaginii de mai jos, in care se defineste o functie ce  deseneaza o linie intrerupta de forma:
+  <br><br><center><img src="im_cpp112.jpg"></center><br>
+<li>Realizati o aplicatie grafica de forma imaginii de mai jos, in care se defineste o functie care se apeleaza de mai multe ori pentru a afisa:
+  <br><br><center><img src="im_cpp113.jpg"></center><br>
+
+<li>Realizati o aplicatie grafica de forma imaginii de mai jos, in care se defineste o functie ce  deseneaza formele geometrice de mai jos:
+  <br><br><center><img src="im_cpp109.jpg"></center><br>
+  <br> se va apela functia pe mai multe evenimente
+
+<li> Realizati in WFA o functie care deseneaza un cerc sectionat in 4
+ <br><br><center><img src="im_cpp90.jpg"></center><br>
+<li> Realizati in WFA o aplicatie care deseneaza un cerc sectionat in 4 la pozitia in care se face click intr-un form
+
+<li> Realizati in WFA o functie care deseneaza imaginea de jos. Coordonatele punctului central se trimit functiei prin parametrii
+ <br><br><center><img src="im_cpp114.jpg"></center><br>
+
+<li> Utilizand functia anterioara realizati aplicatia din imaginea de jos.
+ <br><br><center><img src="im_cpp115.jpg"></center><br>
+<li> Creati dinamica pentru a simula un foc de artificii.
+</ol>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<li> Afisare numere pare
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+// Incepe definirea functiei nr_pare
+void nr_pare(void)
+{
+	cout << "\n\tAfisare 50 numere pare:\n\n\t";
+	for(int i=1;i <=100;++i)
+		if(i%2==0) cout << i <<" ";
+}
+int main(void)
+{
+	nr_pare(); // se apeleaza functia nr_pare
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisare numere pare.Se va defini prototipul functiei
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+void nr_pare(void);
+int main(void)
+{
+	nr_pare(); // se apeleaza functia nr_pare
+	cin.ignore();
+	cin.get();
+
+	return 0;
+}
+
+// Incepe definirea functiei nr_pare
+void nr_pare(void)
+{
+	cout << "\n\tAfisare 50 numere pare:\n\n\t";
+	for(int i=1;i <=100;++i)
+		if(i%2==0) cout << i <<" ";
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisare numere pare. Apelarea functiei se poate face de cate ori e nevoie
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+void nr_pare(int);
+int main(void)
+{
+	int nr=1;
+	
+	
+	nr_pare(100); // se apeleaza functia nr_pare
+	nr_pare(200); // se apeleaza functia nr_pare
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+// Incepe definirea functiei nr_pare
+void nr_pare(int n)
+{
+	cout << "\n\tAfisare " << n/2 << " numere pare:\n\n\t";
+	for(int i=1;i <=n;++i)
+		if(i%2==0) cout << i <<" ";
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisare numere pare. Parametrul cu care se apeleaza functia poate fi o variabila
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+void nr_pare(int);
+int main(void)
+{
+	int nr;
+	cout << "\n\tPana la ce valoare sa afisam? :";
+	cin >> nr;
+	nr_pare(nr); // se apeleaza functia nr_pare
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+// Incepe definirea functiei nr_pare
+void nr_pare(int n)
+{
+	cout << "\n\tAfisare " << n/2 << " numere pare:\n\n\t";
+	for(int i=1;i <=n;++i)
+		if(i%2==0) cout << i <<" ";
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisare numere pare. Apelare repetitiva a functiei
+ 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+void nr_pare(int);
+int main(void)
+{
+	int nr=1;
+	do{
+	cout << "\n\n\tPana la ce valoare sa afisam? :";
+	cin >> nr;
+	nr_pare(nr); // se apeleaza functia nr_pare
+
+	}
+	while(nr!=0);
+
+	return 0;
+}
+
+// Incepe definirea functiei nr_pare
+void nr_pare(int n)
+{
+	cout << "\n\tAfisare " << n/2 << " numere pare:\n\n\t";
+	for(int i=1;i <=n;++i)
+		if(i%2==0) cout << i <<" ";
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisare numere pare. Apelare functie cu 2 parametri
+ 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+void nr_pare(int,int);
+int main(void)
+{
+	int nr_strt,nr_stp;
+	cout << "Afisarea se face de la:";
+	cin >> nr_strt;
+	cout << "\nla:";
+	cin >> nr_stp;
+	nr_pare(nr_strt,nr_stp); // se apeleaza functia nr_pare
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+// Incepe definirea functiei nr_pare
+void nr_pare(int n,int m)
+{
+	cout << "\n\tAfisare " << (m-n)/2 << " numere pare:\n\n";
+	for(int i=n;i <=m;++i)
+		if(i%2==0) cout << i <<" ";
+}</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se afiseaza numerele naturale de la 0 la 100 pe 5 coloane
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	int c=1;//coloana
+	cout <<" \n\tNumerele sunt:\n\n";
+	while (i <=100)
+	{
+		while((c <=5)&&(i <=100)){
+			cout<< i <<"\t";
+			i+=1;
+			c++;	
+		}
+	cout <<"\n";
+	c=1;		
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se apeleaza o functie care afiseaza numerele naturale de la 0 la 100 pe 5 coloane.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+void afis100(void)
+{
+	int i=0;
+	int c=1;//coloana
+	cout <<" \n\tNumerele sunt:\n\n";
+	while (i <=100)
+	{
+		while((c <=5)&&(i <=100)){
+			cout<< i <<"\t";
+			i+=1;
+			c++;	
+		}
+	cout <<"\n";
+	c=1;		
+	}	
+}
+
+int main(void)
+{
+	afis100();
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va utiliza prototipul functiei.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+void afis100(void);// prototipul functiei
+
+
+int main(void)
+{
+	afis100();
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+
+void afis100(void)
+{
+	int i=0;
+	int c=1;//coloana
+	cout <<" \n\tNumerele sunt:\n\n";
+	while (i <=100)
+	{
+		while((c <=5)&&(i <=100)){
+			cout << i <<"\t";
+			i+=1;
+			c++;	
+		}
+	cout <<"\n";
+	c=1;		
+	}	
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Se modifica functia anterioara astfel incat ea sa fie apelata cu un parametru, astfel afisarea sa se faca pana la un numar dat nu pana la 100.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+void afis_nr(int);// prototipul functiei
+
+
+int main(void)
+{
+	int k=220;
+	afis_nr(k);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+
+void afis_nr(int sf)
+{
+	int i=0;
+	int c=1;//coloana
+	cout <<" \n\tNumerele sunt:\n\n";
+	while (i <=sf)
+	{
+		while((c <=5)&&(i <=sf)){
+			cout << i <<"\t";
+			i+=1;
+			c++;	
+		}
+	cout <<"\n";
+	c=1;		
+	}	
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se introduc 2 parametri astfel afisarea sa se faca de la un numar dat pana la un numar un alt numar dat.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+void afis_nr(int,int);// prototipul functiei
+
+int main(void)
+{
+	int j=123; // incepand cu numarul j
+	int k=200; // sfarsind cu numarul k
+	afis_nr(j,k);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+void afis_nr(int st,int sf)
+// procedura afiseaza numerele de la st la sf
+{
+	int i=st;
+	int c=1;//coloana
+	cout <<" \n\tNumerele sunt:\n\n";
+	while (i <=sf)
+	{
+		while((c <=5)&&(i <=sf)){
+			cout << i <<"\t";
+			i+=1;
+			c++;	
+		}
+	cout <<"\n";
+	c=1;		
+	}	
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se introduc 3 parametri astfel afisarea sa se faca de la un numar dat pana la un numar un alt numar dat pe un numar dat de coloane.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+void afis_nr(int,int,int);// prototipul functiei
+
+int main(void)
+{
+	int j=123; // incepand cu numarul j
+	int k=200; // sfarsind cu numarul k
+	int l=7;// numarul de coloane
+	afis_nr(j,k,l);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+void afis_nr(int st,int sf,int col)
+{
+	int i=st;
+	int c=1;//coloana
+	cout <<" \n\tNumerele sunt:\n\n";
+	while (i <=sf)
+	{
+		while((c<=col)&&(i <=sf)){
+			cout << i <<"\t";
+			i+=1;
+			c++;	
+		}
+	cout <<"\n";
+	c=1;		
+	}	
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se reia aplicatia anterioara, si se modifica astfel incat functia sa returneze numarul de caractere afisate 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int afis_nr(int,int,int);// prototipul functiei
+
+int main(void)
+{
+	int j=123; // incepand cu numarul j
+	int k=200; // sfarsind cu numarul k
+	int l=7;// numarul de coloane
+	int nr;//numarul de numere afisate
+	nr=afis_nr(j,k,l);
+	cout << "\n\nAm afisat "<< nr<< " numere";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+int afis_nr(int st,int sf,int col)
+{
+	int i=st;
+	int c=1;//coloana
+	cout <<" \n\tNumerele sunt:\n\n";
+	while (i <=sf)
+	{
+		while((c <=col)&&(i <=sf)){
+			cout<< i <<"\t";
+			i+=1;
+			c++;	
+		}
+	cout <<"\n";
+	c=1;		
+	}
+return sf-st+1;	
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind transmiterea parametrilor prin referinta, se vor returna 2 parametri: numarul de numere afisate si suma lor 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+void afis_nr(int,int,int,int &num, int &sum);// prototipul functiei
+
+int main(void)
+{
+	int j=123; // incepand cu numarul j
+	int k=200; // sfarsind cu numarul k
+	int l=7;// numarul de coloane
+	int nr;//numarul de numere afisate
+	int sm;//suma numerelor
+	afis_nr(j,k,l,nr,sm);
+	cout << "\n\nAm afisat "<< nr << " numere, suma fiind: " << sm;
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+void afis_nr(int st,int sf,int col, int &num, int &sum)
+{
+	int i=st;
+	int c=1;//coloana
+	sum=1;
+	cout <<" \n\tNumerele sunt:\n\n";
+	while (i <=sf)
+	{
+		while((c <=col)&&(i <=sf)){
+			cout<< i <<"\t";
+			i+=1;
+			sum=sum+i;
+			c++;	
+		}
+	cout<<"\n";
+	c=1;		
+	}
+  num=sf-st;	
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati un program care utilizeaza o functie pentru a calcula suma numerelor din intervalul n1,n2
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int suma(int,int);
+
+int main(void)
+{
+	int n1,n2;
+	cout <<"\n\tProgramul calculeaza suma numerelor din intervalul n1,n2";
+	cout << "\n\n\tIntroduceti n1:";
+	cin >>n1;
+	cout << "\n\tIntroduceti n2:";
+	cin >>n2;
+    cout << "\n\n\tSuma este:" << suma(n1,n2);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+int suma(int st,int sf)
+{
+	int sm=0;
+	for (int i=st;i <=sf;i++){
+		sm=sm+i;
+	}
+	return sm;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati un program care utilizeaza o functie recursiva pentru a calcula suma numerelor din intervalul n1,n2
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int suma(int,int);
+
+int main(void)
+{
+	int n1,n2;
+	cout <<"\n\tProgramul calculeaza suma numerelor din intervalul n1,n2";
+	cout << "\n\n\tIntroduceti n1:";
+	cin >>n1;
+	cout << "\n\tIntroduceti n2:";
+	cin >>n2;
+        cout << "\n\n\tSuma este:" << suma(n1,n2);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+int suma(int st,int sf)
+{
+	if (st <=sf)	
+		return st;
+	else
+		return sf+suma(st,sf-1);
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Versiunea 2 Program care utilizeaza o functie recursiva pentru a calcula suma numerelor din intervalul n1,n2
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int suma(int,int);
+
+int main(void)
+{
+	int n1,n2;
+	cout <<"\n\tProgramul calculeaza suma numerelor din intervalul n1,n2";
+	cout << "\n\n\tIntroduceti n1:";
+	cin >>n1;
+	cout << "\n\tIntroduceti n2:";
+	cin >>n2;
+        cout << "\n\n\tSuma este:"<< suma(n1,n2);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+int suma(int st,int sf)
+{
+ 
+	if (st <=sf)	
+	{
+		return st+suma(st+1,sf);
+	}
+	
+	else{
+		return 0;
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Versiunea 3 Program care utilizeaza o functie recursiva pentru a calcula suma numerelor din intervalul n1,n2
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+double suma(int,int);
+
+int main(void)
+{
+	int n1,n2;
+	cout <<"\n\tProgramul calculeaza suma numerelor din intervalul n1,n2";
+	cout << "\n\n\tIntroduceti n1:";
+	cin >>n1;
+	cout << "\n\tIntroduceti n2:";
+	cin >>n2;
+        cout << "\n\n\tSuma este:"<< suma(n1,n2);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+double suma(int st,int sf)
+{	static int sm=0;
+	static int nr=0;
+ 	sm=sm+st;
+	nr++;
+
+	if (st >=sf)	
+		return (double)sm/nr;
+	else
+		return suma(st+1,sf);
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati un program care utilizeaza o functie recursiva pentru a calcula media aritmetica numerelor din intervalul n1,n2
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Programul returneaza un int desi functia e definita double
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+double med(int,int);
+// returneaza tot int
+
+int main(void)
+{
+	double n1,n2;
+	cout <<"\n\tProgramul calculeaza media aritmetica a numerelor din intervalul n1,n2";
+	cout << "\n\n\tIntroduceti n1:";
+	cin >>n1;
+	cout << "\n\tIntroduceti n2:";
+	cin >>n2;
+        cout << "\n\n\tMedia este:" << med(n1,n2);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+double med(int st,int sf)
+{
+	int sm=0;
+	double md;
+	for (int i=st;i <=sf;i++){
+		sm=sm+i;
+	}
+    md=sm/(sf-st+1);
+	return md;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati un program care utilizeaza o functie recursiva pentru a calcula media aritmetica numerelor din intervalul n1,n2
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Programul returneaza corect double
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+double med(double,double);
+// returneaza corect double
+
+int main(void)
+{
+	double n1,n2;
+	cout <<"\n\tProgramul calculeaza media aritmetica a numerelor din intervalul n1,n2";
+	cout << "\n\n\tIntroduceti n1:";
+	cin >>n1;
+	cout << "\n\tIntroduceti n2:";
+	cin >>n2;
+        cout << "\n\n\tMedia este:" << med(n1,n2);
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+double med(double st,double sf)
+{
+	int sm=0;
+	double md;
+	for (int i=st;i <=sf;i++){
+		sm=sm+i;
+	}
+    md=sm/(sf-st+1);
+	return md;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati un program care utilizeaza o functie recursiva pentru a afisa  n numere
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std;
+int r(int ); // prototipul
+int main(void)
+{
+	int nr,s;
+	cout << "\n\n\tProgramul afiseaza numerele de la 0 la :";
+	cin >> nr;
+	s=r(nr);
+	cout << "\n\n\tNumerele sunt:";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+int r(int n)
+{
+	static int k;
+	if (n==0)	
+		return 0;
+	else{
+		cout << k <<" ";
+		k++;
+		return n+r(n-1);
+	}
+}
+
+</pre> </font>
+</td></tr></table>
+
+<!------------------------------------------------------------------->
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatie care afiseaza meniul de jos si foloseste functii pentru realizarea fiecarei optiuni in parte.
+	<ul>
+	 <li> 1. Afisarea numerelor pare pana la n(n citit de la tastatura
+	 <li> 2. Calculeaza minimul din n nr intregi citite de la tastatura
+	 <li> 3. Afiseaza toate nr de 5 cifre divizibile cu m si n citite de la tastatura
+	 <li> 4. IESIRE
+     </ul>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+#include "stdafx.h"
+#include<stdio.h>
+#include<iostream>
+using namespace std;
+
+void nr_pare();
+void min();
+void divcumsin();
+
+int main()
+{
+	int opt;
+	cout <<"1. Afisarea numerelor pare pana la n(n citit de la tastatura)\n";
+	cout <<"2. Calculeaza minimul din n nr intregi citite de la tastatura\n";
+	cout <<"3. Afiseaza toate nr de 5 cifre divizibile cu m si n citite de la tastatura\n";
+	cout <<"4. IESIRE\n";
+	
+	do
+	{
+		cout << "\n\nAlegeti optiunea:"; cin >> opt;
+		switch(opt)
+		{
+		case 1:nr_pare(); break;
+		case 2:min(); break;
+		case 3:divcumsin(); break;
+		case 4: break;
+		default:cout << "Optiunea aleasa nu exista in meniu!!!\nVa rugam alegeti alta optiune\n";
+		}
+	}while(opt!=4);
+}
+void min()
+{
+	int n,x,min=10000;
+	cout << "Cate nr cititi de la tastatura?:";
+	cin >> n;
+	for(int i=1;i <=n ;++i)
+	{
+		cout << "Dati nr:";
+		cin >> x;
+		if(x < min) min=x;
+	}
+	cout << "Minimul este:" << min;
+
+}
+void nr_pare()
+{
+	int n;
+	cout << "Dati n:";
+	cin >> n;
+	for(int i=1;i <=n;++i)
+		if(i%2==0) cout << i <<" ";
+}
+
+void divcumsin()
+{
+	int m,n;
+	cout << "Dati m:";
+	cin >> m;
+	cout << "Dati n:";
+	cin >> n;
+	for(int i=10000; i <=99999; ++i)
+		if(i%m==0&&i%n==0)
+			cout << i << " ";
+}
+
+
+</pre> </font>
+</td></tr></table>
+
+
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati o aplicatie grafica de forma imaginii de mai jos, in care se defineste o functie ce  deseneaza o linie intrerupta de forma:
+<br><br><center><img src="im_cpp112.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace liniute_v0
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics desen;
+        System.Drawing.Pen creion_r, creion_v;
+        int x1, y1; // coordonatele de inceput ale liniei
+        int l; // lungimea liniei
+        int ls; // lungimea unui segment
+        int pozitia; // pozitia curenta
+        private void liniute()
+        {
+            pozitia = x1;
+            while ((pozitia) < l )
+            {
+                desen.DrawLine(creion_r, pozitia, y1, pozitia + ls, y1);
+                desen.DrawLine(creion_v, pozitia + ls, y1, pozitia + 2 * ls, y1);
+                pozitia += 2 * ls;
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            x1 = 57;
+            y1 = 101;
+            l = 357;
+            ls = 17;
+
+            desen = this.CreateGraphics();
+            creion_r = new System.Drawing.Pen(System.Drawing.Color.Red, 5);
+            creion_v = new System.Drawing.Pen(System.Drawing.Color.LawnGreen, 5);
+            
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            liniute();
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati o aplicatie grafica de forma imaginii de mai jos, in care se defineste o functie care se apeleaza de mai multe ori pentru a afisa:
+<br><br><center><img src="im_cpp113.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace liniute_v1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics desen;
+        System.Drawing.Pen creion_r, creion_v;
+ 
+        private void liniute(int x1,int y1,int l,int ls)
+        {
+        // x1, y1 coordonatele de inceput ale liniei
+        // l  lungimea liniei
+        // ls  lungimea unui segment
+        // pozitia  pozitia curenta
+
+            int pozitia = x1;
+            while ((pozitia) < l)
+            {
+                desen.DrawLine(creion_r, pozitia, y1, pozitia + ls, y1);
+                desen.DrawLine(creion_v, pozitia + ls, y1, pozitia + 2 * ls, y1);
+                pozitia += 2 * ls;
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            desen = this.CreateGraphics();
+            creion_r = new System.Drawing.Pen(System.Drawing.Color.Red, 5);
+            creion_v = new System.Drawing.Pen(System.Drawing.Color.LawnGreen, 5);
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            liniute(157, 201, 257, 27);
+            liniute(57,101,357,17);
+            liniute(25, 50, 457, 55);
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace liniute_v2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics desen;
+        System.Drawing.Pen creion_r, creion_v;
+        int x1, y1; // coordonatele de inceput ale liniei
+        int l; // lungimea liniei
+        int ls; // lungimea unui segment
+        int pozitia; // pozitia curenta
+        int semafor; // ce sa deseneze
+        private void liniute_r()
+        {
+            pozitia = x1;
+            while ((pozitia) < l)
+            {
+                desen.DrawLine(creion_r, pozitia, y1, pozitia + ls, y1);
+                desen.DrawLine(creion_v, pozitia + ls, y1, pozitia + 2 * ls, y1);
+                pozitia += 2 * ls;
+            }
+        }
+        private void liniute_v()
+        {
+            pozitia = x1;
+            while ((pozitia) < l)
+            {
+                desen.DrawLine(creion_v, pozitia, y1, pozitia + ls, y1);
+                desen.DrawLine(creion_r, pozitia + ls, y1, pozitia + 2 * ls, y1);
+                pozitia += 2 * ls;
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            x1 = 57;
+            y1 = 101;
+            l = 357;
+            ls = 17;
+
+            desen = this.CreateGraphics();
+            creion_r = new System.Drawing.Pen(System.Drawing.Color.Red, 5);
+            creion_v = new System.Drawing.Pen(System.Drawing.Color.LawnGreen, 5);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (semafor == 0)
+            {
+                liniute_r();
+                semafor = 1;
+            }
+            else
+            {
+                liniute_v();
+                semafor = 0;
+            }
+
+        }
+    }
+}
+
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace liniute_v3
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics desen;
+        System.Drawing.Pen creion_r, creion_v;
+        int x1, y1; // coordonatele de inceput ale liniei
+        int l; // lungimea liniei
+        int ls; // lungimea unui segment
+        int pozitia; // pozitia curenta
+        int semafor; // ce sa deseneze
+        System.Random n;
+        private void liniute_r()
+        {
+            pozitia = x1;
+            while ((pozitia) < l)
+            {
+                desen.DrawLine(creion_r, pozitia, y1, pozitia + ls, y1);
+                desen.DrawLine(creion_v, pozitia + ls, y1, pozitia + 2 * ls, y1);
+                pozitia += 2 * ls;
+            }
+        }
+        private void liniute_v()
+        {
+            pozitia = x1;
+            while ((pozitia) < l)
+            {
+                desen.DrawLine(creion_v, pozitia, y1, pozitia + ls, y1);
+                desen.DrawLine(creion_r, pozitia + ls, y1, pozitia + 2 * ls, y1);
+                pozitia += 2 * ls;
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            x1 = 57;
+            y1 = 101;
+            l = 357;
+            ls = 17;
+            n = new System.Random();
+            desen = this.CreateGraphics();
+            creion_r = new System.Drawing.Pen(System.Drawing.Color.Red, 5);
+            creion_v = new System.Drawing.Pen(System.Drawing.Color.LawnGreen, 5);
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+            if (semafor == 0)
+            {
+                liniute_r();
+                semafor = 1;
+            }
+            else
+            {
+                liniute_v();
+                semafor = 0;
+                creion_r = new System.Drawing.Pen(System.Drawing.Color.FromArgb(100+n.Next(155), 100+n.Next(155), 100+n.Next(150)), 5);
+                creion_v = new System.Drawing.Pen(System.Drawing.Color.FromArgb(n.Next(120), n.Next(120), n.Next(120)), 5);
+
+            }
+        }
+    }
+}
+
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace linute_v4
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics desen;
+        System.Drawing.Pen creion_r, creion_v,creion_a,creion_g;
+        int x1, y1; // coordonatele de inceput ale liniei
+        int l; // lungimea liniei
+        int ls; // lungimea unui segment
+        int pozitia; // pozitia curenta
+        int semafor; // ce sa deseneze
+        private void liniute_r()
+        {
+            pozitia = x1;
+            while ((pozitia) < l)
+            {
+                desen.DrawLine(creion_r, pozitia, y1, pozitia + ls, y1);
+                desen.DrawLine(creion_v, pozitia + ls, y1, pozitia + 2 * ls, y1);
+                pozitia += 2 * ls;
+            }
+        }
+        private void liniute_v()
+        {
+            pozitia = x1;
+            while ((pozitia) < l)
+            {
+                desen.DrawLine(creion_v, pozitia, y1, pozitia + ls, y1);
+                desen.DrawLine(creion_r, pozitia + ls, y1, pozitia + 2 * ls, y1);
+                pozitia += 2 * ls;
+            }
+        }
+        private void liniute_a()
+        {
+            pozitia = x1;
+            while ((pozitia) < l)
+            {
+                desen.DrawLine(creion_a, pozitia, y1, pozitia + ls, y1);
+                desen.DrawLine(creion_g, pozitia + ls, y1, pozitia + 2 * ls, y1);
+                pozitia += 2 * ls;
+            }
+        }
+        private void liniute_g()
+        {
+            pozitia = x1;
+            while ((pozitia) < l)
+            {
+                desen.DrawLine(creion_g, pozitia, y1, pozitia + ls, y1);
+                desen.DrawLine(creion_a, pozitia + ls, y1, pozitia + 2 * ls, y1);
+                pozitia += 2 * ls;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            x1 = 57;
+            y1 = 101;
+            l = 357;
+            ls = 17;
+
+            desen = this.CreateGraphics();
+            creion_r = new System.Drawing.Pen(System.Drawing.Color.Red, 5);
+            creion_v = new System.Drawing.Pen(System.Drawing.Color.LawnGreen, 5);
+            creion_a = new System.Drawing.Pen(System.Drawing.Color.Blue, 5);
+            creion_g = new System.Drawing.Pen(System.Drawing.Color.Yellow, 5);
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (semafor == 0)
+            {
+                liniute_r();
+            }
+            if (semafor == 1)
+            {
+                liniute_v();
+            }
+            if (semafor == 2)
+            {
+                liniute_a();
+            }
+            if (semafor == 3)
+            {
+                liniute_g();
+            }
+            semafor++;
+            if (semafor == 4)
+                semafor = 0;
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><brLiniute versiunea Tolan
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace liniute_v5
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        // functia compara coordonatele a doua puncte pentru a vedea daca se mai poate introduce o secventa noua
+        public bool compare(Point a, Point b)
+        {
+            return a.X <= b.X && a.Y <= b.Y;
+        }
+
+        // functia alege culoarea urmatoarei secvente din linie
+        public int set_color (int ID_color)
+        {
+            if (ID_color == 0)
+            {
+                return 1;
+            }
+            else
+                return 0;
+        }
+
+        public void Liniute(ref Graphics _draw, Point start, Point end, int lineWidth, int units, double firstLineStart, Color[] colors, int ID_color)
+        {
+            bool directie = compare(start, end);
+            Point unit = new Point((end.X - start.X) / units, (end.Y - start.Y) / units);
+            Point aux = new Point(start.X + (int)(unit.X * firstLineStart), start.Y + (int)(unit.Y * firstLineStart));
+            ID_color = set_color(ID_color);
+            // vom desena o linie de la punctul start pana la punctul aux; prima secventa
+            _draw.DrawLine(new Pen(colors[ID_color], (float)LineWidth), start, aux);
+            start = aux;
+            // se itereaza pana cand nu mai putem intoduce secvente
+            while (compare(start, end) == directie)
+            {
+                Point aux2 = new Point(start.X + unit.X, start.Y + unit.Y);
+                // se verifica daca se mai poate introduce o secventa
+                if (compare(aux2, end) == directie)
+                {
+                    aux = new Point(start.X + unit.X, start.Y + unit.Y);
+                    ID_color = set_color(ID_color);
+                    _draw.DrawLine(new Pen(colors[ID_color], (float)lineWidth), start, aux);
+                    start = aux;
+                }
+                else
+                {
+                    // se deseneaza ultima secventa
+                    ID_color = set_color(ID_color);
+                    _draw.DrawLine(new Pen(colors[ID_color], (float)lineWidth), start, end);
+                    return;
+                }
+            }
+        }
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            draw = CreateGraphics();
+        }
+
+        Graphics draw;
+        double k;
+        int ID_color;
+        //coordonatele primei linii
+        Point startLine1 = new Point(100, 100);
+        Point endLine1 = new Point(300, 100);
+        // coordonatele celei de-a doua linii
+        Point startLine2 = new Point(300, 100);
+        Point endLine2 = new Point(300, 300);
+        // coordonatele celei de-a 3-a linii
+        Point startLine3 = new Point(300, 300);
+        Point endLine3 = new Point(100, 300);
+        // coordonatele celei de-a 4-a linii
+        Point startLine4 = new Point(100, 300);
+        Point endLine4 = new Point(100, 100);
+
+        // latimea liniei
+        int LineWidth = 5;
+        // cate secvente se vor desena pe linie
+        int Units = 10;
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            // se stabileste cat din prima secventa va fi afisat
+            // valoarea este subunitara
+            k += 0.1;
+            if (k > 1)
+            {
+                k = 0;
+                ID_color = set_color(ID_color);
+            }
+            // se declara vectorul de culori
+            Color[] colors = new Color[2] { Color.Yellow, Color.Black };
+            Liniute(ref draw, startLine1, endLine1, LineWidth, Units, k, colors, ID_color);
+            Liniute(ref draw, startLine2, endLine2, LineWidth, Units, k, colors, ID_color);
+            Liniute(ref draw, startLine3, endLine3, LineWidth, Units, k, colors, ID_color);
+            Liniute(ref draw, startLine4, endLine4, LineWidth, Units, k, colors, ID_color);
+        }
+    }
+}
+
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<li>Realizati o aplicatie grafica de forma imaginii de mai jos, in care se defineste o functie ce  deseneaza formele geometrice de mai jos:
+  <br><br><center><img src="im_cpp109.jpg"></center><br>
+  <br> se va apela functia pe mai multe evenimente<br><br>
+<!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace axa_x_y
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        int w,h;
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_rosu;
+        System.Drawing.Pen Creion_albastru;
+        private void deseneaza()
+        {
+            Desen = this.CreateGraphics();
+            w = this.Size.Width;
+            h = this.Size.Height;
+            Desen.Clear(this.BackColor);
+            Desen.DrawLine(Creion_rosu, 0, h - 55, w, h - 55);// axa ox
+            Desen.DrawLine(Creion_rosu, 20, 20, 20, h);// axa oy	
+            // gradatii axa ox
+
+            for (int j = 10; j < w - 30; j += 10)
+            {
+                if (j % 50 == 0)
+                {
+                    Desen.DrawLine(Creion_albastru, 20 + j, h - 45, 20 + j, h - 55);
+                }
+                else
+                {
+                    Desen.DrawLine(Creion_albastru, 20 + j, h - 50, 20 + j, h - 55);
+                }
+            }
+            // gradatii axa oy
+
+            for (int j = 0; j < h - 70; j += 10)
+            {
+                if (j % 50 == 0)
+                {
+                    Desen.DrawLine(Creion_albastru, 20, 20 + j, 12, 20 + j);
+                }
+                else
+                {
+                    Desen.DrawLine(Creion_albastru, 20, 20 + j, 17, 20 + j);
+                }
+            }
+            // arc_baza
+
+            for (int j = 10; j < h - 75; j += 10)
+            {
+                Desen.DrawLine(Creion_albastru, 20 + j, h - 60, 25, 20 + j);
+            }
+
+            // steluta
+
+            for (int j = 10; j < w - 30; j += 10)
+            {
+                Desen.DrawLine(Creion_albastru, w / 2, 20, 20 + j, h - 55);
+            }
+            for (int j = 0; j < h - 70; j += 10)
+            {
+                Desen.DrawLine(Creion_albastru, w-10, (h / 2)-40, 20, 20 + j);
+            }
+
+            for (int j = 10; j < w - 30; j += 10)
+            {
+                Desen.DrawLine(Creion_albastru, w / 2, h-55, 20 + j,20);
+            }
+            for (int j = 0; j < h - 70; j += 10)
+            {
+                Desen.DrawLine(Creion_albastru, 20, (h / 2) - 40, w, 20 + j);
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            deseneaza();
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            deseneaza();
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            deseneaza();
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<br><br><!------------------------------------------------------------------->
+
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati in WFA o aplicatie care deseneaza un cerc sectionat in 4 la pozitia in care se face click intr-un form <b><font color="red"> "functii_v1_l" </font></b>
+<br><br><center><img src="im_cpp90.jpg"></center><br>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+private:System::Drawing::Graphics^ Desen;
+private:System::Drawing::Pen^ Creion_albastru;
+
+private: System::Int16  mouse_rel_x(){
+	if((Control::MousePosition.X>=this->Location.X)
+		&&(Control::MousePosition.X-this->Location.X<=this->Size.Width ))
+		return System::Convert::ToInt16(Control::MousePosition.X-this->Location.X-8);
+	else
+		return -1;
+
+}
+private: System::Int16  mouse_rel_y(){
+	if((Control::MousePosition.Y>=this->Location.Y)
+		&&(Control::MousePosition.Y-this->Location.Y<=this->Size.Height ))
+		return System::Convert::ToInt16(Control::MousePosition.Y-this->Location.Y-30);
+	else
+		return -1;
+}
+
+private: System::Void cerc_x(float x,float y,float d){
+			Desen->DrawEllipse(Creion_albastru,x,y,d,d);
+			float rd2=System::Math::Sqrt(2);
+			float x1=x+d*(rd2-1)/2/rd2;
+			float y1=y+d*(rd2-1)/2/rd2;
+			float x2=x+d-d*(rd2-1)/2/rd2;
+			float y2=y+d-d*(rd2-1)/2/rd2;
+			float x3=x+d*(rd2-1)/2/rd2;
+			float y3=y+d-d*(rd2-1)/2/rd2;
+			float x4=x+d-d*(rd2-1)/2/rd2;
+			float y4=y+d*(rd2-1)/2/rd2;
+            Desen->DrawLine(Creion_albastru,x1,y1,x2,y2);
+			Desen->DrawLine(Creion_albastru,x3,y3,x4,y4);
+
+			
+			//Desen->DrawEllipse(Creion_albastru,x1,y1,L,L);
+		}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul Load punem
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+		Desen = this->CreateGraphics();
+		Creion_albastru =gcnew System::Drawing::Pen(System::Drawing::Color::Blue);
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Pe evenimentul Tick punem:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+		System::Int16 poz_x,poz_y;
+		poz_x=mouse_rel_x();
+		poz_y=mouse_rel_y();
+	if ((poz_x>=0) & (poz_y>=0)){
+		this->label1->Text=System::Convert::ToString(poz_x);
+		this->label2->Text=System::Convert::ToString(poz_y);
+	}
+	else
+	{
+		this->label1->Text="Mouse-ul nu este in fereastra ! ";
+		this->label2->Text="";
+	}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul Click punem
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+			float d=50;
+				cerc_x(mouse_rel_x()-d/2,mouse_rel_y()-d/2,d);
+			 }
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<!------------------------------------------------------------------->
+<li>Vizibilitatea variabilelor
+<ol>
+<li>Folosesc static int nr_rel - discutie cu durata de viata- analogie cu reincarnarea procedurii - si neinitializarea variabilei dupa nastere.
+<li>Folosesc int nr_rel dispusa inaintea functiei main 
+<li>Folosesc int nr_rel dispusa in cadrul functiei main dar de tip referential. Pot astfel returna o valoare din funcie si una de tip referential.
+</ol>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+using namespace System;
+
+double aria_c(double,int&);// prototipul functiei
+
+
+int main(void)
+{    
+    int nr_rel=1;
+    double raza ,a;
+    String^ raza_s;
+    do {
+    Console::Write( L"\n\tIntroduceti raza cercului ( 0 pentru iesire):" );
+    raza_s= Console::ReadLine();
+    raza = System::Convert::ToDouble( raza_s );
+    a=aria_c(raza,nr_rel);
+    Console::WriteLine( "\tAria cercului de raza : "+ raza +" este: "+a);
+    //Console::ReadLine();
+    Console::WriteLine( "\n\n\tLa apelarea nr : "+ nr_rel);
+    } while (raza !=0); 
+    return 0;
+}
+// Incepe definirea functiei aria_c
+double aria_c(double r,int& nr_rel)
+{
+    double pi= System::Math::PI;
+    
+    nr_rel++;
+    return pi*r*r;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C# deplasare linii
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace depl_linii_v0
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics desen;
+        System.Drawing.Pen creion_r, creion_v, creion_n, creion_p;
+        int x1, y1; // coordonatele de inceput ale liniei
+        int l ; // lungimea liniei
+        int ls; // lungimea unui segment
+        int pozitia; // pozitia curenta
+        int pozi; // pozitia initiala
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            x1 = 27;
+            y1 = 101;
+            l = 454;
+            ls = 15;
+            desen = this.CreateGraphics();
+            creion_r = new System.Drawing.Pen(System.Drawing.Color.Red, 5);
+            creion_v = new System.Drawing.Pen(System.Drawing.Color.LawnGreen, 5);
+            creion_n = new System.Drawing.Pen(System.Drawing.Color.Black, 1);
+            creion_p = new System.Drawing.Pen(this.BackColor, 5);
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            pozitia = x1;
+            desen.DrawLine(creion_n, x1, y1 - 5, x1, y1 + 5);
+            desen.DrawLine(creion_n, x1 + l, y1 - 5, x1 + l, y1 + 5);
+            desen.DrawLine(creion_v, x1, y1, x1 + pozi, y1);
+            if (pozi > ls)
+            {
+                desen.DrawLine(creion_r, x1, y1, x1 + pozi - ls, y1);
+            }
+
+            while ((pozitia+pozi) < (l-2*ls))
+            {
+                desen.DrawLine(creion_r, pozitia + pozi, y1, pozitia + pozi + ls, y1);
+                desen.DrawLine(creion_v, pozitia + pozi + ls, y1, pozitia + pozi + 2 * ls, y1);
+                pozitia += 2 * ls;
+            }
+            desen.DrawLine(creion_r, pozitia + pozi, y1, x1 + l, y1);
+            if (pozitia + pozi + ls < x1 + l)
+                desen.DrawLine(creion_v, pozitia + pozi + ls, y1, x1 + l, y1);
+            if (pozitia + pozi + 2 * ls < x1 + l)
+                desen.DrawLine(creion_r, pozitia + pozi + 2 * ls, y1, x1 + l, y1);
+            if (pozitia + pozi + 3 * ls < x1 + l)
+                desen.DrawLine(creion_v, pozitia + pozi + 3 * ls, y1, x1 + l, y1);
+            pozi += 2;
+            if (pozi >= 2 * ls)
+            {
+                pozi = 0;
+            }
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;C# functia deplasare linii
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace depl_linii_v1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics desen;
+        System.Drawing.Pen creion_r, creion_v, creion_n, creion_p;
+        int s1, s2, s3, p1, p2, p3; //lungimea segmentelor respectiv pozitia in cadrrul segmentului
+        private void trasare_l(int x1,int y1,int l,int ls, int pozi)
+        {
+            // x1, y1 coordonatele de inceput ale liniei
+            // l  lungimea liniei
+            // ls lungimea unui segment
+            // pozi   pozitia initiala
+            int pozitia = x1;
+            desen.DrawLine(creion_n, x1, y1 - 5, x1, y1 + 5);
+            desen.DrawLine(creion_n, x1 + l, y1 - 5, x1 + l, y1 + 5);
+            desen.DrawLine(creion_v, x1, y1, x1 + pozi, y1);
+            if (pozi > ls)
+            {
+                desen.DrawLine(creion_r, x1, y1, x1 + pozi - ls, y1);
+            }
+
+            while ((pozitia + pozi) < (l - 2 * ls))
+            {
+                desen.DrawLine(creion_r, pozitia + pozi, y1, pozitia + pozi + ls, y1);
+                desen.DrawLine(creion_v, pozitia + pozi + ls, y1, pozitia + pozi + 2 * ls, y1);
+                pozitia += 2 * ls;
+            }
+            desen.DrawLine(creion_r, pozitia + pozi, y1, x1 + l, y1);
+            if (pozitia + pozi + ls < x1 + l)
+                desen.DrawLine(creion_v, pozitia + pozi + ls, y1, x1 + l, y1);
+            if (pozitia + pozi + 2 * ls < x1 + l)
+                desen.DrawLine(creion_r, pozitia + pozi + 2 * ls, y1, x1 + l, y1);
+            if (pozitia + pozi + 3 * ls < x1 + l)
+                desen.DrawLine(creion_v, pozitia + pozi + 3 * ls, y1, x1 + l, y1);
+            pozi += 1;
+            if (pozi >= 2 * ls)
+            {
+                pozi = 0;
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            s1 = 25;
+            s2 = 30;
+            s3 = 40;
+            desen = this.CreateGraphics();
+            creion_r = new System.Drawing.Pen(System.Drawing.Color.Red, 5);
+            creion_v = new System.Drawing.Pen(System.Drawing.Color.LawnGreen, 5);
+            creion_n = new System.Drawing.Pen(System.Drawing.Color.Black, 1);
+            creion_p = new System.Drawing.Pen(this.BackColor, 5);
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            trasare_l(77,101,345,s1,p1);
+            p1 += 2;
+            if (p1 >= 2 * s1)
+            {
+                p1 = 0;
+            }
+            trasare_l(27, 201, 333, s2, p2);
+            p2 += 2;
+            if (p2 >= 2 * s2)
+            {
+                p2 = 0;
+            }
+            trasare_l(50, 51, 445, s3, p3);
+            p3 += 2;
+            if (p3 >= 2 * s3)
+            {
+                p3 = 0;
+            }
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Realizati in WFA o functie care deseneaza imaginea de jos. Coordonatele punctului central se trimit functiei prin parametrii
+ <br><br><center><img src="im_cpp114.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace artif_00
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_rosu;
+        System.Random n;
+        private void deseneaza(int x1,int y1)
+        {
+            int w = this.Size.Width;
+            int h = this.Size.Height;
+            int nm = 100;
+            Desen = this.CreateGraphics();
+            n = new System.Random();
+            for (int i = 0; i < nm; i++)
+            {
+                Desen.DrawLine(Creion_rosu, x1, y1, n.Next(w), n.Next(h));
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            deseneaza(200, 123);
+        }
+
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Utilizand functia anterioara realizati aplicatia din imaginea de jos.
+ <br><br><center><img src="im_cpp115.jpg"></center><br>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace artif_01
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_rand;
+        System.Random n;
+        
+        private void deseneaza(int x1, int y1)
+        {
+            int nm = 100;
+            int raza = 100;
+            int x2, y2;
+            Creion_rand = new System.Drawing.Pen(System.Drawing.Color.FromArgb(n.Next(256), n.Next(256), n.Next(256)));
+            for (int i = 0; i < nm; i++)
+
+            {
+                x2 = x1 + raza - n.Next(2 * raza);
+                y2 = y1 + raza - n.Next(2 * raza);
+                Desen.DrawLine(Creion_rand, x1, y1,x2,y2);
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            n = new System.Random();
+        }</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<li> Creati dinamica pentru a simula un foc de artificii.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Creati dinamica pentru a simula un foc de artificii (var 1).
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace artif_02
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_rand;
+        System.Random n;
+
+        private void deseneaza(int x1, int y1)
+        {
+            int nm = 100;
+            int raza = 100;
+            Desen = this.CreateGraphics();
+            //Desen.Clear(this.BackColor);
+            int x2, y2;
+            Creion_rand = new System.Drawing.Pen(System.Drawing.Color.FromArgb(n.Next(256), n.Next(256), n.Next(256)));
+            for (int i = 0; i < nm; i++)
+            {
+                x2 = x1 + raza - n.Next(2 * raza);
+                y2 = y1 + raza - n.Next(2 * raza);
+                Desen.DrawLine(Creion_rand, x1, y1, x2, y2);
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            n = new System.Random();
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            int x = n.Next(this.Width);
+            int y = n.Next(this.Height);
+            deseneaza(x, y);
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Creati dinamica pentru a simula un foc de artificii (var 2).
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace artif_03
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_rosu;
+        System.Drawing.Pen Creion_albastru;
+        System.Drawing.Pen Creion_rand;
+        System.Drawing.Pen Creion_pic;
+        System.Random n;
+        int x, y, raza;
+
+        private void deseneaza(int x1, int y1,int cr)
+        {
+            int x2, y2, nm, w, h;
+            w = this.Size.Width;
+            h = this.Size.Height;
+            nm = 100;
+            if (cr == 0)
+            {
+                for (int i = 0; i < 10 * nm; i++)
+                {
+                    x2 = x1 + raza - n.Next(2 * raza);
+                    y2 = y1 + raza - n.Next(2 * raza);
+                    Desen.DrawLine(Creion_pic, x1, y1, x2, y2);
+                }
+                cr = 1;
+            }
+            else
+            {
+                Creion_rand = new System.Drawing.Pen(System.Drawing.Color.FromArgb(n.Next(256), n.Next(256), n.Next(256)));
+
+                for (int i = 0; i < nm; i++)
+                {
+                    x2 = x1 + raza - n.Next(2 * raza);
+                    y2 = y1 + raza - n.Next(2 * raza);
+                    Desen.DrawLine(Creion_rand, x1, y1, x2, y2);
+                }
+                cr = 1;
+            }
+         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Creion_pic = new System.Drawing.Pen(this.BackColor);
+            n = new System.Random();
+            Desen = this.CreateGraphics();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            deseneaza(x, y,0);
+            raza = 100 + n.Next(100);
+            x = n.Next(this.Width);
+            y = n.Next(this.Height);
+            deseneaza(x, y,1);
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            Desen = this.CreateGraphics();
+        }
+    }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+</body>
+</html>

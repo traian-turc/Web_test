@@ -1,0 +1,513 @@
+<html>
+<title> Laborator recapitulare semestrul I </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator recapitulare semestrul I </Center></TD></TR>
+</table>
+<br><br>
+<ol>
+ <li>Afisati primele 93 numere naturale intr-un tabel cu 7 coloane. Alinierea numerelor se face la stanga 
+ <li>Afisati primele numere naturale sub forma unui tabel cu 7 coloane si 20 de randuri. Alinierea numerelor se va face la stanga.
+ <li>Afisati primele numere naturale sub forma unui tabel cu 7 coloane si 20 de randuri. Alinierea numerelor se va face la dreapta.
+ <li>Se cere un numar dupa care se testeza daca este un numar prim.
+ <li>Afisati toate numerele prime intre 1 si 100
+ <li>Afisati primele 100 de  numerele prime intr-un tabel cu 10 coloane
+ <li>Afisati numerele de la 0-25 pe diagonala principala a ecranului
+ <li>Afisati numerele de la 0-25 pe diagonala secundara a ecranului
+ <li>Afisati numerele de la 0-25 pe diagonala principala a ecranului si in acelasi timp pe diagonala secundara
+ <li>Metoda II sub forma de V
+ <li>Metoda II sub forma de X
+</ol>
+ <li>Grafica
+	<ol>
+		<li>Folosind numere aleatoare si instructiuni repetitive, trasati figura de jos:
+		<br><br><center><img src="im_cpp137.jpg"></center><br>
+		<li>Folosind numere aleatoare si instructiuni repetitive si functii, trasati figura de jos:
+		<br><br><center><img src="im_cpp138.jpg"></center><br>
+
+	</ol>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea primelor 90 numere naturale intr-un tabel cu 9 coloane. Alinierea numerelor se face la stanga 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	int c=1;//coloana
+	const int nr_max=90;
+	cout <<" \n\tNumerele sunt:\n";
+	while (i <= nr_max)
+	{
+		while((c <= 7) && (i <= nr_max)) {
+			cout << i << "\t";
+			i+=1;
+			c++;	
+		}
+	cout << "\n";
+	c=1;	
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisati primele numere naturale sub forma unui tabel cu 7 coloane si 20 de randuri. Alinierea numerelor se va face la stanga.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	int r=1;//randul
+	int c=1;//coloana
+	const int cmax=7;
+	const int rmax=20;
+	cout <<" \n\tNumerele sunt:\n";
+	while (r <= rmax)
+	{
+		while(c <= cmax){
+			cout << i << "\t";
+			i+=1;
+			c++;	
+		}
+	cout << "\n";
+	c=1;	
+	r++;	
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisati primele numere naturale sub forma unui tabel cu 7 coloane si 20 de randuri. Alinierea numerelor se va face la dreapta.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int i=0;
+	int r=1;//randul
+	int c=1;//coloana
+	cout <<" \n\tNumerele sunt:\n";
+	while (r<=20)
+	{
+		while(c <= 7){
+			if(i > 99)
+			cout << " ";
+			if((i > 9)&&(i < 100))
+			cout <<"  ";
+			if(i < 10)
+			cout <<"   ";
+			cout << i << " ";
+			i+=1;
+			c++;	
+		}
+	cout<<"\n";
+	c=1;	
+	r++;	
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se cere un numar dupa care se testeza daca este un numar prim.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int n=1;
+	cout << " \n\Ce numar vreti sa verificam?: ";
+	cin >> n;
+	int prim=1;
+	for (int i=2;i < n; i++)
+	{
+		if(n%i==0)
+		prim=0;
+	}
+	if (prim==1)
+		cout << "Numarul " << n << " este prim";
+	else
+		cout << "Numarul " << n << " nu este prim";
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisati toate numerele prime intre 1 si 100
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	for(int n=1; n <=100; n++){
+
+		int prim=1;
+		for (int i=2; i < n; i++)
+		{
+			if(n%i==0)
+			prim=0;
+		}
+		if (prim==1)
+			cout << n << "\t";
+	}
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisati primele 100 de  numerele prime intr-un tabel cu 10 coloane
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+int k=0;
+int n=1;
+int kmax=100; // numarul max de numere prime
+
+    while(k < kmax) {
+		int prim=1;
+		for (int i=2; i < n; i++)
+		{
+			if(n%i==0)
+			prim=0;
+		}
+		if (prim==1){
+			cout << n << "\t";
+			k++;
+			if(k%10==0)
+				cout << "\n";
+		}
+		n++;
+    }
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisati numerele de la 0-25 pe diagonala principala a ecranului
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	for(int j=1; j <= 25; j++){
+	for (int i=1; i < j; i++)
+		cout << " ";
+	cout << j << "\n";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisati numerele de la 0-25 pe diagonala secundara a ecranului
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	for(int j=1; j <= 25; j++){
+	for (int i=25; i >= j; i--)
+		cout << " ";
+	cout << j << "\n";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisati numerele de la 0-25 pe diagonala principala a ecranului si in acelasi timp pe diagonala secundara
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int i;
+	for(int j=1; j <= 25; j++){
+		for (int i=1; i < j; i++)
+			cout<<" ";
+		cout << j << "\n";
+		for (int i=25; i >= j; i--)
+			cout << " ";
+		cout << j << "\n";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Metoda II sub forma de V
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int i;
+	int j;
+	for(j=1; j <= 25; j++){
+		for (i=1; i < j; i++)
+			cout << " ";
+		cout << j;
+		while(i < 50-j){
+			cout << " ";
+			i++;
+		}
+		cout << 26-j << "\n";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Metoda II sub forma de X
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	int i,j;
+	for(j=1; j <= 25;j++){
+		for (i=1;i < j;i++)
+			cout<<" ";
+		cout << j;
+		for (i=25;i > 0;i--){
+			if (i > j)
+				cout << " ";
+			else
+				cout << "\b";
+		}
+		cout << 26-j << "\n";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><center><img src="im_cpp137.jpg"></center><br>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace rec_s1_1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        float w_r=1,w_a=2;
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_rosu;
+        System.Drawing.Pen Creion_albastru;
+        System.Random n;
+	        
+        private void Form1_Load(object sender, EventArgs e)
+        {
+           
+            Creion_rosu=new System.Drawing.Pen(System.Drawing.Color.Red,w_r);
+            Creion_albastru=new System.Drawing.Pen(System.Drawing.Color.Blue,w_a);
+            n = new System.Random();
+           
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+             Desen = this.CreateGraphics();
+            Desen.Clear(this.BackColor);
+            for (int i = 1; i <= 15; i ++)
+            {
+            int x0 = n.Next(this.Width - 50);
+            int y0 = this.Height;
+            int y1 = n.Next(this.Height -50);
+            int d = (y0 - y1) / 3;
+            y1 = y1 + d/2 ;
+            if (y1 > (this.Height-50 - d/2 ))
+                y1 = this.Height-50 - d/2;
+            x0 = d / 2 + x0;
+            if (x0 > (this.Width - d))
+                x0 = this.Width - d;
+            Desen.DrawLine(Creion_albastru, x0, y0, x0, y1);
+            Desen.DrawEllipse(Creion_rosu, x0 - d / 2, y1 - d / 2, d, d);
+            //Desen.Clear(this.BackColor);
+
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            int x0 = n.Next(this.Width - 50);
+            int y0 = this.Height;
+            int y1 = n.Next(this.Height - 50);
+            int d = (y0 - y1) / 3;
+            y1 = y1 + d / 2;
+            if (y1 > (this.Height - 50 - d / 2))
+                y1 = this.Height - 50 - d / 2;
+            x0 = d / 2 + x0;
+            if (x0 > (this.Width - d))
+                x0 = this.Width - d;
+            Desen.DrawLine(Creion_albastru, x0, y0, x0, y1);
+            Desen.DrawEllipse(Creion_rosu, x0-d/2, y1-d/2, d, d);
+       }
+   }
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_cpp138.jpg"></center><br>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+namespace rec_s1_2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        private void desen(){
+            int w=this.Width;
+            int k=30,nota;
+            int y0=50;
+            for (int i = 1; i <= 7; i ++)
+            {
+                Desen.DrawLine(Creion_albastru, 0, y0+i*10 , w, y0+i*10);
+            }
+            while(k< w)
+            {
+                nota = n.Next(7);
+                Desen.DrawLine(Creion_albastru, k, y0 + 10 + 10 * nota, k, y0 - 15 + 10 * nota);
+                Desen.FillEllipse(Pens_r, k, y0 + 5 + 10 * nota, 10, 10);
+                k = k+20;
+            }
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.SolidBrush Pens_r;
+        System.Drawing.Pen Creion_albastru;
+        System.Random n;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            float  w_a = 1;      
+            Pens_r = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue, w_a);
+            n = new System.Random();
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        { 
+            Desen = this.CreateGraphics();
+            Desen.Clear(this.BackColor);
+            desen();
+ 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Desen.Clear(this.BackColor);
+            desen();
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+</body>
+</html>

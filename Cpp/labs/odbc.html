@@ -1,0 +1,61 @@
+<html>
+<title> Conexiune ODBC </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Conexiune ODBC </Center></TD></TR>
+</table>
+
+<li>Utilizare ODBC
+<ol>
+<li>
+<li>
+<li>
+<li>
+<li>
+<li>
+</ol>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// odbc.cpp : main project file.
+
+#include "stdafx.h"
+#include <stdlib.h>
+#include <iostream>
+
+using namespace std;
+using namespace System;
+using namespace System::Data;
+using namespace System::Data::Odbc;
+
+int main(void)
+{
+		String^ myConnString = "driver={MySQL ODBC 5.1 Driver};server=193.226.19.29;database=cons_el;uid=student;pwd=psw;";
+        
+        String^ mySelectQuery = "SELECT ap_id, den_ap FROM ap_electr";
+        OdbcConnection^ myConnection = gcnew OdbcConnection(myConnString);
+        OdbcCommand^ myCommand = gcnew OdbcCommand(mySelectQuery, myConnection);
+        myConnection->Open();
+        OdbcDataReader^ myReader;
+        myReader = myCommand->ExecuteReader();
+        // Always call Read before accessing data.
+        while (myReader->Read()) {
+            Console::WriteLine("{0}, {1}", myReader->GetInt32(0), myReader->GetString(1));
+        }
+        // always call Close when done reading.
+        myReader->Close();
+        // Close the connection when done with it.
+        myConnection->Close();
+
+Console::ReadLine();
+
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+</body>
+</html>

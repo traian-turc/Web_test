@@ -1,0 +1,1008 @@
+<html>
+<title> Laborator siruri de caractere </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator siruri de caractere </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font>
+<li>Siruri 
+<ol>
+<li> afisati lungimea unui sir de caractere, introdus de la tastatura folosind functia <b> strlen </b>.
+<li> afisati lungimea unui sir de caractere, introdus de la tastatura fara a folosi functia <b> strlen </b>.
+<li> creati functia <b>my_strlen </b> care imita functia <b> strlen </b>.
+<li> afisati numai minusculele dintr-un sir
+<li> transformati un sir introdus in majuscule
+<li> numarati vocalele si consoanele dintr-un sir
+<li> numarati aparitiile unei litere
+<li> stergeti un subsir dintr-un sir
+<li> ordonati alfabetic mai multe cuvinte
+<li> scrieti functia substr(sir,p1,p2);
+<li> validati un numar intreg introdus de la tastatura.
+</ol>
+<li>Siruri WFA
+<ol>
+ <li>Se reia aplicatia "text_bar" si se va adauga incaun ProgressBar care va afisa procentul de cuvinte introduse relativ la 
+ maxim 100 cuvinte 
+ <li> Se vor citi numarul de spatii pentru a afla numarul de cuvinte fara a tine cont de cazul in care apar mai multe spatii consecutive
+ <li> Se vor citi numarul de spatii pentru a afla numarul de cuvinte, dar se tine cont de cazul in care apar mai multe spatii consecutive
+</ol>
+<li> Utilizarea portului serial
+<ol>
+<li>Se deschide portul si se da comanda "O123" la apasarea unui buton (ver 1)
+<li>Se deschide portul si se da comanda "O123" la apasarea unui buton (ver 2)
+<li>Se deschide portul si se da comanda scrisa intr-un textbox, la apasarea unui buton.
+<li>Se deschide portul si se trimit spre afisare caracterele de la 1-9
+<li>Utilizarea afisorului cu 4 digiti
+<li>Utilizare led-uri :joc de lumini stanga dreapta
+<li>Citire intrare analogica
+</ol>
+
+&nbsp;&nbsp;&nbsp;&nbsp; Programul cere un sir de caractere si afiseaza lungimea lui.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul cere un sir de caractere si afiseaza lungimea lui.
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+int len(char s[]);
+
+int main(void)
+{
+system("TITLE Calculul lungimii unui sir de caractere");
+system("COLOR F9");	
+char s[30];
+cout<<"\n\tProgramul cere un sir de caractere si afiseaza lungimea lui.";
+cout<<"\n\n\tIntroduceti sirul de caractere :";cin >> s;
+cout<<"\n\n\tLungimea sirului este :" << len(s);
+cin.ignore();
+cin.get();
+return 0;
+}
+int len(char s[30])
+{
+int i;
+i=0;
+while(s[i]!=0) i++;
+return i;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Ignorarea caracterelor majuscule si afisarea minusculelor dintr-un sir.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Ignorarea caracterelor majuscule si afisarea minusculelor dintr-un sir
+#include "stdafx.h"
+#include < iostream >
+using namespace std;
+
+int main(void)
+{
+	system("TITLE Citirea unui sir de caracter de la tastatura");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	char car;
+	char nume[80];
+	do{
+		cout << "\n\n\tIntroduceti numele d-voastra :";
+		cin.getline(nume,80);
+		cout << "\n\tNumele d-voastra este :" ;
+		int i=0;
+		for (i=0; i < strlen(nume); i++){
+		if (!isupper(nume[i]))
+			cout << nume[i];
+		}
+		cout << "\n\n\tApasati tasta E pentru iesire sau Enter pentru continuare :";
+		cin.get(car);
+		if (car !='\n')
+		cin.ignore();
+	}while (car !='E' && car !='e');
+    return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Transformarea minusculelor unui sir preluat in majuscule.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Transformarea minusculelor in majuscule.
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+int main(void)
+{
+	system("TITLE Transformarea minusculelor unui sir preluat in majuscule");
+	system("COLOR F9"); 
+	cout << "\n\t- Programul transforma minusculele unui sir preluat, in majuscule.\n\n\n";
+	char txt[80];
+	cout << "\n\t- Introduceti un sir de caractere:";
+	cin.getline(txt,80);
+	for (int i=0 ; i < strlen(txt); i++)
+		txt[i]=toupper(txt[i]);
+	cout << "\n\t- Sirul transformat este:" << txt;
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Programul cere un sir de caractere si afiseaza numarul de vocale si consoane.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul cere un sir de caractere si afiseaza numarul de vocale si consoane.
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Numarare vocale si consoane ");
+system("COLOR F9");
+cout<<"\n\tProgramul cere un sir de caractere si numara vocalele si consoanele.";
+char s[50];
+int voc=0,cons=0,i;
+
+cout<<"\n\n\tIntroduceti sirul de caractere :";
+cin >> s;
+i=0;
+while(s[i]!=0)
+{
+switch (s[i]){
+case 'a':
+case 'e':
+case 'i':
+case 'o':
+case 'u':
+case 'A':
+case 'E':
+case 'I':
+case 'O':
+case 'U': {voc++;break;}
+default : cons++;
+}
+i++;
+}
+cout<<"\n\n\tNumarul de vocale este : " << voc ;
+cout<<"\n\n\tNumarul de consoane este : " << cons;
+cin.ignore();
+cin.get();
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Numarul apaririilor unei litere
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul cere un sir de caractere .
+// Afiseaza numarul de aparitii al unei litere.
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Numarul de aparitii al unei litere");
+system("COLOR F9");	
+char c, s[25];
+int i,j;
+cout<<"\n\tProgramul cere un sir de caractere ";
+
+cout << "\n\n\tIntroduceti sirul = "; cin >> s;
+cout << "\n\n\t Introduceti caracterul cautat = ";
+cin >> c;
+j=0;
+if(c=='\n') c=' ';
+for(i=1;i <= strlen(s);i++)
+{
+if(s[i-1]==c)
+j++;
+}
+cout<<"\n\n\t Caracterul exista in sir de " << j <<" ori ";
+cin.ignore();
+cin.get();
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sterge subsirul din sir
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul cere un sir si un subsir de caractere .
+// Programul sterge subsirul din sir .
+// Se folosesc functiile
+// Functia strlen(s) – returneaza lungimea sirului dat ca parametru
+// Functia strstr(s1, s2) – returneaza pozitia unde apare subsirul s2 in sirul s1
+// Functia strcpy(s1, s2) – copieaza sirul s2 in sirul s1
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Stergere subsir din sir ");
+system("COLOR F9");
+char s1[100],s2[25],*p;
+int l_s2;
+cout << "\n\n\tIntroduceti sirul = ";
+cin >> s1;
+cout << "\n\tIntroduceti subsirul = ";
+cin >> s2;
+l_s2=strlen(s2);
+p=strstr(s1,s2);
+while(p)
+{
+strcpy(p,p+l_s2);
+p=strstr(p,s2);
+}
+cout << "\n\n\n\tSirul rezultat este: = " << s1;
+cin.ignore();
+cin.get();
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Ordonare alfabetica cuvinte
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul cere n cuvinte, le ordoneaza alfabetic apoi le afiseaza.
+// Se folosesc functiile
+// Functia strcmp(s1,s2) – returneaza valoarea 0 daca sirul s1 este egal cu sirul
+// s2, valoarea 1 daca sirul s1 este mai mare decat sirul s2 sau -1 daca sirul s1
+// este mai mic decat sirul s2
+// Functia strcpy(s1, s2) – copieaza sirul s2 in sirul s1
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+
+int main(void)
+{
+system("TITLE Ordonare alfabetica cuvinte ");
+system("COLOR F9");
+char cuvinte[10][25],temp[25];
+int i,n,gasit=1;
+cout << "\n\n\tIntroduceti numarul de cuvinte :";
+cin >> n;
+for(i=0;i < n; i++){
+	cout << "\n\tcuvantul " << i << " : ";
+	cin >> cuvinte[i];
+}
+while(gasit==1){
+gasit=0;
+for(i=0;i < n-1; i++)
+ if(strcmp(cuvinte[i],cuvinte[i+1]) > 0){
+	strcpy(temp, cuvinte[i]);
+	strcpy(cuvinte[i],cuvinte[i+1]);
+	strcpy(cuvinte[i+1],temp);
+	gasit=1;
+ }
+}
+cout << "\n\n\tCuvintele ordonate alfabetic sunt :\n\t";
+
+for(i=0; i < n; i++)
+	cout << " \n\n\t: "<< cuvinte[i];
+cin.ignore();
+cin.get();
+return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Programul verifica un sir preluat daca are forma unui intreg
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Validarea unui numar intreg.
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+int main(void)
+{
+	system("TITLE Validarea unui numar intreg ");
+	system("COLOR F9"); 
+	cout << "\n\t- Programul verifica un sir preluat daca are forma unui intreg.\n\n\n";
+	char n_pr[80];
+	cout << "\n\t- Introduceti un numar intreg:";
+	cin.getline(n_pr,80);
+	int lm=0;
+	for (int i=0; i < strlen(n_pr); i++){
+		if(isalnum(n_pr[i])){
+			if(isalpha(n_pr[i]))
+			lm=1;
+		}
+		else
+		lm=1;
+	}
+	if (lm==0){
+cout <<"\n\n\tNumarul " << atoi(n_pr) << ", introdus este un intreg!" ;
+cout <<"\n\n\tPatratul lui este: " << atoi(n_pr)*atoi(n_pr);
+	}else
+cout << "\n\n\tVa rog introduceti un numar intreg !";
+
+	cin.get();
+	return 0;
+} 
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La aplicatia "text_bar" se adauga incaun ProgressBar care va afisa procentul de cuvinte introduse relativ la 
+ maxim 100 cuvinte. Se completeaza codul cu:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+String^ tex=this->textBox1->Text;
+if (nr_car>1){
+	for (j=1; j<nr_car+1 ;j++){
+		if(tex->System::String::Substring(j-1,1)==" ")
+			nr_cuv++;
+}
+}
+this->progressBar2->Value=nr_cuv;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Atentie !!! La progressBar un o unitate nu inseamna un bloc de aceea se seteaza proprietatea 
+Stile la <b> Continuous </b>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca tinem cont de spatiile succesive:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+String^ tex=this->textBox1->Text;
+if (nr_car>1){
+	for (j=2; j<nr_car+1 ;j++){
+		if((tex->System::String::Substring(j-1,1)==" ")&& (tex->System::String::Substring(j-1,1)!=" "))
+			nr_cuv++;
+}
+}
+this->progressBar2->Value=nr_cuv;
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Determinarea lungimii unui sir preluat
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+int main(void)
+{
+	system("TITLE Determinarea lungimii unui sir preluat ");
+	system("COLOR F9"); 
+	cout << "\n\t- Programul afiseaza lungimea unui sir preluat de la tastatura.\n\n\n";
+	char n_pr[80];
+	cout << "\n\t- Introduceti numele d-voastra:";
+	cin.getline(n_pr,80);
+	int i=0;
+	while (n_pr[i]!=0)
+	{
+		i++;
+	}
+	cout <<"\n\n\tLungimea sirului: " << n_pr << " este: "<<i;
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Determinarea lungimii unui sir preluat var II
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+int len(char[]);
+int main(void)
+{
+	system("TITLE Determinarea lungimii unui sir preluat ");
+	system("COLOR F9"); 
+	cout << "\n\t- Programul afiseaza lungimea unui sir preluat de la tastatura.\n\n\n";
+	char n_pr[80];
+	cout << "\n\t- Introduceti numele d-voastra:";
+	cin.getline(n_pr,80);
+	cout <<"\n\n\tLungimea sirului: " << n_pr << " este: " << len(n_pr);
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+int len(char s[]){
+	int i=0;
+	while (s[i]!=0)
+	{
+		i++;
+	}
+	return i;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Determinarea lungimii unui sir preluat var III
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+int len(char [],int);
+int main(void)
+{
+	system("TITLE Determinarea lungimii unui sir preluat ");
+	system("COLOR F9"); 
+	cout << "\n\t- Programul afiseaza lungimea unui sir preluat de la tastatura.\n\n\n";
+	char n_pr[80];
+	cout << "\n\t- Introduceti numele d-voastra:";
+	cin.getline(n_pr,80);
+	cout <<"\n\n\tLungimea sirului: " << n_pr << " este: " << len(n_pr,80);
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+int len(char s[],int nc){
+	int n=0;
+	for (int i=0 ; ((i<nc)&& ( s[i]!=0)) ; i++)
+	{
+	n++;
+	}
+	return n;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Programul afiseaza un sir preluat de la tastatura fara majuscule.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+int main(void)
+{
+	system("TITLE Eliminarea majusculelor ");
+	system("COLOR F9"); 
+	cout << "\n\t- Programul afiseaza un sir preluat de la tastatura fara majuscule.\n\n\n";
+	char n_pr[80];
+	cout << "\n\t- Introduceti numele d-voastra:";
+	cin.getline(n_pr,80);
+	cout <<"\n\n\tSirul fara majuscule este: ";
+	for (int i=0;i<=strlen(n_pr); i++){
+	if(!isupper(n_pr[i]))	
+		cout << n_pr[i];
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Programul afiseaza un sir preluat de la tastatura cu majuscule
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+int main(void)
+{
+	system("TITLE Transformare minuscule in majuscule ");
+	system("COLOR F9"); 
+	cout << "\n\t- Programul afiseaza un sir preluat de la tastatura cu majuscule.\n\n\n";
+	char n_pr[80];
+	char txt[80];
+	cout << "\n\t- Introduceti numele d-voastra:";
+	cin.getline(n_pr,80);
+	cout <<"\n\n\tSirul cu majuscule este: ";
+	for (int i=0;i<=strlen(n_pr); i++){	
+		txt[i] = toupper(n_pr[i]);
+	}
+	cout << txt;
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Programul afiseaza un sir preluat de la tastatura fara majuscule Var III
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+int main(void)
+{
+	system("TITLE Eliminarea majusculelor ");
+	system("COLOR F9"); 
+	cout << "\n\t- Programul afiseaza un sir preluat de la tastatura fara majuscule.\n\n\n";
+	char n_pr[80];
+	cout << "\n\t- Introduceti numele d-voastra:";
+	cin.getline(n_pr,80);
+	cout <<"\n\n\tSirul fara majuscule este: ";
+	for (int i=0;i<=strlen(n_pr); i++){	
+	if ((int)n_pr[i]>96)
+		n_pr[i]=n_pr[i]-32;
+	}
+	cout << n_pr;
+
+
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Programul afiseaza un sir preluat de la tastatura fara majuscule Var IV
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+using namespace std;
+int main(void)
+{
+	system("TITLE Eliminarea majusculelor ");
+	system("COLOR F9"); 
+	cout << "\n\t- Programul afiseaza un sir preluat de la tastatura fara majuscule.\n\n\n";
+	char n_pr[80];
+	cout << "\n\t- Introduceti numele d-voastra:";
+	cin.getline(n_pr,80);
+	cout <<"\n\n\tSirul fara majuscule este: ";
+	for (int i=0;i<=strlen(n_pr); i++){	
+	if ((int)n_pr[i]>64 && (int)n_pr[i]<96)
+		n_pr[i]=n_pr[i]+32;
+	}
+	cout << n_pr;
+	cin.ignore();
+	cin.get();
+	return 0;
+} 
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se deschide portul si se da comanda "O123" la apasarea unui buton(ver 1)
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!this.serialPort1.IsOpen) 
+                this.serialPort1.Open();
+                    this.serialPort1.Write("O123");
+            if (this.serialPort1.IsOpen) 
+            this.serialPort1.Close();
+
+        }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se deschide portul si se da comanda "O123" la apasarea unui buton (ver 2)
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            if(!this.serialPort1.IsOpen)
+            this.serialPort1.Open();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.serialPort1.Write("O123");
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (this.serialPort1.IsOpen)
+                this.serialPort1.Close();
+        }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se deschide portul si se da comanda scrisa intr-un textbox, la apasarea unui buton.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+       private void button1_Click(object sender, EventArgs e)
+        {
+
+            this.serialPort1.Write(this.textBox1.Text);
+            
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+        if (!this.serialPort1.IsOpen)
+                this.serialPort1.Open();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.serialPort1.IsOpen)
+                this.serialPort1.Close();
+        }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se deschide portul si se trimit spre afisare caracterele de la 1-9
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+       static String[] cda = new String[10];
+        static int i;
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            cda[0] = "O123";
+            cda[1] = "O40";
+            cda[2] = "O93";
+            cda[3] = "O109";
+            cda[4] = "O46";
+            cda[5] = "O103";
+            cda[6] = "O119";
+            cda[7] = "O41";
+            cda[8] = "O127";
+            cda[9] = "O111";
+            
+            //cda[0] = "O0";
+            //cda[1] = "O1";
+            //cda[2] = "O3";
+            //cda[3] = "O7";
+            //cda[4] = "O15";
+            //cda[5] = "O31";
+            //cda[6] = "O63";
+            //cda[7] = "O127";
+            //cda[8] = "O255";
+            //cda[9] = "O0";
+            this.timer1.Enabled = true;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+            i++;
+            if (i > 9)
+                   i = 0;
+            this.serialPort1.Write(cda[i]);
+               
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            if (!this.serialPort1.IsOpen)
+                this.serialPort1.Open();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+                this.serialPort1.Close();
+        }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizarea afisorului cu 4 digiti
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+       private void button1_Click(object sender, EventArgs e)
+        {
+            if (!this.serialPort1.IsOpen)
+                this.serialPort1.Open();
+            // combinatia O1,O0 Aprinde un segment
+            for (int i = 0; i <= 32; i++)
+            {
+                this.serialPort1.Write("O1");
+                this.serialPort1.Write("O0");
+            }
+            if (this.serialPort1.IsOpen)
+                this.serialPort1.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (!this.serialPort1.IsOpen)
+                this.serialPort1.Open();
+            // combinatia O3,O2 Stinge un segment
+            for (int i = 0; i <= 32; i++)
+            {
+                this.serialPort1.Write("O3");
+                this.serialPort1.Write("O2");
+            }
+            if (this.serialPort1.IsOpen)
+                this.serialPort1.Close();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (this.serialPort1.IsOpen)
+                this.serialPort1.Close();
+        }
+    }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizare led-uri :joc de lumini stanga dreapta
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+       int i = 1;
+        int k = 0;
+        int semafor = 0;
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            if (!this.serialPort1.IsOpen)
+                this.serialPort1.Open();
+            this.timer1.Enabled = true;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (semafor==0)
+                i = i << 1;
+            else
+                i = i >> 1;
+
+            i = i & 255;
+            this.label1.Text = "O" + i.ToString();
+            this.serialPort1.Write("O" + i.ToString());
+            k++;
+            if (k == 7)
+            {
+                k = 0;
+                if (semafor == 0)
+                    semafor = 1;
+                else
+                    semafor = 0;
+            }
+
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (this.serialPort1.IsOpen)
+                this.serialPort1.Close();
+        }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Citire intrare analogica
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+       String text_r;
+        String tens_s;
+        int val;
+        Double tens;
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            if (!this.serialPort1.IsOpen)
+                this.serialPort1.Open();
+            this.timer1.Enabled = true;
+        }
+
+     
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+        this.serialPort1.Write("A0");
+        text_r = this.serialPort1.ReadExisting();
+            this.label1.Text = text_r;
+            if ((text_r.Length) > 0)
+            {
+                val = System.Convert.ToInt16(text_r.Substring(3, text_r.Length - 3));
+                tens = System.Convert.ToDouble(text_r.Substring(3, text_r.Length - 3));
+            }
+            this.label2.Text = val.ToString();
+            tens_s = (tens * 100 / 1023).ToString();
+            if (tens_s.Length > 5)
+                this.label3.Text = tens_s.Substring(0, 5);
+            else
+                this.label3.Text = tens_s;
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (this.serialPort1.IsOpen)
+                this.serialPort1.Close();
+        }
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Citirea tuturor intrarilor analogice
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Despachetarea datelor se poate face cu un algoritm de genul
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+#include "stdafx.h"
+#include < iostream >
+#include < fstream >
+using namespace std;
+int main(void)
+{
+	int i=0,j=0;
+	char c;
+	char num[3]; 
+	unsigned int n[8];
+	char nume_f[80];
+	cout << "\n\tIntroduceti numele fisierului \n\t\t:";
+	cin.getline(nume_f,80);
+	ifstream fis_r(nume_f);
+	if(!fis_r){
+		cout << "\n\tNu se poate deschide fisierul : " << nume_f ;
+		cin.get();
+		return -1;
+	}
+	while(fis_r.get(c)){
+		if(c!=','){
+			num[j]=c;
+			j++;
+		}
+		else{
+			n[i]=atoi(num);
+			 for (j=0; j < 3; j++)
+				num[j]=' ';
+			i++;
+			j=0;
+		}
+	}
+	n[i]=atoi(num);
+	fis_r.close();
+	cout<<"\n\n\n\n";
+	for(i=0; i < 8 ;i++){
+		cout<<"\n\t";
+		afis_bin(n[i],8);
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Termometru serial
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+namespace serial_termo
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        System.Drawing.Graphics Desen;
+        System.Drawing.Pen Creion_albastru;
+        System.Drawing.Pen Creion_rosu;
+        System.Drawing.SolidBrush Pens_r;
+        System.Drawing.SolidBrush Pens_v;
+        System.Drawing.SolidBrush Pens_pic;
+        Int16 val, val_max = 1024, x0 = 100, y0 = 50, w = 10, h = 200;
+        String val_s;
+        Double val_t;
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Desen = this.CreateGraphics();
+            Creion_albastru = new System.Drawing.Pen(System.Drawing.Color.Blue);
+            Creion_rosu = new System.Drawing.Pen(System.Drawing.Color.Red);
+            Pens_r = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
+            Pens_v = new System.Drawing.SolidBrush(System.Drawing.Color.LightGreen);
+            Pens_pic = new System.Drawing.SolidBrush(this.BackColor);
+            Desen.Clear(this.BackColor);
+            //this.trackBar1.Maximum = val_max;
+            Desen.DrawRectangle(Creion_albastru, x0, y0, w, h);//desenez contur termometru
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (!this.serialPort1.IsOpen)
+                this.serialPort1.Open();
+
+            this.serialPort1.Write("A0");
+            //this.label1.Text = this.serialPort1.ReadExisting();
+            String txt = this.serialPort1.ReadExisting();
+            int l = txt.Length;
+            if (l > 3)
+            {
+                val_s = txt.Substring(3, l - 3);
+                this.label1.Text = val_s;
+                try
+                {
+                    val_t = System.Convert.ToDouble(val_s);
+                }
+                catch(System.FormatException)
+                {
+                    this.label1.Text = "Eroare!";
+                }
+            }
+            val = System.Convert.ToInt16(System.Convert.ToDouble(h) / System.Convert.ToDouble(val_max)*val_t );
+            Desen.FillRectangle(Pens_pic, x0+1, y0+1, w-1, h-2);
+            if(val<0.9*h){
+                Desen.FillRectangle(Pens_v, x0+1, h+y0-val, w-1, val);
+                Desen.FillEllipse(Pens_v,x0+20,y0,10,10);
+            }
+	    else{
+            	Desen.FillRectangle(Pens_r, x0+1, h+y0-val, w-1, val);
+            	Desen.FillEllipse(Pens_r,x0+20,y0,10,10);
+	    }
+
+        }
+    }
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+</body>
+</html>

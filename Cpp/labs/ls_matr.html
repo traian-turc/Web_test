@@ -1,0 +1,136 @@
+<html>
+<title> Laborator tablouri </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator tablouri </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font>
+<li>Vectori
+<ol>
+<li>Creati un tablou unidimensional cu 7 elemente, reprezentand consumurile zilnice de energie dintr-o saptamana.
+	<ul> 
+		<li> Calculati consumul saptamanal de energie.
+		<li> Calculati consumul mediu de energie.
+		<li> Afisati consumurile din zilele in care s-a depasit consumul mediu
+		<li> Creati un nou tablou cu consumurile din zilele in care s-a depasit consumul mediu
+
+	</ul>
+<li> Reluati aplicatia anterioara si pentru consumurile lunare (31 zile). Valorile consumurilor vor fi generate aleator cu valori intre 100 si 200
+<li> Realizati un programul cere 5 numere, le salveaza intr-un vector dupa care afiseaza elementele vectorului in ordine inversa 
+<li> Creati un tablou unidimensional cu n elemente random. Construiti un nou tablou din elementele primului, astfel incat 
+elementul curent sa reprezinte suma elementelor din primul tablou pana la pozitia elementului curent.
+<li> Creati un tablou unidimensional cu n elemente random, dupa care :
+<ul>
+<li> afisati media aritmetica a elementelor tabloului
+<li> afisati media geometrica a elementelor tabloului - folosind functia pow
+<li> afisati elementele insotite de textul "par" sau "impar"
+<li> afisati elementele pare, apoi afisarea elementelor impare.
+<li> realizati un nou vector unde numerele pare sa ocupe primele locuri
+</ul>
+
+<li> Creati un tablou unidimensional cu n elemente random, dupa care atribuiti elementelor valorile unei functii (ex x*x) si afisarea lui
+<li> Realizati o aplicatie care realizeaza shift-ari intr-un vector
+ <ul>
+   <li> se va utiliza un tablou unidimensional (un vector)
+   <li> se cer n numere de la tastatura 
+   <li> Se shift-eaza dreapta 1 pozitie
+   <li> Se atribuie 0 primului element
+ </ul>
+<li> Realizati o aplicatie care realizeaza o rotire intr-un vector
+ <ul>
+   <li> se va utiliza un tablou unidimensional (un vector)
+   <li> se cer n numere de la tastatura 
+   <li> Se shift-eaza dreapta 1 pozitie
+   <li> Se atribuie primului element valoarea ultimului element
+ </ul>
+<li> Reluati aplicatia anterioara si realizati o noua aplicatie care realizeaza  k rotiri intr-un vector
+<li> Realizati un programul cere n numere, le salveaza intr-un vector, se pun elementele vectorului in ordine inversa dupa care se afiseaza 
+
+<li> Diverse teme:
+<ul> 
+	<li> eliminarea unui element dintr-un vector
+	<li> eliminarea duplicatelor dintr-un vector
+	<li> intersectia a doi vectori
+	<li> reuniunea a doi vectori
+	<li> sortarea unui vector
+	<li> interclasarea a doi vectori
+	<li> afisarea sumei elementelor, media elementelor, max, minim, 
+</ul>
+
+</ol>
+<li>Matrici
+<ol>
+ <li> Realizati un tablou bidimensional cu nxn elemente initializat cu numere pozitive
+ <br><br><center><img src="im_cpp81.gif"></center><br>
+ <li> Afisati elementele de pe diagonala principala unui tablou bidimensional cu nxn elemente
+ <li> Afisati elementele de pe diagonala secundara unui tablou bidimensional cu nxn elemente
+ <br><br><center><img src="im_cpp82.gif"></center><br>
+ <li> Afisati minimul si maximul unui tablou bidimensional cu nxn elemente
+ <li> Afisati media aritmetica a elementelor unui tablou bidimensional cu nxn elemente
+ <li> Realizati un tablou bidimensional cu 25X20 elemente initializat cu numere pozitive,dupa care extrageti o matrice aflata la
+5 elemente distanta pe verticala, 7 elemente distanta pe orizontala. Dimensiunea noii matrici va fi:w=12, h=10. 
+ <br><br><center><img src="im_cpp83.gif"></center><br>
+ <li> Realizati un tablou bidimensional cu mazim 25X25 elemente. Initializati 20X15 elemente cu numere pozitive, 
+ dupa care rotiti matricea 20X15 spre stanga 90 de grade
+ <br><br><center><img src="im_cpp84.gif"></center><br>
+  <li> Realizati un tablou bidimensional cu mazim 25X25 elemente. Initializati 20X15 elemente cu numere pozitive, 
+ dupa care rotiti matricea 20X15 spre dreapta 90 de grade
+   <li> Realizati un tablou bidimensional cu mazim 25X25 elemente. Initializati 20X15 elemente cu numere pozitive, 
+ dupa care rotiti matricea 20X15 pe axa x
+	   <li> Realizati un tablou bidimensional cu mazim 25X25 elemente. Initializati 20X15 elemente cu numere pozitive, 
+ dupa care rotiti matricea 20X15 pe axa y
+    <li> Realizati un tablou bidimensional cu mazim 25X25 elemente. Initializati 20X15 elemente cu numere pozitive, 
+ dupa care rasturnati matricea 20X15
+<li>Se genereaza o matrice de numere aleatoare si se afiseaza suma pe coloane.
+<li>Deplasare dreapta o pozitie intr-o matrice
+</ol>
+ <li>Vectori in spatiul System
+	<ol>
+		<li>Folosind un vector in care pastrati diametrele mai multor cercuri ,trasati cercurile, dupa care colorati cu rosu cercul a carui raza este cea mai mare.
+		<br><br><center><img src="im_cpp110.jpg"></center><br>
+		<li>Folosind un vector in care pastrati 180 de puncte echidistante pe un cerc realizati aplicatia.
+		<br><br><center><img src="im_cpp158.jpg"></center><br>
+		<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Vectorul de puncte va fi definit sub forma: 
+		<i>Point[] vector_puncte = new Point[180];</i>
+		<br>&nbsp;&nbsp;&nbsp;&nbsp; Punctele se unesc dupa regula ”se uneste punctul nr x cu punctul nr (m * x)%180”, 
+		unde m este un nr intreg intre 1-179 selectat intr-un numeric updown.
+	</ol>
+ <li>Matrici in spatiul System
+ <br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa se realizeze o aplicatie in care se atribuie valori elementelor unui tablou. 
+ Se redimensioneaza dupa care se verifica daca s-au mai pastrat valorile atribuite anterior.
+<ol>
+	<li>Folosind o matrce in care pastrati diametrele, si poxitiile pe x a mai multor cercuri, trasati cercurile dupa care colorati cu rosu cercul a carui raza este cea mai mare.
+	<br><br><center><img src="im_cpp110.jpg"></center><br>
+	<li>Simulati caderea picaturilor de ploaie
+	<br><br><center><img src="im_cpp111.jpg"></center><br>
+	<li>modificati legea de miscare pentru a simula miscarea browniana a particolelor
+	<li>Simulare grafica metode de ordonare
+	<br><br><center><img src="im_cpp99.jpg"></center><br>
+	<li>Se realizeaza aplicatia cu baloane de sapun
+	<li>Se coloreaza jumatate cu albastru (metoda 1 dublarea instructiunilor, metoda 2 if (i%2))
+	<li>Modificarea aplicatiei pentru a reimprospata pozitiile aleatoare pentru a nu se repeta pozitiile 
+	<li>Desenati 10 cercuri la pozitii si de diametre aleatoare. Pozitiile si diametrele vor fi memorate intr-un array
+	<br><br><center><img src="im_cpp91.jpg"></center><br>
+	<li>Rotiti dreapta imaginea cu cercuri realizata anterior.
+	<li>Realizati o aplicatie care imparte cercul in 12 arce egale, memoreaza pozitia punctelor de pe cerc intr-un array 
+	dupa care realizeaza imaginea:
+ 	<br><br><center><img src="im_cpp100.jpg"></center><br>
+	<li>Realizati o aplicatie care imparte cercul in 12 arce egale, memoreaza pozitia punctelor de pe cerc intr-un array 
+	dupa care realizeaza imaginea:
+ 	<br><br><center><img src="im_cpp92.jpg"></center><br>
+	<li>Realizati o aplicatie care imparte cercul in 16 de arce egale. Memoreaza pozitia punctelor de pe cerc intr-un array 
+	dupa care traseaza linii rezultand imaginea:
+	<br><br><center><img src="im_cpp93.jpg"></center><br>
+	<li>Realizati o aplicatie care imparte cercul in 16 de arce egale. Memoreaza pozitia punctelor de pe cerc intr-un array 
+	dupa care traseaza linii rezultand imaginea:
+	<br><br><center><img src="im_cpp94.jpg"></center><br>
+	<li>Reluati aplicatia anterioara si realizati imaginea:
+	<br><br><center><img src="im_cpp95.jpg"></center><br>
+	<li>Adaugati un TrackBar pentru a seta numarul de puncte. Aplicatia va fi similara cu:
+	<br><br><center><img src="im_cpp96.jpg"></center><br>
+	<li>Realizati o aplicatie grafica pentru afisarea  grafica a evolutiei in timp a unei valori de forma :
+	<br><br><center><img src="im_cpp29.jpg"></center><br>
+	<li> Simulare afisare imagine ecran
+</ol>

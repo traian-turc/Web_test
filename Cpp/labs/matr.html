@@ -1,0 +1,97 @@
+<html>
+<title> Laborator tablouri </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Laborator tablouri </Center></TD></TR>
+</table>
+<a name="start"></a>
+<font color= "Blue" size=5> Teme program  </font>
+<li>Vectori
+<ol>
+<li> initializarea unui vector atribuirea de valori aleatoare si afisarea lui
+<li> afisarea elementelor insotite de textul "par" sau "impar"
+<li> afisarea elementelor pare, apoi afisarea elementelor impare.
+<li> initializarea unui vector, atribuirea elementelor valorile unei functii (ex x*x) si afisarea lui
+<li> afisarea sumei elementelor, media elementelor, max, minim, integrala 
+</ol>
+<li>Matrici :
+<ol>
+<li> initializarea unei matrici atribuirea de valori aleatoare si afisarea ei
+<li> afisarea elementelor de pe diagonala principala
+<li> afisarea elementelor de pe diagonala secundara
+<li> afisarea elementelor de sub diagonala principala(inclusiv elem de pe diagonala)
+<li> afisarea sumelor pe coloana
+</ol> 
+&nbsp;&nbsp;&nbsp;&nbsp;Se genereaza o matrice de numere aleatoare si se afiseaza suma pe coloane.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+// Programul utilizeaza o matrice de dimensiunea n x m
+// Elementelor matricii li se atribuite valori intregi aleatoare intre 0 si 100
+#include "stdafx.h"
+#include < iostream >
+#include < string >
+
+using namespace std ;
+
+int main(void)
+{
+	system("TITLE Matrice de dimensiunea n x m ");// Titlul ferestrei consola
+	system("COLOR F9"); // Fundal alb caractere albastre
+	int i,j,n,m;
+	cout <<" \n\  Introduceti valoarea lui n (maxim 10):";
+	cin >> n;
+	cout << " \n\  Introduceti valoarea lui m (maxim 10):";
+	cin >> m;
+	const int nmax=10;
+	const int mmax=10;
+	int matr[nmax][mmax],nr;
+	for (j=0; j < m; j++) {
+		for (i=0;i < n;i++){
+		matr[i][j]= 100*rand()/RAND_MAX ; // pentru a genera numere intre 0-100
+		}
+	}
+	cout << "\n\n\  Matricea este:  \n\n";
+	for (j=0; j < m; j++) {
+		cout << "\n" ;
+		for (i=0;i < n;i++){
+			cout << "  matr[" << i << "][" << j << "]=" << matr[i][j] << "\t";
+		}
+	}
+	cout << "\n\n\  Totaluri:  \n\n";
+	for (i=0; i < n; i++) {
+		int sum=0;
+		for (j=0;j < m;j++){
+			sum=sum+matr[i][j];
+		}
+		cout << "  Suma[" << i << "]=" << sum <<"\t";
+	}
+	cin.ignore();
+	cin.get();
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>
+<li>Matrici in spatiul System
+<ol>
+<li>Se realizeaza aplicatia cu baloane de sapun
+<li>Se coloreaza jumatate cu albastru (metoda 1 dublarea instructiunilor, metoda 2 if (i%2))
+<li>Modificarea aplicatiei pentru a reimprospata pozitiile aleatoare pentru a nu se repeta pozitiile ( poz 0 desenez, poz (1/3)*inteerval 
+generez, poz (2/3)*inteerval sterg)
+<li>Se realizeaza aplicatia cu simulare achizitie pe ecran de la mouse
+<li>Trasez o linie orizontala, una verticala, incadrez zona de desen cu un dreptungi.
+<li>Pun diviziuni si valori
+</ol>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+</body>
+</html>
