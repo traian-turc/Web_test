@@ -1,0 +1,860 @@
+<html>
+<title> Programarea aplicatiilor SCADA </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "red" size=6> Programarea aplicatiilor SCADA  </Center></TD></TR>
+</table>
+
+<font color= "Black" size=4><li><b>Obiective </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Prezentarea limbajului de programare Cicode, mod de utilizare, particularitati 
+<li>Prezentarea instructiunilor decizionale si realizarea de aplicatii cu aceste instructiuni
+<li>Prezentarea modului de utilizare al functiilor si realizarea de aplicatii care folosesc functii
+<li>Prezentarea si exemplificarea facilitatilor de programarea in realizarea aplicatiilor SCADA
+</td></tr></table>
+</ul>
+
+<font color= "Black" size=4><li><b>Organizarea sarcinilor de lucru </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li> Parcurgeti cele trei capitole ale cursului.
+<li> In cadrul fiecarui capitol urmariti exemplele ilustrative si incercati sa le realizati in medul de dezvoltare "Citect".
+<li> Fixati principalele idei ale cursului, prezentate în rezumat.
+<li> Completati testul de autoevaluare. 
+<li> Timpul de lucru pentru parcurgerea testului de autoevaluare este de 15 minute.
+</td></tr></table>
+</ul>
+
+<br><a name="cicode"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> 1.Limbajul de programare Cicode  </Center></TD></TR>
+</table>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatiile SCADA simple se pot crea in principiu fara a utiliza notiuni de programare. Aplicatiile mai complexe 
+nu pot fi realizate decat utilizand facilitatile oferite de limbajul de programare Cicode.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cicode este un limbaj de programare integrat in mediul de dezvoltare CitectSCADA destinat dezvoltarii de aplicatii SCADA, 
+permitand controlul software a elementelor utilizate pentru mimarea si controlul proceselor.  Este un limbaj structurat similar cu "C" sau Visual Basic.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza un nou proiect numit <b> "Sch_el" </b> urmand pasii descrisi in cursul anterior anterior pentru a crea un 
+nou proiect, sau se poate utiliza proiectul <b> "Sch_el_start" </b> proiect in care au fost parcursi toti pasii pentru crearea unui nou proiect.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In proiectul <b> "Sch_el_start" </b>, sunt realizate deja o serie de astfel de simboluri, asa ca vom porni de la acest proiect.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Acest proiect poate fi descarcat  aici :<a href="../downloads/aplicatii/Sch_el_start.ctz"> Download - "Sch_el_start" </a> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa ce s-a download-at acest fisier, din Citect Explorer->Restore se incarca acest proiect si i se atribuie numele 
+<b> "Sch_el" </b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Proiectul contine pagina grafica intitulata: <font color="red"><b> "start" </b> </font> afisata mai jos.
+<br><br><center><img src="im_citect014.gif"></center>
+<br><br><a name="simb"></a>
+<font color= "blue" size=4><b> Set simbolul on/off</b></font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom incerca acum sa creem o pagina grafica <font color="red"><b> "led1" </b> </font> pentru a simula comanda de alimentare cu energie a unui proces. Alimentarea va 
+fi semnalizata in pagina grafica prin aprinderea unui LED. LED-ul va avea doua stari. Starea stins de culore gri si starea aprins, de culoare verde.
+<br><br><center><img src="im_citect021.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Pentru a putea afisa cele doua stari vom folosi un Simbol-Set de tip LED.
+<br><br><center><img src="im_citect024.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa deci LED-ul s-a plasat un Simbol Set in care s-au plasat cele doua simboluri pentru LED stins si LED aprins
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, pentru a controla comportamentul LED-ului, acestuia i s-a atribuit tag-ul  DIGITAL numit "led".
+<br><br><center><img src="im_citect023.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Comanda se face prin apasarea unui butonului cu titlul "Pornit" care seteaza tag-ul "led" la 1 
+iar oprirea prin apasarea butonului cu titlul "Oprit" care seteaza tag-ul "led" la 0 .
+
+<br><br><a name="func_p"></a>
+<font color= "blue" size=4><b> Functii predefinite </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "led2" </b> </font>, in care vom introduce un singur buton care sa poarte titlul "Pornit/Oprit" si care 
+sa insumeze functiilor celor doua butoane din aplicatia anterioara. Alimentarea cu energie se va semnaliza prin aprinderea unui LED. Pentru a realiza 
+functionarea butonului vom folosi functia predefinita <b> toggle( )</b> completand "Up command" al butonului "Pornit/Oprit"  cu <b>Toggle(led) </b>.
+<br><br><center><img src="im_citect022.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am putea sa simulam circuite simple in care sa avem comutatoare pornit oprit sub forma unui Set Simbol nu sub 
+forma unui buton. Vom crea deci o noua pagina grafica <font color="red"><b> "circ_01" </b> </font> in care vom simula circuitul de alimentare a unuei rezistente.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Tag-ul corespunzator comutatoruliui pentru alimentarea rezistentei, va fi un tag DIGITAL pe care il vom numi "k1".
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> k1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comutator k1 </b> </td>    
+</tr> 
+</table>
+</center> 
+<br><br><center><img src="im_citect026.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am utilizat Set simbolul "k_on", "k_off" definita in biblioteca "Global" Caruia i-am setat proprietatea "Imput" 
+cu <b> toggle(k1)</b> astfel:
+<br><br><center><img src="im_citect027.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Introducand inca un LED in circuit, vom realiza o noua pagina grafica <font color="red"><b> "circ_02" </b> </font> 
+in care avem un nou circuit cu elemente interactive de comanda si afisare.
+<br><br><center><img src="im_citect028.gif"></center>
+<br><br><a name="simb_m"></a>
+<font color= "blue" size=4><b> Seturile simbol multi-state</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De multe ori, pentru mimarea cat mai fidela a diverselor procese, avem nevoie de simboluri cu mai multe stari. Vom 
+utiliza in continuare un "Symbol Set Multi-state" pentru a afisa un LED cu patru stari distincte reprezentate de culorile gri, verde, galben, rosu.
+<br><br><center><img src="im_citect030.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza o aplicatie  <font color="red"><b> "led11" </b> </font> care utilizeaza un "Symbol Set Multi-state". 
+Pentru a realiza cele patru combinatii, avem nevoie de doua variabile booleene pe care le vom controla cu doua butoane.
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> b0 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Variabila booleana b0 </b> </td>    
+</tr> 
+
+<tr>
+  <td> b1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Variabila booleana b1 </b> </td>    
+</tr> 
+</table>
+</center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Butoanele b0 respectiv b1 schimba starea variabilelor b0 respectiv b1, utilizand functiile toggle(b0) respectiv  toggle(b1) 
+<br><br><center><img src="im_citect031.gif"></center> 
+<br><br><a name="tabl"></a>
+<font color= "Blue" size=4><b> Tablouri de elemente </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In multe situatii avem de-a face cu mai multe elemente de acelasi tip. Este mult mai convenabil sa definim un tablou 
+de elemente decat sa definim fiecare element in parte. Sa presupunem ca vrem sa afisam starea a 10 LED-urim pe ecran. Am putea defini cate un tag 
+pentru fiecare LED sau sa definim o singuraa variabila tag de tip tablou. Sa realizam o pagina grafica <font color="red"><b> "led10" </b> </font> 
+de forma imaginii de jos in care plasam 10 LED-uri si 10 butoane de la care sa controlam cele 10 LED-uri. 
+<br><br><center><img src="im_citect015.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul variabilelor locale vom introduce o variabila de forma:
+<br><br><center><img src="im_citect016.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru fiecare LED vom seta in cadrul facilitatii "Simbol Set Properties" tag-ul ld[i] in care i ia valori de la 1 la 10.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru fiecare buton vom seta "Button Properties"-> Input cu: toggle(ld[i]);in care, la fel i ia valori de la 1 la 10.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tablourile pot fi utilizate si in alte cazuri decat definirea tag-urilor. Pentru a utiliza un tablou, acesta trebuie 
+initial definit.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Definirea unui tablou:</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Un tablou de elemente se defineste astfel:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>tip nume[dim1,{dim2},{dim2}]{=vaoare};</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Putem defini deci tabluiri de 1,2 sau 3 dimensiuni. Vom defini un tablou de o singura dimensiune, deci un vector, astfel:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>INT Num[10]</b> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am definit mai sus un tablou de numere intregi cu numele "Num", avand maxim 10 elemente. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se pot atribui implicit valori astfel: 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>INT Num[10]=0,1,58,71,134,2,999,3,6,8;</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a accesa elementul i se utilizaeaza forma <b> Num[i]</b> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom putea realiza alte moduri de implementare a comenzii Pornit/ Oprit, folosind limbajul propriu de programare "Cicode". 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand limbajul de programare Cicode se pot controla prin program toate variabilele locale si cele in timp real, precum 
+si toate facilitatile oferite de CitectSCADA cum ar fi tag-uri, variabile locale, trends, grfice, rapoarte.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cicode se poate utiliza si pentru a interfata aplicatia cu alte resurse cum ar fi porturi de comunicatie, sistemul de 
+operare, baze de date, etc.
+
+<br><br><a name="if"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> 2. Instructiuni decizionale   </Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if</b> se foloseste pentru a selecta executia unei instructiuni (sau a unui grup de instructiuni) functie de 
+valoarea logica a unei expresii relationale 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul instructiunii:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if</b> are urmatoarele formate:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>If expresie relationala THEN
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;sau
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>If expresie relationala THEN
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ELSE
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+<br><br><a name="a_if"></a>
+<font color= "blue" size=4><b> Aplicatii care utilizarea instructiuni decizionale </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom incerca sa utilizam in continuare "Cicode" pentru a controla functionarea buronului Pornit/ Oprit. In primul caz am 
+completat "Up command"  cu <b>Toggle(led) </b>. De data aceasta vom inlocui functia <b>Toggle(led) </b> cu urmatorul program :
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF led =0  THEN
+  led = 1;
+ELSE
+  led=0;
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Liniile de cod de sus, vor fi atribuite: Button Properties->Input.
+<br><br><center><img src="im_citect032.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am realizat astfel pagina grafica <font color="red"><b> "led3" </b></font> in care, folosind instructiunea IF, un singur 
+buton preia functia de Start/Stop. 
+<br><br><center><img src="im_citect025.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie <font color="red"><b> "circ_03" </b></font> analizeaza starea unui circuit electric si afiseaza starea acestuia.
+<br><br><center><img src="im_citect033.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru realizarea aplicatiei, avem nevoie de urmatoarele tag-uri
+<br><br>
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> k1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Intrerupator k1 </b> </td>    
+</tr> 
+<tr>
+  <td> k2 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Intrerupator k2 </b> </td>    
+</tr>
+<tr>
+  <td> k3 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Intrerupator k3 </b> </td>    
+</tr>
+<tr>
+  <td> led </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> LED </b> </td>    
+</tr>
+ </table>
+</center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La apasarea butoului "Stare circuit" se aprinde LED-ul corespunzator. Primul LED este controlat de expresia led=1 iar 
+LED-ul de jos de expresia led=0. Va trebui deci ca la apasarea  butoului "Stare circuit" sa se ruleze un mic program care seteaza in mod corespunzator 
+tag-ul led in functie de starea intrerupatoarelor k1, k2, k3.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF k1 AND ( k2  OR k3) THEN
+      led=1;
+ELSE
+      led=0;
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O rezolvare mai eleganta <font color="red"><b> "circ_04" </b></font>, ar fi obtinuta prin introducerea unui LED in serie cu rezistenta. Controlul acestuia nu va mai 
+fi facut de tag-ul led ci de expresia:<b> k1 AND ( k2  OR k3) </b>
+<br><br><center><img src="im_citect034.gif"></center>
+
+
+<br><br><a name="func"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> 3. Functii  </Center></TD></TR>
+</table>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functiile sunt des utilizate pentru realizarea aplicatiilor SCADA. Majoritatea butoanelor, prin intermediul 
+evenimentelor lanseaza secvente de cod impachetate in cadrul unor functii. Exista o varietate mare de functii astfel avem functii cu sau fara 
+parametri, functii care returneaza sau nu valori. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul pentru definirea unei functii fara parametri si fara returnare de valori:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru definirea unei astfel de functii se foloseste urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FUNCTION nume_functie()
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul pentru definirea unei functii cu parametri si fara returnare de valori:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru definirea unei astfel de functii se foloseste urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FUNCTION nume_functie(Argumente)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul pentru definirea unei functii cu parametri si cu returnare de valori:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru definirea unei astfel de functii se foloseste urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Tip valoare returnata FUNCTION nume_functie(Argumente)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN valoare
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+<br><br><a name="a_func"></a>
+<font color= "blue" size=4><b> Aplicatii care utilizeaza functii definite de utilizator </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In aplicatiile anterioare, am apelat functia <b>Toggle() </b>, functie aflata in biblioteca limbajului Cicode, 
+sau am scris direct in campul "Up command" cateva linii de program care inlocuiesc  functia <b>Toggle()</b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;De data aceasta vom incerca sa scriem o functie proprie pe care sa o invocam la apasarea butonului "Pornit/ Oprit"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa denumim functia "comut_a()" si sa deschidem CicodeEditor pentru a o scrie. CicodeEditor editor se lanseaza din "Citec 
+Explorer"->Cicode Files->Create new Cicode page.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom defini functia "comut_a()" astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION comut_a()
+
+	IF led =0 THEN
+		led = 1;
+	ELSE
+		led=0;
+	END
+END
+
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; In acest moment, pentru butonul "Start/Stop" - setam proprietatea " Input" -Action up, "Up command" cu <b>comut_a()</b> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizam deci butonul "Start/Stop" si realizam o noua pagina grafica avand numele
+<font color="red"><b> "led12" </b> </font> similara cu pagina grafica de jos.
+<br><br><center><img src="im_citect013.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru LED s-a ales un "Symbol Set" de tip "On/Off" controlat de tag-ul "led"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Functia  <b>comut_a()</b> se lanseaza de evenimentul click al butonului. In general functiile scrise de utilizatori, se lanseaza 
+de diverse evenimente. Avem posibilitatea sa plasam o functie chiar si pe pagina grafica. Vom relua aplicatia  <b> "circ_04" </b> si vom realiza aplicatia 
+<font color="red"><b> "circ_05" </b></font> in care vom plasa o functie care comuta aleator cele trei comutatoare   
+<br><br><center><img src="im_citect035.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia plasata am denumit-o "comutare( )". Declansarea acesteia se face la fiecare scanare a paginii. In 
+mod implicit, scanarea se face la 250 ms dar se poate stabili un alt timing.
+<br><br><center><img src="im_citect036.gif"></center>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION comutare()
+	k1=Rand(2);
+	k2=Rand(2);
+	k3=Rand(2);
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, s-a folosit functia predefinita <b> Rand(2)</b> functie care intoarce un numar intr 0 si 1.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea aplicatiei, se observa ca in fiecare secunda se produc 4 comutari. Pentru a mari timpul intre doua 
+comutari, am putea sa umblam la timpul de scanare, dar asta ar inrautati functionarea paginii grafice. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom incerca sa rescriem functia comutare( ) astfel incat sa putem controla timpul intre doua comutari. Vom contoriza 
+scanarile paginii grafice si vom executa atribuirea de valori pentru k1, k2, k3 numai dupa un anumit numar de scanari. Vom introduce un tag, 
+pe care il vom folosi pe post de contor.  Avem deci nevoie de tag-urile:
+
+<br><br>
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> k1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Intrerupator k1 </b> </td>    
+</tr> 
+<tr>
+  <td> k2 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Intrerupator k2 </b> </td>    
+</tr>
+<tr>
+  <td> k3 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Intrerupator k3 </b> </td>    
+</tr>
+<tr>
+  <td> i </td>
+  <td> INTEGER </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Contor </b> </td>    
+</tr>
+ </table>
+</center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia comutare( ) devine:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION comutare()
+	i=i+1;
+	IF i>3 THEN
+		k1=Rand(2);
+		k2=Rand(2);
+		k3=Rand(2);
+		i=0;
+	END	
+
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In acest caz comutarea se face numai la interval de 4 scanari deci la interval de 4*250ms=1s 
+
+
+<br><br><a name="autoev"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de autoevaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck1() {  
+  
+     if ((Form_ck1.ck_1.checked==false)&(Form_ck1.ck_2.checked==false)&(Form_ck1.ck_3.checked==true)&(Form_ck1.ck_4.checked==false))  
+		document.Form_ck1.af_mes.value ='corect !';
+	else
+		document.Form_ck1.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck1">
+	<I> 1. Cicode este:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck1()>
+	a. Un mediu de dezvoltare aplicatii SCADA <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck1()>
+	b. Un mediu de programare independent <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck1()> 
+	c. Un mediu de programare inclus in mediul de dezvoltare Citect SCADA <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck1()> 
+	d. Un mediu de programare visual pentru aplicatii SCADA <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck2() {  
+  
+     if ((Form_ck2.ck_1.checked==false)&(Form_ck2.ck_2.checked==true)&(Form_ck2.ck_3.checked==false)&(Form_ck2.ck_4.checked==false))  
+		document.Form_ck2.af_mes.value ='corect !';
+	else
+		document.Form_ck2.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck2">
+	<I> 2. Pentru a afisa 4 simboluri de tip "Symbol Set Multi-state" avem nevoie de:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck2()>
+	a. 1 variabila de tip Array <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck2()>
+	b. 2 variabile booleene <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck2()> 
+	c. 1 variabila de tip INTEGER <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck2()> 
+	d. 1 variabila vector <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck3() {  
+  
+     if ((Form_ck3.ck_1.checked==true)&(Form_ck3.ck_2.checked==true)&(Form_ck3.ck_3.checked==false)&(Form_ck3.ck_4.checked==false))  
+		document.Form_ck3.af_mes.value ='corect !';
+	else
+		document.Form_ck3.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck3">
+	<I> 3. Atribuirea de valori elementelor unui tablou se poate face: </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck3()>
+	a. Intr-o singura declaratie<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck3()>
+	b. Atribuind valori in parte fiecarui element <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck3()> 
+	c. Prin utilizarea unei functii predefinite <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck3()> 
+	d. Printr-o metoda a variabilei de tip tablou<br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck4() {  
+  
+     if ((Form_ck4.ck_1.checked==false)&(Form_ck4.ck_2.checked==true)&(Form_ck4.ck_3.checked==true)&(Form_ck4.ck_4.checked==false))  
+		document.Form_ck4.af_mes.value ='corect !';
+	else
+		document.Form_ck4.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck4">
+	<I> 4. Instructiunea IF presupune:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck4()>
+	a. Cel putin doua expresii relationale<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck4()>
+	b. Cel putin o expresie relationala <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck4()> 
+	c. Cel putin o ramura de executie <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck4()> 
+	d. Cel putin o variabila de tip "tag" <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck5() {  
+  
+     if ((Form_ck5.ck_1.checked==true)&(Form_ck5.ck_2.checked==true)&(Form_ck5.ck_3.checked==false)&(Form_ck5.ck_4.checked==false))  
+		document.Form_ck5.af_mes.value ='corect !';
+	else
+		document.Form_ck5.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck5">
+	<I> 5. O functie returneaza:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck5()>
+	a. Nici un parametru<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck5()>
+	b. Un singur parametru <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck5()> 
+	c. Mai multi parametri <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck5()> 
+	d. Numai un parametru de tip  tag <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<br><br><a name="rez"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Rezumat  </Center></TD></TR>
+</table>
+
+<br><br><b>Limbajul de programare Cicode </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cicode este un limbaj de programare integrat in mediul de dezvoltare CitectSCADA destinat dezvoltarii de aplicatii SCADA, 
+permitand controlul software a elementelor utilizate pentru mimarea si controlul proceselor.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Limbajul Cicode permite utilizarea:
+<ul> 
+	<li> Set simbolului on/off
+	<li> Functiilor predefinite
+	<li> Set simbolurile multi-state
+	<li> Tablourilor de elemente 
+	<li> Instructiunilor decizionale
+	<li> Instructiunilor repetitive
+	<li> Functiilor definite de utilizator
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Definirea unui tablou:</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color="magenta">tip nume[dim1,{dim2},{dim2}]{=vaoare};</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;exemplu
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;INT Num[10] 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;INT Num[10]=0,1,58,71,134,2,999,3,6,8;
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Instructiunea if</b> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Formatul instructiunii:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<font color="magenta">If expresie relationala THEN
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;sau
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color="magenta">If expresie relationala THEN
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ELSE
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b> Functii</b>  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;- Formatul pentru definirea unei functii fara parametri si fara returnare de valori
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<font color="magenta">FUNCTION nume_functie()
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;- Formatul pentru definirea unei functii cu parametri si fara returnare de valori
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color="magenta">FUNCTION nume_functie(Argumente)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;-Formatul pentru definirea unei functii cu parametri si cu returnare de valori
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<font color="magenta">Tip valoare returnata FUNCTION nume_functie(Argumente)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN valoare
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</font>
+
+
+
+<br><br><a name="astept"></a>
+<font color= "Blue" size=4><li><b>Rezultate asteptate </b></font>
+<ul>
+Dupa studierea acestui modul, ar trebui sa cunoasteti:<br><br>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+
+<li>Cum sa scrieti aplicatii utilizand limbajul Cicode
+<li>Sa utilizati instructiuni decizionale 
+<li>Sa definiti functii proprii 
+<li>Sa realizati aplicatii SCADA in care sa folositi elemente de programare
+</table>
+</ul>
+
+<a name="term"></a>
+<font color= "Blue" size=4> <li> <b>Termeni esentiali</b></font><br>
+<ul>
+<Table border=1 width="90%">
+
+<tr>
+  <td align="center"><b> Termen </b>  </td>
+  <td align="center"><b> Descriere </b>  </td>
+</tr>
+<tr>
+  <td> SCADA </td>
+  <td> Supervisory Control And Data Aquisition </td>    
+</tr>
+<tr>
+  <td> Tag </td>
+  <td> Nume generic pentru elementele din procesul monitorizat codificate prin intermediul variabilelor</td>    
+</tr>
+<tr>
+  <td> HMI  </td>
+  <td> Human Machine Interface -Interfata dintre aplicatie si utilizator </td>    
+</tr>
+<tr>
+  <td> Limbaj Cicode </td>
+  <td> Limbaj de programare inclus in mediul de dezvoltare Citect SCADA </td>    
+</tr>
+<tr>
+  <td> Functii predefinite </td>
+  <td> Functii incluse definite si incluse in mediul de programare Cicode</td>    
+</tr>
+<tr>
+  <td> Instructiuni decizionale</td>
+  <td> Instructiuni care permit alegerea setului de instructiuni care urmeaza a fi executate in functie de o expresie relationala  </td>    
+</tr>
+<tr>
+  <td>Expresie relationala</td>
+  <td>Expresie a carui rezultat este o valoare logica</td>    
+</tr>
+<tr>
+  <td></td>
+  <td>  </td>    
+</tr>
+
+
+</table>
+</ul>
+ 
+<br><br><a name="bibl"></a>
+<font color= "Blue" size=4><li><b>Recomandari bibliografice </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> [1] Traian Turc, Elemente de programare C++ utile in ingineria electrica, Ed.Matrixrom, Bucuresti,2010
+<li> [2] Traian Turc, Programare avansata C++ pentru ingineria electrica, Ed.Matrixrom, Bucuresti,2010
+<li> [3] Traian Turc, Programarea in limbaje de asamblare, uz intern, Univ."Petru Maior" ,Tg.Mures,2009
+<li> [4] Traian Tur,Brevet de inventie nr:11863 "Sistem pentru automatizarea si monitorizarea proceselor industriale", OSIM, 2003
+<li> [5] Jeff Kent, C++ fara mistere,Ed.Rosetti Educational 2004 .
+<li> [6] Boldur Barbat - Informatica industriala - Programarea în timp real  – Institutul Central pentru Conducere si informatica 1984 
+<li> [7] Ioan Babuita – Conducerea automata a proceselor – Ed. Facla 1985
+<li> [8] Ghercioiu-National în struments - Orizonturi  în instrumentatie 1995
+</td></tr></table>
+</ul>
+<br><br><a name="link"></a>
+<font color= "Blue" size=4><li><b>Link-uri utile </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> 1.<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> - Free SCADA - 2009.
+<li> 2.<a href="http://www.7t.dk/igss/default.asp"> http://www.7t.dk/igss/default.asp</a> - IGSS SCADA System - 2009
+<li> 3.<a href="http://www.7t.dk/igss/default.asp?showid=374"> http://www.7t.dk/igss/default.asp?showid=374</a> - IGSS Online SCADA Training - 2009 
+<li> 4.<a href="http://www.7t.dk/free-scada-software/index.html"> http://www.7t.dk/free-scada-software/index.html</a>-  IGSS Free SCADA Software -2009
+<li> 5.<a href="http://www.citect.com/"> http://www.citect.com/</a> -  CITECT SCADA -2009 
+<li> 6.<a href="http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314"> http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314</a> - Download CITECT demo - 2009
+<li> 7.<a href="http://www.indusoft.com/index.asp"> http://www.indusoft.com/index.asp</a> - INDUSOFT SCADA - 2009
+<li> 8 <a href="http://www.gefanuc.com/products/2819"> http://www.gefanuc.com/products/2819</a> - Proficy HMI/SCADA - CIMPLICITY - 2009.
+<li> 9.<a href="http://www.genlogic.com/"> http://www.genlogic.com/</a> - Dynamic Graphics, Data Visualization, Human-Machine Interface (HMI) - 2010 
+<li> 10<a href="http://www.genlogic.com/demos.html"> http://www.genlogic.com/demos.html</a> - On-Line Java and AJAX Demos - 2010 
+<li> 11<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+<li> 12<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+</td></tr></table>
+</ul>
+
+<br><br><a name="eval"></a>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de evaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck6() {  
+  
+     if ((Form_ck6.ck_1.checked==true)&(Form_ck6.ck_2.checked==false)&(Form_ck6.ck_3.checked==false)&(Form_ck6.ck_4.checked==false))  
+		document.Form_ck6.af_mes.value ='corect !';
+	else
+		document.Form_ck6.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck6">
+	<I> 1. Pentu a simula functionarea unui LED, se utilizeaza:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck6()>
+	a. Un Simbol-Set de tip "On/off"<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck6()>
+	b. Simbol-Set de tip "Animated" <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck6()> 
+	c. Simbol de tip "lights"  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck6()> 
+	d. O forma geometrica "circle" <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+  
+<ul>
+<script type="text/javascript">
+function nr_ck7() {  
+  
+     if ((Form_ck7.ck_1.checked==true)&(Form_ck7.ck_2.checked==false)&(Form_ck7.ck_3.checked==true)&(Form_ck7.ck_4.checked==false))  
+		document.Form_ck7.af_mes.value ='corect !';
+	else
+		document.Form_ck7.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck7">
+	<I> 2. Care dintre functiile de jos sun predefinite ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck7()>
+	a. Functia toggle( ) <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck7()>
+	b. Functia screen( ) <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck7()> 
+	c. Functia Rand( ) <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck7()> 
+	d. Functia comut( ) <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck8() {  
+  
+     if ((Form_ck8.ck_1.checked==true)&(Form_ck8.ck_2.checked==true)&(Form_ck8.ck_3.checked==true)&(Form_ck8.ck_4.checked==true))  
+		document.Form_ck8.af_mes.value ='corect !';
+	else
+		document.Form_ck8.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck8">
+	<I> 3. Care dintre enunturile de mai jos sunt adevarate ? </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck8()>
+	a. Instructiiunea IF are mai multe formate <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck8()>
+	b. Instructiunea IF inclune o expresie relationala <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck8()> 
+	c. Instructiunea IF este o instructiune decizionala <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck8()> 
+	d. Instructiunea IF este inclusa in mediul de programare Cicode <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck9() {  
+  
+     if ((Form_ck9.ck_1.checked==true)&(Form_ck9.ck_2.checked==true)&(Form_ck9.ck_3.checked==false)&(Form_ck9.ck_4.checked==false))  
+		document.Form_ck9.af_mes.value ='corect !';
+	else
+		document.Form_ck9.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck9">
+	<I> 4. O functie poate fi apelata de:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck9()>
+	a. Evenimentele unui buton <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck9()>
+	b. Scanarea ecranului <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck9()> 
+	c. O variabila tag <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck9()> 
+	d. Un Symbol Set <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck10() {  
+  
+     if ((Form_ck10.ck_1.checked==true)&(Form_ck10.ck_2.checked==false)&(Form_ck10.ck_3.checked==false)&(Form_ck10.ck_4.checked==false))  
+		document.Form_ck10.af_mes.value ='corect !';
+	else
+		document.Form_ck10.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck10">
+	<I> 5. Functia predefinita "Random ( ): "  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck10()>
+	a. Are nevoie de un parametru <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck10()>
+	b. Nu are nevoie de nici un parametru  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck10()> 
+	c. Are nevoie de doi parametri <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck10()> 
+	d. Are nevoie de un parametru de tip tag <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+ 
+</body>
+</html>

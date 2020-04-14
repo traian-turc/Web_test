@@ -1,0 +1,564 @@
+<html>
+<title> Programarea aplicatiilor SCADA </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>  Programarea aplicatiilor SCADA </Center></TD></TR>
+</table>
+<br><a name="start"></a>
+<font color= "Blue" size=5> Utilizarea limbajului de programare Cicode   </font>
+<a name="cicode"></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatiile SCADA simple se pot crea in principiu fara a utiliza notiuni de programare. Aplicatiile mai complexe 
+nu pot fi realizate decat utilizand facilitatile oferite de limbajului de programare Cicode.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cicode este un limbaj de programare integrat in mediul de dezvoltare CitectSCADA destinat dezvoltarii de aplicatii SCADA, 
+permitand controlul software a elementelor utilizate pentru mimarea si controlul proceselor.  Este un limbaj structurat similar cu "C" sau Visual Basic.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza un nou proiect numit <b> "Sch_el" </b> urmand pasii descrisi in cursul anterior anterior pentru a crea un 
+nou proiect, sau se poate utiliza proiectul <b> "Sch_el_start" </b> proiect in care au fost parcursi toti pasii pentru crearea unui nou proiect.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In proiectul <b> "Sch_el_start" </b>, sunt realizate deja o serie de astfel de simboluri, asa ca vom porni de la acest proiect.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Acest proiect poate fi descarcat  aici :<a href="../downloads/aplicatii/Sch_el_start.ctz"> Download - "Sch_el_start" </a> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa ce s-a download-at acest fisier, din Citect Explorer->Restore se incarca acest proiect si i se atribuie numele 
+<b> "Sch_el" </b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Proiectul contine pagina grafica afisata mai jos.
+<br><br><center><img src="im_citect014.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom incerca acum sa creem o pagina grafica pentru a simula comanda de alimentare cu energie a unui proces. Alimentarea va 
+fi semnalizata in pagina grafica prin aprinderea unui LED. Tag-ul corespunzator acestui LED va fi un tag DIGITAL pe care il vom numi"led".
+<br><br><center><img src="im_citect023.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Comanda se va face prin apasarea unui buron cu titlul "Pornit" iar oprirea prin apasarea unui buton cu titlul 
+"Oprit".
+<br><br><center><img src="im_citect021.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa LED-ul vom plasa un Simbol Set in care plasam cele doua simboluri pentru LED stins si LED aprins
+<br><br><center><img src="im_citect024.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica, in care vom introduce un singur buton care sa poarte titlul "Pornit/Oprit" si care 
+sa insumeze functiilor celor doua butoane din aplicatia anterioara. Alimentarea cu energie se va semnaliza prin aprinderea unui LED. Pentru a realiza 
+functionarea butonului vom folosi functia <b> toggle( )</b> completand "Up command" al butonului "Pornit/Oprit"  cu <b>Toggle(led) </b>.
+<br><br><center><img src="im_citect022.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am putea sa simulam circuite simple in care sa avem comutatoare pornit oprit sub forma unui Set Simbol nu sub 
+forma unui buton. Tag-ul corespunzator acestui comutator va fi un tag DIGITAL pe care il vom numi "k1".
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> k1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comutator k1 </b> </td>    
+</tr> 
+</table>
+</center> 
+<br><br><center><img src="im_citect026.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am utilizat Set simbolul "k_on", "k_off" definita in biblioteca "Global" Caruia i-am setat proprietatea "Imput" 
+cu <b> toggle(k1)</b> astfel:
+<br><br><center><img src="im_citect027.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Introducand inca un LED in circuit, avem un nou circuit cu elemente interactive de comanda si afisare.
+<br><br><center><img src="im_citect028.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom putea realiza alte moduri de implementare a comenzii Pornit/ Oprit, folosind limbajul propriu de programare "Cicode". 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand limbajul de programare Cicode se pot controla prin program toate variabilele locale si cele in timp real, precum 
+si toate facilitatile oferite de CitectSCADA cum ar fi tag-uri, variabile locale, trends, grfice, rapoarte.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cicode se poate utiliza si pentru a interfata aplicatia cu alte resurse cum ar fi porturi de comunicatie, sistemul de 
+operare, baze de date, etc.
+
+<br><br><a name="if"></a>
+<font color= "Blue" size=4><li><b>Utilizarea instructiunilor decizionale </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if</b> se foloseste pentru a selecta executia unei instructiuni (sau a unui grup de instructiuni) functie de 
+valoarea logica a unei expresii relationale 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul instructiunii:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>for</b> are urmatoarele formate:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>If expresie relationala THEN
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;sau
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>If expresie relationala THEN
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ELSE
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom incerca sa utilizam in continuare "Cicode" pentru a controla functionarea buronului Pornit/ Oprit. In primul caz am 
+completat "Up command"  cu <b>Toggle(led) </b>. De data aceasta vom inlocui functia <b>Toggle(led) </b> cu urmatorul program :
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF led =0 
+THEN
+  led = 1;
+ELSE
+  led=0;
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_citect025.gif"></center>
+<br><br><a name="func"></a>
+<font color= "Blue" size=4><li><b> Utilizarea functiilor</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functiile sunt des utilizate pentru realizarea aplicatiilor SCADA. Majoritatea butoanelor, prin intermediul 
+evenimentelor lanseaza secvente de cod impachetate in cadrul unor functii. Exista o varietate mare de functii astfel avem functii cu sau fara 
+parametri, functii care returneaza sau nu valori. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul pentru definirea unei functii fara parametri si fara returnare de valori:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru definirea unei astfel de functii se foloseste urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FUNCTION nume_functie()
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul pentru definirea unei functii cu parametri si fara returnare de valori:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru definirea unei astfel de functii se foloseste urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FUNCTION nume_functie(Argumente)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul pentru definirea unei functii cu parametri si cu returnare de valori:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru definirea unei astfel de functii se foloseste urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Tip valoare returnata FUNCTION nume_functie(Argumente)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN valoare
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In aplicatiile anterioare, am apelat functia <b>Toggle() </b>, functie aflata in biblioteca limbajului Cicode, 
+sau am scris direct in campul "Up command" cateva linii de program care inlocuiesc  functia <b>Toggle()</b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;De data aceasta vom incerca sa scriem o functie proprie pe care sa o invocam la apasarea butonului "Pornit/ Oprit"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa denumim functia "comut_a()" si sa deschidem CicodeEditor pentru a o scrie. CicodeEditor editor se lanseaza din "Citec 
+Explorer"->Cicode Files->Create new Cicode page.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom defini functia "comut_a()" astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION comut_a()
+
+	IF led =0 THEN
+		led = 1;
+	ELSE
+		led=0;
+	END
+END
+
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; In acest moment, pentru butonul "Start/Stop" - setam proprietatea " Input" -Action up, "Up command" cu <b>comut_a()</b> 
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Combinam cele trei moduri de realizare ale butonului "Start/Stop" si realizam o noua pagina grafica avand numele "On_off_v1" similara cu
+pagina grafica de jos.
+<br><br><center><img src="im_citect013.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru comutatorul de alimentare s-a ales un "Symbol Set" de til "On/Off" caruia i s-a setat proprietatea 
+"On simbol when" cu comul_alim.
+
+<br><br><a name="tabl"></a>
+<font color= "Blue" size=4><li><b> Utilizarea tablourilor</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In multe situatii avem de-a face cu mai multe elemente de acelasi tip. Este mult mai convenabil sa definim un tablou 
+de elemente decat sa definim fiecare element in parte. Sa presupunem ca vrem sa afisam starea a 10 LED-urim pe ecran. Am putea defini cate un tag 
+pentru fiecare LED sau sa definim o singuraa variabila tag de tip tablou. Sa realizam o pagina grafica de forma imaginii de jos in care plasam 10 
+LED-uri si 10 butoane de la care sa controlam cele 10 LED-uri. 
+<br><br><center><img src="im_citect015.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul variabilelor locale vom introduce o variabila de forma:
+<br><br><center><img src="im_citect016.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru fiecare LED vom seta in cadrul facilitatii "Simbol Set Properties" tag-ul ld[i] in care i ia valori de la 1 la 10.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru fiecare buton vom seta "Button Properties"-> Input cu: toggle(ld[i]);in care, la fel i ia valori de la 1 la 10.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tablourile pot fi utilizate si in alte cazuri decat definirea tag-urilor. Pentru a utiliza un tablou, acesta trebuie 
+initial definit.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Definirea unui tablou:</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Un tablou de elemente se defineste astfel:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>tip nume[dim1,{dim2},{dim2}]{=vaoare};</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Putem defini deci tabluiri de 1,2 sau 3 dimensiuni. Vom defini un tablou de o singura dimensiune, deci un vector, astfel:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>INT Num[10]</b> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am definit mai sus un tablou de numere intregi cu numele "Num", avand maxim 10 elemente. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se pot atribui implicit valori astfel: 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>INT Num[10]=0,1,58,71,134,2,999,3,6,8;</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a accesa elementul i se utilizaeaza forma <b> Num[i]</b> 
+
+<br><br><a name="rep"></a>
+<font color= "Blue" size=5> Instructiuni repetitive </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; In multe cazuri e nevoie sa se repete executia uneia sau mai multor instructiuni. Exista o serie de instructiuni repetitive 
+cum ar fi: instructiunea <b>for</b>, instructiunea <b>while</b>, etc.
+<br><br><a name="for"></a>
+<font color= "blue" size=4><li><b> Instructiunea for :</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>for</b> Se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni. De obicei
+implementeaza structura ciclica cu numar cunoscut de pasi.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul instructiunii:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>for</b> are urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FOR Variabila=expresie1 TO expresie2 DO  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unde expresie1 este valoarea de start a variabilei iar expresie2 este valoarea de stop a variabilei. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie in care sa utilizam instructiunea repetitiva <b>for</b> pentru a aprinde secvential 10 LED-uri.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se va realiza o pagina grafica asemanatoare cu imaginea de mai jos. 
+<br><br><center><img src="im_citect017.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La apasarea butonului "Start", trebuie sa se aprinda secvential cele 10 LED-uri, iar la comanda "Stop" se vor stinge 
+secvential cele 10 LED-uri.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom scrie deci doua functii: <b> leduri_on()</b> si <b> leduri_off()</b> care vor fi atribuite celor doua butoane prin 
+intermediul facilitatii "Button Properties".
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION leduri_on()
+    INT i;
+	FOR i=1 TO 10 DO
+		ld[i]=1;
+		Sleep(1);	
+	END
+END
+
+FUNCTION leduri_off()
+    INT i;
+	FOR i=1 TO 10 DO
+		ld[i]=0;
+		Sleep(1);	
+	END
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, s-a folosit instructiunea <b>for</b> pentru a atribui tag-ului ld[i] valoarea 1 respectiv 0. Dupa 
+fiecare instructiune de atribuire, se invoca functia Sleep(1) care introduce o intarziere de cate o secunda.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Functia "Sleep" are ca parametru, numarul de secunde de intarziere. Pentru a obtine intarzieri mai mici de o secunda, 
+vom aplica o alta metoda, si anume vom scrie o functie care se apeleaza din pagina principala de fiecare data cand se scaneaza pagina. Timpul dupa care 
+se face o noua scanare poate fi stabilit pe pagina principala:
+<br><br><center><img src="im_citect018.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, timpul de scanare implicit este de 250 ms dar se poate stabili alt timp prin invalidarea optiunii 
+default.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa setarea corespunzatoae a intervalului de timp dintre doua scanari, plasam functia f(x) pe pagina principala. 
+<br><br><center><img src="im_citect019.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cu click dreapta pe f(x), completam Citect Object Properties->Command cu:<b> ecran_0( )</b>. 
+Cu alte cuvinte de fiecare data cand se scaneaza pagina grafica, se lanseaza functia<b> ecran_0( )</b> cu urmatorul continut:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION ecran_0()
+  IF (ld_on=1) THEN
+    ld_off=0;
+	ld[i]=1;
+	i=i+1;
+	IF (i=11) THEN
+	   ld_on=0;
+	   i=0;
+	END
+  END
+  IF (ld_off=1) THEN
+    ld_on=0;
+	ld[i]=0;
+	i=i+1;
+	IF (i=11) THEN
+	   ld_off=0;
+	   i=0;
+	END
+  END
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentele click ale butoanelor "ON" respectiv "OFF" nu se mai lanseaza functiile  <b> leduri_on()
+</b> respectiv <b> leduri_off()</b>. Sunt introduse insa doua variabile tag locale astfel:
+tag-urile corespunzatoare adica:<br><br>
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> ld_on </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda LED-uri on </b> </td>    
+</tr> 
+
+<tr>
+  <td> ld_off </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda LED-uri off </b> </td>    
+</tr> 
+
+</table>
+</center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functie de variabilele de sus, la fiecare scanare a paginii, LED-urile se vor aprinde secvnential, respectiv 
+se vor aprinde secvential. Desi este o operatie repetitiva, aceasta nu s-a mai implementat folosind instructiunea repetitiva <b> for</b>, 
+repetitivitatea s-a realizat prin intermediul scanarii implicite a paginii la intervalul stabilit anterior.  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem acum ca dorim activarea LED-urilor intr-o anumita ordine. Pentru acest lucru vom devini un vector de 
+prioritati de genul:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;INT Prior[11]=0,1,5,7,4,2,9,3,6,8,10;
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se vede, s-au definit 11 elemente nu 10, pe motiv ca numerotarea LED-urilor incepe de la 1 nu de la 0.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Conform modului de initializare al valorilor elementelor vectoruljui "Prior", ordinea de activare al LED-urilor este:
+1,5,7,4,2,9,3,6,8,10
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom rescrie deci fuctiile: <b> leduri_on()</b> si <b> leduri_off()</b> ele devenind
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION leduri_on()
+    INT i;
+	FOR i=1 TO 10 DO
+	ld[Prior[i]]=1;
+	Sleep(1);	
+	END
+END
+FUNCTION leduri_off()
+    INT i;
+	FOR i=1 TO 10 DO
+	ld[Prior[11-i]]=0;
+	Sleep(1);	
+	END
+END
+
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, nu se mai activeaza LED-ul i ci LED-ul Prior[i]. Dezactivarea se face in ordine inversa adica:
+nu se mai dezactiveaza LED-ul i ci LED-ul Prior[11-i].
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care se opteaza pentru folosirea intervalului de scanare al paginii principale, vom modifica functia 
+<b> ecran_0( )</b> astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION ecran_0()
+  IF (ld_on=1) THEN
+    ld_off=0;
+	i=i+1;
+	
+	IF (i=11) THEN
+	   ld_on=0;
+	   i=0;
+	END
+	ld[Prior[i]]=1;
+  END
+  IF (ld_off=1) THEN
+    ld_on=0;
+	i=i+1;
+	IF (i=11) THEN
+	   ld_off=0;
+	   i=0;
+	END
+	ld[Prior[11-i]]=0;
+  END
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->  
+
+
+
+<br><br><a name="while"></a>
+<font color= "blue" size=4><li><b> Instructiunea while :</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>while</b> Se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni atata timp
+cat o expresie este adevarata.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul instructiunii:</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>while</b> are urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>WHILE (expresie) DO 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea se executa repetat atîta timp cît valoarea expresiei "expresie" este adevarata. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Testul are loc înaintea fiecarei executii a instructiunii. Modul de functionare al instructiunii este urmatorul:
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se testeaza expresia din paranteze. Daca ea este adevarata (sau expresia din paranteze are o valoare diferita de zero) 
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se executa corpul instructiunii while
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se reia testarea si executia pana expresia devine falsa (sau valoarea expresiei din paranteze este zero) 
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se continua executia cu instructiunea de dupa corpul instructiunii while, deci instructiunea while se termina.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pornind de la aplicatia in care avem plasate cele 10 LED-uri, sa realizam o noua aplicatie in care pornind de la o 
+anumita secventa de LED-uri utilizand butoanele L1-L10, la apasarea butonului ON sa complementam pe rand starea fiecarul LED pana la apasarea 
+butonului OFF.  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Fuctiile: <b> leduri_on()</b> si <b> leduri_off()</b> lansate de butonul ON respectiv OFF fiind:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION leduri_on()
+    INT i=1;
+    ld_off=0;
+    ld_on=1;
+	WHILE ld_on=1 DO
+		Toggle(ld[i]);
+		Sleep(1);
+		i=i+1;
+	 	IF i=11 THEN
+	 		i=1;
+		END			
+	END
+END
+FUNCTION leduri_off()
+    ld_off=1;
+    ld_on=0;
+END
+</pre> </font>
+</td></tr></table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem:
+<br><br><center><img src="im_citect020.gif"></center>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea FOR poate fi inlocuita cu o instructiune WHILE. O instructiune FOR de forma: 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FOR Variabila=expresie1 TO expresie2 DO  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;este echivalenta cu:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Variabila=expresie1; 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;WHILE (expresie2) DO 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;expresie3;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END </b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Unde :
+<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie1 constituie initializarea ciclului si se executa o singura data înaintea ciclului. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie2 specifica testul care controleaza ciclul. El se executa înaintea fiecarei iteratii. 
+Daca conditia din test este adevarata atunci se executa corpul ciclului, dupa care se executa expresie3, care consta de cele mai multe ori în 
+modificarea valorii variabilei de control al ciclului. Se revine apoi la reevaluarea conditiei. Ciclul se termina cînd expresie2 devine falsa.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Spre exemplu, vom putea rescrie fuctiile: <b> leduri_on()</b> si <b> leduri_off()</b> astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION leduri_on()
+    INT i=1;
+	WHILE i<=10 DO
+		ld[Prior[i]]=1;
+		Sleep(1);
+		i=i+1;	
+	END
+END
+FUNCTION leduri_off()
+    INT i=1;
+	WHILE i<=10 DO
+		ld[Prior[11-i]]=0;
+		Sleep(1);
+		i=i+1;	
+	END
+END
+
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br><a name="div_a"></a>
+<font color= "Blue" size=5> Diverse aplicatii programate </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarele aplicatii vor fi de o complexitate mai ridicata, ingloband diverse instructiuni descrise anterior.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom incerca sa implementam diversi algoritmi. Pentru inceput vom realiza o aplicatie in care avem parametrii de 
+valori diferite, si in functie de valoarea acestora vom lua diferite decizii.
+<br><br><a name="c_max"></a>
+<font color= "blue" size=4><b> Determinarea valorilor maxime</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca avem 10 valori diferite si vrem sa semnalizam cu niste LED-uri valoarea maxima. La fiecare 
+apasare a butonului, se va aprinde LED-ul care are valoarea corespunzatoare cea mai mare dintre valorile LED-urilor neaprinse inca. 
+Valorile vor fi generate aleator, de asemenea vom plasa controale de tip Genie -> controls -> Ramp_UpDown_btn1.
+<br><br><center><img src="im_citect029.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Avem nevoie de urmatoarele tag-uri:
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Array Size </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> ld </td>
+  <td> DIGITAL </td>
+  <td> 11 </td>
+  <td> - </td>
+  <td> Ledurille ld[1]...ld[10]</b> </td>    
+</tr> 
+
+<tr>
+  <td> val_l </td>
+  <td> DIGITAL </td>
+  <td> 11 </td>
+  <td> - </td>
+  <td> Valori prag pentru comanda led-urilor </b> </td>    
+</tr> 
+
+</table>
+</center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La apasarea butonului ON se lanseaza functia leduri9_on()
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION leduri9_on()
+    INT i=1;
+    INT j=1;
+    INT mx=0;
+	FOR i=1 TO 10 DO
+	 	IF ((val_l[i]>mx) AND (ld[i]=0)) THEN
+	 		mx=val_l[i];
+	 		j=i;
+		END
+	END
+	ld[j]=1;	
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;La apasarea butonului OFF se lanseaza functia leduri9_off(),
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION leduri9_off()
+    INT i=1;
+    INT j=1;
+    INT mx=0;
+	FOR i=1 TO 10 DO
+	 	IF ((val_l[i]>mx) AND (ld[i]=1)) THEN
+	 		mx=val_l[i];
+	 		j=i;
+		 END
+	END
+	ld[j]=0;	
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;La apasarea butonului INIT se lanseaza functia init_9()
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION init_9()
+	INT i=1;
+	FOR i=1 TO 10 DO
+		val_l[i]=Rand(100);
+	END	
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+</body>
+</html>

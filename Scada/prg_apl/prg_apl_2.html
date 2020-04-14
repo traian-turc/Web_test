@@ -1,0 +1,938 @@
+<html>
+<title> Programarea aplicatiilor SCADA </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "red" size=6> Programarea aplicatiilor SCADA  </Center></TD></TR>
+</table>
+
+<font color= "Black" size=4><li><b>Obiective </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Prezentarea structurilor repetitive din cadrul limbajului de programare Cicode 
+<li>Prezentarea instructii repetitive FOR si realizarea de aplicatii cu aceasta instructiune
+<li>Prezentarea instructii repetitive WHILE si realizarea de aplicatii cu aceasta instructiune
+<li>Utilizarea facilitatii de scanare a paginilor grafice pentru a implementa structuri repetitive
+<li>Utilizarea instructiunilor repetitive in realizarea diverselor aplicatii SCADA
+</td></tr></table>
+</ul>
+
+<font color= "Black" size=4><li><b>Organizarea sarcinilor de lucru </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li> Parcurgeti cele trei capitole ale cursului.
+<li> In cadrul fiecarui capitol urmariti exemplele ilustrative si incercati sa le realizati in medul de dezvoltare "Citect".
+<li> Fixati principalele idei ale cursului, prezentate în rezumat.
+<li> Completati testul de autoevaluare. 
+<li> Timpul de lucru pentru parcurgerea testului de autoevaluare este de 15 minute.
+</td></tr></table>
+</ul>
+<br><a name="for"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> 1.Instructiunea FOR  </Center></TD></TR>
+</table>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; In multe cazuri e nevoie sa se repete executia uneia sau mai multor instructiuni. Exista o serie de instructiuni repetitive 
+cum ar fi: instructiunea <b>for</b>, instructiunea <b>while</b>, etc.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>for</b> Se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni. De obicei
+implementeaza structura ciclica cu numar cunoscut de pasi.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul instructiunii:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>for</b> are urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FOR Variabila=expresie1 TO expresie2 DO  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unde expresie1 este valoarea de start a variabilei iar expresie2 este valoarea de stop a variabilei. 
+<br><br><a name="a_for"></a>
+<font color= "blue" size=4><b> Aplicatii care utilizeaza instructiunea FOR</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie in care sa utilizam instructiunea repetitiva <b>for</b> pentru a aprinde secvential 10 LED-uri.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se va realiza o pagina grafica  <font color="red"><b> "led4" </b> </font>  asemanatoare cu imaginea de mai jos. 
+<br><br><center><img src="im_citect017.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La apasarea butonului "Start", trebuie sa se aprinda secvential cele 10 LED-uri, iar la comanda "Stop" se vor stinge 
+secvential cele 10 LED-uri.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom scrie deci doua functii: <b> leduri_on()</b> si <b> leduri_off()</b> care vor fi atribuite celor doua butoane prin 
+intermediul facilitatii "Button Properties".
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION leduri_on()
+    INT i;
+	FOR i=1 TO 10 DO
+		ld[i]=1;
+		Sleep(1);	
+	END
+END
+
+FUNCTION leduri_off()
+    INT i;
+	FOR i=1 TO 10 DO
+		ld[i]=0;
+		Sleep(1);	
+	END
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, s-a folosit instructiunea <b>for</b> pentru a atribui tag-ului ld[i] valoarea 1 respectiv 0. Dupa 
+fiecare instructiune de atribuire, se invoca functia Sleep(1) care introduce o intarziere de cate o secunda.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Functia "Sleep" are ca parametru, numarul de secunde de intarziere. Pentru a obtine intarzieri mai mici de o secunda, 
+vom aplica o alta metoda, si anume vom scrie o functie care se apeleaza din pagina principala de fiecare data cand se scaneaza pagina. Timpul dupa care 
+se face o noua scanare poate fi stabilit pe pagina principala :
+<br><br><center><img src="im_citect018.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, timpul de scanare implicit este de 250 ms dar se poate stabili alt timp prin invalidarea optiunii 
+default.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa setarea corespunzatoae a intervalului de timp dintre doua scanari, plasam functia f(x) pe pagina principala 
+<font color="red"><b> "led5" </b> </font>. 
+<br><br><center><img src="im_citect019.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cu click dreapta pe f(x), completam Citect Object Properties->Command cu:<b> ecran_0( )</b>. 
+Cu alte cuvinte de fiecare data cand se scaneaza pagina grafica, se lanseaza functia<b> ecran_0( )</b> cu urmatorul continut:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION ecran_0()
+  IF (ld_on=1) THEN
+    ld_off=0;
+	ld[i]=1;
+	i=i+1;
+	IF (i=11) THEN
+	   ld_on=0;
+	   i=0;
+	END
+  END
+  IF (ld_off=1) THEN
+    ld_on=0;
+	ld[i]=0;
+	i=i+1;
+	IF (i=11) THEN
+	   ld_off=0;
+	   i=0;
+	END
+  END
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentele click ale butoanelor "ON" respectiv "OFF" nu se mai lanseaza functiile  <b> leduri_on()
+</b> respectiv <b> leduri_off()</b>. Sunt introduse insa doua variabile tag locale astfel:
+tag-urile corespunzatoare adica:<br><br>
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> ld_on </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda LED-uri on </b> </td>    
+</tr> 
+
+<tr>
+  <td> ld_off </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda LED-uri off </b> </td>    
+</tr> 
+
+</table>
+</center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functie de variabilele de sus, la fiecare scanare a paginii, LED-urile se vor aprinde secvnential, respectiv 
+se vor aprinde secvential. Desi este o operatie repetitiva, aceasta nu s-a mai implementat folosind instructiunea repetitiva <b> for</b>, 
+repetitivitatea s-a realizat prin intermediul scanarii implicite a paginii la intervalul stabilit anterior.  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem acum ca dorim activarea LED-urilor intr-o anumita ordine. Pentru acest lucru vom devini un vector de 
+prioritati de genul:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;INT Prior[11]=0,1,5,7,4,2,9,3,6,8,10;
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se vede, s-au definit 11 elemente nu 10, pe motiv ca numerotarea LED-urilor incepe de la 1 nu de la 0.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Conform modului de initializare al valorilor elementelor vectoruljui "Prior", ordinea de activare al LED-urilor este:
+1,5,7,4,2,9,3,6,8,10
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In urmatoarea aplicatie<font color="red"><b> "led6" </b> </font>, vom rescrie deci fuctiile: <b> leduri_on()</b> si 
+<b> leduri_off()</b> ele devenind: 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION leduri_on()
+    INT i;
+	FOR i=1 TO 10 DO
+	ld[Prior[i]]=1;
+	Sleep(1);	
+	END
+END
+FUNCTION leduri_off()
+    INT i;
+	FOR i=1 TO 10 DO
+	ld[Prior[11-i]]=0;
+	Sleep(1);	
+	END
+END
+
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, nu se mai activeaza LED-ul i ci LED-ul Prior[i]. Dezactivarea se face in ordine inversa adica:
+nu se mai dezactiveaza LED-ul i ci LED-ul Prior[11-i].
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In urmatoarea aplicatie <font color="red"><b> "led7" </b> </font>, se opteaza pentru folosirea intervalului  de scanare 
+al paginii principale, vom modifica functia: 
+<b> ecran_0( )</b> astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION ecran_0()
+  IF (ld_on=1) THEN
+    ld_off=0;
+	i=i+1;
+	
+	IF (i=11) THEN
+	   ld_on=0;
+	   i=0;
+	END
+	ld[Prior[i]]=1;
+  END
+  IF (ld_off=1) THEN
+    ld_on=0;
+	i=i+1;
+	IF (i=11) THEN
+	   ld_off=0;
+	   i=0;
+	END
+	ld[Prior[11-i]]=0;
+  END
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->  
+
+
+
+<br><br><a name="while"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> 2.Instructiunea WHILE  </Center></TD></TR>
+</table>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>while</b> Se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni atata timp
+cat o expresie este adevarata.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul instructiunii:</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>while</b> are urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>WHILE (expresie) DO 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea se executa repetat atîta timp cît valoarea expresiei "expresie" este adevarata. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Testul are loc înaintea fiecarei executii a instructiunii. Modul de functionare al instructiunii este urmatorul:
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se testeaza expresia din paranteze. Daca ea este adevarata (sau expresia din paranteze are o valoare diferita de zero) 
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se executa corpul instructiunii while
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se reia testarea si executia pana expresia devine falsa (sau valoarea expresiei din paranteze este zero) 
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se continua executia cu instructiunea de dupa corpul instructiunii while, deci instructiunea while se termina.
+<br><br><a name="a_while"></a>
+<font color= "blue" size=4><b> Aplicatii care utilizeaza instructiunea WHILE</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pornind de la aplicatia in care avem plasate cele 10 LED-uri, sa realizam o noua aplicatie in care pornind de la o 
+anumita secventa de LED-uri utilizand butoanele L1-L10, la apasarea butonului ON sa complementam pe rand starea fiecarul LED pana la apasarea 
+butonului OFF.  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Fuctiile: <b> leduri_on()</b> si <b> leduri_off()</b> lansate de butonul ON respectiv OFF fiind:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION leduri_on()
+    INT i=1;
+    ld_off=0;
+    ld_on=1;
+	WHILE ld_on=1 DO
+		Toggle(ld[i]);
+		Sleep(1);
+		i=i+1;
+	 	IF i=11 THEN
+	 		i=1;
+		END			
+	END
+END
+FUNCTION leduri_off()
+    ld_off=1;
+    ld_on=0;
+END
+</pre> </font>
+</td></tr></table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem <font color="red"><b> "led8" </b> </font>:
+<br><br><center><img src="im_citect020.gif"></center>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea FOR poate fi inlocuita cu o instructiune WHILE. O instructiune FOR de forma: 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FOR Variabila=expresie1 TO expresie2 DO  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;este echivalenta cu:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Variabila=expresie1; 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;WHILE (expresie2) DO 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;expresie3;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END </b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Unde :
+<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie1 constituie initializarea ciclului si se executa o singura data înaintea ciclului. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie2 specifica testul care controleaza ciclul. El se executa înaintea fiecarei iteratii. 
+Daca conditia din test este adevarata atunci se executa corpul ciclului, dupa care se executa expresie3, care consta de cele mai multe ori în 
+modificarea valorii variabilei de control al ciclului. Se revine apoi la reevaluarea conditiei. Ciclul se termina cînd expresie2 devine falsa.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Spre exemplu, vom putea rescrie fuctiile: <b> leduri_on()</b> si <b> leduri_off()</b> astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION leduri_on()
+    INT i=1;
+	WHILE i<=10 DO
+		ld[Prior[i]]=1;
+		Sleep(1);
+		i=i+1;	
+	END
+END
+FUNCTION leduri_off()
+    INT i=1;
+	WHILE i<=10 DO
+		ld[Prior[11-i]]=0;
+		Sleep(1);
+		i=i+1;	
+	END
+END
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+ 
+<br><br><a name="div_a"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> 3.Diverse aplicatii in care sunt utilizate instructiunile repetitive  </Center></TD></TR>
+</table>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarele aplicatii vor fi de o complexitate mai ridicata, ingloband diverse instructiuni descrise anterior.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom incerca sa implementam diversi algoritmi. Pentru inceput vom realiza o aplicatie in care avem parametrii de 
+valori diferite, si in functie de valoarea acestora vom lua diferite decizii.
+<br><br><a name="c_max"></a>
+<font color= "blue" size=4><b> Determinarea valorilor maxime</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca avem 10 valori diferite si vrem sa semnalizam cu niste LED-uri valoarea maxima. La fiecare 
+apasare a butonului, se va aprinde LED-ul care are valoarea corespunzatoare cea mai mare dintre valorile LED-urilor neaprinse inca. 
+Valorile vor fi generate aleator, de asemenea vom plasa controale de tip Genie -> controls -> Ramp_UpDown_btn1 <font color="red"><b> "led9" </b> </font>.
+<br><br><center><img src="im_citect029.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Avem nevoie de urmatoarele tag-uri:
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Array Size </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> ld </td>
+  <td> DIGITAL </td>
+  <td> 11 </td>
+  <td> - </td>
+  <td> Ledurille ld[1]...ld[10]</b> </td>    
+</tr> 
+
+<tr>
+  <td> val_l </td>
+  <td> INT </td>
+  <td> 11 </td>
+  <td> - </td>
+  <td> Valori prag pentru comanda led-urilor </b> </td>    
+</tr> 
+
+</table>
+</center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La apasarea butonului ON se lanseaza functia leduri9_on()
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION leduri9_on()
+    INT i=1;
+    INT j=1;
+    INT mx=0;
+	FOR i=1 TO 10 DO
+	 	IF ((val_l[i]>mx) AND (ld[i]=0)) THEN
+	 		mx=val_l[i];
+	 		j=i;
+		END
+	END
+	ld[j]=1;	
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;La apasarea butonului OFF se lanseaza functia leduri9_off(),
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION leduri9_off()
+    INT i=1;
+    INT j=1;
+    INT mx=0;
+	FOR i=1 TO 10 DO
+	 	IF ((val_l[i]>mx) AND (ld[i]=1)) THEN
+	 		mx=val_l[i];
+	 		j=i;
+		 END
+	END
+	ld[j]=0;	
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;La apasarea butonului INIT se lanseaza functia init_9()
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION init_9()
+	INT i=1;
+	FOR i=1 TO 10 DO
+		val_l[i]=Rand(100);
+	END	
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br><a name="af_bin"></a>
+<font color= "blue" size=4><b> Afisare binara</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa un numar intreg sub forma binara, se utilizeaza metoda impartirilor repetate cu 2. Resturile impartirilor 
+reprezinta valorile bitilor in ordine inversa. Afisarea binara va fi facuta prin intermediul simbolurilor de tip LED. Vom crea deci pagina grafica 
+<font color="red"><b> "led13" </b> </font> 
+<br><br><center><img src="im_citect037.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Numarul intreg i ce urmeaza a fi convertit este generat aleator utilizand functia <b> rand(1024) </b>. Maximul este 
+fixat la 1024 deoarece avem 10 leduri deci numarul maxim este 2 la puterea 10=1024. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Avem nevoie de urmatoarele tag-uri:
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Array Size </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> ld </td>
+  <td> DIGITAL </td>
+  <td> 11 </td>
+  <td> - </td>
+  <td> Ledurille ld[1]...ld[10]</b> </td>    
+</tr> 
+
+<tr>
+  <td> i </td>
+  <td> INT </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Contor </b> </td>    
+</tr> 
+
+</table>
+</center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia care face conversia se intituleaza <b> af_bin( ) </b> si este plasata pe pagina grafica.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION af_bin()
+INT j
+INT nr
+	nr=Rand(1023);
+	i=nr;
+	FOR j=1 TO 10 DO
+		ld[11-j]= nr MOD 2
+		nr=nr/2;
+	END 
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br><a name="af_histo"></a>
+<font color= "blue" size=4><b> Afisare histograma</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie <font color="red"><b> "led14" </b> </font> , genereaza 10 valori aleatoare si le afiseaza sub 
+forma de histograma.
+<br><br><center><img src="im_citect038.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Valorile generate sunt elementele unui vector, la fel si valorile LED-urilor.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Avem nevoie deci de urmatoarele tag-uri:
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Array Size </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> ld </td>
+  <td> DIGITAL </td>
+  <td> 11 </td>
+  <td> - </td>
+  <td> Ledurille ld[1]...ld[10]</b> </td>    
+</tr> 
+
+<tr>
+  <td> val_l </td>
+  <td> INT </td>
+  <td> 11 </td>
+  <td> - </td>
+  <td> Valorile elem. histogramei </b> </td>    
+</tr> 
+</table>
+</center> 
+<br><br>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia care afiseaza histograma  <b> histo( ) </b> este plasata pe pagina grafica.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION histo()
+INT j=1;
+i=i+1;
+IF i>4 THEN
+	i=0;	
+	FOR j=1 TO 10 DO
+		val_l[j]=Rand(100);
+		IF val_l[j]>77 THEN 
+			ld[j]=1;
+		ELSE
+			ld[j]=0;
+		END	
+	END		
+END	
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Contorul i permite afisarea mai lenta, aceasta facandu-se din 5 in 5 scanari. LED-urile retin pozitiile in care au 
+fost depasiri peste pragul de 77
+
+
+
+
+<br><br><a name="autoev"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de autoevaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck1() {  
+  
+     if ((Form_ck1.ck_1.checked==true)&(Form_ck1.ck_2.checked==false)&(Form_ck1.ck_3.checked==false)&(Form_ck1.ck_4.checked==false))  
+		document.Form_ck1.af_mes.value ='corect !';
+	else
+		document.Form_ck1.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck1">
+	<I> 1. Care este rolul instructiunii FOR ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck1()>
+	a. Executa repetitiv de un numar precizat de ori, o instructiune sau mai multe instructiuni<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck1()>
+	b. Executa repetitiv, o instructiune sau mai multe instructiuni <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck1()> 
+	c. Executa repetitiv o instructiune sau mai multe instructiuni atata timp cat este indeplinita o anumita conditie <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck1()> 
+	d. Afiseaza repetitiv mai multe simboluri pe pagina grafica <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck2() {  
+  
+     if ((Form_ck2.ck_1.checked==true)&(Form_ck2.ck_2.checked==true)&(Form_ck2.ck_3.checked==false)&(Form_ck2.ck_4.checked==false))  
+		document.Form_ck2.af_mes.value ='corect !';
+	else
+		document.Form_ck2.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck2">
+	<I> 2. Instructiunea WHILE necesita: </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck2()>
+	a. Cel putin o expresie relationala <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck2()>
+	b. O instructiune sau mai multe care urmeaza a fi repetate <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck2()> 
+	c. Variabile de tip tag <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck2()> 
+	d. Variabile de tip Array <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck3() {  
+  
+     if ((Form_ck3.ck_1.checked==true)&(Form_ck3.ck_2.checked==false)&(Form_ck3.ck_3.checked==false)&(Form_ck3.ck_4.checked==false))  
+		document.Form_ck3.af_mes.value ='corect !';
+	else
+		document.Form_ck3.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck3">
+	<I> 3. Pentru a seta elementele unui vector, avem nevoie de:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck3()>
+	a. 1 instuctiune FOR <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck3()>
+	b. 1 instructiune WHILE <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck3()> 
+	c. Mai multe instructiuni for <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck3()> 
+	d. Mai multe instructiuni WHILE<br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck4() {  
+  
+     if ((Form_ck4.ck_1.checked==false)&(Form_ck4.ck_2.checked==true)&(Form_ck4.ck_3.checked==false)&(Form_ck4.ck_4.checked==false))  
+		document.Form_ck4.af_mes.value ='corect !';
+	else
+		document.Form_ck4.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck4">
+	<I> 4. Pentru a gestiona mai multe LED-uri cea mai potrivita structura este:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck4()>
+	a. Symbol Set Multi-state<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck4()>
+	b. Tablou unidimensional <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck4()> 
+	c. Symbol Set Array <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck4()> 
+	d. Symbol light <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck5() {  
+  
+     if ((Form_ck5.ck_1.checked==false)&(Form_ck5.ck_2.checked==true)&(Form_ck5.ck_3.checked==false)&(Form_ck5.ck_4.checked==true))  
+		document.Form_ck5.af_mes.value ='corect !';
+	else
+		document.Form_ck5.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck5">
+	<I> 5. Conversia unui numar zecimal intr-un numar binar presupune:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck5()>
+	a. Descompunerea numarului <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck5()>
+	b. Impartiri repetate cu 2 <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck5()> 
+	c. Apelarea functiei af_binar() <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck5()> 
+	d. Utilizarea unui vector de numere binare <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<br><br><a name="rez"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Rezumat  </Center></TD></TR>
+</table>
+
+<br><br><b>Limbajul de programare Cicode </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cicode este un limbaj de programare integrat in mediul de dezvoltare CitectSCADA destinat dezvoltarii de aplicatii SCADA, 
+permitand controlul software a elementelor utilizate pentru mimarea si controlul proceselor.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Limbajul Cicode permite utilizarea structurilor repetitive cum ar fi:
+<ul> 
+	<li> Instructiuni FOR
+	<li> Instructiuni WHILE
+	<li> Facilitati de scanare care permit structuri repetitive
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Instructiunea for</b> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;-Se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-Implementeaza structura ciclica cu numar cunoscut de pasi.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Formatul instructiunii:
+<ul>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="magenta">FOR Variabila=expresie1 TO expresie2 DO  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END </font>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Expresie1 este valoarea de start a variabilei iar expresie2 este valoarea de stop a variabilei. 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Instructiunea while</b> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;-Se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni atata timp
+cat o expresie este adevarata.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Formatul instructiunii:
+<ul>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="magenta">WHILE (expresie) DO 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END </font>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;-Instructiunea se executa repetat atîta timp cît valoarea expresiei "expresie" este adevarata. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-Testul are loc înaintea fiecarei executii a instructiunii. Modul de functionare al instructiunii este urmatorul:
+<ul>
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se testeaza expresia din paranteze. Daca ea este adevarata (sau expresia din paranteze are o valoare diferita de zero) 
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se executa corpul instructiunii while
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se reia testarea si executia pana expresia devine falsa (sau valoarea expresiei din paranteze este zero) 
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se continua executia cu instructiunea de dupa corpul instructiunii while, deci instructiunea while se termina.
+</ul>
+
+<br><br><a name="astept"></a>
+<font color= "Blue" size=4><li><b>Rezultate asteptate </b></font>
+<ul>
+Dupa studierea acestui modul, ar trebui sa stiti:<br><br>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+
+<li>Sa scrieti aplicatii utilizand limbajul Cicode
+<li>Sa utilizati instructiuni repetitive in cadrul aplicatiilor SCADA
+<li>Sa realizati structuri repetitive bazate pe functia de scanare a paginii grafice 
+<li>Sa realizati aplicatii SCADA in care sa folositi elemente complexe de programare
+</table>
+</ul>
+
+<a name="term"></a>
+<font color= "Blue" size=4> <li> <b>Termeni esentiali</b></font><br>
+<ul>
+<Table border=1 width="90%">
+
+<tr>
+  <td align="center"><b> Termen </b>  </td>
+  <td align="center"><b> Descriere </b>  </td>
+</tr>
+<tr>
+  <td> SCADA </td>
+  <td> Supervisory Control And Data Aquisition </td>    
+</tr>
+<tr>
+  <td> Tag </td>
+  <td> Nume generic pentru elementele din procesul monitorizat codificate prin intermediul variabilelor</td>    
+</tr>
+<tr>
+  <td> HMI  </td>
+  <td> Human Machine Interface -Interfata dintre aplicatie si utilizator </td>    
+</tr>
+<tr>
+  <td> Limbaj Cicode </td>
+  <td> Limbaj de programare inclus in mediul de dezvoltare Citect SCADA </td>    
+</tr>
+<tr>
+  <td> Instructiuni repetitive </td>
+  <td> Instructiune care forteaza repetarea unei instructiuni sau grup de instructiuni de un anumit numar de ori sau pana cand o expresie relationala este adevartata </td>    
+</tr>
+
+<tr>
+  <td>Expresie relationala</td>
+  <td>Expresie a carui rezultat este o valoare logica</td>    
+</tr>
+<tr>
+  <td> Instructunea FOR </td>
+  <td> Instructiune care forteaza repetarea unei instructiuni sau grup de instructiuni de un anumit numar de ori  </td>    
+</tr>
+<tr>
+  <td> Instructunea WHILE </td>
+  <td> Instructiune care forteaza repetarea unei instructiuni sau grup de instructiuni pana cand o expresie relationala este adevartata  </td>    
+</tr>
+
+</table>
+</ul>
+ 
+<br><br><a name="bibl"></a>
+<font color= "Blue" size=4><li><b>Recomandari bibliografice </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> [1] Traian Turc, Elemente de programare C++ utile in ingineria electrica, Ed.Matrixrom, Bucuresti,2010
+<li> [2] Traian Turc, Programare avansata C++ pentru ingineria electrica, Ed.Matrixrom, Bucuresti,2010
+<li> [3] Traian Turc, Programarea in limbaje de asamblare, uz intern, Univ."Petru Maior" ,Tg.Mures,2009
+<li> [4] Traian Tur,Brevet de inventie nr:11863 "Sistem pentru automatizarea si monitorizarea proceselor industriale", OSIM, 2003
+<li> [5] Jeff Kent, C++ fara mistere,Ed.Rosetti Educational 2004 .
+<li> [6] Boldur Barbat - Informatica industriala - Programarea în timp real  – Institutul Central pentru Conducere si informatica 1984 
+<li> [7] Ioan Babuita – Conducerea automata a proceselor – Ed. Facla 1985
+<li> [8] Ghercioiu-National în struments - Orizonturi  în instrumentatie 1995
+</td></tr></table>
+</ul>
+<br><br><a name="link"></a>
+<font color= "Blue" size=4><li><b>Link-uri utile </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> 1.<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> - Free SCADA - 2009.
+<li> 2.<a href="http://www.7t.dk/igss/default.asp"> http://www.7t.dk/igss/default.asp</a> - IGSS SCADA System - 2009
+<li> 3.<a href="http://www.7t.dk/igss/default.asp?showid=374"> http://www.7t.dk/igss/default.asp?showid=374</a> - IGSS Online SCADA Training - 2009 
+<li> 4.<a href="http://www.7t.dk/free-scada-software/index.html"> http://www.7t.dk/free-scada-software/index.html</a>-  IGSS Free SCADA Software -2009
+<li> 5.<a href="http://www.citect.com/"> http://www.citect.com/</a> -  CITECT SCADA -2009 
+<li> 6.<a href="http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314"> http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314</a> - Download CITECT demo - 2009
+<li> 7.<a href="http://www.indusoft.com/index.asp"> http://www.indusoft.com/index.asp</a> - INDUSOFT SCADA - 2009
+<li> 8 <a href="http://www.gefanuc.com/products/2819"> http://www.gefanuc.com/products/2819</a> - Proficy HMI/SCADA - CIMPLICITY - 2009.
+<li> 9.<a href="http://www.genlogic.com/"> http://www.genlogic.com/</a> - Dynamic Graphics, Data Visualization, Human-Machine Interface (HMI) - 2010 
+<li> 10<a href="http://www.genlogic.com/demos.html"> http://www.genlogic.com/demos.html</a> - On-Line Java and AJAX Demos - 2010 
+<li> 11<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+<li> 12<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+</td></tr></table>
+</ul>
+
+<br><br><a name="eval"></a>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de evaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck6() {  
+  
+     if ((Form_ck6.ck_1.checked==false)&(Form_ck6.ck_2.checked==true)&(Form_ck6.ck_3.checked==false)&(Form_ck6.ck_4.checked==false))  
+		document.Form_ck6.af_mes.value ='corect !';
+	else
+		document.Form_ck6.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck6">
+	<I> 1. Care rolul instructiunii WHILE ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck6()>
+	a.Afiseaza repetitiv mai multe simboluri pe pagina grafica atat timp cat este indeplinita o anumita conditie <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck6()>
+	b. Executa repetitiv o instructiune sau mai multe instructiuni atat timp cat este indeplinita o anumita conditie <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck6()> 
+	c. Executa repetitiv de un numar precizat de ori, o instructiune sau mai multe instructiuni <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck6()> 
+	d. Executa repetitiv o instructiune sau mai multe instructiuni <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+  
+<ul>
+<script type="text/javascript">
+function nr_ck7() {  
+  
+     if ((Form_ck7.ck_1.checked==false)&(Form_ck7.ck_2.checked==true)&(Form_ck7.ck_3.checked==false)&(Form_ck7.ck_4.checked==false))  
+		document.Form_ck7.af_mes.value ='corect !';
+	else
+		document.Form_ck7.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck7">
+	<I> 2. O instructiune FOR necesita:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck7()>
+	a. Cel putin o expresie relationala <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck7()>
+	b. Cel putin o instructiune care sa fie repetata <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck7()> 
+	c. Cel putin o variabila tag <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck7()> 
+	d. Cel putin o variabila Array <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck8() {  
+  
+     if ((Form_ck8.ck_1.checked==false)&(Form_ck8.ck_2.checked==true)&(Form_ck8.ck_3.checked==false)&(Form_ck8.ck_4.checked==false))  
+		document.Form_ck8.af_mes.value ='corect !';
+	else
+		document.Form_ck8.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck8">
+	<I> 3. Care este cea mai potrivita instructiune pentru a citi valorile unui vector  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck8()>
+	a. Instructiunea WHILE<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck8()>
+	b. Instructiunea FOR  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck8()> 
+	c. Instructiunea IF <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck8()> 
+	d. Instructiunea CASE <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck9() {  
+  
+     if ((Form_ck9.ck_1.checked==false)&(Form_ck9.ck_2.checked==false)&(Form_ck9.ck_3.checked==false)&(Form_ck9.ck_4.checked==false))  
+		document.Form_ck9.af_mes.value ='corect !';
+	else
+		document.Form_ck9.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck9">
+	<I> 4. Sortarea mai multor valori presupune: </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck9()>
+	a. Indexarea bazei de date<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck9()>
+	b. Cautarea maximului <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck9()> 
+	c. Cautarea repetitiva a maximului <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck9()> 
+	d. Afisarea in ordine crescatoare <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck10() {  
+  
+     if ((Form_ck10.ck_1.checked==true)&(Form_ck10.ck_2.checked==true)&(Form_ck10.ck_3.checked==false)&(Form_ck10.ck_4.checked==false))  
+		document.Form_ck10.af_mes.value ='corect !';
+	else
+		document.Form_ck10.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck10">
+	<I> 5. Pentru a afisa in pagina grafica elemente care isi schimba simbolul la anumite intervale, folosim:</I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck10()>
+	a. Functia Sleep() <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck10()>
+	b. Facilitatile de scanare ale paginii grafice <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck10()> 
+	c. Bucle de intarziere <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck10()> 
+	d. Timere  <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+</body>
+</html>
