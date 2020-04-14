@@ -1,0 +1,1016 @@
+<html>
+<HEAD>
+<title> Sisteme descentralizate pentru achizitia de date </title>
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin-right: 1.25in; margin-top: 1in; margin-bottom: 0.5in }
+		P { margin-bottom: 0in;  margin-top: 0in; direction: ltr; color: #000000; text-align: left; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif; font-size: 12pt; so-language: en-AU }
+		P.cjk { font-family: "Times New Roman", serif; font-size: 12pt; so-language: zxx }
+		P.ctl { font-family: "Times New Roman", serif; font-size: 10pt; so-language: ar-SA }
+		H1 { margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; text-align: center; widows: 2; orphans: 2 }
+		H1.western { font-family: "Times New Roman", serif; font-size: 11pt; so-language: en-AU }
+		H1.cjk { font-family: "Times New Roman", serif; font-size: 11pt; so-language: zxx }
+		H1.ctl { font-family: "Times New Roman", serif; font-size: 11pt; so-language: ar-SA }
+		H2 { text-indent: 0.5in; margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; text-align: left; widows: 2; orphans: 2 }
+		H2.western { font-size: 12pt; so-language: en-AU; font-weight: normal }
+		H2.cjk { font-family: "Times New Roman", serif; font-size: 12pt; so-language: zxx; font-weight: normal }
+		H2.ctl { font-family: "Times New Roman", serif; font-size: 11pt; so-language: ar-SA; font-weight: normal }
+		H3 { margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; text-align: left; widows: 2; orphans: 2 }
+		H3.western { font-size: 12pt; so-language: en-AU; font-weight: normal }
+		H3.cjk { font-family: "Times New Roman", serif; font-size: 12pt; so-language: zxx; font-weight: normal }
+		H3.ctl { font-family: "Times New Roman", serif; font-size: 10pt; so-language: ar-SA; font-weight: normal }
+		H5 { text-indent: 0.5in; margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; text-align: center; widows: 2; orphans: 2 }
+		H5.western { font-size: 11pt; so-language: en-AU }
+		H5.cjk { font-family: "Times New Roman", serif; font-size: 11pt; so-language: zxx }
+		H5.ctl { font-family: "Times New Roman", serif; font-size: 11pt; so-language: ar-SA }
+		H6 { margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; text-align: center; widows: 2; orphans: 2 }
+		H6.western { font-size: 14pt; so-language: en-AU }
+		H6.cjk { font-family: "Times New Roman", serif; font-size: 14pt; so-language: zxx }
+		H6.ctl { font-family: "Times New Roman", serif; font-size: 11pt; so-language: ar-SA }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ro-RO" TEXT="#000000" DIR="LTR">
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "red" size=6> Sisteme descentralizate pentru achizitia de date </Center></TD></TR>
+</table>
+
+<font color= "Black" size=4><li><b>Obiective </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Prezentarea principalelor sisteme descentralizate pentru achizitia de date
+<li>Prezentarea modului de utilizare a automatelor programabile in sisteme descentralizate 
+<li>Prezentarea modului de utilizare a senzorilor inteligenti in sisteme descentralizat
+</td></tr></table>
+</ul>
+
+<font color= "Black" size=4><li><b>Organizarea sarcinilor de lucru </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li> Parcurgeti cele trei capitole ale cursului.
+<li> Fixati principalele idei ale cursului, prezentate în rezumat.
+<li> Completati testul de autoevaluare. 
+<li> Timpul de lucru pentru parcurgerea testului de autoevaluare este de 15 minute.
+</td></tr></table>
+</ul>
+<a name="dsc"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5>1. DCS (Distributed Control System)  </Center></TD></TR>
+</table>
+
+<P LANG="en-US" CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>In prezent sistemele de productie sunt tot mai complexe, cerintele de productivitate siguranta si calitate sunt tot mai exigente.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="margin-bottom: 0in"><FONT SIZE=3>Este de neconceput astazi un sistem sau un proces care sa nu fie
+automatizat sau cel putin monitorizat utilizind siteme moderne de achizitie si prelucrare avertizare si afisare. Desigur calclatoarele
+sunt elementele cheie in procesul de automatizare si monitorizare. 
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in"> In multe locuri calculatoarele pot fi folosite  cu succes in  toate fazele : achizitie prelucrare comanda 
+averizare monitorizare etc. In acest caz conducerea si monitorizarea unui proces devine centralizata, toate atributiile revenind calculatorului.  </FONT>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in"> Pentru procese relativ simple cu numar mic de paramerii de achizitionat
+precum si cu un numar redus de comenzi relativ simple, metoda centralizata este potrivita. Odata cu cresterea numarului de
+parametrii care trebuiesc monitorizati, se produce suprasolicitarea calculatorului.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Conducerea proceselor in sistem centralizat prin intermediul 
+calculatorului prezinta desigur avantaje certe, insa un astfel de sistem este extrem de vulnerabil.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3> O simpla defectiune a calculatorului central paralizeaza 
+intreagul sistem. Pentru a preveni astfel de incidente s-au conceput sisteme descentralizate de comanda si control automat in care sarcinile sun
+distribuite mai multor sisteme independente care comunica  cu calculatorul central.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Avind in vedere complexitatea sistemelor actuale si 
+necesitatea asigurarii unei fiabilitati deosebite sistemele descentralizate par a fi astazi cea mai viabila solutie.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Nu numai fiabilitatea sporita impune sistemele 
+descentralizate ci si numarul mare de semnale care trebuiesc achizitionate si prelucrate la viteze tot mai mari precum si numarul mare de comenzi 
+tot mai sofisticate si mai precise.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in"> <FONT SIZE=3><SPAN LANG="en-US">Descentralizarea consta in introducerea 
+unui anumit numara de sisteme de achizitie si control DCS </SPAN></FONT><FONT SIZE=3><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal">(Distributed
+Control System)</SPAN></SPAN></FONT><FONT SIZE=3><SPAN LANG="en-US"> care pot functiona independent pentru a rezolva probleme specifice in
+diferite puncte ale sistemului de automatizat. 	Ficare astfel de sistem indeplineste functiile particulare pentru care a fost desemnat
+avind si posibilitati de decizie locala fara a mai interoga calculatorul central, insa comunica cu acesta fie la cererea
+calculatorului fie din proprie initiativa in functie de tipul de protocol stabilit la proiectarea intregului sistem.</SPAN></FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="margin-bottom: 0in">
+<br><br><center> <IMG SRC="sist_desc_html_1c3fe1ea.png"></center><BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Eventuale disfunctionalitati ale calculatorului central sau a altor sisteme nu implica caderea intregului sistem ci numai
+partial. De multe ori mentinerea in stare de functionare macar a unor parti din sistem  este vitala.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="margin-bottom: 0in"><FONT SIZE=3>Descentralizarea permite reducerea complexitatii programelor de aplicatii 
+care ruleaza pe calculatorul central si transferarea complexitatii pe mai multesisteme. </FONT> </P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Posibilitatea aparitiei erorilor de programare creste exponential cu dimensiunea programelor. In sistemele distribuite si
+programele sunt distribuite in sensul ca o data cu degrevarea calculatorului central acesta trebuie sa ruleze programe mai putin
+complexe restul de complexitate regasindu-se pe celelalte sisteme.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Proiectarea si intretinerea aplicatiilor devine deci mai simpla si mai putin costisitoare. Avind in  vedere aceasta distribuire
+a complexitatii inseamna ca aplicatiile pot fi realizate de echipe de proiectanti si programatori  deci o scurtare a timpului de
+proiectare, implementare si desigur o crestere a performantei pe ansamblu comparativ cu aplicatiile centralizate care sunt greu de realizat in echipa.</FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Sistemele distribuite pot fi realizate la randul lor din calculatoare sau pot
+fi  realizate din sisteme specifice care utilizeaza  automate programabile, microprocesoare, controlere, traductori inteligenti.</FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><BR>
+</P>
+<P LANG="en-US" ALIGN=CENTER STYLE="text-indent: 0.5in; margin-bottom: 0in">
+
+<a name="ap"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5>2. Utilizarea automatelor programabile in sisteme descentralizate   </Center></TD></TR>
+</table>
+
+<br><br>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Atunci
+cand procsele industriale nu necesita automatizare complexa respectiv
+cand nu e nevoie sa monitorizam marimi analogice ci numai citeva
+valori digitale si sa furnizam numai comenzi digitale cele mai
+potrivite dispozitive pentru a realiza comanda si monitorizarea
+sistemelor industriale sunt automatele programabile.</FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Chiar
+daca sistemul industrial nu este complex pentru a realiza un sistem
+de comanda si monitorizare cit mai fiabil se folosesc mai multe
+automate programabile fiecare automat ocupandu-se de anumite parti
+ale sistemului industrial. Toate automatele comunica printr-o consola
+cu sistemul central realizindu-se astfel conducerea unitara a
+intregului proces industrial. Avantajul major fiind acela ca daca
+sistemul central sau o parte din automate se defecteaza celelalte
+automate pot functiona in continuare asigurand  functionarea
+celorlalte parti neafectate astfel se evita caderea intregului sistem
+in caz de incidente.</FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Un
+automat programabil se connecteaza la procesul industrial prin
+intermediul modulelor de interfata de intrare si de iesire. Conectarea
+la sistemul centralizat de comanda se face prin intermediul modulului
+de interfata cu consola. In figura de mai jos este schitat la nivel
+de schema bloc modul de conectare a unui automat programabil la
+sistemul industrial si dispozitivul central.</FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><BR>
+</P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><BR>
+</P>
+<P LANG="en-US" CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in">
+<center><br><br><IMG SRC="sist_desc_html_424b2cb9.png" ></center><BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<BR>
+</P>
+<H2 LANG="en-US" CLASS="western" STYLE="text-indent: 0in; page-break-after: avoid">
+Partea principala o reprezinta automatul programabil care are inscrs
+in memoria microprogram respectiv algoritmul de functionare al
+automatului astfel incit sa rezolve problema specifica din procesul
+industrial. Avantajul automatelor programabile rezida in faptul ca
+acelasi automat poate fi folosit in mai multe tipuri de procese
+industriale, diferind numai miproprogramul. Microprogramul se inscrie
+in meorii prin intermediul programatoarelor autonome. Se scoate
+memoria din automat se reinscrie un nou program cu ajutorul
+programatorului dupa care memoriile se instaleaza din nou in
+automatul programabil. O memorie poate fi reinscrisa de mai multe ori
+avind deci posibilitatea sa perfectionam aplicatia existenta sau sa
+reprogramam automatul pentru o alta aplicatie. Principiul de
+functionare al automatelor programabile este prezentat in cele ce
+urmeazaa.</H2>
+<P LANG="en-US" CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in">
+<FONT SIZE=4><B>Automate programabile</B></FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">Automatele programabile sunt sisteme dinamice a caror comportare 
+in timp se poate descrie ca o succesiune de evenimente(stari) ce apar la momente discrete in timp. Schema bloc de implementare a unui automat 
+secvential programabil se poate reprezenta astfel:</P>
+<P LANG="" CLASS="western" STYLE="margin-bottom: 0in">
+<br><br><center><IMG SRC="sist_desc_html_6fbfe7b8.jpg" ></center><BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Elementul principal al automatului este reprezentat de  automatul secvential care pe baza intrarilor si al elementelor
+memorate formleaza niste iesiri pentru momentul curent t si deasemenea furnizeaza elementele necesare calcului functiilor de
+excitatie pentru momentul t+1. Functiile de excitatie necesare pentru a selecta alte elemente pentru momentul t+1 sunt calculate de
+circuitul combinational de la intrare din noile date de intrare si elementele furnizate de automatul secvential in momentul t.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Prin memorarea in prealabil in elementul de memorare a tuturor elementelor care permit calculul iesirilor curente si a noii
+stari din momentul urmator putem descrie comportarea acestui sistem dinamic. Schema de sus impelmenteaza deci ideea de automat programabil.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Acest automat  realizat  din componente electronice  va
+arata ca in figura de mai jos:</FONT></P> <P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<center><BR><BR> <IMG SRC="sist_desc_html_m605e62bf.jpg" ></center> <BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+ <FONT SIZE=3><SPAN LANG="en-US">Secventiatorul este un circuit capabil sa furnizeze semnalele de iesire functie de semnalele de
+intrare si de datele furnizate de memorie la momentul t.</SPAN></FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Ca un element de noutate secventiatorul tine cont si de intrarile de la intervata consola. Prin interfata consola automatul
+poate fi conectat cu alte automate sau cu sistemul central de monitorizare si prelucrare. Acest automat deci se
+poate integra intr-un sistem descentralizat de monitorizare si conducere.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Secventiatorul furnizeaza si adresa urmatoare pentru momentul t+1. Aceasta adresa impreuna cu intrarile din momentul t+1
+vor forma in registrul de adrese adresa absoluta pentru memorie in momentul t+1.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Secventiatorul are si rol de sincronizare pentru restul elementelor automatului</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3><SPAN LANG="en-US">Pentru a descrie mai precis functionarea automatului respectiv a secventiatorului sa consideram schema bloc de mai jos:</SPAN></FONT></P>
+<center><BR><BR><IMG SRC="sist_desc_html_m3d593185.jpg" > </center> <br> 
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Segventiatorul este format dintr-un numarator de adrese o unitate centrala UC si un modul de iesiri amplasate in jurul unei
+magistrale interne comuna. UC este unitatea de comanda care practic controleaza functionarea si sincronizarea intregului automat. UC-ul
+este realizat printr-o logica cablata sau printr-logica microprogramata.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>UC-ul ar putea fi deci un nou automat programabil. Se pune problema ca noul automat programabil ar nevoie din nou de un
+automat programabil si tot asa la infinit.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>UC-ul are complexitate mult mai redusa decit auomatul programabil. La fel si noul UC al  UC-ului are complexitate mult mai
+rdusa decit UC-ul parinte deci cu siguranta dupa al doilea nivel el devine suficient de simplu pentru a fi realizat cablat. </FONT>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>La momentul t UC-ul activeaza anumite iesiri prin intermediul modulului de iesiri si trimite noua adresa spre memorie
+pentru momentul t+1. In general noua adresa este vechea adresa incrementata, avind in vedere ca cea mai mare parte a secventelor de
+control sunt  operatiuni secventiale si mai putin operatiuni de salt. Din acest motiv noua adresa este formata de un numarator prin
+activarea unui semnal de incrementare furnizat de UC. In cazul in care noua adresa este o adresa de salt aceasta este luata de pe magistrala
+si numaratorul este fortat sa incarce noua valoare.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Din noua adresa furnizata de UC impreuna cu anumite date de intrare se formeaza adresa de memorie pentru momentul t+1. Comanda
+de incarcare este furnizata de UC pri linii de comanda speciale.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Pentru a programa automatul este nevoie de analiza sistemului de automatizat pas cu pas in functie de datele de intrare
+si starea anterioara. Memoria va fi iscrisa cu o succesiune de date care functie de intrarile din momentul  t vor furniza informatii
+despre iesirile care trebuiesc activate si noua adresa la care se vor gasi urmatoarele informatii. Automatul dispune si de o interfata cu
+consola de la care se pot da comenzi locale sau prin intermediul careia se poate comunica cu alte sisteme sau cu calculatorul
+central. Automatul programabil este potrivit pentru automatizari cu un grad redus de complexitate si in special pentru automatizari in care
+nu intervin marimi analogice. In cazul cand procesul industrial care necesita automatizare si monitorizare necesita automatizari mai
+complexe in care intervin marimi analogice se folosesc dispozitive mai complexe cum ar fi procesoarele sau controlerele.</FONT></P>
+<br><b><FONT SIZE=4>Utilizarea microprocesoarelor in sisteme descentralizate.</FONT></b><br><br>
+<P LANG="en-AU" CLASS="western" STYLE="margin-bottom: 0in"><FONT SIZE=3><SPAN LANG="en-US"><B>	</B></SPAN></FONT><FONT SIZE=3><SPAN LANG="en-US">Pentru
+ situatii in care numarul de paramerii este foarte mare si avem de-a face cu marimi analogice de intare sau iesire, algoritmi complicati
+pentru descrierea procesului industrial utilizarea automatelor programabile devine imposibila.</SPAN></FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="margin-bottom: 0in"><FONT SIZE=3>O schema bloc minimala de comanda si monitorizare realizata cu
+microprocesoare trebuie sa contina cel putin modulele de mai jos.</FONT></P>
+<P LANG="en-US" CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in">
+<center><BR><BR> <IMG SRC="sist_desc_html_353a7339.png" ></center><BR>
+</P>
+<P LANG="en-US" CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Programele aplicatie sunt stocate in memoria ROM fiind inscrise in prealabil cu
+ajutorul programatoarelor. Pentru a putea rula programele din ROM microprocesorul trebuie sa dispuna de memoria RAM, memorie in care
+este pastrata stiva program, o serie de operanzi, valori intermediare ,valorile variabulelor folosite in program precum si
+valorile curente ale marimilor achizitonate din procesul industrial.</FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Semnalele analogice din sistemul industrial sunt conectate prin intermediul
+unui multiplexor analogic la convertorul A/D.</FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Multiplexorul selecteaza un anumit semnal analogic (functie de adresa canalului
+stabilita pe magistrala de adrese) si il trimite convertorului A/D care il converteste intr-o valoare digitala care poate fi citita prin
+intermediul magistralei de date de catre multiplexor.</FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Semnalele digitale de intrare sau iesire sunt citite respectiv trimise prin
+intermediul portului I/O.</FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Comunicarea cu dispozitivul central de comanda se realizeaza de obicei prin
+intermediu portului serial.</FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>In procese industriale in care sunt necesare comenzi de tip analogic
+sistemele de automatizare realizate cu microprocesoare dispun si de un numar de convertoare digital analogice care transforma valorile
+digitale transmise de procesor in semnale analogice necesare pentru a realiza comenzi analogice.</FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Toare modulele sunt coordonate de microprocesor prin magistrala de 
+comenzi prin intermediul unui bloc de control care contine logica de control.</FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Microprocesorul executa programul inscris in ROM, program care ghideaza
+microprocesorul pas cu pas astfel incat pe ansambu sistemul rezolva automatizarea si monitorizarea specifica unui anumit proces sau
+subproces industrial. </FONT>
+</P>
+<P LANG="en-US" CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in">
+<FONT SIZE=4><B>Microprocesoare</B></FONT></P>
+<P LANG="en-US" CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="margin-bottom: 0in"><FONT SIZE=3><SPAN LANG="en-US">	Microprocesoarele
+sunt circuite secventiale cu un set propriu de instructiuni, definite de producator. Microprocesoarele lucreaza cu o memorie
+externa in care se pun instructiunile si datele specifice unei
+aplicatii.Microprocesorul extrage si executa secvential
+instructiunile din memorie.</SPAN></FONT><FONT SIZE=4><SPAN LANG="en-US"><B>	</B></SPAN></FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="margin-bottom: 0in">
+<BR><br><center><IMG SRC="sist_desc_html_m7555d5eb.png" </center><BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Dupa cum se observa in schema bloc de mai sus
+microprocesorul este realizat dintr-o serie de subansamble
+functionale dispuse pe o magistrala comuna.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Partea principala o constituie ALU &ndash;unitatea
+aritmetico logica care poate executa  diferite operatii intre doi
+operanzi oferind rezultatul si o serie de indiicatori de conditii
+care sunt inscrisi in registrul de conditii. Operatia efectuata este
+dictata de instructiunea in curs, instructiune care este pastrata in
+registrul de instructiuni si este decodificata. In urma decodificarii
+instructiunii unitatea de control activeaza linii de comanda pentru 
+toate subansamblele microprocesorului. ALU executa deci operatia
+selectata  de unitatea de control in functie de instructiunea in
+curs. Pentru valori  intermediare sau rezultate exista o serie de
+registre de uz general. Un registru specilal este ACUMULATORUL la
+care accesul este cel mai rapid si care este de multe ori accesat
+implicit in diferite operatii. Registrii segment tin adresa de baza
+pentru memorie in timp ce adresa relativa este data fie de un
+numarator de program fie de registrul de instructiuni in cazul cind
+instructiunea in curs contine adresa unui operand sau adresa de salt
+la o alta adresa. Din cele doua adresa este formata adresa absoluta
+pentru memoria externa adresa pastrata in registrul de adrese.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Pentru comanda si sincronizarea diferitelor sisteme din
+afara procesorului sunt trimise semnale de comanda furnizate de
+unitatea de control si adrese furnizate de registrul de adrese.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Schimbul de date cu perifericele se realizeaza pe
+magistrala de date.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Principlalu dezavantaj al sistemelor cu microprocesoare
+este faptul ca periferia din jurul procesorului este destul de
+complexa. Este nevoie atat de memorie externa  (memorie ROM pentru
+pogram si  memorie de lucru numita memorie RAM) cit si de diferite
+interfete pentru conectarea cu procesul industrial sau cu sistemele
+de comanda centralizate.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Controlere fac un pas inainte integrind o mare parte din
+periferie in interiorul lor.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in"></P>
+<br><P LANG="en-US" CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in">
+<FONT SIZE=4><B>Utilizarea controlerelor in sisteme descentralizate de conducerea si monitorizare a proceselor industriale.</B></FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><BR>
+</P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Nevoia
+de a obtine fiabilitate cat mai mare la costuri cat mai mici a dus la
+aparita controlerelor. Controlerele sunt circuite VLSI care includ pe
+langa procesorul propriuzis si memoria de lucru, memorie
+FLASH, memorie EEPROM, Timere interfete paralele seriale
+etc. Aplicatiile sunt mult mai usor de realizat, sistemele sunt mult
+mai simple deci mai ieftine si mai fiabile. Faptul ca memoria se afla
+in interiorul controlerului creste mult fiabilitatea si viteza de
+lucru a sistemului. Sistemele cu microprocesoare sunt mult mai
+pretentioase la zgomote avand magistrala de adrese si date in
+exterior in vederea conectorii memoriei externe. La sistemele cu
+controlere influenta zgomotelor este mult redusa din cauza
+simplicitatii sistemului pe ansamblu. Memoria fiind mai aproape de
+procesor posoibilitatea captarii unui zgomot este mai redusa deci
+situatiile in care programele se blocheaza sau ruleaza necontrolat
+sunt mult diminuate. In afara controlerului sunt dispuse mult mai
+putine circuite in general numai circuite de interfata sau
+multiplexare. In cazul in care controlerul nu dispune de convertoare
+A/D dau D/A schema bloc poate fi reprezentata la nivel de schema bloc
+ca in schita de mai jos.</FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Multiplexorul
+primeste o adresa de la logica de control si selecteaza una din
+intrarile analogice. Tot logica de control este cea care comanda
+convertorului sa inceapa conversia A/D a semnalului selectat de
+multiplexor. Valoarea rezultata este citita de controler pe unul din
+porturile existente, in cazul de fata portul P2.</FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Controlerul
+dispune de porturi  seriale deci pentru conectarea cu dispozitvul
+central respectiv cu calculatorul central nu avem nevoie decit de o
+interfata seriala pentru adaptarea semnalelor la  tipul specific  de
+legatura seriala folosit la conectarea cu dispozitivul central.</FONT></P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><BR>
+</P>
+<P LANG="en-US" STYLE="text-indent: 0.5in; margin-bottom: 0in"><BR>
+</P>
+<P LANG="" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<center><br><br><IMG SRC="sist_desc_html_m62b484bb.png"></center><BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Rolul principal al sistemului il detine
+controlerul. Acest dispozitiv integreaza cea mai mare parte din
+periferia unui sistem cu microprocesor dind posibilitatea sa se
+realizeze sisteme mult mai simple si mai eficiente.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3><SPAN LANG="en-US">Se prezinta in continuare structura minimala a unui astfel de controler.</SPAN></FONT></P>
+<center><br><br> <IMG SRC="sist_desc_html_63b21042.png"><br></center><br>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Porturile sunt bidirectionale, putind fi folosite atit
+ca intrare cit si ca iesire.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Controlerul dispune de mai multe intrari de intreruperi
+a caror nivele de prioritate poate fi programata. De foarte mare
+importanta sunt Timerele programabile car asigura atit frecventa
+programabila necesara portului serial cit si frecvente necesare la
+implementarea aplicatiei pentru realizarea Timerelor soft. Memoria ram
+exste folosita pentru stiva sau ca memorie de lucru. Memoria EEPROM
+se foloseste in general pentru a pastra programul aplicatie cit si
+pentru parametrii necesari diferitor programe aplicatie.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>In prezent controlerele inglobeaza si convertoare A/D
+circuite PWM (Pulse Width Modulation) care pot fi folosite pentru a
+genera iesiri analogice suplinind deci convrtoarele D/A. Controlerele
+dispun de memorii tot mai mari de tip Flash care pot fi reinscrise de
+un numar foarte mare de ori deci aplicatiile pot fi tot timpul
+upgradate. Majoritatea dispun de facilitati In Circuit Programming
+astfel incit controlerele pot fi reinscrise cu noile programe fara a
+mai fi demontate, fiind reinscrise direct in sistemul in care se afla
+de unde si denumirea &ldquo;Programare in circuit&rdquo;</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Dispunind de astfel de controlere sistemele realizate pe
+baza lor devin si mai simple.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<center><br><br><IMG SRC="sist_desc_html_258020b6.png" ></center><BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Controlerul dispunind deja de convertoare A/D, PWM etc
+practic in afara controlerului nu mai montam decat  module pentru
+conditionarea semnalelor si eventual multiplexoare pentru extinderea
+numarului de canale</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Un astfel de controler conform schemei bloc de mai jos
+contine porturi complexe care pot fi programate sa devina:intrari
+digitale, iesiri digitale intrari analogice iesiri PWM, linii de
+comunicatie pentru porturi seriale, linii de intrerupere, linii de
+intrare pentru timere etc. </FONT>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Se remarca complexitatea de Timere oferite pentru
+oscilator, reset, pornire, </FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="margin-bottom: 0in"><FONT SIZE=3>Supraveghiere, frecventa
+de baud etc. Timerele de uz general foarte importante in dezvoltarea
+aplicatiilor in care e nevoie de a cronometra diferte intervale de
+timp. Dispunind de astfel de cronometre care pot primi intrarea de
+ceas din exterior sau din interior programatorul nu mai trebuie sa
+ocupe unitatea centrala cu rutine de temporizare focalizindu-se pe
+rezolvarae si implementarea algoritmului de functionare.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="margin-bottom: 0in"><FONT SIZE=3>	Este
+de remarcat si stiva cu 8 nivele care este de sine statatoare si nu
+ocupa loc din memoria de lucru, ramanand mai multa memorie de lucru
+disponibila.</FONT></P>
+
+<br><br><a name="si"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5>2. Utilizarea senzorilor inteligenti in sisteme descentralizate   </Center></TD></TR>
+</table><br><br>
+
+<P LANG="en-US" STYLE="text-indent: 0.5in">Senzorii inteligenti sunt senzori de semnalnificat 4-20 mA care au in plus facilitati de 
+transmisie a valorii semnalului masurat, in format digital. In general senzorii inteligenti utiklizeaza protocolul HART pentru transmisi valorii 
+digitale. </P>
+<P LANG="en-US" STYLE="text-indent: 0.5in">In multe cazuri trebuie sa achizitionam date din sisteme speciale ce nu
+permit instalarea de sisteme de achizitie independente sau calculatoare. Traductoarele HART pot achizitiona date si pot face
+transmisia acestora atat sub forma analogica cat si digitala pe un singur canal (o singura linie)</P>
+
+<center><br><IMG SRC="senz_intelig_html_43cd6db9.png"></center><br><br>
+
+</center> <B>Protocloul HART</B>
+<P LANG="en-US" STYLE="text-indent: 0.5in"><BR>
+</P>
+<P LANG="en-US" STYLE="text-indent: 0.5in">Protocolul HART cel mai utilizat protocol de comunicatie cu senzori inteligenti utlizati in
+automatizare, monitorizarea proceselor industriale si in instrumentatie. Protocolul HART continua sa creasca in popoularitate
+fiind recunoscut in industrie ca un standard global pentru instrumentatie inteligenta. Protocoul este usor de utilizat dand
+posibilitatea comunicarii bidirectionale in mod digital simultan cu semnalul analogic 4-20 mA utilizat de echipamentele si senzorii
+traditionali.</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Solutia de comunicare oferita de protocolul HART este importanta pentru ca
+pastreaza cablarea existenta intr-un anumit sistem clasic. Inlocuind traductorii si instrumentatia clasica cu traductori si instrumentatie
+inteligenta capabila sa comunice prin semnal digital obtinem un sistem performant capabil sa comunice cu calculatoare aflate la
+distanta permitind reconfigurare, diagnosticare, citire date, etc.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>HART(&quot;Highway Addressable Remote Transducer&quot;) este un protocol
+pentru comunicatie digitala proiectat pentru aplicatii industriale de masurare, monitorizare si automatizare. </FONT></P>
+<center><br><IMG SRC="senz_intelig_html_m6e724cbc.png" ></center><br>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Se bazeaza pe adaugarea unui semnal digital modulat peste semnalul
+analogic de 4-20 mA numit semnal unificat. Semnalul digital este modulat in frecventa astfel 0 Logic cu o frecventa de 1200 Hz iar 1
+Logic cu o frecventa de 2200 Hz. </FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Intrucit semnalul modulat HART are valoare mica si are forma de unda
+sinusoidala, valoarea lui medie este 0 si nu afecteaza semnificativ valoarea semnalului unificat, acesta putind fi utilizat in
+continuare. Protocolul HART permite deci extinderea functiilor sistemelor actuale permitind comunicare simultana in semnal unificat
+si in semnal digital.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><BR></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><BR></P>
+<center><br><IMG SRC="senz_intelig_html_m338864dd.png" ></center><br>
+<br><b><FONT SIZE=3>Structura mesajelor de tip HART</b><br><br>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Campul PREAMBULUL, inte 5 si 20 bytes cu valoarea &ldquo;FF&rdquo; are rolul
+de a ajuta receprorul sa se sincronizeze pe sirul de caractere receptionat.</FONT></P>
+<center><br><IMG SRC="senz_intelig_html_m2545e4c5.png" ></center><br>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Caracterul de START poate avea diferite valori indicind tipul de mesaj: master
+to slave, slave to master, sau  burst mesaj burst de la  slave, precum si formatul adresei:scurt sau lung.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Campul ADRESA include adresa master-ului si adresa slave-ului. In format
+scurt adresa slave-ului este pe 4 biti, iar in format lung de 38 biti.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Caracterele de COMANDA contin comenzi HART de tip :</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>	-Universal
+0-30</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>	-Practice
+32-126</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>	-Specifice
+perifericelor 128-253</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Caracterul NR-CUVINTE-contine numarul de cuvinte al mesajului. Receptorul
+utilizeaza aceasta valoare pentru a sti daca mesajul este gata. (Nu exista un caracter special pentru &ldquo;Sfirsit mesaj&rdquo;). </FONT>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Campul STARE  este format din doua caractere, fiind prezent doar in
+raspunsul slave-ului. Campul contine informatii despre erorile survenite in transmisia mesajului, starea comenzii primite, starea
+unitatii respective.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Campul DATA poate sau nu sa fie prezent in functie de comanda. Se recomanda o
+lungime maxima de 25 de caractere pentru a pastra o durata rezonabila a timpului de transmisie a unui mesaj.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Cuvantul SUMA DE CONTROL contine valoarea expresiei : sau exclusiv intre toti
+octetii transmisi anterior. Din aceasta valoare impreuna cu bitul de paritate atasat se poate determina daca a avut loc o eroare de
+comunicatie.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><BR>
+</P>
+<b><br><br>Avantajele utilizarii protocolului HART</b><br><br>
+<P LANG="en-AU" CLASS="western"><BR>
+</P>
+<H2 LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in">Utilizand protocolul de comunicatie HART se pot transmite pana la patru
+masuratori intr-un singur mesaj.</H2>
+<P LANG="en-AU" CLASS="western">Daca se utilizeaza numai comunicatia digitala mai multe dispozitive inteligente se pot cupla pe aceeasi
+linie in paralel in sistem &ldquo;multidrop&rdquo;. In acest caz semnalul analogic este setal la valoarea minima pentru toate
+dispozitivele(4mA).</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>HART a fost dezvoltat de firma Rosemount in anul -1980,dar a fost facut
+public si este complet deschis, toate drepturile apartin organizatiei independenteHART Communication Foundation (HCF) care
+intretine  protocolul si eventualele dezvoltari ulterioare.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Exista astazi peste 100 membrii HCF majoritatea avand produse care respecta
+protocolul de comunicatie HART si care acopera o gama larga de masuratori.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><BR>
+</P>
+<br><b>Modemuri HART</b><br>
+<P LANG="en-AU" CLASS="western"><BR>
+</P>
+<P LANG="en-AU" STYLE="text-indent: 0.5in">Pentru a putea conecta dispozitivele inteligente (ce comunica prin protocol HART ) cu
+sisteme de calcul se utilizeaza HART Modemuri care extrag informatia digitala din semnalul modulat proventit de la dispozitivele
+inteligente respectiv moduleaza informatia digitala transmisa de calculator spre dispozitivele inteligente.</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Exista modemuri single chip CMOS care se incadreaza in standardul BELL202,
+modemuri special proiectate pentru semnal HART</FONT></P>
+<center><br><IMG SRC="senz_intelig_html_3000744f.png" ></center><br>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>HT2012 HART este un astfel de modem, fiind proiectat pentru a interfata
+dispozitive inteligente de tip HART avand rolul de modulare si demodulare semnal. </FONT>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Viteza de transfer a datelor este de 1200 bauds.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Cele mai importante semnale furnizate de modem sunt reprezentate in figura 
+de mai jos. Prin intermediul acestor semnale se poate face conexiunea directa la portul serial al unui calculator.</FONT></P>
+
+
+<br><br><a name="autoev"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de autoevaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+<ul>
+<script type="text/javascript">
+function nr_ck1() {  
+  
+     if ((Form_ck1.ck_1.checked==true)&(Form_ck1.ck_2.checked==true)&(Form_ck1.ck_3.checked==true)&(Form_ck1.ck_4.checked==true))  
+		document.Form_ck1.af_mes.value ='corect !';
+	else
+		document.Form_ck1.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck1">
+	<I> 1. Un sistem controlat cu DCS (Distributed Control System): </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck1()>
+	a. Prevenie blocarea totala a sistemului <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck1()>
+	b. Controleaza independent parti din sistem <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck1()> 
+	c. Este mai fiabil <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck1()> 
+	d. Lucreaza pe o magistrala comuna <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck2() {  
+  
+     if ((Form_ck2.ck_1.checked==true)&(Form_ck2.ck_2.checked==true)&(Form_ck2.ck_3.checked==false)&(Form_ck2.ck_4.checked==false))  
+		document.Form_ck2.af_mes.value ='corect !';
+	else
+		document.Form_ck2.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck2">
+	<I> 2. Un automat programabil contine cel putin :  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck2()>
+	a. 1 O memorie ROM <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck2()>
+	b. 2 Un secventiator <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck2()> 
+	c. 3 Un Convertor Analog - Numeric <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck2()> 
+	d. 4 Un Convertor Numeric - Analog   <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck3() {  
+  
+     if ((Form_ck3.ck_1.checked==true)&(Form_ck3.ck_2.checked==true)&(Form_ck3.ck_3.checked==true)&(Form_ck3.ck_4.checked==true))  
+		document.Form_ck3.af_mes.value ='corect !';
+	else
+		document.Form_ck3.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck3">
+	<I> 3. Controlerele sunt circuite VLSI care includ pe langa procesorul propriuzis si :</I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck3()>
+	a. Memoria de lucru <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck3()>
+	b. Memorie FLASH <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck3()> 
+	c. Memorie EEPROM<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck3()> 
+	d. Pulse Width Modulation <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck4() {  
+  
+     if ((Form_ck4.ck_1.checked==true)&(Form_ck4.ck_2.checked==false)&(Form_ck4.ck_3.checked==true)&(Form_ck4.ck_4.checked==true))  
+		document.Form_ck4.af_mes.value ='corect !';
+	else
+		document.Form_ck4.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck4">
+	<I> 4. Utilizand protocolul de comunicatie HART : </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck4()>
+	a. Se pot transmite mai multe masuratori intr-un singur mesaj <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck4()>
+	b. Se pot calibra automat senzorii <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck4()> 
+	c. Se pot reconfigura automat senzorii <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck4()> 
+	d. Se pot cupla pe aceeasi linie in paralel mai multi senzori <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck5() {  
+  
+     if ((Form_ck5.ck_1.checked==true)&(Form_ck5.ck_2.checked==false)&(Form_ck5.ck_3.checked==true)&(Form_ck5.ck_4.checked==false))  
+		document.Form_ck5.af_mes.value ='corect !';
+	else
+		document.Form_ck5.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck5">
+	<I> 5. In structura mesajelor de tip HART exista cel putin un camp care contine: </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck5()>
+	a. Adresa senzorului<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck5()>
+	b. Tipul senzorului <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck5()> 
+	c. Suma de control <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck5()> 
+	d. Data <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<br><br><a name="rez"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Rezumat  </Center></TD></TR>
+</table>
+<br><br><font color= "Black" size=4><b> 1. DCS (Distributed Control System) </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Descentralizarea consta in introducerea unui anumit numara de sisteme de achizitie si control 
+DCS (Distributed Control System) care pot functiona independent pentru a rezolva probleme specifice in diferite puncte ale sistemului de automatizat. 
+Ficare astfel de sistem indeplineste functiile particulare pentru care a fost desemnat avind si posibilitati de decizie locala fara a mai interoga 
+calculatorul central, insa comunica cu acesta fie la cererea calculatorului fie din proprie initiativa in functie de tipul de protocol stabilit 
+la proiectarea intregului sistem.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Eventuale disfunctionalitati ale calculatorului central sau a altor sisteme nu implica caderea intregului sistem ci numai 
+partial. De multe ori mentinerea in stare de functionare macar a unor parti din sistem este vitala.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Descentralizarea permite reducerea complexitatii programelor de aplicatii care ruleaza pe calculatorul central si 
+transferarea complexitatii pe mai multesisteme. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Posibilitatea aparitiei erorilor de programare creste exponential cu dimensiunea programelor. In sistemele distribuite si 
+programele sunt distribuite in sensul ca o data cu degrevarea calculatorului central acesta trebuie sa ruleze programe mai putin complexe restul de 
+complexitate regasindu-se pe celelalte sisteme.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Proiectarea si intretinerea aplicatiilor devine deci mai simpla si mai putin costisitoare. Avind in vedere aceasta 
+distribuire a complexitatii inseamna ca aplicatiile pot fi realizate de echipe de proiectanti si programatori deci o scurtare a timpului de proiectare, 
+implementare si desigur o crestere a performantei pe ansamblu comparativ cu aplicatiile centralizate care sunt greu de realizat in echipa.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sistemele distribuite pot fi realizate la randul lor din calculatoare sau pot fi realizate din sisteme specifice care 
+utilizeaza automate programabile, microprocesoare, controlere, traductori inteligenti.
+
+<br><br><font color= "Black" size=4><b> 2. Utilizarea automatelor programabile in sisteme descentralizate </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Atunci cand procsele industriale nu necesita automatizare complexa respectiv cand nu e nevoie sa monitorizam marimi 
+analogice ci numai citeva valori digitale si sa furnizam numai comenzi digitale cele mai potrivite dispozitive pentru a realiza comanda si 
+monitorizarea sistemelor industriale sunt automatele programabile.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Chiar daca sistemul industrial nu este complex pentru a realiza un sistem de comanda si monitorizare cit mai fiabil 
+se folosesc mai multe automate programabile fiecare automat ocupandu-se de anumite parti ale sistemului industrial. Toate automatele comunica 
+printr-o consola cu sistemul central realizindu-se astfel conducerea unitara a intregului proces industrial. Avantajul major fiind acela ca daca 
+sistemul central sau o parte din automate se defecteaza celelalte automate pot functiona in continuare asigurand functionarea celorlalte parti 
+neafectate astfel se evita caderea intregului sistem in caz de incidente.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Un automat programabil se connecteaza la procesul industrial prin intermediul modulelor de interfata de intrare si 
+de iesire. Conectarea la sistemul centralizat de comanda se face prin intermediul modulului de interfata cu consola. In figura de mai jos este 
+schitat la nivel de schema bloc modul de conectare a unui automat programabil la sistemul industrial si dispozitivul central.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Automatele programabile sunt sisteme dinamice a caror comportare in timp se poate descrie ca o succesiune de evenimente(stari) 
+ce apar la momente discrete in timp
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru situatii in care numarul de paramerii este foarte mare si avem de-a face cu marimi analogice de intare sau iesire, 
+algoritmi complicati pentru descrierea procesului industrial utilizarea automatelor programabile devine imposibila, utilizandu-se in schimb microprocesoare.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Microprocesoarele sunt circuite secventiale cu un set propriu de instructiuni, definite de producator. 
+Microprocesoarele lucreaza cu o memorie externa in care se pun instructiunile si datele specifice unei aplicatii. Microprocesorul extrage si executa 
+secvential instructiunile din memorie. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Nevoia de a obtine fiabilitate cat mai mare la costuri cat mai mici a dus la aparita controlerelor. Controlerele sunt 
+circuite VLSI care includ pe langa procesorul propriuzis si memoria de lucru, memorie FLASH, memorie EEPROM, Timere interfete paralele seriale etc
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In prezent controlerele inglobeaza si convertoare A/D circuite PWM (Pulse Width Modulation) care pot fi folosite pentru a 
+genera iesiri analogice suplinind deci convrtoarele D/A. Controlerele dispun de memorii tot mai mari de tip Flash care pot fi reinscrise de un numar 
+foarte mare de ori deci aplicatiile pot fi tot timpul upgradate. Majoritatea dispun de facilitati In Circuit Programming astfel incit controlerele pot 
+fi reinscrise cu noile programe fara a mai fi demontate, fiind reinscrise direct in sistemul in care se afla de unde si 
+denumirea “Programare in circuit”
+
+<br><br><font color= "Black" size=4><b> 3. Utilizarea senzorilor inteligenti in sisteme descentralizate   </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Senzorii inteligenti sunt senzori de semnalnificat 4-20 mA care au in plus facilitati de transmisie a valorii 
+semnalului masurat, in format digital. In general senzorii inteligenti utiklizeaza protocolul HART pentru transmisi valorii digitale. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In multe cazuri trebuie sa achizitionam date din sisteme speciale ce nu permit instalarea de sisteme de achizitie 
+independente sau calculatoare. Traductoarele HART pot achizitiona date si pot face transmisia acestora atat sub forma analogica cat si digitala pe un 
+singur canal (o singura linie).
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Protocolul HART cel mai utilizat protocol de comunicatie cu senzori inteligenti utlizati in automatizare, monitorizarea 
+proceselor industriale si in instrumentatie. Protocolul HART continua sa creasca in popoularitate fiind recunoscut in industrie ca un standard global 
+pentru instrumentatie inteligenta. Protocoul este usor de utilizat dand posibilitatea comunicarii bidirectionale in mod digital simultan cu semnalul 
+analogic 4-20 mA utilizat de echipamentele si senzorii traditionali.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand protocolul de comunicatie HART se pot transmite pana la patru masuratori intr-un singur mesaj.
+Daca se utilizeaza numai comunicatia digitala mai multe dispozitive inteligente se pot cupla pe aceeasi linie in paralel in sistem “multidrop”. 
+In acest caz semnalul analogic este setal la valoarea minima pentru toate dispozitivele(4mA).
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a putea conecta dispozitivele inteligente (ce comunica prin protocol HART ) cu sisteme de calcul se utilizeaza 
+HART Modemuri care extrag informatia digitala din semnalul modulat proventit de la dispozitivele inteligente respectiv moduleaza informatia 
+digitala transmisa de calculator spre dispozitivele inteligente.
+
+<br><br><a name="astept"></a>
+<font color= "Blue" size=4><li><b>Rezultate asteptate </b></font>
+<ul>
+Dupa studierea acestui modul, ar trebui sa cunoasteti:<br><br>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+
+<li>Care sunt principale sisteme descentralizate pentru achizitia de date
+<li>Cum sunt utilizate automatele programabile, microprocesoarele si controllerele in sisteme descentralizate  
+<li>Ce reprezinta si cum functioneaza senzorii inteligenti
+<li>Cum se utilizeaza senzorii inteligenti in sisteme descentralizat 
+</table>
+</ul>
+
+<a name="term"></a>
+<font color= "Blue" size=4> <li> <b>Termeni esentiali</b></font><br>
+<ul>
+<Table border=1 width="90%">
+
+<tr>
+  <td align="center"><b> Termen </b>  </td>
+  <td align="center"><b> Descriere </b>  </td>
+</tr>
+<tr>
+  <td> SCADA </td>
+  <td> Supervisory Control And Data Aquisition </td>    
+</tr>
+<tr>
+  <td> CAN </td>
+  <td> Convertor analog numeric </td>    
+</tr>
+<tr>
+  <td> DCS  </td>
+  <td> Distributed Control System </td>    
+</tr>
+<tr>
+  <td> UC </td>
+  <td> Unitatea de comanda </td>    
+</tr>
+<tr>
+  <td> ROM </td>
+  <td> Read Only Memory </td>    
+</tr>
+<tr>
+  <td> RAM </td>
+  <td> Random Access Memory <td>    
+</tr>
+<tr>
+<tr>
+  <td> PWM </td>
+  <td> Pulse Width Modulation <td>    
+</tr>
+<tr>
+<tr>
+  <td> In Circuit Programming  </td>
+  <td> Programare controller-ului direc in circuit fara a fi nevoie de scoaterea acestuia din circuit<td>    
+</tr>
+<tr>
+
+  <td> HART</td>
+  <td>"Highway Addressable Remote Transducer"
+</td>    
+</tr>
+<tr>
+  <td></td>
+  <td>  </td>    
+</tr>
+</table>
+</ul>
+ 
+<br><br><a name="bibl"></a>
+<font color= "Blue" size=4><li><b>Recomandari bibliografice </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> [1] A. Daneels - What is SCADA -International Conference on Accelerator and Large Experimental Physics Control Systems, 1999, Trieste, Italy
+<li> [2] Gavril Toderean, Microprocesoare Univ. Tehnica Cluj, 1994
+<li> [3] Mircea Dulau, Automatizarea proceselor termice si chimice- Universitatea "Petru MaiorTargu Mures, 2002
+<li> [4] Traian Tur,Brevet de inventie nr:11863 "Sistem pentru automatizarea si monitorizarea proceselor industriale", OSIM, 2003
+<li> [5] Jeff Kent, C++ fara mistere,Ed.Rosetti Educational 2004 .
+<li> [6] Boldur Barbat - Informatica industriala - Programarea în timp real  – Institutul Central pentru Conducere si informatica 1984 
+<li> [7] Ioan Babuita – Conducerea automata a proceselor – Ed. Facla 1985
+<li> [8] Ghercioiu-National în struments - Orizonturi  în instrumentatie 1995
+<li> [9] Radu Dobrescu - Automate programabile Ed Acad 1986
+<li> [10]Grigore Stolojanu - Prelucrarea numerica a semnalului vocal
+</td></tr></table>
+</ul>
+<br><br><a name="link"></a>
+<font color= "Blue" size=4><li><b>Link-uri utile </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> 1.<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> - Free SCADA - 2009.
+<li> 2.<a href="http://www.7t.dk/igss/default.asp"> http://www.7t.dk/igss/default.asp</a> - IGSS SCADA System - 2009
+<li> 3.<a href="http://www.7t.dk/igss/default.asp?showid=374"> http://www.7t.dk/igss/default.asp?showid=374</a> - IGSS Online SCADA Training - 2009 
+<li> 4.<a href="http://www.7t.dk/free-scada-software/index.html"> http://www.7t.dk/free-scada-software/index.html</a>-  IGSS Free SCADA Software -2009
+<li> 5.<a href="http://www.citect.com/"> http://www.citect.com/</a> -  CITECT SCADA -2009 
+<li> 6.<a href="http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314"> http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314</a> - Download CITECT demo - 2009
+<li> 7.<a href="http://www.indusoft.com/index.asp"> http://www.indusoft.com/index.asp</a> - INDUSOFT SCADA - 2009
+<li> 8 <a href="http://www.gefanuc.com/products/2819"> http://www.gefanuc.com/products/2819</a> - Proficy HMI/SCADA - CIMPLICITY - 2009.
+<li> 9.<a href="http://www.genlogic.com/"> http://www.genlogic.com/</a> - Dynamic Graphics, Data Visualization, Human-Machine Interface (HMI) - 2010 
+<li> 10<a href="http://www.genlogic.com/demos.html"> http://www.genlogic.com/demos.html</a> - On-Line Java and AJAX Demos - 2010 
+<li> 11<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+<li> 12<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+</td></tr></table>
+</ul>
+
+<br><br><a name="eval"></a>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de evaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+<ul>
+<script type="text/javascript">
+function nr_ck6() {  
+  
+     if ((Form_ck6.ck_1.checked==false)&(Form_ck6.ck_2.checked==true)&(Form_ck6.ck_3.checked==false)&(Form_ck6.ck_4.checked==true))  
+		document.Form_ck6.af_mes.value ='corect !';
+	else
+		document.Form_ck6.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck6">
+	<I> 1. Descentralizarea unui sistem consta in :  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck6()>
+	a. Utilizarea unei retele de calculatoare <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck6()>
+	b. Introducerea posibilitati de decizie locala <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck6()> 
+	c. Controlarea intregului sistem cu un DSC  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck6()> 
+	d. Introducerea mai multor DCS-uri <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+  
+<ul>
+<script type="text/javascript">
+function nr_ck7() {  
+  
+     if ((Form_ck7.ck_1.checked==true)&(Form_ck7.ck_2.checked==true)&(Form_ck7.ck_3.checked==false)&(Form_ck7.ck_4.checked==false))  
+		document.Form_ck7.af_mes.value ='corect !';
+	else
+		document.Form_ck7.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck7">
+	<I> 2. Automatele programabile sunt :  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck7()>
+	a. Sisteme dinamice a caror comportare in timp se poate descrie ca o succesiune de evenimente(stari)  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck7()>
+	b. Programate <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck7()> 
+	c. Utilizate pentru comanda sistemelor care contin marimi analogice <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck7()> 
+	d. Utilizate pentru comanda sistemelor complexe <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck8() {  
+  
+     if ((Form_ck8.ck_1.checked==false)&(Form_ck8.ck_2.checked==false)&(Form_ck8.ck_3.checked==true)&(Form_ck8.ck_4.checked==false))  
+		document.Form_ck8.af_mes.value ='corect !';
+	else
+		document.Form_ck8.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck8">
+	<I> 3. In Circuit Programming se refera la  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck8()>
+	a. Programarea automatelor programabile <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck8()>
+	b. Circuitelor logice <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck8()> 
+	c. Controllerelor <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck8()> 
+	d. Circuitelor secventiale <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck9() {  
+  
+     if ((Form_ck9.ck_1.checked==false)&(Form_ck9.ck_2.checked==false)&(Form_ck9.ck_3.checked==true)&(Form_ck9.ck_4.checked==false))  
+		document.Form_ck9.af_mes.value ='corect !';
+	else
+		document.Form_ck9.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck9">
+	<I> 4. Senzorii inteligenti furnizeaza la iesire </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck9()>
+	a. Un semnal in tensiune (0-5V).  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck9()>
+	b. Un semnal in frecventa (1-100Hz) <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck9()> 
+	c. Semnaln uificat 4-20 mA<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck9()> 
+	d. Un semnal digital <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck10() {  
+  
+     if ((Form_ck10.ck_1.checked==false)&(Form_ck10.ck_2.checked==true)&(Form_ck10.ck_3.checked==false)&(Form_ck10.ck_4.checked==false))  
+		document.Form_ck10.af_mes.value ='corect !';
+	else
+		document.Form_ck10.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck10">
+	<I> 5. Pentru a putea conecta senzorii inteligenti cu sisteme de calcul se utilizeaza: </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck10()>
+	a. Demultipelxoare<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck10()>
+	b. Modemuri HART <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck10()> 
+	c. Rutere <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck10()> 
+	d. Sisteme de comunicatii <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+ 
+</body>
+</html>
