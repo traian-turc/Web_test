@@ -1,6 +1,6 @@
 export default class afisor {
   constructor(btns) {
-    this.width = 325;
+    this.width = 400;
     this.height = 400;
     this.backgroundColor = 255;
     this.padding = 40;
