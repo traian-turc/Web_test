@@ -1,0 +1,832 @@
+<html>
+<title> SCADA-Notiuni introductive </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "red" size=6> SISTEME SCADA  </Center></TD></TR>
+</table>
+
+<font color= "Black" size=4><li><b>Obiective </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Prezentarea elementelor de baza despre sistemele SCADA
+<li>Prezentarea arhitecturii generale a unui sistem SCADA 
+<li>Prezentarea si exemplificarea modului de realizare a un proiect SCADA
+<li>Prezentarea si exemplificarea functiilor sistemelor SCADA
+</td></tr></table>
+</ul>
+
+<font color= "Black" size=4><li><b>Organizarea sarcinilor de lucru </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li> Parcurgeti cele trei capitole ale cursului.
+<li> La fiecare lectie urmariti exemplele ilustrative si incercati sa le realizati in medul de dezvoltare "Citect".
+<li> Fixati principalele idei ale cursului, prezentate în rezumat.
+<li> Completati testul de autoevaluare. 
+<li> Timpul de lucru pentru parcurgerea testului de autoevaluare este de 15 minute.
+</td></tr></table>
+</ul>
+<a name="elemi"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5>1.  Elemente introductive despre sistemele SCADA  </Center></TD></TR>
+</table>
+<br><br><a name="def"></a>
+<font color= "Black" size=4><li><b>Definitia sistemelor SCADA </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;SCADA (Supervisory Control And Data Aquisition)-este un sistem bazat pe calculator avand rolul de comanda si 
+monitorizare a proceselor tehnologice. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SCADA este cel mai modern instrument utilizat pentru supravegherea controlul si monitorizarea proceselor tehnologice. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SCADA presupune un soft special instalat in calculator, soft care comanda si monitorizeaza un proces tehnologic prin 
+intermediul unor echipamente locale (automate programabile PLC etc. 
+SCADA permite mimarea procesului tehnologic, oricat de complex, si aducerea lui pe ecranul calculatorului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Progresele substantiale inregistrate în acest domeniu au facut ca sistemele SCADA sa fie folosite in cele mai 
+diverse domenii, de la productia bunurilor de larg consum, la metalurgie, chimie si energetica, pana la domeniul nuclear.
+<br><br><a name="arh"></a>
+<font color= "Black" size=4><li><b>Arhitectura generala a sistemelor SCADA </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Un sistem SCADA este alcatuit din doua componente hardware principale:
+<ul>
+<li><b>Server </b> (unul sau mai multe)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Acesta este conectat la elementele de camp (proces) prin intermediul diverselor sisteme de achizitii date. 
+Sistemele de achizitii date sunt realizate in general pe baza microcontrolerelor avand rolul de a achizitiona date din proces si de a supraveghea 
+si controla functionarea procesului. Achizitia de date se realizeaza si prin utilizarea senzorilor inteligenti care se pot conecta direct la calculator 
+sau prin intermediul unor dispozitive intermediare numite "statii" sau "mastere" de comunicatii care concentreaza datele de la mai multi senzori inteligenti.
+Vom numi in continuare dispozitivele de achizitii date si control proces, "automate programabile" (PLC). 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Serverul este responsabil pentru toate datele culese din proces (realizeaza si baza de date, asigura comunicatia cu 
+PLC-urile din proces);
+<li><b> Client </b> (Viewer) . 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Este legat in retea cu serverul, utilizeaza datele din acesta si asigura comunicarea cu operatorul uman. 
+Poate lipsi la sistemele mici (serverul indeplineste si functia de viewer). 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Serverele sunt conectate la automatele programabile printr-o gama foarte larga de drivere de comunicatie 
+(sute de drivere care asigura legatura practic cu toate PLC-urile de la firmele cunoscute). 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Un singur server poate comunica simultan cu mai multe protocoale. Se pot dezvolta si drivere de comunicatie noi.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Serverele si viewer-ele sunt legate in retea (Ethernet). Tehnologia Web adoptata permite acum vizualizarea unui 
+proces si prin mediul Internet-ului.
+</ul>
+<center><img src="im_scada001.gif"></center>
+<br><a name="med"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>2. Mediul de dezvoltare SCADA - CITECT   </Center></TD></TR>
+</table>
+<br><a name="apl"></a>
+<font color= "Blue" size=5> Realizarea unei aplicatii SCADA   </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizarea unei aplicatii SCADA presupune o serie de pasi cum ar fi: 
+<ul>
+ <li>identificarea si setarea corespunzatoare a elementelor pentru achizitia de date precum si a echipamenelor pentru comanda si controlul 
+ procesului monitorizat.
+ <li> crearea unui nou proiect 
+ <li> definirea si setarea tag-urilor
+ <li> realizarea paginilor grafice pentru mimarea procesului monitorizat
+ <li> scrierea de functii si setarea corespunzatoare a elementelor grafice din paginile grafice pentru realizarea mimarii procesului.
+ <li> stabilirea utilizatorilor aplicatiei si setarea drepturilor acestora.
+ <li> testarea si rularea aplicatiei
+ </ul>
+<br><a name="prj"></a>
+<font color= "Blue" size=4><li><b>Crearea unui nou proiect </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Explorer -> File -> New Project, deschidem un nou proiect intitulat "Sch_el"
+<br><br><center><img src="im_citect001.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Explorer -> Sch_el -> Communications -> Clusters , definesc un cluster de comunicare numit "sch_el_cluster". 
+<br><br><center><img src="im_citect002.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Project Editor -> Servers -> Network Address, definesc adresa .TCP/IP 127.0.0.1 numita: "sch_el_adr". 
+Adresa "sch_el_adr" fiind adresa TCP/IT a sistemului de achizitie date care echipeaza sitemul de alimentare, fiind inclus in schema electrica de alimentare.  
+<br><br><center><img src="im_citect003.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vor fi configurate in continuare facilitatile de "Alarmare", "Trending" si "Report" astfel:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Project Editor -> Servers -> Alarm Server
+<br><br><center><img src="im_citect004.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Project Editor -> Servers -> Report Server
+<br><br><center><img src="im_citect005.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Project Editor -> Servers -> Trend Server
+<br><br><center><img src="im_citect006.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Project Editor -> Servers -> I/O Server
+<br><br><center><img src="im_citect007.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Explorer -> Sch_el_alim -> Communications -> ExpressI/O Device Setup -> Next ->Use an existing I/O->
+Disk I/O Device->Citect generic Protocol->Automatic reefresh of tags -> Finish
+<br><br><center><img src="im_citect008.gif"></center>
+
+<br><br><a name="tag"></a>
+<font color= "Blue" size=4><li><b>Configurarea tag-urilor </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Intreaga aplicatie SCADA se bazeaza pe stabilirea si utilizarea TAG-urilor. Tag-urile sunt interfata intre utilizator si
+procesul monitorizat. Exista mai multe tipuri de variabile tag. 
+<ul>
+ <li> Variabile tag - sunt variabilele care au legatura directa cu procesul, fiind modificate direct de sistemul de achizitie si control si totodata la 
+ acestea are acces si aplicatia SCADA
+ <li> Variabile tag locale - necesare dezvoltarii aplicatiei SCADA
+ <li> Variabile tag de tip trends - necesare pentru trasarea graficelor marimilor achizitionate din proces
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a adauga o variabila tag care sa reprezinte spre exemplu un comutator telecomandat pentru alimentarea generala cu energie, 
+procedam astfel:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Project Editor -> Tags -> Variable Tags
+<br><br><center><img src="im_citect009.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, s-a introdus variabila tag numita "comut_alim" , face parte din cluster-ul "sch_el_cluster" ,
+este o variabila digitala de tipul I/O  citita de la Device-ul generic IODev
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In mod similar se creaza variabilele tag locale si variabilele tag de tip trends.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Variabilele tag au un corespondent fizic in sistemul de achizitie si control date. In lipsa acestui sistem vom lucra numai cu 
+variabile locale. Vom introduce deci variabila locala numita "comut_alim". Atentie, variabila tag anterioara va fi stearsa, altfel va fi lansat un 
+mesaj ce indica faptul ca variabila "comut_alim" mai exista. Vom adauga deci Local Variable "comut_alim" astfel:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Project Editor -> Tags -> Local Variable
+<br><br><center><img src="im_citect041.gif"></center>
+
+<br><br><a name="pag_gr"></a>
+<font color= "Blue" size=4><li><b>Realizarea unei pagini grafice </b> </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va crea o noua pagina grafica numita <b> on_off_v0 </b>, in care vom plasa un buron cu titlul "Pornit/Oprit",  
+un buton cu titlul "Start", un al treilea buton care sa poarte titlul "Stop" si un LED care pentru semnalizare optica. 
+
+<br><br><center><img src="im_citect010.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Mod de realizare:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Explorer -> Sch_el -> Graphics -> Pages -> Next ->Create new page-> Se creaza o noua pagina grafica avand
+numele "On_off_v0". Se plaseaza trei obiecte "Button". Se modifica proprietatile butoanelor astfel incat sa apara textele corespunzatoare.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam deasemenea un led semnalizator prin plasarea unui obiect "Simbol set" si setarea in mod corespunzator.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a stabili functionalitate dorita vom stabili proprietatile "Imput" pentru fiecare buton astfel:
+<ul> 
+ <li>Pentru butonul "Stat" - setam proprietatea " Input" -Action up si la "Up command" completam cu <b> comut_alim=1 </b> deasemenea setam proprietatea 
+ " Acces" si completam Disable when cu <b> comut_alim=1 </b> 
+ <li>Pentru butonul "Stop" - setam proprietatea " Input" -Action up si la "Up command" completam cu <b> comut_alim=0 </b> deasemenea setam proprietatea 
+ " Acces" si completam Disable whwen cu <b> comut_alim=0 </b> 
+ <li>Pentru butonul "Start/Stop" - setam proprietatea " Input" -Action up si la "Up command" completam cu <b>Toggle(comut_alim) </b> 
+ <li> Pentru plasarea ledului s-a ales "Simbol set" si s-au selectat imaginile pentru on si off deasemenea la "On simbol whwen" s-a completat cu <b>
+ comut_alim </b>
+ </ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Se ruleaza aplicatia si schema devine functionala putandu-se actiona butoanele, led-ul si butoanele, 
+schimbandu-se in mod corespunzator
+<br><br><center><img src="im_citect011.gif"></center>
+
+<br><br><a name="func"></a>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>3. Functiile sistemelor SCADA  </Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sistemele de tip SCADA sunt impelmentate in cadrul diverselor sisteme tehnologige avand in vedere facilitatile 
+si avantajele certe oferite de acestea. Printre functiile realizate de sistemele SCADA se pot enumera:
+<ul>
+<li>Supravegherea si controlul 
+<li>Alarmarea 
+<li>Realizarea listelor de evenimente si a rapoartelor de productie  
+<li>Analiza post avarie 
+</ul>
+<font color= "Blue" size=5> Exemplificarea functiilor sistemelor SCADA  </font>
+
+<br><br><a name="supr"></a>
+<font color= "Blue" size=4><li><b>Supravegherea si controlul </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Una dintre cele mai importante functii ale sistemelor SCADA, o reprezinta functia de <b>supraveghere si controlul </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Supravegherea si controlul proceselor tehnologice se face prin intermediul unor pagini grafice care mimeaza procesul 
+tehnologic si sunt afisate pe unul sau mai multe monitoare de calculator. Aceste pagini grafice se mai numesc si interfete om masina HMI 
+(Human Machine Interface). Operatia de supraveghere mai poarta numele de monitorizare. Putem spune deci ca monitorizarea si controlul proceselor 
+tehnologice se face prin intermediul HMI-urilor.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a exemplifica functia de <b>supraveghere si controlul</b>, vom realiza in continuare o aplicatie pentru 
+monitorizarea si controlul unei instalatii de incalzire cu schimbator de caldura.
+<br><br><center><img src="im_citect012.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Fiecare element din pagina grafica mimeaza elemente din instalatia reala. De asemenea mare parte dintre elemente isi 
+schimba starea in timpul functionarii, stare care se reflecta in schema grafica. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a realiza pagina grafica, atribuim elementelor plasate, variabile tag. Vom defini deci urmatoarele tag-uri sub 
+forma de variabile locale tinand cont ca aplicatia este numai o simulare, neexistam interfatarea cu procesul tehnologic 
+
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr>
+<tr>
+  <td> c_cs </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda circuit secundar</b> </td>    
+</tr> 
+<tr>
+  <td> c1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda consumator 1 </b> </td>    
+</tr> 
+<tr>
+  <td> c2 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda consumator 2 </b> </td>    
+</tr> 
+<tr>
+  <td> c2 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda consumator 3 </b> </td>    
+</tr> 
+<tr>
+  <td> c4 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda consumator 4 </b> </td>    
+</tr>
+<tr>
+  <td> c_bp </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> </b> Comanda bypass</td>    
+</tr> 
+<tr>
+  <td> c_pp </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda pompa principala</b> </td>    
+</tr>
+<tr>
+  <td> c_ps </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda pompa secundara</b> </td>    
+</tr> 
+<tr>
+  <td> c_inc </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda incalzire</b> </td>    
+</tr> 
+<tr>
+  <td> t_cp </td>
+  <td> REAL </td>
+  <td> gr C </td>
+  <td> 100 </td>
+  <td> Temperatura in circuitul  primar</b> </td>    
+</tr>  
+<tr>
+  <td> t_cs </td>
+  <td> REAL </td>
+  <td> gr C </td>
+  <td> 100 </td>
+  <td> Temperatura in circuitul  secundar</b> </td>    
+</tr> 
+</table>
+</center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De pe pagina grafica, se pot lansa de asemenea diverse comenzi, care ajung la instalatia 
+reala si se executa. In urma executiei acestora, starea instalatiei se schimba, aceasta reflectandu-se in schema grafica. In aplicatia de sus
+se intalnesc elemente de monitorizare si control care ilustreaza practic functia de <b>supraveghere si controlul </b>
+
+
+<br><br><a name="alarm"></a>
+<font color= "Blue" size=4><li><b>Alarmarea </b></font><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea functie a sistemelor SCADA, o reprezinta functia de <b> alarmare </b>, functie pe care dorim s-o ilustram 
+in continuare, prin imbogatirea aplicatiei anterioare cu facilitati de alarmare.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instalatia dispune de senzorii T_C1-T_C4, T_BP, T_CS si T_CP care masoara temperatura in diverse puncte ale instalatiei. 
+Senzorul T_CP masoara temperatura in circuitul primar iar T_CS masoara temperatura in circuitul secundar. Cand aceaste temperaturi depasesc o anumite 
+temperaturi prescrise va trebui sa lansam alarme care sa indice aceste depasiri. Pentru a simula temperatura in circuitul primar vom introduce 
+tag-ul tcp respectiv tcs si doua controale "Genie-Manual Loader" pe care le configuram in mod corespunzator pentu a modifica cei doi parametri.
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr>
+<tr>
+  <td> t_cp </td>
+  <td> REAL </td>
+  <td> gr C </td>
+  <td> 100 </td>
+  <td> Temperatura in circuitul primar</b> </td>    
+</tr> 
+<tr>
+  <td> t_cs </td>
+  <td> REAL </td>
+  <td> gr C </td>
+  <td> 100 </td>
+  <td> Temperatura in circuitul secundar</b> </td>    
+</tr>
+</tr> 
+</table>
+</center>
+<br><br><center><img src="im_citect013.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca de exemplu, temperatura prescrisa este de 90 gr C si temperatura in circuitul primar sau secundar depaseste 
+valoarea prescrisa, se lanseaza o alaram, in cazul de sus se aprinde un led si apare textul "Depasire temperatura" 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru realizarea acestei functiuni, s-a plasat un "Set Simbol" In care au fost alese cele doua simboluri LED-gray 
+respectiv LED-red. De data aceasta tag-ul asociat este de forma :<b> t_cp>90</b>;
+<br><br><center><img src="im_citect014.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a activa textul:"Depasire temperatura"  numai la depasirea temperaturii, s-a plasat un text a carui 
+prprietate "Vizibility" este conditionata de expresia: <b> t_cp>90</b>; 
+
+
+<br><br><a name="liste"></a>
+<font color= "Blue" size=4><li><b>Realizarea listelor de evenimente </b></font><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea functie a sistemelor SCADA, o reprezinta functia de <b> realizarea listelor de evenimente </b>, functie 
+pe care dorim s-o ilustram in continuare.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Majoritatea sistemelor SCADA ofera un mecanism prin care sunt memorate toate comenzile date prin intermediul HMI-urilor 
+de catre utilizator. Pentru a realiza lista de venimente, trebuie in primul rand specificate tag-urile care trebuiesc urmarite, precum si 
+mesajele corespunzatoare atribuite fiecarui tag. In mediul de dezvoltare "Citect" se pot seta diverse tipuri de alarme din meniul :
+Citect Project Editor -> Alarms.
+<br><br><center><img src="im_citect015.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom seta in contiunuare cateva alarme digitale care ne vor genera liste de evenimente.
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="6" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume tag alarma </b>  </td>
+  <td align="center"><b> Nume alarma </b> </td>
+  <td align="center"><b> Descriere alarma </b> </td>
+  <td align="center"><b> Tag-ul corespunzator </b>  </td>
+  <td align="center"><b> Categoria </b></td>  
+  <td align="center"><b> Comentariu </b></td>
+
+</tr>
+<tr>
+  <td> al_c_pp </td>
+  <td> P principala </td>
+  <td> S-a actionat P principala </td>
+  <td> c_pp </td>
+  <td> 1 </td>
+  <td> S-a actionat  pompa principala (on sau off)</b> </td>    
+</tr> 
+<tr>
+  <td> al_c_ps </td>
+  <td> P secundara </td>
+  <td> S-a actionat P secundara </td>
+  <td> c_ps </td>
+  <td> 1 </td>
+  <td> S-a actionat  pompa secundara (on sau off)</b> </td>    
+</tr>
+<tr>
+  <td> al_c_inc </td>
+  <td> Incalzire </td>
+  <td> S-a actionat Incalxirea </td>
+  <td> c_inc </td>
+  <td> 1 </td>
+  <td> S-a actionat  incalzirea (on sau off)</b> </td>    
+</tr>
+</table>
+</center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Odata configurata lista alarmelor, fiecare modificare a tag-ului corespunzator va fi inscrisa in lista, astfel
+aceasta lista se poate consulta.
+<br><br><center><img src="im_citect016.gif"></center> 
+
+<br><br><a name="analiz"></a>
+<font color= "Blue" size=4><li><b>Analiza post avarie - trending  </b></font><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea functie a sistemelor SCADA, o reprezinta functia de <b> analiza post avarie  </b>, functie importanta 
+pentru analiza functionarii sistemului sau pentru analiza sistemului dupa o avarie.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se pot defini tag-uri de tip trend satfel valoarea tag-urilor atasate acestora va fi memorata la intervale 
+prestabilite de timp fiind posibila astfel analiza acestora.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom adauga deci urmatoarele Trend Tags
+
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume Trend Tag </b>  </td>
+  <td align="center"><b> Tag aferent </b> </td>
+  <td align="center"><b> Perioada de esantionare </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr>
+<tr>
+  <td> tr_t_cp </td>
+  <td> t_cp </td>
+  <td> 500 </td>
+  <td> 100 </td>
+  <td> Trend-temperatura circuit principal</b> </td>    
+</tr> 
+<tr>
+  <td> tr_t_cs </td>
+  <td> t_cs </td>
+  <td> 500 </td>
+  <td> Trend-temperatura circuit principal</b> </td>    
+</tr>
+</tr> 
+</table>
+</center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Vom adauga acum pe ultima pagina grafica un obiect "Genie->trend->G1_Pop_tn2", pe care il setam astfel:
+<br><br><center><img src="im_citect017.gif"></center> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Ruland aplicatia si modificand T_CP si T_CS din cele doua elemente de simulare, se poate actiona butonul aferent 
+obiectului G1_Pop_tn2 si obtinem:
+<br><br><center><img src="im_citect018.gif"></center> 
+
+
+
+
+
+
+
+
+
+
+
+<br><br><a name="autoev"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de autoevaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+<ul>
+<script type="text/javascript">
+function val_rd1(rd1) {
+  if (rd1==3)	
+  	document.Form_rd1.af_ms.value ='corect ! ';
+  else
+  	document.Form_rd1.af_ms.value ='gresit !';
+}
+</script>
+<Form name="Form_rd1">
+	<I> 1. Ce este un sistem SCADA ? </I><br><br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd1(this.value)"  VALUE = "1">
+	a. Este un sistem de comanda la distanta a proceselor tehnologice <br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd1(this.value)"  VALUE = "2">
+	b. Este un sistem de monitorizare a proceselor tehnologice <br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd1(this.value)"  VALUE = "3">
+	c. Este un sistem bazat pe calculator avand rolul de comanda si monitorizare a proceselor tehnologice <br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd1(this.value)"  VALUE = "4">
+	d. Este un sistem de gestiune si eficientizare a proceselor tehnologice <br>
+ 	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_ms" size=10 value=" ">
+ </form>
+</td></tr></table></center>  
+</ul>
+
+
+<ul>
+<script type="text/javascript">
+function val_rd2(rd2) {
+  if (rd2==1)	
+  	document.Form_rd2.af_ms.value ='corect !';
+  else
+  	document.Form_rd2.af_ms.value ='gresit !';
+}
+</script>
+<Form name="Form_rd2">
+	<I> 2. Care dintre functiile SCADA de mai jos presupun obligatoriu un HMI ? </I><br><br>
+	<INPUT TYPE = "radio" NAME="rd2" onclick="val_rd2(this.value)"  VALUE = "1">
+	a. Supravegherea si controlul <br>
+	<INPUT TYPE = "radio" NAME="rd2" onclick="val_rd2(this.value)"  VALUE = "2">
+	b. Alarmarea <br>
+	<INPUT TYPE = "radio" NAME="rd2" onclick="val_rd2(this.value)"  VALUE = "3">
+	c. Realizarea listelor de evenimente si a rapoartelor de productie <br>
+	<INPUT TYPE = "radio" NAME="rd2" onclick="val_rd2(this.value)"  VALUE = "4">
+	d. Analiza post avarie <br>
+ 	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_ms" size=10 value=" ">
+ </form>
+</ul> 
+
+<ul>
+<script type="text/javascript">
+function nr_ck1() {  
+  
+     if ((Form_ck1.ck_1.checked==true)&(Form_ck1.ck_2.checked==false)&(Form_ck1.ck_3.checked==true)&(Form_ck1.ck_4.checked==false))  
+		document.Form_ck1.af_mes.value ='corect !';
+	else
+		document.Form_ck1.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck1">
+	<I> 3. Care dintre dispozitivele din lista de jos realizeaza achizitia de date ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck1()>
+	a. PLC-uri<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck1()>
+	b. Servere SCADA <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck1()> 
+	c. Senzori inteligenti <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck1()> 
+	d. Clienti SCADA <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck2() {  
+  
+     if ((Form_ck2.ck_1.checked==true)&(Form_ck2.ck_2.checked==false)&(Form_ck2.ck_3.checked==true)&(Form_ck2.ck_4.checked==true))  
+		document.Form_ck2.af_mes.value ='corect !';
+	else
+		document.Form_ck2.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck2">
+	<I> 4. Ce operatii fac parte din deschiderea unui nou proiect ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck2()>
+	a. Configurarea serverului de alarmare<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck2()>
+	b. Configurarea elementelor pentru achizitia de date <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck2()> 
+	c. Configurarea serverului de trending <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck2()> 
+	d. Configurarea serverului de rapoarte <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function val_rd3(rd3) {
+  if (rd3==1)	
+  	document.Form_rd3.af_ms.value ='corect! ';
+  else
+  	document.Form_rd3.af_ms.value ='gresit !';
+}
+</script>
+<Form name="Form_rd3">
+	<I> 5. Care variabila are legatura directa cu procesul ? </I><br><br>
+	<INPUT TYPE = "radio" NAME="rd3" onclick="val_rd3(this.value)"  VALUE = "1">
+	a. Variabile tags  <br>
+	<INPUT TYPE = "radio" NAME="rd3" onclick="val_rd3(this.value)"  VALUE = "2">
+	b. Variabile locale<br>
+	<INPUT TYPE = "radio" NAME="rd3" onclick="val_rd3(this.value)"  VALUE = "3">
+	c. Variabile tags de tip trends <br>
+ 	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_ms" size=10 value=" ">
+ </form>
+</ul>
+
+<br><br><a name="rez"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Rezumat  </Center></TD></TR>
+</table>
+<br><br><font color= "Black" size=4><li><b>Definitia sistemelor SCADA </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;SCADA (Supervisory Control And Data Aquisition)-este un sistem bazat pe calculator avand rolul de comanda si 
+monitorizare a proceselor tehnologice. 
+<font color= "Black" size=4><li><b>Arhitectura generala a sistemelor SCADA </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Un sistem SCADA este alcatuit din doua componente hardware principale:
+<ul>
+<li>Server 
+<li>Client
+</ul>
+<font color= "Black" size=4><li><b> Realizarea unei aplicatii SCADA  </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizarea unei aplicatii SCADA presupune o serie de pasi cum ar fi: 
+<ul>
+ <li>identificarea si setarea corespunzatoare a elementelor pentru achizitia de date precum si a echipamenelor pentru comanda si controlul 
+ procesului monitorizat.
+ <li> crearea unui nou proiect 
+ <li> definirea si setarea tag-urilor
+ <li> realizarea paginilor grafice pentru mimarea procesului monitorizat
+ <li> scrierea de functii si setarea corespunzatoare a elementelor grafice din paginile grafice pentru realizarea mimarii procesului.
+ <li> stabilirea utilizatorilor aplicatiei si setarea drepturilor acestora.
+ <li> testarea si rularea aplicatiei
+ </ul>
+<font color= "Black" size=4><li><b>Configurarea tag-urilor </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatiile SCADA se bazeaza pe stabilirea si utilizarea TAG-urilor. Tag-urile sunt interfata intre utilizator si
+procesul monitorizat. Exista mai multe tipuri de variabile tag. 
+<ul>
+ <li> Variabile tag - sunt variabilele care au legatura directa cu procesul, fiind modificate direct de sistemul de achizitie si control si totodata la 
+ acestea are acces si aplicatia SCADA
+ <li> Variabile tag locale - necesare dezvoltarii aplicatiei SCADA
+ <li> Variabile tag de tip trends - necesare pentru trasarea graficelor marimilor achizitionate din proces
+</ul> 
+<font color= "Black" size=4><li><b>Functiile sistemelor SCADA </b> </font>
+<ul>
+<li>Supravegherea si controlul 
+<li>Alarmarea 
+<li>Realizarea listelor de evenimente 
+<li>Analiza post avarie - trending
+</ul>
+<br><br><a name="astept"></a>
+<font color= "Blue" size=4><li><b>Rezultate asteptate </b></font>
+<ul>
+Dupa studierea acestui modul, ar trebui sa cunoasteti:<br><br>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+
+<li>Ce inseamna un sistem SCADA
+<li>Arhitectura generala a unui sistem SCADA 
+<li>Cum sa creati un proiect in mediul de dezvoltare "Citect"
+<li>Care sunt functiile sistemelor SCADA
+</table>
+</ul>
+
+<a name="term"></a>
+<font color= "Blue" size=4> <li> <b>Termeni esentiali</b></font><br>
+<ul>
+<Table border=1 width="90%">
+
+<tr>
+  <td align="center"><b> Termen </b>  </td>
+  <td align="center"><b> Descriere </b>  </td>
+</tr>
+<tr>
+  <td> SCADA </td>
+  <td> Supervisory Control And Data Aquisition </td>    
+</tr>
+<tr>
+  <td> Tag </td>
+  <td> Nume generic pentru elementele din procesul monitorizat codificate prin intermediul variabilelor</td>    
+</tr>
+<tr>
+  <td> HMI  </td>
+  <td> Human Machine Interface -Interfata dintre aplicatie si utilizator </td>    
+</tr>
+<tr>
+  <td> Trend </td>
+  <td> Evolutia in timp a unei marimi fizice </td>    
+</tr>
+<tr>
+  <td> Server SCADA </td>
+  <td> Serverul SCADA este subansamblul unui sistem SCADA responsabil pentru toate datele culese din proces (realizeaza si baza de date, 
+  asigura comunicatia cu PLC-urile 
+  din proces)  </td>    
+</tr>
+<tr>
+  <td> Client SCADA</td>
+  <td> Clientul SCADA este subansamblul unui sistem SCADA, legat in retea cu serverul, utilizeaza datele din acesta si asigura comunicarea 
+  cu operatorul uman </td>    
+</tr>
+<tr>
+  <td>Cluster-ul</td>
+  <td>O grupare de elemente de acelasi tip  </td>    
+</tr>
+<tr>
+  <td></td>
+  <td>  </td>    
+</tr>
+
+
+</table>
+</ul>
+ 
+<br><br><a name="bibl"></a>
+<font color= "Blue" size=4><li><b>Recomandari bibliografice </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> [1] A. Daneels - What is SCADA -International Conference on Accelerator and Large Experimental Physics Control Systems, 1999, Trieste, Italy
+<li> [2] Gavril Toderean, Microprocesoare Univ. Tehnica Cluj, 1994
+<li> [3] Mircea Dulau, Automatizarea proceselor termice si chimice- Universitatea "Petru MaiorTargu Mures, 2002
+<li> [4] Traian Tur,Brevet de inventie nr:11863 "Sistem pentru automatizarea si monitorizarea proceselor industriale", OSIM, 2003
+<li> [5] Jeff Kent, C++ fara mistere,Ed.Rosetti Educational 2004 .
+<li> [6] Boldur Barbat - Informatica industriala - Programarea în timp real  – Institutul Central pentru Conducere si informatica 1984 
+<li> [7] Ioan Babuita – Conducerea automata a proceselor – Ed. Facla 1985
+<li> [8] Ghercioiu-National în struments - Orizonturi  în instrumentatie 1995
+</td></tr></table>
+</ul>
+<br><br><a name="link"></a>
+<font color= "Blue" size=4><li><b>Link-uri utile </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> 1.<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> - Free SCADA - 2009.
+<li> 2.<a href="http://www.7t.dk/igss/default.asp"> http://www.7t.dk/igss/default.asp</a> - IGSS SCADA System - 2009
+<li> 3.<a href="http://www.7t.dk/igss/default.asp?showid=374"> http://www.7t.dk/igss/default.asp?showid=374</a> - IGSS Online SCADA Training - 2009 
+<li> 4.<a href="http://www.7t.dk/free-scada-software/index.html"> http://www.7t.dk/free-scada-software/index.html</a>-  IGSS Free SCADA Software -2009
+<li> 5.<a href="http://www.citect.com/"> http://www.citect.com/</a> -  CITECT SCADA -2009 
+<li> 6.<a href="http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314"> http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314</a> - Download CITECT demo - 2009
+<li> 7.<a href="http://www.indusoft.com/index.asp"> http://www.indusoft.com/index.asp</a> - INDUSOFT SCADA - 2009
+<li> 8 <a href="http://www.gefanuc.com/products/2819"> http://www.gefanuc.com/products/2819</a> - Proficy HMI/SCADA - CIMPLICITY - 2009.
+<li> 9.<a href="http://www.genlogic.com/"> http://www.genlogic.com/</a> - Dynamic Graphics, Data Visualization, Human-Machine Interface (HMI) - 2010 
+<li> 10<a href="http://www.genlogic.com/demos.html"> http://www.genlogic.com/demos.html</a> - On-Line Java and AJAX Demos - 2010 
+<li> 11<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+<li> 12<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+</td></tr></table>
+</ul>
+
+<br><br><a name="eval"></a>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de evaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+  
+<ul>
+<script type="text/javascript">
+function val_rd6(rd6) {
+  if (rd6==2)	
+  	document.Form_rd6.af_ms.value ='corect !';
+  else
+  	document.Form_rd6.af_ms.value ='gresit !';
+}
+</script>
+<Form name="Form_rd6">
+	<I> 1. Cum este conectat un server SCADA la un proces tehnologic ? </I><br><br>
+	<INPUT TYPE = "radio" NAME="rd6" onclick="val_rd6(this.value)"  VALUE = "1">
+	Este conectat la procesul tehnologic prin intermediul senzorilor <br>
+	<INPUT TYPE = "radio" NAME="rd6" onclick="val_rd6(this.value)"  VALUE = "2">
+	Este conectat la procesul tehnologic prin intermediul diverselor sisteme de achizitii date <br>
+	<INPUT TYPE = "radio" NAME="rd6" onclick="val_rd6(this.value)"  VALUE = "3">
+	Este conectat la procesul tehnologic prin intermediul retelei ETHERNET<br>
+	<INPUT TYPE = "radio" NAME="rd6" onclick="val_rd6(this.value)"  VALUE = "4">
+	Este conectat la procesul tehnologic prin intermediul magistralei FIELD BUS<br>
+ 	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_ms" size=10 value=" ">
+ </form>
+</ul> 
+
+<ul>
+<script type="text/javascript">
+function nr_ck7() {  
+  
+     if ((Form_ck7.ck_1.checked==false)&(Form_ck7.ck_2.checked==false)&(Form_ck7.ck_3.checked==true)&(Form_ck7.ck_4.checked==true))  
+		document.Form_ck7.af_mes.value ='corect !';
+	else
+		document.Form_ck7.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck7">
+	<I> 2. Care dintre functiile SCADA de mai jos presupun adaugarea de tag-uri specifice ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck7()>
+	a. Supravegherea si controlul <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck7()>
+	b. Alarmarea <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck7()> 
+	c. Realizarea listelor de evenimente si a rapoartelor de productie  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck7()> 
+	d. Analiza post avarie  <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function val_rd8(rd8) {
+  if (rd8==3)	
+  	document.Form_rd8.af_ms.value ='corect !';
+  else
+  	document.Form_rd8.af_ms.value ='gresit !';
+}
+</script>
+<Form name="Form_rd8">
+	<I> 3. Tag-urile de tip trend sunt necesare pentru: </I><br><br>
+	<INPUT TYPE = "radio" NAME="rd8" onclick="val_rd8(this.value)"  VALUE = "1">
+	a. Realizarea paginilor grafice <br>
+	<INPUT TYPE = "radio" NAME="rd8" onclick="val_rd8(this.value)"  VALUE = "2">
+	b. Alarmare <br>
+	<INPUT TYPE = "radio" NAME="rd8" onclick="val_rd8(this.value)"  VALUE = "3">
+	c. Analiza post avarie<br>
+	<INPUT TYPE = "radio" NAME="rd8" onclick="val_rd8(this.value)"  VALUE = "4">
+	d. Plasarea controalelor "Genie" pe paginile grafice<br>
+ 	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_ms" size=10 value=" ">
+ </form>
+</ul> 
+<ul>
+<script type="text/javascript">
+function val_rd9(rd9) {
+  if (rd9==1)	
+  	document.Form_rd9.af_ms.value ='corect !';
+  else
+  	document.Form_rd9.af_ms.value ='gresit !';
+}
+</script>
+<Form name="Form_rd9">
+	<I> 4. Ce element se plaseaza in pagina grafica, entru a afisa un simbol cu doua stari: </I><br><br>
+	<INPUT TYPE = "radio" NAME="rd9" onclick="val_rd9(this.value)"  VALUE = "1">
+	a. Un element de tip "Simbol Set" <br>
+	<INPUT TYPE = "radio" NAME="rd9" onclick="val_rd9(this.value)"  VALUE = "2">
+	b. Un element de tip "Buton" <br>
+	<INPUT TYPE = "radio" NAME="rd9" onclick="val_rd9(this.value)"  VALUE = "3">
+	c. Un element de tip "Genie"<br>
+	<INPUT TYPE = "radio" NAME="rd9" onclick="val_rd9(this.value)"  VALUE = "4">
+	d. Un element de tip "Trend"<br>
+ 	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_ms" size=10 value=" ">
+ </form>
+</ul>
+<ul>
+<script type="text/javascript">
+function nr_ck10() {  
+  
+     if ((Form_ck10.ck_1.checked==true)&(Form_ck10.ck_2.checked==false)&(Form_ck10.ck_3.checked==false)&(Form_ck10.ck_4.checked==true))  
+		document.Form_ck10.af_mes.value ='corect !';
+	else
+		document.Form_ck10.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck10">
+	<I> 5. Cu un tag de tip "DIGITAL" putem controla un "Set simbol" de tipul </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck10()>
+	a. On/off <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck10()>
+	b. Multistate <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck10()> 
+	c. Array<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck10()> 
+	d. Animated <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+ 
+</body>
+</html>
