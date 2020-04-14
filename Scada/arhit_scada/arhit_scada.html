@@ -1,0 +1,631 @@
+<html>
+<HEAD>
+<title> Arhitecturi SCADA </title>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "red" size=6> Arhitecturi SCADA </Center></TD></TR>
+</table>
+
+<font color= "Black" size=4><li><b>Obiective </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Prezentarea principalelor arhitecturi hardware SCADA 
+<li>Prezentarea dispozitivelor RTU (Remote Terminal Unit) 
+<li>Prezentarea modurilor de realizare a redondantelor in cadrul arhitecturilor SCADA
+<li>Prezentarea principalelor arhitecturi software SCADA 
+<li>Prezentarea unui studiu de caz - aplicatie SCADA 
+</td></tr></table>
+</ul>
+
+<font color= "Black" size=4><li><b>Organizarea sarcinilor de lucru </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li> Parcurgeti cele trei capitole ale cursului.
+<li> La fiecare lectie urmariti exemplele ilustrative si incercati sa le realizati in medul de dezvoltare "Citect".
+<li> Fixati principalele idei ale cursului, prezentate în rezumat.
+<li> Completati testul de autoevaluare. 
+<li> Timpul de lucru pentru parcurgerea testului de autoevaluare este de 15 minute.
+</td></tr></table>
+</ul>
+<a name="hard"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5>1. Arhitecturi hardware  </Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;SCADA este un acronim care vine de la denumirea in limba engleza (Supervisory Control And Data Aquisition). SCADA se refera deci la un sistem care 
+colecteaza date de la diferiti senzori plasati in diverse puncte ale unui sistem tehnologic, date care apoi sunt trimise la un calculator central pe post de Server SCADA, care 
+gestioneaza si controleaza aceste date. In urma procesarii datelor primite sau in urma comenzilor date de operatorul uman, se pot trimite comenzi spre sistemul tehnologic.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Un sistem SCADA include un sistem hardware (interfata pentru semnalele de intrare si de iesire, controlere-PLC, relee, echipamente de comunicatii, etc) 
+si un sistem  software (interfata cu utilizatorul-HMI, baze de date, drivere, aplicatii, etc)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SCADA ofera control în timp real permitand optimizarea explatarii sistemului tehnologic.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In figura de jos, este prezentata o arhitectura hardware tipica.
+<br><br><center><img src="im_scada_120.gif"></center><br>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In general un server SCADA nu se conecteaza direct la PLC-urile conectate in sistemul tehnologic. De obicei se introduce un dispozitiv 
+RTU (Remote Terminal Unit) care colecteaza si centralizeaza datele de la si dinspre PLC-uri, asemanaror cu schema de mai jos:
+<br><br><center><img src="im_scada_121.gif"></center><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Un dispozitiv RTU este instalat într-o locatie aflata la distanta si colecteaza date de la PLC-uri. Un RTU functioneaza deci 
+pe post de concentrator de date.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SCADA Server-ul  cerere datee de la RTU, acesta codifica datele într-un format care este transmisibil, apoi RTU transmite 
+datele catre serverul SCADA.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;RTU primeste de asemenea comenzi de la serverul SCADA, comenzi pe care le trimite spre procesul tehnologic.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care sistemul tehnologic este mai complex, este posibila conectarea mai multor dispozitive RTU.
+<br><br><center><img src="im_scada_122.gif"></center><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, pentru a conecta mai multe dispozitive RTU sau alte dispozitive la serverul SCADA 
+este nevoie de o noua magistrala de date. O linie seriala RS 485 permite conectarea mai multor dispozitive pe aceeasi magistrala de date. 
+Serverul SCADA dispune doar de interfata RS-232, deci e nevoie de un convertor RS-232/RS-484. 
+Figura de sus prezinta o arhitectura hardware tipica in care se folosesc mai multe dispozitive RTU. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru cresterea fiabilitatii sistemului, se pot plasa mai multe servere asigurandu-se astfel redundanta pentru Serverele SCADA.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;De asemenea pentru cresterea in continuare a fiabilitatii sistemului, se poate realiza redundanta pentru dispozitivele RTU 
+plasindu-se mai multe astfel de dispozitive intr-o configuratie master-slave. Se pot plasa de asemenea mai multe magistrale de câmp asigurandu-se redundanta 
+si la acest nivel.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;În cazul proceselor tehnologice critice, sau a proceselor in care costurile pentru mentenanta sunt ridicate trebuie 
+asigurata o redondanta ridicata pentru a elimina incidentele cauzate de defectarea echipamentelor.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Figura de jos prezinta o arhitectura hardware tipica pentru un sistem SCADA cu o redundanta dubla.
+<br><br><center><img src="im_scada_123.gif"></center><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; În multe cazuri, dispozitivele RTU sau alte instrumente sunt echipate cu interfata RS-232. În acest caz, fiecare dintre 
+acestea trebuie sa fie conectate print-un convertor serial RS-232/RS-484, în scopul de a conecta toate aceste dispozitivele pe aceiasi magistrala de date.
+Chiar si Serverul SCADA trebuie sa fie conectat prin intermediul unui convertor serial R-S484/RS-232. În loc de a folosi mai multe convertoare RS-232/RS-484, 
+se poate folosi un sistem multi-dropping.
+<br><br><center><img src="im_scada_124.gif"></center><br>
+
+<br><br><a name="soft"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5>2. Arhitecturi software </Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Aplicatiile SCADA sunt realizate pe baza unei arhitecturi software asemanatoare cu arhitectura SCADA software prezentata 
+în figura de jos. In principiu o arhitectura SCADA software are cel putin doua componente: Aplicatiea SCADA server si aplicatia SCADA client.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia SCADA Server este de obicei multi-tasking, fiind responsabile atat de achizitia de date cat si de stocarea acestora 
+intr-o baza de date. In cazul de fata aplicatia SCADA server citeste date de la portul serial RS232 folosind protocolul MBUS RTU.
+<br><br><center><img src="im_scada_126.gif"></center><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Datele transferate de la RTU sunt stocate într-o baza de date. Datele sunt stocate in mai multe tabele. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia SCADA client utilizeaza baza de date actualizata de catre serverul SCADA în scopul de a realiza interfete garafice 
+pentru utilizatori, asa numitele HMI (Human Machine Interface). Un HMI mimeaza un proces tehnologic, creaza liste de evenimente, rapoarte, liste de 
+alarma si de avertizare, trending.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In multe cazuri aplicatiile SCADA se adreseaza si utilizatorilor indepartati care dispun de o conexiune la Internet. 
+In acest caz e nevoie de o noua componenta si anume : un WEB server. Un WEB server este folosit pentru generarea de pagini WEB dinamice, care sunt 
+furnizate clientilor WEB SCADA. Clientii WEB SCADA pot(intr-un mod similar cu clienti obisnuiti SCADA )beneficia de facilitatile acestora si 
+anume au acces in timp real la: liste de parametri, liste de evenimente sau lista de alarme, prin intermediul unui simplu browser .
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Baza de date este, de asemenea, utilizata pentru a tine un istoric al evolutiei în timp a diferitilor 
+parametri monitorizati.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Clientii WEB SCADA nu beneficiaza insa de aceleasi interfete grafice, aceleasi HMI-uri de care beneficiaza clientii 
+obisnuiti. Clientii SCADA obisnuiti, ruleaza aplicatii specifice spre deosebire de clientii WEB scada care vizualizeaza pagini WEB oferite de WEB server.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a reduce cat mai mult diferenta dintre clientii SCADA obisnuiti si clientii WEB SCADA, si pentru a oferi si acestora
+HMI-uri cat mai asemanatoare cu cele ale clientilor obisnuiti, se utilizeaza aplicatii WEB bazate pe servicii si instrumente virtuale. 
+In figura de jos este prezentata o arhitectura SCADA software bazata pe servicii, pentru clientii WEB.
+<br><br><center><img src="im_scada_127.gif"></center><br>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Componentele tip de instrument virtual sunt construite pentru a pune la dispozitia utilizatorilor
+o interfata care ofera date pentru initializare, si generarea unui instrument virtual. Instrumentele virtuale plasate in paginile web vor fi 
+conforme cu specificatiile furnizate de componentele tip de instrument virtual. Astfel orcice actualizare sau upgradare a instrumentelor 
+virtuale se face unitar si automat prin furnizarea unui nou tip de componenta. Practic componentele tip de instrument virtual sunt servicii 
+WEB puse la dispozitie de serverele de servicii web. Pentru a facilita cautarea acestor servicii, sunt necesare brokerele de servicii. In cazul 
+serviciilor WEB pentru instrumente virtuale, acestea se numesc SCADA Services Broker. Sistemele SCADA Services Broker vor furnizeaza deci 
+informatii despre componentele hardware care controleaza instrumentatia, astfel instrumentatia virtuala afisata in aplicatiile clientilor  WEB va 
+fi conforma cu instrumentatia fizica din sistem. Orce modificare a instalatiilor si instrumentatiei fizice, trebuie comunicata brokerilor, asfel 
+instrumentatia virtuala sa fie conforma cu realitatea pe toata perioada de functionare a acestora.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SCADA Services Broker sunt deci entitati care înregistreaza furnizorii de instrumente, date si servicii. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizarea SCADA Services Broker-ilor permite adaptarea continua a aplicatiilor WEB SCADA la noile realitati din sistemele 
+SCADA realitati aparute in urma modificarilor si modernizarilor din cadrul acestor sisteme.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In urma unei actualizari sau modificari a sistemului SCADA, se vor face publice noile specificatii, astfel, un instrument 
+virtual apeleaza un SCADA Services Broker care va cauta noile specificatii pentru acel instrument si le va comunica instrumentului virtual.
+<br><br><center><img src="im_scada_128.gif"></center><br>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Punerea în aplicare a unui serviciu, necesita transferul unor informatii catre instrumentul virtual de catre furnizorul 
+de servicii. Aceast transfer trebuie sa se realizeze intr-un mod standard. Transferul de date se face de cele mai multe ori prin intermediul mesajelor 
+încapsulate în structuri de tip XML.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; De exemplu, descrierea unui instrument virtul care afiseaza presiunea, 
+<br><br><center><img src="im_scada_129.gif"></center><br>
+descrierea arata astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+< vimeter type=”config”>
+	< caption > Manometer < /caption >
+	< code > Bar-276 < /code >
+	< addr >TP07 < /addr >
+	< mod > analog < /mod >
+	< aspect > markmax="0" < /aspect >
+	< backcolor > white < /backcolor >
+	< forecolor > magenta < /forecolor >
+	< width > 288 < /width >
+	< height > 316 < /height >
+	< poz > vertical < /poz >
+	< unit > bar < /unit >
+	< val > 27.5 < /val >
+	< minval > 0 < /minval >
+	< maxval > 50 < /maxval >
+< /vimeter >
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Datele transmise spre HMI prin intermediul formatului XML, au urmatoarea structura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+< vimeter type=”data” >
+	< addr >TP07 < /addr >
+	< unit > bar < /unit >
+	< val > 27.5 < /val >
+< /vimeter >
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru initializarea unui nou tip de instrument virtual, prin intermediul SCADA Service Broker-ului, se obtin
+urmatoarele date in format XML:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+< vimeter type=”request-for-monitor” >
+	< caption> Manometer < /caption >
+	< code> Bar-276 < /code >
+	< addr>TP07 < /addr >
+	< status>ready< /status >
+	< locale>Instrument replaced by maintanance op.< /locale >
+	< date-of-ready>12:05:2012< /date-of-ready >
+< /vimeter>
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br><a name="apl"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5>3. Studiu de caz - Aplicatie SCADA pentru o instalatie de distributie gaze </Center></TD></TR>
+</table>
+<br><br>
+<b>Arhitectura hardware SCADA  pentru o instalatie de distributie gaze</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Este descrisa in continuare o arhitectura  hardware SCADA scalara, a unuei instalatii de distributie gaze.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Arhitectura scalara permite redimensionarea arhitecturii SCADA, fara a fi nevoie de a modifica toat hardware-ul 
+sau a sistemelor software existente. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Arhitectura scalara SCADA permite arhitecturii sa creasca adaugand cu noi facilitati, dar în acelasi timp 
+pastrând investitia initiala. Figura de jos prezinta arhitectura hardware pentru instalatia de distributie gaze.
+<br><br><center><img src="im_scada_125.gif"></center><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Serverul SCADA comunica cu dispozitivele din camp prin linia seriala RS-232. RTU (Remote Terminal Unit) si Radio Base 
+sunt conectate la RS-485 în sistemul multi-dropping. RTU este instalat într-o locatie indepartata si colecteaza date de la actuatoare, 
+comportandu-se ca un concentrator de date.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;La cererea serverului SCADA, RTU codifica datele într-un format transmisibile si le trimite catre serverul SCADA. 
+RTU primeste de asemenea comenzi de la serverul SCADA si le trimite spre procesul tehnologic. RTU este echipat cu canale de intrare pentru senzorii 
+de masurare, canale de iesire pentru control, semnalizari de alarme si un port de comunicatii.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Scopul principal al RTU este de a interconecta dispozitivele de câmp (actuatoare) cu serverul SCADA prin intermediul 
+unui protocol MODBUS RTU.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;RTU transfera toate informatiile de la senzorii din câmp la nivelul superior de control adica spre serverul SCADA. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Datele sunt transmise prin linia seriala  RS-485 utilizand protocol de comunicare MODBUS RTU.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;RTU este, de asemenea, în masura sa execute diverse programe simple autonom, fara a implica serverul SCADA pentru a 
+creste autonomia instalatiei fata de serverul SCADA.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Radio Baza colecteaza date de la senzori de presiune fara fir si le transmite spre la serverul SCADA.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a conecta serverul de SCADA la linie de seriala R-S485, se utilizeaza un convertor serial RS-232/RS-485.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Serverele SCADA sunt conectate la clientii SCADA  prin internediul retelei locale LAN Ethernet iar clientii WEB 
+sunt conectat prin intermediul retelei Internet.
+<br><br><b> Interfata om masina </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;HMI (Human Machine Interface) reprezinta interfata om masina. Un HMI mimeaza procesul tehnologic printr-o grafica 
+sugestiva si totodata prezinta datele prelucrate catre un operator uman. Totodata operatorul uman poate transmite prin intermediul HMI-ului 
+comenzi spre procesul monitorizat.
+<br><br><center><img src="im_scada_130.gif"></center><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;HMI-urile sunt prezente in aplicatiile client aplicatii in care se ofera o interfata intuitiva
+si usor de utilizat de catre utilizator. Asa cum se arata în de sus, HMI mimeaza o instalatie de distributie de gaz, operatorii putand vedea un 
+o "Oglinda" electronica a instalatiei de gaz. Aplicatia client SCADA ofera, de asemenea diverse facilitati in ecrane multiple, care pot contine 
+diagrame sinoptice si texte pentru a afisa evenimente, rapoarte, liste de alarma, trending-uri.
+
+<br><br><a name="autoev"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de autoevaluare  </center></tr></td>
+</table>
+
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck1() {  
+  
+     if ((Form_ck1.ck_1.checked==true)&(Form_ck1.ck_2.checked==true)&(Form_ck1.ck_3.checked==false)&(Form_ck1.ck_4.checked==false))  
+		document.Form_ck1.af_mes.value ='corect !';
+	else
+		document.Form_ck1.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck1">
+	<I> 1. Arhitectura hardware a unui sistem SCADA al unui sistem tehnologic, trebuie sa permita: </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck1()>
+	a. Citirea senzorilor din sistemul tehnologic <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck1()>
+	b. Trimiterea de comenzi spre sistemul tehnologic <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck1()> 
+	c. Controlul direct al sistemelor din cadrul sistemului tehnologic <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck1()> 
+	d. Conectarea directa la PLC-urile din sistemul tehnologic <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck2() {  
+  
+     if ((Form_ck2.ck_1.checked==true)&(Form_ck2.ck_2.checked==false)&(Form_ck2.ck_3.checked==true)&(Form_ck2.ck_4.checked==false))  
+		document.Form_ck2.af_mes.value ='corect !';
+	else
+		document.Form_ck2.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck2">
+	<I> 2. Motivul pentru care se plaseaza mai multe sisteme RTU intr-o arhitectura SCADA:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck2()>
+	a. 1 Asigurarea redondantei <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck2()>
+	b. 2 Realizarea aplicatiilor SCADA este mai simpla <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck2()> 
+	c. 3 Arhitectura hardware SCADA este complexa <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck2()> 
+	d. 4 Systemul tehnologic este raspandit pe o suprafata mare <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck3() {  
+  
+     if ((Form_ck3.ck_1.checked==false)&(Form_ck3.ck_2.checked==true)&(Form_ck3.ck_3.checked==false)&(Form_ck3.ck_4.checked==false))  
+		document.Form_ck3.af_mes.value ='corect !';
+	else
+		document.Form_ck3.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck3">
+	<I> 3. Clientii WEB afiseaza informatiile SCADA utilizand : </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck3()>
+	a. Aplicatii specifice <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck3()>
+	b. Un browser oarecare de Internet <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck3()> 
+	c. Browser sau aplicatii specifice<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck3()> 
+	d. Aplicatii bazate pe Servicii WEB<br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck4() {  
+  
+     if ((Form_ck4.ck_1.checked==false)&(Form_ck4.ck_2.checked==true)&(Form_ck4.ck_3.checked==false)&(Form_ck4.ck_4.checked==false))  
+		document.Form_ck4.af_mes.value ='corect !';
+	else
+		document.Form_ck4.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck4">
+	<I> 4. Care este rolul unui WEB server SCADA  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck4()>
+	a. Creaza HMI-uri pentru  clientii WEB SCADA <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck4()>
+	b. Genereaza pagini WEB dinamice pentru clientii WEB SCADA <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck4()> 
+	c. Genereaza rapoarte pentru clientii WEB SCADA <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck4()> 
+	d. Genereaza liste de evenimente pentru clientii WEB SCADA <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck5() {  
+  
+     if ((Form_ck5.ck_1.checked==true)&(Form_ck5.ck_2.checked==true)&(Form_ck5.ck_3.checked==true)&(Form_ck5.ck_4.checked==true))  
+		document.Form_ck5.af_mes.value ='corect !';
+	else
+		document.Form_ck5.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck5">
+	<I> 5. Ce afiseaza un HMI </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck5()>
+	a. Un HMI afiseaza grafica ce mimeaza un proces tehnologic <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck5()>
+	b. Un HMI afiseaza liste de evenimente <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck5()> 
+	c.Un HMI afiseaza liste de alarma si de avertizare <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck5()> 
+	d. Un HMI afiseaza grafice de tip trending <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+
+<br><br><a name="rez"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Rezumat  </Center></TD></TR>
+</table>
+<br><br><font color= "Black" size=4><b>1. Arhitecturi hardware  </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Un sistem SCADA include un sistem hardware (interfata pentru semnalele de intrare si de iesire, controlere-PLC, 
+relee, echipamente de comunicatii, etc) si un sistem software (interfata cu utilizatorul-HMI, baze de date, drivere, aplicatii, etc) 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In general un server SCADA nu se conecteaza direct la PLC-urile conectate in sistemul tehnologic. 
+De obicei se introduce un dispozitiv RTU (Remote Terminal Unit) care colecteaza si centralizeaza datele de la si dinspre PLC-uri
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Un dispozitiv RTU este instalat într-o locatie aflata la distanta si colecteaza date de la PLC-uri. 
+Un RTU functioneaza deci pe post de concentrator de date. In cazul in care sistemul tehnologic este mai complex, este posibila conectarea mai 
+multor dispozitive RTU.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;În cazul proceselor tehnologice critice, sau a proceselor in care costurile pentru mentenanta sunt ridicate trebuie 
+asigurata o redondanta ridicata pentru a elimina incidentele cauzate de defectarea echipamentelor. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;În multe cazuri, dispozitivele RTU sau alte instrumente sunt echipate cu interfata RS-232. În acest caz, fiecare dintre 
+acestea trebuie sa fie conectate print-un convertor serial RS-232/RS-484, în scopul de a conecta toate aceste dispozitivele pe aceiasi magistrala 
+de date. În loc de a folosi mai multe convertoare RS-232/RS-484, se poate folosi un sistem multi-dropping. 
+
+<br><br><font color= "Black" size=4><b> 2. Arhitecturi software </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatiile SCADA sunt realizate pe baza unei arhitecturi software. O arhitectura SCADA software are cel putin doua 
+componente:
+<ul>
+ <li> Aplicatiea SCADA server
+ <li> Aplicatia SCADA client
+</ul> 
+&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia SCADA Server este de obicei multi-tasking, fiind responsabile atat de achizitia de date cat si de stocarea acestora 
+intr-o baza de date.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia SCADA Server transfera datele de la RTU spre o baza de date. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia SCADA client utilizeaza baza de date actualizata de catre serverul SCADA în scopul de a realiza interfete 
+garafice pentru utilizatori, asa numitele HMI (Human Machine Interface). Un HMI mimeaza un proces tehnologic, creaza liste de evenimente, rapoarte, 
+liste de alarma si de avertizare, trending. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In multe cazuri aplicatiile SCADA se adreseaza si utilizatorilor indepartati care dispun de o conexiune la Internet. 
+In acest caz e nevoie de o noua componenta si anume : un WEB server. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Un WEB server este folosit pentru generarea de pagini WEB dinamice, care sunt furnizate clientilor WEB SCADA. 
+Clientii WEB SCADA pot(intr-un mod similar cu clienti obisnuiti SCADA )beneficia de facilitatile acestora si anume au acces in timp real la: 
+liste de parametri, liste de evenimente sau lista de alarme, prin intermediul unui simplu browser . 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Clientii WEB SCADA nu beneficiaza insa de aceleasi interfete grafice, aceleasi HMI-uri de care beneficiaza clientii 
+obisnuiti. Clientii SCADA obisnuiti, ruleaza aplicatii specifice spre deosebire de clientii WEB scada care vizualizeaza pagini WEB oferite de WEB server. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a reduce cat mai mult diferenta dintre clientii SCADA obisnuiti si clientii WEB SCADA, si pentru a oferi si acestora 
+HMI-uri cat mai asemanatoare cu cele ale clientilor obisnuiti, se utilizeaza aplicatii WEB bazate pe servicii si instrumente virtuale.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Componentele tip de instrument virtual sunt construite pentru a pune la dispozitia utilizatorilor o interfata care 
+ofera date pentru initializare, si generarea unui instrument virtual. Componentele tip de instrument virtual sunt servicii WEB puse la dispozitie 
+de serverele de servicii web. Pentru a facilita cautarea acestor servicii, sunt necesare brokerele de servicii
+
+<br><br><font color= "Black" size=4><b> 3. Studiu de caz - Aplicatie SCADA pentru o instalatie de distributie gaze </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul acestui studiu de caz, este descrisa o arhitectura hardware SCADA scalara, a unuei instalatii de distributie gaze. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Arhitectura scalara propusa, permite redimensionarea arhitecturii SCADA, fara a fi nevoie de a modifica toat hardware-ul 
+sau a sistemelor software existente. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Arhitectura scalara SCADA permite arhitecturii sa creasca adaugand cu noi facilitati, dar în acelasi timp pastrând 
+investitia initiala.  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul aplicatiei este prezentat si un HMI (Human Machine Interface) reprezentativ. Un HMI reprezinta interfata om masina. 
+Un HMI mimeaza procesul tehnologic printr-o grafica sugestiva si totodata prezinta datele prelucrate catre un operator uman. 
+Totodata operatorul uman poate transmite prin intermediul HMI-ului comenzi spre procesul monitorizat. 
+HMI-urile sunt prezente in aplicatiile client aplicatii in care se ofera o interfata intuitiva si usor de utilizat de catre utilizator.
+
+<br><br><a name="astept"></a>
+<font color= "Blue" size=4><b>Rezultate asteptate </b></font>
+<ul>
+Dupa studierea acestui modul, ar trebui sa cunoasteti:<br><br>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+
+<li>Care sunt principale arhitecturi hardware SCADA 
+<li>Ce reprezinta si cum functioneaza dispozitivele RTU (Remote Terminal Unit)
+<li>Cum sunt realizate redondantele in cadrul arhitecturilor SCADA 
+<li>Care sunt principale arhitecturi software SCADA
+<li>Ce reprezinta brokerele de servicii SCADA
+</table>
+</ul>
+
+<br><br><a name="term"></a>
+<font color= "Blue" size=4>  <b>Termeni esentiali</b></font><br>
+<ul>
+<Table border=1 width="90%">
+
+<tr>
+  <td align="center"><b> Termen </b>  </td>
+  <td align="center"><b> Descriere </b>  </td>
+</tr>
+<tr>
+  <td> SCADA </td>
+  <td> Supervisory Control And Data Aquisition </td>    
+</tr>
+<tr>
+  <td> RTU </td>
+  <td> Remote Terminal Unit</td>    
+</tr>
+<tr>
+  <td> HMI  </td>
+  <td> Human Machine Interface </td>    
+</tr>
+<tr>
+  <td> SCADA Services Broker </td>
+  <td> Entitati care înregistreaza furnizorii de instrumente, date si servicii.</td>    
+</tr>
+<tr>
+  <td> XML </td>
+  <td> Extended Markup Language </td>    
+</tr>
+<tr>
+  <td> Actuatoare </td>
+  <td> Dispozitive de câmp cu comanda la distanta</td>    
+</tr>
+<tr>
+  <td>RS 485</td>
+  <td>O linie seriala RS 485 este o linie seriala care permite conectarea mai multor dispozitive pe aceeasi magistrala de date.
+</td>    
+</tr>
+<tr>
+  <td></td>
+  <td>  </td>    
+</tr>
+</table>
+</ul>
+ 
+<br><br><a name="bibl"></a>
+<font color= "Blue" size=4><b>Recomandari bibliografice </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> [1] A. Daneels - What is SCADA -International Conference on Accelerator and Large Experimental Physics Control Systems, 1999, Trieste, Italy
+<li> [2] Gavril Toderean, Microprocesoare Univ. Tehnica Cluj, 1994
+<li> [3] Mircea Dulau, Automatizarea proceselor termice si chimice- Universitatea "Petru MaiorTargu Mures, 2002
+<li> [4] Traian Tur,Brevet de inventie nr:11863 "Sistem pentru automatizarea si monitorizarea proceselor industriale", OSIM, 2003
+<li> [5] Jeff Kent, C++ fara mistere,Ed.Rosetti Educational 2004 .
+<li> [6] Boldur Barbat - Informatica industriala - Programarea în timp real  – Institutul Central pentru Conducere si informatica 1984 
+<li> [7] Ioan Babuita – Conducerea automata a proceselor – Ed. Facla 1985
+<li> [8] Ghercioiu-National în struments - Orizonturi  în instrumentatie 1995
+<li> [9] Radu Dobrescu - Automate programabile Ed Acad 1986
+<li> [10]Grigore Stolojanu - Prelucrarea numerica a semnalului vocal
+</td></tr></table>
+</ul>
+<br><br><a name="link"></a>
+<font color= "Blue" size=4><b>Link-uri utile </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> 1.<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> - Free SCADA - 2009.
+<li> 2.<a href="http://www.7t.dk/igss/default.asp"> http://www.7t.dk/igss/default.asp</a> - IGSS SCADA System - 2009
+<li> 3.<a href="http://www.7t.dk/igss/default.asp?showid=374"> http://www.7t.dk/igss/default.asp?showid=374</a> - IGSS Online SCADA Training - 2009 
+<li> 4.<a href="http://www.7t.dk/free-scada-software/index.html"> http://www.7t.dk/free-scada-software/index.html</a>-  IGSS Free SCADA Software -2009
+<li> 5.<a href="http://www.citect.com/"> http://www.citect.com/</a> -  CITECT SCADA -2009 
+<li> 6.<a href="http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314"> http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314</a> - Download CITECT demo - 2009
+<li> 7.<a href="http://www.indusoft.com/index.asp"> http://www.indusoft.com/index.asp</a> - INDUSOFT SCADA - 2009
+<li> 8 <a href="http://www.gefanuc.com/products/2819"> http://www.gefanuc.com/products/2819</a> - Proficy HMI/SCADA - CIMPLICITY - 2009.
+<li> 9.<a href="http://www.genlogic.com/"> http://www.genlogic.com/</a> - Dynamic Graphics, Data Visualization, Human-Machine Interface (HMI) - 2010 
+<li> 10<a href="http://www.genlogic.com/demos.html"> http://www.genlogic.com/demos.html</a> - On-Line Java and AJAX Demos - 2010 
+<li> 11<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+<li> 12<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+</td></tr></table>
+</ul>
+
+<br><br><a name="eval"></a>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de evaluare  </Center></td></tr>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck6() {  
+  
+     if ((Form_ck6.ck_1.checked==true)&(Form_ck6.ck_2.checked==false)&(Form_ck6.ck_3.checked==true)&(Form_ck6.ck_4.checked==false))  
+		document.Form_ck6.af_mes.value ='corect !';
+	else
+		document.Form_ck6.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck6">
+	<I> 1. Un RTU are rolul:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck6()>
+	a. De concentrator de date <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck6()>
+	b. De server de comunicatie date  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck6()> 
+	c. Interfata intre Serverul SCADA si Field BUS  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck6()> 
+	d. Router de date <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+  
+<ul>
+<script type="text/javascript">
+function nr_ck7() {  
+  
+     if ((Form_ck7.ck_1.checked==false)&(Form_ck7.ck_2.checked==true)&(Form_ck7.ck_3.checked==false)&(Form_ck7.ck_4.checked==false))  
+		document.Form_ck7.af_mes.value ='corect !';
+	else
+		document.Form_ck7.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck7">
+	<I> 2. Cine actualizeaza baza de date a unei aplicatii SCADA ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck7()>
+	a. WEB serverul <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck7()>
+	b. Serverul SCADA <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck7()> 
+	c. Severul HTML <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck7()> 
+	d. Clientul SCADA <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck8() {  
+  
+     if ((Form_ck8.ck_1.checked==false)&(Form_ck8.ck_2.checked==true)&(Form_ck8.ck_3.checked==false)&(Form_ck8.ck_4.checked==false))  
+		document.Form_ck8.af_mes.value ='corect !';
+	else
+		document.Form_ck8.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck8">
+	<I> 3. Un broker SCADA pentru servicii furnizeaza: </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck8()>
+	a. Servicii WEB <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck8()>
+	b. Informatii despre servicii WEB <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck8()> 
+	c. Componente pentru instrumente virtuale <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck8()> 
+	d. Instrumente virtuale <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck9() {  
+  
+     if ((Form_ck9.ck_1.checked==true)&(Form_ck9.ck_2.checked==false)&(Form_ck9.ck_3.checked==false)&(Form_ck9.ck_4.checked==false))  
+		document.Form_ck9.af_mes.value ='corect !';
+	else
+		document.Form_ck9.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck9">
+	<I> 4. O linie seriala RS 485 este   </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck9()>
+	a. O linie seriala care permite conectarea mai multor dispozitive pe aceeasi magistrala de date.  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck9()>
+	b. O linie seriala pentru distante lungi <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck9()> 
+	c. O linie seriala rapida <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck9()> 
+	d. O linie seriala lenta <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck10() {  
+  
+     if ((Form_ck10.ck_1.checked==true)&(Form_ck10.ck_2.checked==true)&(Form_ck10.ck_3.checked==false)&(Form_ck10.ck_4.checked==false))  
+		document.Form_ck10.af_mes.value ='corect !';
+	else
+		document.Form_ck10.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck10">
+	<I> 5. Ce sunt componentele tip de instrument virtual ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck10()>
+	a. Componente care pun la dispozitia utilizatorilor o interfata care ofera date pentru initializare, si generarea unui instrument virtual <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck10()>
+	b. Servicii WEB puse la dispozitie de serverele de servicii web <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck10()> 
+	c. Componentele unui instrument virtual <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck10()> 
+	d. Componentele unui server de instrumente virtuale  <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+ 
+</body>
+</html>
