@@ -2,12 +2,12 @@
 <title> Programarea aplicatiilor SCADA in mediul WinCC </title>
 <body>
 <table width="100%">
-<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "red" size=6> Utilizarea limbajului de programare VBS  in mediul WinCC </Center></TD></TR>
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "red" size=5> Utilizarea limbajului de programare VBS  in mediul WinCC </Center></TD></TR>
 </table>
 
 <br><a name="cicode"></a>
 <table width="100%">
-<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "blue" size=5> 1.Controale de intrare-iesire  </Center></TD></TR>
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "blue" size=4> 1.Controale de intrare-iesire  </Center></TD></TR>
 </table>
 
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatiile SCADA simple se pot crea in principiu fara a utiliza notiuni de programare. Aplicatiile mai complexe 
@@ -372,8 +372,8 @@ cat o expresie este adevarata.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Do While (expresie)</b> 
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni
 <br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Loop</b>
-<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea se executa repetat atÓta timp cÓt valoarea expresiei este adevarata. 
-Testul are loc Ónaintea fiecarei executii a instructiunii. Modul de functionare al instructiunii este urmatorul:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea se executa repetat at√Æta timp c√Æt valoarea expresiei este adevarata. 
+Testul are loc √Ænaintea fiecarei executii a instructiunii. Modul de functionare al instructiunii este urmatorul:
 <li>&nbsp;&nbsp;&nbsp;&nbsp; Se testeaza expresia din paranteze. Daca ea este adevarata (sau expresia din paranteze are o valoare diferita de zero) 
 <li>&nbsp;&nbsp;&nbsp;&nbsp; Se executa corpul instructiunii while
 <li>&nbsp;&nbsp;&nbsp;&nbsp; Se reia testarea si executia pana expresia devine falsa (sau valoarea expresiei din paranteze este zero) 
@@ -418,12 +418,12 @@ implementeaza structura ciclica cu numar cunoscut de pasi.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni;
 <br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Next</b>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie1 constituie initializarea ciclului si se executa o singura data Ónaintea ciclului. 
-<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie2 specifica testul care controleaza ciclul. El se executa Ónaintea fiecarei iteratii. 
-Daca conditia din test este adevarata atunci se executa corpul ciclului, care consta de cele mai multe ori Ón 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie1 constituie initializarea ciclului si se executa o singura data √Ænaintea ciclului. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie2 specifica testul care controleaza ciclul. El se executa √Ænaintea fiecarei iteratii. 
+Daca conditia din test este adevarata atunci se executa corpul ciclului, care consta de cele mai multe ori √Æn 
 modificarea valorii variabilei de control al ciclului. 
 <br>&nbsp;&nbsp;&nbsp;&nbsp; Se incrementeaza variabila din expresie1
-<br>&nbsp;&nbsp;&nbsp;&nbsp; Se revine apoi la reevaluarea conditiei. Ciclul se termina cÓnd expresie2 devine falsa.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Se revine apoi la reevaluarea conditiei. Ciclul se termina c√Ænd expresie2 devine falsa.
 <br><br><a name="a_for"></a>
 <br><li><b> Aplicatii care utilizeaza instructiunea For </b>
 <br><br>&nbsp;&nbsp;&nbsp;Vom realiza aplicatia <font color="red"><b> "for_01" </b> </font> in care afisam random 10 dreptunghiuri de inaltimi diferite.
@@ -503,7 +503,7 @@ End Sub
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni
 <br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Loop</b>
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea se executa repetat pana cand valoarea expresiei devine adevarata. 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;Testul are loc Ónaintea fiecarei executii a instructiunii.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Testul are loc √Ænaintea fiecarei executii a instructiunii.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea Do Until se foloseste atunci cand se cunoaste conditia finala pana la care se repeta secventa de instructiuni
 
 <br><br><a name="a_until"></a>
@@ -555,12 +555,12 @@ parametri, functii care returneaza sau nu valori.
 </pre> </font>
 </td></tr></table>
 <!------------------------------------------------------------------->
-<br>&nbsp;&nbsp;&nbsp;&nbsp;Prima linie reprezinta antetul procedurii, Ón care se indica:  numele procedurii, lista parametrilor formali si tipul lor. 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;Lista_param_formali (Óncadrata Óntre paranteze rotunde) consta Óntr-o lista (enumerare) care contine 
-tipul si identificatorul fiecarui parametru de intrare, despartite prin virgula. Daca lista parametrilor formali este vida, Ón antet, dupa numele 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prima linie reprezinta antetul procedurii, √Æn care se indica:  numele procedurii, lista parametrilor formali si tipul lor. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Lista_param_formali (√Æncadrata √Æntre paranteze rotunde) consta √Æntr-o lista (enumerare) care contine 
+tipul si identificatorul fiecarui parametru de intrare, despartite prin virgula. Daca lista parametrilor formali este vida, √Æn antet, dupa numele 
 functiei, apar doar parantezele ( ).
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Corpul procedurii este un bloc, care implementeaza algoritmul de calcul folosit de catre procedura. 
-Œn corpul functiei apar (Ón orice ordine) declaratii pentru variabilele locale si instructiuni. 
+√én corpul functiei apar (√Æn orice ordine) declaratii pentru variabilele locale si instructiuni. 
 <br><br><a name="a_proc"></a>
 <font color= "blue" size=4><b> Aplicatii care utilizeaza proceduri </b></font>
 <br><br>&nbsp;&nbsp;&nbsp;Sa reluam aplicatia <font color="red"><b> "if_02" </b> </font> in care am implement on buton on/off din simboluri.
@@ -780,13 +780,13 @@ End Sub
 </pre> </font>
 </td></tr></table>
 <!------------------------------------------------------------------->
-<br>&nbsp;&nbsp;&nbsp;&nbsp;Prima linie reprezinta antetul functiei, Ón care se indica:  numele functiei, lista parametrilor formali si tipul lor 
-si tipul valorii returnate . La fel ca un operand sau o expresie, o functie are un tip, care este dat de tipul valorii returnate de functie Ón functia apelanta. 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;lista_param_formali (Óncadrata Óntre paranteze rotunde) consta Óntr-o lista (enumerare) care contine 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prima linie reprezinta antetul functiei, √Æn care se indica:  numele functiei, lista parametrilor formali si tipul lor 
+si tipul valorii returnate . La fel ca un operand sau o expresie, o functie are un tip, care este dat de tipul valorii returnate de functie √Æn functia apelanta. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;lista_param_formali (√Æncadrata √Æntre paranteze rotunde) consta √Æntr-o lista (enumerare) care contine 
 tipul si identificatorul fiecarui parametru de intrare, despartite prin virgula.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Corpul functiei este un bloc, care implementeaza algoritmul de calcul folosit de catre functie. 
-Œn corpul functiei apar (Ón orice ordine) declaratii pentru variabilele locale si instructiuni. 
-Pentru intoarcerea valorii se foloseste instructiunea return valoare. La executie, la Ónt‚lnirea acestei instructiuni, se revine Ón functia 
+√én corpul functiei apar (√Æn orice ordine) declaratii pentru variabilele locale si instructiuni. 
+Pentru intoarcerea valorii se foloseste instructiunea return valoare. La executie, la √Ænt√¢lnirea acestei instructiuni, se revine √Æn functia 
 apelanta.
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;Argumentele functiei transmit valori unei functii apelate.Valoarea returnata se poat folosi pentru a transmite valori functiei apelante.
 <br><br><a name="func_r"></a>
