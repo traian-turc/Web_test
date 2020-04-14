@@ -1,0 +1,1365 @@
+<html>
+<HEAD>
+<title> Achizitia de date in sistemele SCADA </title>
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin-right: 1.25in; margin-top: 1in; margin-bottom: 0.5in }
+		P { margin-bottom: 0in;  margin-top: 0in; direction: ltr; color: #000000; text-align: left; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif; font-size: 12pt; so-language: en-AU }
+		P.cjk { font-family: "Times New Roman", serif; font-size: 12pt; so-language: zxx }
+		P.ctl { font-family: "Times New Roman", serif; font-size: 10pt; so-language: ar-SA }
+		H1 { margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; text-align: center; widows: 2; orphans: 2 }
+		H1.western { font-family: "Times New Roman", serif; font-size: 11pt; so-language: en-AU }
+		H1.cjk { font-family: "Times New Roman", serif; font-size: 11pt; so-language: zxx }
+		H1.ctl { font-family: "Times New Roman", serif; font-size: 11pt; so-language: ar-SA }
+		H2 { text-indent: 0.5in; margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; text-align: left; widows: 2; orphans: 2 }
+		H2.western { font-size: 12pt; so-language: en-AU; font-weight: normal }
+		H2.cjk { font-family: "Times New Roman", serif; font-size: 12pt; so-language: zxx; font-weight: normal }
+		H2.ctl { font-family: "Times New Roman", serif; font-size: 11pt; so-language: ar-SA; font-weight: normal }
+		H3 { margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; text-align: left; widows: 2; orphans: 2 }
+		H3.western { font-size: 12pt; so-language: en-AU; font-weight: normal }
+		H3.cjk { font-family: "Times New Roman", serif; font-size: 12pt; so-language: zxx; font-weight: normal }
+		H3.ctl { font-family: "Times New Roman", serif; font-size: 10pt; so-language: ar-SA; font-weight: normal }
+		H5 { text-indent: 0.5in; margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; text-align: center; widows: 2; orphans: 2 }
+		H5.western { font-size: 11pt; so-language: en-AU }
+		H5.cjk { font-family: "Times New Roman", serif; font-size: 11pt; so-language: zxx }
+		H5.ctl { font-family: "Times New Roman", serif; font-size: 11pt; so-language: ar-SA }
+		H6 { margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; text-align: center; widows: 2; orphans: 2 }
+		H6.western { font-size: 14pt; so-language: en-AU }
+		H6.cjk { font-family: "Times New Roman", serif; font-size: 14pt; so-language: zxx }
+		H6.ctl { font-family: "Times New Roman", serif; font-size: 11pt; so-language: ar-SA }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ro-RO" TEXT="#000000" DIR="LTR">
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "red" size=6> Achizitia de date in sistemele SCADA </Center></TD></TR>
+</table>
+
+<font color= "Black" size=4><li><b>Obiective </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Prezentarea principalelor sisteme de achizitii de date in sistemele SCADA
+<li>Prezentarea notiunilor de baza legate de convertoarele analog numerice
+<li>Prezentarea sistemelor de achizitii de date bazate pe calculator
+<li>Prezentarea modului de utilizare a portului paralel al calculatorului, in achizitia de date
+</td></tr></table>
+</ul>
+
+<font color= "Black" size=4><li><b>Organizarea sarcinilor de lucru </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li> Parcurgeti cele trei capitole ale cursului.
+<li> Fixati principalele idei ale cursului, prezentate în rezumat.
+<li> Completati testul de autoevaluare. 
+<li> Timpul de lucru pentru parcurgerea testului de autoevaluare este de 15 minute.
+</td></tr></table>
+</ul>
+<a name="elemi"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5>1. Elemente introductive despre convertoarele analog numerice  </Center></TD></TR>
+</table>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SCADA (Supervisory Control And Data Aquisition)-este un sistem bazat pe calculator avand rolul de comanda si 
+monitorizare a proceselor tehnologice. Dupa cum se observa si in denumire, SCADA contine doua componente si anume: 
+<ul>
+ <li> supervizare si control
+ <li> achizitia de date
+</ul>
+<center><img src="im_scada090.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Componenta de supervizare si control a fost dezbatuta anterior. In cele ce urmeaza, ne vom concentra asupra componentei 
+de achizitie a datelor. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cea mai mare parte a datelor achizitionate in sistemele SCADA o reprezinta valorile analogice. Valorile analogice insa nu pot fi 
+prelucrate in calculator decat in forma digitala. Convertoarel analog numerice sunt componentele care ne permit sa achizitionam datele analogice din proces, 
+in format digital. In sistemele industriale o mare parte din datele  monitorizate sunt de tip analogic. In vedrea prelucrarii lor prin intermediul sistemelor
+digitale valorile analogice trebuiesc convertite in valori digitale. Cel mai adesea se folosesc circuite specializate numite Convertoare Analog Numerice (CAN)
+<br><a name="conv_an"></a>
+<br><b>Conversia analog-numerica [10]</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Convertorul Analog Numeric  (CAN) este un dispozitiv care primeste un semnal analogic, A si il transforma intr-un semnal 
+numeric, N, cu precizie si rezolutie date, prin comparaea lui cu o tensiune de referinta,
+<FONT SIZE=3><I>V</I></FONT><IMG SRC="conv_an_html_3d758479.gif" NAME="Object1" ALIGN=ABSMIDDLE WIDTH=20 HEIGHT=30>
+<FONT SIZE=3>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Intr-un CAN ideal, semnalul de iesire , N, este legat de semnalul de intrare prin relatia: [10]
+<P LANG="en-AU" CLASS="western" ALIGN=CENTER><FONT SIZE=2><FONT SIZE=3>
+<center><I>N</I></FONT><FONT SIZE=3>=</FONT>
+<IMG SRC="conv_an_html_m41fa0c3f.gif" NAME="Object2" ALIGN=ABSMIDDLE WIDTH=25 HEIGHT=45></center></FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=2><FONT SIZE=3>In general, se opereaza cu puteri descrescatoare ale lui 2, in 
+ideea ca rezultatul sa fie exprimat direct sub forma de numar binar. Intrucit mesajul transmis are o lungime finita, se poate considera ca </FONT>
+<FONT SIZE=3><I>N</I></FONT><FONT SIZE=3><I><B></B></I></FONT><FONT SIZE=3>este aproximarea cea mai apropiata de rezultat, tinind seama de rezolutia 
+sistemului.</FONT></FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=2><FONT SIZE=3>Semnalul analogic, </FONT><FONT SIZE=3><I>A</I></FONT><FONT SIZE=3>
+,ce urmeaza sa fie convertit poate fi scris sub forma:</FONT></FONT></P>
+<P LANG="en-AU" CLASS="western" ALIGN=CENTER STYLE="text-indent: 0.5in">
+<FONT SIZE=2>
+<center><FONT SIZE=3><I>A= V</I></FONT><IMG SRC="conv_an_html_3d758479.gif" NAME="Object3" ALIGN=ABSMIDDLE WIDTH=12 HEIGHT=23>
+<IMG SRC="conv_an_html_73a4ccd9.gif" NAME="Object4" ALIGN=ABSMIDDLE WIDTH=205 HEIGHT=48></FONT></P></center>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=2><FONT SIZE=3>Lungimea cuvantului binar obtinut dupa conversie fiind limitata 
+la n biti, impartirea lui </FONT><FONT SIZE=3><I>A</I></FONT><FONT SIZE=3> prin</FONT><FONT SIZE=3><I>
+V</I></FONT><IMG SRC="conv_an_html_3d758479.gif" NAME="Object5" ALIGN=ABSMIDDLE WIDTH=12 HEIGHT=23><FONT SIZE=3>trebuie oprita la ordinul n si rezulta:</FONT></FONT></P>
+<P LANG="en-AU" CLASS="western" ALIGN=CENTER STYLE="text-indent: 0.5in">
+<FONT SIZE=2>
+<center><FONT SIZE=3><I>A= V</I></FONT><IMG SRC="conv_an_html_3d758479.gif" NAME="Object6" ALIGN=ABSMIDDLE WIDTH=12 HEIGHT=23>
+<IMG SRC="conv_an_html_m29972cb9.gif" NAME="Object7" ALIGN=ABSMIDDLE WIDTH=133 HEIGHT=48></FONT></P></center>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=2><FONT SIZE=3>Termenii neglijati </FONT><FONT SIZE=3><I>b</I></FONT>
+<IMG SRC="conv_an_html_4b3b358e.gif" NAME="Object8" ALIGN=ABSMIDDLE WIDTH=28 HEIGHT=24><FONT SIZE=3><I>,b</I></FONT><IMG SRC="conv_an_html_m2bc3b1be.gif" NAME="Object9" ALIGN=ABSMIDDLE WIDTH=21 HEIGHT=24><FONT SIZE=3><I>,&hellip;,</I></FONT><FONT SIZE=3>reprezinta
+eroarea de conversie, numita si eroare de cuantizare.</FONT></FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=2><FONT SIZE=3>Conversia analog-numerica realizeaza o cuantizare care consta din 
+inlocuirea tensiunii </FONT><FONT SIZE=3><I>A</I></FONT><FONT SIZE=3>printr-o tensiune discreta multiplicate prin pasul de cuantizare, de valoare
+</FONT><FONT SIZE=3><I>V</I></FONT><IMG SRC="conv_an_html_3d758479.gif" NAME="Object10" ALIGN=ABSMIDDLE WIDTH=12 HEIGHT=23><FONT SIZE=3>/2</FONT>
+<IMG SRC="conv_an_html_m18f033cf.gif" NAME="Object11" ALIGN=ABSMIDDLE WIDTH=11 HEIGHT=20><FONT SIZE=3>, in asa fel incat diferenta dintre </FONT>
+<FONT SIZE=3><I>A</I></FONT><FONT SIZE=3> si aceasta tensiune sa fie inferioara in modul unei jumatati de pas de cuantificare astfel:</FONT></FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><BR>
+</P>
+<P LANG="en-AU" CLASS="western" ALIGN=CENTER STYLE="text-indent: 0.5in">
+<center><IMG SRC="conv_an_html_m1a199ba0.gif" NAME="Object12" ALIGN=ABSMIDDLE WIDTH=121 HEIGHT=48></center></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in">
+</P>
+<a name="tip_can"></a>
+<br><b>Tipuri de convertoare analog-numerice</b>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><BR>
+</P>
+<P LANG="en-AU" CLASS="western"><FONT SIZE=3>CAN-urile sunt  fi realizate in general in doua feluri: [10]</FONT></P>
+<P LANG="en-AU" CLASS="western"><FONT SIZE=3>-convertoare cu integrare in doua pante ;</FONT></P>
+<P LANG="en-AU" CLASS="western"><FONT SIZE=3>-convertoare cu aproximare succesiva</FONT></P>
+<P LANG="en-AU" CLASS="western">	Ambele tipuri de convertoare transforma o tensiune de intrare intr-un cod numeric proportional cu tensiunea de intrare. 
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=2><FONT SIZE=3>Convertoarele analog-numerice  cu </FONT><FONT SIZE=3>
+<I>integrare in doua pante</I></FONT><FONT SIZE=3> contin un integrator, o schema de control logic, un generator de tact si un numarator de iesire. </FONT></FONT>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=2><FONT SIZE=3>Acest
+tip de convertor numara succesiunea de impulsuri de tact, a carei
+valoare depinde de amplitudinea semnalului integrat in integrator.
+Timpul specific de conversie este dat de produsul dintre doua
+perioade de tact si numarul de nivele de cuantizare. Astfel, pentru
+un convertor de 12 biti cu tact de 1 Mhz, timpul de conversie va fi 2x1</FONT>
+<IMG SRC="conv_an_html_m77fbf86f.gif" NAME="Object13" ALIGN=ABSMIDDLE WIDTH=16 HEIGHT=17>
+<FONT SIZE=3>s x 4096 adica  8192 </FONT>
+<IMG SRC="conv_an_html_m77fbf86f.gif" NAME="Object14" ALIGN=ABSMIDDLE WIDTH=16 HEIGHT=17><FONT SIZE=3>s.
+Acesta este un timp mult mai mare decat in cazul unui convertor cu
+aproximare succesiva avand aceeasi frecventa de tact. </FONT></FONT>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Convertorul
+cu integrare costa mai putin decat un convertor cu aproximare
+succesiva</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=2><FONT SIZE=3>Convertoarele
+analog-numerice  cu </FONT><FONT SIZE=3><I>aproximare succesiva</I></FONT><FONT SIZE=3>
+sunt folosite in general in sistemele de conversie conectate la
+calculatoare deoarece efectueaza conversia cu viteza si precizie
+suficient de mare pentru a furniza calculatorului date in tim real.</FONT></FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in">
+<center><IMG SRC="conv_an_html_m4a0873c4.png"> </center><BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Ideal,
+convertoarele ar trebui sa faca conversii instantanee si sa realizeze
+o esantionare in puncta. Pentru un convertor real, in general
+semnalul de intrare variaza in timpul intervalului de conversie.
+Aceasta produce o incertitudine in privinta amplitudinii reale a
+semnalului de intrare in momentul masurarii. Cu un circuit de
+esantionare cu retinere amplasat inaintea convertorului, timpul de
+incertitudine este redus la incertitudinea de deschidere a
+circuitului de esantionare cu memorare.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=2><FONT SIZE=3>Acest
+tip de convertor necesita un timp de conversie egal cu produsul
+dintre perioada de tact si numarul de biti cu care se efectueaza
+conversia. Pentru un convertor de 12 biti si cu frecventa tactului de
+1 Mhz timpul de conversie este de  12</FONT><IMG SRC="conv_an_html_m77fbf86f.gif" NAME="Object15" ALIGN=ABSMIDDLE WIDTH=16 HEIGHT=17><FONT SIZE=3>s.</FONT></FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>In
+principiu un convertor  analog-numerice  cu aproximare succesiva
+consta dintr-un convertor numeric-analogic controlat printr-o schema
+de decizie logica si a carui iesire este comparata cu tensiunea
+analogica de intrare. Tensiunea de intrare este aplicata pe o intrare
+a comparatorului, cealalta intrare fiind conectata la iesirea
+convertorului numeric-analogic intern. </FONT>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>La
+aplicarea comenzii de conversie, convertorul este adus la zero. Se
+aduce  bitul cel mai semnificativ al al cuvantului de intrare  al CAN
+la 1. Iesirea CAN este aplicata  la intrarea comparatorului pentru a
+fi comparata cu nivelul de intrare necunoscut. Bitul cel mai
+semnificativ aplicat la intrarea in CAN produce la iesire 
+echivalentul a jumatate din intreaga scala a convertoruiui. Daca
+tensiunea necunoscuta  este mai mare decat  jumatate din intreaga
+scala, 1 logic este transferat in pozitia bitului cel mai
+semnificativ al registrului de iesire. Daca tensiunea necunoscuta 
+este mai mica decat  jumatate din intreaga scala, 0 logic este
+transferat in pozitia bitului cel mai semnificativ al registrului de
+iesire. Apoi circuitul compara cu urmatorul bit din convertorul
+numeric-analogic intern si procedura continua in mod similar pana la
+bitul cel mai putin semnificativ, la care conversia este incheiata.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><BR>
+</P>
+<H1 LANG="en-AU" CLASS="western" ALIGN=CENTER STYLE="page-break-after: avoid">
+</H1>
+<H1 LANG="en-AU" CLASS="western" ALIGN=CENTER STYLE="page-break-after: avoid">
+</H1>
+<H1 LANG="en-AU" CLASS="western" ALIGN=CENTER STYLE="page-break-after: avoid">
+</H1>
+<H1 LANG="en-AU" CLASS="western" ALIGN=CENTER STYLE="page-break-after: avoid">
+</H1>
+<H1 LANG="en-AU" CLASS="western" ALIGN=CENTER STYLE="page-break-after: avoid">
+</H1>
+<a name="param_can"></a>
+<B>Parametrii caracteristici convertoarelor analog-numerice [10] </B>
+
+<P LANG="en-AU" CLASS="western"><BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=4><I>Functia
+ideala de transfer</I></FONT> [10] este data de ecuatiile:</P>
+<P LANG="en-AU" CLASS="western"><BR>
+</P>
+<P LANG="en-AU" CLASS="western" ALIGN=CENTER><FONT SIZE=2><FONT SIZE=3>
+<center><I>E</I></FONT><IMG SRC="conv_an_html_m54b5d597.gif" NAME="Object16" ALIGN=ABSMIDDLE WIDTH=21 HEIGHT=24><FONT SIZE=3><I>=
+V</I></FONT><IMG SRC="conv_an_html_3d758479.gif" NAME="Object17" ALIGN=ABSMIDDLE WIDTH=12 HEIGHT=23><IMG SRC="conv_an_html_m29972cb9.gif" NAME="Object18" ALIGN=ABSMIDDLE WIDTH=133 HEIGHT=48></FONT></P>
+<P LANG="en-AU" CLASS="western" ALIGN=CENTER><FONT SIZE=2><FONT SIZE=3>
+<center><I>E</I></FONT><IMG SRC="conv_an_html_m54b5d597.gif" NAME="Object19" ALIGN=ABSMIDDLE WIDTH=21 HEIGHT=24><FONT SIZE=3><I>-</I></FONT><IMG SRC="conv_an_html_m33756c27.gif" NAME="Object20" ALIGN=ABSMIDDLE WIDTH=39 HEIGHT=43><FONT SIZE=3><I>&lt;A&lt;
+E</I></FONT><IMG SRC="conv_an_html_m54b5d597.gif" NAME="Object21" ALIGN=ABSMIDDLE WIDTH=21 HEIGHT=24><FONT SIZE=3><I>+</I></FONT><IMG SRC="conv_an_html_m33756c27.gif" NAME="Object22" ALIGN=ABSMIDDLE WIDTH=39 HEIGHT=43></FONT></P>
+<P LANG="en-AU" CLASS="western" ALIGN=CENTER><BR>
+</P></center>
+<H3 LANG="en-AU" CLASS="western">In acest caz <I>V</I><IMG SRC="conv_an_html_3d758479.gif" NAME="Object23" ALIGN=ABSMIDDLE WIDTH=12 HEIGHT=23>reprezinta
+gama de tensiune ce poate fi convertita, denumita scala completa.
+Caracteristica de transfer a unui convertor analog-numeric este
+redata in figura de mai jos:</H3>
+<H2 LANG="en-AU" CLASS="western" STYLE="text-indent: 0in; page-break-after: avoid">
+Aceasta se compune din trepte de latime egala cu <I>V</I><IMG SRC="conv_an_html_3d758479.gif" NAME="Object24" ALIGN=ABSMIDDLE WIDTH=12 HEIGHT=23>/2,
+punctele de mijloc ale fiecarei trepte corespund diferitelor valori
+ale <I>E</I><IMG SRC="conv_an_html_m54b5d597.gif" NAME="Object25" ALIGN=ABSMIDDLE WIDTH=21 HEIGHT=24></H2>
+<P LANG="en-AU" CLASS="western"><FONT SIZE=3>	Graficul 1 reprezinta
+caracteristica ideala a convertorului, raficul 2 reprezinta
+caracteristica reala a convertorului.</FONT></P>
+<P LANG="en-AU" CLASS="western"><FONT SIZE=2><FONT SIZE=3>	Tranzitiile
+se produc pentru tensiuni </FONT><FONT SIZE=3><I> E</I></FONT><IMG SRC="conv_an_html_m54b5d597.gif" NAME="Object26" ALIGN=ABSMIDDLE WIDTH=21 HEIGHT=24><FONT SIZE=3><I>+</I></FONT><IMG SRC="conv_an_html_m33756c27.gif" NAME="Object27" ALIGN=ABSMIDDLE WIDTH=39 HEIGHT=43><FONT SIZE=3>,
+presupunand o cuantificare uniforma. </FONT></FONT> </P>
+<br><center><IMG SRC="conv_an_html_2f5279ed.png" ></center><BR>
+<P LANG="en-AU" CLASS="western"><BR>
+</P>
+<P LANG="en-AU" CLASS="western"><FONT SIZE=2><FONT SIZE=3>	Eroarea de conversie corespunzatoare, presupunand o cuantizare uniforma, este
+data de diferenta </FONT><FONT SIZE=3><I>A-E</I></FONT><IMG SRC="conv_an_html_m54b5d597.gif" NAME="Object28" ALIGN=ABSMIDDLE WIDTH=21 HEIGHT=24><FONT SIZE=3>
+</FONT></FONT>
+</P>
+<P LANG="en-AU" CLASS="western"><FONT SIZE=2><FONT SIZE=3>	Modulul
+acestei erori este mai mic sau egal cu </FONT>
+<IMG SRC="conv_an_html_mf251621.gif" NAME="Object29" ALIGN=ABSMIDDLE WIDTH=37 HEIGHT=43><FONT SIZE=3>,
+iar limita ei este eroarea de cuantizare.</FONT></FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=2><FONT SIZE=4><I><B>Rezolutia</B></I></FONT><FONT SIZE=3>
+este data de numarul de biti ai convertorului. Rezolutia defineste cea mai mica variatie a tensiunii pe care convertorul o poate coda si se exprima prin 
+relatia:</FONT></FONT></P>
+<IMG SRC="conv_an_html_m53d4ecad.gif" NAME="Object30" ALIGN=CENTER WIDTH=12 HEIGHT=23>
+<P LANG="en-AU" CLASS="western" ALIGN=CENTER STYLE="text-indent: 0.5in">
+<FONT SIZE=2><FONT SIZE=3><I>R=1/2</I></FONT><IMG SRC="conv_an_html_m18f033cf.gif" NAME="Object31" ALIGN=ABSMIDDLE WIDTH=11 HEIGHT=20></FONT></P>
+<P LANG="en-AU" CLASS="western" ALIGN=CENTER STYLE="text-indent: 0.5in">
+<BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=2><FONT SIZE=4><I><B>Timpul
+de conversie  </B></I></FONT><FONT SIZE=3>este timpul necesar pentru
+a obtine la iesire un semnal numeric proportional cu semnalul
+analogic de la intrare avand precizia dorita.</FONT></FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Pentru
+a cunoaste frecventa maxima de conversie posibila, la timpul de
+conversie trebuie adaugat si timpul aducerii convertorului la zero.
+De regula, acest timp este destul de mic si nu afecteaza semnificativ
+performantele convertorului.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=2><FONT SIZE=4><I><B>Precizia
+</B></I></FONT><FONT SIZE=3>se defineste ca fiind diferenta dintre
+valoarea teoretica a lui </FONT><FONT SIZE=3><I>E</I></FONT><IMG SRC="conv_an_html_m54b5d597.gif" NAME="Object32" ALIGN=ABSMIDDLE WIDTH=21 HEIGHT=24><FONT SIZE=3><I>
+</I></FONT><FONT SIZE=3>care produce un anumit cuvant </FONT><FONT SIZE=3><I>N</I></FONT><FONT SIZE=3>
+ la iesire si valoarea </FONT><FONT SIZE=3><I>A</I></FONT><FONT SIZE=3>
+care genereaza efectiv acest cuvant.</FONT></FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=2><FONT SIZE=3>Anumite
+convertoare analog-numerice au proprietatea ca pot diminua sau chiar
+elimina unele semnale perturbatoare, in special ale tensiunii de
+alimentare de alimentare de la retea. Se defineste un factor de
+rejectie a tensiunii perturbatoare, </FONT><FONT SIZE=3><I>S(</I></FONT><IMG SRC="conv_an_html_2f863084.gif" NAME="Object33" ALIGN=ABSMIDDLE WIDTH=16 HEIGHT=15><FONT SIZE=3><I>),</I></FONT><FONT SIZE=3>
+ca raportul dintre zgomotul de intrare si valoarea tensiunii de intrare</FONT></FONT>
+</P></center>
+<P LANG="en-AU" CLASS="western"><BR> </P>
+<b> Erori ale convertoarelor analog-numerice</b><br>
+
+<P LANG="en-AU" CLASS="western" ALIGN=CENTER><BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in">Performantele
+CAN-urilor difera de cele teoretice din cauza erorilor.Caracteristica
+de transfer, nu are alura curbei 1 ci pe cea a curbei 2, din aceasta
+cauza rezulta urmatoarele diferente:</P>
+<P LANG="en-AU" CLASS="western">	-tensiunile pentru care se produc
+tranzitiilor difera de cele corespunzatoare curbei 0</P>
+<P LANG="en-AU" CLASS="western">	-portiunile orizontale nu au exact
+dimensiunea unui pas de cuantizare</P>
+<P LANG="en-AU" CLASS="western">	-eroarea de cuantizare nu ramane in
+intervalul <FONT SIZE=5 STYLE="font-size: 20pt"><I>(</I></FONT><IMG SRC="conv_an_html_46668275.gif" NAME="Object34" ALIGN=ABSMIDDLE WIDTH=37 HEIGHT=43><I>&hellip;</I><IMG SRC="conv_an_html_181503a4.gif" NAME="Object35" ALIGN=ABSMIDDLE WIDTH=37 HEIGHT=43><FONT SIZE=5 STYLE="font-size: 20pt"><I>)</I></FONT></P>
+<P LANG="en-AU" CLASS="western">	Aceste diferentesunt datorate erorii
+de castig, erorii de decalaj, erorii de liniaritate, la care se adauga
+eroarea de cuantizare.</P>
+<P LANG="en-AU" CLASS="western"><BR>
+</P>
+<P LANG="en-AU" CLASS="western" ALIGN=CENTER><BR>
+</P>
+<P LANG="en-US" CLASS="western" ALIGN=CENTER>
+<center><IMG SRC="conv_an_html_m49466e08.png" ></center><BR>
+</P>
+<br><br><B>Convertorul analog-numeric ADC 0804 [20]</B><br><br>
+
+<H2 LANG="en-AU" CLASS="western" STYLE="text-indent: 0in; page-break-after: avoid">
+</H2>
+<H2 LANG="en-AU" CLASS="western" STYLE="text-indent: 0in; page-break-after: avoid">
+</H2>
+<H2 LANG="en-AU" CLASS="western" STYLE="text-indent: 0in; page-break-after: avoid">
+<P LANG="en-AU" STYLE="text-indent: 0.5in"> Unul din cele mai utilizate convertare CAN este convertorul ADC0804
+produs de firma National Semiconductors. Este un convertor A/D cu
+aproximatii successive pe 8 biti cu precizie de +/-1/2 LSB. Permite
+intrare de tensiune diferentiala sau absoluta gratie intrarii AGND
+care poate fi legata la masa sau la un pol al tensiunii
+diferentiale. Dispune de clock intern, valoarea frecventei de
+oscilatie fiind stabilita de valorile R, respective C conectate la
+terminalele CLKR , CLKI </p>
+</H2>
+<H2 LANG="en-AU" CLASS="western" STYLE="text-indent: 0in; page-break-after: avoid">
+</H2>
+<H2 LANG="en-AU" CLASS="western" STYLE="text-indent: 0in; page-break-after: avoid">
+</H2>
+<H2 LANG="en-AU" CLASS="western" STYLE="text-indent: 0in; page-break-after: avoid">
+<center><IMG SRC="conv_an_html_391fd739.png" ></center></H2>
+<P LANG="en-AU" CLASS="western"><FONT SIZE=2>	</FONT></P>
+<P LANG="en-AU" CLASS="western"><BR>
+</P>
+<P LANG="en-AU" STYLE="text-indent: 0.5in">ADC 0804 poate fi conectat
+cu usurinta la  sisteme microprogramate realizate cu microprocesoare
+sau controlere. Unitatea centrala a sistemului DASYS este echipata cu
+un astfel de convertor</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Exista
+mai multe moduri de comanda a circuitului. Exista posibilitatea sa se
+comande separate faza de startare a achizitiei si separate faza de
+citire date.</FONT></P>
+<P LANG="en-AU" STYLE="text-indent: 0.5in">Acesata se realizeaza cu o schema de principiu de tipul celei de mai  jos:</p>
+<P LANG="en-AU" CLASS="western"><BR>
+</P>
+<P LANG="en-US" CLASS="western">
+<center><IMG SRC="conv_an_html_60ca58b9.png" ></center><BR>
+</P>
+<P LANG="en-AU" STYLE="text-indent: 0.5in">Formele de unda ale semnalelor de
+comanda [20] care initiaza inceperea unei converii are urmatoarea forma: </p>
+<P LANG="en-AU" CLASS="western"><BR>
+</P>
+<P LANG="en-AU" CLASS="western"><BR>
+</P>
+<P LANG="en-AU" CLASS="western"><BR>
+</P>
+<P LANG="en-AU" CLASS="western"><FONT SIZE=3>	</FONT></P>
+<P LANG="en-AU" CLASS="western"><BR>
+</P>
+
+<center><IMG SRC="conv_an_html_m49d23350.png"> </center>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=2><FONT SIZE=3>In vederea citirii datelor
+convertite semnalele de comanda trebuie sa aiba forma:</FONT></FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=2><FONT SIZE=3>
+
+<center><IMG SRC="conv_an_html_298ccfe9.png"></center><br>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in">Exista posibilitatea de a initia o conversie si de a citi datele aqnterior
+convertite intr-o singura faza. In acest caz ADC-ul trebuie conectat
+ca in figura de mai jos:</P><br>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in">
+<center><IMG SRC="conv_an_html_m5390e9.png" ></center><BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in"><BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in"><FONT SIZE=3>Formele de unda ale semnaleor de comanda trebuie sa respecte diagrama de
+jos:[20]</FONT></P>
+<P LANG="en-US" CLASS="western"><BR>
+</P>
+<P LANG="en-US" CLASS="western">
+<center><IMG SRC="conv_an_html_5f0501a8.png" ></center><BR>
+</P>
+
+
+<br><br><a name="achiz_c"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>2. Achizitii de date bazate pe calculator  </Center></TD></TR>
+</table>
+
+<br><br>
+<P LANG="en-US" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>	Culegerea
+de date cu ajutorul calculatorului PC presupune introducerea unei
+placi de achizitie, intr-un slot al placii de baza a calculatorului</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3><SPAN LANG="en-US">	
+<br><center> <IMG SRC="achiz_calc_html_mb3e4e20.jpg" ></center><br>
+Transferul de date ce are loc intre placa de achizitie si calculator trebuie
+efectuat la viteza si cantitatea de date impuse de sistemul
+monitorizat. Ideal ar fi ca viteza si cantitatea maxima de date pe
+care vrem sa le culegem din exterior sa depinda numai de parametrii
+functionali ai placii de achizitie. Din pacate comunicarea dintre
+placa de achizitie si memoria calculatorului are limitari serioase
+impuse de arhitectura PC-ului.</SPAN></FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Exista
+trei posibilitati de comunicare intre placa de achizitie si
+calculator. </FONT>
+</P>
+<UL>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3><SPAN LANG="en-US"><B>Pooling</B></SPAN></FONT><FONT SIZE=4><SPAN LANG="en-US"><B>
+	</B></SPAN></FONT><FONT SIZE=3><SPAN LANG="en-US">&ndash;registrul
+	de stare al placii de achizitie este citit periodic dictat de un
+	timer al CPU</SPAN></FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3><SPAN LANG="en-US"><B>Intreruperi</B></SPAN></FONT><FONT SIZE=4><SPAN LANG="en-US"><B>
+	</B></SPAN></FONT><FONT SIZE=3><SPAN LANG="en-US">&ndash;Placa de
+	achizitie are capabilitatea de a intrerupe CPU de fiecare data cind
+	trebuiesc transferate date</SPAN></FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3><SPAN LANG="en-US"><B>DMA</B></SPAN></FONT><FONT SIZE=4><SPAN LANG="en-US"><B>
+	</B></SPAN></FONT><FONT SIZE=3><SPAN LANG="en-US">&ndash;controlerul
+	DMA (Direct Memary Acces) efectueaza transferul de date in paralel
+	cu activitatea CPU</SPAN></FONT></P>
+</UL>
+<a name="pool"></a>
+<b><font size=4>Pooling</font></b><br><br>
+
+<H2 LANG="en-US" CLASS="western" STYLE="margin-left: 0in">          
+Citirea periodica a datelor achizitionate (monitorizarea repetata)
+parta numele de Pooling. Acest tip de transfer este potrivit pentru
+culegerea de date folosind placa de achizitie instalata in
+calculator, fiind destul de rapid si usor de implementat.</H2>
+<P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>	In
+figura de jos este reprezentat schematic principiul de achizitie prin
+aceasta metoda.</FONT></P>
+<P LANG="" CLASS="western" STYLE="font-weight: normal">
+<br><center><IMG SRC="achiz_calc_html_32be6de9.jpg"><br></center>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; font-weight: normal">
+<FONT SIZE=3>In figura de sus este reprezentat modul de achizitie
+pentru  semnale de tip analogic. Partea de intrare analogica contine
+convertorul analogic digital (ADC), un timer A/D timer ce genereaza
+pulsurile de trigger ale fiecarei citiri, o memorie FIFO pe post de
+buffer care are rol de tampon de date intre doua citiri ale
+calcualatorului si un registru de stare ce pastreaza informatii
+referitoare la operatia de citire.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; font-weight: normal">
+<FONT SIZE=3>Secventa de operatii ce are loc pentru fiecare citire
+este urmatoarea:</FONT></P>
+<OL>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Timerul
+	genereaza un puls ce este trimis ADC-ului</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>ADC-ul
+	executa o conversie</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Valoarea
+	digitala rezultata din conversie este depusa in buffer-ul FIFO</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Bitul
+	de stare numit DVALdin registrul de stare sete activat</FONT></P>
+</OL>
+<P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Programul din calculator care initiaza un transfer
+trebuie sa contina urmatoarea  secventa de instructiuni:</FONT></P>
+<OL>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Se
+	citeste registrul de stare</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Daca
+	DVAL este activ se copiaza continutul FIFO in memoria calculatorului
+	altfel daca DVAL nu este activ se repeta algoritmul incepand cu
+	punctul 1</FONT></P>
+</OL>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Perioada de timp dintre initierea unei conversii si
+momentul cind DVAL este activ este singurul moment care poate fi
+precizat in transferul POOLING. Operatiile efectuate de CPU au durate
+variabile, in functie de ceasul CPU, gradul de incarcare al CPU
+etc. Convertorul ADC genereaza valorile digitale, la frecventa dorita,
+si le depund in FIFO. Placile de achizitie pot avea buffere FIFO cu
+marimi intre 16 si 2048 locatii. </FONT>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Daca bufferul este plin, si o noua conversie are loc
+inainte ca bufferul sa fie citit de CPU in registrul de stare se
+pozitioneaza un bit de eroare. Aceasta eroare nu este fatala, adica
+achizitia de date poate continua.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Principala limitare a transferului de date de tip
+pooling, este faptul ca nu poate fi facut la intervale precise de
+timp. CPU executa instructiunile in ordine secventiala dar cu
+intreruperi generate de sistemul de intreruperi in vederea deservirii
+si  altor procese. Folosind deci pooling nu se poate conta pe
+transferul datelor din FIFO in memorie la intervale precizate de
+timp, ceea ce poate duce la pierderea de valori din semnalul cules. </FONT>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Transferul de tip pooling, este usor de implementat la
+nivelul registrilor placii, si poate fi folosit in operatii de
+achizitie lente (&lt;30 Khz), in care operatiile executate asupra
+datelor culese nu sunt critice, timpul culegerii de date nefiind
+important, iar punctele de semnal sunt culese si procesate
+individual.</FONT></P>
+<P LANG="en-US" CLASS="western" ALIGN=CENTER STYLE="text-indent: 0.25in">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" ALIGN=CENTER STYLE="text-indent: 0.25in">
+<BR>
+</P>
+<H3 LANG="en-US" CLASS="western" ALIGN=CENTER STYLE="text-indent: 0in; page-break-after: avoid">
+<a name="intr"></a>
+<b><font size=4>Intreruperi</font></b><br>
+
+<P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><BR>
+</P>
+<P LANG="en-US" STYLE="text-indent: 0.25in; font-weight: normal"><FONT SIZE=3>Arhitectura
+calculatorului PC este astfel conceputa incit procesorul sa poata
+deservi toate resursele calculatorului. Acest tip de arhitectura se
+bazeaza pe utilizarea intreruperilor. Intreruperile sunt semnale
+hardware careprovin de la periferice si care instiinteaza procesorul
+ca trebuie sa deserveasca un periferic(o anumita resursa).</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Calculatoarele PC dispun de un controler de intrerupere
+programabil care furnizeaza  16 linii de intrerupere
+IRQ0-IRQ15. Intreruperile IRQ8-IRQ15 sunt prioritare liniilor
+IRQ3-IRQ17. In urma activarii unei linii de intrerupere, controlerul
+de intreruperi genereaza spre procesor un semnal numit INT. In
+momentul cind procesorul poate lua in considerare intreruperea, isi
+salveaza starea curenta pe stiva dupa care raspunde cu un semnal INTA
+pentru a anunta controlerul de intreruperi ca este gata sa trateze
+intreruperea in curs. Controlerul de intreruperi furnizeaza vectorul
+de intrerupere corespunzator intreruperii, iar procesorul pe baza
+vectorului furnizat gasete in tabela de intreruperi adresa rutinei de
+tratare a interuperii si lanseaza in executie rutina respectiva, dupa
+care revine in procesul initial prin citirea starii de pe stiva si
+reluarea procesului exact din momentul in care a fost intrerupt.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3><SPAN LANG="en-US">
+Infigura de jos este schitat sitemul hardware de intreruperi al unui PC:</SPAN></FONT></P>
+<br><center><IMG SRC="achiz_calc_html_699a1f30.png"><br></center>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Bazindu-se pe sistemul de intreruperi s-au conceput
+sisteme de achizitie care stabilesc legatura cu calculatorul prin
+intermediul intreruperilor. Sistemul de achizitie initiaza o achizitie
+de date. Dupa ce datele au fost achizitionate si stocate in buffere 
+se lanseaza o cerere de intrerupere pe una din liniile de
+intrerupere. Procesorul trateaza aceasta intrerupere rulind o rutina
+specifica sistemului de achizitie prin care datele sunt citite din
+bufferul sistemului de achizitie si transfereate in memorie. </FONT>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Schema bloc a unui astfel de sistem de achizitie ce 
+utilizeaza intreruperile este prezentata mai jos:</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<br><center><IMG SRC="achiz_calc_html_m79fa647a.jpg" ><br></center>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Ori de cite ori convertorul ADC efectueaza o conversie
+si o depune in memoria FIFO se activeaza senmalul CONV care prin
+intermediul interfetei de intreruperi activeaza o linie de
+intreruperi a controlerului de intreruperi. In momentul cind
+intrerupera este acceptata de procesor acesta executa rutina de
+tratare a acestei intreruperi respectiv rutina de tratare a
+sistemului de achizitie care citeste defapt continutul FIFO in
+memorie prin intermediul sistemului de I/O. </FONT>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>In urma citirii, numaratorul  de scanare este
+incrementat, furnizind o noua adresa pentru multiplexorul de intrare
+care va selecta o alta intrare analogica in vederea conversiei. Se
+reteaza in acelasi timp timerul A/D care initiaza un nou ciclu de
+conversie analogica.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>In concluzie secventa de operatii pentru fiecare citire
+este urmatoarea:</FONT></P>
+<OL>
+	<LI><P LANG="en-US" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Timerul
+	A/D genereaza un puls ce determina convertorul A/D sa inceapa un
+	ciclu de conversie</FONT></P>
+	<LI><P LANG="en-US" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Convertorul
+	A/D efectueaza conversia</FONT></P>
+	<LI><P LANG="en-US" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Valoarea
+	digitala este transferata in FIFO</FONT></P>
+	<LI><P LANG="en-US" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Se
+	lanseaza o intrerupere prin intermediul interfetei de intrerupere</FONT></P>
+	<LI><P LANG="en-US" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Se
+	accepta intreruperea si este lansata  de procesor rutina de
+	intrerupere</FONT></P>
+	<LI><P LANG="en-US" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Rutina
+	de intrerupere citeste datele prin I/O si le depune in memorie</FONT></P>
+	<LI><P LANG="en-US" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Se
+	revine din rutina de intrerupere</FONT></P>
+	<LI><P LANG="en-US" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Se
+	incrementeaza numaratorul scanner si Timerul ADC trimite un nou
+	semnal ce declanseaza o noua operatie de conversie</FONT></P>
+	<LI><P LANG="en-US" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Se
+	reia ciclul </FONT>
+	</P>
+</OL>
+<P LANG="en-US" CLASS="western" STYLE="margin-left: 0.5in; font-weight: normal">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Prin intermediul sistemelor de achizitie bazate pe
+intreruperi viteza maxima ramane sub 50 Khz chiar si cu sisteme de
+achizitie performante care dispun de convertoare rapide din cauza
+timpului relativ mare intre doua  acceptari de intrerupere ale
+procesorului. Se cistiga insa timp prin eliminarea sau cel putin
+reducerea factorului de intirziiere din operatiile ce preced copierea
+bufferului FIFO in memoria RAM.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Intreruperea hardware, emisa de placa de achizitie, nu
+are prioritate maxima, deci acceptarea intreruperii poate sa intirzie
+daca alte periferice mai prioritare fac la rindul lor intreruperi. Cu
+toate acestea intreruperea sosita de la placa de achizitie in general
+este tratata imediat de procesor.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Transferul de date folosind intreruperi poate crea
+probleme daca executia rutinei de intrerupere ia prea mult timp sau
+daca procesorul  consuma prea mult timp pentru acceptarea
+intreruperii.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>In aceasta situatie se poate intimpla ca memoria FIFO sa
+genereze overflow, deci sa avem pierderi de date din cauza ca ritmul
+de citire al datelor este mai mic decit ritmul de conversie a datelor</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Penrtu eliminarea acestor deficiente se utilizeaza o
+alta metoda de transfer, mult mai rapida si anume metoda de traqnsfer
+date prin transfer direct in memorie DMA-Direct Memory Acces.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal"> </P>
+<a name="dma"></a>
+<BR><b> <FONT SIZE=4> DMA-(Direct Memory Acces)</FONT></b>
+<P LANG="en-US" CLASS="western" STYLE="margin-left: 0.5in; font-weight: normal">
+<BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="margin-left: 0.25in; font-weight: normal">
+      <FONT SIZE=3>Mecanismul cel mai eficient, pentru transferul
+datelor intre placile de achizitie si memoria calculatorului il
+reprezinta sistemul DMA.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="margin-left: 0.25in; font-weight: normal">
+<FONT SIZE=3>	Metoda de transfer DMA este mai rapida decit metodele
+tratate anterior (poolong, intreruperi) deaoarece procesorul CPU nu
+este implicat in transferul de date. Transferul este efectuat
+controlerul DMA al calculatoruluiin paralel cu activitatile curente
+ale procesorului CPU. Transferul de tip DMA este folosit in
+aplicatiile in care blocuri intregi de date trebuiesc transferate in
+memorie la viteze foarte mari. </FONT>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="margin-left: 0.25in; font-weight: normal">
+<FONT SIZE=3>
+In principiu arhitectura unui calculator care dispune de DMA  si placa
+de achizitie date  ce transfera datele prin intermediul DMA  arata ca
+in schema bloc de mai jos.</FONT></P>	
+<br><center><IMG SRC="achiz_calc_html_7b0b7cb2.jpg" <br></center>
+
+<P LANG="en-AU" CLASS="western" STYLE="margin-left: 0.25in; font-weight: normal">
+<BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Transferul de date bazat pe DMA, consta in programarea
+sistemului de achizitie in vederea utilizarii capabilitatilor
+hardware de a cere transfer DMA si programarea controerului DMA
+pentru a accepta cererile DMA de la sistemul de achizitie si de a
+transfera datele in zona de memorie programata.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Pentru a realiza un transfer DMA intre placa de
+achizitie si memorie se parcurg urmatorii pasi.</FONT></P>
+<OL>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Se
+	programeaza controlerul DMA cu adresa de start ablocului de memorie
+	urmeaza a fi umplut cu date, precum si numarul de locatii care vor
+	fi transferate</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Se
+	programeaza placa de achizitie sa trimita semnalele de cerere de
+	transfer, folosind linia DRQ x, ori de cite ori FIFO are date ce
+	trebuiesc transferate.</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Placa
+	de achizitie trimite controolerului DMA un semnal DRQ x, semnal de
+	cerere de transfer.</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Controlerul
+	DMA  activeaza senmnalul Bus Request pentru a cere procesorului sa
+	elibereze magistrala in vederea efectuarii transferului de date
+	intre DMA si memorie prin intermediul BUS-ului comun.</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Procesorul
+	CPU cedeaza controlul asupra magistralei in favoarea sistemului DMA</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Sistemul
+	DMA activeaza semnalul DACK (acknowledge) pentru a anunta sistemul
+	de achizitie ca cererea DMA a fost acceptata si poate incepe un
+	transfer de date. DMA plaseaza pe bus-ul de adrese  adresa de memorie
+	din cadrul zonei de memorie in care se vor transfera datele, astfel
+	incit octetul de date sa poata fi transferat de sistemul de
+	achizitie direct in memorie.</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Placa
+	de achizitie scrie datele in memorie prin intermediul bus-ului PC si
+	invalideaza semnalul DRQ</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>DMA
+	formeaza o noua adresa pentru  urmatorul  octet  de transferat si
+	totodata numara octetii transferati din buff-erul FIFO al placii de
+	achizitie, decrementind counterul care tine numarul de octeti  care
+	trebuie transferat  </FONT>
+	</P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Se
+	repeta algoritmul incepind cu punctul 3, pina cind counterul cu nr
+	de octeti atinge valoarea 0, adica numarul de octeti programat la
+	punctul 1 a fost deja transferat.</FONT></P>
+</OL>
+<P LANG="en-AU" CLASS="western" STYLE="margin-left: 0.5in; font-weight: normal">
+<BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Exista mai multe moduri in care placa de achizitie
+activeaza semnalul DRQ. Astfel placa de achizitie poate cere
+transfer pentru fiecare octet de date din FIFO, caz in car avem de-a
+face cu un transfer DMA -</FONT><FONT SIZE=3><I>single mode</I></FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Sistemul de achizitie poate fi programat in asa fel
+incit sa activeze semnalul DRQ pentru o perioada mai lunga pentru ca
+DMA sa poata face mai multe cicluri (3-9)  deci sa transfere mai
+multe locatii pentru un singur DRQ. Acest mod de lucru cu DMA-ul se
+numeste DMA-</FONT><FONT SIZE=3><I>demand mode</I></FONT><FONT SIZE=3>.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Alta metoda de lucru este metoda DMA </FONT><FONT SIZE=3><I>-bloc
+transfer</I></FONT><FONT SIZE=3> prin care odata cererea de transfer
+acceptata, DRQ este pastrat activ pana la transferarea tuturor
+datelor din buff-er obligind deci DMA-ul sa tina bus-ul ocupat pana
+la transferul integral al datelor din FIFO</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Sistemul de achizitie si transfer prin DMA poate fi reprezentat la nivel de
+schema bloc astfel:</FONT></P>
+<br><center> <IMG SRC="achiz_calc_html_2fe72939.jpg"> <br></center>
+<P LANG="en-AU" CLASS="western" STYLE="margin-left: 0.25in; text-indent: 0.25in; font-weight: normal">
+ 
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Secventa
+de operatii care are loc pentru fiecare transfer DMA este urmatoarea:</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><BR>
+</P>
+<OL>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Se
+	programeaza canalul DMA corespunzator si placa de achizitie pentru a
+	stabili numarul de octeti transferati si adresa de memorie unde vor
+	fi transferate datele.</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Un
+	urma unei conversii datele ajung in FIFO, care activeaza semnalul
+	CONV, iar prin interfata DMA se activeaza semnalul DRQ pe magistrala
+	calculatorului. Controlerul de DMA  face o cerere de acordare a
+	magistralei spre procesorul CPU prin activarea semnalului
+	BUSREQUEST. Procesorul acorda magistrala si semnalizeaza prin
+	activarea semnalului BUSGRANT.</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Controlerul
+	de DMA activeaza semnalul DACK x pentru a semnaliza faptul ca sunt
+	indeplinite coditiile pentru a se face transferul de date.</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Se
+	face transferul numarului stabilit de octeti la adresa stabilita.</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Semnalul
+	DACK x prin interfata DMA genereaza un puls ACK care este trimis
+	interfetei I/O pentru a permite transmiterea datelor pe magistrala. Tot semnalul ACK incrementeaza counterul de scanare care stabileste
+	o noua adresa pentru multiplexorul analogic de la intrare De asemenea ACK reseteaza timerul A/D care genereaza noi pulsuri pentru
+	convertorul A/D </FONT>
+	</P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Convertorul
+	efectueaza noi conversii</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Valoarea
+	digitala rezultata din conversie rezultata din conversie este depusa
+	in FIFO</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Se
+	lanseaza din nou o cerere spre DMA</FONT></P>
+	<LI><P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><FONT SIZE=3>Se
+	reia ciclul de la punctul 2 sau de la punctul 1 daca se schimba
+	numarul sau locul de memorare al datelor.</FONT></P>
+</OL>
+<P LANG="en-AU" CLASS="western" STYLE="font-weight: normal"><BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Viteza de culegere si transfer a datelor in acest mod
+poate atinge frecventa de 300-500 Khz in functie de ceasul
+procesorului. Este unul din cele mai rapide procedee de achizitie date
+si se preteaza in locuri unde e nevoie de cantitate mare de date de
+achizitionat in timp real.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Un alt avantaj al folosirii procedeului DMA il
+reprezinta faptul ca in paralel cu transferul datelor procesorul
+poate rula anumite instructiuni care nu necesita magistrala, deci
+eficienta ansamblului calculator sistem de achizitie creste. Se pot
+crea aplicatii in care in care sa se execute operatii simultane de
+genul achizitie transfer prelucrare prezentare, cu alte cuvinte
+chizitie, analiza si prezentare in timpm real.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Lungimea maxima a unui bloc de date transferat nu poate
+depasi 64 Ko din cauza limitarilor sistemului DMA. Dupa un astfel de
+transfer DMA-ul trebuie reprogramat cu o noua adresa de rtansfer date
+si cu noua dimensiune a blocului de transferat.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.25in; font-weight: normal">
+<FONT SIZE=3>Din cauza faptului ca memoria unui calculator trebuie
+refresh-ata la fiecare 15 microsecunde si deci trebuie eliberat
+bus-ul la fiecare 15 microsecunde, metodele de transfer DMA de tip
+demand sau blok sunt aproape imposibil de implementat. </FONT>
+</P>
+
+
+<br><br><a name="achiz_p"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>3. Utilizarea portului paralel al calculatorului, in achizitia de date  </Center></TD></TR>
+</table>
+<P LANG="en-AU" CLASS="western" STYLE="margin-bottom: 0.5in">
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="margin-bottom: 0.5in">
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="margin-bottom: 0.5in">
+</P>
+<P LANG="en-AU" STYLE="text-indent: 0.5in; margin-bottom: 0in"><FONT SIZE=3>Sistemele
+de achizitie care comunica cu calculatorul prin intermediul portului
+serial vehiculeaza date  in functie de  viteza de comunicatie a
+portului serial chiar daca ele pot achizitiona date la viteze mult
+mai mari. In cazul in care calculatorul central are nevoie de o
+cantitate mai mare de date sistemele de achizitie seriale nu mai fac
+fata. O solutie ar fi sistemele de achizitie ce utilizeaza portul
+parallel pentru comunicatia de date.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Avand in vedere ca portul parallel furnizeaza o
+magistrala de date de 8 biti si o magistrala de comenzi de 9 biti
+dintre care 5 de intrare si 4 de iesire, se poate un transfer de date
+mult mai rapid. Un astfel de sistem de achizitie conectat la portul
+parallel este prezentat in continuare.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0.5in">
+<center><IMG SRC="ach_p_paral_html_m1f2ba80f.png"></center>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0.5in">
+<BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Sistemul de achizitie poate sa lucreze independent deci
+sa contina sisteme inteligente microprogramate sau poate sa fie o
+simpla interfata prin care calculatorul comanda achizitia si
+realizeaza transferul.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>In cazul in care sistemul de achizitie este o simpla
+interfata comandata de calculator, programele de achizitie se afla in
+totalitate pe calculator, sistemul de achizitie este un  element de
+executie. Are avantajul ca este foarte simplu, ieftin si
+flexibil. Intregul pachet de programme se afla pe calculator deci
+actualizarile si  imbunatatirile de program se fac numai pe
+calculator. Principalul dezavantaj il constituie faptul ca sistemul
+depinde in totalitate de calculator neputind functiona  independent
+de calculator.Daca sistemul este complex si  pe langa moitorizare de
+date face si comanda, un astfel de sistem nu este prea indicat. </FONT>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Pentru cazurile cand principala functie a sistemului
+este monitorizarea de date eventual pe langa monitorizare si cateva
+comenzi, un sistem controlat in totalitate de calculator, este
+potrivit.</FONT></P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0.5in">
+<center><IMG SRC="ach_p_paral_html_3fbc5d10.png"></center>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0.5in">
+  
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<BR>
+</P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Dupa cum se vede in figura de sus sistemul de achizitie
+este comandat de calculator prin intermediul liniilor de control din
+portul parallel. Datele sunt citie prin cele patru linii de
+intrare. Iesirile de date utilizeaza magistrala de date a portului
+parallel. Avand in vedere ca nu toate calculatoarele dispun de port
+parallel bi-directional s-a preferat ca toate citirile de date sa se
+faca pe cele patru linii de intrare.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Datele vehiculate au dimensiunea de 8 biti (un octet). Pentru a putea fi citite s-au folosit  4 multiplexoare 4:1 din care
+doua pentru citirea datelor de la convertorul AD iar doua pentru
+citirea datelor de la portul de intrare. S-a folosit o linie de intrare special pentru semnalul INT de la convertorul A/D care indica
+sfirsitul conversiei.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Startul conversiei este dat de o iesire a portului
+parallel legata direct la intrarea RWR a convertorului ADC.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>In vederea conectarii de multiplexoare suplimentare se
+mai furnizeaza patru linii de adresa direct din portul parallel cu
+specificatia ca sunt totusi  amplificate prin patru porti logice 404.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Iesirile digitale sunt realizate prin bufferarea a 7
+linii de date cu ajutorul circuitului 574 comandat de un semnal
+furnizat tot de portul parallel.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Pentru a creste numarul de intrari analogice se mai
+ataseaza  multiplexoare analogice 16:1 Iesirile fiecarui multiplexor
+se conecteaza la cite o intrare analogical a sistemului ADC. Adresarea canalului corespunzator se face prin activarea
+corespunzatoare a liniilor de adresa ADR1-ADR4 Teoretic se pot atasa
+16 multiplexoare adica cite un multiplexor pentru fiecare intrare
+analogica a sistemului ADC deci se pot realiza 256 de intrari
+analogice.  </FONT>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0.5in">
+<center><IMG SRC="ach_p_paral_html_m54c687c7.png" ></center
+</P><br><br>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+  <FONT SIZE=3>Frecventa de achizitie depinde de viteza de lucru a
+calculatorului precum si de numarul de canale analogice conectate.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Sistemul se preteaza pentru achizitii de date in care se
+cere o viteza de achizitie mai ridicata decit la sistemele cu
+comunicatie seriala.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Cu toate ca viteza este mai ridicata, nu se poate totusi
+compara cu viteza de achizitie a sistemelor de achizitie conectate
+direct pe magistrala interna a calculatorului.</FONT></P>
+<P LANG="en-AU" CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in">
+<FONT SIZE=3>Pentru sistemele industriale viteza oferita este
+acceptabila. Combinata cu pretul accesibil, fiabilitatea ridicata, si
+conectare extrem de simpla la calculator acest system este
+recomandabil pentru a conduce si monitoriza  o gama diversa  de
+procese industriale.</FONT></P>
+
+
+<br><br><a name="autoev"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de autoevaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+<ul>
+<script type="text/javascript">
+function nr_ck1() {  
+  
+     if ((Form_ck1.ck_1.checked==true)&(Form_ck1.ck_2.checked==true)&(Form_ck1.ck_3.checked==false)&(Form_ck1.ck_4.checked==false))  
+		document.Form_ck1.af_mes.value ='corect !';
+	else
+		document.Form_ck1.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck1">
+	<I> 1. Rrezolutia unui convertor CAN : </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck1()>
+	a. Defineste cea mai mica variatie a tensiunii pe care convertorul o poate coda <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck1()>
+	b. Este data de numarul de biti ai convertorului <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck1()> 
+	c. Este data de timpul de conversie  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck1()> 
+	d. Este data de factorul de rejectie <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck2() {  
+  
+     if ((Form_ck2.ck_1.checked==true)&(Form_ck2.ck_2.checked==true)&(Form_ck2.ck_3.checked==true)&(Form_ck2.ck_4.checked==true))  
+		document.Form_ck2.af_mes.value ='corect !';
+	else
+		document.Form_ck2.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck2">
+	<I> 2. Convertoarele analog-numerice cu aproximare succesiva contin cel putin :  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck2()>
+	a. 1 Un convertor CNA - numeric analog <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck2()>
+	b. 2 Un Registru  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck2()> 
+	c. 3 Un comparator <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck2()> 
+	d. 4 O tensiune de referinta <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck3() {  
+  
+     if ((Form_ck3.ck_1.checked==false)&(Form_ck3.ck_2.checked==true)&(Form_ck3.ck_3.checked==false)&(Form_ck3.ck_4.checked==false))  
+		document.Form_ck3.af_mes.value ='corect !';
+	else
+		document.Form_ck3.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck3">
+	<I> 3. Pooling-ul este : </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck3()>
+	a. Un sistem de intreruperi <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck3()>
+	b. Citire periodica  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck3()> 
+	c. Sistem de prioritati <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck3()> 
+	d. Sistem de acces la memorie<br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck4() {  
+  
+     if ((Form_ck4.ck_1.checked==true)&(Form_ck4.ck_2.checked==false)&(Form_ck4.ck_3.checked==true)&(Form_ck4.ck_4.checked==true))  
+		document.Form_ck4.af_mes.value ='corect !';
+	else
+		document.Form_ck4.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck4">
+	<I> 4. DMA-ul este: </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck4()>
+	a. Un acces direct la memorie<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck4()>
+	b. Un transfer in care procesorul CPU este implicat <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck4()> 
+	c. Un transfer in care procesorul CPU nu este implicat<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck4()> 
+	d. Mecanismul cel mai eficient, pentru transferul datelor  <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck5() {  
+  
+     if ((Form_ck5.ck_1.checked==true)&(Form_ck5.ck_2.checked==false)&(Form_ck5.ck_3.checked==true)&(Form_ck5.ck_4.checked==false))  
+		document.Form_ck5.af_mes.value ='corect !';
+	else
+		document.Form_ck5.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck5">
+	<I> 5. Pentru a creste numarul de intrari analogice se mai ataseaza:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck5()>
+	a. multiplexoare analogice <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck5()>
+	b. demultiplexoare analogice <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck5()> 
+	c. convertoare analog-digitale <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck5()> 
+	d. convertoare digitale-analog <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<br><br><a name="rez"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Rezumat  </Center></TD></TR>
+</table>
+<br><br><font color= "Black" size=4><li><b>Elemente introductive despre convertoarele analog numerice  </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;SCADA (Supervisory Control And Data Aquisition)-este un sistem bazat pe calculator avand rolul de comanda si 
+monitorizare a proceselor tehnologice. Dupa cum se observa si in denumire, SCADA contine doua componente si anume: 
+<ul>
+ <li> supervizare si control
+ <li> achizitia de date
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp; Cea mai mare parte a datelor achizitionate in sistemele SCADA o reprezinta valorile analogice. 
+Valorile analogice insa nu pot fi prelucrate in calculator decat in forma digitala. 
+Convertoarele analog numerice sunt componentele care ne permit sa achizitionam datele analogice din proces, in format digital. 
+In sistemele industriale o mare parte din datele monitorizate sunt de tip analogic. 
+In vedrea prelucrarii lor prin intermediul sistemelor digitale valorile analogice trebuiesc convertite in valori digitale. 
+Cel mai adesea se folosesc circuite specializate numite Convertoare Analog Numerice (CAN) 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Convertorul Analog Numeric (CAN) este un dispozitiv care primeste un semnal analogic, A si il transforma 
+intr-un semnal numeric, N, cu precizie si rezolutie date, prin comparaea lui cu o tensiune de referinta.
+CAN-urile sunt fi realizate in general in doua feluri:
+<ul>
+ <li>convertoare cu integrare in doua pante ;
+ <li>convertoare cu aproximare succesiva
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Ambele tipuri de convertoare transforma o tensiune de intrare intr-un cod numeric proportional cu tensiunea de intrare. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Convertoarele analog-numerice cu integrare in doua pante contin un integrator, o schema de control logic, un generator 
+de tact si un numarator de iesire. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Parametrii convertoarelor analog numerice
+<ul>
+ <li>Rezolutia este data de numarul de biti ai convertorului. Rezolutia defineste cea mai mica variatie a tensiunii pe care convertorul o poate coda 
+ <li>Timpul de conversie este timpul necesar pentru a obtine la iesire un semnal numeric proportional cu semnalul analogic de la intrare avand precizia dorita.
+ <li>Precizia se defineste ca fiind diferenta dintre valoarea teoretica a lui E care produce un anumit cuvant N la iesire si valoarea A care genereaza
+  efectiv acest cuvant.
+</ul>
+
+<font color= "Black" size=4><li><b> Achizitii de date bazate pe calculator   </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Transferul de date ce are loc intre placa de achizitie si calculator trebuie efectuat la viteza si cantitatea de date 
+impuse de sistemul monitorizat.Ideal ar fi ca viteza si cantitatea maxima de date pe care vrem sa le culegem din exterior sa depinda numai de 
+parametrii functionali ai placii de achizitie. Din pacate comunicarea dintre placa de achizitie si memoria calculatorului are limitari serioase 
+impuse de arhitectura PC-ului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Exista trei posibilitati de comunicare intre placa de achizitie si calculator. 
+<ul>
+ <li> pooling
+ <li> intreruperi
+ <li> dma
+</ul>
+ 
+<font color= "Black" size=4><li><b> Utilizarea portului paralel al calculatorului, in achizitia de date  </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sistemele de achizitie care comunica cu calculatorul prin intermediul portului serial vehiculeaza date in functie de 
+viteza de comunicatie a portului serial chiar daca ele pot achizitiona date la viteze mult mai mari.In cazul in care calculatorul central are nevoie de 
+o cantitate mai mare de date sistemele de achizitie seriale nu mai fac fata.O solutie ar fi sistemele de achizitie ce utilizeaza portul parallel pentru 
+comunicatia de date.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care sistemul de achizitie este o simpla interfata comandata de calculator, programele de achizitie se afla 
+in totalitate pe calculator, sistemul de achizitie este un element de executie. Are avantajul ca este foarte simplu, ieftin si flexibil. 
+Intregul pachet de programme se afla pe calculator deci actualizarile si imbunatatirile de program se fac numai pe calculator. 
+Principalul dezavantaj il constituie faptul ca sistemul depinde in totalitate de calculator neputind functiona independent de calculator. 
+Daca sistemul este complex si pe langa moitorizare de date face si comanda, un astfel de sistem nu este prea indicat. 
+
+
+<br><br><a name="astept"></a>
+<font color= "Blue" size=4><li><b>Rezultate asteptate </b></font>
+<ul>
+Dupa studierea acestui modul, ar trebui sa cunoasteti:<br><br>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+
+<li>Care sunt principale sisteme de achizitii de date in sistemele SCADA
+<li>Ce reprezinta si cum functioneaza convertoarele analog numerice
+<li>Cum sunt realizate sistemele de achizitii de date bazate pe calculator
+<li>Cum se utilizeaza portul paralel al calculatorului, in achizitia de date
+</table>
+</ul>
+
+<a name="term"></a>
+<font color= "Blue" size=4> <li> <b>Termeni esentiali</b></font><br>
+<ul>
+<Table border=1 width="90%">
+
+<tr>
+  <td align="center"><b> Termen </b>  </td>
+  <td align="center"><b> Descriere </b>  </td>
+</tr>
+<tr>
+  <td> SCADA </td>
+  <td> Supervisory Control And Data Aquisition </td>    
+</tr>
+<tr>
+  <td> CAN </td>
+  <td> Convertor analog numeric</td>    
+</tr>
+<tr>
+  <td> DMA  </td>
+  <td> Direct Memory Acces - se efectueaza transferul de date in paralel cu activitatea CPU </td>    
+</tr>
+<tr>
+  <td> Pooling </td>
+  <td> Metoda prin care registrul de stare al placii de achizitie este citit periodic dictat de un timer al CPU
+e </td>    
+</tr>
+<tr>
+  <td> Intreruperi </td>
+  <td>  Metoda prin care placa de achizitie are capabilitatea de a intrerupe CPU de fiecare data cind trebuiesc transferate date
+ </td>    
+</tr>
+<tr>
+  <td>  Rezolutia </td>
+  <td> Rezolutia este data de numarul de biti ai convertorului</td>    
+</tr>
+<tr>
+  <td>Timpul de conversie</td>
+  <td>Timpul necesar pentru a obtine la iesire un semnal numeric proportional cu semnalul analogic de la intrare avand precizia dorita.
+</td>    
+</tr>
+<tr>
+  <td></td>
+  <td>  </td>    
+</tr>
+</table>
+</ul>
+ 
+<br><br><a name="bibl"></a>
+<font color= "Blue" size=4><li><b>Recomandari bibliografice </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> [1] A. Daneels - What is SCADA -International Conference on Accelerator and Large Experimental Physics Control Systems, 1999, Trieste, Italy
+<li> [2] Gavril Toderean, Microprocesoare Univ. Tehnica Cluj, 1994
+<li> [3] Mircea Dulau, Automatizarea proceselor termice si chimice- Universitatea "Petru MaiorTargu Mures, 2002
+<li> [4] Traian Tur,Brevet de inventie nr:11863 "Sistem pentru automatizarea si monitorizarea proceselor industriale", OSIM, 2003
+<li> [5] Jeff Kent, C++ fara mistere,Ed.Rosetti Educational 2004 .
+<li> [6] Boldur Barbat - Informatica industriala - Programarea în timp real  – Institutul Central pentru Conducere si informatica 1984 
+<li> [7] Ioan Babuita – Conducerea automata a proceselor – Ed. Facla 1985
+<li> [8] Ghercioiu-National în struments - Orizonturi  în instrumentatie 1995
+<li> [9] Radu Dobrescu - Automate programabile Ed Acad 1986
+<li> [10]Grigore Stolojanu - Prelucrarea numerica a semnalului vocal
+</td></tr></table>
+</ul>
+<br><br><a name="link"></a>
+<font color= "Blue" size=4><li><b>Link-uri utile </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> 1.<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> - Free SCADA - 2009.
+<li> 2.<a href="http://www.7t.dk/igss/default.asp"> http://www.7t.dk/igss/default.asp</a> - IGSS SCADA System - 2009
+<li> 3.<a href="http://www.7t.dk/igss/default.asp?showid=374"> http://www.7t.dk/igss/default.asp?showid=374</a> - IGSS Online SCADA Training - 2009 
+<li> 4.<a href="http://www.7t.dk/free-scada-software/index.html"> http://www.7t.dk/free-scada-software/index.html</a>-  IGSS Free SCADA Software -2009
+<li> 5.<a href="http://www.citect.com/"> http://www.citect.com/</a> -  CITECT SCADA -2009 
+<li> 6.<a href="http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314"> http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314</a> - Download CITECT demo - 2009
+<li> 7.<a href="http://www.indusoft.com/index.asp"> http://www.indusoft.com/index.asp</a> - INDUSOFT SCADA - 2009
+<li> 8 <a href="http://www.gefanuc.com/products/2819"> http://www.gefanuc.com/products/2819</a> - Proficy HMI/SCADA - CIMPLICITY - 2009.
+<li> 9.<a href="http://www.genlogic.com/"> http://www.genlogic.com/</a> - Dynamic Graphics, Data Visualization, Human-Machine Interface (HMI) - 2010 
+<li> 10<a href="http://www.genlogic.com/demos.html"> http://www.genlogic.com/demos.html</a> - On-Line Java and AJAX Demos - 2010 
+<li> 11<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+<li> 12<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+</td></tr></table>
+</ul>
+
+<br><br><a name="eval"></a>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de evaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+<ul>
+<script type="text/javascript">
+function nr_ck6() {  
+  
+     if ((Form_ck6.ck_1.checked==true)&(Form_ck6.ck_2.checked==false)&(Form_ck6.ck_3.checked==true)&(Form_ck6.ck_4.checked==false))  
+		document.Form_ck6.af_mes.value ='corect !';
+	else
+		document.Form_ck6.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck6">
+	<I> 1. Ce este un convertor Analog-Numeric (CAN):  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck6()>
+	a. Este un dispozitiv electronic care primeste un semnal analogic, si il transforma intr-un semnal numeric <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck6()>
+	b. Este un dispozitiv electronic care primeste un semnal numeric, si il transforma intr-un semnal analogic   <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck6()> 
+	c. Este un dispozitiv electronic care primeste un semnal analogic, si il transforma intr-un semnal digital <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck6()> 
+	d. Este un dispozitiv electronic care primeste un semnal digital, si il transforma intr-un semnal analogic <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+  
+<ul>
+<script type="text/javascript">
+function nr_ck7() {  
+  
+     if ((Form_ck7.ck_1.checked==true)&(Form_ck7.ck_2.checked==false)&(Form_ck7.ck_3.checked==false)&(Form_ck7.ck_4.checked==false))  
+		document.Form_ck7.af_mes.value ='corect !';
+	else
+		document.Form_ck7.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck7">
+	<I> 2. Ce este timpul de conversie al unui CAN ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck7()>
+	a. Este timpul necesar pentru a obtine la iesire un semnal numeric proportional cu semnalul analogic de la intrare avand precizia dorita.<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck7()>
+	b. Este timpul dintre doua conversii succesive <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck7()> 
+	c. Este timpul de intarziere datorat operatiilor de conversie <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck7()> 
+	d. Este timpul mediu de conversie <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck8() {  
+  
+     if ((Form_ck8.ck_1.checked==true)&(Form_ck8.ck_2.checked==false)&(Form_ck8.ck_3.checked==false)&(Form_ck8.ck_4.checked==false))  
+		document.Form_ck8.af_mes.value ='corect !';
+	else
+		document.Form_ck8.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck8">
+	<I> 3. Ce sunt intreruperile ? </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck8()>
+	a. Sunt semnale hardware care provin de la periferice <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck8()>
+	b. Mecanisme pentru tratarea intreruperilor de tensiune <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck8()> 
+	c. Mod de lucru al sistemelor de achizitie date <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck8()> 
+	d. Momentele cand se efectueaza transferul de date <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck9() {  
+  
+     if ((Form_ck9.ck_1.checked==false)&(Form_ck9.ck_2.checked==false)&(Form_ck9.ck_3.checked==false)&(Form_ck9.ck_4.checked==true))  
+		document.Form_ck9.af_mes.value ='corect !';
+	else
+		document.Form_ck9.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck9">
+	<I> 4. Cine furnizeaza vectorul de intrerupere?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck9()>
+	a. Vectorul de intreruperi<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck9()>
+	b. Dispozitivul care a facut intreruperea <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck9()> 
+	c. Unitatea centrala<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck9()> 
+	d. Controlerul de intreruperi  <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck10() {  
+  
+     if ((Form_ck10.ck_1.checked==false)&(Form_ck10.ck_2.checked==false)&(Form_ck10.ck_3.checked==true)&(Form_ck10.ck_4.checked==false))  
+		document.Form_ck10.af_mes.value ='corect !';
+	else
+		document.Form_ck10.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck10">
+	<I> 5. Cine initiaza o achizitie de date intr-un sistem master-slave ? </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck10()>
+	a. Sistemul de intreruperi<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck10()>
+	b. Aplicatia din sistemul de achizitie <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck10()> 
+	c. Unitatea centrala <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck10()> 
+	d. Sistemul de achizitie <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+ 
+</body>
+</html>
