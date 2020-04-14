@@ -1,5 +1,5 @@
 <html><head>
-<title>Tipuri de date în limbajul  C++.</title>
+<title> Tipuri de date Ã®n limbajul  C++.</title>
 </head>
 <body>
 <a name="start"></a>
@@ -8,10 +8,10 @@
 </table>
 <br><br><font color= "Blue" size=4><li><b>Reprezentarea informatiilor in memoria calculatoarelor</b><br></font>
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Informatiile sunt reprezentate in calculator sub forma binara. Utilizatorii folosesc in general codificarea zecimala a informatiei. 
-Totusi, pe lânga baza de numeratie 10, se folosesc si bazele de numeratie 2, 8 si 16, iar sistemele de numeratie respective 
+Totusi, pe lÃ¢nga baza de numeratie 10, se folosesc si bazele de numeratie 2, 8 si 16, iar sistemele de numeratie respective 
 se numesc binar, octal si hexazecimal. In sistemul hexazecimal, se folosesc 16 cifre si anume cifrele de la 0-9 iar cifrele de la 10 la 15 se noteaza 
 cu literele de la A pana la F. In memoria calculatorului informatia este pastrata numai sub forma binara. Deoarece este greu de operat cu numere mari 
-în baza 2, pentru exprimarea unor cantitati binare se foloseste baza 16. De exemplu, numarul 255 se poate exprima in binar ca fiind 11111111 iar in hexa FF, 
+Ã®n baza 2, pentru exprimarea unor cantitati binare se foloseste baza 16. De exemplu, numarul 255 se poate exprima in binar ca fiind 11111111 iar in hexa FF, 
 numarul 147 se poate exprima in binar ca fiind 10010011 iar in hexa 93, numarul 231 se poate exprima in binar ca fiind 11100111 iar in hexa E7.
 <br>&nbsp&nbsp&nbsp;Pentru exemplificare, vom realiza in continuare o aplicatie care afiseaza numarul 231 sub forma binara. Aplicatia se bazeaza pe 
 functiile <b> afis_binar(unsigned int,int)</b> respectiv  <b> afis_bin(unsigned int,int)</b> functii care se presupune ca sunt definite in fisierul stdafx.h.
@@ -130,8 +130,8 @@ static void afis_binar(unsigned int n,int nb)
 (Codificare binara). Se grupeaza apoi cate 4 biti si se reprezinta informatia pe ecran in cod hexazecimal pentru o mai usoara citire.
 <Center><H1><IMG SRC  = "im_cpp17.jpg"> </H1></Center>
 <br>&nbsp&nbsp&nbsp;Tabelul de valori hexa afisat mai sus, reprezinta continutul memoriei de la o anumita adresa.
-<br>&nbsp;&nbsp;&nbsp;&nbsp;Informatia este grupata in memorie pe grupe de câte 8 cifre binare (biti). Un asemenea grup se mai numeste si octet(sau byte). 
-Octetul este unitatea de masura în care se exprima volumul memoriei unui calculator. Deoarece dimensiunea memoriei este totdeauna o putere a lui 2, 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Informatia este grupata in memorie pe grupe de cÃ¢te 8 cifre binare (biti). Un asemenea grup se mai numeste si octet(sau byte). 
+Octetul este unitatea de masura Ã®n care se exprima volumul memoriei unui calculator. Deoarece dimensiunea memoriei este totdeauna o putere a lui 2, 
 multiplii folositi pentru octeti nu sunt 100, 1000 etc., ci puteri adecvate ale lui 2. Astfel, un numar de 2 la puterea 10 = 1024 de octeti se mai 
 numeste si kilooctet sau kilobyte (pe scurt KO sau KB). Similar, un numar de 2 la puterea 20 = 10264576 octeti se numeste megaoctet sau megabyte (MO sau MB). 
 <ul>
@@ -140,7 +140,7 @@ numeste si kilooctet sau kilobyte (pe scurt KO sau KB). Similar, un numar de 2 l
 <li>giga = 2<sup>30</sup> = 1073741824
 </ul>
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a reprezenta diverse tipuri de date, se recurge la codificare astfel:
-<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>Numerele întregi</i> ar putea fi reprezentate pe unul sau mai multi octeti. In general, avand n biti, numarul total de 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>Numerele Ã®ntregi</i> ar putea fi reprezentate pe unul sau mai multi octeti. In general, avand n biti, numarul total de 
 valori distincte este 2<sup> n</sup>
 <ul>
 <li>Valorile reprezentate pe un octet, au  2<sup>8</sup> = 256 valori
@@ -150,12 +150,12 @@ valori distincte este 2<sup> n</sup>
 &nbsp;&nbsp;&nbsp;&nbsp;Pentru numerele fara semn, valoarea interna a bitilor, reprezinta chiar valoarea numarului.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru numerele cu semn, prin conventie, primul bit reprezinta semnul (1 pentru numere negative si 0 pentru numere pozitive). Daca bitul de semn este 0, 
 atunci configuratia interna reprezinta chiar valoarea numarului. Daca bitul de semn este 1, atunci valoarea absoluta a numarului se obtine prin 
-complement fata de 2, adicå prin complementarea tuturor bitilor (0 devine 1 si reciproc) si prin adunarea apoi a valorii 1. Aceasta regula se aplica 
+complement fata de 2, adicÄº prin complementarea tuturor bitilor (0 devine 1 si reciproc) si prin adunarea apoi a valorii 1. Aceasta regula se aplica 
 pentru ambele sensuri de conversie (de la reprezentari interne la numere cu semn si reciproc).
 <br>&nbsp;&nbsp;&nbsp;&nbsp;<i>Numerele reale</i> ar putea fi codificate in mai multe moduri:
 <ul>
 <li>Codificarea in virgula fixa
-<br>&nbsp;&nbsp;&nbsp;&nbsp;In reprezentarea în virgula fixa, se considera un numar finit de cifre semnificative, atat pentru partea întreaga 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In reprezentarea Ã®n virgula fixa, se considera un numar finit de cifre semnificative, atat pentru partea Ã®ntreaga 
 a numarului, cat si pentru cea fractionara. De exemplu un numar real in baza 16 va fi reprezentat : 1AB34.FF52 . Un alt exemplu de numar rela in baza 2 va fi reprezentat:  1000110.11011
 <br>&nbsp;&nbsp;&nbsp;&nbsp;
 <li>Codificarea in virgula mobila conform IEEE: Sm exponent mantisa, unde:
@@ -166,11 +166,11 @@ a numarului, cat si pentru cea fractionara. De exemplu un numar real in baza 16 
 &nbsp;&nbsp;&nbsp;&nbsp;<i>Datele alfanumerice</i> ar putea fi codificate folosind codul standard ASCII (American Standard Code for Information 
 Interchange)-Codul Standard American pentru Schimb de Informatii. 
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Codul ASCII standard este un cod pe 7 biti, deci cuprinde 128 de caractere distincte. Un caracter ASCII se reprezinta 
-pe un octet, în care bitul cel mai semnificativ este 0. Domeniul de valori este deci de la 0 la 127 (în zecimal) sau de la 00 la 7F (în hexazecimal). 
+pe un octet, Ã®n care bitul cel mai semnificativ este 0. Domeniul de valori este deci de la 0 la 127 (Ã®n zecimal) sau de la 00 la 7F (Ã®n hexazecimal). 
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Dintre cele 128 de caractere, 32 sunt caractere de control si nu au reprezentari grafice (nu sunt afisabile). 
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Restul de 96 de caractere pot fi afisate pe ecranul calculatorului, la imprimanta etc. Caracterele afisabile se noteaza 
-de obicei prin scrierea simbolului grafic respectiv între apostrofuri. De exemplu, 'A' înseamna codul ASCII corespunzator literei A mare, '!' 
-înseamna codul ASCII pentru semn de exclamare etc.  
+de obicei prin scrierea simbolului grafic respectiv Ã®ntre apostrofuri. De exemplu, 'A' Ã®nseamna codul ASCII corespunzator literei A mare, '!' 
+Ã®nseamna codul ASCII pentru semn de exclamare etc.  
 <br><br><Center><IMG SRC  = "ascii1.gif"> </Center>
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Deoarece caracterele de control nu au reprezentari grafice, ele au nume speciale (exprimate de obicei prin prescurtari de 
 2 sau 3 litere). Dintre caracterele de control uzuale, pot fi amintite: CR (Carriage Return), LF (Line Feed)
@@ -189,25 +189,25 @@ de obicei prin scrierea simbolului grafic respectiv între apostrofuri. De exempl
 <tr><td> sp	<td> space		<td>
 </table>
 </p>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;S-a definit si un asa-numit cod ASCII extins, în care se folosesc toti cei 8 biti ai unui octet.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;S-a definit si un asa-numit cod ASCII extins, Ã®n care se folosesc toti cei 8 biti ai unui octet.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Setul ASCII standard este un subset al acestui cod ASCII extins. 
 <br><br><Center><IMG SRC  = "ascii2.gif"> </Center>
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Observatie</b>
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;Modurile de reprezentare prezentate anterior ilustreaza faptul ca datele din memoria calculatorului se pot interpreta diferit. 
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Aceste interpretari sunt facute de programul care foloseste datele in functie de ce reprezinta ele. De exemplu octetul 1001 0100 poate reprezenta numarul 
 zecimal pozitiv 148 daca il interpretam ca un numar in binar fara semn , poate reprezenta numarul zecimal negativ -108 daca il interpretam ca un numar 
-in binar fara cu semn, poate reprezenta caracterul ASCII ö din setul extins de caractere, daca il interpretam ca fiind un cod ASCII etc.
+in binar fara cu semn, poate reprezenta caracterul ASCII Ã¶ din setul extins de caractere, daca il interpretam ca fiind un cod ASCII etc.
 
 <br><br><a name="tip"></a>
-<font color= "Blue" size=4><li>Tipuri de date în limbajul  C++</font>
+<font color= "Blue" size=4><li>Tipuri de date Ã®n limbajul  C++</font>
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tipul unei date determina lungimea zonei de memorie ocupata de acea data. 
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tipurile de baza sunt:
 <ul>
 <li> <b>bool</b>	o valoare booleana-contine cea mai mica cantitate de informatie avand valoarea adevarat sau fals;
 <li> <b>char</b>	un singur octet (1 byte=8 biti), capabil sa contina codul unui caracter din setul local de caractere;
-<li> <b>int</b>	numar întreg, reflecta în mod tipic marimea naturala din calculatorul utilizat;
-<li> <b>float</b>	numar real, în virgula mobila, simpla precizie;
-<li> <b>double</b>	numar real, în virgula mobila, dubla precizie.
+<li> <b>int</b>	numar Ã®ntreg, reflecta Ã®n mod tipic marimea naturala din calculatorul utilizat;
+<li> <b>float</b>	numar real, Ã®n virgula mobila, simpla precizie;
+<li> <b>double</b>	numar real, Ã®n virgula mobila, dubla precizie.
 </ul>
 <a name="ddim"></a>
 <li><b>Program C++ pentru determinarea dimensiunii diferitelor tipuri de date</b><br><br>
@@ -244,11 +244,11 @@ int main(void)
 <br><font color= "blue" size=4><li><b>Constante </b><br></font>
 <br><br>
 O constanta este un literal (o forma externa de reprezentare) numeric, caracter sau sir de caractere. Numele si valoarea unei constante sunt identice. 
-Valoarea unei constante nu poate fi schimbata în timpul executiei programului în care a fost utilizata. 
-Tipul si valoarea ei sunt determinate în mod automat, de catre compilator, pe baza caracterelor care compun literalul. 
+Valoarea unei constante nu poate fi schimbata Ã®n timpul executiei programului Ã®n care a fost utilizata. 
+Tipul si valoarea ei sunt determinate Ã®n mod automat, de catre compilator, pe baza caracterelor care compun literalul. 
 <br><a name="int"></a>
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Constante intregi</b>
-<br><br>O constanta întreaga consta dintr-o succesiune de cifre.Exemplu: 36789
+<br><br>O constanta Ã®ntreaga consta dintr-o succesiune de cifre.Exemplu: 36789
 <br><a name="real"></a>
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Constante numerice reale</b>
 <br><br>Daca o constanta numerica contine punctul zecimal, ea este de tipul double. 
@@ -256,12 +256,12 @@ Tipul si valoarea ei sunt determinate în mod automat, de catre compilator, pe ba
 <br>Daca numarul este urmat de L sau l, este de tip long double. Exemplu 3.7659L--tip long double
 <br><a name="float"></a>
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Constante numerice flotante</b>
-<br><br>O constanta flotanta consta dintr-o parte întreaga, un punct zecimal, o parte fractionara, litera e sau E, si optional un exponent care este un întreg cu semn
+<br><br>O constanta flotanta consta dintr-o parte Ã®ntreaga, un punct zecimal, o parte fractionara, litera e sau E, si optional un exponent care este un Ã®ntreg cu semn
 <br><a name="char"></a>
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Constante caracter</b>
-<br><br>O constanta caracter consta dintr-un singur caracter scris între apostrofuri, de exemplu 'x'
+<br><br>O constanta caracter consta dintr-un singur caracter scris Ã®ntre apostrofuri, de exemplu 'x'
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Constante siruri</b>
-<br><br>Un sir este o succesiune de caractere scrise între ghilimele, de exemplu "Programare".
+<br><br>Un sir este o succesiune de caractere scrise Ã®ntre ghilimele, de exemplu "Programare".
 <br><a name="ex_const"></a>
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Exemplu de program ce utilizeaza constante</b>
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul unei instructiuni de scriere pe consola standard vor fi folosite de data aceasta expresii cum ar fi:
@@ -309,7 +309,7 @@ int main(void)
 <!------------------------------------------------------------------->
 <br><br><a name="var"></a>
 <font color= "Blue" size=4><li><b>Variabile</b><br></font><br>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;Spre deosebire de constante, variabilele sunt date (obiecte informationale) ale caror valori se pot modifica în timpul executiei programului. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Spre deosebire de constante, variabilele sunt date (obiecte informationale) ale caror valori se pot modifica Ã®n timpul executiei programului. 
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Si variabilele sunt caracterizate de atributele nume, tip, valoare si clasa de memorare. 
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Variabilele sunt nume simbolice utilizate pentru memorarea valorilor introduse pentru datele de intrare sau a rezultatelor. 
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Daca la o constanta ne puteam referi folosind caracterele componente, la o variabila ne vom referi prin numele ei. 
@@ -475,11 +475,11 @@ int main(void)
 <br><br><a name="v_num"></a>
 <font color= "Blue" size=4><li><b>Tipul de variabila numeric</b><br></font>
 <br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Variabile intregi</b><br>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;Variabilele întregi pozitive sau negative pot fi declarate prin specificatorul de tip int. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Variabilele Ã®ntregi pozitive sau negative pot fi declarate prin specificatorul de tip int. 
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Zona de memorie alocata unei variabile intregi poate fi de cel mult trei dimensiuni.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Relatii despre dimensiune sunt furnizate de calificatorii short, long si unsigned, care pot fi aplicati tipului int.
-<br>&nbsp;&nbsp;&nbsp;&nbsp;Calificatorul short se refera totdeauna la numarul minim de octeti pe care se reprezinta un întreg, de obicei 2.
-<br>&nbsp;&nbsp;&nbsp;&nbsp;Calificatorul long se refera la numarul maxim de octeti pe care poate fi reprezentat un întreg, de obicei 4.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Calificatorul short se refera totdeauna la numarul minim de octeti pe care se reprezinta un Ã®ntreg, de obicei 2.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Calificatorul long se refera la numarul maxim de octeti pe care poate fi reprezentat un Ã®ntreg, de obicei 4.
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza in continuare un program pentru afisarea a trei numare aleatoare 
 <br><br>
 <!------------------------------------------------------------------->
@@ -636,9 +636,9 @@ int main(void)
 <!-------------------------------------------------------------------> 
 
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Variabile flotante (virgula mobila)</b>
-<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Variabilele flotante pot fi în simpla precizie si atunci se declara prin specificatorul de tip float sau în dubla 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Variabilele flotante pot fi Ã®n simpla precizie si atunci se declara prin specificatorul de tip float sau Ã®n dubla 
 precizie si atunci se declara prin specificatorul double. 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;Majoritatea sistemelor de calcul admit si reprezentarea în precizie extinsa; o variabila în precizie extinsa se declara 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Majoritatea sistemelor de calcul admit si reprezentarea Ã®n precizie extinsa; o variabila Ã®n precizie extinsa se declara 
 prin specificatorul long double.
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Exemple de programe care folosesc variabile numerice</b>
 
