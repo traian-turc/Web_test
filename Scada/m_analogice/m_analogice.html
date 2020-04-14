@@ -1,0 +1,789 @@
+<html>
+<title> Aplicatii SCADA - tratarea marimilor analogice </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "red" size=6> Tratarea marimilor analogice </Center></TD></TR>
+</table>
+
+<font color= "Black" size=4><li><b>Obiective </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Prezentarea modului de gestionare a marimilor analogice in sistemele SCADA 
+<li>Prezentarea instrumentatiei virtuale pentru afisarea parametrilor analogici
+<li>Prezentarea modului de control al instrumentatiei virtuale prin intermediul aplicatiilor SCADA
+<li>Prezentarea instrumentelor virtuale pentru urmarirea in timp a evolutiei marimilor analogice
+<li>Prezentarea metodelor si aplicatiilor pentru simularea marimilor analogice in sistemele SCADA
+</td></tr></table>
+</ul>
+
+<font color= "Black" size=4><li><b>Organizarea sarcinilor de lucru </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li> Parcurgeti cele trei capitole ale cursului.
+<li> In cadrul fiecarui capitol urmariti exemplele ilustrative si incercati sa le realizati in medul de dezvoltare "Citect".
+<li> Fixati principalele idei ale cursului, prezentate în rezumat.
+<li> Completati testul de autoevaluare. 
+<li> Timpul de lucru pentru parcurgerea testului de autoevaluare este de 15 minute.
+</td></tr></table>
+</ul>
+<br><br><a name="analogic"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> 1. Afisarea marimilor analogice </Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In multe cazuri avem de-a face cu marimi analogice. Intalnim marimi analogice la interfata cu procesele tehnologice, 
+atat la intrarile analogice cat si iesirile analogice. Acestora li se ataseaza taguri corespunzatoare de tip numeric. 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Marimile analogice pot fi deasemenea simulate utilizand diverse obiece grafice plasate pe paginile grafice ale aplicatiilor. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza in continuareun nou proiect cu numele <b> M_analogice </b> si in cadrul lui o pagina grafica numita 
+<b> analogic </b> in care se simuleaza si se afiseaza o marime analogica de intrare. 
+Afisarea se va face atat numeric cat si folosind diverse obiecte grafice care simuleaza aparate de masura si control.
+<br><br><center><img src="im_citect014.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru inceput vom introduce un nou tag numit "u_ali" 
+<br><br><center><img src="im_citect015.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa un obiect "Symbol" de tipul Xp_slider -right normal
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Setam proprietatea Slider-Vertical -Tag=U_ali si Offset at maximum = 150 pixeli. Setand aceasta proprietate in acest mod, 
+vom putea actiona acest simbul si sa-l deplasam pe verticala 150 de pixeli. miscarea acestui obiect de la 0 la 150 pixeli va cauza modificarea tag-ului 
+asociat U_ali de la 0 la val maxima definita.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea valorii u_ali sub forma numerica se face utilizand un obiect de tip "Number"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Reprezentarea sub forma unei bare vericale se face utilizand un obiect "Rectangle" in care:
+<ul>
+<li> se bifeaza proprietatea Aparence->Filled si se alege culoarea cu care se face fill
+<li> se seteaza proprietatea Fill-> Level cu U_ali  
+<li> daca se doreste afisarea utilizand un gradient de culoare:
+ <ul>
+ 	<li> se seteaza proprietatea Fill-> Color cu U_ali
+   	<li> se bifeaza proprietatea Aparence-> Gradient Fill
+  </ul>
+</ul>
+<br><br><center><img src="im_citect013.gif"></center>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a simula volt-metrul, s-a folosit un obiect "ActiveX" CimeterX.TechMeter unde s-a bifat proprietatea "Value" si i sa 
+atribuit valoarea u_ali plasata in zona Associate prpoerty 'Value' with tag....
+<br><br><center><img src="im_citect016.gif"></center>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In aplicatia anterioara am utilizat controlul de tipul CiMeterX pe post de instrument virtual pentru 
+a afisa sub forma analogica valoarea instantanee a diversilor parametri. La plasarea acestora pe pagina grafica se pot seta diverse 
+proprietati. Proprietatile acestor instrumente virtuale se pot modifica dinamic in timpul functionarii, prin intermediul codului de program  
+lansate in timpul aplicatiei de diverse evenimente cum ar fi: scanarea paginii, apasarea unui buton etc.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a ne putea referi din program la un anumit CiMeterX plasat pe pagina grafica, avem nevoie de o valoare de inentificare a acestuia. 
+Dupa plasarea acestuia pe pagina grafica, acesta intradevar primeste un astfel de nume de indentificare dupa cum se vede in imaginea de jos:
+<br><br><center><img src="im_citect011.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;CiMeterX plasat pe pagina grafica este defapt din punt de vedere al programarii un obiec care dupa cum se vede, 
+poarta numele "AN231", nume pe care il vom utiliza in codul programului pe care il vom scrie.
+ 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom incerca sa scriem niste functii declansate de apasarea unor butoane, functii care modifica proprietatile acestor 
+instrumente virtuale. Urmatoarea plicatie reprogrameaza un CiMeterX si il transforma intr-un multimetru prin apasarea unor butoane.
+<br><br><center><img src="im_citect024.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a transforma CiMeterX in voltmetru, se apasa butonul "U" care lanseaza functia transf_u( )
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+FUNCTION transf_u() 
+	_ObjectSetProperty(ObjectByName("AN231"), "Value",u_alim);
+	_ObjectSetProperty(ObjectByName("AN231"), "Caption","Tensiune");
+	_ObjectSetProperty(ObjectByName("AN231"), "MaxValue",260);
+	_ObjectSetProperty(ObjectByName("AN231"), "EngUnit","Volti");
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a transforma CiMeterX in ampermetru se apasa butonul "I" care lanseaza functia transf_i( )
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+FUNCTION transf_i() 
+	_ObjectSetProperty(ObjectByName("AN231"), "Value",i_consum);
+	_ObjectSetProperty(ObjectByName("AN231"), "Caption","Curent");
+	_ObjectSetProperty(ObjectByName("AN231"), "MaxValue",50);
+	_ObjectSetProperty(ObjectByName("AN231"), "EngUnit","Amperi");
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a transforma CiMeterX in watmetru, se apasa butonul "P" care lanseaza functia transf_p( )
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+FUNCTION transf_p()
+	_ObjectSetProperty(ObjectByName("AN231"), "Value",putere);
+	_ObjectSetProperty(ObjectByName("AN231"), "Caption","Putere");
+	_ObjectSetProperty(ObjectByName("AN231"), "MaxValue",12000);
+	_ObjectSetProperty(ObjectByName("AN231"), "EngUnit","Wati");
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a transforma culoara de fundal in rosu, se apasa butonul "Rosu" care lanseaza functia transf_r( )
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+FUNCTION transf_r()
+	_ObjectSetProperty(ObjectByName("AN231"), "BackColor",6350);
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a transforma culoara de fundal in galben, se apasa  "Galben" care lanseaza functia transf_g( )
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+FUNCTION transf_g()
+	_ObjectSetProperty(ObjectByName("AN231"), "BackColor",65534);
+END	
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Exista o serie de alte indicatoare virtuale definite in grupul "ActivX" sau in grupul "Genie". Vom utiliza in urmatoarea 
+aplicatie un obiect de tip "Genie" -> Faceplat -> Indicator1 si realizam urmatoarea aplicatie:
+<br><br><center><img src="im_citect010.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Plasarea obiectului de tip "Genie" -> Faceplat -> Indicator1 este extrem de simpla, dupa alegerea acestuia, nu trebuie 
+decat setat tag-ul aferent.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Chiar si simularea tensiunii de alimentare am putea-o realiza cu un obiect de tip "Genie" si anume: 
+"Genie" -> Faceplat -> Manual_l...1_v
+<br><br><center><img src="im_citect009.gif"></center>
+
+<br><br><a name="trends"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> 2. Evolutia in timp a marimilor - Trends </Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Vom realiza o noua pagina grafica numita <b> "trends" </b> in care vom analiza evolutia in timp a diverselor marimi.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Pentru analiza in timp a evolutiei diverselor marimi digitale sau analogice exista o serie de obiecte destinate afisarii 
+graficelor in timp a diverselor marimi. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color= "Black" size=4><b>Trend</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Unul dintre cele mai simple obiecte care ne permit afisarea evolutiei in timp a diverselor marimi este obiectul "Trend".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Acestui obiect trebuie sa-i atasam un tag mai specila si anume un Trend Tag.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Progect Editor ->Tags->Trend Tags adaugam un tag nou:
+<br><br><center><img src="im_citect018.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa din imaginea de sus, Trend-Tag-ul tensiune va stoca datele provenite de la tag-ul u_alim.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa un obiect "Trend" caruia putem sa-i atasam diverse tag-uri de tip Trend Tag. Vom atasa Trend tag-ul tensiune si 
+curent_c care vor permite trasarea graficelor de evolutie in timp a marimilor u_alim respectiv i_consum. Vom mai plasa doua obiecte cu care sa simulam 
+marimile u_alim si i_consum si obtinem:  
+<br><br><center><img src="im_citect017.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color= "Black" size=4><b>Genie Trends</b></font> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In aplicatia anterioara, evolutia in timp a diverselor marimi era afisata grafic insa nu exista posibilitatea analizei 
+formelor de unda afisate. Folosind un obiect de tip "Genie" este posibila analiza formelor de unda achizitionate.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza o noua pagina grafica numita <b> "process_a" </b> in care vom simula doua marimi ( curentul si tensiunea)similar cu pagina anterioara, 
+dar de data aceasta vom plasa un obiect "Genie" si vom alege din lista "Trends"
+<br><br><center><img src="im_citect019.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca lansam aplicatia, numai dupa actionarea butonului corespunzator "Genie - Trends" , va fi declansata afisarea 
+evolutiei in timp, dar de data aceastaavem o serie de facilitati pentru analiza graficelor afisate.
+<br><br><center><img src="im_citect020.gif"></center>
+
+
+<br><br><a name="simul"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> 3. Simularea marimilor analogice </Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De multe ori avem nevoie sa simulam anumite semnale analogice. Prima metoda folosita a fost simularea marimilor 
+analogice prin actionarea manuala a anumitor butoane. Semnalele se pot simula si automat utilizand functii matematice sau functii simple scrise in 
+cadrul modulelor de program "Cicode"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca vrem sa simulam o functie "dinti de fierastrau" pentru evolutia curentului consumat. Vom include o functie 
+de genul:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION Simul_c_df()
+	IF i_consum > 44 THEN
+	i_consum=0;
+	ELSE
+	i_consum=i_consum+0.25;
+	END
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se vede, la fiecare apel al functiei i_consum este incrementat cu 0.25. In cazul in care se ajunge 
+la valoarea maxima definita (in acest caz 45 volti), se forteaza i_consum la 0. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza o noua pagina grafica numita <b> "simulare_f" </b> in care afisam do poarametrii (tensiiune si curent) . Tensiunea va fi simulata manual 
+iar pentru curent vom face apelul functiei "Simul_c_df" pentru a modifica in mod constant valoarea curentului obtinand in final aplicatia de jos:
+<br><br><center><img src="im_citect021.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom mai scrie o functie care intrerupe curentul electric in cazul in care tensiunea nu este in plaja stabilita.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION lim_u()
+
+	IF u_alim>230 THEN
+		comut_alim=0;
+	END
+
+	IF u_alim<210 THEN
+		comut_alim=0;
+	END
+
+	IF u_alim>210 AND u_alim<230 THEN
+		comut_alim=1;
+	END
+	
+	IF comut_alim=0 THEN
+		i_consum=0
+	END
+END
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Dupa cum se observa, in cazul in care tensiunea nu se incadreaza in plaja 210v-230v se forteaza i_consum la 0
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca dorim o evolutie sinusoidala a curentului apelam o functie de genul:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION Simul_c_sin()
+	rad=rad + 0.01;
+	i_consum=20*(1+sin(rad));
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;S-a introdus o noua variabila rad pentru a pastra unghiul in radiani. Pentru o variatie a curentului in limitele 
+0-45 amperi, s-a atrbuit lui i_consum valoarea 45*(1+sin(rad))
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In acest caz aplicatia arata astfel:
+<br><br><center><img src="im_citect022.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a simula consumul pe 24 de ore, vom scrie o functie care simuleaza valoarea curentului consumat in fiecare 
+interval orar astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION simul_c()
+	ora=ora+0.1
+	IF ora> 24 THEN
+	   ora=0
+	END    
+
+  	IF ora>=0 AND ora < 4 
+  	THEN
+ 		i_consum=6
+  	END
+  	
+  	IF ora>=4 AND ora < 5 
+
+  	THEN
+ 		i_consum=20
+  	END  
+  	
+   	IF ora>=5 AND ora < 6 
+
+  	THEN
+ 		i_consum=29
+  	END 
+    
+    IF ora>=6 AND ora < 7 
+
+  	THEN
+ 		i_consum=35
+  	END 
+ 	
+ 	IF ora>=7 AND ora < 8 
+
+  	THEN
+ 		i_consum=39
+  	END
+  	 
+ 	IF ora>=8 AND ora < 9 
+
+  	THEN
+ 		i_consum=40
+  	END
+  	  
+ 	IF ora>=9 AND ora < 10 
+
+  	THEN
+ 		i_consum=42
+  	END
+  	IF ora>=10 AND ora < 11 
+
+  	THEN
+ 		i_consum=45
+  	END
+ 	  
+ 	IF ora>=11 AND ora < 12 
+
+  	THEN
+ 		i_consum=42
+    END
+ 	IF ora>=12 AND ora < 13 
+
+  	THEN
+ 		i_consum=40
+  	END
+  	IF ora>=13 AND ora < 14 
+
+  	THEN
+ 		i_consum=33
+  	END
+ 	
+ 	IF ora>=14 AND ora < 17 
+
+  	THEN
+ 		i_consum=30
+  	END
+  	
+  	IF ora>=17 AND ora < 18 
+
+  	THEN
+ 		i_consum=25
+  	END
+    
+  	IF ora>=18 AND ora < 19 
+
+  	THEN
+ 		i_consum=20
+  	END
+ 	IF ora>=19 AND ora < 20 
+
+  	THEN
+ 		i_consum=25
+  	END
+  	
+ 	IF ora>=20 AND ora < 21 
+
+  	THEN
+ 		i_consum=40
+  	END
+
+  	IF ora>=21 AND ora < 22 
+
+  	THEN
+ 		i_consum=45
+  	END
+ 	
+ 	IF ora>=22 AND ora < 23 
+
+  	THEN
+ 		i_consum=33
+  	END
+
+  	IF ora>=23 AND ora < 24 
+
+  	THEN
+ 		i_consum=22
+  	END
+  END
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_citect023.gif"></center>
+
+
+
+
+
+
+<br><br><a name="autoev"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de autoevaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck1() {  
+  
+     if ((Form_ck1.ck_1.checked==true)&(Form_ck1.ck_2.checked==false)&(Form_ck1.ck_3.checked==false)&(Form_ck1.ck_4.checked==false))  
+		document.Form_ck1.af_mes.value ='corect !';
+	else
+		document.Form_ck1.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck1">
+	<I> 1. Cum se face afisarea numerica a unei marimi analogice  ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck1()>
+	a. Utilizand un obiect de tip "Number" <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck1()>
+	b. Utilizand un obiect de tip "Label"  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck1()> 
+	c. Utilizand un obiest de tip "Text" <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck1()> 
+	d. Utilizand un obiect de tip "Genie" <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck2() {  
+  
+     if ((Form_ck2.ck_1.checked==false)&(Form_ck2.ck_2.checked==true)&(Form_ck2.ck_3.checked==false)&(Form_ck2.ck_4.checked==false))  
+		document.Form_ck2.af_mes.value ='corect !';
+	else
+		document.Form_ck2.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck2">
+	<I> 2. Controlul din program al unui instrument virtual se face:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck2()>
+	a. Din program, pe baza tag-ului corespunzator<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck2()>
+	b. Din program, pe baza Object Name-ului  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck2()> 
+	c. Din program, folosind o functie predefinita <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck2()> 
+	d. Din program, pe baza handler-ului  <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck3() {  
+  
+     if ((Form_ck3.ck_1.checked==true)&(Form_ck3.ck_2.checked==true)&(Form_ck3.ck_3.checked==true)&(Form_ck3.ck_4.checked==true))  
+		document.Form_ck3.af_mes.value ='corect !';
+	else
+		document.Form_ck3.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck3">
+	<I> 3. Unui instrument virtual de tipul CiMeterX i se pot modifica din program:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck3()>
+	a. Proprietatea "Value", <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck3()>
+	b. Proprietatea "Caption"<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck3()> 
+	c. Proprietatea "MaxValue" <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck3()> 
+	d. Proprietatea "EngUnit" <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck4() {  
+  
+     if ((Form_ck4.ck_1.checked==true)&(Form_ck4.ck_2.checked==true)&(Form_ck4.ck_3.checked==true)&(Form_ck4.ck_4.checked==false))  
+		document.Form_ck4.af_mes.value ='corect !';
+	else
+		document.Form_ck4.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck4">
+	<I> 4. Cu un obiect de tip "Genie" si anume: "Genie" -> Faceplat -> Manual_l...1_v, se poate:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck4()>
+	a. Afisa un parametru analogic <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck4()>
+	b. Simula un parametru analogic  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck4()> 
+	c. Controla un parametru analogic  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck4()> 
+	d. Afisa evolutia unui parametru analogic   <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck5() {  
+  
+     if ((Form_ck5.ck_1.checked==false)&(Form_ck5.ck_2.checked==false)&(Form_ck5.ck_3.checked==false)&(Form_ck5.ck_4.checked==true))  
+		document.Form_ck5.af_mes.value ='corect !';
+	else
+		document.Form_ck5.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck5">
+	<I> 5. Care obiecte necesita un tag specific  ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck5()>
+	a. Obiectul: "Genie" -> Faceplat -> Manual_l...1_v <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck5()>
+	b. Obiectul: CiMeterX  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck5()> 
+	c. Obiectul: "Genie" -> Faceplat -> Indicator <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck5()> 
+	d. Obiectul "Genie" -> Trend  <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<br><br><a name="rez"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Rezumat  </Center></TD></TR>
+</table>
+
+<br><br><b>Afisarea sub forma numerica </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea valorii unei marimi analogice sub forma numerica se face utilizand un obiect de tip "Number"
+
+<br><br><b>Afisarea sub forma de bara verticala (histografica) </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Reprezentarea sub forma unei bare vericale se face:
+<ul>
+<li> Utilizand un obiect "Rectangle" in care:
+<ul>
+<li> se bifeaza proprietatea Aparence->Filled si se alege culoarea cu care se face fill
+<li> se seteaza proprietatea Fill-> Level cu numele tag-ului ce reprezinta marimea analogica  
+<li> daca se doreste afisarea utilizand un gradient de culoare:
+ <ul>
+ 	<li> s-a setat proprietatea Fill-> Color cu numele tag-ului ce reprezinta marimea analogica 
+   	<li> se seteaza si proprietatea Aparence-> Gradient Fill
+  </ul>
+</ul>
+<li>Utilizand un obiect de tipul "Genie" -> Faceplat -> Indicator1
+</ul>
+<b>Afisarea unui instrument virtual </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa un instrument virtual, se foloseste un obiect "ActiveX" CimeterX.TechMeter unde se bifeaza proprietatea 
+"Value" si i se atribuie numele tag-ului ce reprezinta marimea analogica 
+<br><br><b>Controlul din program al unui instrument virtual </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Controlul din program al unui instrument virtual se face pe baza Object Name-ul atribuit la plasarea acestuia pe pagina grafica.
+<br><br><b>Afisarea evolutiei in timp a marimilor analogice </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea evolutiei in timp a marimilor analogice se face cu:
+<ul>
+ <li> Obiecte de tip "Trend"
+ <li> Obiecte de tip "Genie->Trend"
+</ul>
+<b>Simularea marimilor analogice se face: </b>
+<ul>
+ <li> Obiecte "Symbol" de tipul Xp_slider
+ <li> Obiecte de tip "Genie" -> Faceplat -> Manual_l...1_v 
+ <li> Din program
+</ul>
+<br><a name="astept"></a>
+<font color= "Blue" size=4><li><b>Rezultate asteptate </b></font>
+<ul>
+Dupa studierea acestui modul, ar trebui sa cunoasteti:<br><br>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+
+<li>Cum sa gestionati a marimilor analogice in sistemele SCADA 
+<li>Cum sa utilizati instrumentatia virtuala pentru afisarea parametrilor analogici
+<li>Cum sa controlati instrumentatia virtuala prin intermediul aplicatiilor SCADA 
+<li>Cum sa utilizati instrumente virtuale pentru urmarirea in timp a evolutiei marimilor analogice
+<li>Cum sa simulati marimile analogice in cadrul aolicatiilor SCADA
+</table>
+</ul>
+
+<a name="term"></a>
+<font color= "Blue" size=4> <li> <b>Termeni esentiali</b></font><br>
+<ul>
+<Table border=1 width="90%">
+
+<tr>
+  <td align="center"><b> Termen </b>  </td>
+  <td align="center"><b> Descriere </b>  </td>
+</tr>
+<tr>
+  <td> SCADA </td>
+  <td> Supervisory Control And Data Aquisition </td>    
+</tr>
+<tr>
+  <td> Tag </td>
+  <td> Nume generic pentru elementele din procesul monitorizat codificate prin intermediul variabilelor</td>    
+</tr>
+<tr>
+  <td> HMI  </td>
+  <td> Human Machine Interface -Interfata dintre aplicatie si utilizator </td>    
+</tr>
+<tr>
+  <td> Instrument virtual </td>
+  <td> Instrument afisat in pagina grafica si imita functionarea unui instrument real </td>    
+</tr>
+<tr>
+  <td> Trend </td>
+  <td> Evolutia in timp a unei marimi analogice</td>    
+</tr>
+<tr>
+  <td> Object Name</td>
+  <td> Numele unic al unui obiect plasat pe pagina grafica  </td>    
+</tr>
+<tr>
+  <td>Slider</td>
+  <td>Instrument virtual care imita functionarea unui potentiometru liniar</td>    
+</tr>
+<tr>
+  <td></td>
+  <td>  </td>    
+</tr>
+
+
+</table>
+</ul>
+ 
+<br><br><a name="bibl"></a>
+<font color= "Blue" size=4><li><b>Recomandari bibliografice </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> [1] Traian Turc, Elemente de programare C++ utile in ingineria electrica, Ed.Matrixrom, Bucuresti,2010
+<li> [2] Traian Turc, Programare avansata C++ pentru ingineria electrica, Ed.Matrixrom, Bucuresti,2010
+<li> [3] Traian Turc, Programarea in limbaje de asamblare, uz intern, Univ."Petru Maior" ,Tg.Mures,2009
+<li> [4] Traian Tur,Brevet de inventie nr:11863 "Sistem pentru automatizarea si monitorizarea proceselor industriale", OSIM, 2003
+<li> [5] Jeff Kent, C++ fara mistere,Ed.Rosetti Educational 2004 .
+<li> [6] Boldur Barbat - Informatica industriala - Programarea în timp real  – Institutul Central pentru Conducere si informatica 1984 
+<li> [7] Ioan Babuita – Conducerea automata a proceselor – Ed. Facla 1985
+<li> [8] Ghercioiu-National în struments - Orizonturi  în instrumentatie 1995
+</td></tr></table>
+</ul>
+<br><br><a name="link"></a>
+<font color= "Blue" size=4><li><b>Link-uri utile </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> 1.<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> - Free SCADA - 2009.
+<li> 2.<a href="http://www.7t.dk/igss/default.asp"> http://www.7t.dk/igss/default.asp</a> - IGSS SCADA System - 2009
+<li> 3.<a href="http://www.7t.dk/igss/default.asp?showid=374"> http://www.7t.dk/igss/default.asp?showid=374</a> - IGSS Online SCADA Training - 2009 
+<li> 4.<a href="http://www.7t.dk/free-scada-software/index.html"> http://www.7t.dk/free-scada-software/index.html</a>-  IGSS Free SCADA Software -2009
+<li> 5.<a href="http://www.citect.com/"> http://www.citect.com/</a> -  CITECT SCADA -2009 
+<li> 6.<a href="http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314"> http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314</a> - Download CITECT demo - 2009
+<li> 7.<a href="http://www.indusoft.com/index.asp"> http://www.indusoft.com/index.asp</a> - INDUSOFT SCADA - 2009
+<li> 8 <a href="http://www.gefanuc.com/products/2819"> http://www.gefanuc.com/products/2819</a> - Proficy HMI/SCADA - CIMPLICITY - 2009.
+<li> 9.<a href="http://www.genlogic.com/"> http://www.genlogic.com/</a> - Dynamic Graphics, Data Visualization, Human-Machine Interface (HMI) - 2010 
+<li> 10<a href="http://www.genlogic.com/demos.html"> http://www.genlogic.com/demos.html</a> - On-Line Java and AJAX Demos - 2010 
+<li> 11<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+<li> 12<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+</td></tr></table>
+</ul>
+
+<br><br><a name="eval"></a>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de evaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck6() {  
+  
+     if ((Form_ck6.ck_1.checked==true)&(Form_ck6.ck_2.checked==true)&(Form_ck6.ck_3.checked==false)&(Form_ck6.ck_4.checked==false))  
+		document.Form_ck6.af_mes.value ='corect !';
+	else
+		document.Form_ck6.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck6">
+	<I> 1. Cum se face afisarea sub forma de bara verticala (histografica) ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck6()>
+	a. Utilizand un obiect "Rectangle" <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck6()>
+	b. Utilizand un obiect de tipul "Genie" <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck6()> 
+	c. Utilizand un obiect de tip "Trend"  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck6()> 
+	d. Utilizand un obiect de tipul Xp_slider  <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+  
+<ul>
+<script type="text/javascript">
+function nr_ck7() {  
+  
+     if ((Form_ck7.ck_1.checked==true)&(Form_ck7.ck_2.checked==true)&(Form_ck7.ck_3.checked==true)&(Form_ck7.ck_4.checked==false))  
+		document.Form_ck7.af_mes.value ='corect !';
+	else
+		document.Form_ck7.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck7">
+	<I> 2. Simularea marimilor analogice se face:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck7()>
+	a. Utilizand obiecte "Symbol" de tipul Xp_slider <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck7()>
+	b. Utilizand obiecte de tip "Genie" -> Faceplat -> Manual_l...1_v <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck7()> 
+	c. Din program, prin modificarea tag-ului corespunzator  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck7()> 
+	d. Din program, prin utilizarea unor functii predefinite <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck8() {  
+  
+     if ((Form_ck8.ck_1.checked==true)&(Form_ck8.ck_2.checked==false)&(Form_ck8.ck_3.checked==false)&(Form_ck8.ck_4.checked==false))  
+		document.Form_ck8.af_mes.value ='corect !';
+	else
+		document.Form_ck8.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck8">
+	<I> 3. Cu un obiect de tip "Genie" -> Faceplat -> Indicator1, se poate   </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck8()>
+	a. Afisa un parametru analogic<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck8()>
+	b. Simula un parametru analogic <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck8()> 
+	c. Controla un parametru analogic <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck8()> 
+	d. Afisa evolutia in timp a unui parametru analogic <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck9() {  
+  
+     if ((Form_ck9.ck_1.checked==false)&(Form_ck9.ck_2.checked==false)&(Form_ck9.ck_3.checked==false)&(Form_ck9.ck_4.checked==false))  
+		document.Form_ck9.af_mes.value ='corect !';
+	else
+		document.Form_ck9.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck9">
+	<I> 4. Un obiect "Genie - Trends" are nevoie de: </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck9()>
+	a. 1 variabila de tip tag<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck9()>
+	b. 2 variabile de tip tag <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck9()> 
+	c. 1 variabila locala <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck9()> 
+	d. 2 variabile locale <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck10() {  
+  
+     if ((Form_ck10.ck_1.checked==false)&(Form_ck10.ck_2.checked==true)&(Form_ck10.ck_3.checked==false)&(Form_ck10.ck_4.checked==true))  
+		document.Form_ck10.af_mes.value ='corect !';
+	else
+		document.Form_ck10.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck10">
+	<I> 5. Un obiect de tip trend poate afisa   </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck10()>
+	a. Una sau mai multe tag-uri <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck10()>
+	b. Una sau mai multe trend-tag-uri <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck10()> 
+	c. Un singur trend-tag <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck10()> 
+	d. Evolutia un timp a unei marimi analogice  <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+ 
+</body>
+</html>

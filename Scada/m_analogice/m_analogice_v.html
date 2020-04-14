@@ -1,0 +1,354 @@
+<html>
+<title> Marimi analogice </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Marimi analogice </Center></TD></TR>
+</table>
+<br><br><a name="analogic"></a>
+<font color= "Blue" size=4><li><b> Tratarea marimilor analogice</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In multe cazuri avem de-a face cu marimi analogice. Intalnim marimi analogice la interfata cu procesele tehnologice, 
+atat la intrarile analogice cat si iesirile analogice. Acestora li se ataseaza taguri corespunzatoare de tip numeric. 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Marimile analogice pot fi deasemenea simulate utilizand diverse obiece grafice plasate pe paginile grafice ale aplicatiilor. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza in continuareun nou proiect cu numele <b> M_analogice </b> si in cadrul lui o pagina grafica numita 
+<b> analogic </b> in care se simuleaza si se afiseaza o marime analogica de intrare. 
+Afisarea se va face atat numeric cat si folosin diverse obiecte grafice care simuleaza aparate de masura si control.
+<br><br><center><img src="im_citect014.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru inceput vom introduce un nou tag numit "u_ali" 
+<br><br><center><img src="im_citect015.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa un obiect "Symbol" de tipul Xp_slider -right normal
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Setam proprietatea Slider-Vertical -Tag=U_ali si Offset at maximum = 150 pixeli. Setand aceasta proprietate in acest mod, 
+vom putea actiona acest simbul si sa-l deplasam pe verticala 150 de pixeli. miscarea acestui obiect de la 0 la 150 pixeli va cauza modificarea tag-ului 
+asociat U_ali de la 0 la val maxima definita.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea valorii u_ali sub forma numerica se face utilizand un obiest de tip "Number"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Reprezentarea sub forma unei bare vericale se face utilizand un obiect "Rectangle" in care:
+ul>
+<li> s-a setat proprietatea Fill-> Color cu U_ali  
+<li> s-a setat proprietatea Fill-> Level cu U_ali  
+<li> daca se doreste afisarea utilizand un gradient de culoare, se seteaza si proprietatea Aparence cu Gradient fill
+</ul>
+<br><br><center><img src="im_citect013.gif"></center>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a simula volt-metrul, s-a folosit un obiect "ActiveX" CimeterX.TechMeter unde s-a bifat proprietatea "Value" si i sa 
+atribuit valoarea u_ali plasata in zona Associate prpoerty 'Value' with tag....
+<br><br><center><img src="im_citect016.gif"></center>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In aplicatia anterioara am utilizat controlul de tipul CiMeterX pe post de instrument virtual pentru 
+a afisa sub forma analogica valoarea instantanee a diversilor parametri. La plasarea acestora pe pagina grafica se pot seta diverse 
+proprietati. Proprietatile acestor instrumente virtuale se pot modifica dinamic in timpul functionarii, prin intermediul codului de program  
+lansate in timpul aplicatiei de diverse evenimente cum ar fi: scanarea paginii, apasarea unui buton etc.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a ne putea referi din program la un anumit CiMeterX plasat pe pagina grafica, avem nevoie de o valoare de inentificare a acestuia. 
+Dupa plasarea acestuia pe pagina grafica, acesta intradevar primeste un astfel de nume de indentificare dupa cum se vede in imaginea de jos:
+<br><br><center><img src="im_citect011.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;CiMeterX plasat pe pagina grafica este defapt din punt de vedere al programarii un obiec care dupa cum se vede, 
+poarta numele "AN231", nume pe care il vom utiliza in codul programului pe care il vom scrie.
+ 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom incerca sa scriem niste functii declansate de apasarea unor butoane, functii care modifica proprietatile acestor 
+instrumente virtuale. Urmatoarea plicatie reprogrameaza un CiMeterX si il transforma intr-un multimetru prin apasarea unor butoane.
+<br><br><center><img src="im_citect024.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a transforma CiMeterX in voltmetru, se apasa butonul "U" care lanseaza functia transf_u( )
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+FUNCTION transf_u() 
+	_ObjectSetProperty(ObjectByName("AN231"), "Value",u_alim);
+	_ObjectSetProperty(ObjectByName("AN231"), "Caption","Tensiune");
+	_ObjectSetProperty(ObjectByName("AN231"), "MaxValue",260);
+	_ObjectSetProperty(ObjectByName("AN231"), "EngUnit","Volti");
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a transforma CiMeterX in ampermetru se apasa butonul "I" care lanseaza functia transf_i( )
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+FUNCTION transf_i() 
+	_ObjectSetProperty(ObjectByName("AN231"), "Value",i_consum);
+	_ObjectSetProperty(ObjectByName("AN231"), "Caption","Curent");
+	_ObjectSetProperty(ObjectByName("AN231"), "MaxValue",50);
+	_ObjectSetProperty(ObjectByName("AN231"), "EngUnit","Amperi");
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a transforma CiMeterX in watmetru, se apasa butonul "P" care lanseaza functia transf_p( )
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+FUNCTION transf_p()
+	_ObjectSetProperty(ObjectByName("AN231"), "Value",putere);
+	_ObjectSetProperty(ObjectByName("AN231"), "Caption","Putere");
+	_ObjectSetProperty(ObjectByName("AN231"), "MaxValue",12000);
+	_ObjectSetProperty(ObjectByName("AN231"), "EngUnit","Wati");
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a transforma culoara de fundal in rosu, se apasa butonul "Rosu" care lanseaza functia transf_r( )
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+FUNCTION transf_r()
+	_ObjectSetProperty(ObjectByName("AN231"), "BackColor",6350);
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a transforma culoara de fundal in galben, se apasa  "Galben" care lanseaza functia transf_g( )
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+FUNCTION transf_g()
+	_ObjectSetProperty(ObjectByName("AN231"), "BackColor",65534);
+END	
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Exista o serie de alte indicatoare virtuale definite in grupul "ActivX" sau in grupul "Ginie". Vom utiliza in urmatoarea 
+aplicatie un obiect de tip "Ginie" -> Faceplat -> Indicator1 si realizam urmatoarea aplicatie:
+<br><br><center><img src="im_citect010.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Plasarea obiectului de tip "Ginie" -> Faceplat -> Indicator1 este extrem de simpla, dupa alegerea acestuia, nu trebuie 
+decat setat tag-ul aferent.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Chiar si simularea tensiunii de alimentare am putea-o realiza cu un obiect de tip "Ginie" si anume: 
+"Ginie" -> Faceplat -> Manual_l...1_v
+<br><br><center><img src="im_citect009.gif"></center>
+
+<br><br><a name="trends"></a>
+<font color= "Blue" size=4><li><b>  Evolutia in timp a marimilor - Trends  </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Vom realiza o noua pagina grafica numita <b> "trends" </b> in care vom analiza evolutia in timp a diverselor marimi.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Pentru analiza in timp a evolutiei diverselor marimi digitale sau analogice exista o serie de obiecte destinate afisarii 
+graficelor in timp a diverselor marimi. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color= "Black" size=4><b>Trend</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Unul dintre cele mai simple obiecte care ne permit afisarea evolutiei in timp a diverselor marimi este obiectul "Trend".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Acestui obiect trebuie sa-i atasam un tag mai specila si anume un Trend Tag.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Progect Editor ->Tags->Trend Tags adaugam un tag nou:
+<br><br><center><img src="im_citect018.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa din imaginea de sus, Trend-Tag-ul tensiune va stoca datele provenite de la tag-ul u_alim.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa un obiect "Trend" caruia putem sa-i atasam diverse tag-uri de tip Trend Tag. Vom atasa Trend tag-ul tensiune si 
+curent_c care vor permite trasarea graficelor de evolutie in timp a marimilor u_alim respectiv i_consum. Vom mai plasa doua obiecte cu care sa simulam 
+marimile u_alim si i_consum si obtinem:  
+<br><br><center><img src="im_citect017.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color= "Black" size=4><b>Genie Trends</b></font> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In aplicatia anterioara, evolutia in timp a diverselor marimi era afisata grafic insa nu exista posibilitatea analizei 
+formelor de unda afisate. Folosind un obiect de tip "Genie" este posibila analiza formelor de unda achizitionate.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza o noua pagina grafica numita <b> "process_a" </b> in care vom simula doua marimi ( curentul si tensiunea)similar cu pagina anterioara, 
+dar de data aceasta vom plasa un obiect "Genie" si vom alege din lista "Trends"
+<br><br><center><img src="im_citect019.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca lansam aplicatia, numai dupa actionarea butonului corespunzator "Genie - Trends" , va fi declansata afisarea 
+evolutiei in timp, dar de data aceastaavem o serie de facilitati pentru analiza graficelor afisate.
+<br><br><center><img src="im_citect020.gif"></center>
+
+
+<br><br><a name="simul"></a>
+<font color= "Blue" size=4> <li><b>Simularea marimilor analogice</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De multe ori avem nevoie sa simulam anumite semnale analogice. Prima metoda folosita a fost simularea marimilor 
+analogice prin actionarea manuala a anumitor butoane. Semnalele se pot simula si automat utilizand functii matematice sau functii simple scrise in 
+cadrul modulelor de program "Cicode"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca vrem sa simulam o functie "dinti de fierastrau" pentru evolutia curentului consumat. Vom include o functie 
+de genul:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION Simul_c_df()
+	IF i_consum > 44 THEN
+	i_consum=0;
+	ELSE
+	i_consum=i_consum+0.25;
+	END
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se vede, la fiecare apel al functiei i_consum este incrementat cu 0.25. In cazul in care se ajunge 
+la valoarea maxima definita (in acest caz 45 volti), se forteaza i_consum la 0. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza o noua pagina grafica numita <b> "simulare_f" </b> in care afisam do poarametrii (tensiiune si curent) . Tensiunea va fi simulata manual 
+iar pentru curent vom face apelul functiei "Simul_c_df" pentru a modifica in mod constant valoarea curentului obtinand in final aplicatia de jos:
+<br><br><center><img src="im_citect021.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom mai scrie o functie care intrerupe curentul electric in cazul in care tensiunea nu este in plaja stabilita.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION lim_u()
+
+	IF u_alim>230 THEN
+		comut_alim=0;
+	END
+
+	IF u_alim<210 THEN
+		comut_alim=0;
+	END
+
+	IF u_alim>210 AND u_alim<230 THEN
+		comut_alim=1;
+	END
+	
+	IF comut_alim=0 THEN
+		i_consum=0
+	END
+END
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Dupa cum se observa, in cazul in care tensiunea nu se incadreaza in plaja 210v-230v se forteaza i_consum la 0
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca dorim o evolutie sinusoidala a curentului apelam o functie de genul:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION Simul_c_sin()
+	rad=rad + 0.01;
+	i_consum=20*(1+sin(rad));
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;S-a introdus o noua variabila rad pentru a pastra unghiul in radiani. Pentru o variatie a curentului in limitele 
+0-45 amperi, s-a atrbuit lui i_consum valoarea 45*(1+sin(rad))
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In acest caz aplicatia arata astfel:
+<br><br><center><img src="im_citect022.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a simula consumul pe 24 de ore, vom scrie o functie care simuleaza valoarea curentului consumat in fiecare 
+interval orar astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION simul_c()
+	ora=ora+0.1
+	IF ora> 24 THEN
+	   ora=0
+	END    
+
+  	IF ora>=0 AND ora < 4 
+  	THEN
+ 		i_consum=6
+  	END
+  	
+  	IF ora>=4 AND ora < 5 
+
+  	THEN
+ 		i_consum=20
+  	END  
+  	
+   	IF ora>=5 AND ora < 6 
+
+  	THEN
+ 		i_consum=29
+  	END 
+    
+    IF ora>=6 AND ora < 7 
+
+  	THEN
+ 		i_consum=35
+  	END 
+ 	
+ 	IF ora>=7 AND ora < 8 
+
+  	THEN
+ 		i_consum=39
+  	END
+  	 
+ 	IF ora>=8 AND ora < 9 
+
+  	THEN
+ 		i_consum=40
+  	END
+  	  
+ 	IF ora>=9 AND ora < 10 
+
+  	THEN
+ 		i_consum=42
+  	END
+  	IF ora>=10 AND ora < 11 
+
+  	THEN
+ 		i_consum=45
+  	END
+ 	  
+ 	IF ora>=11 AND ora < 12 
+
+  	THEN
+ 		i_consum=42
+    END
+ 	IF ora>=12 AND ora < 13 
+
+  	THEN
+ 		i_consum=40
+  	END
+  	IF ora>=13 AND ora < 14 
+
+  	THEN
+ 		i_consum=33
+  	END
+ 	
+ 	IF ora>=14 AND ora < 17 
+
+  	THEN
+ 		i_consum=30
+  	END
+  	
+  	IF ora>=17 AND ora < 18 
+
+  	THEN
+ 		i_consum=25
+  	END
+    
+  	IF ora>=18 AND ora < 19 
+
+  	THEN
+ 		i_consum=20
+  	END
+ 	IF ora>=19 AND ora < 20 
+
+  	THEN
+ 		i_consum=25
+  	END
+  	
+ 	IF ora>=20 AND ora < 21 
+
+  	THEN
+ 		i_consum=40
+  	END
+
+  	IF ora>=21 AND ora < 22 
+
+  	THEN
+ 		i_consum=45
+  	END
+ 	
+ 	IF ora>=22 AND ora < 23 
+
+  	THEN
+ 		i_consum=33
+  	END
+
+  	IF ora>=23 AND ora < 24 
+
+  	THEN
+ 		i_consum=22
+  	END
+  END
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_citect023.gif"></center>
+
+
+
+
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
