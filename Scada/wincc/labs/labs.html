@@ -1,0 +1,651 @@
+<html>
+<title>  WinCC - VBS aplicatii propuse </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "white" size=5>  WinCC - VBS aplicatii propuse </Center></TD></TR>
+</table>
+<ol>
+<li> Afisati repetitiv Timer-ul si un numar aleator in doua controale de tip "Static-Text"
+<li> Simulati functionarea continua unui semafor rutier .
+<br><br><center><img src="im_06.jpg"></center><br><br>
+<li> Simulati functionarea unui semafor rutier care realizeaza o singura secventa declansata de la un buton.
+<li> Plasati un simbol si doua butoane cu textele :"Dreapta" respectiv "Stanga". Deplasati simbolul cu 30 pixeli dreapta la fiecare click 
+pe butonul "Dreapta"  si cu 30 pixeli stanga la fiecare click pe butonul "Stanga"
+<br><br><center><img src="im_01.jpg"></center><br><br>
+<li> Plasati un simbol Siemens/HMI Symbols Library/Vehicles/Dump truck. Deplasati simbolul cu 30 pixeli la fiecare click pe simbol  si aduceti-l in 
+pozitia initiala la fiecare double click. Se va afisa pozitia curenta intr-un Standard Objects -- Static Text
+<li> Simulati umplerea unui rezervor de la o pompa. Se va afisa valoarea nivelului intr-un Standard Objects -- Static Text
+<br><br><center><img src="im_03.jpg"></center><br><br>
+<li> Simulati umplerea unui rezervor de la o pompa. Se va colora cu rosu daca nivelul este peste 70% si va afisa valoarea nivelului intr-un Standard Objects -- Static Text
+<li> Plasati un simbol Siemens/HMI Symbols Library/Vehicles/Dump truck. Deplasati simbolul cu 30 pixeli la fiecare 250 ms. Aduceti simbolul in 
+pozitia initiala daca ajunge la 600 pixeli. Se va afisa pozitia curenta intr-un Standard Objects -- Static Text
+<li> Plasati 2 simboluri Siemens/HMI Symbols Library/Vehicles/Dump truck. Simulati o deplasare continua a simbolurilor
+<li> Se plaseaza 5 Slider-uri si 5 Led-uri. Aprindeti la apasarea  unui buton ledul corespunzator slider-ului cu valoarea cea mai mare.
+<br><br><center><img src="im_07.jpg"></center><br><br>
+<li> Simulati functionarea unui led care dupa pornire isi schimba culoarea iar dupa 2 s schimba din nou culoarea
+<br><br><center><img src="im_08.jpg"></center><br><br>
+<li> Simulati un joc de lumini pe 10 led-uri (se simuleaza deplasarea unui led st-dr intr-o bucla nesfarsita)
+<li> Aprindeti 10 led-uri intr-o ordine stabilita printr-un vector de prioritati
+
+</ol> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><b> Rezolvari </b></font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Afisati repetitiv Timer-ul si un numar aleator in doua controale de tip "Static-Text"</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "afisd_06" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- VBS Action, 
+scriptul de jos si setam Triger-ul la 250 ms. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(ByVal Item)
+	Dim objTxt1
+	Set objTxt1 = ScreenItems("Static Text1")
+	objTxt1.Text=CStr(Rnd*100)
+	Dim objTxt2
+	Set objTxt2 = ScreenItems("Static Text2")
+	objTxt2.Text=Timer
+End FunctionEnd Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Simulati functionarea continua unui semafor rutier.</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "if_04" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- VBS Action, 
+scriptul de jos si setam Triger-ul la 250 ms. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(Byval Item)
+Dim tim
+Set tim = HMIRuntime.Tags("i")
+tim.Read
+If tim.Value<=36 Then
+Dim c1
+Dim c2
+Dim c3
+Dim txt
+Set c1 = ScreenItems("Circle1")
+Set c2 = ScreenItems("Circle2")
+Set c3 = ScreenItems("Circle3")
+Set txt = ScreenItems("Static Text1")
+tim.Value = tim.Value + 1
+If tim.Value<=12 Then
+	txt.Text = 12-tim.Value
+	c1.BackColor=RGB(250,0,0)
+	c2.BackColor=RGB(10,10,10)
+	c3.BackColor=RGB(10,10,10)
+End If
+If tim.Value>12 And tim.Value<=20 Then
+	txt.Text = 20-tim.Value
+	c1.BackColor=RGB(10,10,10)
+	c2.BackColor=RGB(250,250,0)
+	c3.BackColor=RGB(10,10,10)
+End If
+If tim.Value>20 And tim.Value<=36 Then
+	txt.Text = 36-tim.Value
+	c1.BackColor=RGB(10,10,10)
+	c2.BackColor=RGB(10,10,10)
+	c3.BackColor=RGB(0,250,0)
+End If
+If tim.Value>36 Then
+	c1.BackColor=RGB(10,10,10)
+	c2.BackColor=RGB(10,10,10)
+	c3.BackColor=RGB(10,10,10)
+End If
+tim.Write
+End If
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Simulati functionarea unui semafor rutier care realizeaza o singura secventa declansata de la un buton.</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "if_05" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- VBS Action, 
+scriptul de jos si setam Triger-ul la 250 ms. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(Byval Item)
+Dim c1
+Dim c2
+Dim c3
+Dim tim
+Dim txt
+Set c1 = ScreenItems("Circle1")
+Set c2 = ScreenItems("Circle2")
+Set c3 = ScreenItems("Circle3")
+Set tim = HMIRuntime.Tags("i")
+Set txt = ScreenItems("Static Text1")
+tim.Read
+tim.Value = tim.Value + 1
+If tim.Value<=12 Then
+	txt.Text = 12-tim.Value
+	c1.BackColor=RGB(250,0,0)
+	c2.BackColor=RGB(10,10,10)
+	c3.BackColor=RGB(10,10,10)
+End If
+If tim.Value>12 And tim.Value<=20 Then
+	txt.Text = 20-tim.Value
+	c1.BackColor=RGB(10,10,10)
+	c2.BackColor=RGB(250,250,0)
+	c3.BackColor=RGB(10,10,10)
+End If
+If tim.Value>20 And tim.Value<=36 Then
+	txt.Text = 36-tim.Value
+	c1.BackColor=RGB(10,10,10)
+	c2.BackColor=RGB(10,10,10)
+	c3.BackColor=RGB(0,250,0)
+End If
+If tim.Value>36 Then
+tim.Value=0
+txt.Text =0
+End If
+tim.Write
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Button1 -- Properties -- Events -- Mouse --Mouse Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(ByVal Item) 
+	Dim tim
+	Set tim = HMIRuntime.Tags("i")
+	tim.Value=0
+	tim.Write
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Plasati un simbol si doua butoane cu textele :"Dreapta" respectiv "Stanga". 
+Deplasati simbolul cu 30 pixeli dreapta la fiecare click  pe butonul "Dreapta"  si cu 30 pixeli stanga la fiecare click pe butonul "Stanga"</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "camion_00" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Siemens/HMI Symbols Library/Vehicles/Dump truck
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Button1 -- Properties -- Events -- Mouse --Mouse Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(ByVal Item)  
+	Dim camion
+	Set camion = ScreenItems("Control1")
+	camion.Left=camion.Left+30
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Button2 -- Properties -- Events -- Mouse --Mouse Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(ByVal Item)  
+	Dim camion
+	Set camion = ScreenItems("Control1")
+	camion.Left=camion.Left-30
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Deplasarea unui simbolul cu 30 pixeli la fiecare click pe simbol  si revenire in 
+pozitia initiala la fiecare double click</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "camion_01" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Siemens/HMI Symbols Library/Vehicles/Dump truck
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Object Events -- OnClick --Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub Click(ByVal Item) 
+                 
+	Dim camion
+	Set camion = ScreenItems("Control1")
+	camion.Left=camion.Left+30
+	Dim objTxt
+	Set objTxt = ScreenItems("Static Text1")
+	objTxt.Text=CStr(camion.Left)
+	
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Object Events -- DoubleClick --Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub DblClick(ByVal Item) 
+
+	Dim camion
+	Set camion = ScreenItems("Control1")
+	camion.Left=30
+	Dim objTxt
+	Set objTxt = ScreenItems("Static Text1")
+	objTxt.Text=CStr(camion.Left)
+	
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "camion_02" </b> </font> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Object Events -- DoubleClick --Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(ByVal Item)
+	Dim poz
+	Set poz = HMIRuntime.Tags("i")
+	poz.Read
+	poz.Value = poz.Value + 1
+	If poz.Value>30 Then
+		poz.Value=1
+	End If
+	poz.Write
+	Dim camion
+	Set camion = ScreenItems("Control1")
+	camion.Left=20*poz.Value
+	Dim objTxt
+	Set objTxt = ScreenItems("Static Text1")
+	objTxt.Text=CStr(camion.Left)
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "camion_02_01" </b> </font>  in care folosim camion.Left pe post 
+de variabila globala, variabila care mentine valoarea intre doua apeluri ale procedurii.
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Object Events -- DoubleClick --Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(Byval Item)
+	Dim camion
+	Set camion = ScreenItems("Control1")
+	Dim poz
+	poz=camion.Left
+	poz=poz+20
+	If poz>500 Then
+		poz=1
+	End If
+	camion.Left=poz
+	Dim objTxt
+	Set objTxt = ScreenItems("Static Text1")
+	objTxt.Text=CStr(camion.Left)
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b> Simulati umplerea unui rezervor de la o pompa. Se va afisa valoarea nivelului intr-un 
+Standard Objects -- Static Text</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "pompa_00" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Circle
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Setam proprietatea Filling -- Dinamic Filling --Yes
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Setam proprietatea Fill Level -- Dinamic -- Tag -- Atribuim Tag-ul i si setam Update Cycle la 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Siemens/HMI Symbols Library/Pumps/Horiz pump 6
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Tube Objects -- Poligon Tube
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- VBS Action, 
+scriptul de jos si setam Triger-ul la 250 ms. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(ByVal Item)
+	Dim niv
+	Dim rez
+	Set rez = ScreenItems("Circle1")
+	Set niv = HMIRuntime.Tags("i")
+	niv.Read
+	niv.Value = niv.Value + 10
+	If niv.Value>100 Then
+		niv.Value=1
+	End If	
+	niv.Write
+	Dim objTxt
+	Set objTxt = ScreenItems("Static Text1")
+	objTxt.Text=niv.Value
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim de data aceasta proprietatea FillingIndex caruia ii atribuim valori intre 0 si 100 reprezentand 
+procentul nivelului de umplere. Atentie atribuirea uni procent peste 100 blocheaza afisarea nivelului. Prporietatea Dynamic Filling se setreaza la "Yes"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cu precizarile anterioare, vom crea o noua pagina grafica <font color="red"><b> "pompa_00_01" </b> </font>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(ByVal Item)
+	Dim rez
+	Set rez = ScreenItems("Circle1")
+	rez.FillingIndex=rez.FillingIndex+10
+	If rez.FillingIndex >=100 Then
+		rez.FillingIndex=0
+	End If	
+	Dim objTxt
+	Set objTxt = ScreenItems("Static Text1")
+	objTxt.Text=rez.FillingIndex
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b> Simulati umplerea unui rezervor de la o pompa. Se va colora cu rosu daca nivelul este peste 
+70% si va afisa valoarea nivelului intr-un Standard Objects -- Static Text </b><br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "pompa_02" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Circle
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Setam proprietatea Filling -- Dinamic Filling --Yes
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Setam proprietatea Fill Level -- Dinamic -- Tag -- Atribuim Tag-ul i si setam Update Cycle la 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Siemens/HMI Symbols Library/Pumps/Horiz pump 6
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Tube Objects -- Poligon Tube
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- VBS Action, 
+scriptul de jos si setam Triger-ul la 250 ms. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(ByVal Item)
+	Dim niv
+	Dim rez
+	Set rez = ScreenItems("Circle1")
+	Set niv = HMIRuntime.Tags("i")
+	niv.Read
+	niv.Value = niv.Value + 10
+	If niv.Value>100 Then
+		niv.Value=1
+	End If
+	
+	niv.Write
+	If niv.Value>70 Then
+		rez.BackColor=RGB(250,0,0)
+	Else
+		rez.BackColor=RGB(0,0,150)
+	End If
+	Dim objTxt
+	Set objTxt = ScreenItems("Static Text1")
+	objTxt.Text=niv.Value
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Plasati un simbol Siemens/HMI Symbols Library/Vehicles/Dump truck. Deplasati simbolul cu 30 pixeli 
+la fiecare 250 ms. Aduceti simbolul in pozitia initiala daca ajunge la 600 pixeli</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "camion_02" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Siemens/HMI Symbols Library/Vehicles/Dump truck
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- VBS Action, 
+scriptul de jos si setam Triger-ul la 250 ms. 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(ByVal Item)
+	Dim poz
+	Set poz = HMIRuntime.Tags("i")
+	poz.Read
+	poz.Value = poz.Value + 1
+	If poz.Value>30 Then
+		poz.Value=1
+	End If
+	poz.Write
+	Dim camion
+	Set camion = ScreenItems("Control1")
+	camion.Left=20*poz.Value
+	Dim objTxt
+	Set objTxt = ScreenItems("Static Text1")
+	objTxt.Text=CStr(camion.Left)
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Plasati 2 simboluri Siemens/HMI Symbols Library/Vehicles/Dump truck. Simulati o deplasare continua a simbolurilor</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "camion_03" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam 2 elemente Siemens/HMI Symbols Library/Vehicles/Dump truck la distanta 200 pixeli
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- VBS Action, 
+scriptul de jos si setam Triger-ul la 250 ms. 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(ByVal Item)
+	Dim poz
+	Set poz = HMIRuntime.Tags("i")
+	poz.Read
+	poz.Value = poz.Value + 1
+	If poz.Value>9 Then
+		poz.Value=0
+	End If
+	poz.Write
+	Dim camion1
+	Set camion1 = ScreenItems("Control1")
+	Dim camion2
+	Set camion2 = ScreenItems("Control2")
+	camion1.Left=20*poz.Value
+	camion2.Left=200+20*poz.Value
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Se plaseaza 5 Slider-uri si 5 Led-uri. Aprindeti la apasarea  unui buton ledul corespunzator slider-ului cu valoarea cea mai mare. </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "comut_00" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;5 elemente Controls -- Activx Controls -- Wincc Slider Control cu numele Control1, Control2, ... Control5
+<br>&nbsp;&nbsp;&nbsp;&nbsp;5 elemente Standard Objects -- Circle cu numele Circle1, Circle2, ... Circle5
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Effects -- Global color scheme No
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item)     
+	Dim i
+	i=1
+	Dim sld
+	Dim val_m
+	val_m=0
+	Dim p
+	p=1
+	Do While i <= 5
+		Set sld = ScreenItems("Control"+CStr(i))
+		If sld.Position > val_m Then
+			val_m=sld.Position
+			p=i
+		End If 
+		i=i+1
+	Loop
+	i=1
+	Dim led
+	Do While i <= 5
+		Set led = ScreenItems("Circle"+CStr(i))
+		If i=p Then
+			led.BackColor=RGB(150,200,150)
+		Else
+			led.BackColor=RGB(10,10,10)
+		End If 
+		i=i+1
+	Loop
+	Dim objTxt
+	Set objTxt = ScreenItems("Static Text1")
+	objTxt.Text=val_m
+	
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> Simulati functionarea unui led care dupa pornire isi schimba culoarea iar dupa 2 s schimba 
+din nou culoarea</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "while_02" </b> </font>,in care simulam functionarea unui 
+led care dupa pornire isi schimba culoarea iar dupa 2 s schimba din nou culoarea.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Circle
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Effects -- Global color scheme No
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item)
+
+Dim led
+Set led = ScreenItems("Circle1")
+led.BackColor=RGB(10,20,150)
+Dim st
+st = Timer
+Do While Timer < st+1
+Loop
+led.BackColor=RGB(100,200,50)
+
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Simulati un joc de lumini pe 10 led-uri (se simuleaza deplasarea unui led st-dr intr-o bucla nesfarsita) </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "while_03" </b> </font>,in care simulam un joc de lumini pe 10 led-uri
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;10 elemente Standard Objects -- Circle cu numele Circle1, Circle2, ... Circle10
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Effects -- Global color scheme No
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item)                    
+Dim i
+i=1
+Dim led
+Dim st
+Dim tm
+Do While i <= 10
+	Set led = ScreenItems("Circle"+CStr(i))
+	led.BackColor=RGB(10,20,150)
+	st = Timer
+	tm=st
+	Do While tm < st+1
+	tm = Timer
+	Loop
+	i=i+1
+Loop
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Metoda nu e eficienta.  Vom folosi Timere
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "while_04" </b> </font>,in care simulam un joc de lumini pe 10 led-uri
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;10 elemente Standard Objects -- Circle cu numele Circle1, Circle2, ... Circle10
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Effects -- Global color scheme No
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Folosim din nou proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- VBS Action, 
+scriptul de jos si setam Triger-ul la 500 ms. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(Byval Item)
+
+Dim t
+Set t = HMIRuntime.Tags("Temp")
+t.Read
+t.Value = t.Value + 1
+If t.Value>10 Then
+t.Value=1
+End If
+t.Write
+Dim i
+i=1
+Dim led
+Do While i <= 10
+	Set led = ScreenItems("Circle"+CStr(i))
+	If t.Value=i Then
+		led.BackColor=RGB(150,200,150)
+	Else
+		led.BackColor=RGB(10,10,10)
+	End If 
+	i=i+1
+Loop
+
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> Aprindeti 10 led-uri intr-o ordine stabilita printr-un vector de prioritati</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "while_05" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;10 elemente Standard Objects -- Circle cu numele Circle1, Circle2, ... Circle10
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Effects -- Global color scheme No
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Folosim din nou proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- VBS Action, 
+scriptul de jos si setam Triger-ul la 500 ms. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(Byval Item)
+	Dim prior(11)
+	prior(1)=2
+	prior(2)=7
+	prior(3)=1
+	prior(4)=10
+	prior(5)=4
+	prior(6)=9
+	prior(7)=8
+	prior(8)=5
+	prior(9)=3
+	prior(10)=6
+	Dim t
+	Set t = HMIRuntime.Tags("Temp")
+	t.Read
+	t.Value = t.Value + 1
+	If t.Value>10 Then
+	t.Value=1
+	End If
+	t.Write
+	Dim i
+	i=1
+	Dim led
+	Do While i <= 10
+		Set led = ScreenItems("Circle"+CStr(prior(i)))
+		If t.Value=i Then
+			led.BackColor=RGB(150,200,150)
+		Else
+			led.BackColor=RGB(10,10,10)
+		End If 
+		i=i+1
+	Loop
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+</body>
+</html>

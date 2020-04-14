@@ -1,0 +1,327 @@
+<html>
+<title>  Aplicatii in energetica: Win CC - ANSI C </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "white" size=5>  Aplicatii in energetica: Win CC - ANSI C </Center></TD></TR>
+</table>
+<ol>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Se propune schema monofilara din imaginea de jos:
+<br><br><center><img src="im_04.jpg"></center><br><br>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi urmatoarele simboluri:
+<br><br><center><img src="intr_on.ico">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="intr_off.ico">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="sep_on.ico">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="sep_off.ico">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="trafo_on.ico">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="trafo_off.ico"></center><br><br>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_sch_monof_00" </b> </font> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Se vor introduce tag-urile de tip Binary:s1,s2,s3,i1,tr1.Fiecarui tag i se vor atribui simbolurile corespunzatoare, 
+si vom utiliza pentru fiecare simbol, cate un Smart Objects -- Status Display astfel:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Smart Objects -- Status Display 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-se atribuie Tag-ul corespunzator -- Update 250 ms 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-se atribuie imagini corespunzatoare pentru 0 si pentru 1. Se face click dreapta pe simbol si 
+se alege Configuration Dialog. Se aduc imaginile cu Browse si apoi se trag pe starea 0 respectiv starea 1. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom incerca sa implementam urmatoarea functionalitate:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-S1 sau S2 nu poata fi actionate cand I1 este cuplat
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-S3 sa nu poata fi cuplat numai cand I1 And S1 = 0
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-I1 sa nu poata fi actionat cand S3 este cuplat
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la separatorul S1 -- Properties -- Events -- Mouse --Mouse Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	BOOL S1;
+	BOOL I1;
+	S1=GetTagBit("s1");
+	I1=GetTagBit("i1");
+	if(I1==0){
+		if(S1==0){
+			S1=1;
+			SetTagBit("s1",S1);
+		}
+		else{
+			S1=0;
+			SetTagBit("s1",S1);
+		}
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la separatorul S2 -- Properties -- Events -- Mouse --Mouse Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	BOOL S2;
+	BOOL I1;
+	S2=GetTagBit("s2");
+	I1=GetTagBit("i1");
+	if(I1==0){
+		if(S2==0){
+			S2=1;
+			SetTagBit("s2",S2);
+		}
+		else{
+			S2=0;
+			SetTagBit("s2",S2);
+		}
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la separatorul S3 -- Properties -- Events -- Mouse --Mouse Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+BOOL S1;
+BOOL S3;
+BOOL I1;
+S1=GetTagBit("s1");
+S3=GetTagBit("s3");
+I1=GetTagBit("i1");
+
+
+if(S3==0){
+       if(!(I1&&S1)){
+            S3=1;
+            SetTagBit("s3",S3);
+       }
+ }
+ else{
+             S3=0;
+             SetTagBit("s3",S3);
+}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la Intreruptorul I1 -- Properties -- Events -- Mouse --Mouse Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	BOOL S3;
+	BOOL I1;
+	S3=GetTagBit("s3");
+	I1=GetTagBit("i1");
+	if(S3==0){
+		if(I1==0){
+			I1=1;
+			SetTagBit("i1",I1);
+		}
+		else{
+			I1=0;
+			SetTagBit("i1",I1);
+		}
+	}
+
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la Butonul "Set" -- Properties -- Events -- Mouse --Mouse Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	char* taguri[4]={"s1","s2","s3","i1"};
+	int i;
+	for(i=0;i<5;i++){
+		SetTagBit(taguri[i],1);
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la Butonul "Clear" -- Properties -- Events -- Mouse --Mouse Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	char* taguri[4]={"s1","s2","s3","i1"};
+	int i;
+	for(i=0;i<5;i++){
+		SetTagBit(taguri[i],0);
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- C Action, 
+cu scriptul de jos si setam Triger-ul la 500 ms pentru a ctualiza simbolul trafo.. 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+ long _main(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+BOOL S1;
+BOOL S2;
+BOOL I1;
+BOOL TR1;
+S1=GetTagBit("s1");
+S2=GetTagBit("s2");
+I1=GetTagBit("i1");
+TR1=GetTagBit("tr1");
+if(I1&&S1&&S2){
+         TR1=1;
+         SetTagBit("tr1",TR1);
+ }
+ else{
+         TR1=0;
+         SetTagBit("tr1",TR1);
+}
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia poate fi simplificata prin folosirea procedurilor.Vom crea astfel o noua pagina grafica 
+<font color="red"><b> "c_sch_monof_01" </b></font>
+<br><br><center><img src="im_05.jpg"></center><br><br>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi procedura c_comut() pe care o vom integra in Global -- Script -- C Editor --Project Module 
+: </font>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+void c_comut(char* tag)
+{
+	BOOL tg;
+	tg=GetTagBit(tag);
+	if(tg==0){
+		tg=1;
+		SetTagBit(tag,tg);
+	}else{
+		tg=0;
+		SetTagBit(tag,tg);
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la separatorul S1 -- Properties -- Events -- Mouse --Mouse Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+BOOL I1;
+I1=GetTagBit("i1");
+if(I1==0){
+	c_comut("s1");
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la separatorul S2 -- Properties -- Events -- Mouse --Mouse Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	BOOL I1;
+	I1=GetTagBit("i1");
+	if(I1==0){
+		c_comut("s2");
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la separatorul S3 -- Properties -- Events -- Mouse --Mouse Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	BOOL S1;
+	BOOL S3;
+	BOOL I1;
+	S1=GetTagBit("s1");
+	S3=GetTagBit("s3");
+	I1=GetTagBit("i1");
+	if(S3==0){
+		if(!(I1&&S1)){
+			c_comut("s3");
+		}
+	}
+	else{
+		S3=0;
+		SetTagBit("s3",S3);
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la Intreruptorul I1 -- Properties -- Events -- Mouse --Mouse Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	BOOL S3;
+	S3=GetTagBit("s3");
+	if(S3==0){
+		c_comut("i1");
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- C Action, 
+cu scriptul de jos si setam Triger-ul la 500 ms pentru a ctualiza simbolul trafo.. 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+ long _main(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+BOOL S1;
+BOOL S2;
+BOOL I1;
+BOOL TR1;
+S1=GetTagBit("s1");
+S2=GetTagBit("s2");
+I1=GetTagBit("i1");
+TR1=GetTagBit("tr1");
+if(I1&&S1&&S2){
+         TR1=1;
+         SetTagBit("tr1",TR1);
+ }
+ else{
+         TR1=0;
+         SetTagBit("tr1",TR1);
+}
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+</body>
+</html>

@@ -1,0 +1,479 @@
+<html>
+<title>  WinCC - ANSI C aplicatii propuse </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "white" size=5>  WinCC - ANSI C aplicatii propuse </Center></TD></TR>
+</table>
+<ol>
+<li> Afisati repetitiv Timer-ul si un numar aleator in doua controale de tip "Static-Text"
+<li> Simulati functionarea continua unui semafor rutier .
+<br><br><center><img src="im_06.jpg"></center><br><br>
+<li> Simulati functionarea unui semafor rutier care realizeaza o singura secventa declansata de la un buton.
+<li> Plasati un simbol si doua butoane cu textele :"Dreapta" respectiv "Stanga". Deplasati simbolul cu 30 pixeli dreapta la fiecare click 
+pe butonul "Dreapta"  si cu 30 pixeli stanga la fiecare click pe butonul "Stanga"
+<br><br><center><img src="im_01.jpg"></center><br><br>
+<li> Plasati un simbol Siemens/HMI Symbols Library/Vehicles/Dump truck. Deplasati simbolul cu 30 pixeli la fiecare click pe simbol  si aduceti-l in 
+pozitia initiala la fiecare double click. Se va afisa pozitia curenta intr-un Standard Objects -- Static Text
+<li> Simulati umplerea unui rezervor de la o pompa. Se va afisa valoarea nivelului intr-un Standard Objects -- Static Text
+<br><br><center><img src="im_03.jpg"></center><br><br>
+<li> Simulati umplerea unui rezervor de la o pompa. Se va colora cu rosu daca nivelul este peste 70% si va afisa valoarea nivelului intr-un Standard Objects -- Static Text
+<li> Plasati un simbol Siemens/HMI Symbols Library/Vehicles/Dump truck. Deplasati simbolul cu 30 pixeli la fiecare 250 ms. Aduceti simbolul in 
+pozitia initiala daca ajunge la 600 pixeli. Se va afisa pozitia curenta intr-un Standard Objects -- Static Text
+<li> Plasati 2 simboluri Siemens/HMI Symbols Library/Vehicles/Dump truck. Simulati o deplasare continua a simbolurilor
+<li> Se plaseaza 5 Slider-uri si 5 Led-uri. Aprindeti la apasarea  unui buton ledul corespunzator slider-ului cu valoarea cea mai mare.
+<br><br><center><img src="im_07.jpg"></center><br><br>
+<li> Simulati functionarea unui led care dupa pornire isi schimba culoarea iar dupa 2 s schimba din nou culoarea
+<br><br><center><img src="im_08.jpg"></center><br><br>
+<li> Simulati un joc de lumini pe 10 led-uri (se simuleaza deplasarea unui led st-dr intr-o bucla nesfarsita)
+<li> Aprindeti 10 led-uri intr-o ordine stabilita printr-un vector de prioritati
+
+</ol> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><b> Rezolvari </b></font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Afisati repetitiv Timer-ul si un numar aleator in doua controale de tip "Static-Text"</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_afisd_06" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- C Action, 
+scriptul de jos si setam Triger-ul la 250 ms. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+ long _main(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	double nr;
+	char* nr_t;
+	nr=rand();
+	SetTagDWord("val_d",nr);
+	nr_t=GetTagChar("val_d");
+	SetText(lpszPictureName,"Static Text1",nr_t);
+	//nr=clock();
+	//SetTagDWord("i",nr);
+	//nr_t=GetTagChar("i");
+	//time(nr_t);
+	//SetText(lpszPictureName,"Static Text2",nr_t);
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Simulati functionarea continua unui semafor rutier.</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_if_04" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- C Action, 
+scriptul de jos si setam Triger-ul la 250 ms. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+ long _main(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+int tim;
+char* txt;
+tim=GetTagWord("i");
+tim=tim+1;
+if (tim<=12) {
+txt=GetTagChar("i");
+SetText(lpszPictureName,"Static Text1",txt);
+SetBackColor(lpszPictureName,"Circle1",1234);
+SetBackColor(lpszPictureName,"Circle2",10);
+SetBackColor(lpszPictureName,"Circle3",10);
+}
+if ((tim>12) &&(tim<=20))  {
+	txt=GetTagChar("i");
+	SetText(lpszPictureName,"Static Text1",txt);
+	SetBackColor(lpszPictureName,"Circle1",10);
+	SetBackColor(lpszPictureName,"Circle2",16775680);
+	SetBackColor(lpszPictureName,"Circle3",10);
+}
+if ((tim>20) &&(tim<=36))  {
+	txt=GetTagChar("i");
+	SetText(lpszPictureName,"Static Text1",txt);
+	SetBackColor(lpszPictureName,"Circle1",10);
+	SetBackColor(lpszPictureName,"Circle2",10);
+	SetBackColor(lpszPictureName,"Circle3",65280);
+}
+
+if (tim>36){
+	tim=0;
+}
+SetTagByte("i",tim);
+txt=GetTagChar("i");
+SetText(lpszPictureName,"Static Text1",txt);
+return 0;
+}</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Simulati functionarea unui semafor rutier care realizeaza o singura secventa declansata de la un buton.</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_if_05" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- C Action, 
+scriptul de jos si setam Triger-ul la 250 ms. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Button1 -- Properties -- Events -- Mouse --Mouse Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Plasati un simbol si doua butoane cu textele :"Dreapta" respectiv "Stanga". 
+Deplasati simbolul cu 30 pixeli dreapta la fiecare click  pe butonul "Dreapta"  si cu 30 pixeli stanga la fiecare click pe butonul "Stanga"</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_camion_00" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Siemens/HMI Symbols Library/Vehicles/Dump truck
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Button1 -- Properties -- Events -- Mouse --Mouse Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	int poz;
+	poz=GetTagDWord("val_u16");
+	poz=poz-30;
+	SetTagDWord("val_u16",poz);
+	SetLeft(lpszPictureName,"Control1",poz);
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Button2 -- Properties -- Events -- Mouse --Mouse Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	int poz;
+	poz=GetTagDWord("val_u16");
+	poz=poz+30;
+	SetTagDWord("val_u16",poz);
+	SetLeft(lpszPictureName,"Control1",poz);
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Deplasarea unui simbolul cu 30 pixeli la fiecare click pe simbol  si revenire in 
+pozitia initiala la fiecare double click</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_camion_01" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Siemens/HMI Symbols Library/Vehicles/Dump truck
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Object Events -- OnClick --Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Object Events -- DoubleClick --Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_camion_02" </b> </font> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Object Events -- DoubleClick --Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_camion_02_01" </b> </font>  in care folosim camion.Left pe post 
+de variabila globala, variabila care mentine valoarea intre doua apeluri ale procedurii.
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Object Events -- DoubleClick --Action --C Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b> Simulati umplerea unui rezervor de la o pompa. Se va afisa valoarea nivelului intr-un 
+Standard Objects -- Static Text</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_pompa_00" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Circle
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Setam proprietatea Filling -- Dinamic Filling --Yes
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Setam proprietatea Fill Level -- Dinamic -- Tag -- Atribuim Tag-ul i si setam Update Cycle la 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Siemens/HMI Symbols Library/Pumps/Horiz pump 6
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Tube Objects -- Poligon Tube
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- C Action, 
+scriptul de jos si setam Triger-ul la 250 ms. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+ long _main(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	int niv;
+	char* txt;
+	SetFilling( lpszPictureName,"Circle1",1);
+	niv=GetTagWord("i");
+	niv=niv+10;
+	if (niv>100) {
+		niv=0;
+	}
+	SetTagWord("i",niv);
+	txt=GetTagChar("i");
+	SetText(lpszPictureName,"Static Text1",txt);
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim de data aceasta proprietatea FillingIndex caruia ii atribuim valori intre 0 si 100 reprezentand 
+procentul nivelului de umplere. Atentie atribuirea uni procent peste 100 blocheaza afisarea nivelului. Prporietatea Dynamic Filling se setreaza la "Yes"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cu precizarile anterioare, vom crea o noua pagina grafica <font color="red"><b> "c_pompa_00_01" </b> </font>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+ long _main(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	int rez;
+	char* rez_t;
+	rez=GetFillingIndex(lpszPictureName,"Circle1");	//Return-Type: long int 
+	rez=rez+10;
+	if(rez>100) {
+		rez=0;
+	}
+	SetFillingIndex(lpszPictureName,"Circle1",rez);	//Return-Type: BOOL 
+	SetTagWord("i",rez);
+	rez_t=GetTagChar("i");
+	SetText(lpszPictureName,"Static Text1",rez_t);
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b> Simulati umplerea unui rezervor de la o pompa. Se va colora cu rosu daca nivelul este peste 
+70% si va afisa valoarea nivelului intr-un Standard Objects -- Static Text </b><br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_pompa_02" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Circle
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Setam proprietatea Filling -- Dinamic Filling --Yes
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Setam proprietatea Fill Level -- Dinamic -- Tag -- Atribuim Tag-ul i si setam Update Cycle la 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Siemens/HMI Symbols Library/Pumps/Horiz pump 6
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Tube Objects -- Poligon Tube
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- C Action, 
+scriptul de jos si setam Triger-ul la 250 ms. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Plasati un simbol Siemens/HMI Symbols Library/Vehicles/Dump truck. Deplasati simbolul cu 30 pixeli 
+la fiecare 250 ms. Aduceti simbolul in pozitia initiala daca ajunge la 600 pixeli</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_camion_02" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Siemens/HMI Symbols Library/Vehicles/Dump truck
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- C Action, 
+scriptul de jos si setam Triger-ul la 250 ms. 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Plasati 2 simboluri Siemens/HMI Symbols Library/Vehicles/Dump truck. Simulati o deplasare continua a simbolurilor</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_camion_03" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam 2 elemente Siemens/HMI Symbols Library/Vehicles/Dump truck la distanta 200 pixeli
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- C Action, 
+scriptul de jos si setam Triger-ul la 250 ms. 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Se plaseaza 5 Slider-uri si 5 Led-uri. Aprindeti la apasarea  unui buton ledul corespunzator slider-ului cu valoarea cea mai mare. </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_comut_00" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;5 elemente Controls -- Activx Controls -- Wincc Slider Control cu numele Control1, Control2, ... Control5
+<br>&nbsp;&nbsp;&nbsp;&nbsp;5 elemente Standard Objects -- Circle cu numele Circle1, Circle2, ... Circle5
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Effects -- Global color scheme No
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	int i=1;
+	int sld;
+	int val_m=0;
+	int p=1;
+	char* txt;
+	char* nr_fig;
+	char  fig[20];
+	while (i<=5){
+		SetTagDWord("i",i);
+		nr_fig=GetTagChar("i");
+		strcpy(fig,"Control");
+		strcat(fig,nr_fig);
+		sld=GetPosition(lpszPictureName,fig);	//Return-Type: long int 
+		if(sld>val_m){
+			val_m=sld;
+			p=i;
+		}
+		i++;
+	}
+	i=1;
+	while (i<=5){
+		SetTagDWord("i",i);
+		nr_fig=GetTagChar("i");
+		strcpy(fig,"Circle");
+		strcat(fig,nr_fig);
+		if(p==i){
+			SetBackColor(lpszPictureName,fig,16775680);
+		}
+		else{
+			SetBackColor(lpszPictureName,fig,10);
+		}
+	i++;
+	}
+	SetTagDWord("val_d",val_m);
+	txt=GetTagChar("val_d");
+	SetText(lpszPictureName,"Static Text1",txt);
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_while_04" </b> </font>,in care simulam un joc de lumini pe 10 led-uri
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;2 elemente Standard Objects -- Static Text
+<br>&nbsp;&nbsp;&nbsp;&nbsp;10 elemente Standard Objects -- Circle cu numele Circle1, Circle2, ... Circle10
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Effects -- Global color scheme No
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Folosim din nou proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- C Action, 
+scriptul de jos si setam Triger-ul la 500 ms. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+ long _main(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+char* fig[11]={" ","Circle1", "Circle2","Circle3","Circle4", "Circle5","Circle6","Circle7", "Circle8","Circle9","Circle10"};
+	int t;
+	int i=1;
+	char* txt;
+	t=GetTagWord("Temp");
+	t=t+1;
+	if(t>10){
+		t=1;
+	}
+	SetTagWord("Temp",t);
+	txt=GetTagChar("Temp");
+	SetText(lpszPictureName,"Static Text1",txt);
+	t=GetTagWord("Temp");
+	while (i<=10){
+		if(i==t){
+			SetBackColor(lpszPictureName,fig[i],16775680);
+			SetText(lpszPictureName,"Static Text2",fig[i]);
+	}
+	else{
+		SetBackColor(lpszPictureName,fig[i],0);
+	}
+	i++;
+	}
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> Aprindeti 10 led-uri intr-o ordine stabilita printr-un vector de prioritati</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "while_05" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;2 elemente Standard Objects -- Static Text
+<br>&nbsp;&nbsp;&nbsp;&nbsp;10 elemente Standard Objects -- Circle cu numele Circle1, Circle2, ... Circle10
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Effects -- Global color scheme No
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Folosim din nou proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- C Action, 
+scriptul de jos si setam Triger-ul la 500 ms. 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+ long _main(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	int prior[11]={0,2,7,1,10,4,9,8,5,3,6};
+	char* fig[11]={" ","Circle1", "Circle2","Circle3","Circle4", "Circle5","Circle6","Circle7", "Circle8","Circle9","Circle10"};
+	int t;
+	int i=1;
+	char* txt;
+	t=GetTagWord("Temp");
+	t=t+1;
+	if(t>10){
+		t=1;
+	}
+	SetTagWord("Temp",t);
+	txt=GetTagChar("Temp");
+	SetText(lpszPictureName,"Static Text1",txt);
+	t=GetTagWord("Temp");
+	while (i<=10){
+		if(i==t){
+		SetBackColor(lpszPictureName,fig[prior[i]],16775680);
+		SetText(lpszPictureName,"Static Text2",fig[i]);
+	}
+	else{
+		SetBackColor(lpszPictureName,fig[prior[i]],0);
+	}
+	i++;
+	}
+	return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+</body>
+</html>

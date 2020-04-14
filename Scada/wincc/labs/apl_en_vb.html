@@ -1,0 +1,334 @@
+<html>
+<title>  Aplicatii in energetica: Win CC - Visual Basic </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "white" size=5>  Aplicatii in energetica: Win CC - Visual Basic </Center></TD></TR>
+</table>
+<ol>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Se propune schema monofilara din imaginea de jos:
+<br><br><center><img src="im_04.jpg"></center><br><br>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi urmatoarele simboluri:
+<br><br><center><img src="intr_on.ico">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="intr_off.ico">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="sep_on.ico">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="sep_off.ico">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="trafo_on.ico">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="trafo_off.ico"></center><br><br>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "sch_monof_00" </b> </font> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Se vor introduce tag-urile de tip Binary:s1,s2,s3,i1,tr1.Fiecarui tag i se vor atribui simbolurile corespunzatoare, 
+si vom utiliza pentru fiecare simbol, cate un Smart Objects -- Status Display astfel:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Smart Objects -- Status Display 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-se atribuie Tag-ul corespunzator -- Update 250 ms 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-se atribuie imagini corespunzatoare pentru 0 si pentru 1. Se face click dreapta pe simbol si 
+se alege Configuration Dialog. Se aduc imaginile cu Browse si apoi se trag pe starea 0 respectiv starea 1. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom incerca sa implementam urmatoarea functionalitate:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-S1 sau S2 nu poata fi actionate cand I1 este cuplat
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-S3 sa nu poata fi cuplat numai cand I1 And S1 = 0
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-I1 sa nu poata fi actionat cand S3 este cuplat
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la separatorul S1 -- Properties -- Events -- Mouse --Mouse Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(ByVal Item)                  
+Dim x
+Set x = HMIRuntime.Tags("s1")
+Dim S1
+Set S1 = HMIRuntime.Tags("s1")
+Dim I1
+Set I1 = HMIRuntime.Tags("i1")
+x.Read
+I1.Read
+S1.Read
+If I1.Value=0 Then
+	If  x.Value = 0 Then
+		S1.Value=1
+	Else
+		S1.Value=0
+	End If
+	S1.Write
+End If
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la separatorul S2 -- Properties -- Events -- Mouse --Mouse Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(ByVal Item) 
+Dim x
+Set x = HMIRuntime.Tags("s2")
+Dim S2
+Set S2 = HMIRuntime.Tags("s2")
+Dim I1
+Set I1 = HMIRuntime.Tags("i1")
+x.Read
+I1.Read
+S2.Read
+If I1.Value=0 Then
+	If  x.Value = 0 Then
+		S2.Value=1
+	Else
+		S2.Value=0
+	End If
+	S2.Write
+End If
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la separatorul S3 -- Properties -- Events -- Mouse --Mouse Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(ByVal Item)                  
+Dim I1
+Set I1 = HMIRuntime.Tags("i1")
+Dim S1
+Set S1 = HMIRuntime.Tags("s1")
+Dim x
+Set x = HMIRuntime.Tags("s3")
+Dim S3
+Set S3 = HMIRuntime.Tags("s3")
+I1.Read
+S1.Read
+x.Read
+S3.Read
+If x.Value=0 Then
+	If (I1.Value And S1.Value)=0 Then
+		S3.Value=True
+		S3.Write
+	End If
+Else
+		S3.Value=False
+		S3.Write
+End If
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la Intreruptorul I1 -- Properties -- Events -- Mouse --Mouse Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item)     
+Dim I1
+Set I1 = HMIRuntime.Tags("i1")
+Dim x
+Set x = HMIRuntime.Tags("i1")
+Dim S3
+Set S3 = HMIRuntime.Tags("s3")
+I1.Read
+S3.Read
+x.Read
+If S3.Value=0 Then
+	If  x.Value = 0 Then
+		I1.Value=1
+	Else
+		I1.Value=0
+	End If
+	I1.Write
+End If
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la Butonul "Set" -- Properties -- Events -- Mouse --Mouse Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(ByVal Item) 
+	Dim taguri(4)
+	Dim i
+	taguri(0)="s1"
+	taguri(1)="s2"
+	taguri(2)="s3"
+	taguri(3)="i1"
+	For i=0 To 4 
+		Dim x
+		Set x = HMIRuntime.Tags(taguri(i))
+		x.Value=True
+		x.Write
+	Next
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la Butonul "Clear" -- Properties -- Events -- Mouse --Mouse Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(ByVal Item)  
+	Dim taguri(4)
+	Dim i
+	taguri(0)="s1"
+	taguri(1)="s2"
+	taguri(2)="s3"
+	taguri(3)="i1"
+	For i=0 To 4 
+		Dim x
+		Set x = HMIRuntime.Tags(taguri(i))
+		x.Value=False
+		x.Write
+	Next
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- C Action, 
+cu scriptul de jos si setam Triger-ul la 500 ms pentru a actualiza simbolul trafo.
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(ByVal Item)
+Dim I1
+Set I1 = HMIRuntime.Tags("i1")
+Dim S1
+Set S1 = HMIRuntime.Tags("s1")
+Dim S2
+Set S2 = HMIRuntime.Tags("s2")
+Dim TR1
+Set TR1 = HMIRuntime.Tags("tr1")
+I1.Read
+S1.Read
+S2.Read
+TR1.Read
+If (I1.Value And S1.Value And S2.Value)=1 Then
+		TR1.Value=True
+		TR1.Write
+Else
+		TR1.Value=False
+		TR1.Write
+End If
+
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia poate fi simplificata prin folosirea procedurilor.Vom crea astfel o noua pagina grafica 
+<font color="red"><b> "sch_monof_01" </b></font>
+<br><br><center><img src="im_05.jpg"></center><br><br>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi procedura comut() pe care o vom integra in Global -- Script --Project Module 
+: </font>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub comut(Byval tag)
+Dim x
+Set x = HMIRuntime.Tags(tag)
+x.Read
+Dim Tg
+Set Tg = HMIRuntime.Tags(tag)
+If x.Value=0 Then
+		Tg.Value=True
+Else
+		Tg.Value=False
+End If
+Tg.Write
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la separatorul S1 -- Properties -- Events -- Mouse --Mouse Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item)  
+	Dim I1
+	Set I1 = HMIRuntime.Tags("i1")
+	I1.Read
+	If I1.Value=0 Then 
+		comut("s1")
+	End If
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la separatorul S2 -- Properties -- Events -- Mouse --Mouse Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item) 
+	Dim I1
+	Set I1 = HMIRuntime.Tags("i1")
+	I1.Read
+	If I1.Value=0 Then 
+		comut("s2")
+	End If
+End SubEnd Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la separatorul S3 -- Properties -- Events -- Mouse --Mouse Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(ByVal Item)                    
+	Dim I1
+	Set I1 = HMIRuntime.Tags("i1")
+	Dim S1
+	Set S1 = HMIRuntime.Tags("s1")
+	I1.Read
+	S1.Read
+	If (I1.Value And S1.Value)=0 Then
+		comut("s3")
+	End If
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la Intreruptorul I1 -- Properties -- Events -- Mouse --Mouse Action --VBS Action  cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item)       
+	Dim S3
+	Set S3 = HMIRuntime.Tags("s3")
+	S3.Read
+	If S3.Value=0 Then
+		comut("i1")
+	End If
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Folosim proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- C Action, 
+cu scriptul de jos si setam Triger-ul la 500 ms pentru a actualiza simbolul trafo.
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(ByVal Item)
+Dim I1
+Set I1 = HMIRuntime.Tags("i1")
+Dim S1
+Set S1 = HMIRuntime.Tags("s1")
+Dim S2
+Set S2 = HMIRuntime.Tags("s2")
+Dim TR1
+Set TR1 = HMIRuntime.Tags("tr1")
+I1.Read
+S1.Read
+S2.Read
+TR1.Read
+If (I1.Value And S1.Value And S2.Value)=1 Then
+		TR1.Value=True
+		TR1.Write
+Else
+		TR1.Value=False
+		TR1.Write
+End If
+
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+</body>
+</html>
