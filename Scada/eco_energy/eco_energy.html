@@ -1,0 +1,1427 @@
+<html>
+<title> Aplicatii SCADA pentru managementul surselor regenerabile de energie </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "red" size=6> Managementul surselor regenerabile de energie </Center></TD></TR>
+</table>
+
+<font color= "Black" size=4><li><b>Obiective </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Prezentarea unui incalzitor de apa cu schimbator de caldura utilizand energia solara
+<li>Prezentarea unui sistem SCADA pentru managementul schimbatorului de caldura utilizand energia solara
+ <li>Prezentarea unui sistem de monitorizare si control al unui grup eolian
+<li>Prezentarea unui sistem SCADA pentru managementul mai multor surse regenerabile de energie
+</td></tr></table>
+</ul>
+
+<font color= "Black" size=4><li><b>Organizarea sarcinilor de lucru </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li> Parcurgeti cele trei capitole ale cursului.
+<li> In cadrul fiecarui capitol urmariti exemplele ilustrative si incercati sa le realizati in medul de dezvoltare "Citect".
+<li> Fixati principalele idei ale cursului, prezentate în rezumat.
+<li> Completati testul de autoevaluare. 
+<li> Timpul de lucru pentru parcurgerea testului de autoevaluare este de 15 minute.
+</td></tr></table>
+</ul>
+<br><br><a name="sch"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> 1. Incalzitor de apa cu schimbator de caldura utilizand energia solara </Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Soarele este la originea tuturor formelor de energie pe care le-au descoperit si de care s-au servit oamenii. 
+Energia solara se poate transforma în alte forme de energie: mecanica, termica, sau electrica. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Energia solara poate fi valorificata prin colectarea acestei energii cu ajutorul captatoarelor solare si prin utilizarea 
+celulelor solare. Captatorul solar este un convertor heliotermic, al carui scop este convertirea energiei solare în caldura.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza in continuare un nou proiect cu numele <b> Eco_energy </b> si in cadrul lui o pagina grafica numita 
+<b> panou_s_01 </b> in care se simuleaza si se afiseaza un incalzitor de apa cu schimbator de caldura utilizand energia solara. 
+<br><br><center><img src="im_citect080.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Incalzitorul de apa cu schimbator de caldura se compune din urmatoarele elemente:
+<ul>
+	<li> Panoul solar PS, cu 12 tuburi vidate din sticla;
+	<li> Boilerul B pentru prepararea apei calde;
+	<li> Pompa P de circulatie a agentului termic solar, cu motor monofazat;
+	<li> Contorul Ct de energie termica ;
+	<li> Contorul Ca monojet de apa rece ;
+	<li> Vana VDT de descarcare termica si presiune ;
+	<li> Vasele de expansiune VE1-VE2, armaturi de închidere, termometre si manometre.
+	<li> Ventilele V1-V14	
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia SCADA mentru monitorizarea si controlul incalzitorului de apa cu schimbator de caldura isi propune sa 
+mimeze circulatia lichidelor din diverse circuite atunci cand sunt indeplinite conditiile de circulatie a acestora. Astfel de exemplu prin circuitul 
+panoului solar circla lichidul in momentul can vanele V1-V5 sunt deschise si pompa P este pornita. Pompa nu va putea fi pornita atata timp cat 
+vanele V1-V5 nu sunt deschise. Dupa indeplinirea conditiilor precizate anterior, HMI-ul aplicatiei arata astfel:
+<br><br><center><img src="im_citect081.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru realizarea aplicatiei, avem nevoie de urmatoarele TAG-uri:
+
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="6" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Array Size </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> depl_d </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Deplasare circuit primar  </b> </td>    
+</tr> 
+
+<tr>
+  <td> depl_ap </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Deplasare in circuit pentru completare cu apa a circuitului primar</b> </td>       
+</tr>
+
+<tr>
+  <td> depl_ac </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Deplasare in circuitul apei calde </b> </td>       
+</tr>
+
+<tr>
+  <td> depl_ar </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Deplasare in circuitul apei reci </b> </td>       
+</tr>
+
+<tr>
+  <td> depl_r </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Deplasare in reteaua de alimentare cu apa rece </b> </td>       
+</tr>
+
+<tr>
+  <td> V </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> 15 </td>
+  <td> Ventile pentru apa </b> </td>       
+</tr>
+
+<tr>
+  <td> pmp </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Pompa de apa in circuitul primar </b> </td>       
+</tr>
+ 
+</table></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a actualiza elementele grafice de pe HMI s-a plasat pe ecran functia ecran_01():
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+FUNCTION ecran_01()
+IF NOT (V[1] AND  V[2] AND V[3] AND V[4] AND V[5])  THEN
+ pmp=0
+END 
+
+IF V[1] AND  V[2] AND V[3] AND V[4] AND V[5] AND pmp THEN
+	depl_d=depl_d+1
+	IF depl_d=10 THEN
+		depl_d=0
+	END
+END
+IF V[6] AND  V[7] AND V[13]	 THEN
+	depl_ap=depl_ap+1
+	IF depl_ap=10 THEN
+		depl_ap=0
+	END
+END
+IF V[9] AND  V[10] AND V[11] AND V[12] AND V[13] THEN
+	depl_ac=depl_ac+1
+	IF depl_ac=10 THEN
+		depl_ac=0
+	END
+END
+IF V[8] AND  V[13] THEN
+	depl_ar=depl_ar+1
+	IF depl_ar=10 THEN
+		depl_ar=0
+	END
+END	
+IF (V[6] AND  V[7] AND V[13]) OR (V[9] AND  V[10] AND V[11] AND V[12] AND V[13]) OR V[8] AND  V[13] THEN
+	depl_r=depl_r+1
+	IF depl_r=10 THEN
+		depl_r=0
+	END
+END	
+END
+
+</pre> </font>
+</td></tr></table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul functiei ecran_01(), instructiunile de mai jos asigura pornirea pompei numai daca V1-V5 sunt deschise:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+IF NOT (V[1] AND  V[2] AND V[3] AND V[4] AND V[5])  THEN
+ pmp=0
+END 
+</pre> </font>
+</td></tr></table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul functiei ecran_01(), instructiunile de mai jos incrementeaza variabila depl_d necesara pentru simularea miscarii
+lichidului in circuitul primar numai daca V1-V5 sunt deschise si pompa este pornita.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF V[1] AND  V[2] AND V[3] AND V[4] AND V[5] AND pmp THEN
+	depl_d=depl_d+1
+	IF depl_d=10 THEN
+		depl_d=0
+	END
+END
+</pre> </font>
+</td></tr></table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarele instructiuni di cadrul functiei ecran_01() asigura setarea corespunzatoare a variabilelor depl_ac, depl_ar, depl_r 
+pentru a putea simula miscarea lichidelor din celelalte circuite in cazul in care sunt indeplinite conditiile de deplasare a acestora.
+
+<br><br><a name="eol"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> 2. Sistem de monitorizare si control al unui grup eolian </Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O alta importanta sursa regenerabila de energie este reprezentata de energia eoliana. Generatoarele eoliene sunt generatoare de curent 
+continuu (cc) care sunt antrenate de un sistem de pale care la randul lor sunt actionate de energia vantului. Se utilizeaza generatoare de cc care de 
+obicei incarca un sistem de baterii de acumulatoare. Pentru a alimenta consumatori de curent alternativ(ca) se utilizeaza invertoare care transforma tensiunea 
+continua in tensiune alternativa de frecventa retelei electrice adica 50 hz. Chiar si in cazul in care sistemul eolian, se conecteaza direct la reteaua 
+electrica, se folosesc tot generatoare de curent continuu si invertoare. Utilizarea directa a generatoarelor de (ca) nu este posibila din cauza 
+imposibilitatii sincronizarii generatorului eolian de (ca) la frecventa retelei.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Vom realiza o noua pagina grafica numita <b> "wind_01" </b> in care vom monitoriza un grup eolian.
+<br><br><center><img src="im_citect082.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a realiza aplicatia, avem nevoie de urmatoarele TAG-uri
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="6" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Array Size </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+<tr>
+  <td> u_eol </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Volts </td>
+  <td> - </td>
+  <td> Tensiunea generata de sistemul eolian </b> </td>       
+</tr>
+<tr>
+  <td> c1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comutator sistemul eolian</b> </td>    
+</tr> 
+
+<tr>
+  <td> c2 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comutator reteaua electrica</b> </td>       
+</tr>
+
+<tr>
+  <td> u_ali </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Volts </td>
+  <td> - </td>
+  <td> Tensiunea de alimentare consumator </b> </td>       
+</tr>
+
+<tr>
+  <td> u_retea </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Volts </td>
+  <td> - </td>
+  <td> Tensiunea de alimentare de la retea </b> </td>       
+</tr>
+
+<tr>
+  <td> u_i_bat </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Volts </td>
+  <td> - </td>
+  <td> Tensiunea de intrare in bateria de acumul </b> </td>       
+</tr>
+<tr>
+  <td> u_e_inv </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Volts </td>
+  <td> - </td>
+  <td> Tensiunea de iesire din invertor </b> </td>       
+</tr>
+<tr>
+  <td> i_cons </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Amps </td>
+  <td> - </td>
+  <td> Curentul consumat </b> </td>       
+</tr>
+
+<tr>
+  <td> ora </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> h </td>
+  <td> - </td>
+  <td> Ora pentru simularea consumului </b> </td>       
+</tr>
+
+<tr>
+  <td> i_cons </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Amps </td>
+  <td> - </td>
+  <td> Curentul consumat </b> </td>       
+</tr>
+
+<tr>
+  <td> v_eol </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> m/s </td>
+  <td> - </td>
+  <td> Viteza vantului </b> </td>       
+</tr> 
+
+<tr>
+  <td> i_eol </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Amps </td>
+  <td> - </td>
+  <td> Curent furnizat de sistemul eolian </b> </td>       
+</tr> 
+
+</table></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La realizarea sistemului de monitorizare si control al unui grup eolian s-a tinut cont de faptul ca daca viteza vantului 
+creste de la 0 la 4 m/s tensiunea generata de sistemul eolian creste de la 0 la 50v. Aceasta tensiune nefiind suficienta sa incarce bateriile, comutatorul C1 
+ramane deschis. Sistemul eoloian incepe sa genereze energie electrica numai daca viteza vantului trece de 4 m/s.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca viteza vantului creste de la 4 la 20 m/s, se inchide comutatorul C2 si incepe sa creasca curentul. 
+Tensiunea de iesire fiind tensiunea bateriei. In schimb curentul creste proportional cu viteza vantului, ajungand sa genereze 200 de A la viteza maxima de 20 m/s.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF c2=1 THEN
+  	IF v_eol>4
+ 	THEN
+ 		u_eol=u_i_bat
+ 		i_eol=205*v_eol/20
+ 	ELSE
+ 		 i_eol=0
+ 	END	
+ ELSE
+  		u_eol=50*v_eol/4
+  		IF u_eol>50
+  		THEN
+  		   u_eol=50
+  		END
+ 		i_eol=0
+ END
+</pre> </font>
+</td></tr></table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La realizarea aplicatiei, s-a tinut de asemenea cont de comportamentul bateriei de acumulatoare si anume: daca tensiunea 
+la bornele bateriei scade sub 46.5 volti, se decupleaza invertorul  si nu se mai cupleaza decat atunci cand tensiunea pe baterii creste peste 50 v pentru a permite 
+un ciclu complet de incarcare. La decuplarea invertorului, se cupleaza automat reteaua.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF u_i_bat<46.5
+ THEN
+ 	u_e_inv=0
+ 	u_ali=u_retea
+ 	c2=1
+ END
+ 
+ IF u_i_bat >= 50
+ THEN
+ 	u_e_inv=230
+ 	IF c2=1
+ 	THEN
+ 		u_e_inv=u_retea
+	END
+ 	u_ali=230
+ END   
+ IF c2=1
+ THEN
+ 	u_ali=u_retea
+ END
+</pre> </font>
+</td></tr></table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In aplicatia de sus, s-a simulat un consum in functie de ora consumului astfel: 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION simul_s1()
+
+  	IF ora>=0 AND ora < 4 
+  	THEN
+ 		i_cons=68.1818
+  	END
+  	
+  	IF ora>=4 AND ora < 5 
+
+  	THEN
+ 		i_cons=68.1818
+  	END  
+  	
+   	IF ora>=5 AND ora < 6 
+
+  	THEN
+ 		i_cons=90.9090
+  	END 
+    
+    IF ora>=6 AND ora < 7 
+
+  	THEN
+ 		i_cons=136.3636
+  	END 
+ 	
+ 	IF ora>=7 AND ora < 8 
+
+  	THEN
+ 		i_cons=159.0909
+  	END
+  	 
+ 	IF ora>=8 AND ora < 9 
+
+  	THEN
+ 		i_cons=204.5454
+  	END
+  	  
+ 	IF ora>=9 AND ora < 10 
+
+  	THEN
+ 		i_cons=204.5454
+  	END
+  	IF ora>=10 AND ora < 11 
+
+  	THEN
+ 		i_cons=218.1818
+  	END
+ 	  
+ 	IF ora>=11 AND ora < 12 
+
+  	THEN
+ 		i_cons=204.5454
+    END
+ 	IF ora>=12 AND ora < 13 
+
+  	THEN
+ 		i_cons=195.4545
+  	END
+  	IF ora>=13 AND ora < 14 
+
+  	THEN
+ 		i_cons=190.9090
+  	END
+ 	
+ 	IF ora>=14 AND ora < 17 
+
+  	THEN
+ 		i_cons=213.6363
+  	END
+  	
+  	IF ora>=17 AND ora < 18 
+
+  	THEN
+ 		i_cons=227.272
+  	END
+    
+  	IF ora>=18 AND ora < 19 
+
+  	THEN
+ 		i_cons=181.8181
+  	END
+ 	IF ora>=19 AND ora < 20 
+
+  	THEN
+ 		i_cons=159.0909
+  	END
+  	
+ 	IF ora>=20 AND ora < 21 
+
+  	THEN
+ 		i_cons=136.3636
+  	END
+
+  	IF ora>=21 AND ora < 22 
+
+  	THEN
+ 		i_cons=127.7272
+  	END
+ 	
+ 	IF ora>=22 AND ora < 23 
+
+  	THEN
+ 		i_cons=113.6363
+  	END
+
+  	IF ora>=23 AND ora < 24 
+
+  	THEN
+ 		i_cons=113.6363
+  	END
+  END
+
+</pre> </font>
+</td></tr></table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; In cazul in care avem doi consumatori: unul de curent continuu si unul de curent alternativ, sistemul SCADA pentru 
+monitorizare si control unui grup eolian va trebui regandit. Prezenta consumatorului de curent continuu impune utilizarea retelei publice de alimentare 
+cu energie electrica pentru incarcarea bateriilor de acumulatoare in perioadele cand energia consumata depaseste enregia furnizata de generatorul eolian.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se propune deci urmatoarea schema din pagina grafica numita <b> "wind_02" </b>, schema pentru monitorizare si control unui 
+grup eolian avand doua tipuri de consumator:
+<br><br><center><img src="im_citect083.gif"></center>
+<br><br><a name="div_s"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> 3. Sistem SCADA pentru managementul mai multor surse regenerabile de energie </Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom combina acum mai multe surse regenerabile de energie si vom obtine un sistem complex de monitorizare si control pentru mai multe 
+tipuri de energii recuperabile.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom tine cont de urmatoarele conditii de functionare:
+<ul>
+ <li> daca iluminarea creste de la 0 la 800 W/mp tensiunea generata de panou creste de la 0 la 50v. Aceasta tensiune nefiind suficienta sa incarce 
+bateriile, comutatorul K1 ramane deschis. Sistemul solar incepe sa genereze energie electrica numai daca iluminarea creste de la 800 W/mp.
+ <li> daca iluminarea creste de la 800 la 3000 W/mp, se inchide comutatorul K1 si incepe sa creasca curentul. Tensiunea de iesire fiind tensiunea 
+bateriei. Curentul creste proportional cu iluminarea, ajungand sa genereze 245 de A daca iluminarea creste la 3000 W/mp.
+ <li> daca viteza vantului creste de la 0 la 4 m/s tensiunea generata de sistemul eolian creste de la 0 la 50v. Aceasta tensiune nefiind suficienta 
+sa incarce bateriile, comutatorul K2 ramane deschis. Sistemul eoloian incepe sa genereze energie electrica numai daca viteza vantului trece de 4 m/s.
+ <li> daca viteza vantului creste de la 4 la 20 m/s, se inchide comutatorul k2 si incepe sa creasca curentul. Tensiunea de iesire fiind tensiunea 
+ bateriei. In schimb curentul creste proportional cu viteza vantului, ajungand sa genereze 200 de A la viteza maxima de 20 m/s.
+ <li> daca inaltimea apei in baraj  creste de la 0 la 2 m  tensiunea generata de sistemul hidro creste de la 0 la 50v. Aceasta tensiune nefiind 
+suficienta sa incarce bateriile, comutatorul K3 ramane deschis. Sistemul hidro incepe sa genereze energie electrica numai daca inaltimea apei in baraj 
+creste peste 2m.
+ <li> daca inaltimea apei in baraj creste de la 2 la 10 m, se inchide comutatorul K3 si incepe sa creasca curentul. Curentul creste proportional cu 
+inaltimea apei in baraj ajungand sa genereze 270 de A daca inaltimea apei in baraj ajunge la 10 m. Tensiunea de iesire in acest caz fiind tensiunea 
+bateriei.
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Tinand cont de pecificatiile de mai sus, vom realiza o noua pagina grafica  numita <b> "eco_01" </b> similara cu imaginea de jos:
+<br><br><center><img src="im_citect084.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sistemul SCADA este prevazut cu doua regimuri de functionare: automat si manual.In regim manual se gestioneaza numai K5 
+in functie de tensiunnea  simulata pe baterie iar in regim automat se gestioneaza K1,K2.K3.K4.K5 in functie de  parametrii simulati si tinand cont de 
+conditiile de functionare precizate anterior.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a realiza aplicatia, avem nevoie de urmatoarele TAG-uri
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="6" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Array Size </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+<tr>
+  <td> u_solar </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Volts </td>
+  <td> - </td>
+  <td> Tensiunea generata de sistemul solar </b> </td>       
+</tr>
+<tr>
+  <td> u_eol </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Volts </td>
+  <td> - </td>
+  <td> Tensiunea generata de sistemul eolian </b> </td>       
+</tr>
+<tr>
+  <td> u_hidro </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Volts </td>
+  <td> - </td>
+  <td> Tensiunea generata de sistemul hidro </b> </td>       
+</tr>
+<tr>
+  <td> k1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comutator sistemul solar</b> </td>    
+</tr> 
+
+<tr>
+  <td> k2 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comutator sistemul eolian</b> </td>    
+</tr> 
+<tr>
+  <td> k3 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comutator sistemul hidro</b> </td>    
+</tr> 
+
+<tr>
+  <td> k4 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comutator reteaua electrica</b> </td>       
+</tr>
+<tr>
+  <td> k5 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comutator invertor</b> </td>       
+</tr>
+<tr>
+  <td> autom </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Automat/manual</b> </td>       
+</tr>
+<tr>
+  <td> u_ali </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Volts </td>
+  <td> - </td>
+  <td> Tensiunea de alimentare consumator </b> </td>       
+</tr>
+
+<tr>
+  <td> u_retea </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Volts </td>
+  <td> - </td>
+  <td> Tensiunea de alimentare de la retea </b> </td>       
+</tr>
+
+<tr>
+  <td> u_i_bat </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Volts </td>
+  <td> - </td>
+  <td> Tensiunea de intrare in bateria de acumul </b> </td>       
+</tr>
+<tr>
+  <td> u_i_inv </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Volts </td>
+  <td> - </td>
+  <td> Tensiunea de intrare din invertor </b> </td>       
+</tr>
+<tr>
+  <td> u_e_inv </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Volts </td>
+  <td> - </td>
+  <td> Tensiunea de iesire din invertor </b> </td>       
+</tr>
+<tr>
+  <td> i_cons </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Amps </td>
+  <td> - </td>
+  <td> Curentul consumat </b> </td>       
+</tr>
+<tr>
+  <td> p_cons </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Kw </td>
+  <td> - </td>
+  <td> Puterea consumata </b> </td>       
+</tr>
+<tr>
+  <td> ora </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> h </td>
+  <td> - </td>
+  <td> Ora pentru simularea consumului </b> </td>       
+</tr>
+
+<tr>
+  <td> i_cons </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Amps </td>
+  <td> - </td>
+  <td> Curentul consumat </b> </td>       
+</tr>
+
+<tr>
+  <td> r_sol </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> W/mp </td>
+  <td> - </td>
+  <td> Radiatia solara </b> </td>       
+</tr> 
+
+<tr>
+  <td> i_sol </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Amps </td>
+  <td> - </td>
+  <td> Curent furnizat de sistemul solar </b> </td>       
+</tr> 
+<tr>
+  <td> v_eol </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> m/s </td>
+  <td> - </td>
+  <td> Viteza vantului </b> </td>       
+</tr> 
+
+<tr>
+  <td> i_eol </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Amps </td>
+  <td> - </td>
+  <td> Curent furnizat de sistemul eolian </b> </td>       
+</tr> 
+
+<tr>
+  <td> h_hidro </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> m </td>
+  <td> - </td>
+  <td> Inaltimea apei in baraj </b> </td>       
+</tr> 
+
+<tr>
+  <td> i_hidro </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Amps </td>
+  <td> - </td>
+  <td> Curent furnizat de sistemul hidro </b> </td>       
+</tr> 
+<tr>
+  <td> p_gen </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> W </td>
+  <td> - </td>
+  <td> Puterea generata </b> </td>       
+</tr>
+<tr>
+  <td> p_cons_kw </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> Kw </td>
+  <td> - </td>
+  <td> Puterea consumata in kw </b> </td>       
+</tr>
+<tr>
+  <td> p_gen_kw </td>
+  <td> REAL </td>
+  <td> - </td>
+  <td> KW </td>
+  <td> - </td>
+  <td> Puterea generata in kw</b> </td>       
+</tr>
+</table></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functionarea comutatoarelor k1-k5 este coordonata de urmatoarele functii:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+FUNCTION comut_k1()
+	IF NOT autom
+	THEN
+		Toggle(k1);
+	END
+END
+FUNCTION comut_k2()
+	IF NOT autom
+	THEN
+		Toggle(k2);
+	END
+END
+FUNCTION comut_k3()
+	IF NOT autom
+	THEN
+		Toggle(k3);
+	END
+END
+FUNCTION comut_k4()
+	IF NOT autom
+	THEN
+		Toggle(k4);
+	END
+END
+FUNCTION comut_k5()
+	IF NOT autom
+	THEN
+		Toggle(k5);
+	END
+END
+
+</pre> </font>
+</td></tr></table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La fiecare scanare a ecranului se lanseaza functia monit_01 cu urmatorul continut:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION monit_01()
+  
+	/*conditii initiale */
+
+ autm=1
+ r_solar=801
+ v_eol=2
+ h_hidro=1
+ u_retea=220
+ u_i_bat=50
+ start=1
+ sem=0
+ simul_s1();
+ IF k1=1 THEN
+ 	u_solar=u_i_bat
+ END
+ IF k2=1 THEN
+ 	u_eol=u_i_bat
+ END
+ IF k3=1 THEN
+ 	u_hidro=u_i_bat
+ END 
+ IF r_solar>800 THEN
+ 	k1=1
+ ELSE
+ 	k1=0
+ END	
+ IF v_eol>4 THEN
+ 	k2=1
+ ELSE
+ 	k2=0
+ END
+ IF h_hidro>2 THEN
+ 	k3=1
+ ELSE
+ 	k3=0
+ END
+ 	 /*  Daca puterea generata > puterea consumata, se genereaza energie in reteaua publica   */ 
+
+ IF i_cons*u_ali < (i_solar+i_eol+i_hidro)*50 THEN
+  	K4=1
+ 	u_e_inv=u_retea;
+ 	u_ali=u_retea;
+ ELSE
+ 	k4=0
+ 	u_e_inv=230;
+ 	u_ali=230;
+ END	
+
+  	/* Pentru a avea tot timpul alimentare cu energie */
+  	
+ IF k5=0 THEN
+  	  k4=1
+ END   
+
+ 	/*     panou solar      */
+ 	
+ IF k1=1 THEN
+  	IF r_solar>800 THEN
+ 		u_solar=u_i_bat
+ 		i_solar=245*r_solar/3000
+ 	ELSE
+ 		 i_solar=0
+ 	END	
+ ELSE
+ 	u_solar=50*r_solar/800
+ IF u_solar>50 THEN
+  	u_solar=50
+ END
+  	i_solar=0
+ END
+ 
+ /*     sistemul eolian      */
+ 
+ 
+ IF k2=1 THEN
+  	IF v_eol>4 THEN
+ 		u_eol=u_i_bat
+ 		i_eol=205*v_eol/20
+ 	ELSE
+ 		 i_eol=0
+ 	END	
+ ELSE
+  		u_eol=50*v_eol/4
+  		IF u_eol>50
+  		THEN
+  		   u_eol=50
+  		END
+ 		i_eol=0
+ END
+ 
+  /*     sistemul hidro      */
+ 
+ IF k3=1 THEN
+  	IF h_hidro>2
+ 	THEN
+ 		u_hidro=u_i_bat
+ 		i_hidro=270*h_hidro/10
+ 	ELSE
+ 		i_hidro=0
+ 	END	
+ ELSE
+  		u_hidro=50*h_hidro/2
+  		IF u_hidro>50
+  		THEN
+  		   u_hidro=50
+  		END
+ 		i_hidro=0
+ END
+
+   /*     conditii baterie, invertor, retea      */
+   
+   
+ IF u_i_bat<46.5 THEN
+ 	u_e_inv=0
+ 	u_ali=u_retea
+ 	k5=0
+ 	k4=1
+ END
+ 
+ IF u_i_bat >= 50 THEN
+ 	u_e_inv=230
+ 	IF k4=1
+ 	THEN
+ 		u_e_inv=u_retea
+	END
+ 	u_ali=230
+ 	k5=1
+ END
+   
+ IF k5=1 THEN
+ 	u_ali=u_e_inv
+ 	u_i_inv=u_i_bat
+ ELSE
+ 	u_i_inv=0
+ END
+ 
+ IF k4=1 THEN
+ 	u_ali=u_retea
+ END
+ p_cons=i_cons*u_ali
+ p_cons_kw=p_cons/1000
+ p_cc_kw=i_cons*u_i_bat/1000
+ p_gen=(i_solar+i_eol+i_hidro)*50
+ p_gen_kw=p_gen/1000
+ ora=ora+0.25
+ IF ora>24
+ THEN
+	ora=0
+ END
+END
+</pre> </font>
+</td></tr></table>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Functia <b> simul_s1() </b> fiind functia de simulare a consumului in functie de ora, functie similara cu functia 
+descrisa anterior in cadrul aplicatiei de monitorizare a grupului eolian;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Din procedurile cuprinse in functia <b>monit_01</b> se observa ca daca puterea generata > puterea consumata se inchide 
+k4 si k5 pentru a livra surplusul in retea, de asemenea daca se opreste invertorul (k5=0) se cupleaza reteaua (k4=1)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa de asemenea ca daca tensiunea la bornele bateriei scade sub 46.5 volti, se decupleaza invertorul  si nu se mai 
+cupleaza decat atunci cand tensiunea pe baterii creste peste 50 v pentru a permite un ciclu complet de incarcare.
+
+<br><br><a name="autoev"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de autoevaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck1() {  
+  
+     if ((Form_ck1.ck_1.checked==false)&(Form_ck1.ck_2.checked==true)&(Form_ck1.ck_3.checked==false)&(Form_ck1.ck_4.checked==false))  
+		document.Form_ck1.af_mes.value ='corect !';
+	else
+		document.Form_ck1.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck1">
+	<I> 1. Deplasarea unui simbol pe o pagina grafica se face utilizand proprietatea:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck1()>
+	a. "Slider" <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck1()>
+	b. "Movement"  <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck1()> 
+	c. "Scaling" <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck1()> 
+	d. "Access" <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck2() {  
+  
+     if ((Form_ck2.ck_1.checked==false)&(Form_ck2.ck_2.checked==true)&(Form_ck2.ck_3.checked==true)&(Form_ck2.ck_4.checked==false))  
+		document.Form_ck2.af_mes.value ='corect !';
+	else
+		document.Form_ck2.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck2">
+	<I> 2. Generatoarele eoliene, au in componenta cel putin :  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck2()>
+	a. Un generator (ca) <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck2()>
+	b. Un generator (cc) <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck2()> 
+	c. Un invertor <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck2()> 
+	d. O baterie de acumulatoare <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck3() {  
+  
+     if ((Form_ck3.ck_1.checked==false)&(Form_ck3.ck_2.checked==false)&(Form_ck3.ck_3.checked==false)&(Form_ck3.ck_4.checked==true))  
+		document.Form_ck3.af_mes.value ='corect !';
+	else
+		document.Form_ck3.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck3">
+	<I> 3. Numarul de pixeli cu care se deplaseaza la un moment dat un simbol depinde de :  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck3()>
+	a. Offsetul setat <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck3()>
+	b. Domeniul de marime at tag-ului atribuit <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck3()> 
+	c. Parametii de scalare <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck3()> 
+	d. Prin setarea mai multor parametrii <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck4() {  
+  
+     if ((Form_ck4.ck_1.checked==true)&(Form_ck4.ck_2.checked==true)&(Form_ck4.ck_3.checked==true)&(Form_ck4.ck_4.checked==true))  
+		document.Form_ck4.af_mes.value ='corect !';
+	else
+		document.Form_ck4.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck4">
+	<I> 4. Pentru a simula functionarea unei pompe putem folosi :  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck4()>
+	a. Un symbol set de tip "on-off"<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck4()>
+	b. Un symbol "Genie"<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck4()> 
+	c. Un symbol set de tip "multi-state"<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck4()> 
+	d. Un symbol set "animated" <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck5() {  
+  
+     if ((Form_ck5.ck_1.checked==false)&(Form_ck5.ck_2.checked==false)&(Form_ck5.ck_3.checked==true)&(Form_ck5.ck_4.checked==false))  
+		document.Form_ck5.af_mes.value ='corect !';
+	else
+		document.Form_ck5.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck5">
+	<I> 5. Care este rolul unui invertor ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck5()>
+	a. Inverseaza polaritatea unei surse <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck5()>
+	b. Transforma ca in cc <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck5()> 
+	c. Transforma cc in ca <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck5()> 
+	d. Filtreaza zgomotele unei surse de cc <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<br><br><a name="rez"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Rezumat  </Center></TD></TR>
+</table>
+
+<br><br><b>Schimbator de caldura bazat pe energia solara</b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Soarele este la originea tuturor formelor de energie pe care le-au descoperit si de care s-au servit oamenii. 
+Energia solara se poate transforma în alte forme de energie: mecanica, termica, sau electrica. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Energia solara poate fi valorificata prin colectarea acestei energii cu ajutorul captatoarelor solare si prin utilizarea 
+celulelor solare. Captatorul solar este un convertor heliotermic, al carui scop este convertirea energiei solare în caldura.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Incalzitorul de apa cu schimbator de caldura se compune din urmatoarele elemente:
+<ul>
+	<li> Panou solar cu tuburi vidate din sticla;
+	<li> Boiler pentru prepararea apei calde;
+	<li> Pompa de circulatie a agentului termic solar;
+	<li> Contor de energie termica ;
+	<li> Contor monojet de apa rece ;
+	<li> Vana de descarcare termica si presiune ;
+	<li> Vasele de expansiune, armaturi de închidere, termometre si manometre.
+	<li> Ventilele 	
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Simularea miscarii lichidelor in diverse circuite se bazeaza pe utilizarea unui simbol caruia i-a fost setata proprietatea
+"Movement" si a unui TAG a carui valoare este modificata in mod constant de catre o functie definita de utilizator, functie ce se lanseaza la fiecare 
+scanare a ecranului. Functia tine cont si daca vanele din circuitele respective sunt deschise. Astfel de exemplu, lichidul in circuitul primar se 
+deplaseaza numai daca toate vanele din acest circuit sunt deschise si pompa este pornita.
+
+<br><br><b>Sistem de monitorizare si control al unui grup eolian </b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O alta importanta sursa regenerabila de energie este reprezentata de energia eoliana. Generatoarele eoliene sunt generatoare de curent 
+continuu (cc) care sunt antrenate de un sistem de pale care la randul lor sunt actionate de energia vantului. Se utilizeaza generatoare de cc care de 
+obicei incarca un sistem de baterii de acumulatoare. Pentru a alimenta consumatori de curent alternativ(ca) se utilizeaza invertoare care transforma tensiunea 
+continua in tensiune alternativa de frecventa retelei electrice adica 50 hz. Chiar si in cazul in care sistemul eolian, se conecteaza direct la reteaua 
+electrica, se folosesc tot generatoare de curent continuu si invertoare. Utilizarea directa a generatoarelor de (ca) nu este posibila din cauza 
+imposibilitatii sincronizarii generatorului eolian de (ca) la frecventa retelei.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;La realizarea sistemului de monitorizare si control al unui grup eolian s-a tinut cont de faptul ca daca viteza vantului 
+creste de la 0 la 4 m/s tensiunea generata de sistemul eolian creste de la 0 la 50v. Aceasta tensiune nefiind suficienta sa incarce bateriile, comutatorul C1 
+ramane deschis. Sistemul eoloian incepe sa genereze energie electrica numai daca viteza vantului trece de 4 m/s.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca viteza vantului creste de la 4 la 20 m/s, se inchide comutatorul C2 si incepe sa creasca curentul. 
+Tensiunea de iesire fiind tensiunea bateriei. In schimb curentul creste proportional cu viteza vantului, ajungand sa genereze 200 de A la viteza maxima de 20 m/s.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;S-a tinut de asemenea cont de comportamentul bateriei de acumulatoare si anume: daca tensiunea la bornele bateriei scade 
+sub 46.5 volti, se decupleaza invertorul  si nu se mai cupleaza decat atunci cand tensiunea pe baterii creste peste 50 v pentru a permite un ciclu 
+complet de incarcare. La decuplarea invertorului, se cupleaza automat reteaua.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; In cazul in care avem doi consumatori: unul de curent continuu si unul de curent alternativ, sistemul SCADA pentru 
+monitorizare si control unui grup eolian va trebui regandit. Prezenta consumatorului de curent continuu impune utilizarea retelei publice de alimentare 
+cu energie electrica pentru incarcarea bateriilor de acumulatoare in perioadele cand energia consumata depaseste enregia furnizata de generatorul eolian.
+
+<br><br><b> Managementul mai multor surse regenerabile de energie</b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca se combina mai multe surse regenerabile de energie, se obtine un sistem complex de monitorizare si control 
+pentru mai multe tipuri de energii recuperabile. In cadrul acestui sistem se tine cont de urmatoarele conditii de functionare:
+<ul>
+ <li> daca iluminarea creste de la 0 la 800 W/mp tensiunea generata de panou creste de la 0 la 50v. Aceasta tensiune nefiind suficienta sa incarce 
+bateriile, comutatorul K1 ramane deschis. Sistemul solar incepe sa genereze energie electrica numai daca iluminarea creste de la 800 W/mp.
+ <li> daca iluminarea creste de la 800 la 3000 W/mp, se inchide comutatorul K1 si incepe sa creasca curentul. Tensiunea de iesire fiind tensiunea 
+bateriei. Curentul creste proportional cu iluminarea, ajungand sa genereze 245 de A daca iluminarea creste la 3000 W/mp.
+ <li> daca viteza vantului creste de la 0 la 4 m/s tensiunea generata de sistemul eolian creste de la 0 la 50v. Aceasta tensiune nefiind suficienta 
+sa incarce bateriile, comutatorul K2 ramane deschis. Sistemul eoloian incepe sa genereze energie electrica numai daca viteza vantului trece de 4 m/s.
+ <li> daca viteza vantului creste de la 4 la 20 m/s, se inchide comutatorul k2 si incepe sa creasca curentul. Tensiunea de iesire fiind tensiunea 
+ bateriei. In schimb curentul creste proportional cu viteza vantului, ajungand sa genereze 200 de A la viteza maxima de 20 m/s.
+ <li> daca inaltimea apei in baraj  creste de la 0 la 2 m  tensiunea generata de sistemul hidro creste de la 0 la 50v. Aceasta tensiune nefiind 
+suficienta sa incarce bateriile, comutatorul K3 ramane deschis. Sistemul hidro incepe sa genereze energie electrica numai daca inaltimea apei in baraj 
+creste peste 2m.
+ <li> daca inaltimea apei in baraj creste de la 2 la 10 m, se inchide comutatorul K3 si incepe sa creasca curentul. Curentul creste proportional cu 
+inaltimea apei in baraj ajungand sa genereze 270 de A daca inaltimea apei in baraj ajunge la 10 m. Tensiunea de iesire in acest caz fiind tensiunea 
+bateriei.
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;La realizarea aplicatiilor ce contin baterii de acumulatoare, se tine de asemenea cont de comportamentul bateriei 
+de acumulatoare si anume: daca tensiunea la bornele bateriei scade sub tensiunea minima, se decupleaza consumul si nu se mai cupleaza decat atunci 
+cand tensiunea pe baterii creste peste tensiunea nominala pentru a permite un ciclu complet de incarcare.
+
+
+<br><br><a name="astept"></a>
+<font color= "Blue" size=4><li><b>Rezultate asteptate </b></font>
+<ul>
+Dupa studierea acestui modul, ar trebui sa cunoasteti:<br><br>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+
+<li>Cum sa realizati sisteme SCADA care gestioneaza schimbatoare de caldura bazate pe energia solara
+<li>Cum sa simulati miscarea fluidelor in diverse circuite
+<li>Cum sa realizati sisteme SCADA care gestioneaza generatoare electrice bazate pe energia eoliana
+<li>Cum sa utilizati bateriile de acumulatoare si invertoarele de tensiune
+<li>Cum sa realizati sisteme SCADA care gestioneaza generatoare electrice bazate pe diverse surse de energie regenerabila.
+</table>
+</ul>
+
+<a name="term"></a>
+<font color= "Blue" size=4> <li> <b>Termeni esentiali</b></font><br>
+<ul>
+<Table border=1 width="90%">
+
+<tr>
+  <td align="center"><b> Termen </b>  </td>
+  <td align="center"><b> Descriere </b>  </td>
+</tr>
+<tr>
+  <td> SCADA </td>
+  <td> Supervisory Control And Data Aquisition </td>    
+</tr>
+<tr>
+  <td> Tag </td>
+  <td> Nume generic pentru elementele din procesul monitorizat codificate prin intermediul variabilelor</td>    
+</tr>
+<tr>
+  <td> HMI  </td>
+  <td> Human Machine Interface -Interfata dintre aplicatie si utilizator </td>    
+</tr>
+<tr>
+  <td> Invertor de tensiune </td>
+  <td> Sistem electronic care transforma tensiunea continua in tensiune alternativa de frecventa retelei electrice </td>    
+</tr>
+<tr>
+  <td> Trend </td>
+  <td> Evolutia in timp a unei marimi analogice</td>    
+</tr>
+<tr>
+  <td>Slider</td>
+  <td>Instrument virtual care imita functionarea unui potentiometru liniar</td>    
+</tr>
+<tr>
+  <td></td>
+  <td>  </td>    
+</tr>
+
+
+</table>
+</ul>
+ 
+<br><br><a name="bibl"></a>
+<font color= "Blue" size=4><li><b>Recomandari bibliografice </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> [1] Traian Turc, Elemente de programare C++ utile in ingineria electrica, Ed.Matrixrom, Bucuresti,2010
+<li> [2] Traian Turc, Programare avansata C++ pentru ingineria electrica, Ed.Matrixrom, Bucuresti,2010
+<li> [3] Traian Turc, Programarea in limbaje de asamblare, uz intern, Univ."Petru Maior" ,Tg.Mures,2009
+<li> [4] Traian Tur,Brevet de inventie nr:11863 "Sistem pentru automatizarea si monitorizarea proceselor industriale", OSIM, 2003
+<li> [5] Jeff Kent, C++ fara mistere,Ed.Rosetti Educational 2004 .
+<li> [6] Boldur Barbat - Informatica industriala - Programarea în timp real  – Institutul Central pentru Conducere si informatica 1984 
+<li> [7] Ioan Babuita – Conducerea automata a proceselor – Ed. Facla 1985
+<li> [8] Ghercioiu-National în struments - Orizonturi  în instrumentatie 1995
+<li> [9] Cristian-Dragos Dumitru, Adrian Gligor, Traian Turc - Scada Application for Solar Energy - Intering 2012
+<li> [10] Bica, D., Dumitru, C.D. - Photovoltaic laboratory for study of renewable solar energy, - Intering 2008
+</td></tr></table>
+</ul>
+<br><br><a name="link"></a>
+<font color= "Blue" size=4><li><b>Link-uri utile </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> 1.<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> - Free SCADA - 2009.
+<li> 2.<a href="http://www.7t.dk/igss/default.asp"> http://www.7t.dk/igss/default.asp</a> - IGSS SCADA System - 2009
+<li> 3.<a href="http://www.7t.dk/igss/default.asp?showid=374"> http://www.7t.dk/igss/default.asp?showid=374</a> - IGSS Online SCADA Training - 2009 
+<li> 4.<a href="http://www.7t.dk/free-scada-software/index.html"> http://www.7t.dk/free-scada-software/index.html</a>-  IGSS Free SCADA Software -2009
+<li> 5.<a href="http://www.citect.com/"> http://www.citect.com/</a> -  CITECT SCADA -2009 
+<li> 6.<a href="http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314"> http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314</a> - Download CITECT demo - 2009
+<li> 7.<a href="http://www.indusoft.com/index.asp"> http://www.indusoft.com/index.asp</a> - INDUSOFT SCADA - 2009
+<li> 8 <a href="http://www.gefanuc.com/products/2819"> http://www.gefanuc.com/products/2819</a> - Proficy HMI/SCADA - CIMPLICITY - 2009.
+<li> 9.<a href="http://www.genlogic.com/"> http://www.genlogic.com/</a> - Dynamic Graphics, Data Visualization, Human-Machine Interface (HMI) - 2010 
+<li> 10<a href="http://www.genlogic.com/demos.html"> http://www.genlogic.com/demos.html</a> - On-Line Java and AJAX Demos - 2010 
+<li> 11<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+<li> 12<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+</td></tr></table>
+</ul>
+
+<br><br><a name="eval"></a>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de evaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck6() {  
+  
+     if ((Form_ck6.ck_1.checked==true)&(Form_ck6.ck_2.checked==true)&(Form_ck6.ck_3.checked==false)&(Form_ck6.ck_4.checked==true))  
+		document.Form_ck6.af_mes.value ='corect !';
+	else
+		document.Form_ck6.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck6">
+	<I> 1. Utilizarea unui simbol care se deplaseaza pe pagina grafica presupune:</I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck6()>
+	a. Atribuirea unui TAG de tip digital <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck6()>
+	b. Atribuirea unui TAG de tip integer<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck6()> 
+	c.  Atribuirea unui TAG special pentru simularea miscarii <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck6()> 
+	d.  Atribuirea unui TAG de tip real  <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+  
+<ul>
+<script type="text/javascript">
+function nr_ck7() {  
+  
+     if ((Form_ck7.ck_1.checked==false)&(Form_ck7.ck_2.checked==true)&(Form_ck7.ck_3.checked==false)&(Form_ck7.ck_4.checked==false))  
+		document.Form_ck7.af_mes.value ='corect !';
+	else
+		document.Form_ck7.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck7">
+	<I> 2. Simularea curgerii unui lichid se poate face prin:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck7()>
+	a. Utilizarea unui Symbol Set Multistate <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck7()>
+	b. Utilizarea unui Symbol caruia i s-a setat proprietate "Movement"<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck7()> 
+	c. Utilizarea unui obiect "Genie"<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck7()> 
+	d. Utilizarea unui Symbol caruia i s-a setat proprietate "Slyder" <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck8() {  
+  
+     if ((Form_ck8.ck_1.checked==false)&(Form_ck8.ck_2.checked==false)&(Form_ck8.ck_3.checked==true)&(Form_ck8.ck_4.checked==false))  
+		document.Form_ck8.af_mes.value ='corect !';
+	else
+		document.Form_ck8.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck8">
+	<I> 3. De ce nu se utilizeaza generatoare (ca) pentru realizarea generatoarelor eoliene </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck8()>
+	a. Sunt mai scumpe<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck8()>
+	b. Au dimensiuni mai mari <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck8()> 
+	c. Nu se pot sincroniza la frecventa retelei <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck8()> 
+	d. Nu functioneaza la turatii mici <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck9() {  
+  
+     if ((Form_ck9.ck_1.checked==true)&(Form_ck9.ck_2.checked==false)&(Form_ck9.ck_3.checked==false)&(Form_ck9.ck_4.checked==false))  
+		document.Form_ck9.af_mes.value ='corect !';
+	else
+		document.Form_ck9.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck9">
+	<I> 4. Simularea in timp a unui parametru se face: </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck9()>
+	a. Prin utilizarea unei functii care se apeleaza repetitiv <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck9()>
+	b. Din apelarea unei functii predefinite <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck9()> 
+	c. Prin tilizarea unui TAG de tip trend <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck9()> 
+	d. Prin utilizarea unei functii matematice <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck10() {  
+  
+     if ((Form_ck10.ck_1.checked==false)&(Form_ck10.ck_2.checked==false)&(Form_ck10.ck_3.checked==false)&(Form_ck10.ck_4.checked==true))  
+		document.Form_ck10.af_mes.value ='corect !';
+	else
+		document.Form_ck10.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck10">
+	<I> 5. Implementarea unui ciclu complet pentru un acumulator se face utilizand  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck10()>
+	a. Un simbol special pentru acumulator <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck10()>
+	b. Folosind un tag de tip REAL caruia i s-au specificat limitele <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck10()> 
+	c. Folosind o functie predefinita <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck10()> 
+	d. Prin screrea unei functii corespunzatoare <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+ 
+</body>
+</html>
