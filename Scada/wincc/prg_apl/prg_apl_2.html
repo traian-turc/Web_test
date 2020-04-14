@@ -1,0 +1,615 @@
+<html>
+<title> Programarea aplicatiilor SCADA in mediul WinCC </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "red" size=6> Utilizarea limbajului de programare ANCI C  in mediul WinCC </Center></TD></TR>
+</table>
+
+<br><a name="cicode"></a>
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "blue" size=5> 1.Controale de intrare-iesire  </Center></TD></TR>
+</table>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatiile SCADA simple se pot crea in principiu fara a utiliza notiuni de programare. Aplicatiile mai complexe 
+nu pot fi realizate decat utilizand facilitatile oferite de limbajele de programare ANSI C si VB incluse in mediul de dezvoltare WinCC
+
+<br><br><a name="simb"></a>
+<font color= "blue" size=4><b> Controale de tipul on/off</b></font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind Graphics  Designer vom crea o pagina grafica <font color="red"><b> "led1" </b> </font> pentru a simula comanda de alimentare cu energie a unui proces. Alimentarea va 
+fi semnalizata in pagina grafica prin aprinderea unui LED. LED-ul va avea doua stari. Starea stins de culore gri si starea aprins, de culoare verde.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va defini un Internal Tag -L1 de tip boolean  care va fi modificat de Toggle button si afisat de un cerc caruia i se va seta 
+Background color in functie de L1
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Display Library -- Operation -- Toggle Buttons -- On_Off_1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Tag -- Assignment -- Dynamic -- Tag -- L1 --Update 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Circle 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Efects -- Global Color Scheme -- No
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Colors -- Background color -- Dynamic -- Dynamic Dialog -- Tag -- L1 -- Bolean
+<br><br><center><img src="im_01.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca nu se poate seta Update Time, acesat fiind setat implicit la 2 s. Vom folosi alta metoda prin utilizarea 
+Smart Objects-ului  -- Status Display in urmatoarea pagina grafica <font color="red"> <b> "led2" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Smart Objects -- Status Display
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-se atribuie Tag -- L1 -- Update 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-se atribuie imagini pentru 0 si pentru 1 corespunzatoare lui L1
+<br><br><center><img src="im_02.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se pot utiliza simbolurile existente in biblioteca. Pentru a realiza un Set simbol de vane controlat de doua butoane 
+on respectiv off. In continuare se vor alege doua simboluri din biblioteca atfel: un simbol pentru vana on si un simbol pentru vana off si 
+se vor plasa pe Layer-uri diferite in urmatoarea pagina grafica <font color="red"><b> "c_led3" </b> </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru valva off, se seteaza 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Properties -- Miscellaneus -- Display -- No
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se plaseaza doua butoane  unul On si altul Off
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button -- Text -- On
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Properties -- Events -- Mouse -- Action -- C Action
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+SetVisible(lpszPictureName,"Gruppe43", 1 );
+SetVisible(lpszPictureName,"Gruppe45", 0 );
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button -- Text -- Off
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Properties -- Events -- Mouse -- Action -- C Action
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+SetVisible(lpszPictureName,"Gruppe43", 0 );
+SetVisible(lpszPictureName,"Gruppe45", 1 );
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_03.gif"></center>
+
+
+<br><br><a name="ctrl_n"></a>
+<font color= "blue" size=4><b> Controale alfanumerice de intrare/iesire  </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_afisd_01" </b> </font>,in care vom afisa un text la apasarea unui buton.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea textului se face utilizand un obiect standard 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text -- Text=Loc mesaj 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+SetText(lpszPictureName,"Static Text1","Ati actionat START");
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_09.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se poate folosi pe post de consola Smart Object-ul Applications Windows
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_afisd_02" </b> </font>,in care vom afisa valoarea tag-urilor Temp si L1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Smart Objects -- Applications Windows
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Global Script -- GSC Diagnostics
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+int Tag_T ;
+int Tag_L1;
+
+Tag_T=GetTagWord("Temp");
+Tag_L1=GetTagWord("L1");
+printf("\n\tTemperatura: %d  grade\n",GetTagWord("Temp"));
+printf("\n\tValoarea tag-ului L1:%d\n",Tag_L1);
+
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_10.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru afisari in format binar se poate folosi controlul 8 bit Display +I/O Field aflat in Global Library
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "afisn_03" </b> </font>,in care vom afisa valoarea tag-ului Temp 
+in format binar. Plasam urmatoarele elemente:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Display Library -- Displays -- Displays -- 8 bit Display +I/O Field
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties pentru  8 bit Display -- User Defined2 -- Byte Value -- Tag -- Temp --Update 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties pentru I/O Field -- InputOutput -- OutputValue -- Tag -- Temp --Update 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Slider Obiect -- Tag -- Temp -- Update 250ms  
+
+<br><br><center><img src="im_11.gif"></center> 
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_afisd_04" </b> </font>,in care vom introduce valoarea tag-ului Temp 
+de la tastatura folosind un Smart Object I/O Field. Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Smart Objects -- I/O Field
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza: Tag -- Temp -- Update 250ms 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Keyboard -- Press cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnKeyDown(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName, UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+char*   val_i;
+val_i=GetInputValueChar(lpszPictureName,"I/O Field2");
+SetText(lpszPictureName,"Static Text1",val_i);
+
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_12.gif"></center> 
+
+
+
+<br><br><a name="ctrl_g"></a>
+<font color= "blue" size=4><b> Controale grafice de intrare/iesire  </b></font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "afis_01" </b> </font>, care permite modificarea valorii tag-uli
+Temp de tipul Unsigned 8-biti predefinit anterior. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru modificarea dinamica a valorii tag-ului Temp se va folosi un Slider Object. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea valorii tag-ului se face prin intermediul unui control de tip Meter.
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Display Library -- Meters -- Meter2
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- User Defined2 -- Process --Dynamic -- Tag -- Temp --Update 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Slider Obiect -- Tag -- Temp -- Update 250ms  
+<br><br><center><img src="im_08.gif"></center>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "afis_02" </b> </font>, care contine:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Controls -- Activx Controls -- Wincc Gauge Control
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Control Properties -- Value -- Tag -- Temp -- -- Update 250ms 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Controls -- Activx Controls -- Wincc Slider Control
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Control Properties -- Position -- Tag -- Temp -- -- Update 250ms 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Rectangle
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Properties -- Rectangle -- Filing -- Fill Level -- Tag -- Temp --Update 250 ms 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Display Library -- Meters -- Meter2
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- User Defined2 -- Process --Dynamic -- Tag -- Temp --Update 250 ms 
+<br><br><center><img src="im_07.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<br><br><a name="if"></a>
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "blue" size=5> 2. Instructiuni decizionale   </Center></TD></TR>
+</table>
+<font color= "blue" size=4> Instructiunea if / else:</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if / else</b> se foloseste pentru a executa o instructiune sau o secventa de instructiuni  
+cand valoare logica a unei expresii este adevarata si alta instructiune sau o secventa de instructiuni pentru cazul cand valoarea logic a aceleiasi 
+expresii nu este adevarata.
+<br><br><li>Formatul instructiunii:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> (expresie logica) <b>{</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni;</b>
+<br><b>}</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>else{</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni;</b>
+<br><b>}</b>
+
+<br><br><a name="a_if"></a>
+<br><li><b> Aplicatii care utilizarea instructiuni decizionale </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom incerca sa utilizam in continuare instructiunea <b>if  / else</b>  pentru a controla functionarea butonului Pornit/ Oprit. 
+<br><br>&nbsp;&nbsp;&nbsp;Vom realiza aplicatia <font color="red"><b> "c_if_01" </b> </font> vom implementa on buton on/off.
+
+<br><br>&nbsp;&nbsp;&nbsp; Vom plasa un Smart Objects -- Status Display 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-setam -- Tag -- L1 -- Update 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-tribuim imagini pentru 0 si pentru 1 corespunzatoare lui L1
+<br>&nbsp;&nbsp;&nbsp;Se plaseaza un buton start din Windows Objects -- Button -- Text = On/Off
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -se completeaza -- Properties -- Events -- Mouse -- Action -- C Action -- cu urmatoarea procedura
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	BOOL  x;
+	x=GetTagWord("L1");
+	if (x==1) {
+		SetTagBit("L1",0);
+	}
+	else{
+		SetTagBit("L1",1);
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie <font color="red"><b> "c_if_02" </b> </font> vom implementa on buton on/off din simboluri.
+<br>&nbsp;&nbsp;&nbsp;Se plaseazadoua simboluri pe Layer-uri diferite
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -se completeaza pentru fiecare simbol -- Properties -- Events -- Mouse -- Action -- C Action -- cu urmatoarea procedura
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	BOOL x;
+	x=GetTagWord("L1");
+	if   (x==1){
+		SetTagBit("L1",0);
+		SetVisible(lpszPictureName,"Poligon4", 0 );
+		SetVisible(lpszPictureName,"Poligon5", 1 );
+	}
+	else{
+		SetTagBit("L1",1);
+		SetVisible(lpszPictureName,"Poligon4", 1 );
+		SetVisible(lpszPictureName,"Poligon5", 0 );
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;In acest moment dublul simbol functioneaza, insa la actionarea, dar la apasarea Toggle Button-ului, 
+simbolul valvei ramane nemodificat. Va trebui sa mai scriem o procedura declansata pe unul din evenimentele paginii grafice 
+care sa actualizeze in permanenta starea valvei cand tag-ul corespunzator valvei este actionat din alta parte
+
+<br><br><center><img src="im_06.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;Am folosit proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- C Action, urmatorul script
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+ long _main(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	int x;
+	x=GetTagWord("L1");
+	if   (x==1){
+		SetVisible(lpszPictureName,"Polygon4", 1 );
+		SetVisible(lpszPictureName,"Polygon5", 0 );
+	}
+	else{
+		SetVisible(lpszPictureName,"Polygon4", 0 );
+		SetVisible(lpszPictureName,"Polygon5", 1 );
+	}
+return 0;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;Dupa care am setat Triger-ul la 250 ms
+
+<br><br>&nbsp;&nbsp;&nbsp; Sa reluam aplicatia afis_01 dar de data aceasta sa nu mai modificam manual valoarea tag-ului Temp, sa modificam dinamic valoarea.
+<br>&nbsp;&nbsp;&nbsp; Realizam o noua pagina grafica <font color="red"><b> "c_if_03" </b> </font> pe care plasam toate elementele de pe afis_01 si in plus:
+<br>&nbsp;&nbsp;&nbsp;Folosim din nou proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- C Action, scriptul de jos si setam 
+Triger-ul la 250 ms.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+ long _main(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+int tmp;
+tmp=GetTagWord("Temp");
+tmp=tmp+10;
+if (tmp>100){
+tmp=1;
+}
+SetTagByte("Temp",tmp);
+
+return 600;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><a name="repet"></a>
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "blue" size=5> 3. Istructiuni repetitive  </Center></TD></TR>
+</table>
+
+<br><a name="while"></a>
+<font color= "blue" size=4><b> Instructiunea while  </b> </font>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>while</b> Se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni atata timp
+cat o expresie este adevarata.
+<br><li><b>Formatul instructiunii:</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Formatul instructiunii
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>while (expresie)</b> {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni;
+}
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea se executa repetat atîta timp cît valoarea expresiei este adevarata. 
+Testul are loc înaintea fiecarei executii a instructiunii. Modul de functionare al instructiunii este urmatorul:
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se testeaza expresia din paranteze. Daca ea este adevarata (sau expresia din paranteze are o valoare diferita de zero) 
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se executa corpul instructiunii while
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se reia testarea si executia pana expresia devine falsa (sau valoarea expresiei din paranteze este zero) 
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se continua executia cu instructiunea de dupa corpul instructiunii while, deci instructiunea while se termina.
+<br><br><a name="a_while"></a>
+<br><li><b> Aplicatii care utilizeaza instructiunea while </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un program care afiseaza primele 10 numere naturale.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind Smart Object-ul Applications Windows vom afisa primele 10 de numere naturale
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_while_01" </b> </font>,in care afisam primele 10 de numere naturale
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Smart Objects -- Applications Windows
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Global Script -- GSC Diagnostics
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	int i;
+	i=1;
+	while (i <= 10){
+		printf("\n\tI=: %d \n",i);
+		i=i+1;
+	}
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br><a name="for"></a>
+<font color= "blue" size=4><b> Instructiunea for </b> </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea For se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni. De obicei
+implementeaza structura ciclica cu numar cunoscut de pasi.
+<br><li><b>Formatul instructiunii:</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>for</b> are urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>For (expresie1 ,expresie2, expresie3)</b>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni;
+}
+     expresie2 specifica testul care controleaza ciclul. El se executa înaintea fiecarei iteratii. Daca conditia din test este adevarata atunci se executa corpul ciclului, dupa care se executa expresie3, care consta de cele mai multe ori în modificarea valorii variabilei de control al ciclului. Se revine apoi la reevaluarea conditiei.
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie1 constituie initializarea ciclului si se executa o singura data înaintea ciclului. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie2 specifica testul care controleaza ciclul.  El se executa înaintea fiecarei iteratii. Daca conditia din test este adevarata atunci se executa corpul ciclului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; se executa expresie3, care consta de cele mai multe ori în modificarea valorii variabilei de control al ciclului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; se incrementeaza variabila din expresie1
+<br>&nbsp;&nbsp;&nbsp;&nbsp; se revine apoi la reevaluarea conditiei.
+<br><br><a name="a_for"></a>
+<br><li><b> Aplicatii care utilizeaza instructiunea for </b>
+<br><br>&nbsp;&nbsp;&nbsp;Vom realiza aplicatia <font color="red"><b> "c_for_01" </b> </font> in care afisam random 10 dreptunghiuri de inaltimi diferite.
+<br>&nbsp;&nbsp;&nbsp;Se plaseaza 10 dreptunghiuri cu numele Rectangle1, Rectangle2,...,Rectangle 10 din Standard Objects -- Rectangle
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -se seteaza -- Properties -- Color -- Background Color -- la culoarea dorita
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -se seteaza -- Properties -- Effects -- Global Color Scheme = No
+ 
+<br>&nbsp;&nbsp;&nbsp;Se plaseaza un buton start din Windows Objects -- Button -- Text = Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -se completeaza -- Properties -- Events -- Mouse -- Action -- C Action -- cu urmatoarea procedura
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	char  fig[20];
+	char* nr_fig;
+	int nr=1;
+	int k=1;
+	int x;
+	for (k=1;k<11;k++){
+		SetTagDWord("i",nr);
+		nr_fig=GetTagChar("i");
+		strcpy(fig,"Rectangle");
+		strcat(fig,nr_fig);
+		x=15*k;
+		SetHeight(lpszPictureName,fig, x);
+		SetTop(lpszPictureName,fig, 290-x);
+		nr=nr+1;
+	}
+}
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_15.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind Smart Object-ul Applications Windows vom afisa primele 25 de numere naturale
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_for_02" </b> </font>,in care primele 25 de numere naturale
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Smart Objects -- Applications Windows
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Global Script -- GSC Diagnostics
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	int i;
+	for (i=1;i <= 25;i++){
+		printf("\n\tI=: %d \n",i);
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_14.gif"></center> 
+
+<br><br><a name="until"></a>
+<font color= "blue" size=4><b> Instructiunea do while </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Formatul instructiunii
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>do</b> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>while(expresie)</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea se executa repetat pana cand valoarea expresiei devine adevarata. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Testul are loc înaintea fiecarei executii a instructiunii.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea Do Until se foloseste atunci cand se cunoaste conditia finala pana la care se repeta secventa de instructiuni
+
+<br><br><a name="a_until"></a>
+<br><li><b> Aplicatii care utilizeaza instructiunea do while </b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind Smart Object-ul Applications Windows vom afisa primele 25 de numere naturale
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "c_while_01" </b> </font>,in care primele 25 de numere naturale
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Smart Objects -- Applications Windows
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Global Script -- GSC Diagnostics
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	int i;
+	i=1;
+	do{
+		printf("\n\tI=: %d \n",i);
+		i++;
+	}
+	while(i <= 25);
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br><a name="func"></a>
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "blue" size=5> 4.Functii  </Center></TD></TR>
+</table>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functiile sunt des utilizate pentru realizarea aplicatiilor SCADA. Majoritatea butoanelor, prin intermediul 
+evenimentelor lanseaza secvente de cod impachetate in cadrul unor functii. Exista o varietate mare de functii astfel avem functii cu sau fara 
+parametri, functii care returneaza sau nu valori. <br><br>
+
+<font color= "blue" size=4><b> Definitia unei functii </b> </font><br><br>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;O functie poate fi deci descrisa mai general astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+tip_val_return nume_func (lista_declaratiilor_param_ formali)
+{
+	declaratii_variabile_locale
+	instructiuni
+	return valoare
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prima linie reprezinta antetul functiei, în care se indica: tipul functiei, numele acesteia si lista declaratiilor 
+parametrilor formali. La fel ca un operand sau o expresie, o functie are un tip, care este dat de tipul valorii returnate de functie în functia apelanta. 
+Daca functia nu întoarce nici o valoare, în locul tip_vali_return se specifica void. In acest caz avem de-a face cu o procedura
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca tip_val_return lipseste, se considera, implicit, ca acesta este int. Nume_functie este un identificator. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Lista_declaratiilor_param_formali (încadrata între paranteze rotunde) consta într-o lista (enumerare) care contine 
+tipul si identificatorul fiecarui parametru de intrare, despartite prin virgula. Daca lista parametrilor formali este vida, în antet, dupa numele 
+functiei, apar doar parantezele ( ), sau (void).
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Corpul functiei este un bloc, care implementeaza algoritmul de calcul folosit de catre functie. 
+În corpul functiei apar (în orice ordine) declaratii pentru variabilele locale si instructiuni. 
+Daca functia întoarce o valoare, se foloseste instructiunea return valoare. La executie, la întâlnirea acestei instructiuni, se revine în functia 
+apelanta.
+<br><br><a name="a_func"></a>
+<font color= "blue" size=4><b> Aplicatii care utilizeaza functii definite de utilizator </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;In pagina grafica <font color="red"><b> "func_00" </b> </font>plasam urmatoarele obiecte:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;2 elemente de tipul Controls -- Activx Controls -- Wincc Slider Control 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la ambele slidere Events -- Object Events -- Change cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void Change(char* lpszPictureName, char* lpszObjectName ,  long Position)
+{
+int sld1;
+int sld2;
+int pw;
+char* pwr;
+sld1=GetPosition(lpszPictureName,"Control1");
+sld2=GetPosition(lpszPictureName,"Control2");
+pw=c_power(sld1,sld2);
+SetTagDWord("val_d",pw);
+pwr=GetTagChar("val_d");
+SetText(lpszPictureName,"Static Text1",pwr);
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;Vom integra functia de jos in Global -- Script --Project Module
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+double c_power(int u,int i)
+{
+	double p;
+	p=u*i;
+	return p;
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_16.gif"></center>
+
+<br><br><a name="matr"></a>
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "blue" size=5> 5. Tablouri de elemente  </Center></TD></TR>
+</table>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Variabilele utilizate pana acum puteau contine o singura valoare. De multe ori e nevoie sa folosim variabile care pot 
+stoca mai multe valori. Cu alte cuvinte se simte nevoia utilizarii tablourilor. Un tablou permite folosirea unei singure variabile pentru a stoca 
+mai multe valori. Valorile sunt stocate la adrese consecutive cu alte cuvinte, la indecsi consecutivi incepand cu 0 . Utilizarea tablourilor ar un mare 
+avantaj, care consta in posibilitatea utilizarii instructiunilor repetitive pentru a relucra toate valorile stocate in tablouri. Din acest motiv, 
+tablourile mai sunt numite si "masive de date"
+<br><br>
+<font color= "Black" size=3><li><b>Declararea unui tablou</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Un tablou este similar cu o variabila, deci el trebuie declarat inainte de a putea fi folosit.
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+tip nume_tablou[nr_elemente]
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Toate valorile dintr-un tablou trebuie sa fie de acelasi tip.
+
+<br><br><a name="a_matr"></a>
+<font color= "blue" size=4><b> Aplicatii care utilizeaza tablouri </b></font>
+
+<br><br>&nbsp;&nbsp;&nbsp;Vom realiza aplicatia <font color="red"><b> "c_matr_01" </b> </font> in care afisam random 10 dreptunghiuri de inaltimi diferite.
+<br>&nbsp;&nbsp;&nbsp;Se plaseaza 10 dreptunghiuri cu numele Rectangle1, Rectangle2,...,Rectangle 10 din Standard Objects -- Rectangle
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -se seteaza -- Properties -- Color -- Background Color -- la culoarea dorita
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -se seteaza -- Properties -- Effects -- Global Color Scheme = No
+ 
+<br>&nbsp;&nbsp;&nbsp;Se plaseaza un buton start din Windows Objects -- Button -- Text = Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -se completeaza -- Properties -- Events -- Mouse -- Action -- C Action -- cu urmatoarea procedura
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+#include "apdefap.h"
+void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName)
+{
+	int x;
+	int i;
+	char* s_i[10]={"Rectangle1", "Rectangle2","Rectangle3","Rectangle4", "Rectangle5","Rectangle6","Rectangle7", "Rectangle8","Rectangle9","Rectangle10"};
+	int v_bar;
+	for(i=0;i<=9;i++){
+		x=300*rand()/65535;
+		SetTop(lpszPictureName,s_i[i], 290-x);
+		SetHeight(lpszPictureName,s_i[i], x);
+	}
+}
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_04.gif"></center>
+</body>
+</html>

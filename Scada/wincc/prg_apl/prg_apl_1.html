@@ -1,0 +1,914 @@
+<html>
+<title> Programarea aplicatiilor SCADA in mediul WinCC </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "red" size=6> Utilizarea limbajului de programare VBS  in mediul WinCC </Center></TD></TR>
+</table>
+
+<br><a name="cicode"></a>
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "blue" size=5> 1.Controale de intrare-iesire  </Center></TD></TR>
+</table>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatiile SCADA simple se pot crea in principiu fara a utiliza notiuni de programare. Aplicatiile mai complexe 
+nu pot fi realizate decat utilizand facilitatile oferite de limbajele de programare ANSI C si VB incluse in mediul de dezvoltare WinCC
+
+<br><br><a name="simb"></a>
+<font color= "blue" size=4><b> Controale de tipul on/off</b></font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind Graphics  Designer vom crea o pagina grafica <font color="red"><b> "led1" </b> </font> pentru a simula comanda de alimentare cu energie a unui proces. Alimentarea va 
+fi semnalizata in pagina grafica prin aprinderea unui LED. LED-ul va avea doua stari. Starea stins de culore gri si starea aprins, de culoare verde.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va defini un Internal Tag -L1 de tip boolean  care va fi modificat de Toggle button si afisat de un cerc caruia i se va seta 
+Background color in functie de L1
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Display Library -- Operation -- Toggle Buttons -- On_Off_1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Tag -- Assignment -- Dynamic -- Tag -- L1 --Update 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Circle 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Efects -- Global Color Scheme -- No
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Colors -- Background color -- Dynamic -- Dynamic Dialog -- Tag -- L1 -- Bolean
+<br><br><center><img src="im_01.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca nu se poate seta Update Time, acesat fiind setat implicit la 2 s. Vom folosi alta metoda prin utilizarea 
+Smart Objects-ului  -- Status Display in urmatoarea pagina grafica <font color="red"> <b> "led2" </b> </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Smart Objects -- Status Display
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-se atribuie Tag -- L1 -- Update 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-se atribuie imagini pentru 0 si pentru 1 corespunzatoare lui L1. Se face click dreapta pe
+simbol si se alege Configuration Dialog. Se aduc imaginile cu Browse si apoi se trag pe starea 0 respectiv starea 1.
+<br><br><center><img src="im_02.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se pot utiliza simbolurile existente in biblioteca. Pentru a realiza un Set simbol de vane controlat de doua butoane 
+on respectiv off. In continuare se vor alege doua simboluri din biblioteca atfel: un simbol pentru vana on si un simbol pentru vana off si 
+se vor plasa pe Layer-uri diferite in urmatoarea pagina grafica <font color="red"><b> "led3" </b> </font>. Plasarea pe diferite Layer-uri se poate face 
+sii dupa plasarea simbolurilor prin setarea proprietarii Layer astfel:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Layer -- se alege Layer-ul corespunzator.
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru valva off, se seteaza 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Properties -- Miscellaneus -- Display -- No
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se plaseaza doua butoane  unul On si altul Off
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button -- Text -- On
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Properties -- Events -- Mouse -- Action -- VBS Action
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(ByVal Item)   
+
+Dim Valva1_r
+Set Valva1_r = ScreenItems("Gruppe43")
+Dim Valva1_v
+Set Valva1_v = ScreenItems("Gruppe45")
+Valva1_r.Visible=False
+Valva1_v.Visible=True
+
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button -- Text -- Off
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Properties -- Events -- Mouse -- Action -- VBS Action
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(ByVal Item)
+ 
+Dim Valva1_r
+Set Valva1_r = ScreenItems("Gruppe43")
+Dim Valva1_v
+Set Valva1_v = ScreenItems("Gruppe45")
+Valva1_r.Visible=True
+Valva1_v.Visible=False
+
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_03.gif"></center>
+
+
+
+<br><br><a name="ctrl_n"></a>
+<font color= "blue" size=4><b> Controale alfanumerice de intrare/iesire  </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "afisd_01" </b> </font>,in care vom afisa un text la apasarea unui buton.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea textului se face utilizand un obiect standard 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text -- Text=Loc mesaj 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item)
+ 
+Dim objTxt
+Set objTxt = ScreenItems("Static Text1")
+objTxt.Text="Ati apasat butonul START "
+
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_09.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se poate folosi pe post de consola Smart Object-ul Applications Windows
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "afisd_02" </b> </font>,in care vom afisa valoarea tag-urilor Temp si L1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Smart Objects -- Applications Windows
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Global Script -- GSC Diagnostics
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item)
+     
+Dim objTag_T 
+Dim objTag_L1
+Set objTag_T = HMIRuntime.Tags("Temp")
+Set objTag_L1 = HMIRuntime.Tags("L1")
+objTag_T.Read
+objTag_L1.Read
+HMIRuntime.Trace "Temperatura: " & objTag_T.Value & " grade "  & vbCrLf & 
+"Valoarea tag-ului L1:"& objTag_L1.Value & vbCrLf
+
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_10.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru afisari in format binar se poate folosi controlul 8 bit Display +I/O Field aflat in Global Library
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "afisd_03" </b> </font>,in care vom afisa valoarea tag-ului Temp 
+in format binar. Plasam urmatoarele elemente:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Display Library -- Displays -- Displays -- 8 bit Display +I/O Field
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties pentru  8 bit Display -- User Defined2 -- Byte Value -- Tag -- Temp --Update 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties pentru I/O Field -- InputOutput -- OutputValue -- Tag -- Temp --Update 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Slider Obiect -- Tag -- Temp -- Update 250ms  
+
+<br><br><center><img src="im_11.gif"></center> 
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "afisd_04" </b> </font>,in care vom introduce valoarea tag-ului Temp 
+de la tastatura folosind un Smart Object I/O Field. Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Smart Objects -- I/O Field
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza: Tag -- Temp -- Update 250ms 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Keyboard -- Press cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnKeyDown(ByVal Item, ByVal nChar, Byval nRepCnt, ByVal nFlags) 
+
+Dim objTxt
+Dim objCtrl
+Set objTxt = ScreenItems("Static Text1")
+Set objCtrl = ScreenItems("I/O Field2")
+objTxt.Text=objCtrl.InputValue
+
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_12.gif"></center> 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru afisari de mesaje se poate folosi si fereastra "Message Box" astfel:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In pagina grafica <font color="red"><b> "afisd_05" </b> </font>plasam urmatoarele obiecte:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item)
+   
+ Dim txt
+ Dim objTag
+ Set objTag = HMIRuntime.Tags("Temp")
+ objTag.Read
+ txt= "Valoarea temperaturii este:"
+ MsgBox txt & objTag.Value
+
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_13.gif"></center> 
+
+
+<br><br><a name="ctrl_g"></a>
+<font color= "blue" size=4><b> Controale grafice de intrare/iesire  </b></font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "afis_01" </b> </font>, care permite modificarea valorii tag-uli
+Temp de tipul Unsigned 8-biti predefinit anterior. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru modificarea dinamica a valorii tag-ului Temp se va folosi un Slider Object. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea valorii tag-ului se face prin intermediul unui control de tip Meter.
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Display Library -- Meters -- Meter2
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- User Defined2 -- Process --Dynamic -- Tag -- Temp --Update 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Slider Obiect -- Tag -- Temp -- Update 250ms  
+<br><br><center><img src="im_08.gif"></center>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "afis_02" </b> </font>, care contine:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Controls -- Activx Controls -- Wincc Gauge Control
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Control Properties -- Value -- Tag -- Temp -- -- Update 250ms 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Controls -- Activx Controls -- Wincc Slider Control
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Control Properties -- Position -- Tag -- Temp -- -- Update 250ms 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Rectangle
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Properties -- Rectangle -- Filling -- Fill Level -- Tag -- Temp --Update 250 ms 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Properties -- Rectangle --  Dynamic Filling -- Yes
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Display Library -- Meters -- Meter2
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- User Defined2 -- Process --Dynamic -- Tag -- Temp --Update 250 ms 
+<br><br><center><img src="im_07.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<br><br><a name="if"></a>
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "blue" size=5> 2. Instructiuni decizionale   </Center></TD></TR>
+</table>
+<font color= "blue" size=4> Instructiunea If ... Then / Else:</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>If ... Then / Else</b> se foloseste pentru a executa o instructiune sau o secventa de instructiuni  
+cand valoare logica a unei expresii este adevarata si alta instructiune sau o secventa de instructiuni pentru cazul cand valoarea logic a aceleiasi 
+expresii nu este adevarata.
+<br><br><li>Formatul instructiunii:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> expresie logica <b>Then</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Else</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>End If</b>
+
+<br><br><a name="a_if"></a>
+<br><li><b> Aplicatii care utilizarea instructiuni decizionale </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom incerca sa utilizam in continuare instructiunea <b>If ... Then / Else</b>  pentru a controla functionarea butonului Pornit/ Oprit. 
+<br><br>&nbsp;&nbsp;&nbsp;Vom realiza aplicatia <font color="red"><b> "if_01" </b> </font> vom implementa on buton on/off.
+
+<br><br>&nbsp;&nbsp;&nbsp; Vom plasa un Smart Objects -- Status Display 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-setam -- Tag -- L1 -- Update 250 ms
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-tribuim imagini pentru 0 si pentru 1 corespunzatoare lui L1
+<br>&nbsp;&nbsp;&nbsp;Se plaseaza un buton start din Windows Objects -- Button -- Text = On/Off
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -se completeaza -- Properties -- Events -- Mouse -- Action -- VBS Action -- cu urmatoarea procedura
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item) 
+ 
+Dim x
+Set x = HMIRuntime.Tags("L1")
+x.Read
+Dim Tag_L1
+Set Tag_L1 = HMIRuntime.Tags("L1")
+Tag_L1.Read
+If x.Value=1 Then
+Tag_L1.Value=False
+Else
+Tag_L1.Value=True
+End If
+Tag_L1.Write
+
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie <font color="red"><b> "if_02" </b> </font> vom implementa on buton on/off din simboluri.
+<br>&nbsp;&nbsp;&nbsp;Se plaseazadoua simboluri pe Layer-uri diferite
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -se completeaza pentru fiecare simbol -- Properties -- Events -- Mouse -- Action -- VBS Action -- cu urmatoarea procedura
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item) 
+
+Dim x
+Set x = HMIRuntime.Tags("L1")
+Dim Tag_L1
+Set Tag_L1 = HMIRuntime.Tags("L1")
+Dim Valva1_r
+Set Valva1_r = ScreenItems("Polygon4")
+Dim Valva1_v
+Set Valva1_v = ScreenItems("Polygon5")
+Tag_L1.Read
+x.Read
+If x.Value=1 Then
+Tag_L1.Value=False
+Valva1_v.Visible=False
+Valva1_r.Visible=True
+Else
+Tag_L1.Value=True
+Valva1_r.Visible=False
+Valva1_v.Visible=True
+End If
+Tag_L1.Write
+
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;In acest moment dublul simbol functioneaza, insa la actionarea, dar la apasarea Toggle Button-ului, 
+simbolul valvei ramane nemodificat. Va trebui sa mai scriem o procedura declansata pe unul din evenimentele paginii grafice 
+care sa actualizeze in permanenta starea valvei cand tag-ul corespunzator valvei este actionat din alta parte
+
+<br><br><center><img src="im_06.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;Am folosit proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- VBS Action, urmatorul script
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Dim Tag_L1
+Set Tag_L1 = HMIRuntime.Tags("L1")
+Dim Valva1_r
+Set Valva1_r = ScreenItems("Polygon4")
+Dim Valva1_v
+Set Valva1_v = ScreenItems("Polygon5")
+Tag_L1.Read
+If Tag_L1.Value=1 Then
+Valva1_v.Visible=True
+Valva1_r.Visible=False
+Else
+Valva1_r.Visible=True
+Valva1_v.Visible=False
+End If
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;Dupa care am setat Triger-ul la 250 ms
+
+<br><br>&nbsp;&nbsp;&nbsp; Sa reluam aplicatia afis_01 dar de data aceasta sa nu mai modificam manual valoarea tag-ului Temp, sa modificam dinamic valoarea.
+<br>&nbsp;&nbsp;&nbsp; Realizam o noua pagina grafica <font color="red"><b> "if_03" </b> </font> pe care plasam toate elementele de pe afis_01 si in plus:
+<br>&nbsp;&nbsp;&nbsp;Folosim din nou proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- VBS Action, scriptul de jos si setam 
+Triger-ul la 250 ms.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(ByVal Item)
+Dim objTag
+Set objTag = HMIRuntime.Tags("Temp")
+objTag.Read
+objTag.Value = objTag.Value + 10
+If objTag.Value>100 Then
+objTag.Value=1
+End If
+objTag.Write
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><a name="repet"></a>
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "blue" size=5> 3. Istructiuni repetitive  </Center></TD></TR>
+</table>
+
+<br><a name="while"></a>
+<font color= "blue" size=4><b> Instructiunea Do While  </b> </font>
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>Do While</b> Se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni atata timp
+cat o expresie este adevarata.
+<br><li><b>Formatul instructiunii:</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Formatul instructiunii
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Do While (expresie)</b> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Loop</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea se executa repetat atîta timp cît valoarea expresiei este adevarata. 
+Testul are loc înaintea fiecarei executii a instructiunii. Modul de functionare al instructiunii este urmatorul:
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se testeaza expresia din paranteze. Daca ea este adevarata (sau expresia din paranteze are o valoare diferita de zero) 
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se executa corpul instructiunii while
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se reia testarea si executia pana expresia devine falsa (sau valoarea expresiei din paranteze este zero) 
+<li>&nbsp;&nbsp;&nbsp;&nbsp; Se continua executia cu instructiunea de dupa corpul instructiunii while, deci instructiunea while se termina.
+<br><br><a name="a_while"></a>
+<br><li><b> Aplicatii care utilizeaza instructiunea Do While </b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam un program care afiseaza primele 10 numere naturale.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind Smart Object-ul Applications Windows vom afisa primele 10 de numere naturale
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "while_01" </b> </font>,in care afisam primele 10 de numere naturale
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Smart Objects -- Applications Windows
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Global Script -- GSC Diagnostics
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item)
+      
+Dim i
+i=1
+ Do While i <= 10
+	HMIRuntime.Trace "I=: " & i & vbCrLf 
+	i=i+1
+ Loop
+
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br><a name="for"></a>
+<font color= "blue" size=4><b> Instructiunea For </b> </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea For se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni. De obicei
+implementeaza structura ciclica cu numar cunoscut de pasi.
+<br><li><b>Formatul instructiunii:</b><br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>For</b> are urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>For expresie1 To expresie2</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Next</b>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie1 constituie initializarea ciclului si se executa o singura data înaintea ciclului. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie2 specifica testul care controleaza ciclul. El se executa înaintea fiecarei iteratii. 
+Daca conditia din test este adevarata atunci se executa corpul ciclului, care consta de cele mai multe ori în 
+modificarea valorii variabilei de control al ciclului. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Se incrementeaza variabila din expresie1
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Se revine apoi la reevaluarea conditiei. Ciclul se termina cînd expresie2 devine falsa.
+<br><br><a name="a_for"></a>
+<br><li><b> Aplicatii care utilizeaza instructiunea For </b>
+<br><br>&nbsp;&nbsp;&nbsp;Vom realiza aplicatia <font color="red"><b> "for_01" </b> </font> in care afisam random 10 dreptunghiuri de inaltimi diferite.
+<br>&nbsp;&nbsp;&nbsp;Se plaseaza 10 dreptunghiuri cu numele Rectangle1, Rectangle2,...,Rectangle 10 din Standard Objects -- Rectangle
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -se seteaza -- Properties -- Color -- Background Color -- la culoarea dorita
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -se seteaza -- Properties -- Effects -- Global Color Scheme = No
+ 
+<br>&nbsp;&nbsp;&nbsp;Se plaseaza un buton start din Windows Objects -- Button -- Text = Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -se completeaza -- Properties -- Events -- Mouse -- Action -- VBS Action -- cu urmatoarea procedura
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item)   
+	Dim x
+	Dim i
+	Dim v_bar
+	For i=1 To 10
+		Set v_bar = ScreenItems("Rectangle" +CStr(i))
+		x=200*Rnd()
+		v_bar.Height=x
+		v_bar.Top=290-x
+	Next      
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_04.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se poate utiliza proprietatea FillingIndex si se seteaza in procente nivelul de umplere al figurii. Realizam astfel 
+aplicatia <font color="red"><b> "for_01_01" </b> </font>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(ByVal Item)          
+	Dim x
+	Dim i
+	Dim v_bar
+	For i=1 To 10
+		Set v_bar = ScreenItems("Rectangle" +CStr(i))
+		x=100*Rnd()
+		v_bar.FillingIndex=x
+	Next
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind Smart Object-ul Applications Windows vom afisa primele 25 de numere naturale
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o noua pagina grafica <font color="red"><b> "for_02" </b> </font>,in care primele 25 de numere naturale
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam urmatoarele elemente:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Smart Objects -- Applications Windows
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Global Script -- GSC Diagnostics
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item)
+      
+Dim i
+For i=1 To 25
+HMIRuntime.Trace "I=: " & i & vbCrLf 
+Next
+
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_14.gif"></center> 
+
+<br><br><a name="until"></a>
+<font color= "blue" size=4><b> Instructiunea Do Until </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Formatul instructiunii
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Do Until (expresie)</b> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Loop</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea se executa repetat pana cand valoarea expresiei devine adevarata. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Testul are loc înaintea fiecarei executii a instructiunii.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea Do Until se foloseste atunci cand se cunoaste conditia finala pana la care se repeta secventa de instructiuni
+
+<br><br><a name="a_until"></a>
+<br><li><b> Aplicatii care utilizeaza instructiunea Do Until </b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru afisari repetitive de mesaje se va folosi fereastra "Message Box" astfel:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In pagina grafica <font color="red"><b> "until_01" </b> </font>plasam urmatoarele obiecte:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item)
+Dim val_r, rasp
+Randomize			' Initializare generator numere aleatoare
+Do Until rasp = vbNo
+ val_r = Int((9 * Rnd) + 1)	' Generare numar aleator intre 0-9.
+ MsgBox " Numarul aleator intre 0-9 este: " & val_r
+ rasp = MsgBox ("Reluati ? ", vbYesNo)
+Loop
+
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br><a name="pfunc"></a>
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "blue" size=5> 4. Proceduri si functii  </Center></TD></TR>
+</table>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functiile sunt des utilizate pentru realizarea aplicatiilor SCADA. Majoritatea butoanelor, prin intermediul 
+evenimentelor lanseaza secvente de cod impachetate in cadrul unor functii. Exista o varietate mare de functii astfel avem functii cu sau fara 
+parametri, functii care returneaza sau nu valori. 
+
+<br><br><a name="proc"></a>
+<font color= "blue" size=4><b>Proceduri </b> </font>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;O procedura se defineste astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+&nbsp;&nbsp;&nbsp;&nbsp;<b> Sub </b> Nume_functie (lista_param_ formali) 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii_variabile_locale
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni
+&nbsp;&nbsp;&nbsp;&nbsp;<b> End Sub </b>
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prima linie reprezinta antetul procedurii, în care se indica:  numele procedurii, lista parametrilor formali si tipul lor. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Lista_param_formali (încadrata între paranteze rotunde) consta într-o lista (enumerare) care contine 
+tipul si identificatorul fiecarui parametru de intrare, despartite prin virgula. Daca lista parametrilor formali este vida, în antet, dupa numele 
+functiei, apar doar parantezele ( ).
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Corpul procedurii este un bloc, care implementeaza algoritmul de calcul folosit de catre procedura. 
+În corpul functiei apar (în orice ordine) declaratii pentru variabilele locale si instructiuni. 
+<br><br><a name="a_proc"></a>
+<font color= "blue" size=4><b> Aplicatii care utilizeaza proceduri </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;Sa reluam aplicatia <font color="red"><b> "if_02" </b> </font> in care am implement on buton on/off din simboluri.
+<br>&nbsp;&nbsp;&nbsp;Dupa ce am plasat doua simboluri pe Layer-uri diferite am completa pentru fiecare 
+simbol -- Properties -- Events -- Mouse -- Action -- VBS Action -- cu urmatoarea procedura
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item) 
+	Dim x
+	Set x = HMIRuntime.Tags("L1")
+	Dim Tag_L1
+	Set Tag_L1 = HMIRuntime.Tags("L1")
+	Dim Valva1_r
+	Set Valva1_r = ScreenItems("Polygon4")
+	Dim Valva1_v
+	Set Valva1_v = ScreenItems("Polygon5")
+	Tag_L1.Read
+	x.Read
+	If x.Value=1 Then
+		Tag_L1.Value=False
+		Valva1_v.Visible=False
+		Valva1_r.Visible=True
+	Else
+		Tag_L1.Value=True
+		Valva1_r.Visible=False
+		Valva1_v.Visible=True
+	End If
+	Tag_L1.Write
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;Am mai scris o procedura declansata pe unul din evenimentele paginii grafice care sa actualizeze in permanenta starea 
+valvei cand tag-ul corespunzator valvei este actionat din alta parte.
+<br><br><center><img src="im_06.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;Am folosit proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- VBS Action, urmatorul script
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(ByVal Item)
+	Dim Tag_L1
+	Set Tag_L1 = HMIRuntime.Tags("L1")
+	Dim Valva1_r
+	Set Valva1_r = ScreenItems("Polygon4")
+	Dim Valva1_v
+	Set Valva1_v = ScreenItems("Polygon5")
+	Tag_L1.Read
+	If Tag_L1.Value=1 Then
+		Valva1_v.Visible=True
+		Valva1_r.Visible=False
+	Else
+		Valva1_r.Visible=True
+		Valva1_v.Visible=False
+	End If
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;Dupa care am setat Triger-ul la 250 ms
+<br><br>&nbsp;&nbsp;&nbsp;Vom scrie doua proceduri astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub valva_on_off 
+	Dim x
+	Set x = HMIRuntime.Tags("L1")
+	Dim Tag_L1
+	Set Tag_L1 = HMIRuntime.Tags("L1")
+	Dim Valva1_r
+	Set Valva1_r = ScreenItems("Polygon4")
+	Dim Valva1_v
+	Set Valva1_v = ScreenItems("Polygon5")
+	Tag_L1.Read
+	x.Read
+	If x.Value=1 Then
+		Tag_L1.Value=False
+		Valva1_v.Visible=False
+		Valva1_r.Visible=True
+	Else
+		Tag_L1.Value=True
+		Valva1_r.Visible=False
+		Valva1_v.Visible=True
+	End If
+	Tag_L1.Write
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub valva_init
+	Dim Tag_L1
+	Set Tag_L1 = HMIRuntime.Tags("L1")
+	Dim Valva1_r
+	Set Valva1_r = ScreenItems("Polygon4")
+	Dim Valva1_v
+	Set Valva1_v = ScreenItems("Polygon5")
+	Tag_L1.Read
+	If Tag_L1.Value=1 Then
+		Valva1_v.Visible=True
+		Valva1_r.Visible=False
+	Else
+		Valva1_r.Visible=True
+		Valva1_v.Visible=False
+	End If
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;Aceste proceduri le vom integra in Global -- Script --Project Module
+
+<br><br>&nbsp;&nbsp;&nbsp;Vom scrie acum aplicatia <font color="red"><b> "proc_01" </b> </font> in care implementam la fel un buton on/off din simboluri, 
+dar vom apela procedurile scrise anterior si anume valva_on_off respectiv valava_init.
+<br>&nbsp;&nbsp;&nbsp;Dupa ce am plasat doua simboluri pe Layer-uri diferite am completa pentru fiecare 
+simbol -- Properties -- Events -- Mouse -- Action -- VBS Action -- cu urmatoarea procedura
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item) 
+
+	Call valva_on_off
+
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp; Scriem de asemenea o procedura declansata pe unul din evenimentele paginii grafice care sa actualizeze in permanenta starea 
+valvei cand tag-ul corespunzator valvei este actionat din alta parte.
+<br><br><center><img src="im_06.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;Am folosit proprietatea Picture Obiect al paginii grafice -- Geometry -- Picture Width -- VBS Action, urmatorul script
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function Width_Trigger(ByVal Item)
+
+	Call valva_init
+	
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;Dupa care setam Triger-ul la 250 ms
+<br><br>&nbsp;&nbsp;&nbsp;Procedurile scrise inainte nu sunt prea generale vom incerca sa le rescriem si sa transmitem parametrii legati de 
+Tag si cele doua simboluri folosite astfel incat aceste proceduri sa poata fi folosite eventual si de alte simboluri plasate. 
+<br><br>&nbsp;&nbsp;&nbsp;Vom rescrie aplicatia anterioara si vom realiza <font color="red"><b> "proc_02" </b> </font
+<br><br>&nbsp;&nbsp;&nbsp;Vom scrie doua proceduri astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub valva_on_off_p(Byval tag,s1,s2)
+	Dim x
+	Set x = HMIRuntime.Tags(tag)
+	Dim Tag_L1
+	Set Tag_L1 = HMIRuntime.Tags(tag)
+	Dim Valva1_r
+	Set Valva1_r = ScreenItems(s1)
+	Dim Valva1_v
+	Set Valva1_v = ScreenItems(s2)
+	Tag_L1.Read
+	x.Read
+	If x.Value=1 Then
+		Tag_L1.Value=False
+		Valva1_v.Visible=False
+		Valva1_r.Visible=True
+	Else
+		Tag_L1.Value=True
+		Valva1_r.Visible=False
+		Valva1_v.Visible=True
+	End If
+	Tag_L1.Write
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub valva_init_p(Byval tag,s1,s2)
+	Dim Tag_L1
+	Set Tag_L1 = HMIRuntime.Tags(tag)
+	Dim Valva1_r
+	Set Valva1_r = ScreenItems(s1)
+	Dim Valva1_v
+	Set Valva1_v = ScreenItems(s2)
+	Tag_L1.Read
+	If Tag_L1.Value=1 Then
+		Valva1_v.Visible=True
+		Valva1_r.Visible=False
+	Else
+		Valva1_r.Visible=True
+		Valva1_v.Visible=False
+	End If
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;Aceste proceduri le vom integra de asemenea in Global -- Script --Project Module
+
+
+<br><br><a name="func"></a>
+<font color= "blue" size=4><b> Functii </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O functie se defineste astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+&nbsp;&nbsp;&nbsp;&nbsp;<b> Function </b> Nume_functie (lista_param_formali) 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii_variabile_locale
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nume_functie = valoare
+&nbsp;&nbsp;&nbsp;&nbsp;<b> End Function </b>
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prima linie reprezinta antetul functiei, în care se indica:  numele functiei, lista parametrilor formali si tipul lor 
+si tipul valorii returnate . La fel ca un operand sau o expresie, o functie are un tip, care este dat de tipul valorii returnate de functie în functia apelanta. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;lista_param_formali (încadrata între paranteze rotunde) consta într-o lista (enumerare) care contine 
+tipul si identificatorul fiecarui parametru de intrare, despartite prin virgula.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Corpul functiei este un bloc, care implementeaza algoritmul de calcul folosit de catre functie. 
+În corpul functiei apar (în orice ordine) declaratii pentru variabilele locale si instructiuni. 
+Pentru intoarcerea valorii se foloseste instructiunea return valoare. La executie, la întâlnirea acestei instructiuni, se revine în functia 
+apelanta.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Argumentele functiei transmit valori unei functii apelate.Valoarea returnata se poat folosi pentru a transmite valori functiei apelante.
+<br><br><a name="func_r"></a>
+<li> <b>Returnarea valorilor dintr-o functie.</b>
+
+<br><br><a name="a_func"></a>
+<font color= "blue" size=4><b> Aplicatii care utilizeaza functii definite de utilizator </b></font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In pagina grafica <font color="red"><b> "func_00" </b> </font>plasam urmatoarele obiecte:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Standard Objects -- Static Text 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;2 elemente de tipul Controls -- Activx Controls -- Wincc Slider Control 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza la ambele slidere Events -- Object Events -- Change cu urmatoarea procedura:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub Change(ByVal Item,  ByVal Position)           
+Dim objTxt
+Set objTxt = ScreenItems("Static Text1")
+Dim sld1
+Set sld1 = ScreenItems("Control1")
+Dim sld2
+Set sld2 = ScreenItems("Control2")
+objTxt.Text=power(sld1.Position,sld2.Position)
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;Vom integra functia de jos in Global -- Script --Project Module
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Function power(Byval u,i)
+	Dim p
+	p=u*i
+	power=p
+End Function
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="im_16.gif"></center>
+ 
+<br><br><a name="matr"></a>
+<table width="100%">
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "blue" size=5> 5. Tablouri de elemente  </Center></TD></TR>
+</table>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Variabilele utilizate pana acum puteau contine o singura valoare. De multe ori e nevoie sa folosim variabile care pot 
+stoca mai multe valori. Cu alte cuvinte se simte nevoia utilizarii tablourilor. Un tablou permite folosirea unei singure variabile pentru a stoca 
+mai multe valori. Valorile sunt stocate la adrese consecutive cu alte cuvinte, la indecsi consecutivi incepand cu 0 . Utilizarea tablourilor ar un mare 
+avantaj, care consta in posibilitatea utilizarii instructiunilor repetitive pentru a relucra toate valorile stocate in tablouri. Din acest motiv, 
+tablourile mai sunt numite si "masive de date"
+<br><br><a name="def"></a>
+<font color= "Black" size=4><li><b>Declararea unui tablou</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Un tablou este similar cu o variabila, deci el trebuie declarat inainte de a putea fi folosit.
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+<b> Dim </b> nume_tablou(nr_elemente)
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Toate valorile dintr-un tablou trebuie sa fie de acelasi tip.
+
+<br><br><a name="a_matr"></a>
+<font color= "blue" size=3><b> Aplicatii care utilizeaza tablouri </b></font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie care genereaza aleator 5 numere dupa care le afiseaza. Numerele vor fi memorate intr-un tablou
+dupa care vor fi afisate.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In pagina grafica <font color="red"><b> "matr_01" </b> </font>plasam urmatoarele obiecte:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Windows Objects -- Button
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se seteaza Properties -- Font -- Text=Start
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - se completeaza Events -- Mouse -- Mouse Action cu urmatoarea procedura:
+<br><br><!----------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item) 
+
+	Dim i 
+	Dim numere(5)
+	Randomize			' Initializare generator numere aleatoare
+	For i=0 To 4
+ 		numere(i) = Int((90 * Rnd) + 1)	' Generare numar aleator intre 0-90.
+	Next
+		HMIRuntime.Trace "Numerele sunt:  " & vbCrLf
+	For i=0 To 4
+ 		HMIRuntime.Trace "numere("& i & ")=" & numere(i) & vbCrLf 
+	Next
+
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>Reluam aplicatia aplicatia <font color="red"><b> "for_01_01" </b> </font> si realizam aplicatia <font color="red"><b> "matr_02" </b> </font> in care 
+nu vom mai construi numele figurii, vom realiza un vector cu denumirile figurilor geometrice astfel:
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+Sub OnClick(Byval Item)  
+	Dim figuri(11)
+	figuri(0)=""
+	figuri(1)="Rectangle1"
+	figuri(2)="Rectangle2"
+	figuri(3)="Rectangle3"
+	figuri(4)="Rectangle4"
+	figuri(5)="Rectangle5"
+	figuri(6)="Rectangle6"
+	figuri(7)="Rectangle7"
+	figuri(8)="Rectangle8"
+	figuri(9)="Rectangle9"
+	figuri(10)="Rectangle10" 
+	Dim x
+	Dim i
+	Dim v_bar
+	For i=1 To 10
+		Set v_bar = ScreenItems(figuri(i))
+		x=100*Rnd()
+		v_bar.FillingIndex=x
+	Next
+End Sub
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+</body>
+</html>
