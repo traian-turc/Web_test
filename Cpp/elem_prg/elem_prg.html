@@ -1,10 +1,10 @@
 <html><head>
-<title>Elemente de programare în limbajul  C++.</title>
+<title> Elemente de programare Ã®n limbajul  C++.</title>
 </head>
 <body>
 <a name="start"></a>
 <table width="100%">
-<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Elemente de programare în limbajul  C++.</Center></TD></TR>
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>Elemente de programare Ã®n limbajul  C++.</Center></TD></TR>
 </table>
 <a name="elem_b"></a>
 <br>
@@ -20,8 +20,8 @@ Un limbaj de programare are definite un set de reguli sintactice si semantice.
 <br>
 <br>
 <b>Limbajul de programare C</b>
-<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Limbajul C a fost creat la începutul anilor '70 de catre Brian W Kernigham si Dennis M Ritchie de la Bell Laboratories New Jersey
-<br>&nbsp;&nbsp;&nbsp;&nbsp;Caracteristicile distinctive ale limbajului au fost clar definite de la început, ele pastrîndu-se în toate dezvoltarile ulterioare:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Limbajul C a fost creat la Ã®nceputul anilor '70 de catre Brian W Kernigham si Dennis M Ritchie de la Bell Laboratories New Jersey
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Caracteristicile distinctive ale limbajului au fost clar definite de la Ã®nceput, ele pastrÃ®ndu-se Ã®n toate dezvoltarile ulterioare:
 <ul>
 	<li> portabilitate maxima;
 	<li> structurare;
@@ -56,18 +56,18 @@ return 0;
 <br>&nbsp;&nbsp;&nbsp;&nbsp;De obicei un program nu "incepe de la 0", 
 in sensul ca un programator trebuie sa se concentreze asupra problemei de rezolvat si nu asupra lucrurilor de rutina de genul cum sa afisez ceva pe ecran. 
 Exista o serie de "programe" numite functii grupate in biblioteci si care rezolva problemele des intalnite. Astfel prima linie indica faptul ca se folosesc 
-functii de intrare / iesire, iar descrierea modului de utilizare (numele, tipul argumentelor, tipul valorii returnate etc) a acestora se afla în fisierul 
+functii de intrare / iesire, iar descrierea modului de utilizare (numele, tipul argumentelor, tipul valorii returnate etc) a acestora se afla Ã®n fisierul 
 cu numele stdio.h . Programul scris de programator va fi gazduit tot intr-o functie. Fiind cea mai importanta functie, ea se numeste functia main si va contine 
 instructiunile programului. In cazul programului de sus, cea mai importanta instructiune este un apel al functiei printf care afiseaza un mesaj la terminal. 
-Mesajul este dat între ghilimele si se termina cu un caracter special new-line (\n). Daca programul ar contine numai aceasta linie, s-ar afisa mesajul pe consola 
+Mesajul este dat Ã®ntre ghilimele si se termina cu un caracter special new-line (\n). Daca programul ar contine numai aceasta linie, s-ar afisa mesajul pe consola 
 standard (ecranul) dupa care fereastra in care se afiseaza acest mesaj dispare si practic nu vedem nimic. Se mai introduce si apelul functiei <b> gets()</b> care 
 asteapta introducerea unui text de la dispozitivul satandard de intrare adica tastatura. Textul introdus va fi pastrat in variabila c pe care am definit-o in prima
 instructiune ca fiind de tip char (un sir de caractere de lungime 1). Functia <b>gets()</b> asteapta un text care sa se termine cu <b>Enter</b>. 
 Cum in cazul de fata nu astept decat apasarea unei taste, este suficient sa apas tasta <b>Enter</b>. 
 Din acest motiv am definit constanta c, de tip caracter de lungime 1.
 Instructiunea return preda controlul sistemului de operare la terminarea programului si comunica acestuia codul 0 pentru terminare. Prin conventie, 
-aceasta valoare semnifica terminarea normala a programului – adica nu au aparut erori în prelucrarea datelor.
-Corpul functiei main apare între acolade. Orice program C trebuie sa aiba o functie main.
+aceasta valoare semnifica terminarea normala a programului â€“ adica nu au aparut erori Ã®n prelucrarea datelor.
+Corpul functiei main apare Ã®ntre acolade. Orice program C trebuie sa aiba o functie main.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Functia gets() asteapta introducerea unui text, care in prealabil trebuie definit. Avand in vedere ca in programul de sus 
 nu ne intereseaza textul introdus, am putea folosi o functie care asteapta introducerea unui caracter indiferent care. Functia se numeste getch() si se gaseste
 in biblioteca "conio.h"  
