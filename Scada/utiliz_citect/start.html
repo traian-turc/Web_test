@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html xmlns:t="urn:schemas-microsoft-com:time">
+<HTML> 
+<HEAD> 
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+	<title>Utilizare CITECT</title>
+	<style type="text/css" media="screen">@import "../../layout.css";</style>
+
+</HEAD> 
+
+<SCRIPT LANGUAGE="JavaScript">
+ <!-- 
+
+function frm1(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm2(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#start" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm3(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#prj" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm4(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#tag" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm5(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#pag_gr" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm10(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#cicode" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm11(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#func" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm12(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#analogic" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm13(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#trends" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm14(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#simul" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm50(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#apl_en" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm51(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#sch_alim" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm52(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#sch_aut" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm53(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#serv_pr" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm54(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#sch_av" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm55(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#monit_param" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm56(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#monof" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm60(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#serial_p" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm61(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#ser_set" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm62(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#ser_utiliz" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm70(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#con_mysql" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm71(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#inst_dbe" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm72(){
+	continut_p.innerHTML = '<iframe src ="utiliz_citect.html#dbec" width="100%" height="610"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm100(){
+	zona_jos.innerHTML = '<iframe src ="../../zona_jos.html" width=101% height="45" marginheight="0" marginwidth="0" frameborder=0 > </iframe>';
+}
+function showTheHours(theHour) {
+ return (theHour);
+ 
+} 
+
+function showZeroFilled(inValue) { 
+if (inValue > 9) { return "" + inValue; 
+} 
+return "0" + inValue; 
+}
+ 
+
+function showAmPm() { 
+if (now.getHours() < 12) { 
+return (" am"); 
+} 
+return (" pm"); 
+}
+
+	  
+
+function showTheTime() { 
+	now = new Date 
+	document.form.showTime.value ="    "+dayNum+" "+montharray[monthIs]+" "+yearIs+" ora:"+showTheHours(now.getHours()) + ":" + 
+	showZeroFilled(now.getMinutes()) + ":" + showZeroFilled(now.getSeconds()) + 
+	showAmPm() 
+	setTimeout("showTheTime()",1000)
+ }  
+
+var todayIs=new Date();
+var yearIs=todayIs.getFullYear();
+var monthIs=todayIs.getMonth();
+var dayNum=todayIs.getDate();
+var montharray=new Array("Ian","Febr","Mar","Apr","Mai","Iun","Iul","Aug","Sept","Oct","Noi","Dec");
+
+//--> 
+</SCRIPT>  
+<body class="pag_centr" onLoad="showTheTime();frm1();frm100()"> 
+<div id="continut"> 
+<table  width="100%"  border=0>
+<tr><td valign="top">
+<table width="100%" border=0>
+ <tr><td>
+  <table class="tcoll" width="100%" border=1>
+   <tr>
+    <td width="200" valign= "top">
+    <FORM name=form><INPUT type=text name=showTime size=30></FORM> 
+    <center><img src="../../Images/scada.gif" </center>
+  
+    <!-----------------------------Meniu ------------------------------------------------------------->  
+
+     <table width="100%" border="1" cellspacing="0" cellpadding="2">
+      <tr bgcolor=""> 
+       <td width="201" bgcolor="#83A0BA" valign="top"> 
+        <table width="200" border="0" cellspacing="1" cellpadding="1">        
+         <tr>
+          <!--<td bgcolor="#doaodd" class="forTexts"></td>-->
+          <td bgcolor="#83A0BA" class="forTexts"></td>
+          <td bgcolor="#83A0BA" class="forTexts" align="center"><font color="white" size="2" face="arial"<strong><b> UTILIZARE CITECT </b></strong></font></td>
+         </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts">
+                 
+          <td width="165" bgcolor="#D9E3EE" class="forTexts">
+           <a style="text-decoration: none"  href="../../Master_ie/mse/scada/start.html"  >Revenire la pagina principala</a>
+          </td> 
+         </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts" align="center"><a style="text-decoration: none"  href="#" onclick=frm1()><b> APLICATII CITECT </b></a>
+          </td>           
+         </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#start","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm2()><li>Realizarea unei aplicatii </a>
+          </td> 
+	     </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#prj","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm3()><li>Crearea unui proiect</a>
+          </td> 
+	     </tr>
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#tag","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm4()><li>Configurarea tag-urilor </a>
+          </td> 
+	     </tr>     
+        <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#pag_gr","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm5()><li>Realizarea unei pagini grafice</a>
+          </td> 
+	     </tr>
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#cicode","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm10()><li>Utilizare limbajului Cicode</a>
+          </td> 
+	     </tr> 
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#func","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm11()><li>Utilizarea functiilor</a>
+          </td> 
+	     </tr> 
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#anlogic","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm12()><li>Tratarea marimilor analogice</a>
+          </td> 
+	     </tr>
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#trends","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm13()><li>Evolutia in timp a marimilor</a>
+          </td> 
+	     </tr>	     	   	     
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#simul","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm14()><li> Simularea marimilor analogice</a>
+          </td> 
+	     </tr>	     	   	     
+          <tr>        
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#apl_en","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts" align="center"><a style="text-decoration: none"  href="#" onclick=frm50()><b> APLICATII IN ENERGETICA </b></a>
+          </td>           
+         </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#monof","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm56()><li>Scheme monofilare</a>
+          </td> 
+	     </tr>	
+        <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#sch_alim","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm52()><li>Alimentare cu energie</a>
+          </td> 
+	     </tr>	     	     
+        <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#serv_pr","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm53()><li>Anclansarea rezervei</a>
+          </td> 
+	     </tr>	
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#sch_av","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm54()><li>Ancl. rezervei si reconfig.</a>
+          </td> 
+	     </tr>
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#sch_aut","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm52()><li>Reconfigurare la avarii</a>
+          </td> 
+	     </tr>	
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#monit_param","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm55()><li>Monitorizare parametri</a>
+          </td> 
+	     </tr>
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#apl_en","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts" align="center"><a style="text-decoration: none"  href="#" onclick=frm60()><b> UTILIZAREA PORTULUI SERIAL </b></a>
+          </td>           
+         </tr>
+        <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#sch_alim","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm61()><li>Configurare aplicatie</a>
+          </td> 
+	     </tr>		     
+        <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#sch_alim","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm62()><li>Utilizare port serial</a>
+          </td> 
+	     </tr>        
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#apl_en","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts" align="center"><a style="text-decoration: none"  href="#" onclick=frm70()><b> UTILIZAREA BAZELOR DE DATE </b></a>
+          </td>           
+         </tr>
+        <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#sch_alim","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm71()><li>Conexiunea MySQL</a>
+          </td> 
+	     </tr>		     
+        <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("utiliz_citect.html#sch_alim","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm72()><li>Data Base Exchange Control</a>
+          </td> 
+	     </tr>	     
+	     
+	     
+	     	     	     	     			     				     	     		     		     		     	     	     	     
+	   </table>
+      </td>
+     </tr>
+    </table>
+<!----------------------------Terminare -Meniu ------------------------------------------------------------->  
+           <td>
+             <div id="continut_p">
+             </div><!-- sfarsit # continut_p -->
+          </td>
+         </tr>
+        </td>
+       </tr>
+      </table>
+      <tr>
+       <td>
+        <div id="zona_jos">
+        </div><!-- sfarsit # zona_jos -->
+       </td>
+      </tr>
+     </table>
+    </div><!-- sfarsit # continut -->
+   </div><!-- sfarsit # pag_centr -->
+ </body> 
+</html> 

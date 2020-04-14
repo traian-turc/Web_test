@@ -1,0 +1,1166 @@
+<html>
+<title> Utilizarea aplicatiei SCADA-CITECT </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>   Utilizarea aplicatiei SCADA-CITECT  </Center></TD></TR>
+</table>
+<br><a name="start"></a>
+<font color= "Blue" size=5> Realizarea unei aplicatii CITECT  </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizarea unei aplicatii SCADA presupune o serie de pasi cum ar fi: 
+<ul>
+ <li>identificarea si setarea corespunzatoare a elementelor pentru achizitia de date precum si a echipamenelor pentru comanda si controlul 
+ procesului monitorizat.
+ <li> crearea unui nou proiect 
+ <li> definirea si setarea tag-urilor
+ <li> realizarea paginilor grafice pentru mimarea procesului monitorizat
+ <li> scrierea de functii si setarea corespunzatoare a elementelor grafice din paginile grafice pentru realizarea mimarii procesului.
+ <li> stabilirea utilizatorilor aplicatiei si setarea drepturilor acestora.
+ <li> testarea si rularea aplicatiei
+ </ul>
+<br><a name="prj"></a>
+<font color= "Blue" size=4><li><b>Crearea unui nou proict </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Explorer -> File -> New Project, deschidem un nou proiect intitulat "Sch_el"
+<br><br><center><img src="im_citect001.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Explorer -> Sch_el -> Communications -> Clusters , definesc un cluster de comunicare numit "sch_el_cluster". 
+<br><br><center><img src="im_citect002.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Project Editor -> Servers -> Network Address, definesc adresa .TCP/IP 127.0.0.1 numita: "sch_el_adr". 
+Adresa "sch_el_adr" fiind adresa TCP/IT a sistemului de achizitie date care echipeaza sitemul de alimentare, fiind inclus in schema electrica de alimentare.  
+<br><br><center><img src="im_citect003.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vor fi configurate in continuare facilitatile de "Alarmare", "Trending" si "Report" astfel:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Project Editor -> Servers -> Alarm Server
+<br><br><center><img src="im_citect004.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Project Editor -> Servers -> Report Server
+<br><br><center><img src="im_citect005.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Project Editor -> Servers -> Trend Server
+<br><br><center><img src="im_citect006.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Project Editor -> Servers -> I/O Server
+<br><br><center><img src="im_citect007.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Explorer -> Sch_el_alim -> Communications -> ExpressI/O Device Setup -> Next ->Use an existing I/O->
+Disk I/O Device->Citect generic Protocol->Automatic reefresh of tags -> Finish
+<br><br><center><img src="im_citect008.gif"></center>
+
+<br><br><a name="tag"></a>
+<font color= "Blue" size=4><li><b>Configurarea tag-urilor </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Intreaga aplicatie SCADA se bazeaza pe stabilirea si utilizarea TAG-urilor. Tag-urile sunt interfata intre utilizator si
+procesul monitorizat. Exista mai multe tipuri de variabile tag. 
+<ul>
+ <li> Variabile tag - sunt variabilele care au legatura directa cu procesul, fiind modificate direct de sistemul de achizitie si control si totodata la 
+ acestea are acces si aplicatia SCADA
+ <li> Variabile tag locale - necesare dezvoltarii aplicatiei SCADA
+ <li> Variabile tag de tip trends - necesare pentru trasarea graficelor marimilor achizitionate din proces
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a adauga o variabila tag care sa reprezinte spre exemplu un comutator telecomandat pentru alimentarea generala cu energie, 
+procedam astfel:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Project Editor -> Tags -> Variable Tags
+<br><br><center><img src="im_citect009.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, s-a introdus variabila tag numita "comut_alim" , face parte din cluster-ul "sch_el_cluster" ,
+este o variabila digitala de tipul I/O  citita de la Device-ul generic IODev
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In mod similar se creaza variabilele tag locale si variabilele tag de tip trends.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Variabilele tag au un corespondent fizic in sistemul de achizitie si control date. In lipsa acestui sistem vom lucra numai cu 
+variabile locale. Vom introduce deci variabila locala numita "comut_alim". Atentie, variabila tag anterioara va fi stearsa, altfel va fi lansat un 
+mesaj ce indica faptul ca variabila "comut_alim" mai exista. Vom adauga deci Local Variable "comut_alim" astfel:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Project Editor -> Tags -> Local Variable
+<br><br><center><img src="im_citect041.gif"></center>
+
+<br><br><a name="pag_gr"></a>
+
+<font color= "Blue" size=4><li><b>Realizarea unei pagini grafice </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom incerca acum sa creem prim pagina grafica pentru a simula comanda de alimentare cu energie a unui proces.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Comanda se va face prin apasarea unui buron cu titlul "Pornit" iar oprirea prin apasarea unui buton cu titlul 
+"Oprit". Vom introduce si un al treilea buton care sa poarte titlul "Pornit/Oprit" si care sa insumeze functiilor celor doua butoane initiale. 
+Alimentarea cu energie se va semnaliza prin aprinderea unui led. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca pasii anteriori pentru realizarea proiectului <b> "Sch_el" </b>, nu au fost urmati, se poate utiliza proiectul 
+<b> "Sch_el_start" </b> proiect in care au fost parcursi pasii anteriori.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In proiectul <b> "Sch_el_start" </b>, sunt realizate deja o serie de astfel de simboluri, asa ca vom porni de la acest proiect.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Acest proiect poate fi descarcat  aici :<a href="../utilitare/Sch_el_start.ctz"> Download - "Sch_el_start" </a> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa ce s-a download-at acest fisier, din Citect Explorer->Restore se incarca acest proiect si i se atribuie numele 
+ <b> "Sch_el" </b>. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Proiectul contine pagina grafica start afisata mai jos.
+<br><br><center><img src="im_citect040.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va crea o noua pagina grafica numita <b> on_off_v0 </b>, in care vom plasa un buron cu titlul "Pornit/Oprit",  
+un buton cu titlul "Start", un al treilea buton care sa poarte titlul "Stop" si un LED care pentru semnalizare optica. 
+
+<br><br><center><img src="im_citect010.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Mod de realizare:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Explorer -> Sch_el -> Graphics -> Pages -> Next ->Create new page-> Se creaza o noua pagina grafica avand
+numele "On_off_v0". Se plaseaza trei obiecte "Button". Se modifica proprietatile butoanelor astfel incat sa apara textele corespunzatoare.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Plasam deasemenea un led semnalizator prin plasarea unui obiect "Simbol set" si setarea in mod corespunzator.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a stabili functionalitate dorita vom stabili proprietatile "Imput" pentru fiecare buton astfel:
+<ul> 
+ <li>Pentru butonul "Stat" - setam proprietatea " Input" -Action up si la "Up command" completam cu <b> comut_alim=1 </b> deasemenea setam proprietatea 
+ " Acces" si completam Disable whwen cu <b> comut_alim=1 </b> 
+ <li>Pentru butonul "Stop" - setam proprietatea " Input" -Action up si la "Up command" completam cu <b> comut_alim=0 </b> deasemenea setam proprietatea 
+ " Acces" si completam Disable whwen cu <b> comut_alim=0 </b> 
+ <li>Pentru butonul "Start/Stop" - setam proprietatea " Input" -Action up si la "Up command" completam cu <b>Toggle(comut_alim) </b> 
+ <li> Pentru plasarea ledului s-a ales "Simbol set" si s-au selectat imafinile pentru on si off deasemenea la "On simbol whwen" s-a completat cu <b>
+ comut_alim </b>
+ </ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Se ruleaza aplicatia si schema devine functionala putandu-se actiona butoanele, led-ul si butoanele, 
+schimbandu-se in mod corespunzator
+<br><br><center><img src="im_citect011.gif"></center>
+
+<br><br><a name="cicode"></a>
+<font color= "Blue" size=4><li><b> Utilizarea limbajului de programare Cicode</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom relua aplicatia anterioara si vom incerca sa implementam operatia Pornit/oprit in mai multe moduri.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Primul mod de a realiza comanda Pornit/ Oprit l-am discutat anterior fiind vorba de utilizarea functiei <b>Toggle() </b> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom putea realiza alte moduri de implementare a comenzii Pornit/ Oprit, folosind limbajul propriu de programare "Cicode". 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cicode este un limbaj de programare integrat in mediul de dezvoltare CitectSCADA destinat dezvoltarii de aplicatii SCADA, 
+permitand controlul software a elementelor utilizate pentru mimarea si controlul proceselor.  Este un limbaj structurat similar cu "C" sau Visual Basic.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand limbajul de programare Cicode se pot controla prin program toate variabilele locale si cele in timp real, precum 
+si toate facilitatile oferite de CitectSCADA cum ar fi tag-uri, variabile locale, trends, grfice, rapoarte.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cicode se poate utiliza si pentru a interfata aplicatia cu alte resurse cum ar fi porturi de comunicatie, sistemul de 
+operare, baze de date, etc.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom incerca sa utilizam in continuare "Cicode" pentru a controla functionarea buronului Pornit/ Oprit. In primul caz am 
+completat "Up command"  cu <b>Toggle(comut_alim) </b>. De data aceasta vom inlocui functia <b>Toggle(comut_alim) </b> cu urmatorul program :
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF comut_alim =0 
+THEN
+  comut_alim = 1;
+ELSE
+  comut_alim=0;
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="func"></a>
+<font color= "Blue" size=4><li><b> Utilizarea functiilor</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca in primul caz am apelat functia <b>Toggle() </b>, functie aflata in biblioteca limbajului Cicode, vom incerca sa 
+scriem o noua functie proprie pe care sa o invocam la apasarea butonului Pornit/ Oprit
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa denumim functia "comut_a()" si sa deschidem CicodeEditor pentru a o scrie. CicodeEditor editor se lanseaza din "Citec 
+Explorer"->Cicode Files->Create new Cicode page.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom defini functia "comut_a()" astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION comut_a()
+
+	IF comut_alim =0 THEN
+		comut_alim = 1;
+	ELSE
+		comut_alim=0;
+	END
+END
+FUNCTION
+not_comut()
+	IF comut_alim =0 THEN
+		n_comut=1;
+	ELSE
+		n_comut=0;
+	END
+END
+
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; In acest moment, pentru butonul "Start/Stop" - setam proprietatea " Input" -Action up, "Up command" cu <b>comut_a()</b> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Combinam cele trei moduri de realizare ale butonului "Start/Stop" si realizam o noua pagina grafica avand numele "On_off_v1" similara cu
+pagina grafica de jos.
+<br><br><center><img src="im_citect013.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru comutatorul de alimentare s-a ales un "Symbol Set" de til "On/Off" caruia i s-a setat proprietatea 
+"On simbol when" cu comul_alim.
+<br><br><a name="analogic"></a>
+<font color= "Blue" size=4><li><b> Tratarea marimilor analogice</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In multe cazuri avem de-a face cu marimi analogice. Intalnim marimi analogice la interfata cu procesele tehnologice, 
+atat la intrarile analogice cat si iesirile analogice. Acestora li se ataseaza taguri corespunzatoare de tip numeric. 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Marimile analogice pot fi deasemenea simulate utilizand diverse obiece grafice plasate pe paginile grafice ale aplicatiilor. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza in continuareun nou proiect cu numele <b> M_analogice </b> si in cadrul lui o pagina grafica numita 
+<b> analogic </b> in care se simuleaza si se afiseaza o marime analogica de intrare. 
+Afisarea se va face atat numeric cat si folosin diverse obiecte grafice care simuleaza aparate de masura si control.
+<br><br><center><img src="im_citect014.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru inceput vom introduce un nou tag numit "U_ali" 
+<br><br><center><img src="im_citect015.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa un obiect "Symbol" de tipul Xp_slider -right normal
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Setam proprietatea Slider-Vertical -Tag=U_ali si Offset at maximum = 150 pixeli. Setand aceasta proprietate in acest mod, 
+vom putea actiona acest simbul si sa-l deplasam pe verticala 150 de pixeli. miscarea acestui obiect de la 0 la 150 pixeli va cauza modificarea tag-ului 
+asociat U_ali de la 0 la val maxima definita.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea valorii u_ali sub forma numerica se face utilizand un obiest de tip "Number"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Reprezentarea sub forma unei bare vericale se face utilizand un obiect "Rectangle" in care s-a setat proprietatea Fill=U_ali 
+iar proprietatea Apparence s-a setat cu Gradient fill.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a simula volt-metrul, s-a folosit un obiect "ActiveX" CimeterX.TechMeter unde s-a bifat proprietatea "Value" si i sa 
+atribuit valoarea u_ali plasata in zona Associate prpoerty 'Value' with tag....
+<br><br><center><img src="im_citect016.gif"></center>
+<br><br><a name="trends"></a>
+<font color= "Blue" size=5>  Evolutia in timp a marimilor - Trends  </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Vom realiza o noua pagina grafica numita <b> "trends" </b> in care vom analiza evolutia in timp a diverselor marimi.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Pentru analiza in timp a evolutiei diverselor marimi digitale sau analogice exista o serie de obiecte destinate afisarii 
+graficelor in timp a diverselor marimi. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color= "Black" size=4><b>Trend</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Unul dintre cele mai simple obiecte care ne permit afisarea evolutiei in timp a diverselor marimi este obiectul "Trend".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Acestui obiect trebuie sa-i atasam un tag mai specila si anume un Trend Tag.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Din Citect Progect Editor ->Tags->Trend Tags adaugam un tag nou:
+<br><br><center><img src="im_citect018.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa din imaginea de sus, Trend-Tag-ul tensiune va stoca datele provenite de la tag-ul u_alim.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa un obiect "Trend" caruia putem sa-i atasam diverse tag-uri de tip Trend Tag. Vom atasa Trend tag-ul tensiune si 
+curent_c care vor permite trasarea graficelor de evolutie in timp a marimilor u_alim respectiv i_consum. Vom mai plasa doua obiecte cu care sa simulam 
+marimile u_alim si i_consum si obtinem:  
+<br><br><center><img src="im_citect017.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color= "Black" size=4><b>Genie Trends</b></font> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In aplicatia anterioara, evolutia in timp a diverselor marimi era afisata grafic insa nu exista posibilitatea analizei 
+formelor de unda afisate. Folosind un obiect de tip "Genie" este posibila analiza formelor de unda achizitionate.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza o noua pagina grafica numita <b> "process_a" </b> in care vom simula doua marimi ( curentul si tensiunea)similar cu pagina anterioara, 
+dar de data aceasta vom plasa un obiect "Genie" si vom alege din lista "Trends"
+<br><br><center><img src="im_citect019.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca lansam aplicatia, numai dupa actionarea butonului corespunzator "Genie - Trends" , va fi declansata afisarea 
+evolutiei in timp, dar de data aceastaavem o serie de facilitati pentru analiza graficelor afisate.
+<br><br><center><img src="im_citect020.gif"></center>
+<br><br><a name="simul"></a>
+<font color= "Blue" size=5> Simularea marimilor analogice</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De multe ori avem nevoie sa simulam anumite semnale analogice. Prima metoda folosita a fost simularea marimilor 
+analogice prin actionarea manuala a anumitor butoane. Semnalele se pot simula si automat utilizand functii matematice sau functii simple scrise in 
+cadrul modulelor de program "Cicode"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca vrem sa simulam o functie "dinti de fierastrau" pentru evolutia curentului consumat. Vom include o functie 
+de genul:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION Simul_c_df()
+	IF i_consum > 44 THEN
+	i_consum=0;
+	ELSE
+	i_consum=i_consum+0.25;
+	END
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se vede, la fiecare apel al functiei i_consum este incrementat cu 0.25. In cazul in care se ajunge 
+la valoarea maxima definita (in acest caz 45 volti), se forteaza i_consum la 0. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza o noua pagina grafica numita <b> "simulare_f" </b> in care afisam do poarametrii (tensiiune si curent) . Tensiunea va fi simulata manual 
+iar pentru curent vom face apelul functiei "Simul_c_df" pentru a modifica in mod constant valoarea curentului obtinand in final aplicatia de jos:
+<br><br><center><img src="im_citect021.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom mai scrie o functie care intrerupe curentul electric in cazul in care tensiunea nu este in plaja stabilita.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION lim_u()
+
+	IF u_alim>230 THEN
+		comut_alim=0;
+	END
+
+	IF u_alim<210 THEN
+		comut_alim=0;
+	END
+
+	IF u_alim>210 AND u_alim<230 THEN
+		comut_alim=1;
+	END
+	
+	IF comut_alim=0 THEN
+		i_consum=0
+	END
+END
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Dupa cum se observa, in cazul in care tensiunea nu se incadreaza in plaja 210v-230v se forteaza i_consum la 0
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca dorim o evolutie sinusoidala a curentului apelam o functie de genul:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION Simul_c_sin()
+	rad=rad + 0.01;
+	i_consum=20*(1+sin(rad));
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;S-a introdus o noua variabila rad pentru a pastra unghiul in radiani. Pentru o variatie a curentului in limitele 
+0-45 amperi, s-a atrbuit lui i_consum valoarea 45*(1+sin(rad))
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In acest caz aplicatia arata astfel:
+<br><br><center><img src="im_citect022.gif"></center>
+
+
+<br><br><a name="apl_en"></a>
+<font color= "Blue" size=5>  Aplicatii in energetica   </font>
+<br><br><a name="monof"></a>
+<font color= "Blue" size=4><li><b>Scheme monofilare</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom dezvolta in continuare cateva aplicatii din domeniul energetic in cadrul unui proiect numit <b> "Sch_monof" </b> .
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul acestui proiect vom realiza diverse scheme monofilare carora le vom da functionalitate. Pentru a realiza scheme monofilare 
+avem nevoie de o serie de simboluri cum ar fi simboluri pentru: separatoare, intreruptoare, transformatoare etc.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In proiectul <b> "Sch_el_start" </b>, sunt realizate deja o serie de astfel de simboluri, asa ca vom porni de la acest proiect.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Acest proiect poate fi descarcat  aici :<a href="../utilitare/Sch_el_start.ctz"> Download - "Sch_el_start" </a> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa ce s-a download-at acest fisier, din Citect Explorer->Restore se incarca acest proiect si i se atribuie numele  <b> "Sch_monof" </b>. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Proiectul contine pagina grafica start afisata mai jos.
+<br><br><center><img src="im_citect026.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va crea o noua pagina grafica numita <b> sch_monof_1 </b>, in care vom plasa un separator, un intrerupator si un 
+transformator, realizand schema monofilara de mai jos. Toate simbolurile necesare acestei scheme monofilare au fost create anterior, odata cu pagina 
+grafica <b> start </b> existenta in proiectul initial  <b> "Sch_el_start" </b>.
+<br><br><center><img src="im_citect027.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dorim sa realizam o aplicatie care sa monitorizeze starea componentelor din schema monofilara de mai sus. Sa presupunem 
+ca avem un sistem de achizitie si control care este conectat la elementele din schema monofilara de sus. Starea fiecarui element este oglindita de 
+tag-urile corespunzatoare adica:
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> s1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Stare separator s1 </b> </td>    
+</tr> 
+
+<tr>
+  <td> intr1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Stare intrerupator intr1 </b> </td>    
+</tr> 
+
+</table>
+</center> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru separator s-a utilizat un "Simbol Set" compus din simbolurile "sep_off", "sep_on". Starea separatorului fiind in 
+concordanta cu starea tag-ului <b> s1 </b>. 
+<br><br><center><img src="im_citect028.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Similar, pentru intreruptor s-a utilizat un "Simbol Set" compus din simbolurile "intr_off", "intr_on", starea acestuia 
+fiind in concordanta cu starea tag-ului <b> intr1 </b>. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru transformator  s-a utilizat un "Simbol Set" compus din simbolurile "traf_off", 
+"traf_on". De data aceasta, starea transformatorului este in concordanta cu expresia:  <b> s1*intr1 </b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Toate simbolurile utilizate anterior, se gasesc in "Library: global".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In lipsa sistemului de achizitie si control, nu ne putem baza pe tag-urile amintite anterior. Vom putea simula 
+insa aceste tag-uri, prin utilizarea variabilelor locale. Vom utiliza deci variabilele locale in locul variabilelor Tag. Pe tot parcursul 
+acestei lucrari vom utiliza numai variabile locale pentru a putea realiza aplicatii in lipsa sistemului de achizitie si comanda. Toate aceste 
+variabile vor fi simulate local. Aplicatia anterioara va fi completata cu doua butoane pentru a simula starea variabilelor <b> s1 </b> respectiv 
+<b> intr1 </b>.
+<br><br><center><img src="im_citect029.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La apasarea butoanelor, acestea trebuie sa schimbe starea variabileor locale asociate astfel butonul S1 trebuie sa 
+fie setat astfel: 
+<br><br><center><img src="im_citect030.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Similar la apasarea butonului "Intr", acesta trebuie sa execute functia: toggle(intr1).
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In acest moment schema este functionala in sensul ca la apasarea butonului S1, separatorul isi schimba starea, la 
+fel la apasarea butonului Intr, intreruptorul intr1 isi schimba starea, iar ral realizarea conditiei intr1=1 si s1=1 transformatorul indica faptul 
+ca este in functiune conform situatiei de mai jos:
+<br><br><center><img src="im_citect031.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa introducem noi facilitati si sa adaugam comenzi directe pentru inchiderea respectiv deschidreaea separatorului si 
+intreruptorului, realizand astfel o noua pagina grafica  <b> sch_monof_2 </b>. In cazul in care sistemul de achizitie si comanda este prevazut atat cu elemente pentru citirea strilor cat si cu elemente de comanda, 
+putem imbogati functionalitatea schemei precedente cu facilitati de comanda pe langa facilitatile anterioare de monitorizare. Vom da deci o dubla 
+functionalitate celor doua simboluri (s1, intr1) atat pentru afisarea starii cat si pentru preluarea comenzii de inchidere respectiv deschidere.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se va atribui Set Simbolului s1 si atributii de tip "Input" astfel:
+<br><br><center><img src="im_citect033.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cu alte cuvinte, se inglobeaza functionalitatea butonul S1 in "Set Simbolul" S1.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se procedeaza identic cu "Set Simbolul" Intr1.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In noua pagina grafica  <b> sch_monof_2 </b> se observa ce cele doua simboluri (s1, intr1) devin senzitive, putandu-se 
+lansa comenzi de inchidere respectiv deschidere.
+<br><br><center><img src="im_citect032.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am eliminat cele doua butoane ce simuleaza starea celor doua elemente, comanda lor, facandu-se direct de la acestea. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cand cele doua elemente sunt inchise, simbolul transformatorului se modifica indicand functionarea acestuia. In aplicatiile 
+reale exista o ordine in care se actioneaza cele doua elemente, in sensul ca separatorul nu poate fi niciodata actionat in sarcina. Acesata schema nu 
+asigura aceasta constrangere, nefiind conditionalitate intre cele doua comenzi. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In urmatoarea pagina grafica  <b> sch_monof_3 </b> se va realiza conditionalitatea intre cele doua comenzi. Tinand cont ca 
+separatorul nu poate fi niciodata actionat in sarcina, actionarea acestuia nu mai reprezinta o simpla operatiune de schimbare a starii acestuia ci 
+trebuie conditionata de starea intreruptorului astfel:
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF (intr1=0)
+THEN
+toggle(s1)
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->  
+<br><br><center><img src="im_citect034.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;S-a setat deci proprietatea "Input" a "Set Simbolului" s1.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In sistemele energetice, inchiderea respectiv deschiderea unui separator sau a unui intreruptor nu este instantanee. Vom 
+tine cont la urmatoarea pagina grafica <b> sch_monof_4 </b> de acest fenomen. Dupa comanda actionarii unui element se scurge un interval de timp pana 
+la efectuarea completa a comenzii. In aplicatia curenta, dupa actionarea uniui element vom avea nevoie de un semnal care sa confirme efectuarea comenzii.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom introduce pe langa tag-urile existente, noi tag-uri pentru a implementa raspunsul efectuarii comenzii.
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> s1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Stare separator s1 </b> </td>    
+</tr> 
+
+<tr>
+  <td> intr1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Stare intrerupator intr1 </b> </td>    
+</tr> 
+
+<tr>
+  <td> c_p_s1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda pornire separator 1 </b> </td>    
+</tr>
+
+<tr>
+  <td> c_o_s1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda oprire separator 1 </b> </td>    
+</tr>
+
+<tr>
+  <td> c_p_i1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda pornire intreruptor 1 </b> </td>    
+</tr>
+
+<tr>
+  <td> c_o_i1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda oprire intrerupator 1 </b> </td>    
+</tr> 
+</table>
+</center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa actionarea separatorului s1 de exemplu, nu se schimba starea acestuia decat dupa aparitia confirmarii. Va trebui sa 
+introducem un simbol care sa indice comanda data separatorului pentru a nu deruta utilizatorul, acesta avand impresia ca nu se intampla nimic in urma 
+actionarii separatorului. Dupa confirmarea actionarii se stinge simbolul aferent comenzii si se schimba starea separatoruliui. Aceste consideratii sunt 
+ilustrate in pagina grafica de mai jos.
+<br><br><center><img src="im_citect035.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care se incearca actionarea separatorului in sarcina, nici macar comanda de actionare a separatorului nu 
+este lansata. In acest caz, utilizatorul trebuie atentionat cu un mesaj ca nu poate actiona separatorul. Mesajele vor fi trimise cu instructiunea:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Prompt("Mesaj");
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Confirmarile de realizare ale comenzilor sunt simulate de butoanele din partea dreapta a paginii grafice.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Butonul "Separator complet inchis" are setata proprietatea "Imput" cu urmatoarea comanda:  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+c_p_s1=0
+s1=1
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Butonul "Separator complet deschis" are setata proprietatea "Imput" cu urmatoarea comanda:  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+c_o_s1=0
+s1=0
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Butonul "Confirmare inchidere i1" are setata proprietatea "Imput" cu urmatoarea comanda:  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+c_p_i1=0
+intr1=1
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Butonul "Confirmare deschidere i1" are setata proprietatea "Imput" cu urmatoarea comanda:  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+c_o_i1=0
+intr1=0
+Prompt(" ");
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Simbolul "s1" are setata proprietatea "Imput" cu urmatoarea comanda:  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF (intr1=0)
+THEN
+Prompt(" ");
+ IF s1=0 THEN
+   c_p_s1=1
+   c_o_s1=0
+  ELSE
+   c_o_s1=1
+   c_p_s1=0
+ END
+ELSE
+Prompt("Nu se poate actiona separatorul!");
+END
+</pre> </font>
+</td></tr></table>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa incercarea de a actiona separatorul in sarcina are ca singur efect afisarea mesajului: 
+"Nu se poate actiona separatorul!"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Simbolul "intr1" are setata proprietatea "Imput" cu urmatoarea comanda:  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF intr1=0 THEN
+   c_o_i1=0
+   c_p_i1=1
+  ELSE
+   c_p_i1=0
+   c_o_i1=1 
+ END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cele patru simboluri de tip LED sunt simple "Set Simboluri" in cocordanta cu tag-urile: c_o_s1, c_p_s1, c_o_i1, c_p_i1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In dreptul acestor simboluri apar si textele corespunzatoare, texte care sunt vizibile atat timp cat tag-ul corespunzator este activ. 
+Acest comportament s-a realizat prin setarea proprietatii "Visibility"-> Hidden when
+<br><br><center><img src="im_citect036.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Inchiderea respectiv deschiderea separatorului, ar putea fi simulata printr-o marime analogica, avand valori intre 0 si 100%. Pe schema aceasta 
+valoare ar putea fi simulata prin utilizarea unui control de tip "Slider" care ar fi in legatura cu un tag de tip analogic. Vom introduce un nou tag, atfel in acest moment 
+avem urmatoarele tag-uri:
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> s1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Stare separator s1 </b> </td>    
+</tr> 
+
+<tr>
+  <td> intr1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Stare intrerupator intr1 </b> </td>    
+</tr> 
+
+<tr>
+  <td> c_p_s1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda pornire separator 1 </b> </td>    
+</tr>
+
+<tr>
+  <td> c_o_s1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda oprire separator 1 </b> </td>    
+</tr>
+
+<tr>
+  <td> c_p_i1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda pornire intreruptor 1 </b> </td>    
+</tr>
+
+<tr>
+  <td> c_o_i1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda oprire intrerupator 1 </b> </td>    
+</tr> 
+
+<tr>
+  <td> poz_s1 </td>
+  <td> INT </td>
+  <td> 100 </td>
+  <td> % </td>
+  <td> Pozitie separator 1 </b> </td>    
+</tr> 
+
+</table>
+</center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza deci urmatoarea pagina grafica <b> sch_monof_5 </b> in care simularea inchiderii respectiv deschiderii 
+separatorului se va realiza manual de la un "Slider" 
+<br><br><center><img src="im_citect037.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Simularea pozitiei separatorului se face utilizand un obiect "Symbol" de tipul Xp_slider -right normal care poate 
+fi localizat in Library->XP_Sliders.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Setam proprietatea Slider->Vertical->Tag=poz_s1 si Offset at maximum = 150 pixeli. Setand aceasta proprietate in acest mod, 
+vom putea actiona acest simbul si sa-l deplasam pe verticala 150 de pixeli. Miscarea acestui obiect de la 0 la 150 pixeli va cauza modificarea tag-ului 
+asociat poz_s1 de la 0 la val maxima definita adica 100.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea valorii poz_s1 sub forma numerica se face utilizand un obiest de tip "Number"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Reprezentarea sub forma unei bare vericale se face utilizand un obiect "Rectangle" in care s-a setat proprietatea:
+Fill->Level->Level expresion=poz_s1 iar proprietatea Apparence s-a setat cu Gradient fill. 
+<br><br><center><img src="im_citect038.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa plasarea "Slider-ului", ar trebui sa urmarim in permanenta daca poz_s1 este egala cu 100 sau cu 0 pentru a 
+confirma inchiderea respectiv deschiderea completa a separatorului. Daca ne analizam "Page->Properties", 
+<br><br><center><img src="im_citect039.gif"></center>
+<br><br>observam ca "Page scan time" se face la fiecare 250 ms deci am putea plasa pe ecran o functie care s-ar lansa de 4 ori pe secunda. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa deci pe pagina grafica functia <b> ecran_1( ) </b>, si vom edita in "Cicode Editor" urmatoarea functie:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION ecran_1()
+
+	IF (poz_s1=100) THEN
+		c_p_s1=0
+		s1=1
+	END
+	IF (poz_s1=0) THEN
+		c_o_s1=0
+		s1=0
+	END
+
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea pagina grafica <b> sch_monof_6 </b> simularea inchiderii respectiv deschiderii 
+separatorului se va realiza automat fiind afisata pe controlul de tip "Slider" 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Simularea automata se realizeaza prin rescrierea functiei <b> ecran_1( ) </b> astfel incat pozitia sa se incrementeze 
+dupa fiecare interval de scanare. Noua functie  <b> ecran_2( ) </b> are forma:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION ecran_2()
+
+	IF (c_p_s1=1) AND (poz_s1<100) THEN
+		poz_s1=poz_s1+7
+		IF (poz_s1>100) THEN 
+		   poz_s1=100
+		END   
+		
+	END	
+	IF (c_o_s1=1) AND (poz_s1>0) THEN
+		poz_s1=poz_s1-7
+		IF (poz_s1<0) THEN 
+		   poz_s1=0
+		END   
+
+		
+	END		 
+
+
+	IF (poz_s1=100) THEN
+		c_p_s1=0
+		s1=1
+	END
+	IF (poz_s1=0) THEN
+		c_o_s1=0
+		s1=0
+	END
+
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Intregul proiect poate fi descarcat  aici :<a href="../utilitare/Sch_monof.ctz"> Download - "Sch_monof" </a> 
+
+
+
+<br><br><a name="sch_alim"></a>
+<font color= "Blue" size=4><li><b>Alimentare cu energie</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom dezvolta in continuare cateva aplicatii care au tangenta cu domeniul energetic in cadrul unui proiect numit <b> "Sch_alim" </b> .
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pagina grafica numita <b> "Sch_alim" </b>  mimeaza alimentarea cu energie a diferitelor utilitati dintr-un oras. In cazul deconectarii de la 
+sursa principala de energie, se cupleaza automat alimentarea din sursele secundare.
+<br><br><center><img src="sch_alim.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul acestei scheme s-au utilizat o serie de comutatoare, realizate in diferite moduri. Cea mai simpla metoda este 
+metoda folosita in aplicatia anterioara pentru comutatorul de alimentare si anume folosirea unui "Simbol set". Aceasta metoda este folosita pentru 
+"Comut_alim" si comutatorul K1.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru comutatorul K5 s-a folosit aceeasi metoda ca si pentru "Comut_alim" dar cu simbolurile inversate, tinand cont ca 
+acesta trebuie sa fie complementar lui "Comut_alim".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru comutatorul K2 si K8 s-a folosit un "Genie" din libraria "pwrdist" caruia i-a fost setat "Tag Status" cu comul_alim.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Comutatorul K6 este independent de restul schemei de alimentare deci pentru el a fost introdus un nou tag numit "comut_1" 
+si a fost realizat folosind un "Simbol set" cu proprietatea " Input" -Action down, "Down command" = <b>toggle(comut_1)</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Comutoarele K3 si K4 au fost realizate din doua simboluri suprapuse in care s-a folosit proprietatea "Vizibility"-> hidden 
+when setata cu comut_alim=0 pentru primul simbol iar pentru cel de al doilea simbol comut_alim=1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru consumatorii de dupa K6 s-au editat simboluri noi folosind metodele de editare noi simboluri.
+
+<br><br><a name="serv_pr"></a>
+<font color= "Blue" size=4><li><b>Anclansarea rezervei</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea pagina grafica numita <b> "Ancl_rez_v0" </b>  afiseaza o schema de anclansare automata a rezervei pentru alimentarea serviciilor proprii intr-o 
+centrala electrica
+<br><br><center><img src="serv_pr.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In momentul cand se apasa butonul AAR se lanseaza functia "toggle(aar)" care schimba starea tagului aar introdus 
+special pentru aceaasta aplicatie. De data aceasta, toate comutatoarele au fost realizate folosind corespunzator obiectul "Simbol set" cu proprietatea 
+"On symbol when" setata cu "aar", atat pentru comutatoarele normal deschise cat si pentru comutatoarele normal deschise.
+<br><br><a name="sch_av"></a>
+<font color= "Blue" size=4><li><b>Anclansarea rezervei si reconfigurare automata la avarii </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea  pagina grafica numita <b> "Ancl_rez_v1" </b>  afiseaza o schema de anclansare automata a rezervei pentru 
+alimentarea serviciilor proprii intr-o centrala electrica precum si reconfigurarea schemei in caz de avarii in diverse puncte. 
+Simularea avariilor se face prin "click" pe elementul care intra sau iese din avarie
+<br><br><center><img src="sch_av.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Avariile pot fi simulate la fiecare din cele 4 transformatoare T1-T4 si la generatorul G1, pentru ele, s-au introdus 
+patru variabile locale t1-t4 si o variabila g1 pentru generatorul G1. Pentru transformatoare si G1 s-au folosit simboluri special create si pentru 
+fiecare a fost setata proprietatea "Input"-Action Up-cu comenzi diferite pentru fiecare transformator astfel:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;pentru transformatorul T1
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+aar=1;
+IF t1 =0 
+THEN
+  t1 = 1;
+ELSE
+  t1=0;
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;pentru transformatorul T2
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+aar=0;
+IF t2 =0 
+THEN
+  t2 = 1;
+ELSE
+  t2=0;
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;pentru transformatorul T3
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF t3 =0 
+THEN
+  t3 = 1;
+ELSE
+  t3=0;
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;pentru transformatorul T4
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF t4 =0 
+THEN
+  t4 = 1;
+ELSE
+  t4=0;
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;pentru transformatorul G1
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF g1 =0 
+THEN
+  g1 = 1;
+  aar=1;
+ELSE
+  g1=0;
+END
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru comutatoare, s-a setat "On simbol when" astfel:
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;pentru comutatorul K1
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+NOT( aar OR g1 OR t1)
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;pentru comutatorul K2
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+aar AND  NOT(t2)
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;pentru comutatorul K3 si K5
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+aar
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;pentru comutatorul K4
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+NOT(aar)
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><a name="sch_aut"></a>
+
+
+<font color= "Blue" size=4><li><b>Reconfigurare la avarii</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea  pagina grafica numita <b> "Ancl_rez_v2" </b> afiseaza o schema de alimentare cu energie care se reconfigureaza automat la aparitia unor 
+avarii in diverse puncte. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;S-a observat in schema anterioara ca pe masura cresterii numarului de componente, relatiile logige pentru fiecare 
+comutator sunt destul de greu de analizat si vom incerca in aceasta aplicatie sa scriem o functie care sa trateze tot ansamblu de comutatoare si 
+sa gandim in ansamblu intreaga schema. Vom introduce variabile locale pentru fiecare comutator, astfel vor f introduse variabilele k1-k5 care 
+controleaza modul de afisare al fiecarui comutator.  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Va trebui sa scriem o functie care sa refaca starea fiecarui comutator la fiecare inprospatare a imaginii pe ecran. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa un obiect f(x)cu proprietatea numele functiei care va fi lansata de fiecare data cand se reinprospateaza 
+informatia de pe ecran. Sa denumim aceasta functie comut() si sa fosim CicodEditor pentru a o scrie.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION comut()
+
+	IF (g1=0) AND (t1=0) THEN
+		k1= 1;
+		k2= 0;
+		k3= 0;
+		k4= 1;
+		k5= 0;
+	ELSE
+		k1= 0 ;
+		k2= 1 ;
+		k3= 1 ;
+		k4= 0 ;
+		k5= 1 ;
+	END
+	
+	IF T2 =1 THEN
+		k2=0;
+	END
+
+	IF T3 =1 THEN
+		k3=0;
+		k4=1
+	END
+	
+	IF (T4 =1) AND (K1=1) THEN
+		k2=0;
+		k5=1;
+		k4=0;
+		k3=1;
+	END
+	IF (T3 =1) AND (K2=1) THEN
+		k3=0;
+		k4=1;
+	END
+	
+END
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br><center><img src="sch_aut.gif"></center>
+
+<br><br><a name="monit_param"></a>
+<font color= "Blue" size=4><li><b>Monitorizarea parametrilor energiei electrice </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza acum o  pagina grafica numita <b> "Monit_u_alim" </b> care monitorizeaza parametrii energiei electrice livrate.
+<br><br><center><img src="monit_param.gif"></center>
+<br><a name="serial_p"></a>
+<font color= "Blue" size=5> Utilizarea portului serial  </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Numeraoase sisteme de achizitie, comunica cu calculatorul prin intermediul portului serial. Mediul de dezvoltare aplicatiii 
+SCADA Citect permite utilizarea portului serial pentru interfatarea cu diverse sisteme hardware de monitorizare si control. Utilizarea portului serial 
+presupune scrierea unor functii pentru conectarea si transerul datelor prin portul serial. De asemenea trebuisec facute niste setari in vederea utilizarii 
+portului serial.
+<br><br><a name="ser_set"></a>
+<font color= "Blue" size=4><li><b>Configurarea aplicatiei in vederea utilizarii portului serial.</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va configura o placa de achizitie (Board) astfel
+<li> Din Citect Project Editor ->  Comunications  -> Board , se adauga :
+<br><br><center><img src="im_citect023.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Se configureaza portul de comunicatie astfel
+<li> Din Citect Project Editor ->  Comunications  -> Ports , se adauga :
+<br><br><center><img src="im_citect024.gif"></center>
+
+<br><br><a name="ser_utiliz"></a>
+<font color= "Blue" size=4><li><b>Utilizarea portului serial.</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru utilizarea portului serial trebuiesc scrise functii pentru conectarea si transerul datelor prin portul serial. 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia pentru deschiderea portului serial
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+INT FUNCTION StartSerial(STRING sPort)    
+	INT    hPort;    
+	hPort = ComOpen(sPort, 0);
+    IF hPort < 0 THEN
+		Prompt("Nu s-a deschis portul: " + sPort);
+		RETURN -1;    
+	END
+Prompt("Portul: " + sPort+ " a fost deschis.");	    
+hPrt=hPort;
+!TaskNew("SerialRead", hPrt, 0);
+!TaskNew("SerialWrite", hPrt, 0);
+!ComClose(hPort);
+buf="A0"
+sem=0;    
+RETURN 1;
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia pentru inchiderea portului serial
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+INT FUNCTION SerialClose(INT hPort)
+	ComClose(hPort);
+	Prompt("Portul a fost inchis."); 
+	RETURN 0;
+END 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia pentru scrierea la portul serial
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+INT FUNCTION SerialWrite(INT hPort, STRING buffer)    
+    INT SerialWriteError;    
+    INT length; 
+     !WHILE 1 DO     
+       	length=StrLength(buffer);     
+		SerialWriteError = ComWrite(hPort, buffer, length, 2);        
+		IF SerialWriteError THEN            
+    		Prompt("Error Writing port");            
+    		ComReset(hPort);
+    		RETURN -1;        
+    	END
+    !END	      
+	RETURN 0;
+END 
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia pentru citirea la portul serial
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+INT FUNCTION SerialRead(INT hPort)
+	STRING buffer      
+	INT    length;    
+	INT    total;    
+	INT    SerialReadError;    
+	total = 0;
+	  !WHILE 1 DO
+	  	length=20;              
+		SerialReadError = ComRead(hPort, buffer, length, 0);
+		IF SerialReadError THEN            
+			Prompt("Eroare la citirea P S " + SerialReadError : ####);            
+			ComReset(hPort);
+			RETURN -1;         
+		ELSE 
+		    !Prompt(length : #### + " caractere citite de la P S " );           
+			IF StrLength(buffer)>0 THEN
+			  buf_r=buffer;
+			  nr_r=StrLength(buffer);
+			    Val_a0=StrToInt(StrTrim(StrMid( buffer,3,StrLength(buffer)-3)));
+			END
+		END
+	!END	       
+RETURN 0;
+END
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca avem conectat un sistem de achizitie pe portul serial. Sistemul de achizitie dispune de intrari 
+analogice. Pentru citirea intrarii analogice 0 este necesara comanda "A0", iar sistemul raspunde cu valoarea analogica.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a realiza o aplicatie care sa afiseze intrarea analogica A0, similara cu cea de jos,
+<br><br><center><img src="im_citect025.gif"></center>
+<br>trebuie sa folosim o functie de genul:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+INT FUNCTION Achiz
+IF k1=1 THEN
+   IF sem = 1 THEN
+     sem=0;
+	 SerialRead(hPrt);
+   	 SerialWrite(hPrt,"A0");
+   ELSE
+    sem=1;
+    SerialRead(hPrt);
+   END 
+END
+RETURN 0
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>unde k este o variabila care e setata daca portul serial este deschis, iar sem este o variabila car determina faza de citire sau faza de scriere.
+<br><br><a name="con_mysql"></a>
+<font color= "Blue" size=5> Utilizarea bazelor de date  </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatiile SCADA "citect" pot utiliza baze de date ca sursa de date in vederea transferului acestora spre si dinspre alte aplicatii. In mod nativ 
+citec utilizeaza o serie de baze de date cum ar fi 
+<ul>
+ <li> MS SQL Server 2000 
+ <li> dBase DBF 
+ <li> Access MDB 
+ <li> Excel 
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Limbajul de programare "Cicode" inclus in mediul de dezvoltare citec cuprinde functii pentru implementarea limbajului SQL. Modul 
+de utilizare al acestora se gaseste in help-ul aplicatiei in ramura:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i> Cicode Programming Reference > Cicode Function Categories > SQL Functions Introduction > SQL Functions > SQLConnect  </i>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Se pot deci accesa baze de date care au implementat limbajul SQL, utilizand tehnologia ODBC.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Ne propunem in continuare interfatarea aplicatiilor "citect" cu baza de date MySQL. MySQL ete o baza de date SQL open 
+source care ne va permite utilizarea acesteia pentru a transfera informatii spre si dinspre alte aplicatii chiar si pentru transferul datelor spre 
+aplicatii WEB.
+
+<br><br><a name="inst_dbe"></a>
+<font color= "Blue" size=4><li><b>Instalarea unei conexiuni MySQL</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;"Citect" nu utilizeaza in mod nativ baza de date MySQL, de aceea conexiunea la o baza de date MySQL se face prin 
+utilizarea tehnologiei ODBC (Open Database Connectivity). ODBC furnizeaza un standard pentru metodele si procedurile software API (application 
+programming interface)in vederea utilizarii bazelor de date respectiv pentru utilizarea sistemul de gestiune al bazei de date numit DBMS (database 
+management systems). Utilizarea ODBC asigura independenta fata de limbajul de proogramare, baza de date sau sistemul de operare.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Majoritatea producatorilor de baze de date ofera drivere pentru conexiuni ODBC. MySQL ofera un astfel de driver ODBC, care 
+se poate descarca de pe site-ul http://dev.mysql.com/downloads/connector/odbc/5.1.html, gazduit de site-ul http://www.mysql.com. De pe acest site se 
+poate dealtfel descarca baza de date MySQL de pe link-ul: http://dev.mysql.com/downloads.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa descarcarea driver-ului <b> mysql-connector-odbc-5.1.5-win32.msi </b> utilizand link-ul:  
+http://dev.mysql.com/downloads/connector/odbc/5.1.html, se instaleaza prin rularea aplicatiei descarcate, dupa care se intra in : 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i> Control Panel -> Other Control Panel Options -> DBE Administrator </i> pentru a configura DBE ( Data Base Engine ) si 
+pentru a adauga o noua conexiune, sau altfel spus un "Alias" pentru o noua baza de date. Cu click dreapta ->New, putem alege un driver ODBC. Daca in prealabil 
+am instalat driverul odbc MySQL , acesta trebuie sa se regaseasca in lista. Alegem deci MySQL ODBC 5.1 Driver. si dam numele "Alias-ului " sa zicem 
+"MySQL_citect". Click-dreapta pe numele alias creat->alegem ODBC administrator -> Configure -> Putem sa alegem Serverul bazei de date user-ul si baza de date.  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru Windows 7 instalarea unei conexiuni la o baza de date MySQL se face in mod similar, cu deosebirea ca se intra in:
+Control Panel -> Systen and Security  -> Administrative Tools -> Data Sources (ODBC). Se alege din meniu System DSN si prin apasarea butonului "Add" se adauga 
+o noua conexiune.
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul unei aplicatii "citec" avem posibilitatea sa interogam baza de date utilizand aliasul: "MySQL_citect" ctreat anterior.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Functia care realizeaza conectarea la baza de date "MySQL_citect" arata astfel:
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca am crea variabilele locate hSQL de tip int si mes de tip string dupa care crem functia connect_mysql 
+utilizand Citect Editor
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION connect_mysql()
+	hSQL = SQLConnect("DSN=MySQL_citect");
+	IF hSQL > -1 THEN
+		mes="Conexiunea MySQL_citect realizata";
+	ELSE
+		mes="Eroare de conectoare MySQL_citect";
+	END
+END 
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Unde mes este o variabila locala de tip string folosita pentru a afisa diverse mesaje.
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care vrem sa lansam un dialog pentru conectarea la o anumita baza de date scriem
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION connect_mysql()
+	hSQL = SQLConnect("DLG=1");
+	IF hSQL > -1 THEN
+		mes="Conexiunea MySQL_citect realizata";
+	ELSE
+		mes="Eroare de conectoare MySQL_citect";
+	END
+END 
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca in cadrul bazei de date deschise, se afla si tabela ap_electr, care contine campurile den_ap si tens_n. 
+Citirea valorilor den_ap si tens_n se face astfel:
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION  citesc_mysql()
+	err1=SQLExec (hSQL, "SELECT * FROM ap_electr ");
+	err2=SQLNext(hSQL);
+	dn_ap = SQLGetField(hSQL, "den_ap");
+	u_n = SQLGetField(hSQL, "tens_n");
+END
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;err1 fiind un cod de eroare intors de functia SQLExec iar err2 fiind un cod de eroare intors de functia SQLNext, iar dn_ap si
+u_n sunt variabile locale care vor fi inscrise cu valorile citite din prima inregistrare aflata in baza de date.
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a citi restul inregistrarilor utilizam functia de mai jos, functie care ne permite sa navigam pe urmatoarele inregistrari.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION next_mysql()
+err3=SQLNext(hSQL);
+	IF err_sel<>0 THEN
+		mes="Nu exista inregistrare";
+		u_n="0";
+	ELSE
+		mes = SQLGetField(hSQL, "den_ap");
+		u_n = SQLGetField(hSQL, "tens_n");
+	END
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><a name="dbec"></a>
+<font color= "Blue" size=4><li><b>Data Base Exchange Control</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care nu dorim sa folosim datele citite in cadrul aplicatiei, dorim doar citirea si afisarea datelor, se 
+poate folosi un obiect Data Base Exchange Control.
+<br><br><center><img src="im_citect012.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Modul de setare proprietati.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+<ul>
+ <li>Apperance->Connection->Build->Use Databasa->Source, aleg "MySQL_citect"
+ <li>Apperance->Connection->Table Name, aleg ap_electr 
+ <li>Setez Radio Button Data Table
+</ul> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
