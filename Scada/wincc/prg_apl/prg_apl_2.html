@@ -2,12 +2,12 @@
 <title> Programarea aplicatiilor SCADA in mediul WinCC </title>
 <body>
 <table width="100%">
-<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "red" size=6> Utilizarea limbajului de programare ANCI C  in mediul WinCC </Center></TD></TR>
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "red" size=5> Utilizarea limbajului de programare ANCI C  in mediul WinCC </Center></TD></TR>
 </table>
 
 <br><a name="cicode"></a>
 <table width="100%">
-<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "blue" size=5> 1.Controale de intrare-iesire  </Center></TD></TR>
+<tr><td height="50" background="../../../Images/imm_s.bmp"><center><font color= "blue" size=4> 1.Controale de intrare-iesire  </Center></TD></TR>
 </table>
 
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatiile SCADA simple se pot crea in principiu fara a utiliza notiuni de programare. Aplicatiile mai complexe 
@@ -328,8 +328,8 @@ cat o expresie este adevarata.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni;
 }
 
-<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea se executa repetat atÓta timp cÓt valoarea expresiei este adevarata. 
-Testul are loc Ónaintea fiecarei executii a instructiunii. Modul de functionare al instructiunii este urmatorul:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea se executa repetat at√Æta timp c√Æt valoarea expresiei este adevarata. 
+Testul are loc √Ænaintea fiecarei executii a instructiunii. Modul de functionare al instructiunii este urmatorul:
 <li>&nbsp;&nbsp;&nbsp;&nbsp; Se testeaza expresia din paranteze. Daca ea este adevarata (sau expresia din paranteze are o valoare diferita de zero) 
 <li>&nbsp;&nbsp;&nbsp;&nbsp; Se executa corpul instructiunii while
 <li>&nbsp;&nbsp;&nbsp;&nbsp; Se reia testarea si executia pana expresia devine falsa (sau valoarea expresiei din paranteze este zero) 
@@ -375,11 +375,11 @@ implementeaza structura ciclica cu numar cunoscut de pasi.
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>For (expresie1 ,expresie2, expresie3)</b>{
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni;
 }
-     expresie2 specifica testul care controleaza ciclul. El se executa Ónaintea fiecarei iteratii. Daca conditia din test este adevarata atunci se executa corpul ciclului, dupa care se executa expresie3, care consta de cele mai multe ori Ón modificarea valorii variabilei de control al ciclului. Se revine apoi la reevaluarea conditiei.
+     expresie2 specifica testul care controleaza ciclul. El se executa √Ænaintea fiecarei iteratii. Daca conditia din test este adevarata atunci se executa corpul ciclului, dupa care se executa expresie3, care consta de cele mai multe ori √Æn modificarea valorii variabilei de control al ciclului. Se revine apoi la reevaluarea conditiei.
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie1 constituie initializarea ciclului si se executa o singura data Ónaintea ciclului. 
-<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie2 specifica testul care controleaza ciclul.  El se executa Ónaintea fiecarei iteratii. Daca conditia din test este adevarata atunci se executa corpul ciclului.
-<br>&nbsp;&nbsp;&nbsp;&nbsp; se executa expresie3, care consta de cele mai multe ori Ón modificarea valorii variabilei de control al ciclului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie1 constituie initializarea ciclului si se executa o singura data √Ænaintea ciclului. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; expresie2 specifica testul care controleaza ciclul.  El se executa √Ænaintea fiecarei iteratii. Daca conditia din test este adevarata atunci se executa corpul ciclului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; se executa expresie3, care consta de cele mai multe ori √Æn modificarea valorii variabilei de control al ciclului.
 <br>&nbsp;&nbsp;&nbsp;&nbsp; se incrementeaza variabila din expresie1
 <br>&nbsp;&nbsp;&nbsp;&nbsp; se revine apoi la reevaluarea conditiei.
 <br><br><a name="a_for"></a>
@@ -450,7 +450,7 @@ void OnClick(char* lpszPictureName, char* lpszObjectName, char* lpszPropertyName
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiuni
 <br>&nbsp;&nbsp;&nbsp;&nbsp;<b>while(expresie)</b>
 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea se executa repetat pana cand valoarea expresiei devine adevarata. 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;Testul are loc Ónaintea fiecarei executii a instructiunii.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Testul are loc √Ænaintea fiecarei executii a instructiunii.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea Do Until se foloseste atunci cand se cunoaste conditia finala pana la care se repeta secventa de instructiuni
 
 <br><br><a name="a_until"></a>
@@ -508,16 +508,16 @@ tip_val_return nume_func (lista_declaratiilor_param_ formali)
 </pre> </font>
 </td></tr></table>
 <!------------------------------------------------------------------->
-<br>&nbsp;&nbsp;&nbsp;&nbsp;Prima linie reprezinta antetul functiei, Ón care se indica: tipul functiei, numele acesteia si lista declaratiilor 
-parametrilor formali. La fel ca un operand sau o expresie, o functie are un tip, care este dat de tipul valorii returnate de functie Ón functia apelanta. 
-Daca functia nu Óntoarce nici o valoare, Ón locul tip_vali_return se specifica void. In acest caz avem de-a face cu o procedura
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prima linie reprezinta antetul functiei, √Æn care se indica: tipul functiei, numele acesteia si lista declaratiilor 
+parametrilor formali. La fel ca un operand sau o expresie, o functie are un tip, care este dat de tipul valorii returnate de functie √Æn functia apelanta. 
+Daca functia nu √Æntoarce nici o valoare, √Æn locul tip_vali_return se specifica void. In acest caz avem de-a face cu o procedura
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Daca tip_val_return lipseste, se considera, implicit, ca acesta este int. Nume_functie este un identificator. 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;Lista_declaratiilor_param_formali (Óncadrata Óntre paranteze rotunde) consta Óntr-o lista (enumerare) care contine 
-tipul si identificatorul fiecarui parametru de intrare, despartite prin virgula. Daca lista parametrilor formali este vida, Ón antet, dupa numele 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Lista_declaratiilor_param_formali (√Æncadrata √Æntre paranteze rotunde) consta √Æntr-o lista (enumerare) care contine 
+tipul si identificatorul fiecarui parametru de intrare, despartite prin virgula. Daca lista parametrilor formali este vida, √Æn antet, dupa numele 
 functiei, apar doar parantezele ( ), sau (void).
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Corpul functiei este un bloc, care implementeaza algoritmul de calcul folosit de catre functie. 
-Œn corpul functiei apar (Ón orice ordine) declaratii pentru variabilele locale si instructiuni. 
-Daca functia Óntoarce o valoare, se foloseste instructiunea return valoare. La executie, la Ónt‚lnirea acestei instructiuni, se revine Ón functia 
+√én corpul functiei apar (√Æn orice ordine) declaratii pentru variabilele locale si instructiuni. 
+Daca functia √Æntoarce o valoare, se foloseste instructiunea return valoare. La executie, la √Ænt√¢lnirea acestei instructiuni, se revine √Æn functia 
 apelanta.
 <br><br><a name="a_func"></a>
 <font color= "blue" size=4><b> Aplicatii care utilizeaza functii definite de utilizator </b></font>
