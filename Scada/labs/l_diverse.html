@@ -1,0 +1,56 @@
+<html>
+<title> Laborator - Diverse aplicatii SCADA </title>
+<body>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5>  Laborator - Diverse aplicatii SCADA  </Center></TD></TR>
+</table>
+
+<li>Deplasarea simbolurilor pe ecran
+<ol>
+<li> - Simulare deplasare recipiente
+<li> -
+<li> -
+<li> -
+<li> -
+
+</ol>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Simulare deplasare 4 recipiente
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+FUNCTION ecr()
+p_rcp[4-i]=p_rcp[4-i]+50
+	IF p_rcp[4-i] >500 THEN
+		rcp[4-i]=1
+		i=i+1
+		IF i>3 THEN
+			p_rcp[1]=0
+		 	p_rcp[2]=0
+			p_rcp[3]=0
+			p_rcp[4]=0
+			rcp[1]=0
+		 	rcp[2]=0
+			rcp[3]=0
+			rcp[4]=0
+			i=0
+		END
+		 
+END
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<font size="3" color="Blue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+</body>
+</html>

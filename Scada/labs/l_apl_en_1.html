@@ -1,0 +1,307 @@
+<html>
+<title>Aplicatia 4 - Aplicatii SCADA in energetica  </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> Aplicatia 4 - Aplicatii SCADA in energetica </Center></TD></TR>
+</table>
+
+<br><br><font color= "Blue" size=5> Obiective </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Utilizarea si crearea de simboluri specifice sistemelor energetice in cadrului unui proiect SCADA
+<li>Analiza diverselor scheme electrice si transpunerea lor in pagini grafice 
+<li>Realizarea unei pagini grafice functionale simple care sa cuprinda simboluri specifice sistemelor energetice 
+<li>Realizarea unei pagini grafice care sa mimeze un generator sincron cu sistem de excitatie cu grup de excitatie independent
+<li>Realizarea unei pagini grafice functionale a unui generator sincron, care sa realizeze protectie la dubla alimentare a motorului
+</td></tr></table>
+</ul>
+
+<font color= "Blue" size=5> Prezentare teoretica </font>
+<br><br><font color= "Blue" size=4><b> <li>Aplicatii SCADA in energetica </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sectorul energetic este unul din sectoarele care necesita control si monitorizare la diverse nivele.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a realiza scheme de alimentare, avem nevoie de o serie de simboluri cum ar fi simboluri pentru: separatoare, 
+intreruptoare, transformatoare etc. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Simbolutile specifice domeniului energetic pot fi luate din bibliotecile proprii sau se pot edita noi simboluri
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Domeniile care se preteaza a fi monitorizate prin intermediul sistemelor SCADA sunt:
+<ul> 
+	<li> Producerea energiei electrice
+	<li> Distribuirea energiei electrice
+	<li> Controlul calitati energiei electrice
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;In domeniul producerii energiei electrice aplicatiile SCADA cel mai des intalnite se refera la automatizarea si 
+monitorizarea generatoarelor electrice. Cele mai raspandite generatoare, sunt generatoarele sincrone (GS) cu grup de excitatie independent.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Grupul de excitatie independent prezinta cateva avantaje, dintre care:
+<ul> 
+	<li>poate fi realizat la puteri mai mari;
+	<li>permite amplasarea oriunde în sala masinilor, ceea ce contribuie la reducerea cheltuielilor de investitii în centrala;
+	<li>îngaduie aplicarea tensiunii de excitatie la bornele înfasurarii de excitatie a GS înca înainte de pornirea agregatului generator si astfel permite încalzirea barelor rotorice când rotorul înca sta pe loc
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Logica de functionare a unei scheme monofilare se implementeaza intr-o pagina grafica prin intermediul instructiunilor si 
+functiilor scrise in limbajul "Cicode".
+
+<br><br><font color= "Blue" size=4><li><b>Utilizarea instructiunilor decizionale </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if</b> se foloseste pentru a selecta executia unei instructiuni (sau a unui grup de instructiuni) functie de 
+valoarea logica a unei expresii relationale 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul instructiunii:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if</b> are urmatoarele formate:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>If expresie relationala THEN
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;sau
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>If expresie relationala THEN
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ELSE
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br><font color= "Blue" size=4><li><b> Utilizarea functiilor</b> </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul pentru definirea unei functii fara parametri si fara returnare de valori:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru definirea unei astfel de functii se foloseste urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FUNCTION nume_functie()
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul pentru definirea unei functii cu parametri si fara returnare de valori:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru definirea unei astfel de functii se foloseste urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FUNCTION nume_functie(Argumente)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul pentru definirea unei functii cu parametri si cu returnare de valori:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru definirea unei astfel de functii se foloseste urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Tip valoare returnata FUNCTION nume_functie(Argumente)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN valoare
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br><font color= "Blue" size=4><li><b> Utilizarea instructiunilor repetitive</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>for</b> Se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni. De obicei
+implementeaza structura ciclica cu numar cunoscut de pasi.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul instructiunii:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>for</b> are urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FOR Variabila=expresie1 TO expresie2 DO  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unde expresie1 este valoarea de start a variabilei iar expresie2 este valoarea de stop a variabilei. 
+
+
+
+<br><br><font color= "Blue" size=5> Tematica de laborator </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand mediul de dezvoltare SCADA-CITECT creati un nou proiect "Labs" in care sa realizati pagina grafica 
+avand numele "labs4_01" similara cu:
+pagina grafica de jos.
+<br><br><center><img src="im_citect041.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul acestei scheme se intalnesc mai multe elemente de acelasi tip. Vom defini tag-uri de tip Array 
+si vom utiliza instructiuni repetitive pentru controlul acestor tag-uri. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru inchiderea respectiv deschiderea elementelor de comutatie, vom introduce doua tag-uri de tip Array:
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="6" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Array Size </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> sep </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> 6 </td>
+  <td> Separatoarele sep[1]-sep[5] </b> </td>    
+</tr> 
+
+<tr>
+  <td> intr </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> 6 </td>
+  <td> Intreruptoarele intr[1]-intr[5] </b> </td>       
+</tr> 
+</table></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In schema de sus T1 isi schimba culoarea cand S1 I1 S3 I3 sunt inchise. 
+La fel T2 isi schimba culoarea cand S2 I2 S4 I4 sunt inchise.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;LED-ul L1 este activat cand motorul M edste activat. M este activat daca S2 I2 S4 I4 sunt inchise sau S5 I5 sunt inchise.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Ccreati o noua pagina grafica avand numele "labs4_02" similara cu pagina grafica de jos.
+<br><br><center><img src="im_citect042.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul acestei scheme s-au mai introdus Butoanele ON respectiv OFF si un led de avarie care sesizeaza dubla alimentare a 
+motorului.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentele click ale butoanelor "ON" respectiv "OFF" sunt afectate doua variabile tag locale:
+<br><br>
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> cmd_on </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda inchiderea elementelor de comutatie </b> </td>    
+</tr> 
+
+<tr>
+  <td> cmd_off </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda deschiderea elementelor de comutatie </b> </td>    
+</tr>
+<tr>
+  <td> i </td>
+  <td> INT </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Index </b> </td>    
+</tr>
+</table>
+</center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va crea functia atribuita butonului ON numita: FUNCTION sch4_on() 
+respectiv functia atribuita butonului OFF numita: FUNCTION sch4_off(). 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION sch4_on()
+    INT i;
+	FOR i=1 TO 4 DO
+		sep[i]=1;
+		intr[i]=1;	
+	END
+END
+FUNCTION sch4_off()
+    INT i;
+	FOR i=1 TO 5 DO
+		sep[i]=0;
+		intr[i]=0;	
+	END
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va introduce protectia la dubla alimentare a motorului prin intermediul functiei  FUNCTION alim_d(), functie 
+care va fi lansata la fiecare scanare a ecranului. 
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION alim_d()
+	IF sep[2]*intr[2]*sep[4]*intr[4]*sep[5]*intr[5]=1
+	THEN
+ 		sep[2]=0
+ 		intr[2]=0
+ 		sep[4]=0
+ 		intr[4]=0
+ 		sep[5]=0
+ 		intr[5]=0
+	END
+END
+
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br><br><font color= "Blue" size=5> Cerinte de rezolvat </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Crearea unui nou proiect "Labs"
+<li>Realizarea paginii grafice "labs4_01"
+<li>Implementarea si verificarea functionalitatii pagini grafice "labs4_01"
+<li>Realizarea paginii grafice "labs4_02"
+<li>Implementarea si verificarea functionalitatii pagini grafice "labs4_02"
+</td></tr></table>
+</ul>
+
+<br><br><font color= "Blue" size=5> Derularea activitatilor </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Se creaza nou proiect "Labs"
+<li>Daca nu se reuseste crearea unui nou proiect valid, se poate utiliza proiectul <b> "Sch_el_start" </b> proiect in care au fost parcursi toti pasii 
+pentru crearea unui nou proiect.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Proiectul se poate descarca de pe www.science.upm.ro/~traian
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa ce s-a download-at acest fisier, din Citect Explorer->Restore se incarca acest proiect si i se atribuie numele 
+<b> "Labs" </b>.
+<li>Se realizeaza pagina grafica "labs4_01"
+<li>Se introduc elementele de functionalitate
+<li>Se realizeaza pagina grafica "labs4_02"
+<li>Se introduc elementele de functionalitate
+</td></tr></table>
+</ul>
+
+<br><br><font color= "Blue" size=5>Prezentarea rezultatelor </font>
+<ul>
+<Table border=1>
+<tr>
+ <td colspan="3" bgcolor="yellow"><center> Punctarea activitatilor (total 6 puncte) </center></td>
+</tr> 
+<tr>
+<td align="center"><b> Nr </b>  </td>
+  <td align="center"><b> Denumire activitate </b>  </td>
+  <td align="center"><b> Punctaj </b> </td>
+</tr>
+<tr>
+  <td> 1 </td>
+  <td> Se verifica aspectul grafic al pagini grafice "labs4_01" </td>
+  <td><center> 1 </center></td>
+</tr> 
+<tr>
+  <td> 2 </td>
+  <td> Se verifica functionalitatea pagini grafice "labs4_01" </td>
+  <td><center> 1 </center></td>
+</tr>
+<tr>
+  <td> 3 </td>
+  <td> Se verifica aspectul grafic al pagini grafice "labs4_02" </td>
+  <td><center> 2 </center></td>
+</tr> 
+<tr>
+  <td> 4 </td>
+  <td> Se verifica functionalitatea pagini grafice "labs4_02" </td>
+  <td><center> 2 </center></td>
+</tr>
+</table>
+</ul>
+<br><br><font color= "Blue" size=5>Aplicatii suplimentare </font>
+<ul>
+ <li>  Realizati aplicatii pentru alimentarea serviciilor proprii
+</ul> 
+&nbsp;&nbsp;&nbsp;&nbsp;Exemple de scheme pentru alimentarea serviciilor proprii:
+<br><br><center><img src="im_citect029_a.gif"></center>
+<br><br><center><img src="im_citect029_b.gif"></center>
+<br><br><center><img src="im_citect029_c.gif"></center>
+  
+<br><br> 
+</body>
+</html>

@@ -1,0 +1,261 @@
+<html>
+<title>Aplicatia 2 - Programarea aplicatiilor SCADA </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> Aplicatia 2 - Programarea aplicatiilor SCADA </Center></TD></TR>
+</table>
+
+<br><br><font color= "Blue" size=5> Obiective </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Utilizarea limbajului de programare Cicode in cadrul unui proiect SCADA.
+<li>Utilizarea instructiunilor decizionale si a functiilor definite de utilizator pentru implementarea functionalitatii unei pagini grafice.
+<li>Realizarea unei pagini grafice in care se folosesc instructiuni de atribuire si instructiuni decizionale.
+<li>Realizarea unei pagini grafice in care se folosesc instructiuni repetitive.
+</td></tr></table>
+</ul>
+<font color= "Blue" size=5> Prezentare teoretica </font>
+<br><br><font color= "Blue" size=4><li><b>Utilizarea instructiunilor decizionale </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if</b> se foloseste pentru a selecta executia unei instructiuni (sau a unui grup de instructiuni) functie de 
+valoarea logica a unei expresii relationale 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul instructiunii:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if</b> are urmatoarele formate:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>If expresie relationala THEN
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;sau
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>If expresie relationala THEN
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ELSE
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br><font color= "Blue" size=4><li><b> Utilizarea functiilor</b> </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul pentru definirea unei functii fara parametri si fara returnare de valori:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru definirea unei astfel de functii se foloseste urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FUNCTION nume_functie()
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul pentru definirea unei functii cu parametri si fara returnare de valori:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru definirea unei astfel de functii se foloseste urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FUNCTION nume_functie(Argumente)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul pentru definirea unei functii cu parametri si cu returnare de valori:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru definirea unei astfel de functii se foloseste urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Tip valoare returnata FUNCTION nume_functie(Argumente)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN valoare
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br><font color= "Blue" size=4><li><b> Utilizarea instructiunilor repetitive</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>for</b> Se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni. De obicei
+implementeaza structura ciclica cu numar cunoscut de pasi.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul instructiunii:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>for</b> are urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FOR Variabila=expresie1 TO expresie2 DO  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unde expresie1 este valoarea de start a variabilei iar expresie2 este valoarea de stop a variabilei. 
+
+<br><br><font color= "Blue" size=5> Tematica de laborator </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color= "blue" size=4><b>1. Utilizarea instructiunilor de atribuire si a instructiunilor decizionale </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand elementele de programare, realizati o noua pagina grafica avand numele "labs2_01" similara cu
+pagina grafica de jos.
+<br><br><center><img src="im_citect012.gif"></center>
+<ul>
+ <li> Se va introduce un nou tag digital numit <b> comut_alim </b>
+ <br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+<tr>
+  <td> comut_alim </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td>Comutator alimentare </b> </td>    
+</tr> 
+</table></center>
+<br><br>
+ <li> Pentru comutatorul de alimentare se va alege un "Symbol Set" de tip "On/Off" caruia i se va seta proprietatea 
+"On simbol when" cu comul_alim.
+ <li> Se vor implementa trei moduri de realizare ale butonului "Start/Stop" corespunzatoare celor trei butoane.
+ <li> In functie de tag-ul comut_alim, numai unul din butoanele  "Start"  sau  "Stop" sa fie valide.
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Dupa actionarea unuia din butoanele "Pornit/Oprit" sau a butonului "Start" pagina grafica trebuie sa fie similara cu:
+<br><br><center><img src="im_citect014.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati noi pagini grafice care sa contina diverse scheme cu comutatoare si in care sa utilizati functiile logice.
+<ul><font color= "Blue" size=4><li><b> Aplicatii propuse</b> </font></ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Realizati o aplicatie SCADA care sa imite functionarea unui semafor:
+<br><br><center><img src="im_citect016.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati o aplicatie SCADA care sa comute 3 linii monofilare la interval de 1 secunda si sa deconecteze cele trei linii in 
+ordinea inversa tot la interval de 1 s folosind functia sleep():
+
+<br><br><center><img src="im_citect013.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Reluati aplicatia si modificati intervalele sa fie diferite si nu mai folosi functia sleep()
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color= "blue" size=4><b>2. Utilizarea instructiunilor repetitive</b></font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand instructiuni repetitive, se va realiza o noua pagina grafica avand numele "labs2_02".
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca avem 10 valori diferite si 10 LED-uri corespunzatoare acestor valori. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Realizati o noua pagina grafica avand numele "labs2_02" care aprinde sau stinge LED-urile in ordinea valorilor 
+corespunzatoare LED-urilor. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Valorile vor fi generate aleator la apasarea butonului "Init", de asemenea se vor plasa controale de tip 
+Genie -> controls -> Ramp_UpDown_btn1 care vor permite modificarea valorilor generate in cazul in care se doreste.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;La apasarea butonului On, se vor aprinde led-urile in ordinea valorilor
+<br>&nbsp;&nbsp;&nbsp;&nbsp;La apasarea butonului Off, se vor stinge led-urile in ordinea inversa a valorilor
+
+<br><br><center><img src="im_citect015.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Avem nevoie de urmatoarele tag-uri:
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Array Size </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> ld </td>
+  <td> DIGITAL </td>
+  <td> 11 </td>
+  <td> - </td>
+  <td> Ledurille ld[1]...ld[10]</b> </td>    
+</tr> 
+
+<tr>
+  <td> val_l </td>
+  <td> INT </td>
+  <td> 11 </td>
+  <td> - </td>
+  <td> Valori prag pentru comanda led-urilor </b> </td>    
+</tr> 
+
+</table>
+</center> 
+<ul><font color= "Blue" size=4><li><b> Aplicatii propuse</b> </font></ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind 10 LED-uri realizati o aplicatie care simuleaza deplasarea dreapta la apasarea butonului Start
+similar cu imaginea de jos:
+<br><br><center><img src="im_citect018.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind 10 LED-uri realizati o aplicatie care simuleaza deplasarea dreapta sau stanga la apasarea butonului Stanga respectiv Dreapta
+similar cu imaginea de jos:
+<br><br><center><img src="im_citect019.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Modificati aplicatia anterioara astfel incat deplasarea sa fie continua, stanga sau dreapta
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Folosind 10 LED-uri afisati grafic sub forma de VU-metru valoarea tensiunii (0-250 V) generata aleator la interval de 1 s 
+similar cu imaginea de jos:
+<br><br><center><img src="im_citect017.gif"></center>
+<br><br><font color= "Blue" size=5> Cerinte de rezolvat </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Crearea unui nou proiect "Labs"
+<li>Realizarea paginii grafice "labs2_01"
+<li>Implementarea si verificarea functionalitatii pagini grafice "labs2_01"
+<li>Realizarea paginii grafice "labs2_02"
+<li>Implementarea si verificarea functionalitatii pagini grafice "labs2_02"
+</td></tr></table>
+</ul>
+
+<br><br><font color= "Blue" size=5> Derularea activitatilor </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Se creaza nou proiect "Labs"
+<li>Daca nu se reuseste crearea unui nou proiect valid, se poate utiliza proiectul <b> "Sch_el_start" </b> proiect in care au fost parcursi toti pasii 
+pentru crearea unui nou proiect.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Proiectul se poate descarca de pe www.science.upm.ro/~traian
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa ce s-a download-at acest fisier, din Citect Explorer->Restore se incarca acest proiect si i se atribuie numele 
+<b> "Labs" </b>.
+<li>Se realizeaza pagina grafica "labs2_01"
+<li>Se introduc elementele de functionalitate
+<li>Se realizeaza pagina grafica "labs2_02" in care se vor introduce si elemente de conditionalitate intre separatoare si intreruptoare
+<li>Se realizeaza functia leduri1_on() pentru  butonul ON  
+<li>Se realizeaza functia leduri1_ff() pentru  butonul OFF
+<li>Se realizeaza functia init1_on() pentru  butonul INIT  
+<li>Se introduc elementele de functionalitate
+</td></tr></table>
+</ul>
+
+<br><br><font color= "Blue" size=5>Prezentarea rezultatelor </font>
+<ul>
+<Table border=1>
+<tr>
+ <td colspan="3" bgcolor="yellow"><center> Punctarea activitatilor (total 6 puncte) </center></td>
+</tr> 
+<tr>
+<td align="center"><b> Nr </b>  </td>
+  <td align="center"><b> Denumire activitate </b>  </td>
+  <td align="center"><b> Punctaj </b> </td>
+</tr>
+<tr>
+  <td> 1 </td>
+  <td> Se verifica aspectul grafic al pagini grafice "labs2_01" </td>
+  <td><center> 1 </center></td>
+</tr> 
+<tr>
+  <td> 2 </td>
+  <td> Se verifica functionalitatea pagini grafice "labs2_01" </td>
+  <td><center> 1 </center></td>
+</tr>
+<tr>
+  <td> 3 </td>
+  <td> Se verifica aspectul grafic al pagini grafice "labs2_02" </td>
+  <td><center> 2 </center></td>
+</tr> 
+<tr>
+  <td> 4 </td>
+  <td> Se verifica functionalitatea pagini grafice "labs2_02" </td>
+  <td><center> 2 </center></td>
+</tr>
+</table>
+</ul>  
+<br><br><font color= "Blue" size=5>Aplicatii suplimentare </font>
+<ul>
+ <li>  Realizati aplicatii pentru conexiuni ale centralelor electrice in care sa utilizatie elemente de programare
+</ul> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Exemple de scheme de conexiuni ale centralelor electrice:
+<br><br><center><img src="im_citect023.gif"></center>
+<br><br><center><img src="im_citect024.gif"></center>
+
+ 
+</body>
+</html>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 

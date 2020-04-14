@@ -1,0 +1,270 @@
+<html>
+<title>Aplicatia 5 - Aplicatii SCADA in energetica - Scheme monofilare </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> Aplicatia 5 - Aplicatii SCADA in energetica - Scheme monofilare  </Center></TD></TR>
+</table>
+
+<br><br><font color= "Blue" size=5> Obiective </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Realizarea unui proiect SCADA pentru simularea functionarii unei scheme monofilare.
+<li>Utilizarea instructiunilor Citect si a functiilor definite de utilizator pentru implementarea functionalitatii unei scheme monofilare.
+<li>Realizarea unei pagini grafice care sa simuleze conectarea secventiala a liniilor folosind instructiunea FOR si functia predefinita sleep().
+<li>Realizarea unei pagini grafice care sa simuleze conectarea secventiala a liniilor si care se conditioneaza actionarea separatoarelor 
+de pozitia intreruptoarelor
+
+</td></tr></table>
+</ul>
+<font color= "Blue" size=5> Prezentare teoretica </font>
+<br><br><font color= "Black" size=4><b> Scheme monofilare  </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a realiza scheme monofilare avem nevoie de o serie de simboluri cum ar fi simboluri 
+pentru: separatoare, intreruptoare, transformatoare etc.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;O schema monofilara contine o serie de elemente de comutatie cum ar fi separatoare, intreruptoare, etc. 
+Exista o ordine in care se actioneaza cele doua elemente, in sensul ca separatorul nu poate fi niciodata actionat in sarcina.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In sistemele energetice, inchiderea respectiv deschiderea unui separator sau a unui intreruptor nu este instantanee. 
+In aplicatiile SCADA se tine cont de acest fenomen. Dupa comanda actionarii unui element se scurge un interval de timp pana la efectuarea completa 
+a comenzii. Dupa actionarea uniui element e nevoie de un semnal care sa confirme efectuarea comenzii. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru testarea aplicatiilor SCADA fara conectare la sistemul real de achizitie si comanda, inchiderea respectiv 
+deschiderea elementelor de comutatie, ar putea fi simulata printr-o marime analogica, avand valori intre 0 si 100%. Pe schema aceasta valoare 
+ar putea fi simulata prin utilizarea unui control de tip "Slider" care ar fi in legatura cu un tag de tip analogic. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Starea fiecarui element plasat pe HMI este controlata de tag-ul corespunzator. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In multe cazuri in cadrul schemelor monofilare se intalnesc mai multe elemente de acelasi tip. In acest caz se recomanda 
+definirea tag-urilor de tip Array si utilizarea instructiunilor repetitive. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; In cazul sistemelor de alimentare cu energie, avand mai multe linii, pentru a evita socurile de sarcina, conectarea respectiv deconectarea 
+acestora se face secvential intr-o ordine prestabilita, in functie de importanta utilizatoruli. Pentru a memora prioritatea cobnsumatorilor, se recomanta 
+utilizarea unui vector de prioritati.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Tag-urile sunt actualizate de sistemul de achizitie si comanda. Acesta este prevazut atat cu elemente pentru citirea 
+strilor cat si cu elemente de comanda.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Logica de functionare a unei scheme monofilare se implementeaza intr-o pagina grafica prin intermediul instructiunilor si 
+functiilor scrise in limbajul "Cicode".
+
+<br><br><font color= "Blue" size=4><li><b>Utilizarea instructiunilor decizionale </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if</b> se foloseste pentru a selecta executia unei instructiuni (sau a unui grup de instructiuni) functie de 
+valoarea logica a unei expresii relationale 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul instructiunii:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>if</b> are urmatoarele formate:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>If expresie relationala THEN
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;sau
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>If expresie relationala THEN
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ELSE
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br><font color= "Blue" size=4><li><b> Utilizarea functiilor</b> </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul pentru definirea unei functii fara parametri si fara returnare de valori:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru definirea unei astfel de functii se foloseste urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FUNCTION nume_functie()
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul pentru definirea unei functii cu parametri si fara returnare de valori:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru definirea unei astfel de functii se foloseste urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FUNCTION nume_functie(Argumente)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul pentru definirea unei functii cu parametri si cu returnare de valori:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru definirea unei astfel de functii se foloseste urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Tip valoare returnata FUNCTION nume_functie(Argumente)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declaratii;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN valoare
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END</b>
+
+<br><br><font color= "Blue" size=4><li><b> Utilizarea instructiunilor repetitive</b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>for</b> Se foloseste pentru a executa repetitiv o instructiune sau o secventa de instructiuni. De obicei
+implementeaza structura ciclica cu numar cunoscut de pasi.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Formatul instructiunii:</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructiunea <b>for</b> are urmatorul format:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>FOR Variabila=expresie1 TO expresie2 DO  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instructiune(instructiuni;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;END </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unde expresie1 este valoarea de start a variabilei iar expresie2 este valoarea de stop a variabilei. 
+
+
+ 
+<br><br><font color= "Blue" size=5> Tematica de laborator </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand mediul de dezvoltare SCADA-CITECT creati o pagina grafica care sa simuleze o schema monofilara in care 
+se conecteaza secvential liniile. Se va folosi instructiunea FOR si functia predefinita sleep(). Se va crea un noun proiect cu numele <b> Labs </b> in 
+in care se va crea pagina  <b> labs5_01 </b> similara cu pagina grafica de jos:
+<br><br><center><img src="im_citect051.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul acestei scheme monofilare se intalnesc mai multe elemente de acelasi tip. Vom defini tag-uri de tip Array 
+si vom utiliza instructiuni repetitive pentru controlul acestor tag-uri. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru inchiderea respectiv deschiderea elementelor de comutatie, vom introduce doua tag-uri de tip Array:
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="6" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Array Size </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> sep </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> 11 </td>
+  <td> Separatoarele sep[1]-sep[10] </b> </td>    
+</tr> 
+
+<tr>
+  <td> intr </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> 11 </td>
+  <td> Intreruptoarele intr[1]-intr[10] </b> </td>       
+</tr> 
+</table></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentele click ale butoanelor "ON" respectiv "OFF" sunt afectate doua variabile tag locale:
+<br><br>
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> cmd_on </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda inchiderea elementelor de comutatie </b> </td>    
+</tr> 
+
+<tr>
+  <td> cmd_off </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda deschiderea elementelor de comutatie </b> </td>    
+</tr>
+<tr>
+  <td> i </td>
+  <td> INT </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Index </b> </td>    
+</tr>
+</table>
+</center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se stabileste vectorul de prioritati de conectare sub forma:
+<br><br><center>INT Prior[11]=0,1,5,7,4,2,9,3,6,8,10;</center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va crea functia atribuita butonului ON numita: FUNCTION sch1_on() 
+respectiv functia atribuita butonului OFF numita: FUNCTION sch1_off(). 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se va crea pagina  <b> labs5_02 </b> similara cu pagina grafica <b> labs5_01 </b> cu deosebirea ca in acesata 
+pagina se va tine cont de ordinea de comutare referitoare la separatori si intreruptori. Se va rescrie deci functia atribuita butonului 
+ON si se va numi: FUNCTION sch2_on() respectiv functia atribuita butonului OFF si se va numi: FUNCTION sch2_off()
+
+<br><br><font color= "Blue" size=5> Cerinte de rezolvat </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Crearea unui nou proiect "Labs"
+<li>Realizarea paginii grafice "labs5_01"
+<li>Implementarea si verificarea functionalitatii pagini grafice "labs5_01"
+<li>Realizarea functiei atribuita butonului ON numita: FUNCTION sch1_on() respectiv a functiei atribuita butonului OFF numita: FUNCTION sch1_off().
+<li>Realizarea paginii grafice "labs5_02"
+<li>Se va tine cont de ordinea de comutare referitoare la separatori si intreruptori. Se va rescrie deci functia atribuita butonului 
+ON si se va numi: FUNCTION sch2_on() respectiv functia atribuita butonului OFF si se va numi: FUNCTION sch2_off()
+<li>Implementarea si verificarea functionalitatii pagini grafice "labs5_02"
+</td></tr></table>
+</ul>
+
+<br><br><font color= "Blue" size=5> Derularea activitatilor </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Se creaza nou proiect "Labs"
+<li>Daca nu se reuseste crearea unui nou proiect valid, se poate utiliza proiectul <b> "Sch_el_start" </b> proiect in care au fost parcursi toti pasii 
+pentru crearea unui nou proiect.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Proiectul se poate descarca de pe www.science.upm.ro/~traian
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa ce s-a download-at acest fisier, din Citect Explorer->Restore se incarca acest proiect si i se atribuie numele 
+<b> "Labs" </b>.
+<li>Se realizeaza pagina grafica "labs5_01"
+<li>Se introduc elementele de functionalitate
+<li>Se creaza functia atribuita butonului ON numita: FUNCTION sch1_on() respectiv functi atribuita butonului OFF numita: FUNCTION sch1_off().
+<li>Se realizeaza pagina grafica "labs5_02" in care se vor introduce si elemente de conditionalitate intre separatoare si intreruptoare
+<li>Se tine cont de ordinea de comutare referitoare la separatori si intreruptori. Se rescrie deci functia atribuita butonului 
+ON si se va numi: FUNCTION sch2_on() respectiv functia atribuita butonului OFF si se va numi: FUNCTION sch2_off()
+<li>Se introduc elementele de functionalitate
+</td></tr></table>
+</ul>
+
+<br><br><font color= "Blue" size=5>Prezentarea rezultatelor </font>
+<ul>
+<Table border=1>
+<tr>
+ <td colspan="3" bgcolor="yellow"><center> Punctarea activitatilor (total 6 puncte) </center></td>
+</tr> 
+<tr>
+<td align="center"><b> Nr </b>  </td>
+  <td align="center"><b> Denumire activitate </b>  </td>
+  <td align="center"><b> Punctaj </b> </td>
+</tr>
+<tr>
+  <td> 1 </td>
+  <td> Se verifica aspectul grafic al pagini grafice "labs5_01" </td>
+  <td><center> 1 </center></td>
+</tr> 
+<tr>
+  <td> 2 </td>
+  <td> Se verifica functionalitatea pagini grafice "labs5_01" </td>
+  <td><center> 1 </center></td>
+</tr>
+<tr>
+  <td> 3 </td>
+  <td> Se verifica aspectul grafic al pagini grafice "labs5_02" </td>
+  <td><center> 2 </center></td>
+</tr> 
+<tr>
+  <td> 4 </td>
+  <td> Se verifica functionalitatea pagini grafice "labs5_02" </td>
+  <td><center> 2 </center></td>
+</tr>
+</table>
+</ul>
+<br><br><font color= "Blue" size=5>Aplicatii suplimentare </font>
+<ul>
+ <li>  Realizati aplicatii cu scheme monofilare
+</ul> 
+&nbsp;&nbsp;&nbsp;&nbsp;Exemple de scheme monofilare:
+<br><br><center><img src="im_citect022.gif"></center>
+<br><br><center><img src="im_citect025.gif"></center>
+<br><br><center><img src="im_citect027.gif"></center>
+<br><br><center><img src="im_citect029.gif"></center>
+
+<br><br> 
+</body>
+</html>

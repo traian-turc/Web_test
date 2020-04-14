@@ -1,0 +1,205 @@
+<html>
+<title>Aplicatia 3 - Marimi analogice </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> Aplicatia 3 - - Marimi analogice </Center></TD></TR>
+</table>
+<br><font color= "Blue" size=5> Obiective </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Gestionarea marimilor analogice in sistemele SCADA.
+<li>Utilizarea instrumentatiei virtuale pentru afisarea parametrilor analogici.
+<li>Controlarea instrumentatiei virtuale prin intermediul aplicatiilor SCADA.
+<li>Simularea marimilor analogice in cadrul aolicatiilor SCADA.
+<li>Realizarea unei pagini grafice in care se simuleaza variatia tensiunii si afisarea valorii instantanee a acestreia.
+<li>Realizarea unei pagini grafice care mimeaza functionarea unei pompe care umple un rezervor si afiseaza evolutia in timp a unui parametru.  
+</td></tr></table>
+</ul>
+<font color= "Blue" size=5> Prezentare teoretica </font>
+<br><br><b> Afisarea sub forma numerica  </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea valorii unei marimi analogice sub forma numerica se face utilizand un obiect de tip "Number"
+<br><br><b>Afisarea sub forma de bara verticala (histografica) </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Reprezentarea sub forma unei bare vericale se face:
+<ul>
+<li> Utilizand un obiect "Rectangle" in care:
+<ul>
+<li> se bifeaza proprietatea Aparence->Filled si se alege culoarea cu care se face fill
+<li> se seteaza proprietatea Fill-> Level cu numele tag-ului ce reprezinta marimea analogica  
+<li> daca se doreste afisarea utilizand un gradient de culoare:
+ <ul>
+ 	<li> s-a setat proprietatea Fill-> Color cu numele tag-ului ce reprezinta marimea analogica 
+   	<li> se seteaza si proprietatea Aparence-> Gradient Fill
+  </ul>
+</ul>
+<li>Utilizand un obiect de tipul "Genie" -> Faceplat -> Indicator1
+</ul>
+<b>Afisarea unui instrument virtual  </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa un instrument virtual, se foloseste un obiect "ActiveX" CimeterX.TechMeter unde se bifeaza proprietatea 
+"Value" si i se atribuie numele tag-ului ce reprezinta marimea analogica 
+<br><br><b>Controlul din program al unui instrument virtual </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Controlul din program al unui instrument virtual se face pe baza Object Name-ul atribuit la plasarea acestuia pe pagina grafica.
+<br><br><b>Afisarea evolutiei in timp a marimilor analogice </b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea evolutiei in timp a marimilor analogice se face cu:
+<ul>
+ <li> Obiecte de tip "Trend"
+ <li> Obiecte de tip "Genie->Trend"
+</ul>
+<b>Simularea marimilor analogice se face: </b>
+<ul>
+ <li> Obiecte "Symbol" de tipul Xp_slider
+ <li> Obiecte de tip "Genie" -> Faceplat -> Manual_l...1_v 
+ <li> Din program
+</ul>
+
+<br><br><font color= "Blue" size=5> Tematica de laborator </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand mediul de dezvoltare SCADA-CITECT creati o pagina grafica care sa simuleze variatia tensiunii, 
+afisarea valorii instantanee a acestreia. Se va crea un noun proiect cu numele <b> Labs </b> in in care se va crea pagina  <b> labs3_01 </b>
+similara cu pagina grafica de jos:
+<br><br><center><img src="im_citect031.gif"></center>
+<ul>
+ <li> Se va introduce un nou tag digital numit <b> u_ali </b>
+ <br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+<tr>
+  <td> u_ali </td>
+  <td> RELAL </td>
+  <td> Volts </td>
+  <td> 250 </td>
+  <td> Tensiunea de alimentare</b> </td>    
+</tr> 
+</table>
+</center>  
+<br><br> 
+<li> Pentru simularea tensiunii de alimentare, se va folosi un obiect de tip "Ginie" si anume: "Ginie" -> Faceplat -> Manual_l...1_v.
+<li> Pentru afisare tensiunii de alimentare, se va folosi un obiect de tip "Ginie" si anume: "Ginie" -> Faceplat -> Indicator1.
+<li> Pe post de instrument virtual pentru afisarea analogica a tensiunii, se va folosi un obiect ActivX-CiMeterX.
+<li> Realizati o functie care sa modifice proprietatile obiectului ActivX-CiMeterX astfel 
+<ul>
+<li>daca tensiunea u_ali < 180 V sa se schimbe culoarea de fond a instrumentului in galben iar parametrul "Caption" sa devina "Tensiune sub U nominal"
+<li>daca tensiunea u_ali > 220 V sa se schimbe culoarea de fond a instrumentului in rosu iar parametrul "Caption" sa devina "Depasire U nominal"
+<li>daca tensiunea u_ali > 180 si u_ali <= 220 V sa se schimbe culoarea de fond a instrumentului in verde iar parametrul "Caption" sa devina "Tensiune alimentare"
+</ul> 
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Exemplu: dupa modificarea u_ali sub 180 V, pagina grafica trebuie sa fie similara cu:
+<br><br><center><img src="im_citect032.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom dezvolta o noua pagina grafica avand numele "labs3_02" care are mimeaza functionarea unei pompe 
+care umple un rezervor. Vor exista doua moduri de functionare: automat si manual. Pe modul manual se va simula manual turatia, respectiv nivelul 
+in rezervor. Pe modul automat, se va simula o crestere liniara a niveluli din rezervor, pana la limita de 80%. Dupa atingerea acestei limite, 
+se opreste pompa, si se seteaza turatia la 0, dupa care are loc o descrestere liniara a nivelului, pana la limita de 20%, moment in care se 
+porneste pompa si se seteaza turatia la 360 RPM si se reia cresterea liniara. HMI acestei aplicatii va trebui sa fie similar cu:
+<br><br><center><img src="im_citect033.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru indicarea nivelului in rezervor, se va utiliza un obiect de tip "Genie" -> Faceplat -> Indicator1 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru simularea nivelului in rezervor si pentru simularea turatiei, se vor utiliza obiecte de tip "Genie" si anume: "Ginie" -> Faceplat -> Manual_l...1_v 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se va plasa si un obiect pentru trending de tip "Genie" -> trends -> SG1_Pop..tn2 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Turatia va fi afisata cu un simbol de tip Number.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sunt necesare tag-urile
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+<tr>
+  <td> mod_l </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Mod de lucru: automat/manual </b> </td>    
+</tr> 
+<tr>
+  <td> cmd_m </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda motor </b> </td>    
+</tr> 
+</table>
+</center>  
+<br><br> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<br><br><font color= "Blue" size=5> Cerinte de rezolvat </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Crearea unui nou proiect "Labs"
+<li>Realizarea paginii grafice "labs3_01"
+<li>Implementarea si verificarea functionalitatii pagini grafice "labs3_01"
+<li>Realizarea paginii grafice "labs3_02"
+<li>Scrierea functiei pentru simularea cresterii liniare a niveluli din rezervor si comanda pompei.
+<li>Implementarea si verificarea functionalitatii pagini grafice "labs3_02"
+</td></tr></table>
+</ul>
+
+<br><br><font color= "Blue" size=5> Derularea activitatilor </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Se creaza nou proiect "Labs"
+<li>Daca nu se reuseste crearea unui nou proiect valid, se poate utiliza proiectul <b> "Sch_el_start" </b> proiect in care au fost parcursi toti pasii 
+pentru crearea unui nou proiect.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Proiectul se poate descarca de pe www.science.upm.ro/~traian
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa ce s-a download-at acest fisier, din Citect Explorer->Restore se incarca acest proiect si i se atribuie numele 
+<b> "Labs" </b>.
+<li>Se realizeaza pagina grafica "labs3_01"
+<li>Se introduc elementele de functionalitate
+<li>Se realizeaza pagina grafica "labs3_02" in care se vor introduce noile elemente de functionalitate
+<li>Se scrie functia pentru simularea cresterii liniare a niveluli din rezervor si comanda pompei.
+<li>Se introduc elementele de functionalitate
+</td></tr></table>
+</ul>
+
+<br><br><font color= "Blue" size=5>Prezentarea rezultatelor </font>
+<ul>
+<Table border=1>
+<tr>
+ <td colspan="3" bgcolor="yellow"><center> Punctarea activitatilor (total 6 puncte) </center></td>
+</tr> 
+<tr>
+<td align="center"><b> Nr </b>  </td>
+  <td align="center"><b> Denumire activitate </b>  </td>
+  <td align="center"><b> Punctaj </b> </td>
+</tr>
+<tr>
+  <td> 1 </td>
+  <td> Se verifica aspectul grafic al pagini grafice "labs3_01" </td>
+  <td><center> 1 </center></td>
+</tr> 
+<tr>
+  <td> 2 </td>
+  <td> Se verifica functionalitatea pagini grafice "labs3_01" </td>
+  <td><center> 1 </center></td>
+</tr>
+<tr>
+  <td> 3 </td>
+  <td> Se verifica aspectul grafic al pagini grafice "labs3_02" </td>
+  <td><center> 2 </center></td>
+</tr> 
+<tr>
+  <td> 4 </td>
+  <td> Se verifica functionalitatea pagini grafice "labs3_02" </td>
+  <td><center> 2 </center></td>
+</tr>
+</table>
+</ul>  
+<br><br> 
+</body>
+</html>

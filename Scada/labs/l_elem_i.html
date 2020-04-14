@@ -1,0 +1,173 @@
+<html>
+<title>Aplicatia 1 - Utilizarea mediului de dezvoltare SCADA-CITECT  </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> Aplicatia 1  - Utilizarea mediului de dezvoltare SCADA-CITECT  </Center></TD></TR>
+</table>
+
+<br><br><font color= "Blue" size=5> Obiective </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Exemplificarea modului de realizare a un proiect SCADA
+<li>Adaugarea tag-urilor necesari dezvoltarii ulterioare a aplicatiei
+<li>Realizarea unei pagini grafice functionale simple 
+<li>Realizarea unei pagini grafice care sa mimeze un proces
+<li>Realizarea unei pagini grafice functionale, care sa mimeze un proces
+</td></tr></table>
+</ul>
+<font color= "Blue" size=5> Prezentare teoretica </font>
+<br><br><font color= "Black" size=4><b> Realizarea unei aplicatii SCADA  </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Realizarea unei aplicatii SCADA presupune o serie de pasi cum ar fi: 
+<ul>
+ <li>identificarea si setarea corespunzatoare a elementelor pentru achizitia de date precum si a echipamenelor pentru comanda si controlul 
+ procesului monitorizat.
+ <li> crearea unui nou proiect 
+ <li> definirea si setarea tag-urilor
+ <li> realizarea paginilor grafice pentru mimarea procesului monitorizat
+ <li> scrierea de functii si setarea corespunzatoare a elementelor grafice din paginile grafice pentru realizarea mimarii procesului.
+ <li> stabilirea utilizatorilor aplicatiei si setarea drepturilor acestora.
+ <li> testarea si rularea aplicatiei
+ </ul>
+<font color= "Black" size=4><b>Configurarea tag-urilor </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatiile SCADA se bazeaza pe stabilirea si utilizarea TAG-urilor. Tag-urile sunt interfata intre utilizator si
+procesul monitorizat. Exista mai multe tipuri de variabile tag. 
+<ul>
+ <li> Variabile tag - sunt variabilele care au legatura directa cu procesul, fiind modificate direct de sistemul de achizitie si control si totodata la 
+ acestea are acces si aplicatia SCADA
+ <li> Variabile tag locale - necesare dezvoltarii aplicatiei SCADA
+ <li> Variabile tag de tip trends - necesare pentru trasarea graficelor marimilor achizitionate din proces
+</ul> 
+<br><br><font color= "Blue" size=5> Tematica de laborator </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand mediul de dezvoltare SCADA-CITECT creati un nou proiect "Sch_el" in care sa realizati pagina grafica 
+avand numele "labs1_01" similara cu:
+pagina grafica de jos.
+<br><br><center><img src="im_citect001.gif"></center>
+<ul>
+<li> Se vor introduce tag-urile digitale numite <b> mod_l </b> si  <b> cmd_m </b> 
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+<tr>
+  <td> mod_l </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Mod de lucru: automat/manual </b> </td>    
+</tr> 
+<tr>
+  <td> cmd_m </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda motor </b> </td>    
+</tr> 
+</table>
+</center>  
+<br><br> 
+<li> Pentru simbolizarea motorului se va alege un Simbol Set din gama "Agitator motors" iar pentru agitator se va alege un Simbol Set animated setat 
+astfel:
+<br><br><center><img src="im_citect002.gif"></center>
+<li> Actionarea motorului se poate face numai pe modul manual. Utilizatorul trebuie avertizat printr-un mesaj de acest lucru cand incearca sa 
+actioneze acest buton.
+<br><br><center><img src="im_citect004.gif"></center>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Dupa trecerea pe "Manual" si actionarea butonului "On/Off" pagina grafica trebuie sa fie similara cu:
+<br><br><center><img src="im_citect003.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Bazandu-ne pe aplicatia anterioara, vom dezvolta o noua aplicatie avand numele "labs1_02" care are functionalitatea 
+primei aplicatii insa in plus mimeaza functionarea unei pompe care umple un rezervor.
+<br><br><center><img src="im_citect005.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru indicarea nivelului in rezervor, se va utiliza un obiect de tip "Genie" -> Faceplat -> Indicator1 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru simularea nivelului in rezervor si pentru simularea turatiei, se vor utiliza obiecte de tip "Genie" si anume: "Ginie" -> Faceplat -> Manual_l...1_v 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se va plasa si un obiect pentru trending de tip "Genie" -> trends -> SG1_Pop..tn2 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Turatia va fi afisata cu un simbol de tip Number
+<br><br><font color= "Blue" size=5> Cerinte de rezolvat </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Crearea unui nou proiect "Sch_el"
+<li>Realizarea paginii grafice "labs1_01"
+<li>Implementarea si verificarea functionalitatii pagini grafice "labs1_01"
+<li>Realizarea paginii grafice "labs1_02"
+<li>Implementarea si verificarea functionalitatii pagini grafice "labs1_02"
+</td></tr></table>
+</ul>
+
+<br><br><font color= "Blue" size=5> Derularea activitatilor </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Se creaza nou proiect "Sch_el"
+<li>Daca nu se reuseste crearea unui nou proiect valid, se poate utiliza proiectul <b> "Sch_el_start" </b> proiect in care au fost parcursi toti pasii 
+pentru crearea unui nou proiect.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Proiectul se poate descarca de pe www.science.upm.ro/~traian
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa ce s-a download-at acest fisier, din Citect Explorer->Restore se incarca acest proiect si i se atribuie numele 
+<b> "Sch_el" </b>.
+<li>Se realizeaza pagina grafica "labs1_01"
+<li>Se introduc elementele de functionalitate
+<li>Se realizeaza pagina grafica "labs1_02"
+<li>Se introduc elementele de functionalitate
+</td></tr></table>
+</ul>
+
+<br><br><font color= "Blue" size=5>Prezentarea rezultatelor </font>
+<ul>
+<Table border=1>
+<tr>
+ <td colspan="3" bgcolor="yellow"><center> Punctarea activitatilor (total 6 puncte) </center></td>
+</tr> 
+<tr>
+<td align="center"><b> Nr </b>  </td>
+  <td align="center"><b> Denumire activitate </b>  </td>
+  <td align="center"><b> Punctaj </b> </td>
+</tr>
+<tr>
+  <td> 1 </td>
+  <td> Se verifica aspectul grafic al pagini grafice "labs1_01" </td>
+  <td><center> 1 </center></td>
+</tr> 
+<tr>
+  <td> 2 </td>
+  <td> Se verifica functionalitatea pagini grafice "labs1_01" </td>
+  <td><center> 1 </center></td>
+</tr>
+<tr>
+  <td> 3 </td>
+  <td> Se verifica aspectul grafic al pagini grafice "labs1_02" </td>
+  <td><center> 2 </center></td>
+</tr> 
+<tr>
+  <td> 4 </td>
+  <td> Se verifica functionalitatea pagini grafice "labs1_02" </td>
+  <td><center> 2 </center></td>
+</tr>
+</table>
+</ul>
+<br><br><font color= "Blue" size=5>Aplicatii suplimentare </font>
+<ul>
+ <li>  Deplasarea simbolurilor pe pagina grafica
+</ul> 
+<br><br><center><img src="im_citect006.gif"></center>
+<ul>
+ <li>  Realizati noi simboluri electrice  si desenati scheme electrice folosind noile simboluri
+</ul> 
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Exemple de simboluri electrice:
+<br><br><center><img src="im_citect020.gif"></center>
+<br><br><center><img src="im_citect021.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Exemple de scheme electrice:
+<br><br><center><img src="im_citect026.gif"></center>
+<br><br><center><img src="im_citect028.gif"></center>
+  
+<br><br> 
+</body>
+</html>

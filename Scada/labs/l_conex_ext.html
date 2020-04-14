@@ -1,0 +1,300 @@
+<html>
+<title>Aplicatia 6 - Utilizarea portului serial </title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5>Aplicatia 6 - Utilizarea portului serial </Center></TD></TR>
+</table>
+<br><font color= "Blue" size=5> Obiective </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Utilizarea portului serial pentru a accesa diverse dispozitive atasate la acesta
+<li>Scrierea de aplicatii SCADA care comunica prin portul serial cu diverse sisteme de achizitie
+<li>Realizarea unei aplicatii SCADA pentru citirea si afisarea a 4 intrari digitale.
+<li>Realizarea unei aplicatii SCADA pentru comanda a 8 iesiri digitale.
+</td></tr></table>
+</ul>
+<font color= "Blue" size=5> Prezentare teoretica </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Numeraoase sisteme de achizitie, comunica cu calculatorul prin intermediul portului serial. Mediul de dezvoltare aplicatiii 
+SCADA Citect permite utilizarea portului serial pentru interfatarea cu diverse sisteme hardware de monitorizare si control. Utilizarea portului serial 
+presupune scrierea unor functii pentru conectarea si transerul datelor prin portul serial. De asemenea trebuisec facute niste setari in vederea utilizarii 
+portului serial.
+<br><br><b>Configurarea placii de achizitie (Board)</b>
+<ul>
+	<li> Din Citect Project Editor ->  Comunications  -> Board
+</ul>
+<b>Configurarea portului de comunicatie</b>
+<ul>
+	<li> Din Citect Project Editor ->  Comunications  -> Ports
+</ul>
+<b>Programarea portului serial</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prima operatie care se executa in vederea utilizarii portului serial este operatia de deschidere a portului serial. Aceasta 
+operatie se bazeaza pe utilizarea functiei <b> FUNCTION ComOpen(STRING nume_Port,0)</b>. Aceasta functie are nevoie de un parametru de tip "string" 
+pentru a preciza numele portului. Daca portul cu numele "nume_Port", se poate deschide, functia returneaza un INT care reprezinta "handler-ul" cu care 
+se vor face celelalte operatii (citire, scriere, inchidere).
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Pentru utilizarea portului serial se utilizeaza functiile . 
+<ul>
+	<li>Functia pentru deschiderea portului serial
+	<li>Functia pentru scrierea la portul serial
+	<li>Functia pentru citirea de la portul serial
+	<li>Functia pentru inchiderea portului serial
+</ul>
+<font color= "Blue" size=5> Tematica de laborator </font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se utilizeaza un sistem de achizitie date realizat pe baza unui sistem de dezvoltare PIC conectat prin portul serial 
+la calculator. Sistemul de achizitie dispune de 5 intrari analogice 4 digitale si 8 iesiri digitale, conectate astfel:
+<center> <img src="achiz_pic.jpg"></center>
+<ul>
+ <li>Comanda pentru citirea simultana a celor cinci canale analogice este:<b>Ai</b> 
+ <li>Comanda pentru citirea unei intrari analogice este:<b>Ai</b> unde i=0..4, 
+ <li>Comanda pentru inscrierea celor 8 iesiri digitale este <b>On</b> unde n este numarul in zecimal care va fi afisat in binar pe cele 8 iesiri digitale.
+ <li>Comanda DI pentru citirea unui numar zecimal care codifica cele 4 intrari digitale.
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Utilizand sistemul de achizitie descris mai sus si mediul de dezvoltare SCADA-CITECT creati o aplicatie SCADA pentru 
+citirea si afisarea a 4 intrari digitale. 
+Se va crea un noun proiect cu numele <b> Labs </b> in in care se va crea pagina  <b> labs6_01 </b>
+similara cu pagina grafica de jos:
+<br><br><center><img src="im_citect061.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se vor introduce tag-urile:
+<ul>
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+<tr>
+  <td> hPrt </td>
+  <td> INT </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Handler port serial deschis</b> </td>    
+</tr>
+<tr>
+  <td> k1 </td>
+  <td> INT </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Semnifica port serial deschis</b> </td>    
+</tr> 
+<tr>
+  <td> nr_r </td>
+  <td> INT </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Numarul de caractere receptionate</b> </td>    
+</tr> 
+<tr>
+  <td> buf </td>
+  <td> STRING </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Buffer comanda port serial</b> </td>    
+</tr>
+<tr>
+  <td> buf </td>
+  <td> STRING </td>
+  <td> - </td>
+  <td> - </td>
+  <td>Buffer raspuns port serial</b> </td>    
+</tr>
+<tr>
+  <td> sem </td>
+  <td> INT </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Semafor</b> </td>    
+</tr> <tr>
+  <td> Val_di </td>
+  <td> INT </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Valoarea intrarii analogice</b> </td>    
+</tr>  
+</table>
+</center>  
+</ul>
+<br><br>&nbsp;&nbsp;&nbsp;&nbspPentru utilizarea portului serial sunt necesare functiile:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+INT FUNCTION StartSerial(STRING sPort)    
+	INT    hPort;    
+	hPort = ComOpen(sPort, 0);
+    IF hPort < 0 THEN
+		Prompt("Nu s-a deschis portul: " + sPort);
+		RETURN -1;    
+	END
+Prompt("Portul: " + sPort+ " a fost deschis.");	    
+hPrt=hPort;
+buf="A0"
+sem=0;    
+RETURN 1;
+END
+
+INT FUNCTION SerialClose(INT hPort)
+	ComClose(hPort);
+	Prompt("Portul a fost inchis."); 
+	RETURN 0;
+END 
+
+INT FUNCTION SerialWrite(INT hPort, STRING buffer)    
+    INT SerialWriteError;    
+    INT length;   
+       	length=StrLength(buffer);     
+		SerialWriteError = ComWrite(hPort, buffer, length, 2);        
+		IF SerialWriteError THEN            
+    		Prompt("Error Writing port");            
+    		ComReset(hPort);
+    		RETURN -1;        
+    	END	      
+	RETURN 0;
+END 
+
+INT FUNCTION SerialRead(INT hPort)
+	STRING buffer      
+	INT    length;    
+	INT    total;    
+	INT    SerialReadError;    
+	total = 0;
+	length=20;              
+		SerialReadError = ComRead(hPort, buffer, length, 0);
+		IF SerialReadError THEN            
+			Prompt("Eroare la citirea P S " + SerialReadError : ####);            
+			ComReset(hPort);
+			RETURN -1;         
+		ELSE           
+			IF StrLength(buffer)>0 THEN
+			  buf_r=buffer;
+			  nr_r=StrLength(buffer);
+			    Val_a0=StrToInt(StrTrim(StrMid( buffer,3,StrLength(buffer)-3)));
+			END
+		END	       
+RETURN 0;
+END
+
+INT FUNCTION Achiz_di
+IF k1=1 THEN
+   IF sem = 1 THEN
+     sem=0;
+	 SerialRead(hPrt);
+   	 SerialWrite(hPrt,"DI");
+   ELSE
+    sem=1;
+    SerialRead(hPrt);
+   END 
+END
+RETURN 0
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va dezvolta o noua pagina grafica avand numele "labs6_02" care pentru comanda a 8 iesiri digitale. 
+HMI-ul acestei aplicatii va trebui sa fie similar cu:
+<br><br><center><img src="im_citect062.gif"></center>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va dezvolta o noua pagina grafica avand numele "labs6_03" care pentru comanda a 8 iesiri digitale. 
+HMI-ul acestei aplicatii va trebui sa fie similar cu:
+<br><br><center><img src="im_citect063.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se vor introduce tag-urile st, led0-led7 de tip DIGITAL, si tag-ul de tip STRING cd_led
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se va plasa functia Ctrl_led() pe pagina grafica, astfel comanda de afisare a LED-urilor se 
+trimite la fiecare scanare a paginii si nu mai e necesar butonul "Trimit comanda":
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION Ctrl_led()
+  cd_led=IntToStr(led7*128+led6*64+led5*32+led4*16+led3*8+led2*4+led1*2+led0);
+  cd_led="O"+cd_led
+  SerialWrite(hPrt,cd_led);
+END 
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+
+
+<br><br><font color= "Blue" size=5> Cerinte de rezolvat </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Crearea unui nou proiect "Labs"
+<li>Realizarea paginii grafice "labs6_01"
+<li>Implementarea si verificarea functionalitatii pagini grafice "labs6_01"
+<li>Realizarea paginii grafice "labs6_02"
+<li>Implementarea si verificarea functionalitatii pagini grafice "labs6_02"
+<li>Realizarea paginii grafice "labs6_03"
+<li>Implementarea si verificarea functionalitatii pagini grafice "labs6_03"
+</td></tr></table>
+</ul>
+
+<br><br><font color= "Blue" size=5> Derularea activitatilor </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Se creaza nou proiect "Labs"
+<li>Daca nu se reuseste crearea unui nou proiect valid, se poate utiliza proiectul <b> "Sch_el_start" </b> proiect in care au fost parcursi toti pasii 
+pentru crearea unui nou proiect.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Proiectul se poate descarca de pe www.science.upm.ro/~traian
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa ce s-a download-at acest fisier, din Citect Explorer->Restore se incarca acest proiect si i se atribuie numele 
+<b> "Labs" </b>.
+<li>Se realizeaza pagina grafica "labs6_01"
+<li>Se introduc elementele de functionalitate
+<li>Se realizeaza pagina grafica "labs6_02" 
+<li>Se introduc elementele de functionalitate
+<li>Se realizeaza pagina grafica "labs6_03" 
+<li>Se introduc elementele de functionalitate 
+</td></tr></table>
+</ul>
+
+<br><br><font color= "Blue" size=5>Prezentarea rezultatelor </font>
+<ul>
+<Table border=1>
+<tr>
+ <td colspan="3" bgcolor="yellow"><center> Punctarea activitatilor (total 6 puncte) </center></td>
+</tr> 
+<tr>
+<td align="center"><b> Nr </b>  </td>
+  <td align="center"><b> Denumire activitate </b>  </td>
+  <td align="center"><b> Punctaj </b> </td>
+</tr>
+<tr>
+  <td> 1 </td>
+  <td> Se verifica aspectul grafic al pagini grafice "labs6_01" </td>
+  <td><center> 1 </center></td>
+</tr> 
+<tr>
+  <td> 2 </td>
+  <td> Se verifica functionalitatea pagini grafice "labs6_01" </td>
+  <td><center> 1 </center></td>
+</tr>
+<tr>
+  <td> 3 </td>
+  <td> Se verifica aspectul grafic al pagini grafice "labs6_02" </td>
+  <td><center> 1 </center></td>
+</tr> 
+<tr>
+  <td> 4 </td>
+  <td> Se verifica functionalitatea pagini grafice "labs6_02" </td>
+  <td><center> 1 </center></td>
+</tr>
+<tr>
+  <td> 5 </td>
+  <td> Se verifica aspectul grafic al pagini grafice "labs6_03" </td>
+  <td><center> 1 </center></td>
+</tr> 
+<tr>
+  <td> 6 </td>
+  <td> Se verifica functionalitatea pagini grafice "labs6_03" </td>
+  <td><center> 1 </center></td>
+</tr>
+</table>
+</ul>  
+<br><br> 
+</body>
+</html>
