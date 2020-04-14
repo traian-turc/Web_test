@@ -1,6 +1,6 @@
 export default class test {
   constructor(btns) {
-    this.width = 400;
+    this.width = 600;
     this.height = 400;
     this.backgroundColor = 50; 
 
