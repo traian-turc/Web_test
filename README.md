@@ -1,2 +1,2 @@
-# proiect_web
-Aplicatia web creeata pentru cursul de tehnologii WEB
+# Cursuri web
+Cursuri de informatica
