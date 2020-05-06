@@ -1,0 +1,192 @@
+<html><head>
+<title>Siruri de caractere: string-uri</title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Siruri de caractere: string-uri </Center></TD></TR>
+</table>
+<br><br><a name="start"></a>
+<font color= "Blue" size=5><li>Siruri de caractere</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;LabVIEW dispune de o serie de functii care se refera la sirurile de caractere, functii similare cu functiile intalnite in 
+alte medii de programare. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Functiile referitoare la sirurile de caractere sunt importante atat pentru manipularea textelor cat si pentru a realiza 
+transferuri de date intre aplicatii sau diverse echipamente unde datele sunt codificate utilizand siruri de caractere. 
+<br><br><a name="afis"></a>
+<font color= "Black" size=4><li><b> Introducerea si afisarea sirurilor de caractere.</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza pentru inceput, o aplicatie <a href="../downloads/siruri/sir_v0.vi"><b> sir_v0 </b></a> 
+in care sa va introduce un text utilizand un "String Control" dupa care se va afisa textul utilizand un "String Indicator", controlale incliuse in  
+Controls-->Modern--> String & Path.  
+<br><br><center> <img src="im_lv700.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru introducerea sirului de caractere, s-a utilizat deci un control "String Control" caruia i s-a setat proprietatea 
+"Limit to single line" pentru a nu permite introducerea de mai multe linii in cadrul controlului. Afisarea se face utilizand un control "String Indicator" 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea se face numai dupa ce se tasteaza "Enter" sau se apasa "Click stanga inafara controlului "String Control".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc a acestei aplicati fiind:
+<br><br><center> <img src="im_lv701.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie <a href="../downloads/siruri/sir_v1.vi"><b> sir_v1 </b></a>, afiseaza instantaneu caracterele 
+introduse prin simpla setare a proprietatii "Update value while typing" aferenta controlului "String Control" utilizat pentru introducerea textului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In aplicatiile urmatoare, proprietatea "Update value while typing" va fi tot timpul setata.
+<br><br><a name="upper"></a>
+<font color= "Black" size=4><li><b>Transformarea minusculelor in majuscule</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi in continuare functia "To Upper Case" afalta in Programming-->String-->To Upper Case pentru a realiza aplicatia: 
+<a href="../downloads/siruri/sir_v2.vi"><b> sir_v2 </b></a> in care minusculele unui sir introdus vor fi transformate in majuscule si aploi afisate.
+<br><br><center> <img src="im_lv702.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc se poate vedea utilizarea functiei:"To Upper Case"
+<br><br><center> <img src="im_lv703.gif"></center>
+<br><br><a name="length"></a>
+<font color= "Black" size=4><li><b>Determinarea lungimii unui sir de caractere - String Length</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Determinarea lungimii unui sir de caractere este des utilizata in aplicatiile care contin siruri de caractere. Urmatoarea 
+aplicatie <a href="../downloads/siruri/sir_v3.vi"><b> sir_v3 </b></a> afiseaza in mod continuu lungimea unui sir de caractere introdus.
+<br><br><center> <img src="im_lv704.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc se poate vedea utilizarea functiilor "To Upper Case" si "String Length":
+<br><br><center> <img src="im_lv705.gif"></center>
+<br><br><a name="concat"></a>
+<font color= "Black" size=4><li><b>Concatenarea sirurilor - Concatenate Strings</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia pentru concatenarea sirurilor - Concatenate Strings este utilizata in aplicatia urmatoare: 
+<a href="../downloads/siruri/sir_v4.vi"><b> sir_v4 </b></a> pentru a lega doua siruri.
+<br><br><center> <img src="im_lv706.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc se poate vedea utilizarea functiilor "Concatenate Strings" si "String Length":
+<br><br><center> <img src="im_lv707.gif"></center>
+<br><br><a name="caut"></a>
+<font color= "Black" size=4><li><b>Cautarea unui subsir in cadrul unui sir de caractere</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia pentru cautarea unui subsir in cadrul unui sir de caractere "Match Pattern" sta la baza urmatoarei aplicatii:
+<a href="../downloads/siruri/sir_v5.vi"><b> sir_v5 </b></a>
+<br><br><center> <img src="im_lv708.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc se va utiliza functia "Match Pattern" pentru a cauta un subsir.
+<br><br><center> <img src="im_lv709.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O alta functie utilizata pentru cautarea unui subsir este functia: "Search/Split String" aflata in Programming-->
+String-->Aditional String Functions-->Search/Split String . Aceasta functie, va fi utilizata in 
+aplicatia: <a href="../downloads/siruri/sir_v6.vi"><b> sir_v6 </b></a> pentru a ne furniza pozitia subsirului cautat.
+<br><br><center> <img src="im_lv710.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv711.gif"></center>
+<br><br><a name="extr"></a>
+<font color= "Black" size=4><li><b>Extragerea unui subsir din cadrul unui sir de caractere</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Exista cazuri in care trebuie sa extragem un subsir de anumita dimensiune din cadrul unui sir de caractere incepand cu 
+o anumita pozitie. Functia potrivita pentru acest caz fiind: "String Subset". Urmatoarea aplicatie, foloseste aseasta functie.
+<br><br><center> <img src="im_lv712.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv713.gif"></center>
+
+<br><br><a name="conv"></a>
+<font color= "Black" size=4><li><b>Conversia unui sir de caractere intr-un numar</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatiile care realizeaza transferuri de date intre aplicatii sau diverse echipamente se bazeaza pe transferul de 
+siruri de caractere care codifica datele. In cazul in care sunt transmise numere sub forma de siruri de caractere, avem nevoie de fuunctii care sa 
+transforme un sir de caractere intr-un numar. Exista o serie de functii care transforma sirurile de caractere in numere in diverse tipuri si diverse 
+formate. Vom utiliza functia:"Decimal String to Number" situata in Programming-->String-->Srting/Number Conversion-->Decimal String to Number
+<br><br><center> <img src="im_lv714.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv715.gif"></center>
+<br><br><a name="p_ser"></a>
+<br><br><font color= "Blue" size=5> Vehicularea sirurilor de caractere prin intermediul portului serial </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Portul serial a fost utilizat pentru a realiza prima legatura intre doua calculatoare. Portul serial este des 
+utilizat si in prezent pentru a conecta diverse dispozitive la calculator. Chiar daca majoritatea calculatoarelor nu mai dispun fizic de un port serial, 
+se utilizeaza des porturi seriale virtuale, realizate prin intermediul portului USB (Universal Serial Bus). Cu alte cuvinte exista o serie de dispozitive 
+conectate la calculator prin intermediul USB insa din punct de vedere logic ele sunt conectate printr-un port serial virtual. Pentru programator, aceasta 
+conectare este identica cu o conectare prin intermediul unui port serial fizic. Conectarea prin intermediul portului USB fiind deci "transparenta" din 
+punctul de vedere al scrierii aplicatiilor, acestea fiind scrise la fel cu aplicatiile pentru portul serial.
+<br><br><a name="config_ser"></a>
+<font color= "Black" size=4><li><b>Configurarea si initializarea portului serial </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a putea fi utilizat, portul serial trebuie configurat, cu alte cuvinte trebuiesc stabilite valorile pentru diversi 
+parametri, cum ar fi: viteza de lucru, lungimea cuvantului, paritate etc.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia: <a href="../downloads/serial/serial_00.vi"><b> serial_00 </b></a> permite dialogul cu un sistem de achizitie 
+conectat prin intermediul portului USB. Sistemul dispune de 5 intrari analogice, 8 iesiri digitale si 4 intrari digitale. Comanda pentru citirea unei 
+intrari analogice este:Ai unde i=0..4, comanda pentru inscrierea celor 9 iesiri digitale este On unde n este numarul in zecimal care va fi afisat in 
+binar pe cele 8 iesiri digitale si in sfarsit comanda D1 pentru citirea unui numar zecimal care codifica cele 4 intrari digitale.
+<br><br><center> <img src="im_lv716.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Pentru a utiliza portul serial, s-a utilizat functia "Visa configure port serial" plasata in grupul:
+Functions-->InstrumentI/O-->Serial-->VISA configure Port Serial
+<br><br><center> <img src="im_lv717.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Similar, pentru a utiliza scrie, respectiv citidre la serial, s-au utilizat functiile: 
+"Visa write port serial" respectiv "Visa read port serial" plasate in grupul: Functions-->InstrumentI/O-->Serial-->VISA
+<br><br><a name="utiliz_ser"></a>
+<font color= "Black" size=4><li><b>Utilizarea portului serial </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Sa presupunem ca vrem sa afisam continuu intrarea analogica A0. Realizam astfel aplicatia : 
+<a href="../downloads/serial/serial_01.vi"><b> serial_01 </b></a> in care se afiseaza grafic intrarea analogica A0.
+<br><br><center> <img src="im_lv718.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama blog se va folosi constanta de tip sir de caractere A0
+<br><br><center> <img src="im_lv719.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Raspunsul sistemului de achizitie la comanda A0 este un sir de forma: A0,val. Va trebui sa separam subsirul val si 
+sa-l convertim intr-o valoare numerica. Pentru aceasta, s-a folosit functia  "Decimal String to Number" plasata in grupul 
+Function-->String-->String Number Conversion-->Decimal String to Number in care s-a setat Offset-ul la 3 adica opzitia de unde incepe sirul "val"
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, diagramele bloc devin tot mai complicate, asa ca este necesara realizarea unor "SubVI-uri"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie <a href="../downloads/serial/serial_02.vi"><b> serial_02 </b></a> utilizeaza SubVI-ul
+<a href="../downloads/serial/init_ser.vi"><b> init_ser </b></a>. Diagrama bloc devenind:
+<br><br><center> <img src="im_lv720.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Putem merge mai departe realizand urmatoarea aplicatie <a href="../downloads/serial/serial_03.vi"><b> serial_03 </b></a> 
+car include SubVI-ul <a href="../downloads/serial/wr_rd_ser.vi"><b> wr_rd_ser </b></a> pentru scrierea si citirea unui sir la portul serial. 
+Diagrama bloc devenind:
+<br><br><center> <img src="im_lv721.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Chiar si inchiderea portului serial poate fi incapsulata in SubVI-ul <a href="../downloads/serial/close_ser.vi"><b> close_rd_ser </b></a>
+si obtinem aplicatia <a href="../downloads/serial/serial_04.vi"><b> serial_04 </b></a> a carei diagrama bloc este:
+<br><br><center> <img src="im_lv722.gif"></center>
+<br><br><a name="a_ser"></a>
+<font color= "Black" size=4><li><b>Citirea intrarilor analogice </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca sistemul de achizitie dispune de comanda AA care permite citirea tuturor intrarilor analogice. Raspunsul 
+sistemului la comanda AA fiind AA,val0,val1,val2,val3,val4.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a interpreta fiecare vasloare trebuie sa utilizam o serie de functii pe sirurile de caractere.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoaea aplicatie  <a href="../downloads/serial/serial_05.vi"><b> serial_05 </b></a> interpreteaza sirul transmis si
+separa fiecare valoare transmisa.
+<br><br><center> <img src="im_lv723.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc va utiliza functia:"Search/Split String" pentru a separa sisurile necesare.
+<br><br><center> <img src="im_lv724.gif"></center>
+
+<br><br><a name="fis"></a>
+<font color= "Blue" size=5><li>Utilizarea fisierelor text</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;LabVIEW dispune de o serie de functii care se refera la utilizarea fisierelor text. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Functiile referitoare la utilizarea fisierelor sunt grupate in Functions-->Programming-->File I/O. 
+<br><br><a name="r_fis"></a>
+<font color= "Black" size=4><li><b> Citirea unui fisier text</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru citirea datelor aflate intr-un fisier text va trebui sa utilizam un control care sa permita localizarea fisierului 
+dupa care sa utilizam o functie pentru citirea dintr-un fisier text. Textul citit va fi afisat intr-un control de tip text. Vezi aplicatia 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoaea aplicatie  <a href="../downloads/fisiere/fisiere_v0.vi"><b> fisiere_v0 </b></a>.
+<br><br><center> <img src="im_lv726.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa pe panoul frontal, pentru selectarea fisierului, s-a plasat un control de tip "Path" dispus in grupul 
+Controls-->Modern-->String & Pats-->File Path Control
+<br><br><center> <img src="im_lv727.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru citirea datelor aflate intr-un fisier se va folosi functia "Read from Text File" aflata in Functions-->Programming-->File I/O-->
+Read from Text File.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Este important ca dupa citirea unui text, acesta sa fie prelucrat. In cazul in care fisierul text contine informatii 
+dispuse in mai multe randuri si fiecare rand cantine mai multe campuri, este important ca textul sa fie trecut intr-un tablou.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie <a href="../downloads/fisiere/fisiere_v1.vi"><b> fisiere_v1 </b></a> stocheaza fiecare rand din text 
+intr-un vector de tip text.
+<br><br><center> <img src="im_lv728.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a separa fiecare rand din textul citit si pentru a-l memora intr-un vector se vor folosi functii pentru siruri de caractere.
+<br><br><center> <img src="im_lv729.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care fiecare rand text contine mai multe campuri de informatie, vom utiliza o matrice pentru stocarea datelor citite 
+din fisier. <a href="../downloads/fisiere/fisiere_v2.vi"><b> fisiere_v2 </b></a>
+<br><br><center> <img src="im_lv730.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Identificarea fiecarui canmp se face cautand caracterul "Tab" care delimiteaza campurile.
+<br><br><center> <img src="im_lv731.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In aplicatiile anterioare, am presupus cunoscut numarul de linii din fisier. In practica acest numar trebuie determinat 
+inainte de citirea datelor din fisier. Urmatoarea aplicatie <a href="../downloads/fisiere/fisiere_v3.vi"><b> fisiere_v3 </b></a> determina numarul de 
+linii dintr-un fisier text.
+<br><br><center> <img src="im_lv732.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv733.gif"></center>
+
+<br><br><a name="w_fis"></a>
+<font color= "Black" size=4><li><b> Scrierea intr-un fisier text</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru scrierea datelor aflate intr-un fisier text va trebui sa utilizam un control care sa permita localizarea fisierului 
+dupa care sa utilizam o functie pentru scrierea intr-un fisier text. Textul scris va fi preluat dintr-un control de tip text. Vezi aplicatia 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoaea aplicatie  <a href="../downloads/fisiere/fisiere_v5.vi"><b> fisiere_v5 </b></a>.
+<br><br><center> <img src="im_lv734.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv735.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie preia textul dintr-un tablou.
+<a href="../downloads/fisiere/fisiere_v6.vi"><b> fisiere_v6 </b></a>.
+<br><br><center> <img src="im_lv736.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv737.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatie preia textul din tablou dar nu respecta campurile. Urmatoarea aplicatie
+<a href="../downloads/fisiere/fisiere_v7.vi"><b> fisiere_v7 </b></a>, corecteaza deficienta, tinand cont de campurile din tablou.
+<br><br><center> <img src="im_lv738.gif"></center>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<pre><font size="2" color="darkblue">
+</font></pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+</body>
+</html>
