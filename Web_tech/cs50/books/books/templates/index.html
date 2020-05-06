@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Book review website
+{% endblock %}
+
+{% block body %}
+    <h1>Book review website</h1><font color="blue">
+	<ul>
+		<li> Users can register for this website
+		<li> Once a user has logged in, he can search for a book by entering the ISBN number, title or author of a book
+		<li> Users can submit a review for a book consisting of:
+		<ul>
+			<li> a rate on a scale of 1 to 5
+			<li> a text in which users can write their opinion about a book
+		</ul>
+		<li> Users can submit more reviews for the same book
+		<li> Using the python <a href="/view_import"> <font color="red"> import.py  </font> </a> application, data was imported into the PostgreSQL database from the books.csv file
+		<li> The website displays a list of possible matching results
+		<li> The website displays some sort of message if there were no matches
+		<li> If the user typed in only part of a title, ISBN, or author name, the website finds matches for those as well!
+		<li> The website display (if available) the average rating and number of ratings the work has received from Goodreads.
+		<li> The website returns a JSON response containing the book’s title, author, publication date, ISBN number, review count, and average score. 
+	</ul></font>
+{% endblock %}

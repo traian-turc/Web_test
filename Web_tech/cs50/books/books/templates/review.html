@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Review
+{% endblock %}
+
+{% block body %}
+    <form action="{{ url_for('review_v') }}" method="post">
+	
+		<div class="form-group">
+			<input type="hidden"  name="book_id"  value="{{id}}">
+        </div>
+		<div class="form-group">
+			<input text class="form-control" name="rate" placeholder="Rate:scale of 1 to 5">
+        </div>
+		<div class="form-group">
+			<textarea class="form-control rounded-0" name="review" placeholder="Your's review" rows="3"> </textarea>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Review Book</button>
+        </div>
+    </form>
+{% endblock %}
