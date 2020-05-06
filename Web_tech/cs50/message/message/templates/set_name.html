@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Set the display name
+{% endblock %}
+
+{% block body %}
+    <form action="{{ url_for('set_name_v') }}" method="post">
+	<div id="fr">
+		<div class="form-group">
+			<font color="magenta"> Set the display name </font> 
+			<ul><li> <font color="blue"> The display name will be associated with every message you sends</li></ul></font>
+			<input text class="form-control" name="name" placeholder="Name">
+        </div>
+		<button class="btn btn-primary">Set</button>
+	</div>
+    </form>
+{% endblock %}

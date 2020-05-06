@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Set channel
+{% endblock %}
+
+{% block body %}
+    <form action="{{ url_for('set_ch_v') }}" method="post">
+	<div id="fr">
+		<div class="form-group">
+			<font color="magenta"> Set the channel </font>
+            <select class="form-control" name="chan" size="7">
+                {% for chan in chans %}
+                    <option value="{{ chan }}">{{ chan }} </option>
+                {% endfor %}
+            </select>
+        </div>
+        <button class="btn btn-primary">Set</button>
+	</div>
+    </form>
+{% endblock %}
