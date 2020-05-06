@@ -1,0 +1,436 @@
+<html><head>
+<title>Tipuri de date în LabVIEW.</title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Tipuri de date, constante, variabile, operatii </Center></TD></TR>
+</table>
+
+<br><br><a name="tip"></a>
+<font color= "Blue" size=5><li>Tipuri de date utilizate în LabVIEW</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a dezvolta o aplicatie avem nevoie de diverse constante sau variabile. Constantele si variabilele au diverse 
+tipuri de date. In LabVIEW sunt utilizate atat constante cat si variabile, avand o serie de tipuri de date. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tipurile de baza sunt:
+<ul>
+<li> <b>String</b>	
+<li> <b>Numeric</b>	
+	<ul>
+		<li> Intreg cu semn  - <i>Signed integers</i> (8-16-32-64 biti)
+		<li> Intreg fara semn  - <i>Unsigned integers</i> (8-16-32-64 biti)
+		<li> Virgula mobila  - <i>Floating point</i> ( single, double, extended)
+		<li> Numar complex in virgula mobila  - <i>Complex floating point</i> ( single, double, extended)
+	</ul>		
+<li> <b>Boolean</b>	
+<li> <b>Forma de unda - <i>Waveform</i> </b>
+<li> <b>Cale - <i>Path</i></b>
+<li> <b>Enum</b>
+<li> <b>Cluster</b>
+	<ul>
+		<li> Numeric
+		<li> Diverse tipuri <i>Mixed data</i>
+	</ul>	
+<li> <b>Matrice - <i>Array</i></b>
+	<ul>
+		<li> 1D
+		<li> 2D
+	</ul>	
+<li> <b>Imagine - <i>Picture</i> </b>
+<li> <b>Variant</b>
+<li> <b>Reference <i>Application  Reference Number</i></b>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;Toate tipurile de date enumerate mai sus pot fi utilizate si plasate pe <i> Block Diagram</i>. Fiecare tip de data 
+are o reprezentare grafica sub forma de <b> Icon </b> sau de <b> Terminal </b>. Reprezentarea sub forma de <b> Icon </b> este mai sugestiva 
+insa are o dimensiune mai mare, pe cand reprezentarea sub forma de <b> Terminal </b> este mai restransa si ocupa mai putin loc in cadrul 
+aplicatiei schitate in <i> Block Diagram</i>. In continuare sunt prezentate principalele reprezentari sub forma  de <b> Terminal </b> ale diverselor 
+tipuri de date <i>Data type terminals </i>
+<br><br>
+<center> <img src="im_lv001.gif"></center>
+<br>
+<br><br><a name="const"></a>
+<font color= "Blue" size=4><li>Constante utilizate în LabVIEW</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In majoritatea aplicatiilor LabVIEW sunt utilizate diverse <i> Controale </i> sau functii carora trebuie sa le setam valorile
+implicite. In aceste cazuri sunt utilizate constante de diverse tipuri.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru inceput vom utiliza cele mai simple constante, si anume constante de tip string sau numeric. Urmatoarele tipuri 
+de date vor fi studiate mai tarziu pe masura ce se vor introduce notiuni noi de tipul Array, Cluster etc.
+<br><br><a name="c_string"></a>
+<font color= "Black" size=4><li><b> Constante de tip "String" </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tipul de date <b> String </b> este des utilizat in aplicatiile LabVIEW atat pentru a afisa diverse mesaje pe 
+parcursul aplicatiei cat si pentru a codifica diverse structuri de date in format text.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Prima aplicatie realizata va scrie textul "Bine ati venit!" intr-un <i> Front Panel</i> de genul celui de jos.
+<br><br>
+<center> <img src="im_lv002.gif"></center>
+<br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se va deschide un <i> Blank VI</i>. Cu click dreapta pe <i>Front Panel</i>, aleg  <i>String & Pats</i>  apoi <i> String Indicator</i>, 
+se va plasa un indicator de tip text pe <i>Front Panel</i>. Din Meniul principal de pe <i> Front Panel</i> aleg File -- Save si salvez cu numele <b>prima_apl_v0 </b>. 
+Tot din Meniul principal de pe <i> Front Panel</i> aleg <i>Windows</i> apoi <i>Show Block Diagram</i>. Se va deschide astfel 
+<i>Block Diagram-ul</i> corespunzator <i>Front Panel-ului</i> creat. Pe <i>Block Diagram</i> va exista deja un <i>Terminal</i> de tip string 
+corespunzator indicatorului plasat pe  <i>Front Panel</i>.  Cu click dreapta pe <i>Block Diagram</i> aleg <i>String</i> apoi <i>String Constant</i>, 
+plasez astfel un terminal de tip <i>Constant String</i>. 
+Din Meniul principal de pe <i>Front Panel</i> aleg <i>View</i> apoi <i>Tools Palette</i>, pentru a afisa fereastra <i>Tools Palette</i>. 
+Din <i>Tools Palette</i> selectez <i>Connect Wire</i>. 
+Cu unealta <i>Connect Wire</i> selectata, putem conecta terminalul de tip <i>Constant String</i> cu <i>Terminal</i> de tip string.  
+Din <i>Tools Palette</i> se selecteaza <i>Operate Value</i> si se modifica valoarea terminalul de tip <i>Constant String</i> in "Bine ati Venit". 
+In acest moment <i>Block Diagram</i> arata astfel:
+<br><br>
+<center> <img src="im_lv003.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cu click dreapta pe Terminal de tip string aleg <i>View as Icon</i> , obtinem:
+<br><br>
+<center> <img src="im_lv004.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom reveni in fereastra <i>Front Panel</i> si vom apasa butonul incercuit mai jos pentru a rula aplicatia:
+<br><br>
+<center> <img src="im_lv005.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In urma rularii aplicatiei obtinem:
+<br><br>
+<center> <img src="im_lv002.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi in continuare elemente de decor si elemente de tip text pentru a introduce elemente de decor si 
+texte explicative despre aplicatie. Pentru a scrie diverse texte pe <i>Front Panel</i> se va folosi <i>Edit Text</i> din <i>Tools</i> iar pentru 
+elemente decorative vom folosi  <i>Click</i> dreapta pe <i>Front Panel</i> si se alege <i>Decorations</i>. 
+Vom obtine un <i>Front Panel</i> mai prietenos de genul:
+<br><br>
+<center> <img src="im_lv006.gif"></center>
+<br><br><a name="c_intr"></a>
+<font color= "Black" size=4><li><b> Constante de tip "Numere intregi" </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tipul de date <b> Numeric </b> Este foarte des utilizat in aplicatiile LabView. Vom realiza o aplicatie similara cu 
+aplicatiile anterioare numai ca de data aceasta vom afisa o constanta numerica in momentul in care este rulata aplicatia. Sa afisam deci valoarea 789
+in momentul rularii aplicatiei. Pentru aceasta vom plasa pe <i>Front Panel</i> un <i>Numeric Indicator</i> iar pe <i>Block Diagram</i> vom plasa o 
+constanta de tip <i>Numeric Constant</i> pe care o legam la Terminalul de tip Numeric astfel:
+<br><br>
+<center> <img src="im_lv007.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se vede pentru Terminalul de tip Numeric am ales tipul I16 astfel: Click dreapta -- Properties --Data Type -I16 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rulam aplicatia si obtinem:
+<br><br>
+<center> <img src="im_lv008.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Constantele numerice sunt foarte des utilizate pentru a seta o serie de parametri pentru diverse functii si controale 
+utilizate in aplicatiile LabView. Sa presupunem ca vrem sa realizam aplicatia <a href="../downloads/prima_apl/prima_apl_v3.vi"><b> prima_apl_v3 </b></a> in care 
+afisam doua texte pe ecran dar la interval de 500 ms. Va trebui sa folosim deci un element caruia sa-i putem seta parametrul delay la 500. 
+Vom crea deci un <i>Front Panel</i> asemanator cu:
+<br><br>
+<center> <img src="im_lv009.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe <i>Block Diagram-ul</i> vom plasa o structura secventiala de tipul: <i>Stacked Sequence Structure</i> in care vom 
+plasa un obiect de tip <i>Timing -- Wait(ms)</i>. Acestui obiect trebuie sa-i setam parametrul "milisecond to wait" la 500.
+ Vom plasa deci o constanta de tip intreg pe care o 
+setam la 500 si o conectam la obiectul <i>Timing</i> asemanator cu diagrama de jos:
+<br><br>
+<center> <img src="im_lv010.gif"></center>
+<br><br><a name="c_real"></a>
+<font color= "Black" size=4><li><b> Constante de tip "Numere reale" </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tipul de date <b> Numere reale </b> pot fi reprezentate in precizie simpla (Single) in dubla precizie (Double) sau in 
+mod extins (Extendid). Vom alege reprezentarea Double pentru a afisa  constanta pi
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia este foarte asemanatoare cu aplicatia pentru afisarea unei constante de tip intreg, cu deosebirea ca vom alege 
+-- Properties --Data Type -DBL atat pentru constanta de tip numeric cat si pentru Terminalul de tip numeric conform Block Diagram-ei de jos.
+
+<br><br>
+<center> <img src="im_lv011.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea aplicatiei Front Panel-ul arata astfel:
+<br><br>
+<center> <img src="im_lv012.gif"></center>
+<br><br><a name="var"></a>
+<font color= "Blue" size=4><li>Variabile utilizate în labVIEW</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Spre deosebire de constante, variabilele isi schima valoare pe parcursul rularii programelor. Pentru a defini o 
+variabila in LabVIEW trebuie sa plasam un <i>Control</i> pe <i>Front Panel</i>. Tipul Control-ului determina tipul variabilei. In cazul in care nu vrem 
+sa se vada <i>Controlul</i> pe  <i>Front Panel</i>, el fiind folosit exclusiv drept variabila, se alege optiunea <i>Hide Control</i> din <i>Block Disgrsm</i>.
+<br><br><a name="v_string"></a>
+<font color= "Black" size=4><li><b> Variabile de tip "String" </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza o aplicatie numita <b> var_string </b> care foloseste un <i>Control</i> pentru introducerea unui text 
+si un <i>Control</i> pentru afisarea acestuia.
+<br><br>
+<center> <img src="im_lv013.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind extrem de simpla:
+<br><br>
+<center> <img src="im_lv014.gif"></center>
+
+<br><br><a name="v_num"></a>
+<font color= "Black" size=4><li><b> Variabile de tip "Numeric" </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza o aplicatie numita <a href="../downloads/var_num/var_num_v0.vi"><b> var_num_v0 </b></a> 
+care foloseste un <i>Control</i> pentru introducerea unui variabile numerice si un <i>Control</i> pentru afisarea acestei valori.
+<br><br>
+<center> <img src="im_lv015.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind extrem de simpla si se poate vedea mai jos:
+<br><br>
+<center> <img src="im_lv016.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Rularea se poate face simplu sau <i> Continuously </i>. In primul caz dupa fiecare modificare a <i>Controlului</i> 
+de introducere trebuie rulata aplicaria. In cel de-al doilea caz orice modificare se va vedea in <i>Controlul</i> pentru afisare. 
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza crea o noua aplicatie ceva mai spectaculoasa numita <a href="../downloads/var_num/var_num_v1.vi"><b> var_num_v1 </b></a>  
+care se bazeaza pe aplixatia anterioara numai ca vom folosi un <i> Knob </i> prin intermediul caruia vom introduce valoarea variabilei numerice.
+<br><br>
+<center> <img src="im_lv025.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Putem dezvolta in continuare aplicatia realizand noua aplicatie numita <a href="../downloads/var_num/var_num_v2.vi"><b> var_num_v2 </b></a>  
+in care si afisarea variabilei se va face prin intermediul unui <i>Orizontal Poiner Slide </i> obtinand:
+<br><br>
+<center> <img src="im_lv026.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul rularii continue, ar fi interesanta afisarea valorilor intr-un grafic de forma:
+<br><br>
+<center> <img src="im_lv027.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O simpla inlocuire a <i>Orizontal Poiner Slide </i> cu <i>Waveform Chart</i> nu rezolva complet problema pentru ca va trebui introdusa 
+o intarziere in caz contrar pe grafic sunt afisate putine puncte. Rezulta deci o noua aplicatie numita <a href="../downloads/var_num/var_num_v3.vi"><b> var_num_v3 </b></a>  
+carei diagrama bloc o puteti vedea mai jos.
+<center> <img src="im_lv028.gif"></center>
+
+<br><br><a name="v_loc"></a>
+<font color= "Black" size=4><li><b> Variabile locale </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De multe ori avem nevoie sa utilizam in multe locuri aceeasi variabila. Pentru a nu supraincarca diagrama bloc cu linii de legatura, 
+se poate defini o variabila locala care va putea fi plasata in toate locurile in care avem nevoie de ea. Plasarea variabilei se face alegand din grupul: 
+Functions-->Programming->Structures->Local-Variable. Dupa plasarea ei, cu click dreapta pe variabila-->Select Item, putem alege controlul atasat acesti variabile.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca dorim sa realizam aplicatia <a href="../downloads/var_num/var_num_v4.vi"><b> var_num_v4 </b></a>, in care valoarea de intrare 
+Ui vrem sa o afisam in cele trei indicatoare.
+<br><br>
+<center> <img src="im_lv070.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va defini variabila locala Ui, diagrama logica ce foloseste aceasta variabila este"
+<center> <img src="im_lv071.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<br><br><a name="oper"></a>
+<font color= "Blue" size=4><li>Operatii cu variabile</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cu variabilele stabilite intr-o aplicatie, se pot realiza diverse operatii in functie de necesitatile aplicatiei. 
+Pentru fiecare operatie exista cate un simbol specific. Toate simbolurile pentru operatii sunt grupate in categoria <i>Functions</i> -- <i> Numeric </i>.
+<br><br>
+<center> <img src="im_lv017.gif"></center>
+<br><br><a name="o_aritm"></a>
+<font color= "Black" size=4><li><b> Operatii aritmetice </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie <a href="../downloads/op_num/op_num_v0.vi"><b> op_num_v0 </b></a> care permite introducerea a doua numere si afiseaza produsul acestora. <i>Front Panel-ul </i> 
+aplicatiei este similar cu:
+<br><br>
+<center> <img src="im_lv018.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa in <i>Block Diagram</i> s-a utilizat simbolul <i> Multilpy </i> pentru a inmulti cele doua numere.
+<br><br>
+<center> <img src="im_lv019.gif"></center>
+<br><br><a name="rnd"></a>
+<font color= "Black" size=4><li><b>Functia random </b> </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi in continuare generatorul de numere aleatoare pentru a realiza aplicatia urmatoare 
+<a href="../downloads/op_num/op_num_v1.vi"><b> op_num_v1 </b></a>  
+<br><br>
+<center> <img src="im_lv020.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Generatorul de numere aleatoare genereaza un numar aleator intre 0 si 1. Pentru a afisa numere intre 0 si 1000 trebuie sa 
+inmultim numarul generat cu 1000 conform schemei:
+<br><br>
+<center> <img src="im_lv021.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, linia care pleaca din generatorul de numere aleatoare este de culoare rosie, semnificand un numar 
+de tip double, pa cand linia ce pleaca din constanta 1000 este albastra, semnificand un numar intreg. Produsul celor doua numere, este un numar de tip 
+double, deci iesirea din multiplicator este de culoare rosie.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am putea imbunatati aplicatia si sa creem o noua aplicatie <a href="../downloads/op_num/op_num_v2.vi"><b> op_num_v2 </b></a>: in care sa afisam rezultatul si pe un afisor 
+de tip <i> Meter</i>. 
+<center> <img src="im_lv022.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc s-a mai adaugat o conexiune spre terminalul de tip  <i> Meter</i>. 
+<br><br>
+<center> <img src="im_lv023.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca vrem sa rulam aplicatia in mod continuu observam ca se schimba prea repede afisajul si nu il putem urmari. Trebuie 
+sa introducem o temporizare de 500 ms, realizand astfel aplicatia <a href="../downloads/op_num/op_num_v3.vi"><b> op_num_v3 </b></a>:
+<br><br>
+<center> <img src="im_lv024.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Inlocuind terminalul de tip  <i> Meter</i> cu terminalul de tip  <i> Waveform Chart</i>, obtinem aplicatia 
+<a href="../downloads/op_num/op_num_v4.vi"><b> op_num_v4 </b></a>
+<br><br>
+<center> <img src="im_lv029.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca vrem sa masuram puterea electrica consumata si realizam <i>Front Panel</i> de genul aplicatiei
+ <a href="../downloads/op_num/op_num_v5.vi"><b> op_num_v5 </b></a> din imaginea de jos:
+<br><br>
+<center> <img src="im_lv030.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa puterea trebuie sa inmultim tensiunea si curentul conform diagramei bloc de mai jos.
+<br><br>
+<center> <img src="im_lv031.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe indicatorul analogic se afiseaza de obicei valorile exprimate in Kw. Vom realiza aplicatia 
+<a href="../downloads/op_num/op_num_v6.vi"><b> op_num_v6 </b></a> in care vom imparti deci valoarea in watt 
+cu 1000 pentru a o putea afisa in Kw, diagrama bloc devenind:
+<center> <img src="im_lv032.gif"></center>
+
+<br><br><a name="f_mat"></a>
+<font color= "Black" size=4><li><b>Functii matematice </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functiile matematice sunt grupate in Functions-->Mathematics 
+<br><center> <img src="im_lv069.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi functia sinus si cosinus din cadrul functiilor Elementary-->Trigonometric pentru a calcula puterea activa si reactiva in curent alternativ. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In curent alternativ lucrurile se complica putin, fiind necesara introducerea unei noi marimi numita defazaj, reprezentand unghiul de defazaj dintre 
+curent si tensiune. Realizam in continuare aplicatia <a href="../downloads/op_num/op_num_v7.vi"><b> op_num_v7 </b></a> pentru a simula masurarea energiei active, reactive si aparente.
+<br><br><center> <img src="im_lv033.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc se observa folosirea functiilor trigonometrice sin si cos. 
+<br><center> <img src="im_lv068.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a calcula sinusul si cosinusul defazajului, va trebui sa converim unghiul in radiani si dupa aceea sa calculam sin si cos.
+<br><br><a name="o_biti"></a>
+<font color= "Blue" size=4><li><b> Operatii pe biti </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Operatiile la nivel de bit sunt extrem de importante avand in vedere faptul ca acest mediu de programare este potrivit pentru 
+interfatarea cu diverse sisteme tehnologice in care sunt necesare comenzi digitale.
+
+<br><br><a name="conv_zb"></a>
+<font color= "Black" size=4><li><b>Conversia zecimal-binar </b> </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru inceput sa realizam o aplicatie care sa converteasca un numar intreg U8 (unsigned integer 8 biti) in binar.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Conversia din baza 10 in baza 2 se face prin impartiri repetate la 2 pana se ajunge la catul 0. Resturile rezultate, luate in ordine inversa reprezinta valorile bitilor 
+in binar. Aplicatia <a href="../downloads/op_biti/op_biti_v1.vi"><b> op_biti_v1 </b></a> implementeaza in LabVIEW acest algoritm.
+<br><br><center> <img src="im_lv035.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se poate usor observa in diagrama bloc, conversia se face prin impartiri repetate realizate de functia "Quotient & Remainder" Plasata in grupul: 
+Mathematics-->Numeric.
+<br><br><center> <img src="im_lv036.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Resturile au fost afisate in ordine inversa in controale de tip numeric si totodata intr-un control bolean de tip led.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Resturile calculate desi au valoarea 1 sau 0 ele sunt numere intregi nu booleene. Nu exista functie care sa converteasca un numar 
+intre 0 si 1 intr-o valoare booleana asa ca s-a apelat la un artificiu. S-a utilizat operatorul "Equal" care are la intrare doua valori numerice: constanta 1 si
+valoarea numerica cuprinsa intre 0 si 1. Iesirea din acest operator este o valoare booleana care a putut fi afisata pe un control bolean de tip led. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza in continuare o serie de aplicatii in care vom folosi operatii la nivel de biti, in care va trebui sa afisam 
+valorile obtinute sub forma binara. Aplicatia se sus este potrivita pentru acest lucru insa este destul de stufoasa. O rezolvare mai simpla este 
+utilizarea functiei "Number to Boolean Array" gasita in Programming-->Boolean  care converteste automat un nr intreg intr-un numar binar. Dezavantajul 
+este trebuie introdusa notiunea de tabloun de elemente. 
+Vom lua urmatorul exemplu <a href="../downloads/op_biti/op_biti_v1_01.vi"><b> op_biti_v1_01 </b></a>ca atare pentru a putea realiza urmatoarele aplicatii si vom 
+reveni cu explicatii in momentul cand vom lucra cu tablouri.
+<br><br><center> <img src="im_lv037.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc se obserfa folosirea functiei "Number to Boolean Array" din Programming-->Boolean  si 
+"Reverse 1D Array" din Programming-->Array pentru a afisa tabloul in ordine inversa intr-un control de tip "Array" 
+<br><br><center> <img src="im_lv038.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In urmatorul exemplu <a href="../downloads/op_biti/op_biti_v1_02.vi"><b> op_biti_v1_02 </b></a>, se presupune ca avem conectate 8 
+leduri la portul paralel LPT0 conectat la adresa 888 sau 378H.
+<br><br><center> <img src="im_lv039.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa numarul afisat digital prin intermediul ledurilor este trimis si functiei "OutPort" aflata in grupul 
+Connectivity-->PortI/O-->Out Port.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Ledurile conectate la portul paralel se aprind simultan cu ledurile pozitionate pe panoul frontal.
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatorul exemplu <a href="../downloads/op_biti/op_biti_v2.vi"><b> op_biti_v2 </b></a>, modifica aplicatia anterioara, introducand un 
+generator de numere aleatoare in vederea aprinderii aleatoare a celor 8 leduri daca aplicatia este rulata continu.
+<br><br><center> <img src="im_lv040.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Numarul aleator are valori intre subunitare deci trebuie inmultit cu 255 pentru a obtine un numar aleator intre 0 si 255. 
+Numarul obtinut este de tip double deci trebuie convertit in U8  prin intrtmediul functiei "Convert to Unsigned Byte Integer" aflata in grupul 
+Programming-->Numeric-->Conversion.
+
+<br><br><a name="conv_bz"></a>
+<font color= "Black" size=4><li><b>Conversia binar - zecimal </b> </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Sa realizam acum aplicatia <a href="../downloads/op_biti/op_biti_v6.vi"><b> op_biti_v6 </b></a> care transforma un numar binar 8 biti intr-un nr 
+numar zecimal. Valorile bitilor sunt introduse prin intermediul unor chei de tipul celor din imaginea urmatoare:
+<br><br><center> <img src="im_lv046.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Conversia s-a realizat prin inmultiri cu ponderile corespunzatoare ale lui 2.
+<br><br><center> <img src="im_lv047.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Valoarea obtinuta este afisata utilizand un control numeric, si trimisa totodata portului paralel in ideea ca exista 
+acolo un afisor pe leduri pentru a putea fi confruntata combinatia ledurilor aprinsa cu cea de pe ecran.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc de sus este destul de complicata si vom utiliza pentru urmatoarele aplicatii o diagrama bloc mai simpla 
+<a href="../downloads/op_biti/op_biti_v6_01.vi"><b> op_biti_v6_01 </b></a> bazata pe utilizarea tablourilor. In aceasta aplicatie, se utilizeaza un tablou de 
+comutatoare si un tablou de leduri iar conversia se realizeaza folosind functia "Boolean Array To Number" aflata in grupul Programming-->Numeric-->Conversion.
+<br><br><center> <img src="im_lv048.gif"></center>
+
+
+<br><br><a name="rot"></a>
+<font color= "Black" size=4><li><b>Rotatii </b> </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Una din cele mai utilizate operatii pe biti este operatia de shift-are. Este o operatie care deplaseaza spre stanga sau 
+spre dreapta bitii corespunzatori unui numar. O deplasare spre stanga cu o pozitie, este echivalenta cu o inmultire cu 2 iar o deplasare spre dreapta 
+cu o pozitie este echiovalenta cu o impartire cu 2. Urmatoarea aplicatie <a href="../downloads/op_biti/op_biti_v3.vi"><b> op_biti_v3 </b></a>realizeaza shift-area spre stanga cu n pozitii. 
+<br><br><center> <img src="im_lv041.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru shift-are stanga s-a folosit functia Programming-->Numeric-->Data Manipulation
+<br><br><center> <img src="im_lv042.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa in aplicatia anterioara, toti bitii sunt deplasati spre dreapta cu o pozitie, iar pe prima pozitie se pune 0 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Exista instructiuni de shift-are stanga sau dreapta in cate putem controla valoarea bitului inscris pe prima respectiv 
+ultima pozitie. Urmatoarea aplicatie <a href="../downloads/op_biti/op_biti_v4.vi"><b> op_biti_v4 </b></a> realizeaza o rotire dreapta.
+<br><br><center> <img src="im_lv043.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se utilizeaza functia pentru rotire dreapta cu carry "Rotate Right With Carry" aflata tot in grupul Programming-->Numeric-->Data Manipulation.
+<br><br><center> <img src="im_lv044.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Pornind de la aplicatia anterioara se realizeaza rmatoarea aplicatie <a href="../downloads/op_biti/op_biti_v5.vi"><b> op_biti_v5 </b></a> si se 
+realizeaza o rotire spre stanga prin carry utilizand de data aceasta  "Rotate Left With Carry" 
+<br><br><center> <img src="im_lv045.gif"></center>
+<br><br><a name="log"></a>
+<font color= "Black" size=4><li><b> Functii logice </b> </font>
+
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Bazandu-ne pe versiunea simplificata de conversie din binar in zecimal, sa realizam aplicatia urmatoare 
+<a href="../downloads/op_biti/op_biti_v7.vi"><b> op_biti_v7 </b></a> pentru a utiliza functia logica AND.
+<br><br><center> <img src="im_lv049.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia logica AND se gaseste in grupul Programming-->Boolean
+<br><br><center> <img src="im_lv050.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa ce s-au convertit in zecimal cele doua numere (A, B), asupra lor s-a aplicat functia AND. Rezultatul a fost afisat  sub forma 
+zecimala cat si binar sub forma de leduri. Pentru o corecta conversie, dupa realizarea functiei logice SAU, s-a convertit numarul zecimal obtinut int-un numar 
+intreg fara semn pe 8 biti. Functia AND este folosita deseori pentru  validarea anumitor biti. Se construieste o masca de biti (operandul B) si se seteaza cu 1 
+pozitiile care trebuiesc validate din operandul A. Dupa aplicarea functiei AND, la iesire, apar numai bitii validati prin masca (operandul B). In exemplul de sus 
+tori bitii operandului B au fost setati la 1 deci in rezultatul final vor fi validati toti bitii operandului A. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care se doreste setarea la 1 a anumitor biti din operandul A, se foloseste functia logica OR, operatie 
+exemplificata in aplicatia <a href="../downloads/op_biti/op_biti_v8.vi"><b> op_biti_v8 </b></a>.
+<br><br><center> <img src="im_lv051.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia logica OR se gaseste in grupul Programming-->Boolean
+<br><br><center> <img src="im_lv052.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa aplicarea functiei OR, la iesire, sun setati toti bitii corespunzatori operandului B.
+ <br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care se doreste schimbarea setarii anumitor biti din operandul A, se foloseste functia logica XOR, operatie 
+exemplificata in aplicatia <a href="../downloads/op_biti/op_biti_v9.vi"><b> op_biti_v9 </b></a>.
+<br><br><center> <img src="im_lv053.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia logica XOR se gaseste in grupul Programming-->Boolean
+<br><br><center> <img src="im_lv054.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa aplicarea functiei XOR, la iesire, sun inversati toti bitii corespunzatori operandului B.
+
+
+<br><br><a name="o_rel"></a>
+<font color= "Blue" size=4><li><b> Operatii relationale </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De multe ori avem nevoie sa comparam doua marimi intre ele. Se cunosc o serie de opreatori care ne permit ca comparam doua 
+marimi, cum ar fi:
+<br><br><center><table border=1><tr>
+<td><b>Operator</b></td><td><b>Semnificatie</b></td></tr>
+<td>&gt</td><td>Mai mare</td></tr>
+<td>&lt</td><td>Mai mic</td></tr>
+<td>&gt=</td><td>Mai mare sau egal</td></tr>
+<td>&lt=</td><td>Mai mic sau egal</td></tr>
+<td>==</td><td>Egal</td></tr>
+<td>!=</td><td>Diferit</td></tr>
+</table></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;O instructiune cu doi operanzi si un operator relational intre ei se numeste expresie relationala. Rezultatul unei 
+expresii relationale este o valoare bool-eana care poate lua deci doua valori: true sau false 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In LabVIEW exista o serie de functii grupate in Programming-->Comparison care pot fi folosite in expresii relationale.
+<br><br><center> <img src="im_lv055.gif"></center>
+
+<br><br><a name="cmp_eg"></a>
+<font color= "Black" size=4><li><b> Comparatorul egal </b> </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand operatii relationale, sa realizam o aplicatie <a href="../downloads/op_rel/op_rel_v1.vi"><b> op_rel_v1 </b></a> in 
+care avand un control numeric si un control boolean de tip led, sa activam ledul cand controlul numeric selecteaza un numar 7.
+<br><br><center> <img src="im_lv056.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va folosi operatorul relational "Equal".
+<br><br><center> <img src="im_lv057.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa extindem aplicatia anterioara obtinand <a href="../downloads/op_rel/op_rel_v2.vi"><b> op_rel_v2 </b></a> in care avem 
+10 leduri care se vor aprinde in concordanta cu numarul selectat de controlul numeric.
+<br><br><center> <img src="im_lv058.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi deci 10 operatori relationali de egalitate.
+<br><br><center> <img src="im_lv059.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa valoarea in zecimal trebuie sa transformam numarul in binar obtinut intr-un numar zecimal, inmultind 
+fiecare bit cu 2 la puterea corespunzatoare rangului bitului. Sa realizam deci o aplicatie <a href="../downloads/op_rel/op_rel_v3.vi"><b> op_rel_v3 </b></a> 
+in care se activeaza ledul corespunzator numaruli intre 0-7 selectat de la controlul numeric. Avand in vedere ca sunt 8 biti corespunzatori celor 
+8 leduri, sa transformam combinatia de biti intr-un numar zecimal.
+<br><br><center> <img src="im_lv060.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Numarul in zecimal se obtine prin insumarea puterilor corespunzatoare ale lui 2.
+<br><br><center> <img src="im_lv061.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a putea inmulti valoarea booleana a bitului cu puterilor corespunzatoare ale lui 2 trebuie utilizata functia 
+:Boolean To (0,1) pentru a converti valoarea booleana intr-o valoare zecimala.
+
+<br><br><a name="cmp_dif"></a>
+<font color= "Black" size=4><li><b> Alti operatori </b> </font>
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi in continuare operatorul relational "Greater Or Equal" pentru a activa un led pentru orce valoare mai mare 
+sau egala cu 7 de exemplu <a href="../downloads/op_rel/op_rel_v4.vi"><b> op_rel_v4 </b></a>.
+<br><br><center> <img src="im_lv062.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Ledul va fi deci activat pentru orce valoare > sau = cu 7
+<br><br><center> <img src="im_lv063.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Bazandu-ne pe aplicatia anterioara si folosind 10 leduri, obtinem aplicatia  
+<a href="../downloads/op_rel/op_rel_v5.vi"><b> op_rel_v5 </b></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<br><br><center> <img src="im_lv064.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc vor fi folosite desigur 10 operatori relationali de tipul  "Greater Or Equal" 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<br><br><center> <img src="im_lv065.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom relua aplicatia anterioara realizand aplicatia <a href="../downloads/op_rel/op_rel_v5.vi"><b> op_rel_v5 </b></a> in care 
+vom folosi numai 8 leduri si vom converti combinatia de biti intr-un nr U8 pentru a putea fi afisat sub forma zecimala si trimis totodata la portul 
+paralel pentru a aprinde combinatia de leduir similara cu cea afisata pe ecran.
+<br><br><center> <img src="im_lv066.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama logica fiind:
+<br><br><center> <img src="im_lv067.gif"></center>
+<br><br><a name="o_secv"></a>
+<font color= "Blue" size=4><li>Operatii secventiale</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De multe ori in aplicatii e nevoie de a realizam secvential niste operatii. De altfel am realizat deja in aplicatia
+<a href="../downloads/prima_apl/prima_apl_v3.vi"><b> prima_apl_v3 </b></a>, o astfel de structura secventiala in care am fortat dupa afisarea primului text, 
+o intarziere de 500 ms dupa care am afisat textul urmator.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pe diagrama bloc s-a plasat o structura secventiala de tipul: <i>Stacked Sequence Structure</i> in care am 
+utilizat un obiect de tip <i>Timing -- Wait(ms)</i>. 
+<br><br>
+<center> <img src="im_lv010.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul de sus s-a facut o singura secventiere in care am plasat timer-ul. Structura secventiala permite adaugarea 
+de noi secvente utilizand click dreapta pe structura si alegand "Add Frame After" sau "Add Frame Before". Sa realizam o aplicatie<a href="../downloads/op_num//op_num_v8.vi"><b> op_num_v8 </b></a> in care vrem sa 
+afisam secvential trei valori pe un indicator de tip "Meter" la intervale de 500 ms.
+<br><br>
+<center> <img src="lv_meter_a.gif"></center>
+Se va utiliza deci o structura secventiala de tipul: <i>Stacked Sequence Structure</i> cu 7 secvente 
+<br><br><center> <img src="im_lv072.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru o mai buna intelegere secventele au fost prezentate detaliat desi pe diagrama bloc ele sunt suprapuse. Pentru realizarea aplicatiei, 
+a fost absolut necesara introducerea variabilei locale care poarta numele controlului atasat, adica "Meter".
+</body>
+</html>

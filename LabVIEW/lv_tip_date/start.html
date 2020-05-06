@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html xmlns:t="urn:schemas-microsoft-com:time">
+<HTML> 
+<HEAD> 
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+	<title>Cursuri C++</title>
+	<style type="text/css" media="screen">@import "../../layout.css";</style>
+
+</HEAD> 
+
+<SCRIPT LANGUAGE="JavaScript">
+ <!-- 
+function frm1(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm2(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#const" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm3(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#c_string" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}	
+function frm4(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#c_intr" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm5(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#c_real" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+
+function frm10(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#var" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm11(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#v_string" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm12(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#v_num" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm13(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#v_bool" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm14(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#v_loc" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm20(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#oper" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm21(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#o_aritm" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm22(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#rnd" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm23(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#f_mat" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm31(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#o_biti" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm32(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#conv_zb" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm33(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#conv_bz" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm34(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#rot" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm35(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#log" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm41(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#o_rel" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm42(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#cmp_eg" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm43(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#cmp_dif" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm50(){
+	continut_p.innerHTML = '<iframe src ="tip_date.html#o_secv" width="100%" height="625"  marginheight="0" marginwidth="0" frameborder=0 > </iframe><br>&nbsp';
+}
+function frm100(){
+	zona_jos.innerHTML = '<iframe src ="../../zona_jos.html" width=101% height="45" marginheight="0" marginwidth="0" frameborder=0 > </iframe>';
+}
+function showTheHours(theHour) {
+ return (theHour);
+ 
+} 
+
+function showZeroFilled(inValue) { 
+if (inValue > 9) { return "" + inValue; 
+} 
+return "0" + inValue; 
+}
+ 
+
+function showAmPm() { 
+if (now.getHours() < 12) { 
+return (" am"); 
+} 
+return (" pm"); 
+}
+
+	  
+
+function showTheTime() { 
+	now = new Date 
+	document.form.showTime.value ="    "+dayNum+" "+montharray[monthIs]+" "+yearIs+" ora:"+showTheHours(now.getHours()) + ":" + 
+	showZeroFilled(now.getMinutes()) + ":" + showZeroFilled(now.getSeconds()) + 
+	showAmPm() 
+	setTimeout("showTheTime()",1000)
+ }  
+
+var todayIs=new Date();
+var yearIs=todayIs.getFullYear();
+var monthIs=todayIs.getMonth();
+var dayNum=todayIs.getDate();
+var montharray=new Array("Ian","Febr","Mar","Apr","Mai","Iun","Iul","Aug","Sept","Oct","Noi","Dec");
+
+//--> 
+</SCRIPT>  
+<body class="pag_centr" onLoad="showTheTime();frm1();frm100()"> 
+<div id="continut"> 
+<table  width="100%"  border=0>
+<tr><td valign="top">
+<table width="100%" border=0>
+ <tr><td>
+  <table class="tcoll" width="100%" border=1>
+   <tr>
+    <td width="200" valign= "top">
+    <FORM name=form><INPUT type=text name=showTime></FORM> 
+    <center><img src="lv_meter_a.gif" </center>
+    <!-----------------------------Meniu ------------------------------------------------------------->  
+
+     <table width="100%" border="1" cellspacing="0" cellpadding="2">
+      <tr bgcolor=""> 
+       <td width="201" bgcolor="#83A0BA" valign="top"> 
+        <table width="200" border="0" cellspacing="1" cellpadding="1">        
+         <tr>
+          <!--<td bgcolor="#doaodd" class="forTexts"></td>-->
+          <td bgcolor="#83A0BA" class="forTexts"></td>
+          <td bgcolor="#83A0BA" class="forTexts" align="center"><font color="white" size="2" face="arial"<strong><b> LabVIEW </b></strong></font></td>
+         </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts">
+                 
+          <td width="165" bgcolor="#D9E3EE" class="forTexts">
+           <a style="text-decoration: none"  href="../start.html"  >Revenire la pagina principala</a>
+          </td> 
+         </tr>
+         
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts" align="center"><a style="text-decoration: none"  href="#" onclick=frm1() > <b>TIPURI DE DATE </b></a>
+          </td>           
+         </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts" align="center"><a style="text-decoration: none"  href="#" onclick=frm2() > <b>CONSTANTE </b></a>
+          </td>           
+         </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#char","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm3() ><li>Constante - String </a>
+          </td> 
+	     </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#int","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm4() ><li>Constante - Numere intregi </a>
+          </td> 
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#real","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm5() ><li>Constante - Numere reale </a>
+          </td> 
+	     </tr>
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#var","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts" align="center"><a style="text-decoration: none"  href="#" onclick=frm10() ><b>VARIABILE </b></a>
+          </td> 
+	     </tr>   
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#decl","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm11() ><li>Variabile - String  </a>
+          </td> 
+	     </tr>   
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#v_char","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm12() ><li>Variabile - Numerice </a>
+          </td> 
+	     </tr>
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#v_char","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm14() ><li>Variabile - locale </a>
+          </td> 
+	     </tr>
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#oper","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts" align="center"><a style="text-decoration: none"  href="#" onclick=frm20() ><b>OPERATII CU VARIABILE</b> </a>
+          </td> 
+	     </tr>
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#opadr","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm21() ><li>Operatii aritmetice simple </a>
+          </td> 
+	     </tr>
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#opadr","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm22() ><li>Functia random </a>
+          </td> 
+	     </tr>
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#opadr","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm23() ><li>Functii matematice </a>
+          </td> 
+	     </tr>
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#oper","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts" align="center"><a style="text-decoration: none"  href="#" onclick=frm31() ><b>OPERATII PE BITI</b> </a>
+          </td> 
+	     </tr>
+	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#bit","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm32() ><li>Conv zecimal-binar </a>
+          </td> 
+          </tr>
+          <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#bit","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm33() ><li>Conv binar-zecimal </a>
+          </td> 
+          </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#bit","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm34() ><li>Rotatii </a>
+          </td> 
+         </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#bit","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm35() ><li>Functii logice </a>
+          </td> 
+         </tr>          
+ 	     <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#oper","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts" align="center"><a style="text-decoration: none"  href="#" onclick=frm41() ><b>OPERATII RELATIONALE</b> </a>
+          </td> 
+	     </tr>         
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#bit","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm42() ><li>Comparatorul de egalitate </a>
+          </td> 
+         </tr>   
+          <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#bit","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts"><a style="text-decoration: none"  href="#" onclick=frm43() ><li>Alti operatori rel </a>
+          </td> 
+         </tr>
+         <tr>
+          <td bgcolor="#D9E3EE" class="forTexts"><a href="#" onclick=window.open("tip_date.html#oper","Wind1",'resizable=yes,scrollbars=yes')><img src="../../Images/butoane/but_s.jpg"</a></td>
+          <td bgcolor="#D9E3EE" class="forTexts" align="center"><a style="text-decoration: none"  href="#" onclick=frm50() ><b>OPERATII SECVENTIALE</b> </a>
+          </td> 
+	     </tr>                                        
+	     </tr>	 	             
+	   </table>
+      </td>
+     </tr>
+    </table>
+<!----------------------------Terminare -Meniu ------------------------------------------------------------->  
+           <td>
+             <div id="continut_p">
+             </div><!-- sfarsit # continut_p -->
+          </td>
+         </tr>
+        </td>
+       </tr>
+      </table>
+      <tr>
+       <td>
+        <div id="zona_jos">
+        </div><!-- sfarsit # zona_jos -->
+       </td>
+      </tr>
+     </table>
+    </div><!-- sfarsit # continut -->
+   </div><!-- sfarsit # pag_centr -->
+ </body> 
+</html> 
