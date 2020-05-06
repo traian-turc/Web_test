@@ -1,0 +1,39 @@
+Albania	Tirana
+Austria	Vienna
+Belarus	Minsk
+Belgium	Brussels
+Bosnia and Herzegovina	Sarajevo
+Bulgaria	Sofia
+Croatia	Zagreb
+Cyprus	Nicosia
+Czech Republic	Prague
+Denmark	Copenhagen
+Estonia	Tallinn
+Finland	Helsinki
+France	Paris
+Germany	Berlin
+Greece	Athens
+Hungary	Budapest
+Iceland	Reykjavik
+Ireland	Dublin
+Italy	Rome
+Latvia	Riga
+Lithuania	Vilnius
+Luxembourg	Luxembourg
+Malta	Valletta
+Moldova	Chisinau
+Montenegro	Podgorica
+Netherlands	Amsterdam
+Norway	Oslo
+Poland	Warsaw
+Portugal	Lisbon
+Republic of Macedonia	Skopje
+Romania	Bucharest
+Serbia	Belgrade
+Slovakia	Bratislava
+Slovenia	Ljubljana
+Spain	Madrid
+Sweden	Stockholm
+Switzerland	Bern
+Ukraine	Kiev
+United Kingdom	London
