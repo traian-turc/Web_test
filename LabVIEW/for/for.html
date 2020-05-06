@@ -1,0 +1,177 @@
+<html><head>
+<title>Structura For Loop</title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Structura For Loop </Center></TD></TR>
+</table>
+<a name="for"></a>
+<font color= "Blue" size=5><li>Structura For Loop</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se gaseste in grupul Programming-->Structures-->For Loop
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatiile in care la un moment dat trebuie sa repetam anumite parti ale aplicatiilor de un anumit numar de ori, sunt 
+realizate utilizand structura "For Loop"
+<br><br><a name="for_utiliz"></a>
+<b><font color= "Black" size=4><li>Utilizarea structurii For Loop</font></b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Structuria "For Loop" este similara instructiunii "for" din C++. Este folosita pentru a repeta o secventa de n ori unde 
+n este precizat inainte de inceperea repetitiei.
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cea mai populara aplicatie utilizand instructiunea for este afisarea a n naturale la un anumit interval de timp 
+<a href="../downloads/for/for_v0_v0.vi"><b> for_v0_v0 </b></a>. 
+Vom relaiza deci in LabVIEW, utilizand structura For Loop o astfel de aplicatie. Pentru a se putea urmari afisarea celor n de numere va trebui introdusa 
+o temporizare de aproximativ 300 ms.
+<br><br><center> <img src="im_lv307.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc va contine structura "For Loop" in interiorul careia se include afisarea numerelor si temporizarea afisarii, 
+este prezentata in figura de jos:
+<br><br><center> <img src="im_lv308.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia poate fi imbunatatita <a href="../downloads/for/for_v0_v1.vi"><b> for_v0_v1 </b></a> in sensul ca vom pune un 
+control pentru a stabili intarzierea dintre doua afisari, iar afisarea se va face si analogic folosind un contro; de tip meter.
+<br><br><center> <img src="im_lv300.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc va contine structura "For Loop" in interiorul careia se include afisarea numerelor in cele doua controale 
+cat si temporizarea stabilita de la un control separat. 
+<br><br><center> <img src="im_lv301.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom relua aplicatiile cu led-uri <a href="../downloads/for/for_v0_v2.vi"><b> for_v0_v2 </b></a> si vom afisa repetitiv 
+n numere atat in zecimal cat si in binar utilizand led-uri.
+<br><br><center> <img src="im_lv302.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc va trebui deci sa contina o structura "For Loop" inclusa intr-o structura "While Loop"
+<br><br><center> <img src="im_lv303.gif"></center>
+<br><br><a name="for_w"></a>
+<b><font color= "Black" size=4><li>Structura For Loop impreuna cu structura While Loop</font></b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia anterioara se opreste dupa efectuarea celor 25 de pasi precizati in structura "For Loop"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a rula in mod continuu, in aplicatia anterioara trebuie sa mai plasam o structrura de programare de tipul  
+"While Loop" obtinand astfel aplicatia  <a href="../downloads/for/for_v0_v3.vi"><b> for_v0_v3 </b></a> . 
+<br><br><center> <img src="im_lv309.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In vederea rularii repetate, pana la apasarea butonului "Stop" se va utiliza deci inca o structura repetitiva de 
+tipul "While Loop".
+<br><br><center> <img src="im_lv310.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia anterioara ruleaza repetitiv pana la apasarea butonului "Stop" dar nu mai repede de terminarea ciclului 
+"For" in curs de executie. Cu alte cuvinte efectul comenzii "Stop" nu este imediat. Pentru a se observa mai bine acest fenomen, s-a realizat 
+alicatia <a href="../downloads/for/for_v0_v4.vi"><b> for_v0_v4 </b></a> in care se poate stabili numarul de iteratii.
+<br><br><center> <img src="im_lv313.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Diagrama bloc va contine legatura de la controlul care furnizeaza numarul de iteratii spre structura "For Loop".
+<br><br><center> <img src="im_lv314.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a corecta neajunsurile amintite mai sus, am putea folosi in urmatoarea 
+aplicatie, <a href="../downloads/for/for_v0_v5.vi"><b> for_v0_v5 </b></a> o structura "For Loop" in care este validata optiunea "Conditional Terminal".
+<br><br><center> <img src="im_lv311.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Validarea optiunii "Conditional Terminal" se face folosind click-dreapta pe structura "While Loop".
+<br><br><center> <img src="im_lv312.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dezavantajul folosirii acestei metode consta in faptul ca la apasarea butonului "Stop" se iese din aplicatie, deci nu 
+avem posibilitatea sa reluam rularea aplicatiei decat dupa relansarea  ei. Trebuie sa folosim deci in continuare si structura "While Loop" la fel ca 
+in aplicatia<a href="../downloads/for/for_v0_v6.vi"><b> for_v0_v6 </b></a>:
+<br><br><center> <img src="im_lv315.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Avem deci doua butoane, unul pentru a stopa structura "For Loop" si unul pentru a stopa structura "While Loop".
+<br><br><center> <img src="im_lv316.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa apasarea butonului "Stop_for" aplicatia se reinitializeaza dar porneste imediat un nou ciclu "For Loop".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Daca dorim sa se opreasca pana la o noua actionare a butonului "Stop_for" va trebui sa modificam comportametul acestui 
+buton si sa-l transformam intr-un comutator<a href="../downloads/for/for_v0_v7.vi"><b> for_v0_v7 </b></a>.  
+<br><br><center> <img src="im_lv317.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Butonul "Stop_for" se transforma intr-un comutatot "Start-Stop" iar butonul "Stop" are acum semnificatia de 
+"Iesire" din aplicatie.
+<br><br><center> <img src="im_lv318.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Toate aplicatiile pe care le vom realiza in viitor vor fi cuprinse intr-o structura  "While Loop" si vor avea cele 
+doua butoane "Start-Stop" si "Iesire"
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Bazandu-ne pe aceste considerente, aplicatia pentru afisarea a n numere devine:
+<a href="../downloads/for/for_v0_v8.vi"><b> for_v0_v8 </b></a>.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In aceasta aplicatie avem posibilitatea opririi si pornirii acesteia, iar in cazul in care se doreste iesirea din aplicatie, 
+in cazul in care aplicatia este oprita, iesirea din aplicatie se face imediat, ne mai fiind necesara asteptarea terminarii repetiitiilor din cadrul 
+structurii "For Loop"
+<br><br><center> <img src="im_lv319.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv320.gif"></center>
+<br><br><a name="for_if"></a>
+<b><font color= "Black" size=4><li>Utilizarea structurii For Loop impreuna cu structurile decizionale</font></b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Structuria "For Loop" poate contine la randul ei diverse structuri de programare printre care si structurile de tip 
+decizional.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom relua aplicatia in care s-a realizat un joc de lumini pe led-uri dar de data aceasta secventele vor fi afisate 
+automat fata sa apasam diverse controale <a href="../downloads/for/for_v0_v10.vi"><b> for_v0_v10 </b></a>.
+<br><br><center> <img src="im_lv321.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc, se observa includerea vechii aplicatii intr-o structura "For Loop". 
+<br><br><center> <img src="im_lv322.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom simula acum un afisor pe 7 segmente realizat din led-uri
+<a href="../downloads/for/for_v0_v11.vi"><b> for_v0_v11 </b></a>
+<br><br><center> <img src="im_lv326.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Pentru a comanda corespunzator cele 7 led-uri vom folosi structruri "Case"
+<br><br><center> <img src="im_lv327.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca dormin sa realizam un numarator cu numarare inversa (de la 9 la 0)
+<a href="../downloads/for/for_v0_v12.vi"><b> for_v0_v12 </b></a> de forma:
+<br><br><center> <img src="im_lv328.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Nu vom mai putea folosi variabila i, va trebui sa introducem o variabila locala.
+<br><br><center> <img src="im_lv329.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Variabila locala este "Nr", variabila initializata cu 10 la intrarea in structura "For Loop" si este decrementata 
+dupa fiecare iteratie in cadrul structurii "For Loop".
+
+<br><br><a name="for_gr"></a>
+<b><font color= "Black" size=4><li>Utilizarea structurii For Loop pentru realizarea si afisarea graficelor</font></b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe baza structurilor repetitive vom realiza aplicatii pentru trasarea graficului diverselor functii matematice.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru inceput sa trasam geaficul functiei e^x. Sa realizam aplicatia 
+<a href="../downloads/for/for_v0_v20.vi"><b> for_v0_v00 </b></a> 
+<br><br><center> <img src="im_lv304.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi o structura "For Loop" si vom utiliza variabila i care reprezinta iteratia curenta in structura repetitiva,
+pe post de variabila x.
+<br><br><center> <img src="im_lv305.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca dorim ca afisarea sa se faca dupa ce s-au terminat repetitiile in structura "For Loop" vom plasa un control de tip 
+Modern-->Graph-->Waveform Graph. Se observa ca legatura intre structura "For Loop" si Waveform Graph este de tip 1D Array.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dezavantajul folosirii variabilei i pe post de variabila x are dezavantajul ca x nu ia decat valori de tip "Integer"
+Pentru a trasa graficul functiei e^x variabila x trebuie sa fie de tip real. Va reebui atunci sa precizam domeniul valorilor de intrare si numarul de 
+pasi. Numarul de pasi il putem seta setand N, dar pentru domeniu va trebui sa introducem un control suplimentar.
+<a href="../downloads/for/for_v0_v21.vi"><b> for_v0_v21 </b></a>
+<br><br><center> <img src="im_lv306.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Valoare furnizata de controlul "X maxim" va fi utilizata pentru calculul latimii unui pas in functie de numarul de pasi.
+<br><br><center> <img src="im_lv323.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Latimea unui pas este deci : X maxim/Numar de puncte, iar valoarea curenta pentru care se calculeaza valoarea 
+functiei este i*X maxim/Numar de puncte, dupa cum se poate vedea in diagrama logica de sus.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam acum graficul functiei "sin(x)". Dorim sa afisam dinamic graficul acestei functii, in sensul ca vrem sa 
+modificam perioada, respectiv frecventa acestei functii, si afisarea sa tina cont de aceste modificarri si sa reafiseze corespunzator graficul 
+acestiei functii. Ne propunem deci mai degraba sa simulam un generator de semnal sinusoidal 
+<a href="../downloads/for/for_v0_v22.vi"><b> for_v0_v22 </b></a>.
+<br><br><center> <img src="im_lv324.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia este similara cu aplicatia anterioara cu deosebirea ca nu mai folosim functia e^x ci sin(x). 
+<br><br><center> <img src="im_lv325.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa valoarea curenta x=(2*pi*Nr de perioade/Numarul de puncte)*i.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi in continuare controlul Waveform Graph pentru a trasa grafice sub forma de histograma
+<a href="../downloads/for/for_v0_v23.vi"><b> for_v0_v23 </b></a>.
+<br><br><center> <img src="im_lv330.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi un generator de numere aletoare si vom afisa valoril generate intr-un control de tipul Waveform Graph
+<br><br><center> <img src="im_lv331.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a obtine afisarea sub forma de histograma, a fost setat corespunzator control de tipul Waveform Graph
+<br><br><center> <img src="im_lv332.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am folosit pana acum controlul Waveform Graph pentru a trasa evolutia in timp a diverselor functii. Vom folosi in 
+continuare controlul XY Graph pentru a trasa grafice in coordonatele X si Y.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza aplicatia <a href="../downloads/for/for_v0_v24.vi"><b> for_v0_v24 </b></a> in care valoarea coordonatei 
+X va fi data de functia sin(x) iar valoarea coordonatei Y va fi data de functia cos(y)
+<br><br><center> <img src="im_lv333.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe diagrama bloc vom conecta la intrarea controlul XY Graph cele doua valori: sin(x) si cos(y)
+<br><br><center> <img src="im_lv334.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Iesirile din structura "For Loop" sunt de tipul Array saa ca o sa revenim asupra lor in cardul sectiunii 
+"Utilizarea tablourilor".
+
+<br><br><a name="for_g"></a>
+<b><font color= "Black" size=4><li>Utilizarea structurii "For Loop" pentru grafica si figuri geometrice</font></b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am utilizat facilitatile de trasare a figurilor geometrice si in cadrul sectiunii "Structura While Loop". continuam sa 
+folosim si in cadrul acestiei sectiuni facilitatile grafice oferite in cadrul mediului de dezvoltare "LabView"
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza o aplicatie <a href="../downloads/for/for_v0_v30.vi"><b> for_v0_v30 </b></a> in care vom trasa aleator 
+dreptunghiuri intr-un control de tip "Picture"
+<br><br><center> <img src="im_lv335.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va folosi o structura "For Loop" pentru a trasa dreptunghiuri de dimensiuni si culori aleatoare.
+<br><br><center> <img src="im_lv336.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;S-a folosit functia "Draw Rectangle" in interiorul unei structuri "For Loop" cu iteratia =100.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea aplicatie <a href="../downloads/for/for_v0_v31.vi"><b> for_v0_v31 </b></a>, traseaza 100 de linii a caror 
+coordonate sunt incrementate continuu, factorul de incrementare este dat de utilizator prin intermediul unui control.
+<br><br><center> <img src="im_lv337.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va folosi deci functia "Draw Point" si "draw Line" intr-o structrua "For Loop" .
+<br><br><center> <img src="im_lv338.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca toate liniile au coordonata de inceput x0=0 y0=varibil  si coordonata de sfarsit x=xariabil si y=300
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In urmatoarea aplicatie <a href="../downloads/for/for_v0_v32.vi"><b> for_v0_v32 </b></a> x0 si y si numarul de 
+iteratii pot fi setate de utilizator prin intermediul controalelor din imaginea de jos:
+<br><br><center> <img src="im_lv339.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama logica, reflecta utilizarea acestor controale.
+<br><br><center> <img src="im_lv340.gif"></center>
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<pre><font size="2" color="darkblue">
+</font></pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+</body>
+</html>
