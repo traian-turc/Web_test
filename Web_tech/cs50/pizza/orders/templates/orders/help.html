@@ -1,0 +1,28 @@
+{% extends "orders/layout.html" %}
+
+{% block title %}
+    Help
+{% endblock %}
+
+{% block body %}
+    <h1> Handling a pizza restaurant’s online orders</h1><font color="blue">
+	<ul>
+		<li> <b><font color="magenta">Menu:</font></b> menu items for Pinnochio’s Pizza & Subs
+		<li> <b><font color="magenta">Adding Items:</font></b> Site administrators (restaurant owners) 
+		are able to add, update, and remove items on the menu.
+		<li> <b><font color="magenta">Registration, Login, Logout:</font></b> Site users (customers) 
+		are able to register for this web application with a username, password, first name, last name, 
+		and email address. Customers are then able to log in and log out of this website.
+		<li> <b><font color="magenta">Shopping Cart:</font></b> Once logged in, users can see a 
+		representation of the restaurant’s menu, where they can add items 
+		(along with toppings or extras, if appropriate) to their virtual “shopping cart.” 
+		The contents of the shopping is saved even if a user closes the window, or logs out and 
+		logs back in again.
+		<li> <b><font color="magenta">Placing an Order:</font></b> Once there is at least one item in 
+		a user’s shopping cart, they are able to place an order, whereby the user is asked to 
+		confirm the items in the shopping cart, and the total (no tax!) 
+		before placing an order.
+		<li> <b><font color="magenta">Viewing Orders:</font></b> Site administrators have access 
+		to a page where they can view any orders that have already been placed.
+		<li> <b><font color="magenta">Personal Touch: </font></b>
+{% endblock %}

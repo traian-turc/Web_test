@@ -1,0 +1,18 @@
+{% extends "orders/layout.html" %}
+
+{% block title %}
+    Order Pasta
+{% endblock %}
+
+{% block body %}
+<div id="ifr">
+    <form action="{% url 'order_ps_v'%}" method="post">
+	{% csrf_token %}
+ 		<font color="red" size="4">Pasta  {{ pasta.name }} </font><font color="blue" size="3"> Price: {{ pasta.price }} </font>
+		<hr>
+		<input type="hidden" id="pasta_id" name="pasta_id" value="{{ pasta.id }}">        
+		<font color="blue">Quantity (between 1 and 5):</font>
+		<input type="number" id="quant" name="quant" min="1" max="5" value="1">
+		<br><br><input type="submit" value="Order" /><br><br>
+    </form>
+{% endblock %}

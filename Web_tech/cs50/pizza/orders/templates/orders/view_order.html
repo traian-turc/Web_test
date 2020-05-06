@@ -1,0 +1,36 @@
+{% extends "orders/layout.html" %}
+
+{% block title %}
+    Orders
+{% endblock %}
+
+{% block body %}
+          <h4>Orders</h4>
+		  <table border="1" width="488"><tr><td align="center">
+          {% for order in orders %}
+			  <table border="0" width="480"><tr>
+				<td width="60"> &nbsp;&nbsp;{{ order.user }} : </td>
+				<td width="200"> {{ order.name }} </td>
+				{% if order.price %}
+					<td width="20" align="center"> {{ order.quantity }} x</td>
+					<td width="50" align="right">{{ order.price}} =</td>
+					<td width="50" align="right">{{ order.value }} </td>
+				{% else %}
+					<td width="20" align="center"> &nbsp;&nbsp;</td>
+					<td width="50" align="right">&nbsp;&nbsp;</td>
+					<td width="50" align="right">&nbsp;&nbsp;</td>
+				{% endif %}	
+				{% if order.main %}
+				<td width="80" align="center">
+					<a href="{% url 'complete_order' order.id %}">Complete</a>
+				</td>
+				{% else %}
+				<td width="80" align="center">
+					&nbsp;&nbsp;
+				</td>
+				{% endif %}
+              </tr></table>
+			
+          {% endfor %}
+		 </td></tr></table>
+{% endblock %}

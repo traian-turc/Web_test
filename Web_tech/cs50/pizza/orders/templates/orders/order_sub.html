@@ -1,0 +1,36 @@
+{% extends "orders/layout.html" %}
+
+{% block title %}
+    Order Subs
+{% endblock %}
+
+{% block body %}
+<div id="ifr">
+    <form action="{% url 'order_sb_v'%}" method="post">
+	{% csrf_token %}
+ 		<font color="red" size="4">Subs {{ sub.name }}</font><font color="blue" size="3">  Small: {{ sub.price_small }}  Large: {{ sub.price_large }}</font>
+		<hr>
+		<input type="hidden" id="sub_id" name="sub_id" value="{{ sub.id }}">        
+		<font color="blue">Size:</font><br>
+		<ul>
+		<select name="size" size="2">
+          <option selected value="1">&nbsp;&nbsp;&nbsp;Small&nbsp;&nbsp;</option>
+		  <option value="2">&nbsp;&nbsp;&nbsp;Large&nbsp;&nbsp;</option>
+        </select>
+		</ul>
+		<font color="blue">Adds:</font><br>
+		{% if sub.nr_a %}		
+		<ul>
+			<INPUT TYPE = "CHECKBOX" NAME="ck1" VALUE = "1" > + Mushrooms<BR>
+			<INPUT TYPE = "CHECKBOX" NAME="ck2" VALUE = "1" > + Green Peppers<BR>
+			<INPUT TYPE = "CHECKBOX" NAME="ck3" VALUE = "1" > + Onions <BR>
+		</ul>
+		{% endif %}
+		<ul>
+			<INPUT TYPE = "CHECKBOX" NAME="ck4" VALUE = "1" > Extra Cheese
+		</ul>			
+		<font color="blue">Quantity (between 1 and 5):</font>
+		<input type="number" id="quant" name="quant" min="1" max="5" value="1">
+		<br><br><input type="submit" value="Order" /><br><br>
+    </form>
+{% endblock %}
