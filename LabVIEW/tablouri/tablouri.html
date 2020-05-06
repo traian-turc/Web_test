@@ -1,0 +1,245 @@
+<html><head>
+<title>Tablouri de elemente</title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Tablouri de elemente </Center></TD></TR>
+</table>
+<br><br><a name="start"></a>
+<font color= "Blue" size=5><li>Tablouri de elemente</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La fel ca in celelalte medii de programare, tablourile sunt extrem de utile si in consecinta sunt des utilizate. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;LabVIEW ofera o metoda rapida pentru crearea si initializarea tablourilor.
+<br><br><a name="init"></a>
+<font color= "Black" size=4><li><b> Crearea si initializarea tablourilor de elemente</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea si vom initializa pentru inceput un vector cu 8 elemente binare.  
+Vom crea un VI <a href="../downloads/tablouri/vector_v0.vi"><b> vector_v0 </b></a> pe care vom plasa un control de tip Array. Controlul de tip Array 
+se gaseste in : Controls-->Modern-->Array, Matris & Cluster-->Array. Tinand cont ca vrem sa initializam un vector cu elemente binare, vom plasa pe 
+panoul frontal un control boolean de tip LED. In acest moment panoul frontal arata astfel:
+<br><br><center> <img src="im_lv600.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom selecta ledul si il vom "trage" cu mouse-ul peste controlul array creat anterior. In acest moment panoul frontal 
+arata astfel: <br><br><center> <img src="im_lv601.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Redimensionam vectorul creat pana apar 8 LED-uri si schimbam proprietatea Label cu "Vector LED-uri". In acest moment panoul frontal 
+arata astfel: <br><br><center> <img src="im_lv602.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In acest moment, alegand din Tools->Operate Value, putem sa schimbam starea ledurilor si sa atribuim dupa dorinta 
+diverse valori (0 sau 1) LED-urilor. Avem in acest moment: <br><br><center> <img src="im_lv603.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am creat si am initializat astfel un vector cu 8 elemente de tip boolean. 
+<br><br><a name="sel"></a>
+<font color= "Black" size=4><li><b> Selectarea unui element dintr-un tablou</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Odata creat si initializat un tablou de elemente, elementele acestuia pot fi selectate pentru a citi valoarea elementului respectiv.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca am creat un vector de elemente, pe care le-am initializat. Urmatoarea aplicatie citeste elementul dorit din vector.
+Vom crea deci un VI <a href="../downloads/tablouri/vector_v1.vi"><b> vector_v1 </b></a> de forma:
+<br><br><center> <img src="im_lv604.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;avem nevoie de o functie care sa selecteze un anumit eklement de la un anumit index. Functia se numeste Index Array 
+si se gaseste in grupul Functions-->Programming-->Array-->Index Array. Diagrama bloc arata astfel:
+<br><br><center> <img src="im_lv605.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca Index Array are nevoie de tabloul si indexul in cadrul tabloului si furnizeaza valoarea elementului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Setarea valorilor elementelor unui tablou poate fi facuta si prin atribuirea directa de valori pentru fiecare element.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In urmatoarea aplicatie <a href="../downloads/tablouri/vector_v2.vi"><b> vector_v2 </b></a> se vor genera numere aleatoare 
+intre 0 si 256 , fiecare numar va fi convertit in 8 biti care vor fi atribuiti unui vector boolean cu dimensiunea 8. Numerele vor fi generate la 
+un interval de 100 ms deci afisand continutul vectorului vom obtine aprinderea aleatoare a bitilor ce compun vectorul.
+<br><br><center> <img src="im_lv606.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama logica va contine un convertor Number to Boolean Array
+<br><br><center> <img src="im_lv607.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Valoarea numerica aleatoare intre 0 si 256 va fi convertita intr-un vector boolean pe 8 biti care este atribuit 
+vectorului cu LED-uri care va fi afisat pe panoul frontal.
+<br><br><a name="vect"></a>
+<font color= "Black" size=4><li><b> Vectori de elemente</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am creat in aplicatiile anterioare tablouri unidimensionale de elemente. Tablourile unidimensionale mai poarta 
+denumirea de vectori. In aplicatiile anterioare am creat si am initializat vectori booleeni. Vectorii pot contine orice fel de elemente. Dupa 
+principiul dupa care am creat bectorii booleeni, vom crea acum vectori care vor contine elemente de tip numeric.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Nom crea acum o aplicatie <a href="../downloads/tablouri/vector_v3.vi"><b> vector_v3 </b></a> unde vom plasa 
+un control de tip vector cu 10 elemente numerice double. Acest control va permite modificarea fiecarui element din vector precum si selectarea si 
+afisarea separata a unui element selectat prin intermediul unui control numeric ce reprezinta indexul in vector.
+<br><br><center> <img src="im_lv610.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc a aplicatiei foloseste functia "Index Array" pentru a selecta elementul dorit.
+<br><br><center> <img src="im_lv611.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Elementele vectorului pot fi inscrise si prin alte metode, cum ar fi atribuirea cate unui numar fiecarui element.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoaerea aplicatie <a href="../downloads/tablouri/vector_v4.vi"><b> vector_v4 </b></a> atribuie cate un 
+numar aleator fiecarui element al vectorului.
+<br><br><center> <img src="im_lv612.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Atribuirea cate unui numar aleator fiecarui element al vectorului este o procedura repetitiva. Vom folosi deci structura 
+de programare repetitiva For Loop.
+<br><br><center> <img src="im_lv613.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca iesirea din structura de programare repetitiva For Loop are " dimensiunea tablou de elemente" fiind 
+reprezentata cu o linie mai groasa.  
+
+<br><br><a name="matr"></a>
+<font color= "Black" size=4><li><b> Matrici de elemente</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Bazandu-ne pe aplicatiile cu vectori booleani, vom realiza acum o matrice booleana. Urmatoarea 
+aplicatie <a href="../downloads/tablouri/matrici_v0.vi"><b> matrici_v0 </b></a> utilizeaza o matrice booleana de 16X16.
+<br><br><center> <img src="im_lv608.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc va fi asemanatoare cu diagrama aplicatiei ><b> vector_v2 </b> cu diferenta ca va trebui reluata 
+pentru mai multe linii.
+<br><br><center> <img src="im_lv609.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc contine deci o structura repetitiva for care repeta de 16 ori inscrierea a cate 16 biti
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa imbunatatim aplicatia anterioara si sa adaugam un buton care sa initializeze cu o matricea cu alte cuvinte sa 
+stinga toate LED-urile. Obtinem astfel aplicatia:<a href="../downloads/tablouri/matrici_v1.vi"><b> matrici_v1 </b></a>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa un buton caruia i se seteaza operatia "Switch until Released". Dupa apasare matricea de LED-uri se va sterge 
+si va ramane stearsa pentru 500 ms. Pentru a se realiza aceasta functionalitate se va folosi o structura decizionala  "Case Structure".
+Pe perioada cand nu este actionat butonul, aplicatia trebuie sa execute diagrama bloc din aplicatia anterioara, adica:
+<br><br><center> <img src="im_lv616.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe perioada cand este actionat butonul, aplicatia trebuie initializeze matricea cu 0 si sa astepte 500 ms
+<br><br><a name="matr_l"></a>
+<font color= "Black" size=4><li><b> Matrici de LED-uri</b></font>
+<br><br><center> <img src="im_lv617.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa utilizam acum o matrice de LED-uri de dimensiune 7X5, matrice care se produce de diverse firme 
+de componente electronice. Sa incercam sa formam din LED-uri aprinse cifrele de la 1 la 9 
+<a href="../downloads/tablouri/matrici_v2.vi"><b> matrici_v2 </b></a>.
+<br><br><center> <img src="im_lv618.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Va trebui sa definim 10 matrici binare in care vom seta elementele care corespund LED-urilor aprinse in cadrul unei cifre. 
+Vom folosi o structura decizionala  "Case Structure" cu 10 optiuni si vom plasa in cadrul fiecarei optiuni matricea corespunzatoare. Astfel de exemplu 
+pe optiunea 3 punem:
+<br><br><center> <img src="im_lv619.gif"></center>
+<br><br><a name="sel_em"></a>
+<font color= "Black" size=4><li><b> Selectarea elementelor apartinand unei matrici</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Avand o matrice de diverse elemente, se pune problema cum accesam aceste elemente. La fel cum am selectat un element 
+apartinand unui vector, putem accesa un element, o linie sau o coloana apartinand unei matrici. Functia care ne permite aceasta operatie este aceeasi 
+functie utilizata pentru vectori si anume: Index Array plasata in grupul Functions-->Programming-->Array-->Index Array.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie <a href="../downloads/tablouri/matrici_v3.vi"><b> matrici_v3 </b></a> in care avanad o matrice 
+de elemente binare vom selecta o anumita linie si o vom afisa utilizand un control sub forma de vector de LED-uri.
+<br><br><center> <img src="im_lv620.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc va contine functia Index Array
+<br><br><center> <img src="im_lv621.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, functiei Index Array i s-a furnizat un singur parametru respectiv numarul liniei.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;dupa acelasi principiu, sa realizam o aplicatie <a href="../downloads/tablouri/matrici_v4.vi"><b> matrici_v4 </b></a> 
+in care avanad o matrice de elemente binare vom selecta o anumita coloana si o vom afisa utilizand un control sub forma de vector de LED-uri.
+<br><br><center> <img src="im_lv622.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc,vom furniza functiei Index Array, un singur parametru si anume numarul coloanei.
+<br><br><center> <img src="im_lv623.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am putea selecta o coloana furnizand functiei Index Array in loc de parametrul numarul coloanei, numarul liniei 
+<a href="../downloads/tablouri/matrici_v5.vi"><b> matrici_v5 </b></a>, cu conditia sa transpunem maricea utilizand functia Transpose 1D Array, 
+ceva asemanator cu  diagrama bloc de jos:
+<br><br><center> <img src="im_lv624.gif"></center>  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Combinand selectia unei linii cu selectia unei coloane, obtinem aplicatia: 
+<a href="../downloads/tablouri/matrici_v6.vi"><b> matrici_v6 </b></a>
+<br><br><center> <img src="im_lv625.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv626.gif"></center>  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru selectia unui singur element <a href="../downloads/tablouri/matrici_v7.vi"><b> matrici_v7 </b></a> 
+<br><br><center> <img src="im_lv627.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom furniza functiei Index Array simultan cei doi parametrii, respectiv numarul liniei si numarul coloanei.
+<br><br><center> <img src="im_lv628.gif"></center>
+<br><br><a name="matr_num"></a>
+<font color= "Black" size=4><li><b> Matrici numerice</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Tablourile pot contine orice fel de elemente. Vom utiliza in continuare o matrice numerica in care elementele 
+numerice vor fi inscrise cu numere aleatoare <a href="../downloads/tablouri/matrici_v8.vi"><b> matrici_v8 </b></a> . 
+<br><br><center> <img src="im_lv631.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a inscrie toate elementele matricii 7X5 vom avea nevoie de o dubla iteratie.
+<br><br><center> <img src="im_lv632.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Selectia elementelor se face similar folosind functia Index Array. Vom completa aplicatia anterioara cu selectia 
+unui anumit element <a href="../downloads/tablouri/matrici_v9.vi"><b> matrici_v9 </b></a> .
+<br><br><center> <img src="im_lv633.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv634.gif"></center>
+<br><br><a name="matr_real"></a>
+<font color= "Black" size=4><li><b> Matrici cu numere reale</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum am amintit matricile sunt tablouri bidimensionale. Putem oricand crea matrici prin plasarea unui tablou 
+caruia ii setam dimensiunea la 2. Avand in vedere importanta matricilor care contin numere reale sau imaginare, s-au creat cotroale speciale pentru 
+matricile cu numere reale si matricile cu numere imaginare. Aceste controale sunt plasate in: Controls-->Modern-->Array, Matris & Cluster-->RealMatrix 
+respectiv in Controls-->Modern-->Array, Matris & Cluster-->ComplexMatrix.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam acum o aplicatie care utilizeaza matrici reale <a href="../downloads/tablouri/matrici_v30.vi"><b> matrici_v30 </b></a>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul acestei aplicatii se va realiza o matrice reala de dimensiune 7X5 in care or fi inscrise numere aleatoare 
+dupa fiecare 400 ms.
+<br><br><center> <img src="im_lv635.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc va contine o dubla cilare pentru a inscrie elementele matricii.
+<br><br><center> <img src="im_lv636.gif"></center>
+<br><br><a name="matr_imag"></a>
+<font color= "Black" size=4><li><b> Matrici cu numere imaginare</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa o metoda similara cu metoda de sus se pot crea si utiliza matrici cu numere imaginare. Vom crea in continuare 
+o aplicatie <a href="../downloads/tablouri/matrici_v31.vi"><b> matrici_v31 </b></a>, in care va realiza o matrice imaginara de dimensiune 3X5 in care 
+vor fi inscrise numere aleatoare dupa fiecare 400 ms.
+<br><br><center> <img src="im_lv637.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc va fi utilizata functia "Re/Im To Complex" functie aflata in: Function-->Programming-->Numeric-->Complex-->Re/Im To Complex
+<br><br><center> <img src="im_lv638.gif"></center>
+<br><br><a name="3d"></a>
+<font color= "Black" size=4><li><b> Tablouri 3D</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se pot defini tablouri cu oricate dimensiuni. Ne vom opri totusi la tablouri cu 3 dimensiuni. Folosind matrici de 
+LED-uri putem defini practic aproape orice simbol (litera sau cifra). Ne propunem sa afisam caracterele de la 0-9 folosind matrici de LED-uri. 
+Va trebui sa definim deci 10 matrici boolene care sa contina cele 10 simboluri. Practic definim un singur tablou 3D cu dimensiunea 7X5X10. Din 
+tablul 3D se pot face diverse selectii cum ar fi : o matrice, o coloana, un rand, un element. Selectand o matrice, vom selecta practic simbolul 
+unui anumit caracter. <a href="../downloads/tablouri/matrici_v20.vi"><b> matrici_v20 </b></a>
+<br><br><center> <img src="im_lv629.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Elementele tabloului 3D trebuiesc setate corespunzator cu simbolurile cifrelor dupa care selectand o anumita matrice 
+folosind functia  Index Array, si afisand-o intr-o matrice de leduri, se afiseaza cifra dorita.
+<br><br><center> <img src="im_lv630.gif"></center>
+<br><br><a name="gr"></a>
+<font color= "Black" size=4><li><b> Utilizarea tablourilor pentru afisarea grafica</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Majoritatea controalelor grafice presupun utilizarea tablourilor. In general afisarea datelor in mod grafic se face 
+prin intermediul tablourilor, tablouri care pastreaza datele ce urmeaza a fi reprezentate grafic.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Astfel pentru afisa grafic valorile unui vector, se foloseste controlul Waveform Graph aflat in grupul :
+Controls-->Modern-->Graph-->Waveform Graph <a href="../downloads/tablouri/vector_v5.vi"><b> matrici_v5 </b></a>. 
+<br><br><center> <img src="im_lv614.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc va contine deci si o legatura spre controlul grafic Waveform Graph.
+<br><br><center> <img src="im_lv615.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, ontrolul grafic Waveform Graph, admite la intrare un Array 1D pentru afisare Single Plot.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functiile de tipul z=f(x,y) pot fi reprezentate grafic sub forma de suprafete. Reprezentarea suprafetelor 3D 
+implica utilizarea a doi vectori care pastreaza valorile pentru x respectiv y si un tablou bidimensional in care vor fi pastrate valorile 
+functiei f(x,y). Pentru a reprezenta acest tip de functii, exista controale grafice specilae. In aplicatia urmatoare 
+<a href="../downloads/tablouri/matrici_v40.vi"><b> matrici_v40 </b></a> vom folosi controlul 3D aflat in grupul: Control-->Modern-->Graph-->3D Graph-->
+Surface.
+pentru a reprezenta grafic functia:z=cos(x*x+y*y)*exp(-0.3*(x*x+y*y));
+<br><br><center> <img src="im_lv639.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc se va folosi o structura "Formula node" pentru a introduce expresia functiei.
+<br><br><center> <img src="im_lv640.gif"></center>
+Dupa cum se observa, controlul 3D Graph-->Surface are nevoie de trei tablouri pentru a afisa graficul functiei.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a modifica rezolutia cu care se afiseaza suprafata, mai adaugam un control numeric.
+<a href="../downloads/tablouri/matrici_v41.vi"><b> matrici_v41 </b></a>
+<br><br><center> <img src="im_lv641.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv642.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a modifica domeniul de definitie al functiei, adaugam un control numeric astfel:
+<a href="../downloads/tablouri/matrici_v42.vi"><b> matrici_v42 </b></a>
+<br><br><center> <img src="im_lv643.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv644.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De multe ori e necesara vizualizarea unei curbe in spatiu. Astfel am putea reprezenta grafic traseul uniui avion care 
+se deplaseaza in trei coordonate. Pentru inceput vom reprezenta functia sin(x) iar y va fi o constanta (in cazul nostru y=1) 
+<a href="../downloads/tablouri/matrici_v43.vi"><b> matrici_v43 </b></a>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru afisare vom folosi controlul 3D Graph plasat in grulpul: Controls-->Modern-->Graph-->3D Graph-->Line Graph
+<br><br><center> <img src="im_lv645.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv646.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi acelasi control dar vom afisa de data aceasta functia reprezentata anterior sub forma de suprafata  
+z=cos(x*x+y*y)*exp(-0.3*(x*x+y*y)) dar de data aceasta sub forma de linie 3D 
+<a href="../downloads/tablouri/matrici_v44.vi"><b> matrici_v43 </b></a>
+<br><br><center> <img src="im_lv647.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv648.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi in continuare controale grafice si vom afisa functia de potential a lui Lenard Johanson 
+V=4*eps*((pow(sig/r,12))-(pow(sig/r,6))) <a href="../downloads/tablouri/matrici_v50.vi"><b> matrici_v50 </b></a> ;
+<br><br><center> <img src="im_lv649.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv650.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am putea reprezenta in spatiu potentialul in jurul unei moecule folosind un control grafic  3D , 
+plecand de la functia de potential Lenard Johanson realizand o functie de doua variabile x si y egale intre ele 
+z=4*eps*((pow(sig/sqrt(x*x+y*y),4))-(pow(sig/sqrt(x*x+y*y),2)));
+<a href="../downloads/tablouri/matrici_v51.vi"><b> matrici_v51 </b></a>.
+<br><br><center> <img src="im_lv651.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv652.gif"></center>
+
+<br><br><a name="lab"></a>
+<font color= "Blue" size=5><li>Tematica de laborator-Tablouri de elemente</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizarea matricilor de LED-uri
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sub-Vi comanda coloana matrice de leduri <a href="../downloads/led_matr/Matr_col.vi"><b> Matr_col </b></a> ;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../downloads/led_matr/led_matr_v0.vi"><b> led_matr_v0 </b></a> ;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../downloads/led_matr/led_matr_v1.vi"><b> led_matr_v1 </b></a> ;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../downloads/led_matr/led_matr_v2.vi"><b> led_matr_v2 </b></a> ;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../downloads/led_matr/led_matr_v3.vi"><b> led_matr_v3 </b></a> ;
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sub-Vi comanda linie matrice de leduri <a href="../downloads/led_matr/Matr_lin.vi"><b> Matr_lin </b></a> ;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../downloads/led_matr/l_matr_v0.vi"><b> l_matr_v0 </b></a> ;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../downloads/led_matr/l_matr_v1.vi"><b> l_matr_v1 </b></a> ;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../downloads/led_matr/l_matr_v2.vi"><b> l_matr_v2 </b></a> ;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../downloads/led_matr/l_matr_v3.vi"><b> l_matr_v3 </b></a> ;
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<pre><font size="2" color="darkblue">
+</font></pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+</body>
+</html>
