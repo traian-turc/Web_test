@@ -1,0 +1,126 @@
+<html><head>
+<title>Structuri decizionale</title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Structuri decizionale </Center></TD></TR>
+</table>
+
+<br><br><a name="start_if"></a>
+<font color= "Red" size=5><li>Tipuri de structuri decizionale</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a dezvolta aplicatii mai complexe avem nevoie de structuri care sa iplementeze instructiunile decizionale. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sunt implementate doua structuri decizionale:
+<ul>
+<li> <b>Selectorul</b>	
+<li> <b>Structura "Case"</b>	
+</ul>
+<a name="sel"></a>
+<font color= "Blue" size=5><li>Selectorul</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se gaseste in grupul Programming-->Comparison-->Select
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatii;e in care la un moment dat trebuie sa se ia o decizie sunt usor de realizat utilizand structura "Select"
+<br><br><a name="sel_s"></a>
+<b><font color= "Black" size=4><li>Structura select simpla</font></b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Structura "select" seste similara instructiunii "if" din c++. Este folosita pentru a implementa cazurile in care aplicatia 
+trebuie sa parcurga una din doua ramuri in functie de o conditie de intrare. Prin intermediul structurii select simpla se poate lua deci o decizie atunci 
+cand avem doua alternative.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca dispunem de valoarea temperaturii mediului ambiant si vrem sa afisam intr-un control de tip text, 
+starea de agregare in care se afla apa, dica daca temperatura este sub zero apa se gaseste sub forma de ghiata altfel se afla in stare lichida.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza aplicatia numita <a href="../downloads/if/if_v0_v0.vi"><b> if_v0_v0 </b></a> 
+<br><br><center> <img src="im_lv100.gif"></center>
+<br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a lua decizia in legatura cu textul care trebuie afisat in functie de temperatura se utilizeaza deci  
+structura "Select".
+<br><br><center> <img src="im_lv101.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, structura select returneaza una din cele doua intrari in functie de valoarea booleana aplicata 
+la intrare. Valoarea booleana este rezultatul unei expresii booleene, in cazul de fata: <b> Temperatura>=0 </b> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam acum o aplicatie <a href="../downloads/if/if_v0_v1.vi"><b> if_v0_v1 </b></a> in care avem doua controale numerice A,B si vrem sa afisam intr-un al treilea control control 
+numeric, numarul cel mai mare  furnizat de controale numerice A si B.
+<br><br><center> <img src="im_lv104.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc are forma:
+<br><br><center> <img src="im_lv105.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa folosim acum structura select pentru a ordona doua numere introduse de la doua controale numerice  dealizand o aplicatie 
+de forma <a href="../downloads/if/if_v0_v2.vi"><b> if_v0_v2 </b></a>
+<br><br><center> <img src="im_lv106.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se vor folosi doua structuri select. Prima structura selecteaza minimul si il afiseaza pe primul indicator numeric 
+iar cea de-a doua structura select, selecteaza maximul si-l afiseaza in ce-l de-al doilea indiicator numeric.
+<br><br><center> <img src="im_lv107.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Revenim la aplicatiile care afiseaza un numar intreg de tipul U8 sub forma binara utilizand 8 leduri si sa 
+realizam aplicatia <a href="../downloads/if/if_v0_v3.vi"><b> if_v0_v3 </b></a>, care afiseaza una din doua valori prestabilite in functie de pozitia unui 
+comutator.
+<br><br><center> <img src="im_lv108.gif"></center> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Una din cele doua valori furnizate de controalele numerice va fi afisata binar in functie de pozitia comutatorului.
+<br><br><center> <img src="im_lv109.gif"></center> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<br><br><a name="sel_i"></a>
+<b><font color= "Black" size=4><li>Structura select imbricata</font></b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care trebuie luata o decizie avand mai mult de doua alternative, se folosesc structuri select imbricate.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca in aplicatia <b> if_v0_v0 </b></a>  vrem sa tratam si cazul in care temperatura creste peste 100 de grade si apa se 
+gaseste in forma gazoasa.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom modifica aplicatia <b> if_v0_v0 </b></a>  realizand noua aplicatie numita <a href="../downloads/if/if_v0_v4.vi"><b> if_v0_v4 </b></a> 
+<br><br><center> <img src="im_lv102.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc va trebui sa utilizam doua structuri select. 
+<br><br><center> <img src="im_lv103.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pemtru a trata deci cele trei posibilitati a fost nevoie de utilizarea a doua structura select, realizandu-se 
+imbricarea unei structuri select intr-o alta structura select.
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom utiliza in continuare structurile select imbricate pentru a rezolva ecuatia de gradul I 
+<a href="../downloads/if/if_v0_v5.vi"><b> if_v0_v5 </b></a> a si b fiind coeficientii ecuatiei de gradul I
+<br><br><center> <img src="im_lv110.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vor trebui determinate cazurile:
+<ul>
+<br> 1. a=0 sau b=0
+<br> 2. a!=0 si b!=0
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Fiecare din expresiile relationale de sus vor face selectia in doua structuri select
+<br><br><center> <img src="im_lv111.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pe baza aplicatiei anterioare vom rezolva aplicatia de gradul II
+<a href="../downloads/if/if_v0_v6.vi"><b> if_v0_v6 </b></a> a, b si c fiind coeficientii ecuatiei de gradul II
+<br><br><center> <img src="im_lv112.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc se va include diagrama bloc ce rezolva ecuatia de gradul I si se vor adaga cazurile in functie de delta
+<br><br><center> <img src="im_lv113.gif"></center>
+<br><br><a name="case"></a>
+<font color= "Blue" size=5><li>Structura Case</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru cazurile in care in cadrul aplicatiei trebuie sa alegem din mai multe alternative, structura case este mult mai 
+usor de folosit decat utilizarea structurilor select imbricate. Structura "Case" poate alege din n variante. 
+Selectia se face in functie de o valoare de selectare furnizata la intrarea structurii "Case". Valoarea de selectare poate fi de tipul boolean numeric sau 
+alfanumeric.
+<br><br><a name="case_b"></a>
+<b><font color= "Black" size=4><li>Utilizarea structurii case cu valoare de selectie booleana</font></b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Structuria case cu valoare de selectie booleana este similara cu instructiunea "if" avand numai doua variante.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia <b>if_v0_v6.vi</b>, folosind structuri case devine <a href="../downloads/if/if_v1_v0.vi"><b>if_v1_v0.vi</b></a>  
+<br><br><center> <img src="im_lv114.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Reluam aplicatia pentru rezolvarea ecuatiei de gradul I folosind de data aceasta structuri case.
+<a href="../downloads/if/if_v1_v1.vi"><b>if_v1_v1.vi</b></a>  
+<br><br><center> <img src="im_lv119.gif"></center>
+<br><br><a name="case_n"></a>
+<b><font color= "Black" size=4><li>Utilizarea structurii case cu valoare de selectie numerica</font></b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca in aplicatiile de sus structura "Case" poate fi inlocuita de un simplu selector "if", pentru cazurile cand 
+avem mai multe variante de selectie utilizarea structurii "Case" este absolut necesara.  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand structura "Case" vom realiza o aplicatie <a href="../downloads/if/if_v1_v2.vi"><b>if_v1_v2.vi</b></a> in care 
+avem doi operanzi furnizati de doua controale numerice A si B cu care efectuam diverse operatii selectate de la un alt control.
+<br><br><center> <img src="im_lv115.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In figura de jos sunt reprezentate continutul structurilor "Case" pentru toate cazurile.
+<br><br><center> <img src="im_lv116.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom utiliza in continuare structurile case pentru a afisa diverse combinatii de leduri aprinse selectate de la un 
+control numeric <a href="../downloads/if/if_v1_v3.vi"><b> if_v1_v3 </b></a>
+<br><br><center> <img src="im_lv117.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe fiecare varianta a  structurii "Case" se pun constantele dorite a fi afisate pe leduri
+<br><br><center> <img src="im_lv118.gif"></center> 
+<br><br><a name="case_a"></a>
+<b><font color= "Black" size=4><li>Utilizarea structurii case cu valoare de selectie alfanumerica</font></b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Structurile "Case" utilizate pana in prezent aveau valoarea pentru selectie de tip boolean sau numeric. 
+Structurile "Case" accepta la intrare si valori de selectie de tip alfanumeric. Sa reluam aplicatia si sa realizam 
+<a href="../downloads/if/if_v1_v4.vi"><b>if_v1_v4.vi</b></a> , aplicatie care calculeaza suma, diferenta, produsul sau impartirea a doi operanzi in 
+functie de selectia facuta de utilizator. Vom utiliza pentru selectie un control de tip "Radio Button" care are cele patru obtiuni.
+<br><br><center> <img src="im_lv120.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru diagrama bloc s-a folosit o structura "Case" cu patru variante selectate prin intrarea de selectie de tip 
+alfanumeric. Structura "Case" accepta fara nici un fel de setare intrare de selectie booleana, numerica sau alfanumerica.  
+<br><br><center> <img src="im_lv121.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc de sus este prezentata numai varianta pentru impartire, restul fiind similare cu diferenta ca 
+se alege alt operator.
+
+
+</body>
+</html>
