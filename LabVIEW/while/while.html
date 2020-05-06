@@ -1,0 +1,241 @@
+<html><head>
+<title>Structuri repetitive</title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Structuri repetitive </Center></TD></TR>
+</table>
+
+<br><br><a name="wh"></a>
+<font color= "Red" size=5><li>Tipuri de structuri repetitive</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a dezvolta aplicatii mai complexe avem nevoie de structuri care sa iplementeze repetitiile unor parti din aplicatie. 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sunt implementate doua structuri repetitive:
+<ul>
+<li> <b>Structura While Loop</b>	
+<li> <b>Structura For Loop</b>	
+</ul>
+<a name="while"></a>
+<font color= "Blue" size=5><li>Structura While Loop</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se gaseste in grupul Programming-->Structures-->While Loop
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatiile in care la un moment dat trebuie sa repetam anumite parti ale aplicatiilor atata timp cat este indeplinita o
+anumita conditie sunt realizate utilizand structura "While Loop"
+<br><br><a name="wh_utiliz"></a>
+<b><font color= "Black" size=4><li>Utilizarea structurii While Loop</font></b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Structuria "While Loop" este similara instructiunii "do while" din c++. Este folosita pentru a repeta atata timp cat o 
+conditie este indeplinita.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Am realizat in cursurile anterioare o aplicatie in care se folosea un generator de numere aleatoate si afisarea valorii 
+generate intr-un indicator numeric. Aplicatia era rulata in mod continuu, obtinandu-se astfel, afisarea continua a valorilor generate. Folosind 
+structura "While Loop" vom putea controla intervalul in care sa se afiseze repetitiv valorile generate nemaifiind nevoie de rulare continua.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza aplicatia numita <a href="../downloads/while/while_v0_v0.vi"><b> while_v0_v0 </b></a>, aplicatie care se lanseaza de la 
+butonul "Run" nu de la butonul "Run Continuously"  
+<br><br><center> <img src="im_lv200.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc va contine o structura "While Loop" in interiorul careia se include partea de aplicate ce trebuie repetata.
+<br><br><center> <img src="im_lv201.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa repetitia se face pana cand se apasa butonul "Stop" buton care initial are valorea "True". 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa rularea aplicatiei, se genereaza o serie de valori aleatoare pana la apasarea butonului "Stop". Daca dorim 
+afisarea temporizata a valorilor generate va trebui sa includem in structura repetitiva o functie "Wait" aflata in grupul Functions-->Timing-->Wait, 
+realizand astfel aplicatia: <a href="../downloads/while/while_v0_v1.vi"><b> while_v0_v1 </b></a>.
+<br><br><center> <img src="im_lv202.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In coltul stanga jos al structurii "While Loop" exista variabila i care contorizeaza iteratia curenta. Am putea afisa 
+valoarea acestei variabile in locul variabilei generate aleator<a href="../downloads/while/while_v0_v2.vi"><b> while_v0_v2 </b></a>. In acest caz, diagrama bloc 
+devine:
+<br><br><center> <img src="im_lv203.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Reluam aplicatia care afiseaza un numar intreg de tipul U8 sub forma binara utilizand 8 Led-uri dar de data aceasta 
+numarul intreg va fi chiar variabila i folosita pentru iteratie intr-o structura  "While Loop"<a href="../downloads/while/while_v0_v3.vi"><b> while_v0_v3 </b></a>
+<br><br><center> <img src="im_lv204.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa deci in structura repetitiva aplicatia pentru afisare pe led-uri
+<br><br><center> <img src="im_lv205.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa afisam acum o valoare crescatoare folosind un control de tip "Meter"<a href="../downloads/while/while_v0_v4.vi"><b> while_v0_v4 </b></a>
+<br><br><center> <img src="im_lv206.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom folosi variabila i pentru a afisa valori crescatoare pe "Meter"
+<br><br><center> <img src="im_lv207.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa in diagrama bloc, a fost nevoie si de o temporizare, in caz contrar variatia lui i este foarte rapida si 
+nu vom observa decat valoarea finala.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aceeasi metoda o putem utiliza pentru a afisa acum o valoare a functiei sinus folosind un control de tip "Waveform Chart"
+<a href="../downloads/while/while_v0_v5.vi"><b> while_v0_v5 </b></a>
+<br><br><center> <img src="im_lv208.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc vom folosi functia Sin aflata in grupul:Mathematics-->Elementary-->Trigonometric-->sin.
+<br><br><center> <img src="im_lv209.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a afisa mai putine perioade in unitatea de tipm, contorul i a fost impartit cu 10.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Putem imbunatati aplicatia anterioara prin plasarea unor controale pentru a stabili sa zicem numarul de grade intre doua 
+puncte afisate si intarzierea.<a href="../downloads/while/while_v0_v6.vi"><b> while_v0_v6 </b></a>
+<br><br><center> <img src="im_lv210.gif"></center>
+<br><br><center> <img src="im_lv211.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De aceasta data intarzierea nu mai este fixa, fiind data de valoarea controlului de tip "Slider" iar unghiul curent 
+in radiani este dat de relatia 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; i*90/(pi/2*x) unde x= numarul de grade intre doua puncte afisate.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Am realizat deci un generator de semnal sinusoidal. Pe acelasi principiu putem realiza un generator de semnal dreptunghiular.
+<a href="../downloads/while/while_v0_v7.vi"><b> while_v0_v7 </b></a>
+<br><br><center> <img src="im_lv212.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;aven nevoie de o functie care sa ne intoarca valoarea 1 sau 0. Daca utilizam functia modulo 2 asupra lui contorului i,
+optinem succesiv valorile 1 si 0.
+<br><br><center> <img src="im_lv213.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Latimea implsurilor se regleaza din controlul "Latime" care divide valoarea contorului i cu valoarea controlului 
+"Latime". Dupa operatia de impartire a trebuit sa convertim rezultatul intr-un numar intreg pe 64 biti altfel functia "modulo" nu ar mai fi dat 
+rezultat 1 sau 0.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Pentru a realiza un generator de semnal in treapta <a href="../downloads/while/while_v0_v8.vi"><b> while_v0_v8 </b></a>
+de forma:
+<br><br><center> <img src="im_lv214.gif"></center>
+este suficient sa schimbam functia "modulo" 2 cu "modulo" 5
+<br><br><center> <img src="im_lv215.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Dupa acelasi principiu, pentru a realiza un generator de semnal "dinti de fierastrau" 
+<a href="../downloads/while/while_v0_v9.vi"><b> while_v0_v9 </b></a>
+de forma:
+<br><br><center> <img src="im_lv216.gif"></center>
+este suficient sa utilizam functia "modulo" n in care n sa fie suficient de mare pentru a ajunge la trepte de dimensiunea unui pixel, astfel panta 
+devine aproape limiara.
+<br><br><center> <img src="im_lv217.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Este util de multe ori sa afisam datele in mod grafic sub forma de histograma. Urmatoarea aplicatie 
+<a href="../downloads/while/while_v0_v10.vi"><b> while_v0_v10 </b></a> utilizeaza controlul grafic "Wavwform Chart" setat in mod corespunzator pentru 
+a afisa o histograma.
+<br><br><center> <img src="im_lv222.gif"></center>  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama logica este extrem de simpla:
+<br><br><center> <img src="im_lv223.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Efectul de histogram este obtinut doar din setarea corespunzatoare a controlul grafic "Wavwform Chart".
+<br><br><center> <img src="im_lv224.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia poate fi imbunatatita <a href="../downloads/while/while_v0_v11.vi"><b> while_v0_v11 </b></a> prin 
+atasarea unui control din care sa putem regla intarzierea intre doua valori afisate astfel:
+<br><br><center> <img src="im_lv225.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc va trebui sa utilizeze valoarea data de controlul "Delay" pentru a realiza o pauza intre valorile 
+generate. 
+<br><br><center> <img src="im_lv226.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa in diagrama bloc se trimit spre afisare valori 0 cu exceptia faptului cand restul impartirii 
+contorului i cu valoarea data de "Delay" este 0 deci la un numar multiplu al valorii data de "Delay". 
+
+<br><br><a name="wh_var"></a>
+<font color= "Blue" size=5><li>Utilizarea variabilelor locale in structuri While Loop</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Multe aplicatii nu se pot rezolva fara a utiliza variabile locale. De multe ori avem nevoie de variabile contor 
+suplimentare pentru a dezvolta aplicatii mai complexe. In aplicatiile anterioare ne-am "legat" tot timpul de variabila contor "i" a structurii 
+"While Loop". Vom incerca in aplicatiile urmatoare sa folosim variabile locale pentru a realiza aplicatii mai consistente.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; O alta metoda pentru a obtine un generator de semnal "dinti de fierastrau"  este utilizarea unei structuri decizonale care 
+sa valideze la iesire o valoare crescatoare, pana la valoarea de prag numita amplitudine maxima-Amax.
+<a href="../downloads/while/while_v0_v12.vi"><b> while_v0_v12 </b></a>
+<br><br><center> <img src="im_lv218.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;De data aceasta nu mai putem utiliza contorul i pentru ca de fiecare data cand se ajunge la valoarea de prag trebuie sa 
+reinitializam variabila cu 0, ceea ce nu sete posibil pentru variabila i. Vom utiliza deci o variabila locala numita "Ampl" variabila care pastreaza 
+amplitudinea curenta a semnalului.
+<br><br><center> <img src="im_lv219.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand structura decizionala de tip "Selector", se furnizeaza tot timpul la iesire "Ampl", atata timp cat aceasta este 
+sub pragul stabilit. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Panta se stabileste din controlul "Panta" prin adunarea valorii data de acesta la amplitudinea curenta. Cu cat valoarea 
+"panta" este mai mare, cu atat amplitudinea curenta creste mai repede.
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Revenim la generatorul de semnal dreptunghiular si vom utiliza variabile locale pentru a controla latimea impulsurilor 
+dreptunghiulare.<a href="../downloads/while/while_v0_v13.vi"><b> while_v0_v13 </b></a>
+<br><br><center> <img src="im_lv220.gif"></center> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom introduce o variabila locala numita "Contor_w" care se incrementeaza la fiecare trecere si in cazul in care este 
+atinsa valloarea setata de "Controlul" "Latime",aceasta se reinitializeaza la 0.
+<br><br><center> <img src="im_lv221.gif"></center> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se observa ca pana variabila "Contor_w" atinge valoarea "Latime/2" se trimite valoarea 0 la dispozitivul grafic de 
+afisare. In timpul cat variabila "Contor_w" este mai mare decat valoarea "Latime/2" se trimite valoarea 1 la dispozitivul grafic de 
+afisare
+<br><br><a name="wh_geom"></a>
+<font color= "Blue" size=5><li>Trasarea figurilor geometrice utilizand structuri While Loop</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Desenarea figurilor geometrice intr-un "Front Panel" este un proces repetitiv care presupune plasarea unui control de 
+tip "2D Picture" aflat in grupul: Classic-->Classic Graph-->Controls-->2D Picture. De fiecare data cand se deseneaza ceva pe acest control se adauga 
+vechiului continut, noul continut, asa incat desenarea este un proces repetitiv. Pentru inceput vom plasa un control de tip "2D Picture" in care vom 
+desena un dreptungi <a href="../downloads/while/while_v0_v14.vi"><b> while_v0_v14 </b></a>. 
+<br><br><center> <img src="im_lv227.gif"></center>
+Pentru a desena un dreptungi, vom utiliza functia Draw Rect plasata in grupul:Functions-->Programming-->Graphics and Songs-->
+Picture Functions-->Draw Rect. Aceasta functie necesita o serie de parametri. Pentru a intelege mai bine modul in care lucreaza aceasta functie, vom 
+furniza acesti parametrii de la niste controale situate pe "Front Panel". Pentru a trasa un dreptunghi, este nevoie de coordonatele punctului stanga 
+sus si dreapta jos. Functia mai are nevoie de un parametru care sa indice culoarea cu care se deseneaza, asa ca acest parapetru va fi furnizat de 
+controlul "Color Box" situat in grupul Functions-->Programming-->Graphics and Songs-->Picture Functions-->Color Box. Cel mai important parametru este 
+parametrul "Picture" parametru care precizeaza unde sa se deseneze dreptunghiul. Functia intoarec parametrul "New Picture", reprezentand parametrul 
+"Picture" la care se adauga dreptungiul precizat prin ceilalti parametri. In cazul in care se doreste o ca parametrul "New Picture" sa contina numai 
+dreptunghiul precizat, "Parametrului "Picture" trebuie sa i se atribuie constanta "Empty Picture" aflata in grupul Functions-->Programming-->Graphics and Songs-->
+Picture Functions-->Empty Picture
+<br><br><center> <img src="im_lv228.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia "Draw Rect" are nevoie de o singura structura care contine cei patru parapetri care reprezinta coordonatele 
+dreptunghiului, asa ca a fost necesata "impachetarea celor 4 parametrii utilizand o functie "Bundle" situata in grupul : Programming-->Cluster-->Bundle
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La fiecare iteratie a structurii while, vechea "Picture" este stearsa si se redeseneaza un nou dreptunhi cu noi 
+parametrii stabiliti din controalele dispuse pe panoul frontal. In cazul in care vrem sa se pastreze vechiul continut, "New Picture" trebuie sa devina se 
+trimita la intrarea functiei pentru a se redesena peste vechiul continut.<a href="../downloads/while/while_v0_v15.vi"><b> while_v0_v15 </b></a>. 
+<br><br><center> <img src="im_lv229.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Avem nevoie de o variabila locala pentru a putea conecta iesirea functiei la intrarea ei.
+<br><br><center> <img src="im_lv230.gif"></center>    
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Initializarea cariabilei locale "Picture" se face o singura data la inceputul aplicatiei astfel noile dreptunghiuri 
+trasate se aduna vechilor dreptunghiuri.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza in continuare aplicatii similare pentru a desena elipse
+<a href="../downloads/while/while_v0_v16.vi"><b> while_v0_v16 </b></a>
+<br><br><center> <img src="im_lv231.gif"></center>
+<br><br><center> <img src="im_lv232.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, pentru a desena o elipsa, s-a folosit functia :Functions-->Programming-->Graphics and Songs-->
+Picture Functions-->Draw Round si s-au furnizat coordonatele unui dreptunghi in care va fi inscrisa elipsa. Pentru a desena un cerc, va trebui sa 
+furnizam deci coordonatele unui patrat.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a desena un cerc exista posibilitatea sa furnizam raza si coordonatele centrului cercului utilizand functia: 
+Functions-->Programming-->Graphics and Songs-->Picture Functions-->Draw Circle.
+<a href="../downloads/while/while_v0_v17.vi"><b> while_v0_v17 </b></a>
+<br><br><center> <img src="im_lv233.gif"></center>
+<br><br><center> <img src="im_lv234.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a desena o linie <a href="../downloads/while/while_v0_v18.vi"><b> while_v0_v18 </b></a>trebuiesc furnizati doar 
+doi parametrii care reprezinta coordonatele unui punct. Linia va fi trasata de la pozitia curenta la pozitia data de coordonate. 
+Deci pentru a trasa o linie trebuie mai intai sa ne pozitionam pe pozitia de start a liniei utilizand functia : Functions-->Programming-->Graphics and Songs-->
+Picture Functions-->Move Pen si pe urma sa trasam o linie la coordonatele finale utilizand functia Functions-->Programming-->Graphics and Songs-->
+Picture Functions-->Draw Line. In final trebuie sa furnizam tot patru parametri.
+<br><br><center> <img src="im_lv235.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Coordonatele unui punct se dau tot in forma impachetata deci se va folosi iarasi o functie "Bundle"
+<br><br><center> <img src="im_lv236.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a furniza coordonatele unui punct exista un control special numit:Const Cluster
+<a href="../downloads/while/while_v0_v19.vi"><b> while_v0_v19 </b></a> 
+<br><br><center> <img src="im_lv237.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Coordonatele unui punct se dau de data aceasta gata impachetate
+<br><br><center> <img src="im_lv238.gif"></center>
+<br><br><a name="wh_c"></a>
+<font color= "Blue" size=5><li>Utilizarea limbajului C in diagrame bloc </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;De multe ori diagramele bloc devin complicate si stufoase. Solutia pentru realizarea unor aplicatii mai robuste, este 
+includerea de cod C in diagrame bloc. Acest lucru este posibil utilizand functia:Functions-->Programming-->Formula Node.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia pentru simularea generatoarelor de semnal, devin mult mai simple folosind functii "Formula Node". 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa reluam aolicatia pentru realizarea unui generator de semnal "dinti de fierastrau" realizand aplicatia: 
+<a href="../downloads/while/while_v0_v20.vi"><b> while_v0_v20 </b></a> bazata pe utilizarea functiei "Formula Node". 
+<br><br><center> <img src="im_lv239.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Similar cu aplicatia initiala, se va utiliza functia modulo numai ca de data aceasta apelata ca functie C
+<br><br><center> <img src="im_lv240.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia de tip "Formula Node" utilizata are o variabila de intrare x si o variabila de iesire y. Aceste variabile 
+sunt utilizate in cadrul secventei de cod in C utilizata in interiorul structurii "Formula Node".
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Secventa de cod in C utilizata in interiorul structurii "Formula Node", poate sa contina una sau mai multe linii de 
+program. Este cazul si aplicatiei <a href="../downloads/while/while_v0_v21.vi"><b> while_v0_v21 </b></a> in care se simuleaza un generator de 
+semnal dreptunghiular.
+<br><br><center> <img src="im_lv241.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se vor folosi doua variabile y si z . Variabila y va fi folosita pe post de contor iar z ca variabila de iesire avand 
+valoarea 0 sau 10 pentru a simula iesirea dreptunghiulara. Pe primele 10 valori ale lui y iesirea va fi 0 iar pe urmatoarele 10 valori ale lui y, 
+iesirea va avea valoarea 10. Pentru evidentiere, valaorea variabilei y a fost afisata intr-un control numeric.
+<br><br><center> <img src="im_lv242.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Modul de functionare descris mai sus este mult mai concis exprimat de codul cuprins de structura "Formula node"
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<pre><font size="2" color="darkblue">
+y=y+1;
+if(y < 10)
+   z=0;
+else
+   z=10;
+if(y > 20)
+  y=0;
+</font></pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In aplicatia anterioara, latimea impulsului era fixa si anume egala cu 10 secvente, la fel si latimea perioadei 
+in care semnalul este 0. Punand doua controale putem controla latimea celor doua durate, obtinem astfel urmatoarea aplicatie:
+<a href="../downloads/while/while_v0_v22.vi"><b> while_v0_v22 </b></a>
+<br><br><center> <img src="im_lv243.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Structura "Formula node", va trebui sa contina doua variabile de intrare prin care sa fie transmisa valoarea 
+celor doua controale care stabilesc latimile mentionate.
+<br><br><center> <img src="im_lv244.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;S-au folosit deci variabilele de intrare W0 si W1 pentru a pastra valorile furnizate de cele doua controale numerice 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<pre><font size="2" color="darkblue">
+y=y+1;
+if(y < w0)
+    z=0;
+else
+   z=5;
+if(y > w0+w1)
+   y=0;
+</font></pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+</body>
+</html>
