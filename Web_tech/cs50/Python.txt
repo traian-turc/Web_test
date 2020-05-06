@@ -1,0 +1,97 @@
+Se cauta "env" si se intra in "Edit the system environment variables"
+Environment variables
+Se adauga path-urile
+C:\Users\traian\AppData\Local\Programs\Python\Python38-32\
+C:\Users\traian\AppData\Local\Programs\Python\Python38-32\Scripts
+Se intra in Command
+C:\Users\traian>
+Se da comanda CD pentru a intra in folder-ul cu aplicatii python
+C:\Users\traian>cd Apl_python
+si se obtine
+
+C:\Users\traian\Apl_python>
+
+Pentru lansarea unui program python simplu se lanseaza
+C:\Users\traian\Apl_python>python hello.py  de exemplu
+Daca trebuie instalat un pacchet de exemplu requests
+C:\Users\traian\Apl_pythons>pip install requests
+
+Pentru Flask
+
+C:\Users\traian\Apl_python>set FLASK_APP=application.py
+C:\Users\traian\Apl_python>set DATABASE_URL=postgres://ynwstduqhnmhar:4ca3a579d98300ec68f011fa6b847448c7f57d608af5641dfb82c1084409e64a@ec2-54-246-100-246.eu-west-1.compute.amazonaws.com:5432/d3bl7jbbvltflv
+C:\Users\traian\Apl_python>Flask run
+
+Se deschide browser_ul  la adresa localhost:5000
+
+Daca aplicatia se afla in alt folder
+C:\Users\traian\Apl_python\folder
+Flask run
+
+------------------------ https://adminer.cs50.net/   -ADMINER
+
+Host
+ec2-54-246-100-246.eu-west-1.compute.amazonaws.com
+Database
+d3bl7jbbvltflv
+
+
+============================= proiect0----HTML, CSS
+cd  Apl_python/html_css
+index.html
+
+============================= proiect1---- books--- FLASK 
+
+-------------------------------------------- airline1
+cd Apl_python/books/src3/airline1
+set DATABASE_URL=postgres://ynwstduqhnmhar:4ca3a579d98300ec68f011fa6b847448c7f57d608af5641dfb82c1084409e64a@ec2-54-246-100-246.eu-west-1.compute.amazonaws.com:5432/d3bl7jbbvltflv
+set FLASK_APP=application.py
+Flask run
+
+cd Apl_python/books/books
+set DATABASE_URL=postgres://ynwstduqhnmhar:4ca3a579d98300ec68f011fa6b847448c7f57d608af5641dfb82c1084409e64a@ec2-54-246-100-246.eu-west-1.compute.amazonaws.com:5432/d3bl7jbbvltflv
+set FLASK_APP=application.py
+Flask run
+
+
+============================== proiect2---- message--- FLASK 
+
+-------------------------------------------- vote0
+cd Apl_python/message/src5/vote0
+set FLASK_APP=application.py
+Flask run
+
+-------------------------------------------- vote1
+cd Apl_python/message/src5/vote1
+set FLASK_APP=application.py
+Flask run
+
+-------------------------------------------- message
+cd Apl_python/message/message
+set FLASK_APP=application.py
+Flask run
+
+
+=============================== proiect3---- pizza
+
+-------------------------------------------- pizza---- DJANGO
+cd Apl_python/pizza
+python manage.py runserver
+
+
+=============================== proiect4---- trending
+
+-------------------------------------------- meteo ---- DJANGO
+
+cd Apl_python/meteo
+python manage.py runserver
+
+
+-------------------------------------------- trending--- FLASK
+cd Apl_python/trending
+set FLASK_APP=application.py
+Flask run
+
+-----------------------------------------------
+
+pip install -r requirements.txt
