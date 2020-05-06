@@ -1,0 +1,73 @@
+<html><head>
+<title>Web Server</title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Web Server </Center></TD></TR>
+</table>
+<br><br><a name="conf"></a>
+<font color= "Blue" size=5><li>Configurare Web Server</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;LabVIEW dispune de facilitati pentru afisarea ecranelor "Front Panel" in pagini web. Pentru utilizarea facilitatilor WEB se fac 
+o serie de configurari. Prima configurare se refera la "Web Server". Din meniul principal, se alege Tools-->Options-->Web Server si se obtine:
+<br><br><center> <img src="im_lv800.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se valideaza optiunea "Enable Web Server". In acest moment, s-a validat functionarea  Web Server-ului la adresa implicita: 
+<b> http://localhost:80 </b> Folder-ul implicit pentru acest server fiind <i>C:\Program Files\National Instruments\LabVIEW 2009\www</i>. In acest 
+folder vor fi plasate paginile WEB care vor afisa VI-uri. Pagina implicita fiind <i> index.html </i> respectiv :<b> http://localhost:80/index.html </b>
+<br><br><a name="realiz"></a>
+<font color= "Blue" size=5><li>Realizarea aplicatiei ce urmeaza a fi publicata pe WEB</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea un VI <a href="../downloads/web_server/web_test.vi"><b> web_test </b></a>de forma:
+<br><br><center> <img src="im_lv801.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care este validat Web Server-ul, in coltul stanga jos este afisata adresa acestuia. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv802.gif"></center>
+<br><br><a name="p_web"></a>
+<font color= "Blue" size=5><li>Realizarea paginii web</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Odata activat serverul, VI-ul care ruleaza pe calculatorul server poate fi vizualizat in diverse pagini WEB. Daca 
+serverul este configurat cu o adresa IP, paginile plasate in folder-ul implicit, respectiv <i>C:\Program Files\National Instruments\LabVIEW 2009\www</i>, 
+pot fi accesate din reteaua Intrnet. Paginile web pot fi create automat astfel: din meniul principal, se alege Tools-->Web Publishing Tool si se obtine:
+<br><br><center> <img src="im_lv803.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se vor urmarii pasii din aceasta aplicatie, se vor seta corect informatiile cerute dupa care se genereaza o pagina WEB 
+si se salveaza in in folder-ul implicit, respectiv <i>C:\Program Files\National Instruments\LabVIEW 2009\www</i> cu numele implicit <b> web_test.html </b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Confinutul acestui fisier fiind:
+<br><br><!------------------------------------------------------------------->
+<textarea width="100%" height="400px" style="width:100%;height:400px" name="code" wrap="logical" rows="12" cols="42">
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Draft//EN">
+<HTML>
+<HEAD>
+<TITLE>Aplicatie LabVIEW</TITLE>
+</HEAD>
+<BODY >
+<H1>Vizualizare VI LabVIEW </H1>
+Web_test.vi<P>
+<TABLE BORDER=1 BORDERCOLOR = #000000><TR><TD>
+<OBJECT ID="LabVIEWControl" CLASSID="CLSID:A40B0AD4-B50E-4E58-8A1D-8544233807B1" WIDTH=548 HEIGHT=240 CODEBASE="ftp://ftp.ni.com/support/labview/runtime/windows/9.0/LVRTE90min.exe">
+<PARAM name="LVFPPVINAME" value="web_test.vi">
+<PARAM name="REQCTRL" value=false>
+<EMBED SRC=".LV_FrontPanelProtocol.rpvi90" LVFPPVINAME="web_test.vi" REQCTRL=false TYPE="application/x-labviewrpvi90" WIDTH=548 HEIGHT=240  PLUGINSPAGE="http://digital.ni.com/express.nsf/bycode/exck2m">
+</EMBED>
+</OBJECT>
+</TD></TR></TABLE>
+<P>
+Generator numere aleatoare
+</BODY>
+</HTML>
+</textarea>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se lanseaza pagina web de la adresa: <b> http://localhost/web_test.html</b>, utilizand orice browser de Internet si se 
+obtine:
+
+<br><br><center> <img src="im_lv804.gif"></center> 
+
+
+
+<font color= "Black" size=4><li><b>---</b></font>
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<pre><font size="2" color="darkblue">
+</font></pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+</body>
+</html>
