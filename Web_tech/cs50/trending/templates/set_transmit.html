@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Setting the transmitting station
+{% endblock %}
+
+{% block body %}
+    <form action="{{ url_for('set_transmit_v') }}" method="post">
+	<div id="fr">
+		<div class="form-group">
+			<input type="hidden" id="name" name="name" value="t">
+			<!--<input text class="form-control" name="name" placeholder="Password">-->
+			<font color="magenta"> Set the transmitting station </font>
+            <select class="form-control" name="chan" size="7">
+                {% for chan in chans %}
+                    <option value="{{ chan }}">{{ chan }} </option>
+                {% endfor %}
+            </select>
+        </div>
+		<button class="btn btn-primary">Set</button>
+	</div>
+    </form>
+{% endblock %}
