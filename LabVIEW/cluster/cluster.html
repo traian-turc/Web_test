@@ -1,0 +1,137 @@
+<html><head>
+<title>Structuri de date: clustere</title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Structuri de date: clustere</Center></TD></TR>
+</table>
+<br><br><a name="def"></a>
+<font color= "Blue" size=5><li>Utilizarea cluster-elor</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;LabVIEW permite realizarea structurilor de date prin utilizarea cluster-elor. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Controalele grafice de tip "Graph" servesc pentru reprezentarea drafica a diverselor tipuri de date. De multe ori 
+reprezentarea datelor este complexa si nu presupune numai reprezentarea evolutiei in timp a unei marimi. Pentru a utiliza majoritatea controalelor de 
+tip "Graph", datele trebuie pregatite in structuri specifice fiecarui control "Graf". Este nevoie deci de a realiza diverse structuri de date in 
+vederea utilizarii controalelor "Graph". Structurile de date sunt realizate utilizand clustere. Clusterele sunt functii grupate in :
+Function-->Programming-->Claster, Class & Variant. 
+<br><br><a name="afis_bin"></a>
+<font color= "Black" size=4><li><b> Afisarea binara.</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom relua pentru inceput, o aplicatie pentru conversie binara si  fisare pe 7 segmente 
+<a href="../downloads/cluster/cluster_v00.vi"><b> cluster_v01 </b></a>
+<br><br><center> <img src="im_lv824.gif"></center> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc se va utiliza o structura de date necesara conversiei binare .  
+<br><br><center> <img src="im_lv823.gif"></center>  
+<br><br><a name="afis_x_y"></a>
+<font color= "Black" size=4><li><b> Afisarea in coordonate x, y.</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza pentru o aplicatie pentru a fisarea functiei y=e^x in coordonate x,y 
+<a href="../downloads/cluster/cluster_v01.vi"><b> cluster_v01 </b></a> 
+in care sa va realiza o structura de date necesara controlului grafic "XY Graph" allat in grupul Controls-->Modern-->Grapg-->XY Graph .  
+<br><br><center> <img src="im_lv800.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea o structura de date in care sa fie cuprins un vector cu elementele lui x si un vector cu elementele lui y 
+adica y=e^x.
+<br><br><center> <img src="im_lv801.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Structura de date necesara conrolului grafic XY Graph este realizata utilizand un cluster.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa, calitatea graficului nu este prea buna pentru ca am afisat numai 10 puncte. Pentru o calitate mai 
+buna, avem nevoie de cel putin 100 de puncte. Daca vrem sa pastram domeniul de definitie pentru x, intre 0-10, va trebui sa introducem o variabila noua 
+numita x, deoarece nu mai putem folosi variabila i pe post de x. Obtinem astfel aplicatia :
+<a href="../downloads/cluster/cluster_v02.vi"><b> cluster_v02 </b></a> in care se afiseaza 100 de puncte, fara a modifica domeniul de definitie 0-10.
+<br><br><center> <img src="im_lv802.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc se va introduce variabila locala x.
+<br><br><center> <img src="im_lv803.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru functia anterioara y=e^x, afisarea graficului functiei se putea realiza si prin intermediul unui control grafic 
+"Waveform Graph", nemaifiind necesara definirea unei structuri de date.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Exista functii care sunt mult mai usor de reprezentat in coordonate polare. Astfel un cerc este mult mai simplu de reprezentat. 
+Chiar si in coordonate carteziene XY exte mai usor de reprezentat folosind ecuatile: x=sin(t); y=cos(t) insa pentru aceasta avem nevoie de un control 
+XY Graph. Aceasta metoda de reprezentare grafica a unui cerc este utilizata in aplicatia:
+<a href="../downloads/cluster/cluster_v03.vi"><b> cluster_v03 </b></a>
+<br><br><center> <img src="im_lv804.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Metoda utilizata pentru reprezentarea functiei e^x s-a folosit si pentru reprezentarea grafica a unui cerc.
+<br><br><center> <img src="im_lv805.gif"></center>
+<br><br><a name="liss"></a>
+<font color= "Black" size=4><li><b>  Figurile lui Lissajous  </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp; Figurile lui Lissajous sunt grafice care rezulta din compunerea a doua functii sinus sau cosinus de diferite frecvente. 
+Numarul de curbe inchise depinde de raportul dintre frecventele celor doua functii sinus.
+<a href="../downloads/cluster/cluster_v04.vi"><b> cluster_v04 </b></a>
+<br><br><center> <img src="im_lv806.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind asemanatoare cu diagrama anterioara, cu deosebirea ca se pot ajusta frecventele celor doua functii sinus.
+<br><br><center> <img src="im_lv807.gif"></center>
+<br><br><a name="roza"></a>
+<font color= "Black" size=4><li><b>  Roza polara  </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia:
+<ul>
+ <li> r(t)=a*cos(3*t+fi)
+</ul>
+ se mai numeste roza polara cu 3 petale.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Roza polara este o curba matematica celebra care arata ca o floare cu petale si care poate fi exprimata ca o ecuatie 
+polara simpla, de forma r(t)=a*cos(n*t).Daca n este întreg, aceasta ecuatie produce o roza cu n petale, daca n este impar, sau cu 2n petale daca este 
+par. Daca n este rational dar nu întreg, o forma asemanatoare cu roza ar putea aparea, dar va avea petale suprapuse. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Tinand cont de ecuatiile de transformare in coordonate carteziene:
+<ul>
+ <li> x=r*cos(t)
+ <li> y=r*sin(t)
+</ul>
+, vom obtine expresiile lui x si y de forma:
+<ul>
+ <li> x=Cos(3*t)*Cos(t);
+ <li> y=Cos(3*t)*Sin(t);
+</ul>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;unde t ia valori intre o si 2pi adica 0 si 6.3 radiani
+Aplicatia: <a href="../downloads/cluster/cluster_v05.vi"><b> cluster_v05 </b></a> incearca sa traseze grafic roza polara.
+<br><br><center> <img src="im_lv808.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv809.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Imaginea de sus nu prea seamana a roza polara, desi ecuatiile functiei sunt corecte. Din cauza "pasului" destul de 
+grosier al unghiului alfa, reprezentarea nu este corecta.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In urmatoarea aplicatie: <a href="../downloads/cluster/cluster_v07.vi"><b> cluster_v07 </b></a> se foloseste o varabila separata pentru alfa 
+reusindu-se sa se traseze grafic roza polara.
+<br><br><center> <img src="im_lv810.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv811.gif"></center>
+<br><br><a name="wav"></a>
+<font color= "Black" size=4><li><b>  Utilizare avansata Waveform Graph  </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am utilizat pana acum controlul grafic Waveform Graph insa nu am exploatat la maxim facilitatile acestuia.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In urmatoarea aplicatie: <a href="../downloads/cluster/cluster_v11.vi"><b> cluster_v11 </b></a> se foloseste o varabila separata pentru alfa 
+<br><br><center> <img src="im_lv812.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia permite stabilirea momentului de afifare precum si reglarea ferestrei de timp.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In diagrama bloc se observa folosirea structurii de date care permite facilitatile amintite.:
+<br><br><center> <img src="im_lv813.gif"></center>
+Dupa acelasi principiu este realizata si aplicatia:<a href="../downloads/cluster/cluster_v12.vi"><b> cluster_v12 </b></a>.
+<br><br><center> <img src="im_lv816.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv817.gif"></center>  
+
+<br><br><a name="log"></a>
+<font color= "Black" size=4><li><b>  Afisare proportionala si log  </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Combinarea controalelor grafice XY Graph si Waveform Graph ne permit afisarea graficului unei functii simultan atat 
+proportional cat si logaritmic. <a href="../downloads/cluster/cluster_v13.vi"><b> cluster_v13 </b></a>.
+<br><br><center> <img src="im_lv814.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><br><center> <img src="im_lv815.gif"></center>  
+<br><br><a name="dig"></a>
+<font color= "Black" size=4><li><b>  Afisare semnale digitale  </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Controlul grafic Digital Waveform Graph este utilizat  pentru afisarea valorilor digitale sub forma de forma de unda digitale
+<a href="../downloads/cluster/cluster_v14.vi"><b> cluster_v14 </b></a>
+<br><br><center> <img src="im_lv818.gif"></center> 
+<br><br><center> <img src="im_lv819.gif"></center>  
+<br><br><a name="multi"></a>
+<font color= "Black" size=4><li><b>  Afisare multiplexata pentru mai multe semnale simultan  </b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Utilizand  controlul Waveform Graph si structuri de date se pot afisa multe semnale simultan.
+<a href="../downloads/cluster/cluster_v18.vi"><b> cluster_v18 </b></a>
+<br><br><center> <img src="im_lv820.gif"></center> 
+<br><br><center> <img src="im_lv821.gif"></center>  
+
+
+
+
+
+
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<pre><font size="2" color="darkblue">
+</font></pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+</body>
+</html>
