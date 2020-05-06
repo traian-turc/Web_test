@@ -1,0 +1,112 @@
+<html><head>
+<title>Programare modulara</title>
+</head>
+<body>
+<a name="start"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "white" size=5> Programare modulara </Center></TD></TR>
+</table>
+<br><br><a name="modul"></a>
+<font color= "Blue" size=5><li>Structura modulara</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;LabVIEW are o structura ierarhic modulara. Odata creat un VI, acesta poate fi utilizat in cadrul altui VI. Operatia de 
+includere a unui VI in cadrul altui VI se numeste imbricare. Nu exista o limitare a numarului de nivele de imbricare. Un Vi inclus in interiorul altui VI 
+se numeste subVI. Un subVI este echivalentul unei functii sau proceduri definite de utilizator.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca se utilizeaza des o anumita structura in cadrul unor diagrama bloc. Aceasta structura poate fi definita 
+intr-un VI si apelata de fiecare data cand e nevoie. De exemplu, de multe ori am folosit functii random penru a obtine valori aleatoare. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Functia oferita in grupul: Functions-->Mathematics-->Numeric-->Random, ofera valori zecimale intre 0 si 1. 
+Pentru a obtine un numar aleator intr-un domeniu dorit avem nevoie de o sutructura de felul:
+<br><center> <img src="im_lv352.gif"></center>
+<br><a name="realiz"></a>
+<font color= "Black" size=4><li><b>Realizarea subVI-urilor</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom crea un VI <a href="../downloads/pr_mod/rand_max.vi"><b> rand_max </b></a>de forma:
+<br><br><center> <img src="im_lv353.gif"></center> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><center> <img src="im_lv352.gif"></center>
+<br><br><a name="conn"></a>
+<font color= "Black" size=4><li><b> Conectorul si simbolul (icon-ul) unui subVI</b></font>
+<ul>
+ <ul>
+   <li> <b>Simbolul unui subVI</b>
+ </ul>
+</ul>   
+&nbsp;&nbsp;&nbsp;&nbsp;Pentru a putea fi utilizat pe post de subVI, unui VI trebuie sa i se editeze simbolul si conectorul. Fiecare VI are atasat
+un simbol in coltul stanga sus, in mod special un subVI trebuie sa aiba un simbol distinct, simbolul utilizat in operatia de inserare in cadrul altui VI. 
+Simbolul subVI-ului este identic cu numele unei functii, nume absolut necesar in momentul cand functia este apelata in cadrul altui program. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;SubVI-ul rand_max prezentat mai sus are atasat simbolul:
+<br><center> <img src="im_lv357.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Simbolul subVI-ului poate fi editat printr-un dublu click pe icon-ul din stanga sus. In cazul de fata pobtinem:
+<br><br><center> <img src="im_lv356.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Intrand astfel in aplicatia "Icon Editor", aplicatie care dispune de suficiente unelte intuitive pentru editarea 
+unui simbol cat mai reprezentativ pentru subVI-ul asociat.
+<ul>
+ <ul>
+   <li> <b>Conectorul unui subVI</b>
+ </ul>
+</ul> 
+&nbsp;&nbsp;&nbsp;&nbsp; La fel cum unei functii i se definesc parametrii de intrare si valorile returnate, unui subVI i se definesc introrile si 
+iesirile prin intermediul conectorului. Pentru a configura conectorul se realizeaza click-dreapta pe icon si se alege "Show Connector" si obtinem:
+<br><br><center> <img src="im_lv358.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In functie de cate intrari si cate iesiri are subVI-ul, se alege in mod corespunzator "Patternul" prin operatiunea 
+Click dreapta apoi aleg Pattern.
+<br><br><center> <img src="im_lv359.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul de fata, avand o singura intrare si o singura iesire, se alege patternul incercuit.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmeaza operatiunea de atribuire prin care intrarilor din conector li se atribuie "controalele" de intrare iar 
+iesirilor din conector li se atribuie "controalele" de iesire. Operatia se face utilizand "Connect Wire" din Tools si realizand un Click pe zona 
+dorita din conector, urmata de click pe controlul dorit. Vom atribui deci celulei de intrare din conector controlul "Val_max" si celulei de 
+iesire din conector, controlul "Val_out".
+<br><br><a name="utiliz"></a>
+<font color= "Blue" size=5><li>Utilizare subVI-uri</font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom utiliza in continuare subVI-ul <b> rand_max </b> pentru a crea aplicatia
+<a href="../downloads/pr_mod/pr_mod_v0.vi"><b> pr_mod_v0 </b></a> care simuleaza un turometru a carei viteza maxima poate fi setata de utilizator.
+<br><br><center> <img src="im_lv350.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind:
+<br><center> <img src="im_lv351.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Bazandu-ne in continuare pe subVI-ul <b> rand_max </b> vom realiza o noua aplicatie 
+<a href="../downloads/pr_mod/pr_mod_v1.vi"><b> pr_mod_v1 </b></a> care simuleaza variatia presiunii si temperaturii intr-un domeniu stabilit de 
+utilizator
+<br><center> <img src="im_lv360.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama logica va contine doua apleuri ale subVI-ul <b> rand_max </b>
+<br><center> <img src="im_lv361.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca avem de testat comportamentul unui sistem la diferite conditii de mediu cum ar fi diferite 
+temperaturi si presiuni. Acesti doi parametrii variaza intr-un interval prestabilit. Este imposibil sa testam sistemul pentru toate vaorile 
+posibile ale celor doi parametrii.  Sa presupunem ca se vor alege aleator 10 perechi de parametrii pentru care se va testa sistemul. Urmatoarea 
+aplicatie <a href="../downloads/pr_mod/pr_mod_v2.vi"><b> pr_mod_v2 </b></a> alege si traseaza grafic cele zece perechi de valori.
+<br><center> <img src="im_lv362.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Aplicatia se bazeaza iarasi pe subVI-ul <b> rand_max </b>
+<br><center> <img src="im_lv363.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea perechilor de valori s-a facut prin intermediul controlului grafic "XY Graph" care asteapta doua tablouri, 
+intr-un tablou sunt memorate valorile lui x iar in celalalt tablou valorile lui y. Cele doua tablouri sunt impachetate intr-un singur cluster folosind 
+o functie "Bundel".
+<br><br><a name="realiz_r"></a>
+<font color= "Black" size=4><li><b>Realizarea rapida a subVI-urilor</b></font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem ca am realizat aplicatia <a href="../downloads/pr_mod/pr_mod_v3.vi"><b> pr_mod_v3 </b></a> care 
+permite afisarea simultana a vitezei in Km/h respectiv Mile/h.
+<br><br><center> <img src="im_lv364.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Diagrama bloc fiind relativ simpla avand forma:
+<br><br><center> <img src="im_lv365.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Observam ca structura care calculeaza viteza in mile este utila si vrem sa realizam un subVI care sa realizeze 
+aceasta operatie pentru ca acest subVI sa poata fi apelat si din alte aplicatii.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom selecta zona pe care vrem s-o includem in subVI, cu ajutorul mouse-ului.
+<br><br><center> <img src="im_lv366.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Din meniul principal, alegem Edit-->Create SubVI, dupa care schema bloc devine:
+<br><br><center> <img src="im_lv367.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La salvarea aplicatiei, ni se cere sa salvam subVI-ul ctrat. Vom salva subVI-ul cu numele "km_mile.vi" 
+<a href="../downloads/pr_mod/km_mile.vi"><b> km_mile </b></a>.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Deschidem subVI-ul creat si obtinem:
+<br><br><center> <img src="im_lv368.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Avem deci in acest moment un subVI pe care outem sa-l inseram in alte aplicatii. Vom edita in primul rand 
+simbolul subVI-ului creat dupa care il vom folosi in alte aplicatii.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa editarea simbolului si salvarea subVI-ului, vom deschide aplicatia  
+<a href="../downloads/pr_mod/pr_mod_v4.vi"><b> pr_mod_v4 </b></a> si observam noul simbol al subVI-uliui inserat.
+<br><br><center> <img src="im_lv369.gif"></center> 
+
+
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="#D9E3EE">
+<pre><font size="2" color="darkblue">
+</font></pre> 
+</td></tr></table>
+<!------------------------------------------------------------------->
+</body>
+</html>
