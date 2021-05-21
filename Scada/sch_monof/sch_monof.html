@@ -1,0 +1,1345 @@
+<html>
+<title> Aplicatii in energetica - linii monofilare</title>
+<body>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "red" size=6> Aplicatii in energetica - scheme monofilare </Center></TD></TR>
+</table>
+
+<font color= "Black" size=4><li><b>Obiective </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li>Realizarea de aplicatii SCADA in energetica. 
+<li>Definirea simbolurilor grafice necesare dezvoltarii de aplicati SCADA destinate sectorului energetic.
+<li>Definirea elementelor unei linii monofilare.
+<li>Aplicatii SCADA pentru simularea unei linii monofilare.  
+<li>Aplicatii SCADA pentru simularea unei linii monofilare si implementarea algoritmilor de conditionalitate intre elementele liniei monofilare.
+<li>Aplicatii SCADA pentru simularea conectarii secventiale a liniilor monofilare.
+<li>Aplicatii SCADA pentru managementul liniilor liniilor monofilare.
+
+</td></tr></table>
+</ul>
+
+<font color= "Black" size=4><li><b>Organizarea sarcinilor de lucru </b> </font>
+<ul>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+<li> Parcurgeti cele trei capitole ale cursului.
+<li> In cadrul fiecarui capitol urmariti exemplele ilustrative si incercati sa le realizati in medul de dezvoltare "Citect".
+<li> Fixati principalele idei ale cursului, prezentate în rezumat.
+<li> Completati testul de autoevaluare. 
+<li> Timpul de lucru pentru parcurgerea testului de autoevaluare este de 15 minute.
+</td></tr></table>
+</ul>
+<br><br><a name="monof_i"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> 1. Scheme monofilare - elemente introductive  </Center></TD></TR>
+</table>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sectorul energetic este unul din sectoarele care necesita control si monitorizare la diverse nivele. Vom realiza in continuare 
+o serie de aolicatii SCADA in domeniul energetic.     
+<br><br><a name="monof_pr"></a>
+<font color= "Blue" size=4><li><b>Crearea proiectului: "Scheme monofilare" </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom dezvolta in continuare cateva aplicatii din domeniul energetic in cadrul unui proiect numit &nbsp;<a href="../downloads/aplicatii/Sch_monof.ctz"> <font color="red"><b>Sch_monof</b></font></a>&nbsp; .
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In cadrul acestui proiect vom realiza diverse scheme monofilare carora le vom da functionalitate. Pentru a realiza scheme monofilare 
+avem nevoie de o serie de simboluri cum ar fi simboluri pentru: separatoare, intreruptoare, transformatoare etc.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In proiectul &nbsp;<a href="../downloads/aplicatii/Sch_el_start.ctz">Sch_el_start</a>&nbsp;, sunt realizate deja o serie de astfel de simboluri, asa ca vom porni de la acest proiect.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa ce s-a download-at acest fisier, din Citect Explorer->Restore se incarca acest proiect si i se atribuie numele "Sch_monof". 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Proiectul contine pagina grafica start afisata mai jos.
+<br><br><center><img src="../prg_apl/im_citect014.gif"></center>
+<br><br><a name="monof_elem"></a>
+<font color= "Blue" size=4><li><b>Elementele unei linii monofilare </b> </font>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Se va crea o noua pagina grafica numita <b> sch_monof_1 </b>, in care vom plasa un separator, un intrerupator si un 
+transformator, realizand schema monofilara de mai jos. Toate simbolurile necesare acestei scheme monofilare au fost create anterior, odata cu pagina 
+grafica <b> start </b> existenta in proiectul initial  <b> "Sch_el_start" </b>.
+<br><br><center><img src="im_citect027.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dorim sa realizam o aplicatie care sa monitorizeze starea componentelor din schema monofilara de mai sus. Sa presupunem 
+ca avem un sistem de achizitie si control care este conectat la elementele din schema monofilara de sus. Starea fiecarui element este oglindita de 
+tag-urile corespunzatoare adica:
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> s1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Stare separator s1 </b> </td>    
+</tr> 
+
+<tr>
+  <td> intr1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Stare intrerupator intr1 </b> </td>    
+</tr> 
+
+</table>
+</center> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru separator s-a utilizat un "Simbol Set" compus din simbolurile "sep_off", "sep_on". Starea separatorului fiind in 
+concordanta cu starea tag-ului <b> s1 </b>. 
+<br><br><center><img src="im_citect028.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Similar, pentru intreruptor s-a utilizat un "Simbol Set" compus din simbolurile "intr_off", "intr_on", starea acestuia 
+fiind in concordanta cu starea tag-ului <b> intr1 </b>. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru transformator  s-a utilizat un "Simbol Set" compus din simbolurile "traf_off", 
+"traf_on". De data aceasta, starea transformatorului este in concordanta cu expresia:  <b> s1*intr1 </b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Toate simbolurile utilizate anterior, se gasesc in "Library: global".
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In lipsa sistemului de achizitie si control, nu ne putem baza pe tag-urile amintite anterior. Vom putea simula 
+insa aceste tag-uri, prin utilizarea variabilelor locale. Vom utiliza deci variabilele locale in locul variabilelor Tag. Pe tot parcursul 
+acestei lucrari vom utiliza numai variabile locale pentru a putea realiza aplicatii in lipsa sistemului de achizitie si comanda. Toate aceste 
+variabile vor fi simulate local. Aplicatia anterioara va fi completata cu doua butoane pentru a simula starea variabilelor <b> s1 </b> respectiv 
+<b> intr1 </b>.
+<br><br><center><img src="im_citect029.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;La apasarea butoanelor, acestea trebuie sa schimbe starea variabileor locale asociate astfel butonul S1 trebuie sa 
+fie setat astfel: 
+<br><br><center><img src="im_citect030.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Similar la apasarea butonului "Intr", acesta trebuie sa execute functia: toggle(intr1).
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In acest moment schema este functionala in sensul ca la apasarea butonului S1, separatorul isi schimba starea, la 
+fel la apasarea butonului Intr, intreruptorul intr1 isi schimba starea, iar ral realizarea conditiei intr1=1 si s1=1 transformatorul indica faptul 
+ca este in functiune conform situatiei de mai jos:
+<br><br><center><img src="im_citect031.gif"></center>
+<br><br><a name="func_lin"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> 1. Functionarea unei lini monofilare  </Center></TD></TR>
+</table>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom introduce in continuare o serie de elemente care sa faca functionala linia monofilara schitata anterior.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa introducem deci noi facilitati si sa adaugam comenzi directe pentru inchiderea respectiv deschidreaea separatorului si 
+intreruptorului, realizand astfel o noua pagina grafica  <b> sch_monof_2 </b>. In cazul in care sistemul de achizitie si comanda este prevazut atat cu elemente pentru citirea strilor cat si cu elemente de comanda, 
+putem imbogati functionalitatea schemei precedente cu facilitati de comanda pe langa facilitatile anterioare de monitorizare. Vom da deci o dubla 
+functionalitate celor doua simboluri (s1, intr1) atat pentru afisarea starii cat si pentru preluarea comenzii de inchidere respectiv deschidere.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se va atribui Set Simbolului s1 si atributii de tip "Input" astfel:
+<br><br><center><img src="im_citect033.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Cu alte cuvinte, se inglobeaza functionalitatea butonul S1 in "Set Simbolul" S1.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Se procedeaza identic cu "Set Simbolul" Intr1.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In noua pagina grafica  <b> sch_monof_2 </b> se observa ce cele doua simboluri (s1, intr1) devin senzitive, putandu-se 
+lansa comenzi de inchidere respectiv deschidere.
+<br><br><center><img src="im_citect032.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Am eliminat cele doua butoane ce simuleaza starea celor doua elemente, comanda lor, facandu-se direct de la acestea. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cand cele doua elemente sunt inchise, simbolul transformatorului se modifica indicand functionarea acestuia. In aplicatiile 
+reale exista o ordine in care se actioneaza cele doua elemente, in sensul ca separatorul nu poate fi niciodata actionat in sarcina. Acesata schema nu 
+asigura aceasta constrangere, nefiind conditionalitate intre cele doua comenzi.
+<br><br><a name="monof_cond"></a>
+<font color= "Blue" size=4><li><b>Conditionarea separatorului de intreruptor</b> </font> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In urmatoarea pagina grafica  <b> sch_monof_3 </b> se va realiza conditionalitatea intre cele doua comenzi. Tinand cont ca 
+separatorul nu poate fi niciodata actionat in sarcina, actionarea acestuia nu mai reprezinta o simpla operatiune de schimbare a starii acestuia ci 
+trebuie conditionata de starea intreruptorului astfel:
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF (intr1=0)
+THEN
+toggle(s1)
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->  
+<br><br><center><img src="im_citect034.gif"></center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;S-a setat deci proprietatea "Input" a "Set Simbolului" s1.
+
+<br><br><a name="monof_conf"></a>
+<font color= "Blue" size=4><li><b>Confirmarea executiei comenzilor</b> </font> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In sistemele energetice, inchiderea respectiv deschiderea unui separator sau a unui intreruptor nu este instantanee. Vom 
+tine cont la urmatoarea pagina grafica <b> sch_monof_4 </b> de acest fenomen. Dupa comanda actionarii unui element se scurge un interval de timp pana 
+la efectuarea completa a comenzii. In aplicatia curenta, dupa actionarea uniui element vom avea nevoie de un semnal care sa confirme efectuarea comenzii.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom introduce pe langa tag-urile existente, noi tag-uri pentru a implementa raspunsul efectuarii comenzii.
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> s1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Stare separator s1 </b> </td>    
+</tr> 
+
+<tr>
+  <td> intr1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Stare intrerupator intr1 </b> </td>    
+</tr> 
+
+<tr>
+  <td> c_p_s1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda pornire separator 1 </b> </td>    
+</tr>
+
+<tr>
+  <td> c_o_s1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda oprire separator 1 </b> </td>    
+</tr>
+
+<tr>
+  <td> c_p_i1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda pornire intreruptor 1 </b> </td>    
+</tr>
+
+<tr>
+  <td> c_o_i1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda oprire intrerupator 1 </b> </td>    
+</tr> 
+</table>
+</center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa actionarea separatorului s1 de exemplu, nu se schimba starea acestuia decat dupa aparitia confirmarii. Va trebui sa 
+introducem un simbol care sa indice comanda data separatorului pentru a nu deruta utilizatorul, acesta avand impresia ca nu se intampla nimic in urma 
+actionarii separatorului. Dupa confirmarea actionarii se stinge simbolul aferent comenzii si se schimba starea separatoruliui. Aceste consideratii sunt 
+ilustrate in pagina grafica de mai jos.
+<br><br><center><img src="im_citect035.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;In cazul in care se incearca actionarea separatorului in sarcina, nici macar comanda de actionare a separatorului nu 
+este lansata. In acest caz, utilizatorul trebuie atentionat cu un mesaj ca nu poate actiona separatorul. Mesajele vor fi trimise cu instructiunea:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Prompt("Mesaj");
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Confirmarile de realizare ale comenzilor sunt simulate de butoanele din partea dreapta a paginii grafice.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Butonul "Separator complet inchis" are setata proprietatea "Imput" cu urmatoarea comanda:  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+c_p_s1=0
+s1=1
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Butonul "Separator complet deschis" are setata proprietatea "Imput" cu urmatoarea comanda:  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+c_o_s1=0
+s1=0
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Butonul "Confirmare inchidere i1" are setata proprietatea "Imput" cu urmatoarea comanda:  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+c_p_i1=0
+intr1=1
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Butonul "Confirmare deschidere i1" are setata proprietatea "Imput" cu urmatoarea comanda:  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+c_o_i1=0
+intr1=0
+Prompt(" ");
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Simbolul "s1" are setata proprietatea "Imput" cu urmatoarea comanda:  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF (intr1=0)
+THEN
+Prompt(" ");
+ IF s1=0 THEN
+   c_p_s1=1
+   c_o_s1=0
+  ELSE
+   c_o_s1=1
+   c_p_s1=0
+ END
+ELSE
+Prompt("Nu se poate actiona separatorul!");
+END
+</pre> </font>
+</td></tr></table>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se observa incercarea de a actiona separatorul in sarcina are ca singur efect afisarea mesajului: 
+"Nu se poate actiona separatorul!"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Simbolul "intr1" are setata proprietatea "Imput" cu urmatoarea comanda:  
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF intr1=0 THEN
+   c_o_i1=0
+   c_p_i1=1
+  ELSE
+   c_p_i1=0
+   c_o_i1=1 
+ END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Cele patru simboluri de tip LED sunt simple "Set Simboluri" in cocordanta cu tag-urile: c_o_s1, c_p_s1, c_o_i1, c_p_i1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In dreptul acestor simboluri apar si textele corespunzatoare, texte care sunt vizibile atat timp cat tag-ul corespunzator este activ. 
+Acest comportament s-a realizat prin setarea proprietatii "Visibility"-> Hidden when
+<br><br><center><img src="im_citect036.gif"></center>
+<br><br><a name="monof_sim"></a>
+<font color= "Blue" size=4><li><b>Simularea executiei comenzilor</b> </font> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Inchiderea respectiv deschiderea separatorului, ar putea fi simulata printr-o marime analogica, avand valori intre 0 si 100%. Pe schema aceasta 
+valoare ar putea fi simulata prin utilizarea unui control de tip "Slider" care ar fi in legatura cu un tag de tip analogic. Vom introduce un nou tag, atfel in acest moment 
+avem urmatoarele tag-uri:
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> s1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Stare separator s1 </b> </td>    
+</tr> 
+
+<tr>
+  <td> intr1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Stare intrerupator intr1 </b> </td>    
+</tr> 
+
+<tr>
+  <td> c_p_s1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda pornire separator 1 </b> </td>    
+</tr>
+
+<tr>
+  <td> c_o_s1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda oprire separator 1 </b> </td>    
+</tr>
+
+<tr>
+  <td> c_p_i1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda pornire intreruptor 1 </b> </td>    
+</tr>
+
+<tr>
+  <td> c_o_i1 </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda oprire intrerupator 1 </b> </td>    
+</tr> 
+
+<tr>
+  <td> poz_s1 </td>
+  <td> INT </td>
+  <td> 100 </td>
+  <td> % </td>
+  <td> Pozitie separator 1 </b> </td>    
+</tr> 
+
+</table>
+</center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza deci urmatoarea pagina grafica <b> sch_monof_5 </b> in care simularea inchiderii respectiv deschiderii 
+separatorului se va realiza manual de la un "Slider" 
+<br><br><center><img src="im_citect037.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Simularea pozitiei separatorului se face utilizand un obiect "Symbol" de tipul Xp_slider -right normal care poate 
+fi localizat in Library->XP_Sliders.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Setam proprietatea Slider->Vertical->Tag=poz_s1 si Offset at maximum = 150 pixeli. Setand aceasta proprietate in acest mod, 
+vom putea actiona acest simbul si sa-l deplasam pe verticala 150 de pixeli. Miscarea acestui obiect de la 0 la 150 pixeli va cauza modificarea tag-ului 
+asociat poz_s1 de la 0 la val maxima definita adica 100.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Afisarea valorii poz_s1 sub forma numerica se face utilizand un obiest de tip "Number"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Reprezentarea sub forma unei bare vericale se face utilizand un obiect "Rectangle" in care s-a setat proprietatea:
+Fill->Level->Level expresion=poz_s1 iar proprietatea Apparence s-a setat cu Gradient fill. 
+<br><br><center><img src="im_citect038.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa plasarea "Slider-ului", ar trebui sa urmarim in permanenta daca poz_s1 este egala cu 100 sau cu 0 pentru a 
+confirma inchiderea respectiv deschiderea completa a separatorului. Daca ne analizam "Page->Properties", 
+<br><br><center><img src="im_citect039.gif"></center>
+<br><br>observam ca "Page scan time" se face la fiecare 250 ms deci am putea plasa pe ecran o functie care s-ar lansa de 4 ori pe secunda. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa deci pe pagina grafica functia <b> ecran_1( ) </b>, si vom edita in "Cicode Editor" urmatoarea functie:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION ecran_1()
+
+	IF (poz_s1=100) THEN
+		c_p_s1=0
+		s1=1
+	END
+	IF (poz_s1=0) THEN
+		c_o_s1=0
+		s1=0
+	END
+
+END
+</pre> </font>
+</td></tr></table>
+<!-------------------------------------------------------------------> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea pagina grafica <b> sch_monof_6 </b> simularea inchiderii respectiv deschiderii 
+separatorului se va realiza automat fiind afisata pe controlul de tip "Slider" 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Simularea automata se realizeaza prin rescrierea functiei <b> ecran_1( ) </b> astfel incat pozitia sa se incrementeze 
+dupa fiecare interval de scanare. Noua functie  <b> ecran_2( ) </b> are forma:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION ecran_2()
+
+	IF (c_p_s1=1) AND (poz_s1<100) THEN
+		poz_s1=poz_s1+7
+		IF (poz_s1>100) THEN 
+		   poz_s1=100
+		END   
+		
+	END	
+	IF (c_o_s1=1) AND (poz_s1>0) THEN
+		poz_s1=poz_s1-7
+		IF (poz_s1<0) THEN 
+		   poz_s1=0
+		END   
+
+		
+	END		 
+
+
+	IF (poz_s1=100) THEN
+		c_p_s1=0
+		s1=1
+	END
+	IF (poz_s1=0) THEN
+		c_o_s1=0
+		s1=0
+	END
+
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Urmatoarea pagina grafica <b> sch_monof_13 </b> o reprezinta o schema monofilara pentru alimentarea redondanta a unei linii de 220v 
+de la doua linii diferite de 6kv. Aplicatia SCADA trebuie sa permita conectarea uneia dintre linii si sa nu permita conectarea simultana a celor doua linii. 
+Manevrele de comutare se pot face manual sau automat de la cele doua butoane. In cazul conectatii automate, terbuie sa existe o temporizare intre comutarea 
+separatoarelor si comutarea intreruptoarelor.
+<br><br><center><img src="im_citect044.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Comutarea manuala nu permite conectarea simultana a celor doua linii gratie procedurilor atasate celor doua intreruptoare descrise mai jos:
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru intreruptorul1
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+IF s2*intr2 THEN
+	intr1=0
+ELSE
+	IF intr1=1 THEN
+  		intr1=0
+	ELSE
+		intr1=1
+	END
+END
+
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru intreruptorul2
+
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+IF s1*intr1 THEN
+	intr2=0
+ELSE
+ 	IF intr2=1 THEN
+ 		intr2=0
+ 	ELSE
+		intr2=1
+	END
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Comutarea automata  intre linii se realizeaza prin  functia <b> ecran_13( ) </b> comutarea fiind instantanee iar comutarea cu temporizare 
+se face cu functia  <b> ecran_14( ) </b> 
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION ecran_13()
+	IF b1=1 THEN
+		b2=0
+		intr2=0
+		s2=0
+		s1=1
+		intr1=1
+		b1=0
+	END	
+	IF b2=1 THEN
+		b1=0
+		intr1=0
+		s1=0
+		s2=1
+		intr2=1	
+		b2=0
+	END	
+END
+FUNCTION ecran_14()
+	IF b1=1 THEN
+		b2=0
+		intr2=0
+		s1=1
+		i=i+1
+		IF i>6 THEN
+			s2=0
+			intr1=1
+			b1=0
+			i=0
+		END		
+	END	
+	IF b2=1 THEN
+		b1=0
+		intr1=0
+		s2=1
+		i=i+1
+		IF i>6 THEN
+			s1=0
+			intr2=1	
+			b2=0
+			i=0
+		END	
+	END	
+END
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+<br><br><a name="managm_l"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "blue" size=5> 3. Managementul liniilor monofilare  </Center></TD></TR>
+</table>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In multe cazuri in cadrul schemelor monofilare se intalnesc mai multe elemente de acelasi tip. In acest caz se recomanda 
+definirea tag-urilor de tip Array si utilizarea instructiunilor repetitive. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza in continuare diverse scheme monofilare in care avem mai multe linii de alimentare dotate fiecare cu 
+transformator, intreruptor, separator etc.
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru inceput, sa luam o schema monofilara cu 10 linii separate de alimentare.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sa realizam o aplicatie SCADA  <b> sch_monof_7 </b> care sa comande inchiderea respectiv deschiderea elementelor de comutatie, intr-o anumita ordine.
+<br><br><center><img src="im_citect040.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru inchiderea respectiv deschiderea elementelor de comutatie, vom introduce doua tag-uri de tip Array:
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="6" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Array Size </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> sep </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> 11 </td>
+  <td> Separatoarele sep[1]-sep[10] </b> </td>    
+</tr> 
+
+<tr>
+  <td> intr </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> 11 </td>
+  <td> Intreruptoarele intr[1]-intr[10] </b> </td>       
+</tr> 
+</table></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentele click ale butoanelor "ON" respectiv "OFF" sunt afectate doua variabile tag locale:
+<br><br>
+<center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> cmd_on </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda inchiderea elementelor de comutatie </b> </td>    
+</tr> 
+
+<tr>
+  <td> cmd_off </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Comanda deschiderea elementelor de comutatie </b> </td>    
+</tr>
+<tr>
+  <td> i </td>
+  <td> INT </td>
+  <td> - </td>
+  <td> - </td>
+  <td> Index </b> </td>    
+</tr>
+</table>
+</center> 
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul click al butonului "ON" vom pune:  <b> toggle(cmd_on); i=0;</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pe evenimentul click al butonului "OFF" vom pune:  <b> toggle(cmd_off); i=0;</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom plasa functia <b> ecran()</b> pe pagina principala, functie lansata la fiecare scanare a ecranului.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Functie de variabilele de sus (cmd_on,com_off), la fiecare scanare a paginii, elementele de comutatie se vor inchide 
+secvnential, respectiv se vor deschide secvential. Desi este o operatie repetitiva, aceasta nu s-a mai implementat folosind instructiunea repetitiva 
+<b> for</b>, repetitivitatea s-a realizat prin intermediul scanarii implicite a paginii la intervalul stabilit anterior. 
+<br><br><a name="prior_l"></a>
+<font color= "Blue" size=4><li><b>Ordinea de comutare sau deconectare a liniilor </b> </font>  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Sa presupunem acum ca dorim activarea elementelor de comutatie dintr-o schema monofilara, intr-o anumita ordine. 
+Pentru acest lucru vom devini un vector de prioritati de genul:
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;INT Prior[11]=0,1,5,7,4,2,9,3,6,8,10;
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Dupa cum se vede, s-au definit 11 elemente nu 10, pe motiv ca numerotarea LED-urilor incepe de la 1 nu de la 0.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Conform modului de initializare al valorilor elementelor vectoruljui "Prior", ordinea de activare a elementele de 
+comutatie este:1,5,7,4,2,9,3,6,8,10
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom rescrie functia <b>ecran_4( )</b> astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+INT Prior[11]=0,1,5,7,4,2,9,3,6,8,10;
+
+FUNCTION ecran_4()
+  IF (cmd_on=1) THEN
+    cmd_off=0;
+	i=i+1;
+	IF (i=11) THEN
+	   cmd_on=0;
+	   i=0;
+	END
+    sep[Prior[i]]=1;
+	intr[Prior[i]]=1;
+  END
+  
+  IF (cmd_off=1) THEN
+    cmd_on=0;
+	i=i+1;
+	IF (i=11) THEN
+	   cmd_off=0;
+	   i=0;
+	END
+	sep[Prior[11-i]]=0;
+	intr[Prior[11-i]]=0;
+  END
+END
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Putem lasa utilizatorul sa introduca valori elementelor vectorului de prioritati si realizam astfel  aplicatie SCADA  <b> sch_monof_8 </b> 
+in care inchiderea respectiv deschiderea elementelor de comutatie, se face in ordinea stabilita de utilizator.
+<br><br><center><img src="im_citect046.gif"></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru aceasta campurile in care se afiseaza prioritatea primesc si facilitati de "Input" astfel de exemplu pentru campu 2 avem:
+<br><br><center><img src="im_citect045.gif"></center>
+<br><br><a name="protec_l"></a>
+<font color= "Blue" size=4><li><b>Protectia  liniilor la depasirea parametrilor nominali </b> </font>  
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom simula in continuare protectia maximala de curent in aplicatia  <b> sch_monof_10 </b>. Fiecare linie de alimentare, are atribuita o valoare 
+maxima a curentului admis. Pentru a memora valorile maximale de curent pentru fiecare linie, vom defini un nou vector tag de tip int 
+<b> Imax </b> de dimensiune 11 (pentru fiecare linie cate o valoare).
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Vom simula consumul efectiv pentru fiecare linie prin cate un simbol slider carora le atasam vectorul tag de tip int 
+<b> i_ef </b> de dimensiune 11
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="6" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Array Size </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> Imax </td>
+  <td> INT </td>
+  <td> - </td>
+  <td> - </td>
+  <td> 11 </td>
+  <td> Curent maxim pe liniile L1-L10 </b> </td>    
+</tr> 
+
+<tr>
+  <td> i_ef </td>
+  <td> INT </td>
+  <td> - </td>
+  <td> - </td>
+  <td> 11 </td>
+  <td> Curent efectiv pe liniile L1-L10 </b> </td>       
+</tr> 
+</table></center>
+<br><br><center><img src="im_citect041.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Daca valoarea efectiva a curentului depaseste valoarea maxima prescrisa, trebuie deconectata linia, iar dupa ce 
+valoarea efectiva a curentului scade sub valoarea maximala, linia se conecteaza automat. Aceste functii vor fi realizate de functia <b> ecran( )</b> 
+functie care se lanseaza la fiecare scanare a ecranului.
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION ecran()
+Imax[0]=0;
+Imax[1]=500;
+Imax[2]=785;
+Imax[3]=200;
+Imax[4]=777;
+Imax[5]=100;
+Imax[6]=800;
+Imax[7]=50;
+Imax[8]=500;
+Imax[9]=250;
+Imax[10]=450;
+INT i;
+FOR i=1 TO 11 DO 
+	IF i_ef[i]>Imax[i] THEN
+		sep[i]=0;
+		intr[i]=0;
+	ELSE
+		sep[i]=1;
+		intr[i]=1;
+	END
+END
+END
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Conectarea liniei care a depasit consumul, nu ar trebui sa se faca automat, ar trebui sa se faca manual, numai dupa 
+ce a fost redus consumul sub limita maxima. Ar trebui insa sesizata anclansarea protectiei, sesizare care va fi facuta prin intermediul unui 
+indicator de tip LED. De asemenea LED-ul ar trebui sa se invalideze in cazul ca nu mai exista conditii ca linia sa intre din nou in protectie.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru controlul LED-urilor avem nevoie de un nou vector tag de tip int <b> ld_p </b> de dimensiune 11
+<br><br><center><Table border=1>
+<tr>
+ <td colspan="6" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Array Size </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+<tr>
+  <td> ld_p </td>
+  <td> DIGITAL </td>
+  <td> - </td>
+  <td> - </td>
+  <td> 11 </td>
+  <td> LED semnalizare protectie maximala de curent pe liniile L1-L10 </b> </td>    
+</tr> 
+</table></center>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In urmatoarea aplicatie: <b> sch_monof_11 </b> sunt puse in practica precizarile de mai sus
+<br><br><center><img src="im_citect042.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a implementa noul algoritm de functionare, vom rescrie functia ecran astfel:
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION ecran_11()
+Imax[0]=0;
+Imax[1]=500;
+Imax[2]=785;
+Imax[3]=200;
+Imax[4]=777;
+Imax[5]=900;
+Imax[6]=800;
+Imax[7]=500;
+Imax[8]=500;
+Imax[9]=750;
+Imax[10]=450;
+
+INT i;
+i_tot=0;
+FOR i=1 TO 11 DO
+ 
+	IF i_ef[i]>Imax[i] THEN
+		sep[i]=0;
+		intr[i]=0;
+		ld_p[i]=1
+	ELSE
+		ld_p[i]=0
+		//sep[i]=1;
+		//intr[i]=1;
+	END
+END
+END
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a monitoriza consumul total de curent vom plasa un obiect de tip X-Meter cat si un obiect de tip Trending.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Va trebui sa introduce un nou tag pentru a pastra consumul total efectiv si obtinem astfel noua aplicatie: <b> sch_monof_12 </b>.
+<br><br><center>
+<Table border=1>
+<tr>
+ <td colspan="5" bgcolor="yellow"><center> Tag-uri aferente </center></td>
+</tr> 
+<tr>
+  <td align="center"><b> Nume </b>  </td>
+  <td align="center"><b> Tip </b> </td>
+  <td align="center"><b> Domeniu </b></td>
+  <td align="center"><b> Um </b> </td>
+  <td align="center"><b> Comentariu </b> </td>
+</tr> 
+
+<tr>
+  <td> i_tot </td>
+  <td> INT </td>
+  <td> 10000 </td>
+  <td> Amps </td>
+  <td> Curent efectiv total </b> </td>    
+</tr>
+</table></center> 
+<br><br><center><img src="im_citect043.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia ecran va fi cea care va prelua calculul curentului total: Trebuie tinut cont de faptul ca insumarea curentilor 
+se face numai pentru liniile conectate.
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+
+FUNCTION ecran_12()
+Imax[0]=0;
+Imax[1]=500;
+Imax[2]=785;
+Imax[3]=200;
+Imax[4]=777;
+Imax[5]=900;
+Imax[6]=800;
+Imax[7]=500;
+Imax[8]=500;
+Imax[9]=750;
+Imax[10]=450;
+
+INT i;
+i_tot=0;
+FOR i=1 TO 11 DO
+    // se insumeaza numai liniile conectate
+	IF sep[i]*intr[i]=1 THEN
+		i_tot=i_tot+i_ef[i];
+	END	
+ 
+IF i_ef[i]>Imax[i] THEN
+	sep[i]=0;
+	intr[i]=0;
+	ld_p[i]=0
+ELSE
+	ld_p[i]=0
+END
+END
+END
+
+
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Vom realiza in continuare o schema de statie cu bare duble pentru a alimenta 10 linii.
+<br><br><center><img src="im_citect047.gif"></center>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Functia <b> ecran_15</b> Sesizeaza care linie este activa in functie de transformatorul conectat
+sau de pozitia separatorului de sarcina.
+
+<br><br><!------------------------------------------------------------------->
+<table width="100%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue"><pre>
+FUNCTION ecran_15()
+	INT i;
+	IF (sep[15] AND intr[11] AND sep[11]) OR (sep[16] AND intr[12] AND sep[13])  THEN
+		l1=1
+	ELSE
+		l1=0
+	END
+	
+	IF (sep[15] AND intr[11] AND sep[12]) OR (sep[16] AND intr[12] AND sep[14])  THEN
+		l2=1
+	ELSE
+		l2=0
+	END
+	
+	IF sep[37] AND sep[38] AND l1 AND (intr[11] OR intr[12]) THEN
+		l2=1
+	END
+	
+	
+	IF sep[37] AND sep[38] AND l2 AND (intr[11] OR intr[12]) THEN
+		l1=1
+	END
+	
+
+	FOR i=1 TO 10 DO
+		sep[i]=1;
+		intr[i]=1;
+	END
+	IF l1 THEN
+		FOR i=18 TO 36 DO
+			sep[i]=0;
+			i=i+1
+		END
+
+		FOR i=17 TO 35 DO
+			sep[i]=1;
+			i=i+1
+		END
+	ELSE
+		FOR i=18 TO 36 DO
+			sep[i]=1;
+			i=i+1
+		END
+
+		FOR i=17 TO 35 DO
+			sep[i]=0;
+			i=i+1
+		END
+	END
+END
+</pre> </font>
+</td></tr></table>
+<!------------------------------------------------------------------->
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Intregul proiect poate fi descarcat  aici :<a href="../downloads/aplicatii/Sch_monof.ctz"> Download - "Sch_monof" </a> 
+
+
+<br><br><a name="autoev"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de autoevaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck1() {  
+  
+     if ((Form_ck1.ck_1.checked==false)&(Form_ck1.ck_2.checked==true)&(Form_ck1.ck_3.checked==false)&(Form_ck1.ck_4.checked==false))  
+		document.Form_ck1.af_mes.value ='corect !';
+	else
+		document.Form_ck1.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck1">
+	<I> 1. Cine controleaza starea elementelor plasate pe o schema monofilara  ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck1()>
+	a. Simbolurile plasate <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck1()>
+	b. Tag-urile asociate <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck1()> 
+	c. Variabilele locale utilizate <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck1()> 
+	d. Functiile definite de utilizator <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck2() {  
+  
+     if ((Form_ck2.ck_1.checked==false)&(Form_ck2.ck_2.checked==true)&(Form_ck2.ck_3.checked==false)&(Form_ck2.ck_4.checked==false))  
+		document.Form_ck2.af_mes.value ='corect !';
+	else
+		document.Form_ck2.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck2">
+	<I> 2. Pentru a introduce functionalitati de comanda pentru elementele de pe schema, se seteaza proprietatea:</I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck2()>
+	a. Access <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck2()>
+	b. Input <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck2()> 
+	c. Slider <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck2()> 
+	d. Movement <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck3() {  
+  
+     if ((Form_ck3.ck_1.checked==false)&(Form_ck3.ck_2.checked==false)&(Form_ck3.ck_3.checked==true)&(Form_ck3.ck_4.checked==false))  
+		document.Form_ck3.af_mes.value ='corect !';
+	else
+		document.Form_ck3.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck3">
+	<I> 3. Care este conditionalitatea intre actionarea separatorului si intreruptorului  ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck3()>
+	a. Primul se actioneaza intotdeauna intreruptorul <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck3()>
+	b. Primul se actioneaza intotdeauna separatorul <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck3()> 
+	c. Separatorul nu se actioneaza in sarcina<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck3()> 
+	d. Intreruptorul nu se actioneaza in sarcina <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck4() {  
+  
+     if ((Form_ck4.ck_1.checked==false)&(Form_ck4.ck_2.checked==true)&(Form_ck4.ck_3.checked==true)&(Form_ck4.ck_4.checked==false))  
+		document.Form_ck4.af_mes.value ='corect !';
+	else
+		document.Form_ck4.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck4">
+	<I> 4. Ce reprezinta confirmarea executiei comenzilor  ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck4()>
+	a. Aparitia unui eveniment <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck4()>
+	b. Aparitia unui semnal de confirmare <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck4()> 
+	c. Modificarea valorii unui tag <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck4()> 
+	d. Scurgerea unui interval de timp <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck5() {  
+  
+     if ((Form_ck5.ck_1.checked==true)&(Form_ck5.ck_2.checked==false)&(Form_ck5.ck_3.checked==false)&(Form_ck5.ck_4.checked==false))  
+		document.Form_ck5.af_mes.value ='corect !';
+	else
+		document.Form_ck5.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck5">
+	<I> 5. De ce e nevoie de conectare secventiala a liniilor  ?  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck5()>
+	a. Pentru a evita socurile de sarcina <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck5()>
+	b. Pentru a diferentia consumatorii in functie de importanta <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck5()> 
+	c. Pentru implementarea nivelelor de prioritate<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck5()> 
+	d. Pentru a putea urmari conectarea fiecarei linii in parte <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<br><br><a name="rez"></a>
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Rezumat  </Center></TD></TR>
+</table>
+
+<br><br><b> Aplicatii in energetica - linii monofilare</b>
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru a realiza scheme monofilare avem nevoie de o serie de simboluri cum ar fi simboluri 
+pentru: separatoare, intreruptoare, transformatoare etc.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;O schema monofilara contine o serie de elemente de comutatie cum ar fi separatoare, intreruptoare, etc. 
+Exista o ordine in care se actioneaza cele doua elemente, in sensul ca separatorul nu poate fi niciodata actionat in sarcina.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In sistemele energetice, inchiderea respectiv deschiderea unui separator sau a unui intreruptor nu este instantanee. 
+In aplicatiile SCADA se tine cont de acest fenomen. Dupa comanda actionarii unui element se scurge un interval de timp pana la efectuarea completa 
+a comenzii. Dupa actionarea uniui element e nevoie de un semnal care sa confirme efectuarea comenzii. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Pentru testarea aplicatiilor SCADA fara conectare la sistemul real de achizitie si comanda, inchiderea respectiv 
+deschiderea elementelor de comutatie, ar putea fi simulata printr-o marime analogica, avand valori intre 0 si 100%. Pe schema aceasta valoare 
+ar putea fi simulata prin utilizarea unui control de tip "Slider" care ar fi in legatura cu un tag de tip analogic. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Starea fiecarui element plasat pe HMI este controlata de tag-ul corespunzator. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;In multe cazuri in cadrul schemelor monofilare se intalnesc mai multe elemente de acelasi tip. In acest caz se recomanda 
+definirea tag-urilor de tip Array si utilizarea instructiunilor repetitive. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp; In cazul sistemelor de alimentare cu energie, avand mai multe linii, pentru a evita socurile de sarcina, conectarea respectiv deconectarea 
+acestora se face secvential intr-o ordine prestabilita, in functie de importanta utilizatoruli. Pentru a memora prioritatea cobnsumatorilor, se recomanta 
+utilizarea unui vector de prioritati.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Tag-urile sunt actualizate de sistemul de achizitie si comanda. Acesta este prevazut atat cu elemente pentru citirea 
+strilor cat si cu elemente de comanda. 
+
+<br><br><a name="astept"></a>
+<font color= "Blue" size=4><li><b>Rezultate asteptate </b></font>
+<ul>
+Dupa studierea acestui modul, ar trebui sa stiti:<br><br>
+<table  border=1>
+<tr><td bgcolor="whitesmoke">
+
+<li>Sa realizati pagini grafice reprezentand scheme monofilare
+<li>Sa dati functionalitate schemelor monofilare 
+<li>Sa implementati algoritmul de functionare al elementelor de comutatie incluse in aplicatii SCADA
+<li>Sa realizati aplicatii SCADA care sa cuprinda scheme monofilare complexe.
+</table>
+</ul>
+
+<a name="term"></a>
+<font color= "Blue" size=4> <li> <b>Termeni esentiali</b></font><br>
+<ul>
+<Table border=1 width="90%">
+
+<tr>
+  <td align="center"><b> Termen </b>  </td>
+  <td align="center"><b> Descriere </b>  </td>
+</tr>
+<tr>
+  <td> SCADA </td>
+  <td> Supervisory Control And Data Aquisition </td>    
+</tr>
+<tr>
+  <td> Tag </td>
+  <td> Nume generic pentru elementele din procesul monitorizat codificate prin intermediul variabilelor</td>    
+</tr>
+<tr>
+  <td> HMI  </td>
+  <td> Human Machine Interface -Interfata dintre aplicatie si utilizator </td>    
+</tr>
+<tr>
+  <td> Limbaj Cicode </td>
+  <td> Limbaj de programare inclus in mediul de dezvoltare Citect SCADA </td>    
+</tr>
+<tr>
+  <td> Sistem de achiziti date </td>
+  <td> Sistem fizic care interfateaza sistemele energetice cu aplicatiile SCADA. Acesta este prevazut atat cu elemente pentru citirea 
+strilor elementelor componente ale sistemului energetic cat si cu elemente de comanda </td>    
+</tr>
+<tr>
+  <td> Elemente de comutatie </td>
+  <td> Elemente componente ale retelelor de alimentare cu energie care permit inchiderea respectiv deschiderea unui circuit </td>    
+</tr>
+</table>
+</ul>
+ 
+<br><br><a name="bibl"></a>
+<font color= "Blue" size=4><li><b>Recomandari bibliografice </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> [1] Traian Turc, Elemente de programare C++ utile in ingineria electrica, Ed.Matrixrom, Bucuresti,2010
+<li> [2] Traian Turc, Programare avansata C++ pentru ingineria electrica, Ed.Matrixrom, Bucuresti,2010
+<li> [3] Traian Turc, Programarea in limbaje de asamblare, uz intern, Univ."Petru Maior" ,Tg.Mures,2009
+<li> [4] Traian Tur,Brevet de inventie nr:11863 "Sistem pentru automatizarea si monitorizarea proceselor industriale", OSIM, 2003
+<li> [5] Jeff Kent, C++ fara mistere,Ed.Rosetti Educational 2004 .
+<li> [6] Boldur Barbat - Informatica industriala - Programarea în timp real  – Institutul Central pentru Conducere si informatica 1984 
+<li> [7] Ioan Babuita – Conducerea automata a proceselor – Ed. Facla 1985
+<li> [8] Ghercioiu-National în struments - Orizonturi  în instrumentatie 1995
+</td></tr></table>
+</ul>
+<br><br><a name="link"></a>
+<font color= "Blue" size=4><li><b>Link-uri utile </b></font>
+<ul>
+<table  width="90%" border=1>
+<tr><td bgcolor="whitesmoke">
+<li> 1.<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> - Free SCADA - 2009.
+<li> 2.<a href="http://www.7t.dk/igss/default.asp"> http://www.7t.dk/igss/default.asp</a> - IGSS SCADA System - 2009
+<li> 3.<a href="http://www.7t.dk/igss/default.asp?showid=374"> http://www.7t.dk/igss/default.asp?showid=374</a> - IGSS Online SCADA Training - 2009 
+<li> 4.<a href="http://www.7t.dk/free-scada-software/index.html"> http://www.7t.dk/free-scada-software/index.html</a>-  IGSS Free SCADA Software -2009
+<li> 5.<a href="http://www.citect.com/"> http://www.citect.com/</a> -  CITECT SCADA -2009 
+<li> 6.<a href="http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314"> http://www.citect.com/index.php?option=com_content&view=article&id=1457&Itemid=1314</a> - Download CITECT demo - 2009
+<li> 7.<a href="http://www.indusoft.com/index.asp"> http://www.indusoft.com/index.asp</a> - INDUSOFT SCADA - 2009
+<li> 8 <a href="http://www.gefanuc.com/products/2819"> http://www.gefanuc.com/products/2819</a> - Proficy HMI/SCADA - CIMPLICITY - 2009.
+<li> 9.<a href="http://www.genlogic.com/"> http://www.genlogic.com/</a> - Dynamic Graphics, Data Visualization, Human-Machine Interface (HMI) - 2010 
+<li> 10<a href="http://www.genlogic.com/demos.html"> http://www.genlogic.com/demos.html</a> - On-Line Java and AJAX Demos - 2010 
+<li> 11<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+<li> 12<a href="http://www.free-scada.org/"> http://www.free-scada.org/</a> -  - 2009 
+</td></tr></table>
+</ul>
+
+<br><br><a name="eval"></a>
+
+<table width="100%">
+<tr><td height="50" background="../../Images/imm_s.bmp"><center><font color= "Blue" size=5>Test de evaluare  </Center></TD></TR>
+</table>
+<ul>
+<table width="70%" border=1><tr><td bgcolor="WhiteSmoke">
+<font size="3" color="DarkBlue">
+<li>-Marcati raspunsurile corecte la intrebarile urmatoare.
+<li>-ATENTIE: pot exista unul, niciunul sau mai multe raspunsuri corecte la aceeasi intrebare.
+<li>-Timp de lucru: 10 minute
+</font>
+</td></tr></table>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck6() {  
+  
+     if ((Form_ck6.ck_1.checked==false)&(Form_ck6.ck_2.checked==true)&(Form_ck6.ck_3.checked==false)&(Form_ck6.ck_4.checked==false))  
+		document.Form_ck6.af_mes.value ='corect !';
+	else
+		document.Form_ck6.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck6">
+	<I> 1. Un tag care gestioneaza un simbol reprezentand un separator are tipul: </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck6()>
+	a. INT<br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck6()>
+	b. DIGITAL <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck6()> 
+	c. BYTE <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck6()> 
+	d. BCD <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+  
+<ul>
+<script type="text/javascript">
+function nr_ck7() {  
+  
+     if ((Form_ck7.ck_1.checked==true)&(Form_ck7.ck_2.checked==true)&(Form_ck7.ck_3.checked==false)&(Form_ck7.ck_4.checked==false))  
+		document.Form_ck7.af_mes.value ='corect !';
+	else
+		document.Form_ck7.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck7">
+	<I> 2. Prescrierea curentului nominal pentru o linie se face utilizand:</I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck7()>
+	a. Variabile locale <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck7()>
+	b. Vectori de valori <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck7()> 
+	c. Tag-uri <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck7()> 
+	d. Functii definite de utiliozator <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck8() {  
+  
+     if ((Form_ck8.ck_1.checked==false)&(Form_ck8.ck_2.checked==true)&(Form_ck8.ck_3.checked==false)&(Form_ck8.ck_4.checked==false))  
+		document.Form_ck8.af_mes.value ='corect !';
+	else
+		document.Form_ck8.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck8">
+	<I> 3. Dupa decuplarea unei linii care a depasit curentul nominal, recuplarea acesteia se face:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck8()>
+	a. Automat dupa ce valoarea curentului scade dupa curentul nominal <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck8()>
+	b. Dupa actionarea manuala <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck8()> 
+	c. Dupa un algoritm prestabilit in program <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck8()> 
+	d. Dupa un interval de timp prestabilit <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck9() {  
+  
+     if ((Form_ck9.ck_1.checked==false)&(Form_ck9.ck_2.checked==false)&(Form_ck9.ck_3.checked==true)&(Form_ck9.ck_4.checked==false))  
+		document.Form_ck9.af_mes.value ='corect !';
+	else
+		document.Form_ck9.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck9">
+	<I> 4. Calculul consumului total se face:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck9()>
+	a. Utilzand un vector <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck9()>
+	b. Utilizand un tag <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck9()> 
+	c. Utilizand un algoritm de calcul <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck9()> 
+	d. Utilizand un obiect de tip Trending <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+<ul>
+<script type="text/javascript">
+function nr_ck10() {  
+  
+     if ((Form_ck10.ck_1.checked==true)&(Form_ck10.ck_2.checked==true)&(Form_ck10.ck_3.checked==false)&(Form_ck10.ck_4.checked==false))  
+		document.Form_ck10.af_mes.value ='corect !';
+	else
+		document.Form_ck10.af_mes.value ='gresit !';
+ }
+</script>
+<Form name="Form_ck10">
+	<I> 5. Un vector care pastreaza curentii nominali se defineste:  </I><br><br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_1" VALUE = „a” onClick=nr_ck10()>
+	a. Din program <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_2" VALUE = „b” onClick=nr_ck10()>
+	b. Prin introducerea unu tag de tip Array <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_3" VALUE = „c” onClick=nr_ck10()> 
+	c. Prin utilizarea unui obiect de tip multitreding <br>
+	<INPUT TYPE = "CHECKBOX" NAME="ck_4" VALUE = „d” onClick=nr_ck10()> 
+	d. Prin utilizarea mai multor variabile <br>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;Raspuns: <INPUT type="text" name="af_mes" size=10 value=" ">
+ </form>
+</ul>
+
+ 
+</body>
+</html>
