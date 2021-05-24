@@ -1,0 +1,259 @@
+<html>
+<head>
+<!--<script type="text/javascript" src="afisor_xt.js"></script>-->
+</head>
+<center><table bgcolor="WhiteSmoke" border=0 width="220"><tr><td align="center" colspan="3">
+<center><canvas id="desen07" width="330" height="355" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+Your browser does not support the HTML5 canvas tag.
+</canvas></center>
+</td></tr><tr>
+<td width="25"><font color="red">Ui:</font></td>
+<td valign="center" colspan="2">
+		<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "1" checked="checked"> Triunghi
+		<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "2"> Sinus
+		<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "3"> Dreptunghi
+</td></tr><tr>
+	<td width="25"><font color="red">Ui:f</font</td>
+	<td width="150"><input type="range" value="20" id="fr_id" min="10" max="100"  onchange="set_fr()"/></td>   
+	<td width="50"><span id="fr_t"></span></td>
+</td></tr><tr>
+	<td width="25">Rx:</td>
+	<td width="150"><input type="range" value="200" id="rx_id" min="50" max="250"  onchange="set_rx()"/></td>   
+	<td width="50"><span id="rx_t"></span></td>
+</td></tr><tr>
+	<td width="25">Up:</td>
+	<td width="150"><input type="range" value="501" id="up_id" min="10" max="1000"  onchange="set_up()"/></td>   
+	<td width="50"><span id="up_t"></span></td>
+</td></tr></table>
+</center>
+<script type="text/javascript">
+var fel=1;
+var fr,rx,up;
+var ctx7=desen07.getContext("2d");
+ctx7.lineWidth = .5; 
+w=desen07.width ;
+h=desen07.height/2-20;
+vals = [];
+valc = [];
+nrv=300;
+ht=200;
+vmax=20;
+vmin=-20;
+im=new Image();
+im.src="ao.jpg";
+for(i=0;i<nrv;i++){
+	// total aleator
+	// vals[i]=Math.round(ht*Math.random());
+	// continuu
+
+	 vals[i]=Math.round(ht/2);
+
+}
+function afisor_xt(pozx, pozy, n_maxx, n_maxy, val_max, val_min, c)
+            {
+                this.x0 = pozx;// pozitia pe x
+                this.y0 = pozy;// pozitia pe y
+                this.w = n_maxx; // latimea
+                this.h = n_maxy;// inaltimea
+                this.nr_max = n_maxx; // numarul de puncte pe x
+                this.val_max = n_maxy; // valoarea maxima
+                this.v_max = val_max; // valoarea maxima
+                this.v_min = val_min // valoarea maxima
+		this.cnvs=c; // canvas
+            }
+afisor_xt.prototype = {
+	constructor: afisor_xt,
+	deseneaza:function ()  {
+	var i ,j;
+	
+	// sterg continut
+	
+	this.cnvs.beginPath();
+	this.cnvs.fillStyle = "#FFFFFF";
+	this.cnvs.fillRect(this.x0-30,this.y0-10,this.x0+this.w+10,this.y0+this.h+30);
+	this.cnvs.stroke();	
+	
+	//chenar
+	
+	
+	this.cnvs.beginPath();
+	this.cnvs.moveTo(this.x0,this.y0); 
+	this.cnvs.strokeStyle = "rgb(0,0,255)";
+	this.cnvs.lineTo(this.x0+this.w,this.y0);
+	this.cnvs.lineTo(this.x0+this.w,this.y0+this.h);
+	this.cnvs.lineTo(this.x0,this.y0+this.h);
+	this.cnvs.lineTo(this.x0,this.y0);
+	this.cnvs.stroke();
+
+	// grid orizontal minor
+			
+	this.cnvs.beginPath();
+    	this.cnvs.strokeStyle = "rgb(200,200,200)";
+	this.cnvs.font = "10px Arial";
+	for (j = this.h-10; j >=0; j -= 10)
+	{
+		this.cnvs.moveTo(this.x0,this.y0+j); 
+		this.cnvs.lineTo(this.x0 + this.w, this.y0 + j);
+    	}
+	
+	// grid vertical minor
+	
+	for (j = 10; j<=this.w-10; j += 10)
+    	{
+		this.cnvs.moveTo(this.x0+j,this.y0+1); 
+		this.cnvs.lineTo(this.x0 + j ,this.y0+ this.h+1);
+    	}
+	this.cnvs.stroke();
+
+	
+	// grid orizontal major
+			
+	this.cnvs.beginPath();
+   	this.cnvs.strokeStyle = "rgb(150,150,150)";
+	pas=(this.v_max-this.v_min)/this.h*50;
+	v_g=this.v_min;
+    	for (j = this.h; j >=0; j -= 50)
+    	{
+		this.cnvs.moveTo(this.x0,this.y0+j); 
+		this.cnvs.lineTo(this.x0 + this.w ,this.y0 + j);
+		this.cnvs.strokeText(v_g,this.x0-20,this.y0 + j);
+		v_g=Math.round(v_g+pas);
+    	}
+
+	// grid vertical major
+    	for (j = 0; j<=this.w; j += 50)
+    	{
+		this.cnvs.moveTo(this.x0+j,this.y0); 
+		this.cnvs.lineTo(this.x0 + j ,this.y0+ this.h-1);	
+		this.cnvs.strokeText(j,this.x0 + j,this.y0 + this.h+10);
+    	}
+	this.cnvs.moveTo(this.x0+j,this.y0); 
+	this.cnvs.stroke();
+	},
+
+	set_val:function (vls, nv,r,g,b)  {
+	var val_v, val ,i ,j;
+	val_v = vls[1] * this.h / (this.v_max-this.v_min);
+	// trasez graficul
+	this.cnvs.beginPath();
+	this.cnvs.strokeStyle = "rgb("+r+","+g+","+b+")";
+	this.cnvs.moveTo(this.x0,this.y0+val_v); 
+	 for (i = 0; i<=nrv; i +=1){
+		val = (vls[i]+((this.v_max-this.v_min)/2)) * this.h / (this.v_max-this.v_min); //scalare
+		this.cnvs.lineTo(this.x0 + i ,this.y0+ this.h-val);
+	 }
+	//this.cnvs.drawImage(im, 50, 280);
+	this.cnvs.stroke();
+	}	
+}
+function set_fr(){
+  fr = document.getElementById('fr_id').value;
+  fr_t.innerHTML=fr;
+} 
+function set_rx(){
+  rx = document.getElementById('rx_id').value;
+  rx_t.innerHTML=rx/100+"xR";
+} 
+function set_up(){
+  up = document.getElementById('up_id').value;
+  up_t.innerHTML=up/100+"V";
+}   
+function val_rd(rd1) {
+	fel= rd1;
+}
+function graf() {
+ ctx7.drawImage(im, 50, 235);
+ ctx7.strokeStyle = "rgb(0,0,0)";
+ //ctx7.strokeText(Math.round(up/100,2),230 ,320);
+ ctx7.strokeText(up/100+" V",135 ,340);
+ ctx7.strokeText("="+rx/100+"xR",165 ,248);
+ ctx7.stroke();
+ if(fel==1){
+	// triunghi
+	smf=1;
+	transl=Math.round(vmax-vmin)/2;
+	vl=-5;
+	vh=5;
+	//val=vl+Math.round((30)*Math.random());
+	val=vl;
+	for(i=0;i<nrv;i++){
+		if(smf==1){ 
+			val+=fr/100;
+			if(val>=vh){ 
+				val=vh; 
+				smf=0; 
+			}
+		} 
+		else{
+			val-=fr/100;
+			if(val<=vl){ 
+				val=vl; 
+				smf=1; 
+			}
+		}
+	vals[i]=val;
+	}
+ }
+
+if(fel==2){
+	// sinus
+	vl=-5;
+	vh=5;
+	//alfa=Math.random();
+	alfa=0;
+	for(i=0;i<nrv;i++){
+		vals[i]=(vh-vl)*(Math.sin(alfa))/2;
+		alfa+=(fr/100)*(0.3);
+	}
+ }
+
+ if(fel==3){
+	// dreptunghi
+	sem=1;
+	vl=-5;
+	vh=5;
+	//k=vl/3+Math.round((30)*Math.random());
+	k=vl;
+	for(i=0;i<nrv;i++){
+		if(sem==1){ 
+			k+=fr/100;
+			if(k>=vh){ 
+				val=vh; 
+				sem=0; 
+			}
+		} 
+		else{
+			k-=fr/100;
+			if(k<=vl){ 
+				val=vl; 
+				sem=1; 
+			}
+		}
+	vals[i]=val;
+	}
+ }
+
+ osci.deseneaza();
+
+ osci.set_val(vals,nrv,200,0,0);
+ for(i=0;i<nrv;i++){
+		valc[i]=-rx/100*vals[i];
+
+ }
+ osci.set_val(valc,nrv,0,200,0);
+ for(i=0;i<nrv;i++){
+		if(valc[i]>up/100)
+			vals[i]=-15;
+		else
+			vals[i]=15;
+
+ }
+ osci.set_val(vals,nrv,0,0,200);
+ set_fr();
+ set_rx();
+ set_up();
+ setTimeout("graf()",100);
+}
+osci = new afisor_xt(25,10,nrv,ht,vmax,vmin,ctx7);
+graf();
+</script>

@@ -1,0 +1,263 @@
+<html>
+<head>
+<!--<script type="text/javascript" src="afisor_xt.js"></script>-->
+</head>
+
+<center><table bgcolor="WhiteSmoke" border=0 width="220"><tr><td align="center" colspan="3">
+<center> Generator de semnal <br></center> 
+<center><canvas id="desen07" width="325" height="280" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+Your browser does not support the HTML5 canvas tag.
+</canvas></center>
+<Form name="Form_rd">
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "1" checked="checked"> Triunghi
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "2"> Dinti fierastrau
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "3"> Dreptunghi <br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "4"> Sinus
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "5"> Aleator continuu
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "6"> Aleator discontinuu
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "7"> Total Aleator
+ </form>
+</td></tr><tr>
+	<td width="25">Frecventa:</td>
+	<td width="150"><input type="range" value="2" id="fr_id" min="1" max="5"  onchange="set_fr()"/></td>   
+	<td width="50"><span id="fr_t"></span></td>
+</td></tr></table></center>
+<script type="text/javascript">
+var fel=1;
+var fr;
+var ctx7=desen07.getContext("2d");
+ctx7.lineWidth = .5; 
+w=desen07.width ;
+h=desen07.height/2-20;
+vals = [];
+nrv=300;
+ht=250;
+for(i=0;i<nrv;i++){
+	// total aleator
+	// vals[i]=Math.round(ht*Math.random());
+	// continuu
+
+	 vals[i]=Math.round(ht/2);
+
+}
+function afisor_xt(pozx, pozy, n_maxx, n_maxy,c)
+            {
+                this.x0 = pozx;// pozitia pe x
+                this.y0 = pozy;// pozitia pe y
+                this.w = n_maxx; // latimea
+                this.h = n_maxy;// inaltimea
+                this.nr_max = n_maxx; // numarul de puncte pe x
+                this.val_max = n_maxy; // valoarea maxima
+				this.cnvs=c; // canvas
+            }
+afisor_xt.prototype = {
+	constructor: afisor_xt,
+	deseneaza:function (vls, nv)  {
+	var val_v, val ,i ,j;
+	
+	// sterg continut
+	
+	this.cnvs.beginPath();
+	this.cnvs.fillStyle = "#FFFFFF";
+	this.cnvs.fillRect(this.x0-30,this.y0-10,this.x0+this.w+10,this.y0+this.h+30);
+	this.cnvs.stroke();	
+	
+	//chenar
+	
+	
+	this.cnvs.beginPath();
+	this.cnvs.moveTo(this.x0,this.y0); 
+	this.cnvs.strokeStyle = "rgb(0,0,255)";
+	this.cnvs.lineTo(this.x0+this.w,this.y0);
+	this.cnvs.lineTo(this.x0+this.w,this.y0+this.h);
+	this.cnvs.lineTo(this.x0,this.y0+this.h);
+	this.cnvs.lineTo(this.x0,this.y0);
+	this.cnvs.stroke();
+    	val_v = vls[1] * this.h / this.val_max;
+
+	// grid orizontal minor
+			
+	this.cnvs.beginPath();
+    	this.cnvs.strokeStyle = "rgb(200,200,200)";
+	this.cnvs.font = "10px Arial";
+	for (j = this.h-10; j >=0; j -= 10)
+	{
+		this.cnvs.moveTo(this.x0,this.y0+j); 
+		this.cnvs.lineTo(this.x0 + this.w, this.y0 + j);
+    	}
+	
+	// grid vertical minor
+	
+	for (j = 10; j<=this.w-10; j += 10)
+    	{
+		this.cnvs.moveTo(this.x0+j,this.y0+1); 
+		this.cnvs.lineTo(this.x0 + j ,this.y0+ this.h+1);
+    	}
+	this.cnvs.stroke();
+
+	
+	// grid orizontal major
+			
+	this.cnvs.beginPath();
+   	this.cnvs.strokeStyle = "rgb(150,150,150)";
+	
+    	for (j = this.h; j >=0; j -= 50)
+    	{
+		this.cnvs.moveTo(this.x0,this.y0+j); 
+		this.cnvs.lineTo(this.x0 + this.w ,this.y0 + j);
+		this.cnvs.strokeText(this.h-j,this.x0-20,this.y0 + j);
+    	}
+
+	// grid vertical major
+	 
+    	for (j = 0; j<=this.w; j += 50)
+    	{
+		this.cnvs.moveTo(this.x0+j,this.y0); 
+		this.cnvs.lineTo(this.x0 + j ,this.y0+ this.h-1);	
+		this.cnvs.strokeText(j,this.x0 + j,this.y0 + this.h+10);
+    	}
+	this.cnvs.stroke();
+	
+	// trasez graficul
+	this.cnvs.beginPath();
+	this.cnvs.strokeStyle = "rgb(240,0,0)";
+	this.cnvs.moveTo(this.x0,this.y0+val_v); 
+	 for (i = 0; i<=nrv; i +=1){
+		val = vls[i] * this.h / this.val_max; //scalare
+		this.cnvs.lineTo(this.x0 + i ,this.y0+ this.h-val);
+	 }
+	this.cnvs.stroke();
+}
+}
+function set_fr(){
+  fr = document.getElementById('fr_id').value;
+  fr_t.innerHTML=fr;
+}
+function val_rd(rd1) {
+	fel= rd1;
+}
+function graf() {
+
+ if(fel==1){
+	// triunghi
+	smf=1;
+	vl=100;
+	vh=200;
+	//val=vl+Math.round((30)*Math.random());
+	val=vl;
+	for(i=0;i<nrv;i++){
+		if(smf==1){ 
+			val+=Math.round(fr);
+			if(val>=vh){ 
+				val=vh; 
+				smf=0; 
+			}
+		} 
+		else{
+			val-=Math.round(fr);
+			if(val<=vl){ 
+				val=vl; 
+				smf=1; 
+			}
+		}
+	vals[i]=val;
+	}
+ }
+
+ if(fel==2){
+	// dinti fierastrau
+	vl=100;
+	vh=200;
+	//val=vl+Math.round((20)*Math.random());
+	val=vl;
+	for(i=0;i<nrv;i++){ 
+		val+=Math.round(fr);
+		if(val>=vh){ 
+			val=vl; 
+		} 
+		vals[i]=val;
+	}
+ }
+
+ if(fel==3){
+	// dreptunghi
+	sem=1;
+	vl=100;
+	vh=200;
+	//k=vl/3+Math.round((30)*Math.random());
+	k=vl;
+	for(i=0;i<nrv;i++){
+		if(sem==1){ 
+			k+=Math.round(fr);
+			if(k>=vh){ 
+				val=vh; 
+				sem=0; 
+			}
+		} 
+		else{
+			k-=Math.round(fr);
+			if(k<=vl){ 
+				val=vl; 
+				sem=1; 
+			}
+		}
+	vals[i]=val;
+	}
+ }
+
+ if(fel==4){
+	// sinus
+	vl=100;
+	vh=200;
+	//alfa=Math.random();
+	alfa=0;
+	for(i=0;i<nrv;i++){
+		vals[i]=ht/2+(vh-vl)*(Math.sin(alfa));
+		alfa+=Math.round(fr)*(0.03);
+	}
+ }
+
+ if(fel==5){
+	// aleator continuu
+	for(i=1;i<nrv;i++){
+		vals[i-1]=vals[i];
+	}
+	k=Math.round(4*Math.random());
+	if(k==0)
+		f=1;
+	if(k==1)
+		f=-1;
+	if(k==2)
+		f=10;
+	if(k==3)
+		f=-10;
+
+	vals[nrv-1]=vals[nrv-2]+f*Math.round(fr);
+
+	if(vals[nrv-1]>ht)
+		vals[nrv-1]=ht/2;
+	if(vals[nrv-1]<=0)
+		vals[nrv-1]=ht/2;
+ }
+
+ if(fel==6){
+	//aleator discontinuu
+	for(i=1;i<nrv;i++){
+		vals[i-1]=vals[i];
+	}
+	vals[i-2]=Math.round(ht*Math.random()*Math.round(fr)/5);
+ }
+
+ if(fel==7){
+	// total aleator
+	for(i=0;i<nrv;i++){
+		vals[i]=Math.round(ht*Math.random()*Math.round(fr)/5);
+	}
+ }
+ osci.deseneaza(vals,nrv);
+ set_fr();
+ setTimeout("graf()",100);
+}
+osci = new afisor_xt(25,10,nrv,ht,ctx7);
+graf();
+</script>

@@ -1,0 +1,63 @@
+<html>
+<head>
+</head>
+<center><table bgcolor="WhiteSmoke" border=0 width="220"><tr><td align="center" colspan="3">
+<center><canvas id="desen" width="330" height="300" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+Your browser does not support the HTML5 canvas tag.
+</canvas></center>
+</td></tr><tr>
+	<td width="50"><font color="red">Nr_puncte:</font</td>
+	<td width="120"><input type="range" value="10" id="nrp_id" min="1" max="20"  onchange="set_nrp()"/></td>
+	<td width="50"><span id="nrp_t"></span></td>
+</td></tr></table>
+</center>
+<script type="text/javascript">
+var nrp,x0,y0,d,i,j,alfa_g,alfa_r;
+var ctx=desen.getContext("2d");
+ctx.lineWidth = .5; 
+w=desen.width ;
+h=desen.height;
+r=w/3;
+x0=w/2;
+y0=h/2;
+coord_x = [];
+coord_y = [];
+function set_nrp(){
+  nrp = document.getElementById('nrp_id').value;
+  nrp_t.innerHTML=nrp;
+  graf();
+} 
+
+function graf() {
+	ctx.beginPath();
+	ctx.fillStyle = "#FFFFFF";
+	ctx.fillRect(0,0,w,h);
+	ctx.stroke();
+	ctx.arc(x0,y0,r,0,2*Math.PI);
+	ctx.strokeStyle = '#ff0000';
+	i = 0;
+	for (alfa_g = 0; alfa_g < 360; alfa_g += 360 / nrp)
+	{
+                alfa_r = 2 * Math.PI * alfa_g / 360;// unghiul in radiani
+                x = x0+r* Math.cos(alfa_r);
+                y = y0+r* Math.sin(alfa_r);
+                coord_x[i] = x;
+                coord_y[i] = y;
+                i++;
+	}
+	for (j = 0; j < nrp; j++)
+	{
+		for (i = 0; i < nrp; i++)
+                {
+			ctx.moveTo(coord_x[j],coord_y[j]);
+			ctx.lineTo(coord_x[i],coord_y[i]);
+                }
+	}
+	ctx.stroke();
+
+}
+
+set_nrp();
+//setTimeout("graf()",100);
+graf();
+</script>

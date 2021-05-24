@@ -1,0 +1,194 @@
+<html>
+<center><table bgcolor="WhiteSmoke" border ="0">
+<tr><td align="center">
+<canvas id="desen06" width="380" height="380" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+	Your browser does not support the HTML5 canvas tag.
+</canvas>
+</td></tr>
+<tr><td align="center">
+ <table border="0">
+  <tr>
+	<td width="15">r:</td>
+	<td width="125"><input type="range" value="375" id="r_id" min="0" max="500"  onchange="set_r()"/></td>   
+	<td width="30"><span id="r_t"></span></td>
+	<td width="15">kp:</td>
+	<td width="125"><input type="range" value="75" id="kp_id" min="0" max="250"  onchange="set_kp()"/></td>   
+	<td width="30"><span id="kp_t"></span></td>
+  </tr><tr>
+	<td width="15">ki:</td>
+	<td width="125"><input type="range" value="120" id="ki_id" min="0" max="200"  onchange="set_ki()"/></td>   
+	<td width="30"><span id="ki_t"></span></td>
+	<td width="15">kd:</td>
+	<td width="125"><input type="range" value="0" id="kd_id" min="0" max="50"  onchange="set_kd()"/></td>   
+	<td width="30"><span id="kd_t"></span></td>
+  </tr>
+ </table>
+<tr><td align="center">
+	<center>Sistem de Reglare Automata PID</center>
+</td></tr>
+</td></tr>
+</table></center>
+<script type="text/javascript">
+var r,kp,ki,kd;
+var ctx6=desen06.getContext("2d");
+ctx6.lineWidth = .5; 
+w=desen06.width ;
+h=desen06.height-20;
+val_max=1200;
+valls_0 = [];
+valls_1 = [];
+nrv=400;
+ht=350;
+for(i=0;i<nrv;i++){	
+	valls_0[i]=0;
+	valls_1[i]=0;
+}
+			
+function afisor_xt(c,pozx, pozy, n_maxx, n_maxy,v_max)
+	{
+		this.cnvs=c; // canvas
+		this.x0 = pozx;// pozitia pe x
+                this.y0 = pozy;// pozitia pe y
+                this.w = n_maxx; // latimea
+                this.h = n_maxy;// inaltimea
+                this.nr_max = n_maxx; // numarul de puncte pe x
+                this.val_max = v_max; // valoarea maxima
+	}
+afisor_xt.prototype = {
+	constructor: afisor_xt,
+	deseneaza:function (vls_0,vls_1, nv)  {
+	var val_v, val ,i ,j;
+	
+	// sterg continut
+	
+	this.cnvs.beginPath();
+	this.cnvs.fillStyle = "#FFFFFF";
+	this.cnvs.fillRect(this.x0-30,this.y0-10,this.x0+this.w,this.y0+this.h+30);
+	this.cnvs.stroke();	
+	
+	//chenar
+	
+	this.cnvs.beginPath();
+	this.cnvs.moveTo(this.x0,this.y0); 
+	this.cnvs.strokeStyle = "rgb(0,0,255)";
+	this.cnvs.lineTo(this.x0+this.w,this.y0);
+	this.cnvs.lineTo(this.x0+this.w,this.y0+this.h);
+	this.cnvs.lineTo(this.x0,this.y0+this.h);
+	this.cnvs.lineTo(this.x0,this.y0);
+	this.cnvs.stroke();
+    	val_v = vls_0[1] * this.h / this.val_max;
+
+	// grid orizontal minor
+			
+	this.cnvs.beginPath();
+    	this.cnvs.strokeStyle = "rgb(200,200,200)";
+	this.cnvs.font = "10px Arial";
+	for (j = this.h-10; j >=0; j -= 10)
+	{
+		this.cnvs.moveTo(this.x0,this.y0+j); 
+		this.cnvs.lineTo(this.x0 + this.w, this.y0 + j);
+    	}
+	
+	// grid vertical minor
+	
+	for (j = 10; j<=this.w-10; j += 10)
+    	{
+		this.cnvs.moveTo(this.x0+j,this.y0+1); 
+		this.cnvs.lineTo(this.x0 + j ,this.y0+ this.h+1);
+    	}
+	this.cnvs.stroke();
+
+	// grid vertical major
+			
+	this.cnvs.beginPath();
+    	this.cnvs.strokeStyle = "rgb(150,150,150)";
+    	for (j = 0; j <=this.h; j += 50)
+    	{
+		this.cnvs.moveTo(this.x0,this.y0+j); 
+		this.cnvs.lineTo(this.x0 + this.w ,this.y0 + j);
+		this.cnvs.strokeText(Math.round(this.val_max*j/this.h),this.x0-20,this.y0+this.h - j);
+   	}
+
+	// grid orizontal major
+	 
+    	for (j = 0; j<=this.w; j += 50)
+    	{
+		this.cnvs.moveTo(this.x0+j,this.y0); 
+		this.cnvs.lineTo(this.x0 + j ,this.y0+ this.h-1);	
+		this.cnvs.strokeText(j,this.x0 + j,this.y0 + this.h+10);
+   	 }
+	this.cnvs.stroke();
+	
+	// trasez graficul cnal 0
+
+	this.cnvs.beginPath();
+	this.cnvs.strokeStyle = "rgb(0,240,0)";
+	this.cnvs.moveTo(this.x0,this.y0+val_v); 
+	for (i = 0; i<=nrv; i +=1){
+		val = vls_0[i] * this.h / this.val_max; //scalare
+		this.cnvs.lineTo(this.x0 + i ,this.y0+ this.h-val);
+	}
+	this.cnvs.stroke();
+
+	// trasez graficul cnal 1
+
+	this.cnvs.beginPath();
+	this.cnvs.strokeStyle = "rgb(240,0,0)";
+	this.cnvs.moveTo(this.x0,this.y0+val_v); 
+	for (i = 0; i<=nrv; i +=1){
+		val = vls_1[i] * this.h / this.val_max; //scalare
+		this.cnvs.lineTo(this.x0 + i ,this.y0+ this.h-val);
+	}
+	this.cnvs.stroke();
+ }
+}
+oscil = new afisor_xt(ctx6,30,10,nrv,ht,val_max);
+function grafic(){
+var er=0,er_v=0;
+var y=0,y_v=0,inte=0,deriv=0,er=0,e_v=0;
+//kp=0.5;
+//kd=0.2;
+var Te=0.1;
+
+            for (i = 1; i <= nrv; i++)
+            {
+                er = r - y;           
+                inte = inte + er * Te;
+                deriv= (er - e_v) / Te;
+                u = (kp/100) * er + (ki/100) * inte + (kd/100) * deriv;
+                y = (u * Te + 5 * y_v) / (5 + Te);
+                valls_0[i] = y;
+		valls_1[i] = u;
+                e_v = er;
+                y_v = y;
+            }
+	
+	oscil.deseneaza(valls_0,valls_1,nrv);
+	set_r();
+	set_kp();
+	set_ki();
+	set_kd();
+	setTimeout("grafic()",100);
+}
+function set_r(){
+  r = document.getElementById('r_id').value;
+  r_t.innerHTML=r;
+}
+function set_kp(){
+  kp = document.getElementById('kp_id').value;
+  kp_t.innerHTML=kp/100;
+}
+function set_ki(){
+  ki = document.getElementById('ki_id').value;
+  ki_t.innerHTML=ki/100;
+}
+function set_kd(){
+  kd = document.getElementById('kd_id').value;
+  kd_t.innerHTML=kd/100;
+}
+set_r();
+set_kp();
+set_ki();
+set_kd();
+grafic();
+</script>

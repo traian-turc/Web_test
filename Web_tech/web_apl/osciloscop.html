@@ -1,0 +1,162 @@
+<html>
+<head>
+<script type="text/javascript" src="afisor_xt.js"></script>
+</head>
+<center><table bgcolor="WhiteSmoke" border=0 width="230"><tr><td align="center">
+<center> Osciloscop <br></center> 
+<center><canvas id="desen07" width="330" height="340" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+Your browser does not support the HTML5 canvas tag.
+</canvas></center>
+<Form name="Form_rd">
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "1" checked="checked"> Triunghi
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "2"> Dinti fierastrau
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "3"> Dreptunghi <br>
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "4"> Sinus
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "5"> Aleator continuu
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "6"> Aleator discontinuu
+	<INPUT TYPE = "radio" NAME="rd1" onclick="val_rd(this.value)"  VALUE = "7"> Total Aleator
+ </form>
+
+</td></tr></table></center>
+<script type="text/javascript">
+var fel=1;
+var ctx7=desen07.getContext("2d");
+ctx7.lineWidth = .5; 
+w=desen07.width ;
+h=desen07.height/2-20;
+vals = [];
+nrv=300;
+ht=300;
+for(i=0;i<nrv;i++){
+	// total aleator
+	// vals[i]=Math.round(ht*Math.random());
+	// continuu
+
+	 vals[i]=Math.round(ht/2);
+
+}
+osci = new afisor_xt(30,10,nrv,ht,ctx7);
+function val_rd(rd1) {
+	fel= rd1;
+}
+function graf() {
+
+ if(fel==1){
+	// triunghi
+	smf=1;
+	vl=100;
+	vh=200;
+	val=vl+Math.round((30)*Math.random());
+	for(i=0;i<nrv;i++){
+			if(smf==1){ 
+			val++;
+			if(val>=vh){ 
+				val=vh; 
+				smf=0; 
+			}
+		} 
+		else{
+			val--;
+			if(val<=vl){ 
+				val=vl; 
+				smf=1; 
+			}
+		}
+	vals[i]=val;
+	}
+ }
+
+ if(fel==2){
+	// dinti fierastrau
+	vl=100;
+	vh=200;
+	val=vl+Math.round((20)*Math.random());
+
+	for(i=0;i<nrv;i++){ 
+		val++;
+		if(val>=vh){ 
+			val=vl; 
+		} 
+		vals[i]=val;
+	}
+ }
+
+ if(fel==3){
+	// dreptunghi
+	sem=1;
+	vl=100;
+	vh=200;
+	k=vl/3+Math.round((30)*Math.random());
+	for(i=0;i<nrv;i++){
+		if(sem==1){ 
+			k++;
+			if(k>=vh){ 
+				val=vh; 
+				sem=0; 
+			}
+		} 
+		else{
+			k--;
+			if(k<=vl){ 
+				val=vl; 
+				sem=1; 
+			}
+		}
+	vals[i]=val;
+	}
+ }
+
+ if(fel==4){
+	// sinus
+	vl=100;
+	vh=200;
+	alfa=Math.random();
+	for(i=0;i<nrv;i++){
+		vals[i]=ht/2+(vh-vl)*(Math.sin(alfa));
+		alfa+=0.1;
+	}
+ }
+
+ if(fel==5){
+	// aleator continuu
+	for(i=1;i<nrv;i++){
+		vals[i-1]=vals[i];
+	}
+	k=Math.round(4*Math.random());
+	if(k==0)
+		f=1;
+	if(k==1)
+		f=-1;
+	if(k==2)
+		f=10;
+	if(k==3)
+		f=-10;
+
+	vals[nrv-1]=vals[nrv-2]+f;
+
+	if(vals[nrv-1]>ht)
+		vals[nrv-1]=ht/2;
+	if(vals[nrv-1]<=0)
+		vals[nrv-1]=ht/2;
+ }
+
+ if(fel==6){
+	//aleator discontinuu
+	for(i=1;i<nrv;i++){
+		vals[i-1]=vals[i];
+	}
+	vals[i-2]=Math.round(ht*Math.random());
+ }
+
+ if(fel==7){
+	// total aleator
+	for(i=0;i<nrv;i++){
+		vals[i]=Math.round(ht*Math.random());
+	}
+ }
+
+ osci.deseneaza(vals,nrv);
+ setTimeout("graf()",100);
+}
+graf();
+</script>

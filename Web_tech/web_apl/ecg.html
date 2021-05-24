@@ -1,0 +1,500 @@
+
+
+<html>
+<center><table bgcolor="WhiteSmoke" border =0>
+<tr><td align="center">
+	<center>EKG</center>
+</td></tr>
+<tr><td>
+<canvas id="desen06" width="730" height="350" style="background-color:#ffffff;border:1px solid #c3c3c3; ">
+	Your browser does not support the HTML5 canvas tag.
+</canvas>
+</td></tr>
+<tr><td align="center">
+ <table border="0">
+  <tr>
+	<td width="25">rate:</td>
+	<td width="150"><input type="range" value="70" id="rate_id" min="40" max="120"  onchange="set_rate()"/></td>   
+	<td width="50"><span id="rate_t"></span></td>
+
+	<td width="25">a_R:</td>
+	<td width="150"><input type="range" value="200" id="r_id" min="50" max="250"  onchange="set_r()"/></td>   
+	<td width="50"><span id="r_t"></span></td>
+
+	<td width="25">d_R:</td>
+	<td width="150"><input type="range" value="7" id="dqrs_id" min="5" max="15"  onchange="set_dqrs()"/></td>   
+	<td width="50"><span id="dqrs_t"></span></td>
+
+ </tr><tr>
+	<td width="25">a_P:</td>
+	<td width="150"><input type="range" value="25" id="p_id" min="10" max="50"  onchange="set_p()"/></td>   
+	<td width="50"><span id="p_t"></span></td>
+
+	<td width="25">d_P:</td>
+	<td width="150"><input type="range" value="9" id="dp_id" min="8" max="25"  onchange="set_dp()"/></td>   
+	<td width="50"><span id="dp_t"></span></td>
+
+	<td width="25">t_P:</td>
+	<td width="150"><input type="range" value="12" id="tp_id" min="10" max="50"  onchange="set_tp()"/></td>   
+	<td width="50"><span id="tp_t"></span></td>
+ </tr><tr>
+	<td width="25">a_Q:</td>
+	<td width="150"><input type="range" value="70" id="q_id" min="10" max="150"  onchange="set_q()"/></td>   
+	<td width="50"><span id="q_t"></span></td>
+
+	<td width="25">d_Q:</td>
+	<td width="150"><input type="range" value="66" id="dq_id" min="50" max="100"  onchange="set_dq()"/></td>   
+	<td width="50"><span id="dq_t"></span></td>
+
+	<td width="25">t_Q:</td>
+	<td width="150"><input type="range" value="166" id="tq_id" min="150" max="200"  onchange="set_tq()"/></td>   
+	<td width="50"><span id="tq_t"></span></td>
+ </tr><tr>
+	<td width="25">a_S:</td>
+	<td width="150"><input type="range" value="25" id="s_id" min="10" max="100"  onchange="set_s()"/></td>   
+	<td width="50"><span id="s_t"></span></td>
+
+	<td width="25">d_S:</td>
+	<td width="150"><input type="range" value="66" id="ds_id" min="50" max="100"  onchange="set_ds()"/></td>   
+	<td width="50"><span id="ds_t"></span></td>
+
+	<td width="25">t_S:</td>
+	<td width="150"><input type="range" value="9" id="ts_id" min="5" max="20"  onchange="set_ts()"/></td>   
+	<td width="50"><span id="ts_t"></span></td>
+ </tr><tr>
+	<td width="25">a_T:</td>
+	<td width="150"><input type="range" value="35" id="t_id" min="10" max="100"  onchange="set_t()"/></td>   
+	<td width="50"><span id="t_t"></span></td>
+
+	<td width="25">d_T:</td>
+	<td width="150"><input type="range" value="42" id="dt_id" min="30" max="100"  onchange="set_dt()"/></td>   
+	<td width="50"><span id="dt_t"></span></td>
+
+	<td width="25">t_T:</td>
+	<td width="150"><input type="range" value="15" id="tt_id" min="10" max="30"  onchange="set_tt()"/></td>   
+	<td width="50"><span id="tt_t"></span></td>
+ </tr><tr>
+	<td width="25">a_U:</td>
+	<td width="150"><input type="range" value="35" id="u_id" min="20" max="100"  onchange="set_u()"/></td>   
+	<td width="50"><span id="u_t"></span></td>
+
+	<td width="25">d_U:</td>
+	<td width="150"><input type="range" value="35" id="du_id" min="20" max="100"  onchange="set_du()"/></td>   
+	<td width="50"><span id="du_t"></span></td>
+
+	<td width="25">t_U:</td>
+	<td width="150"><input type="range" value="30" id="tu_id" min="20" max="100"  onchange="set_tu()"/></td>   
+	<td width="50"><span id="tu_t"></span></td>
+  </tr>
+ </table>
+</td></tr>
+</table></center>
+<script type="text/javascript">
+var r,kp,ki,kd;
+var ctx6=desen06.getContext("2d");
+ctx6.lineWidth = .5; 
+w=desen06.width ;
+h=desen06.height-20;
+val_max=3;
+valls_0 = [];
+valls_1 = [];
+nrv=480;
+ht=300;
+im=new Image();
+im.src="ekg.jpg";
+for(i=0;i<nrv;i++){	
+	valls_0[i]=0.2;
+	valls_1[i]=0.0;
+}
+// ekg
+li=30/72;  
+    
+a_pwav=0.25;
+d_pwav=0.09;
+t_pwav=0.16;  
+     
+a_qwav=0.025;
+d_qwav=0.066;
+t_qwav=0.166;
+      
+a_qrswav=1.6;
+d_qrswav=0.11;
+      
+a_swav=0.25;
+d_swav=0.066;
+t_swav=0.09;
+      
+a_twav=0.35;
+d_twav=0.142;
+t_twav=0.2;
+      
+a_uwav=0.035;
+d_uwav=0.0476;
+t_uwav=0.433;
+
+function p_wav(x,a_pwav,d_pwav,t_pwav,li)
+	{
+		l=li;
+		a=a_pwav;
+		x=x+t_pwav;
+		b=(2*l)/d_pwav;
+		n=100;
+		p1=1/l;
+		p2=0;
+		harm1=0.0;
+		for (i = 1; i<n; i++){
+    			harm1=(((Math.sin((Math.PI/(2*b))*(b-(2*i))))/(b-(2*i))+(Math.sin((Math.PI/(2*b))*(b+(2*i))))/(b+(2*i)))*(2/Math.PI))*Math.cos((i*Math.PI*x)/l);             
+    			p2=p2+harm1;
+		}
+		pwav1=p1+p2;
+		pwav=a*pwav1;
+		return pwav;
+	}
+function qrs_wav(x,a_qrswav,d_qrswav,li){
+	l=li;
+	a=a_qrswav;
+	b=(2*l)/d_qrswav;
+	n=100;
+	qrs1=(a/(2*b))*(2-b);
+	qrs2=0;
+	for (i = 1; i<n; i++){
+    		harm=(((2*b*a)/(i*i*Math.PI*Math.PI))*(1-Math.cos((i*Math.PI)/b)))*Math.cos((i*Math.PI*x)/l);
+    		qrs2=qrs2+harm;
+	}
+	qrswav=qrs1+qrs2;
+	return qrswav;
+}
+function q_wav(x,a_qwav,d_qwav,t_qwav,li){
+	l=li;
+	x=x+t_qwav;
+	a=a_qwav;
+	b=(2*l)/d_qwav;
+	n=100;
+	q1=(a/(2*b))*(2-b);
+	q2=0;
+	for (i = 1; i<n; i++){
+    		harm5=(((2*b*a)/(i*i*Math.PI*Math.PI))*(1-Math.cos((i*Math.PI)/b)))*Math.cos((i*Math.PI*x)/l);
+    		q2=q2+harm5;
+	}
+	qwav=-1*(q1+q2);
+	return qwav;
+}
+function s_wav(x,a_swav,d_swav,t_swav,li){
+	l=li;
+	x=x-t_swav;
+	a=a_swav;
+	b=(2*l)/d_swav;
+	n=100;
+	s1=(a/(2*b))*(2-b);
+	s2=0;
+	for (i = 1; i<n; i++){
+    		harm3=(((2*b*a)/(i*i*Math.PI*Math.PI))*(1-Math.cos((i*Math.PI)/b)))*Math.cos((i*Math.PI*x)/l);
+    		s2=s2+harm3;
+	}
+	swav=-1*(s1+s2);
+	return swav;
+}
+function t_wav(x,a_twav,d_twav,t_twav,li){
+	l=li;
+	a=a_twav;
+	x=x-t_twav-0.045;
+	b=(2*l)/d_twav;
+	n=100;
+	t1=1/l;
+	t2=0;
+	for (i = 1; i<n; i++){
+    		harm2=(((Math.sin((Math.PI/(2*b))*(b-(2*i))))/(b-(2*i))+(Math.sin((Math.PI/(2*b))*(b+(2*i))))/(b+(2*i)))*(2/Math.PI))*Math.cos((i*Math.PI*x)/l);             
+    		t2=t2+harm2;
+	}
+	twav1=t1+t2;
+	twav=a*twav1;
+	return twav;
+}
+function u_wav(x,a_uwav,d_uwav,t_uwav,li){
+	l=li;
+	a=a_uwav
+	x=x-t_uwav;
+	b=(2*l)/d_uwav;
+	n=100;
+	u1=1/l
+	u2=0
+	for (i = 1; i<n; i++){
+    		harm4=(((Math.sin((Math.PI/(2*b))*(b-(2*i))))/(b-(2*i))+(Math.sin((Math.PI/(2*b))*(b+(2*i))))/(b+(2*i)))*(2/Math.PI))*Math.cos((i*Math.PI*x)/l);             
+    		u2=u2+harm4;
+	}
+	uwav1=u1+u2;
+	uwav=a*uwav1;
+	return uwav;
+}
+
+			
+function afisor_xt(c,pozx, pozy, n_maxx, n_maxy,v_max)
+	{
+		this.cnvs=c; // canvas
+		this.x0 = pozx;// pozitia pe x
+                this.y0 = pozy;// pozitia pe y
+                this.w = n_maxx; // latimea
+                this.h = n_maxy;// inaltimea
+                this.nr_max = n_maxx; // numarul de puncte pe x
+                this.val_max = v_max; // valoarea maxima
+	}
+afisor_xt.prototype = {
+	constructor: afisor_xt,
+	deseneaza:function (vls_0,vls_1, nv)  {
+	var val_v, val ,i ,j;
+	
+	// sterg continut
+	
+	this.cnvs.beginPath();
+	this.cnvs.fillStyle = "#FFFFFF";
+	this.cnvs.fillRect(this.x0-30,this.y0-10,this.x0+this.w,this.y0+this.h+30);
+	this.cnvs.stroke();	
+	
+	//chenar
+	
+	this.cnvs.beginPath();
+	this.cnvs.moveTo(this.x0,this.y0); 
+	this.cnvs.strokeStyle = "rgb(0,0,255)";
+	this.cnvs.lineTo(this.x0+this.w,this.y0);
+	this.cnvs.lineTo(this.x0+this.w,this.y0+this.h);
+	this.cnvs.lineTo(this.x0,this.y0+this.h);
+	this.cnvs.lineTo(this.x0,this.y0);
+	this.cnvs.stroke();
+    	val_v = vls_0[1] * this.h / this.val_max;
+
+	// grid orizontal minor
+			
+	this.cnvs.beginPath();
+    	this.cnvs.strokeStyle = "rgb(200,200,200)";
+	this.cnvs.font = "10px Arial";
+	for (j = this.h-10; j >=0; j -= 10)
+	{
+		this.cnvs.moveTo(this.x0,this.y0+j); 
+		this.cnvs.lineTo(this.x0 + this.w, this.y0 + j);
+    	}
+	
+	// grid vertical minor
+	
+	for (j = 10; j<=this.w-10; j += 10)
+    	{
+		this.cnvs.moveTo(this.x0+j,this.y0+1); 
+		this.cnvs.lineTo(this.x0 + j ,this.y0+ this.h+1);
+    	}
+	this.cnvs.stroke();
+
+	// grid vertical major
+			
+	this.cnvs.beginPath();
+    	this.cnvs.strokeStyle = "rgb(150,150,150)";
+    	for (j = 0; j <=this.h; j += 50)
+    	{
+		this.cnvs.moveTo(this.x0,this.y0+j); 
+		this.cnvs.lineTo(this.x0 + this.w ,this.y0 + j);
+		this.cnvs.strokeText((this.val_max*j/this.h),this.x0-20,this.y0+this.h - j);
+   	}
+
+	// grid orizontal major
+	 
+    	for (j = 0; j<=this.w; j += 50)
+    	{
+		this.cnvs.moveTo(this.x0+j,this.y0); 
+		this.cnvs.lineTo(this.x0 + j ,this.y0+ this.h-1);	
+		this.cnvs.strokeText(j,this.x0 + j,this.y0 + this.h+10);
+   	 }
+	this.cnvs.stroke();
+	
+	// trasez graficul cnal 0
+
+	this.cnvs.beginPath();
+	this.cnvs.strokeStyle = "rgb(0,240,0)";
+	this.cnvs.moveTo(this.x0,this.y0+val_v); 
+	for (i = 0; i<=nrv; i +=1){
+		val = vls_0[i] * this.h / this.val_max; //scalare
+		this.cnvs.lineTo(this.x0 + i ,this.y0+ this.h-val);
+	}
+	this.cnvs.stroke();
+
+	// trasez graficul cnal 1
+
+	this.cnvs.beginPath();
+	this.cnvs.strokeStyle = "rgb(240,0,0)";
+	this.cnvs.moveTo(this.x0,this.y0+val_v); 
+	for (i = 0; i<=nrv; i +=1){
+		val = vls_1[i] * this.h / this.val_max; //scalare
+		this.cnvs.lineTo(this.x0 + i ,this.y0+ this.h-val);
+	}
+	this.cnvs.stroke();
+ }
+}
+oscil = new afisor_xt(ctx6,50,20,nrv,ht,val_max);
+
+function grafic(){
+	ctx6.drawImage(im, 550, 20);
+	x=0.005;
+	min=val_max;
+	for (p=0; p<nrv; p++){
+		pwav=p_wav(x,a_pwav,d_pwav,t_pwav,li);
+ 		qwav=q_wav(x,a_qwav,d_qwav,t_qwav,li);
+ 		qrswav=qrs_wav(x,a_qrswav,d_qrswav,li);
+		swav=s_wav(x,a_swav,d_swav,t_swav,li);
+		twav=t_wav(x,a_twav,d_twav,t_twav,li);
+ 		uwav=u_wav(x,a_uwav,d_uwav,t_uwav,li);
+ 		ecg=pwav+qrswav+twav+swav+qwav+uwav;
+		valls_1[p] = ecg;
+		x=x+0.005;	
+	}
+	min=valls_1[0];
+	for (p=0; p<nrv; p++){
+		if(valls_1[p]<min)
+			min=valls_1[p];
+
+	}
+	for (p=0; p<nrv; p++){
+		valls_1[p]=valls_1[p]-min;
+	}
+	oscil.deseneaza(valls_0,valls_1,nrv);
+	set_rate();
+	set_p();
+	set_q();
+	set_r()
+	set_s();
+	set_t();
+	set_u();
+
+	set_dp();
+	set_dq();
+	set_dqrs();
+	set_ds();
+	set_dt();
+	set_du();
+
+	set_tp();
+	set_tq();
+	set_ts();
+	set_tt();
+	set_tu();
+	setTimeout("grafic()",100);
+}
+
+// amplitudini
+
+function set_rate(){
+	rate = document.getElementById('rate_id').value;
+	rate_t.innerHTML=rate;
+	li=30/rate;
+}
+function set_p(){
+	p = document.getElementById('p_id').value;
+	p_t.innerHTML=p/100;
+	a_pwav=p/100;
+}
+function set_q(){
+	q = document.getElementById('q_id').value;
+	q_t.innerHTML=q/1000;
+	a_qwav=q/1000;
+}
+function set_r(){
+	r = document.getElementById('r_id').value;
+	r_t.innerHTML=r/100;
+	a_qrswav=r/100;
+}
+function set_s(){
+	s = document.getElementById('s_id').value;
+	s_t.innerHTML=s/100;
+	a_swav=s/100;
+}
+function set_t(){
+	t = document.getElementById('t_id').value;
+	t_t.innerHTML=t/100;
+	a_twav=t/100;
+}
+
+function set_u(){
+	u = document.getElementById('u_id').value;
+	u_t.innerHTML=u/1000;
+	a_uwav=u/1000;
+}
+
+//distante
+
+function set_dp(){
+	dp = document.getElementById('dp_id').value;
+	dp_t.innerHTML=dp/100;
+	d_pwav=dp/100;
+}
+function set_dq(){
+	dq = document.getElementById('dq_id').value;
+	dq_t.innerHTML=dq/1000;
+	d_qwav=dq/1000;
+}
+function set_dqrs(){
+	dqrs = document.getElementById('dqrs_id').value;
+	dqrs_t.innerHTML=dqrs/100;
+	d_qrswav=dqrs/100;
+}
+function set_ds(){
+	ds = document.getElementById('ds_id').value;
+	ds_t.innerHTML=ds/1000;
+	d_swav=ds/1000;
+}
+function set_dt(){
+	dt = document.getElementById('dt_id').value;
+	dt_t.innerHTML=dt/1000;
+	d_twav=dt/1000;
+}
+function set_du(){
+	du = document.getElementById('du_id').value;
+	du_t.innerHTML=dt/1000;
+	d_uwav=du/1000;
+}
+
+// timpi
+
+function set_tp(){
+	tp = document.getElementById('tp_id').value;
+	tp_t.innerHTML=tp/100;
+	t_pwav=tp/100;
+}
+function set_tq(){
+	tq = document.getElementById('tq_id').value;
+	tq_t.innerHTML=tq/1000;
+	t_qwav=tq/1000;
+}
+function set_ts(){
+	ts = document.getElementById('ts_id').value;
+	ts_t.innerHTML=ts/100;
+	t_swav=ts/100;
+}
+function set_tt(){
+	tt = document.getElementById('tt_id').value;
+	tt_t.innerHTML=tt/100;
+	t_twav=tt/100;
+}
+function set_tu(){
+	tu = document.getElementById('tu_id').value;
+	tu_t.innerHTML=tu/100;
+	t_uwav=tu/100;
+}
+	set_rate();
+	set_p();
+	set_q();
+	set_r()
+	set_s();
+	set_t();
+	set_u();
+
+	set_dp();
+	set_dq();
+	set_dqrs();
+	set_ds();
+	set_dt();
+	set_du();
+
+	set_tp();
+	set_tq();
+	set_ts();
+	set_tt();
+	set_tu();
+
+grafic();
+</script>

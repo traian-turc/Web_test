@@ -1,0 +1,157 @@
+<center><canvas id="desen00" width="300" height="300" style="border:1px solid #d3d3d3;">
+Browser-ul d-voastra nu suporta marcatorul CANVAS.</canvas></center>
+<script>
+var d = document.getElementById("desen00");
+var ctx = d.getContext("2d");
+function wind (c,x,y,r,vm) {
+	this.cnvs=c;	// canvas
+	this.x1 = x;	// position x
+	this.y1 = y;	// position y
+	this.raza = r;	// radius
+	this.vmax = vm; // maximum value
+}
+wind.prototype = {
+	constructor: wind,
+	draw:function ()  {
+
+		// draw gradatii
+
+		var xm,ym,xg,yg,xt,yt;
+		var lt = 10;
+		var lg = 17;
+		var r_text=this.raza+20;
+		crd = new Array("E","NE","N","NW","W","SW","S","SE")
+		this.cnvs.beginPath();
+		this.cnvs.lineWidth = 1;
+		this.cnvs.strokeStyle = "rgb(0,0,150)";
+		var nrd=0;
+		var val_a=0;
+		var alfa_r=0;		
+		var alfa_gr = 0;//  unghiul in grade
+		while (alfa_gr <360)
+		{
+		alfa_r = 2 * Math.PI * (alfa_gr) / 360;// unghiul in radiani
+		
+		if (nrd % 9 == 0)
+		{
+			xm = this.x1 + (r_text-lt) * Math.cos(alfa_r);
+			ym = this.y1 - (r_text-lt) * Math.sin(alfa_r);
+			xt = this.x1-5 + r_text * Math.cos(alfa_r);
+			yt = this.y1 - r_text * Math.sin(alfa_r);
+			//this.cnvs.strokeText(Math.floor(val_a),xt,yt);
+			this.cnvs.strokeText(crd[Math.floor(nrd/9)],xt,yt);
+			val_a =val_a + 18*(this.vmax/360);
+		}
+		else
+		{
+			xm = this.x1 + (r_text - lg) * Math.cos(alfa_r);
+			ym = this.y1 - (r_text - lg) * Math.sin(alfa_r);
+		}
+		xg = this.x1 + (r_text - 2 * lt) * Math.cos(alfa_r);
+		yg = this.y1 - (r_text - 2 * lt) * Math.sin(alfa_r);
+		this.cnvs.moveTo(xm,ym);
+		this.cnvs.lineTo(xg,yg);
+		alfa_gr += 5;
+		nrd++;
+		}
+		this.cnvs.stroke();
+	},
+	set_val:function (v,a)  {
+		
+		this.val = v;
+		this.alfa_v = a // unghiul manunchiului
+		
+		// sterg interiorul
+		
+		this.cnvs.beginPath();
+		this.cnvs.fillStyle = "white";
+		this.cnvs.arc(this.x1, this.y1, this.raza,0, 2*Math.PI);
+		this.cnvs.fill();
+
+		
+		// draw cercuri concentrice
+		
+		this.cnvs.beginPath();
+		this.cnvs.strokeStyle = "rgb(200,200,200)";
+		this.cnvs.lineWidth = 1;
+		this.cnvs.moveTo(this.x1,this.y1);
+		rx=this.raza
+		while (rx > 0 )
+		{
+			this.cnvs.arc(this.x1,this.y1,rx,0,2*Math.PI);
+			rx-=36;
+		}
+		
+		// draw raze
+		
+		alfa_gr=18
+		while (alfa_gr < 360)
+		{
+				alfa_r = 2 * Math.PI * (alfa_gr) / 360
+				xg = this.x1 + this.raza * Math.cos(alfa_r);
+				yg = this.y1 - this.raza * Math.sin(alfa_r);
+				this.cnvs.moveTo(this.x1,this.y1);
+				this.cnvs.lineTo(xg,yg);
+				alfa_gr=alfa_gr+18
+		}
+		
+		// draw manunchi de raze 
+
+		alfa_vi=this.alfa_v-10
+		alfa_vf=this.alfa_v+10
+		for(i=0;i<7;i++)
+		{
+				alfa_r = (2 * Math.PI * alfa_vi) / 360
+				xg = this.x1 + this.raza * Math.cos(alfa_r);
+				yg = this.y1 - this.raza * Math.sin(alfa_r);
+				this.cnvs.moveTo(this.x1,this.y1);
+				this.cnvs.lineTo(xg,yg);
+				alfa_vi=alfa_vi+3
+		}
+		this.cnvs.stroke();
+
+		// draw manunchi de raze de lungime val
+		
+		this.cnvs.beginPath();
+		this.cnvs.strokeStyle = '#ff0000';
+		alfa_vi=this.alfa_v-10
+		alfa_vf=this.alfa_v+10
+		rz=this.raza*v/this.vmax
+		for(i=0;i<7;i++)
+		{
+				alfa_r = 2 * Math.PI * alfa_vi / 360
+				xg = this.x1 + rz * Math.cos(alfa_r);
+				yg = this.y1 - rz * Math.sin(alfa_r);
+				this.cnvs.moveTo(this.x1,this.y1);
+				this.cnvs.lineTo(xg,yg);
+				alfa_vi=alfa_vi+3
+		}
+		this.cnvs.stroke();
+		
+		// sterg valori
+		
+		this.cnvs.beginPath();
+		this.cnvs.fillStyle = "#FFFFFF";
+		this.cnvs.fillRect(this.x1-this.raza-15,this.y1-this.raza-40,90,40);
+		this.cnvs.stroke();
+		
+		// scriu valori
+		
+		this.cnvs.beginPath();
+		this.cnvs.lineWidth = 1;
+		this.cnvs.strokeStyle = '#ff0000';
+		this.cnvs.font = "14px Arial";
+		this.cnvs.strokeText("V="+this.val+" Km/h",this.x1 - this.raza-15,this.y1 - this.raza-20);
+		this.cnvs.strokeText("U="+this.alfa_v+" °",this.x1 - this.raza-15,this.y1 - this.raza-5);
+		this.cnvs.stroke();
+      }
+}
+function set_v(){
+	vm=350;
+	wind_1.set_val(Math.round(Math.random()*vm),Math.round(Math.random()*360));
+  	setTimeout("set_v()",1500);
+}
+wind_1 = new wind(ctx,150,150,120,360);
+wind_1.draw();
+set_v();
+</script>
